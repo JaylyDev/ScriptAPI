@@ -164,10 +164,10 @@ If one of the variables does not have definitions, create an issue or read Micro
 - World
 
 ### Constants
-- [TicksPerSecond](https://github.com/jaylydev/gametest-example/mojang-minecraft/constants/tickspersecond.md)
+- [TicksPerSecond](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft/constants/tickspersecond.md)
 
 ### Objects
-- [world](https://github.com/jaylydev/gametest-example/mojang-minecraft/objects/world.md)
+- [world](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft/objects/world.md)
 
 ## mojang-gametest
 ### Enumerations
@@ -182,7 +182,7 @@ If one of the variables does not have definitions, create an issue or read Micro
 - Test
 
 ### Functions
-- [register](https://github.com/jaylydev/gametest-example/mojang-gametest/functions/register.md)
+- [register](https://github.com/jaylydev/gametest-example/tree/main/mojang-gametest/functions/register.md)
 
 ## mojang-minecraft-ui
 ### Classes
