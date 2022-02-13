@@ -1,2 +1,195 @@
-# gametest-example
- gametest exampel
+# GameTest Code example
+this repository is filled with code examples for variables in GameTest Framework module
+
+# Index
+The definitions and code examples are dependent with Minecraft version 1.18.20
+
+If one of the variables does not have definitions, create an issue or read Microsoft Docs
+- mojang-minecraft: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/mojang-minecraft
+- mojang-gametest: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-gametest/mojang-gametest
+- mojang-minecraft-ui: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft-ui/mojang-minecraft-ui
+
+## mojang-minecraft
+### Enumerations
+- Direction
+- GameMode
+
+### Classes
+- BeforeChatEvent
+- BeforeChatEventSignal
+- BeforeDataDrivenEntityTriggerEvent
+- BeforeDataDrivenEntityTriggerEvent
+- BeforeExplosionEvent
+- BeforeExplosionEventSignal
+- BeforeItemDefinitionEventSignal
+- BeforeItemDefinitionTriggeredEvent
+- BeforeItemUseEvent
+- BeforeItemUseEventSignal
+- BeforeItemUseOnEvent
+- BeforeItemUseOnEventSignal
+- BeforePistonActivateEvent
+- BeforePistonActivateEventSignal
+- Block
+- BlockAreaSize
+- BlockBreakEvent
+- BlockBreakEventSignal
+- BlockComponent
+- BlockEvent
+- BlockExplodeEvent
+- BlockExplodeEventSignal
+- BlockInventoryComponent
+- BlockInventoryComponentContainer
+- BlockLavaContainerComponent
+- BlockLocation
+- BlockPermutation
+- BlockPistonComponent
+- BlockPlaceEvent
+- BlockPlaceEventSignal
+- BlockPotionContainerComponent
+- BlockProperties
+- BlockRaycastOptions
+- BlockRecordPlayerComponent
+- BlockSnowContainerComponent
+- BlockType
+- BlockWaterContainerComponent
+- BoolBlockProperty
+- ChatEvent
+- ChatEventSignal
+- Color
+- Container
+- DataDrivenEntityTriggerEvent
+- DataDrivenEntityTriggerEvent
+- DefinitionModifier
+- Dimension
+- Effect
+- EffectAddEvent
+- EffectAddEventSignal
+- EffectType
+- Enchantment
+- EnchantmentList
+- EnchantmentSlot
+- EnchantmentType
+- Entity
+- EntityAddRiderComponent
+- EntityAgeableComponent
+- EntityBreathableComponent
+- EntityColorComponent
+- EntityCreateEvent
+- EntityCreateEventSignal
+- EntityDataDrivenTriggerEventOptions
+- EntityDefinitionFeedItem
+- EntityEventOptions
+- EntityFlyingSpeedComponent
+- EntityHealableComponent
+- EntityHealthComponent
+- EntityInventoryComponent
+- EntityIterator
+- EntityLavaMovementComponent
+- EntityLeashableComponent
+- EntityMountTamingComponent
+- EntityMovementAmphibiousComponent
+- EntityMovementBasicComponent
+- EntityMovementComponent
+- EntityMovementFlyComponent
+- EntityMovementGenericComponent
+- EntityMovementGlideComponent
+- EntityMovementHoverComponent
+- EntityMovementJumpComponent
+- EntityMovementSkipComponent
+- EntityMovementSwayComponent
+- EntityNavigationClimbComponent
+- EntityNavigationFloatComponent
+- EntityNavigationFlyComponent
+- EntityNavigationGenericComponent
+- EntityNavigationHoverComponent
+- EntityNavigationWalkComponent
+- EntityQueryOptions
+- EntityQueryScoreOptions
+- EntityRaycastOptions
+- EntityRideableComponent
+- EntityStrengthComponent
+- EntityTameableComponent
+- EntityUnderwaterMovementComponent
+- Events
+- ExplosionEvent
+- ExplosionEventSignal
+- ExplosionOptions
+- FeedItem
+- FeedItemEffect
+- FilterGroup
+- FluidContainer
+- IBlockProperty
+- IEntityComponent
+- IntBlockProperty
+- InventoryComponentContainer
+- ItemCooldownComponent
+- ItemDefinitionEventSignal
+- ItemDefinitionTriggeredEvent
+- ItemDurabilityComponent
+- ItemEnchantsComponent
+- ItemFoodComponent
+- Items
+- ItemStack
+- ItemType
+- ItemUseEvent
+- ItemUseEventSignal
+- ItemUseOnEvent
+- ItemUseOnEventSignal
+- Location
+- MinecraftBlockTypes
+- MinecraftEffectTypes
+- MinecraftEnchantmentTypes
+- MinecraftItemTypes
+- MolangVariableMap
+- NavigationResult
+- NumberRange
+- PistonActivateEvent
+- PistonActivateEventSignal
+- PitchYawRotation
+- Player
+- PlayerInventoryComponentContainer
+- PlayerIterator
+- PlayerJoinEvent
+- PlayerJoinEventSignal
+- PlayerLeaveEvent
+- PlayerLeaveEventSignal
+- Seat
+- StringBlockProperty
+- TickEvent
+- TickEventSignal
+- Trigger
+- Vector
+- WeatherChangeEvent
+- WeatherChangeEventSignal
+- World
+
+### Constants
+- [TicksPerSecond](https://github.com/jaylydev/gametest-example/mojang-minecraft/constants/tickspersecond.md)
+
+### Objects
+- [world](https://github.com/jaylydev/gametest-example/mojang-minecraft/objects/world.md)
+
+## mojang-gametest
+### Enumerations
+- FluidType
+
+### Classes
+- FenceConnectivity
+- GameTestSequence
+- RegistrationBuilder
+- SimulatedPlayer
+- Tags
+- Test
+
+### Functions
+- [register](https://github.com/jaylydev/gametest-example/mojang-gametest/functions/register.md)
+
+## mojang-minecraft-ui
+### Classes
+- ActionFormData
+- ActionFormResponse
+- FormResponse
+- MessageFormData
+- MessageFormResponse
+- ModalFormData
+- ModalFormResponse
