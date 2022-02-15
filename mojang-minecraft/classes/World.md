@@ -2,14 +2,17 @@
 
 Description: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/World
 
-## Value
+## Response
 
-<pre><code class="lang-ts"><span class="hljs-type"><span class="hljs-keyword">class</span> <span class="hljs-title">World</span> {</span>
-  <span class="hljs-type">readonly</span> <span class="hljs-string">"events"</span>: <a href="https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft/classes/Events.md">Events</a>;
-  <span class="hljs-class">getDimension</span>(<span class="hljs-string">dimensionName:</span> <span class="hljs-string">"overworld"</span> | <span class="hljs-string">"nether"</span> | <span class="hljs-string">"the end"</span>): <a href="https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft/classes/Dimension.md" class="hljs-type">Dimension</a>;
-  <span class="hljs-class">getPlayers</span>(options?: <a href="https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft/classes/EntityQueryOptions.md" class="hljs-type">EntityQueryOptions</a>): <a href="https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft/classes/EntityIterator.md" class="hljs-type">EntityIterator</a>;
+```ts
+class World {
+  readonly "events": Events;
+
+  getDimension(dimensionName: "overworld" | "nether" | "the end"): Dimension;
+  
+  getPlayers(options?: EntityQueryOptions): EntityIterator;
 }
-</code></pre>
+```
 
 > Credit: [@types/mojang-minecraft/index.d.ts](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/mojang-minecraft/index.d.ts)
 
