@@ -2,7 +2,7 @@
 
 Description: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/direction
 
-## Response
+## Code structure
 
 ```ts
 enum Direction {

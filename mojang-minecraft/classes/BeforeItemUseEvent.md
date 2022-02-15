@@ -5,7 +5,7 @@ Description:
 - BeforeItemUseEvent: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeItemUseEvent
 - beforeItemUseEventSignal: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/beforeItemUseEventSignal
 
-## Response
+## Code structure
 
 ```ts
 class BeforeItemUseEvent {

@@ -2,7 +2,7 @@
 
 Description: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/Dimension
 
-## Response
+## Code structure
 
 ```ts
 class Dimension {

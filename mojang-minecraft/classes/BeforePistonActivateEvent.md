@@ -5,7 +5,7 @@ Description:
 - BeforePistonActivateEvent: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforePistonActivateEvent
 - BeforePistonActivateEventSignal: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforePistonActivateEventSignal
 
-## Response
+## Code structure
 
 ```ts
 /**

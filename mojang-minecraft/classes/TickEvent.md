@@ -5,7 +5,7 @@ Description:
 - TickEvent: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/TickEvent
 - TickEventSignal: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/TickEventSignal
 
-## Response
+## Code structure
 
 ```ts
 class TickEvent {

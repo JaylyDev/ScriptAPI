@@ -9,7 +9,7 @@ This page lacks code examples
 
 ----
 
-## Response
+## Code structure
 
 ```ts
 export class Color {

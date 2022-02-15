@@ -2,7 +2,7 @@
 
 Description: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/mojang-minecraft#tickspersecond
 
-## Response
+## Code structure
 ```ts
 const TicksPerSecond = 20;
 ```

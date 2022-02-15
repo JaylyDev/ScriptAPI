@@ -4,7 +4,7 @@ Description: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang
 
 `world` is basically World class, the module exports World class as world since Minecraft 1.18.10
 
-## Response:
+## Code structure:
 
 ```ts
 class World {

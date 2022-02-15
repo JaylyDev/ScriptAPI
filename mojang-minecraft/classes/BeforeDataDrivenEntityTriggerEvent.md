@@ -9,7 +9,7 @@ This page lacks class code structure and code examples
 
 ----
 
-## Response
+## Code structure
 
 ```ts
 class BeforeDataDrivenEntityTriggerEvent {

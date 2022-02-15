@@ -2,7 +2,7 @@
 
 Description: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/Entity
 
-## Response
+## Code structure
 
 ```ts
 class Entity {

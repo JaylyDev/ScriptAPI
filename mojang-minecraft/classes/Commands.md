@@ -29,7 +29,7 @@ world.getDimension().runCommand();
 
 Description: https://github.com/MicrosoftDocs/minecraft-creator/blob/c1a0f314a7ecc3c380591859f84f113a7362abf3/creator/ScriptAPI/mojang-minecraft/Commands.md
 
-## Response
+## Code structure
 
 ```ts
 class Commands {

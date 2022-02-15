@@ -5,7 +5,7 @@ Description:
 - BeforeExplosionEvent: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeExplosionEvent
 - BeforeExplosionEventSignal: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeExplosionEventSignal
 
-## Response
+## Code structure
 
 ```ts
 class BeforeExplosionEvent {

@@ -5,7 +5,7 @@ Description:
 - ItemUseEvent: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/ItemUseEvent
 - ItemUseEventSignal: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/ItemUseEventSignal
 
-## Response
+## Code structure
 
 ```ts
 class ItemUseEvent {

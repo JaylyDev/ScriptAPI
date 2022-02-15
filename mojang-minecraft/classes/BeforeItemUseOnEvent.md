@@ -5,7 +5,7 @@ Description:
 - BeforeItemUseOnEvent: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeItemUseOnEvent
 - BeforeItemUseOnEventSignal: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeItemUseOnEventSignal
 
-## Response
+## Code structure
 
 ```ts
 /**

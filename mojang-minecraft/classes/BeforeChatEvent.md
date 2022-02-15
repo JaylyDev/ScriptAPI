@@ -4,7 +4,7 @@ Description:
 - BeforeChatEvent: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeChatEvent
 - BeforeChatEventSignal: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeChatEventSignal
 
-## Response
+## Code structure
 
 ```ts
 class BeforeChatEvent {

@@ -5,7 +5,7 @@ Description:
 - BeforeItemDefinitionTriggeredEvent: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeItemDefinitionTriggeredEvent
 - BeforeItemDefinitionEventSignal: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeItemDefinitionEventSignal
 
-## Response
+## Code structure
 
 ```ts
 class BeforeItemDefinitionEventSignal {
