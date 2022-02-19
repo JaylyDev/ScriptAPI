@@ -63,6 +63,11 @@ export class MessageFormResponse extends FormResponse {
 }
 ```
 
+> MessageFormData is not compatible with following events:
+>
+> - world.events.tick.subscribe (cannot send variables)
+> - world.events.beforeChat.subscribe (chat ui prevents UI pop up)
+
 ## Code examples:
 
 ### WavePlayz's examples
@@ -76,7 +81,7 @@ https://github.com/WavePlayz/Gametest-API/blob/main/howto/dialog-ui.md
 import { world } from "mojang-minecraft";
 import { MessageFormData } from "mojang-minecraft-ui";
 
-World.events.beforeItemUse.subscribe((eventData) => {
+world.events.beforeItemUse.subscribe((eventData) => {
   let { source } = eventData; // get player
   let MessageForm = new MessageFormData();
 

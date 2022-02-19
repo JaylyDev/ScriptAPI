@@ -59,13 +59,13 @@ world.events.beforePistonActivate.subscribe((data) => {
 
   console.log(data.block.permutation.type);
 
-  console.log(data.block.permutation.clone());
+  data.block.permutation.clone());
 
-  console.log(data.block.permutation.getAllProperties());
+  data.block.permutation.getAllProperties());
 
-  console.log(data.block.permutation.getProperty(propertyName)); // propertyName needs to be declared
+  data.block.permutation.getProperty(propertyName)); // propertyName needs to be declared
 
-  console.log(data.block.permutation.getTags());
+  data.block.permutation.getTags());
 
   console.log(data.block.type);
 

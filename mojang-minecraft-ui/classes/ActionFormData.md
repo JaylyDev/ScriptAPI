@@ -4,7 +4,7 @@ Description: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang
 
 ## Code structure
 
-```ts
+````ts
 export class ActionFormData {
   /**
    * @param bodyText
@@ -33,7 +33,7 @@ export class ActionFormData {
   constructor();
 
   /**
-   * @param player 
+   * @param player
    * Shows the dialog to a specific player
    * @returns
    * Use ActionFormResponse class to display form values from ActionFormData class
@@ -48,7 +48,7 @@ export class ActionFormData {
    */
   title(titleText: string): ActionFormData;
 }
-```
+````
 
 ```ts
 export class FormResponse {
@@ -63,9 +63,16 @@ export class ActionFormResponse extends FormResponse {
 }
 ```
 
+> MessageFormData is not compatible with following events:
+>
+> - world.events.tick.subscribe (cannot send variables)
+> - world.events.beforeChat.subscribe (chat ui prevents UI pop up)
+
 ## Code examples:
 
 ### WavePlayz's examples
+
+![imgur-mp4](https://github.com/WavePlayz/Gametest-API/blob/main/images/20220128_165128.gif?raw=true)
 
 A script that has all UI resources in one:
 https://github.com/WavePlayz/Gametest-API/blob/main/howto/dialog-ui.md
@@ -76,7 +83,7 @@ https://github.com/WavePlayz/Gametest-API/blob/main/howto/dialog-ui.md
 import { world } from "mojang-minecraft";
 import { ActionFormData } from "mojang-minecraft-ui";
 
-World.events.beforeItemUse.subscribe((eventData) => {
+world.events.beforeItemUse.subscribe((eventData) => {
   let { source } = eventData; // get player
   let ActionForm = new ActionFormData();
 

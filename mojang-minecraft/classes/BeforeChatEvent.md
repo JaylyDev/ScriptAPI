@@ -1,6 +1,7 @@
 # BeforeChatEvent
 
 Description:
+
 - BeforeChatEvent: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeChatEvent
 - BeforeChatEventSignal: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeChatEventSignal
 
@@ -18,11 +19,12 @@ class BeforeChatEvent {
 
 ```ts
 class BeforeChatEventSignal {
-  subscribe(callback: (arg: BeforeChatEvent) => void): (arg: BeforeChatEvent) => void;
+  subscribe(
+    callback: (arg: BeforeChatEvent) => void
+  ): (arg: BeforeChatEvent) => void;
   unsubscribe(callback: (arg: BeforeChatEvent) => void): void;
 }
 ```
-
 
 > Credit: [@types/mojang-minecraft/index.d.ts](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/mojang-minecraft/index.d.ts);
 

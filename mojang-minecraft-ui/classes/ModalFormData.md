@@ -4,7 +4,7 @@ Description: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang
 
 ## Code structure
 
-```ts
+````ts
 export class ModalFormData {
   constructor();
 
@@ -39,7 +39,7 @@ export class ModalFormData {
   icon(iconPath: string): ModalFormData;
 
   /**
-   * @param player 
+   * @param player
    * Shows the dialog to a specific player
    * @returns
    * Use ModalFormResponse class to display form values from ModalFormData class
@@ -102,7 +102,7 @@ export class ModalFormData {
    */
   toggle(label: string, defaultValue?: boolean): ModalFormData;
 }
-```
+````
 
 ```ts
 export class FormResponse {
@@ -117,6 +117,11 @@ export class ModalFormResponse extends FormResponse {
 }
 ```
 
+> MessageFormData is not compatible with following events:
+>
+> - world.events.tick.subscribe (cannot send variables)
+> - world.events.beforeChat.subscribe (chat ui prevents UI pop up)
+
 ## Code examples:
 
 ### WavePlayz's examples
@@ -126,11 +131,13 @@ https://github.com/WavePlayz/Gametest-API/blob/main/howto/dialog-ui.md
 
 ### ModalFormData.js
 
+![image](https://media.discordapp.net/attachments/854033525546942464/944382583444234240/unknown.png)
+
 ```js
 import { world } from "mojang-minecraft";
 import { ModalFormData } from "mojang-minecraft-ui";
 
-World.events.beforeItemUse.subscribe(eventData => {
+world.events.beforeItemUse.subscribe((eventData) => {
   let { source } = eventData; // get player
   let ModalForm = new ModalFormData();
   let options = ["option_1", "option_2"];

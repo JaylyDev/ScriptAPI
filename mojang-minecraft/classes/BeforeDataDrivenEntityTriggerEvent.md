@@ -1,18 +1,21 @@
 # BeforeDataDrivenEntityTriggerEvent
 
-Description: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeDataDrivenEntityTriggerEvent
-
------
-⚠ This page needs more infomation ⚠
------
-This page lacks class code structure and code examples
-
-----
+Description:
+- https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeDataDrivenEntityTriggerEvent
+- https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/BeforeDataDrivenEntityTriggerEventSignal
 
 ## Code structure
 
 ```ts
-class BeforeDataDrivenEntityTriggerEvent {
+export class BeforeDataDrivenEntityTriggerEvent {
+  "cancel": boolean;
+  readonly "entity": Entity;
+  readonly "id": string;
+  "modifiers": DefinitionModifier[];
+}
+```
+```ts
+export class BeforeDataDrivenEntityTriggerEventSignal {
   subscribe(
     callback: (arg: BeforeDataDrivenEntityTriggerEvent) => void
   ): (arg: BeforeDataDrivenEntityTriggerEvent) => void;
@@ -29,7 +32,7 @@ Subscribe to events without unsubscribing:
 ```js
 import { world } from "mojang-minecraft";
 
-world.events.beforeExplosion.subscribe((data) => {});
+world.events.BeforeDataDrivenEntityTriggerEvent.subscribe((data) => {});
 ```
 
 Subscribe and unsubscribe events:
@@ -37,6 +40,6 @@ Subscribe and unsubscribe events:
 ```js
 import { world } from "mojang-minecraft";
 
-let beforeExplosion = world.events.beforeExplosion.subscribe(() => {});
-world.events.beforeExplosion.unsubscribe(beforeExplosion);
+let BeforeDataDrivenEntityTriggerEvent = world.events.BeforeDataDrivenEntityTriggerEvent.subscribe(() => {});
+world.events.BeforeDataDrivenEntityTriggerEvent.unsubscribe(BeforeDataDrivenEntityTriggerEvent);
 ```
