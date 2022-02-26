@@ -41,6 +41,12 @@ world.events.beforeItemUse.subscribe((data) => {
   
   data.item.amount = 64;
   data.item.data = 0;
+  
+  // check item identifier
+  id = data.item.id;
+  if (id == "minecraft:stick") {
+    console.log("it's a stick")
+  }
 
   console.log(data.source);
 });
