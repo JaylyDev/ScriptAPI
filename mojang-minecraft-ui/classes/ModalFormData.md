@@ -161,3 +161,9 @@ world.events.beforeItemUse.subscribe((eventData) => {
   });
 });
 ```
+
+### MinecraftClassesUI.js
+
+by Discord user `Aex66#0202`
+
+https://cdn.discordapp.com/attachments/854033525546942464/940447564598214667/MinecraftClassesUI.js
