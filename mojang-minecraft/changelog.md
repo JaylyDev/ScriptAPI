@@ -7,6 +7,24 @@ Highly requested suggestion for the GameTest community.
 > - [Minecraft Bedrock Beta Changelog](https://feedback.minecraft.net/hc/en-us/sections/360001185332-Beta-Information-and-Changelogs)
 > - [Minecraft Bedrock Release Changelog](https://feedback.minecraft.net/hc/en-us/sections/360001186971-Release-Changelogs)
 
+## Minecraft Beta & Preview - 1.18.30.20/21
+> **Posted: 3 March 2022**
+> Information on the Minecraft Preview and Beta: 
+> - Preview Version: 1.18.30.21
+> - Beta Version: 1.18.30.20
+
+- Added event entityHurt(entityHurtEvent: EntityHurtEvent, options?: EntityEventOptions)- Fires when an entity takes damage
+- **Removed 'Minecraft' and 'GameTest' imports; please use 'mojang-minecraft' and 'mojang-gametest'**
+
+**BlockExplodeEvent**
+- Removed property destroyedBlockPermutation
+
+**World additions for music management:**
+- `queueMusic(trackName : string, musicOptions : MusicOptions)`
+- `playMusic(trackName : string, musicOptions : MusicOptions)`
+- `stopMusic()`
+- Added MusicOptions JS class with volume, fadeSeconds and loop properties
+
 ## Minecraft - Beta 1.18.20.27/Preview 1.18.20.28 (Bedrock)
 
 **Exposed the following components for Actors. Each of these has a valueproperty that contains the data of the component.**

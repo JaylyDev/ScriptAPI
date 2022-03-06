@@ -167,7 +167,7 @@ If one of the variables does not have definitions, create an issue or read Micro
 - [TicksPerSecond](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft/constants/tickspersecond.md)
 
 ### Objects
-- [world](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft/objects/world.md)
+- [world (v1.17.20.20)](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft/objects/world.md)
 
 ## mojang-gametest
 ### Enumerations
@@ -186,13 +186,13 @@ If one of the variables does not have definitions, create an issue or read Micro
 
 ## mojang-minecraft-ui
 ### Classes
-- ActionFormData
-- ActionFormResponse
-- FormResponse
-- MessageFormData
-- MessageFormResponse
-- ModalFormData
-- ModalFormResponse
+- [ActionFormData (v1.18.20.21)](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft-ui/classes/ActionFormData.md)
+- [ActionFormResponse (v1.18.20.21)](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft-ui/classes/ActionFormData.md)
+- [FormResponse (v1.18.20.21)](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft-ui/classes/FormResponse.md)
+- [MessageFormData (v1.18.20.21)](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft-ui/classes/MessageFormData.md)
+- [MessageFormResponse (v1.18.20.21)](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft-ui/classes/MessageFormData.md)
+- [ModalFormData (v1.18.20.21)](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft-ui/classes/ModalFormData.md)
+- [ModalFormResponse (v1.18.20.21)](https://github.com/jaylydev/gametest-example/tree/main/mojang-minecraft-ui/classes/ModalFormData.md)
 
 
 **This repository is not affiliated with Mojang Studios**

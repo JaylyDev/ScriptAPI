@@ -65,7 +65,6 @@ export class MessageFormResponse extends FormResponse {
 
 > MessageFormData is not compatible with following events:
 >
-> - world.events.tick.subscribe (cannot send variables)
 > - world.events.beforeChat.subscribe (chat ui prevents UI pop up)
 
 ## Code examples:
