@@ -330,7 +330,7 @@ Method removeAllEnchantments- Removes any enchantments that might be present on 
 
 ## Minecraft Beta - 1.18.0.21
 
-- Added deltaTime read only property to Tickevent `which represents the time between the last Level tick in seconds
+- Added deltaTime read only property to Tickevent which represents the time between the last Level tick in seconds
 
 ## Minecraft Beta - 1.17.40.21
 
@@ -415,14 +415,14 @@ Method removeAllEnchantments- Removes any enchantments that might be present on 
 ## Minecraft Beta - 1.17.10.21
 
 - Exposed chest block component and Container
-- method triggerEvent(eventName : string)`- Triggers an event`on an entity
+- method `triggerEvent(eventName : string)`- Triggers an event on an entity
 
 **Added location and velocity read-only properties to Entity
 function `createExplosion(location : Location, radius : number, explosionOptions : ExplosionOptions)**
 
 - Creates an explosion
 
-  - ExplosionOptions : class - Provides additional configuration parameters for createExplosion
+  - `ExplosionOptions : class` - Provides additional configuration parameters for createExplosion
 
 **Updates to how blocks are handled in APIs:**
 
@@ -536,3 +536,8 @@ function `createExplosion(location : Location, radius : number, explosionOptions
 - Updated all methods that took x, y, z position to take a BlockPos
 - Exposed padding when registering game test
 - Fixed issue where previous failed GameTest markers still show up in new worlds
+
+## Minecraft Beta - 1.16.210.60
+
+- Minecraft: Added `class Blocks`
+- GameTest: Added `function register`
