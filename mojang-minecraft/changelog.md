@@ -1,4 +1,4 @@
-# mojang-minecraft Changelog
+# "mojang-minecraft" module Changelog
 
 Highly requested suggestion for the GameTest community.
 
@@ -6,6 +6,85 @@ Highly requested suggestion for the GameTest community.
 >
 > - [Minecraft Bedrock Beta Changelog](https://feedback.minecraft.net/hc/en-us/sections/360001185332-Beta-Information-and-Changelogs)
 > - [Minecraft Bedrock Release Changelog](https://feedback.minecraft.net/hc/en-us/sections/360001186971-Release-Changelogs)
+
+## Minecraft Beta & Preview - 1.19.0.20/21
+> **Posted: April 6, 2022**
+> Information on the Minecraft Preview and Beta:
+> - Preview Version: 1.19.0.21
+> - Beta Version: 1.19.0.20
+
+- Fixed `Date.now()` to no longer truncate to a 32-bit integer
+
+### mojang-gametest module: Test
+- Added `function rotateVector` - Rotates a vector relative to the GameTest structure rotation
+
+### mojang-minecraft module
+- New property on Player: `onScreenDisplay : ScreenDisplay` - exposes a new interface to trigger on screen content
+
+**ScreenDisplay Type**
+- `setTitle(title : String, options? : TitleDisplayOptions)` - cause a title to show up on the player's HUD, optionally specifying the subtitle and fade in, stay and fade out times
+- `clearTitle()` - clear title and subtitle
+- `updateSubtitle(subtitle : String)` - update the subtitle (but not the title)
+- `setActionBar(text : String)` - set the action bar text
+
+**TitleDisplayOptions object**
+- `subtitle? : String` - optional subtitle
+- `fadeInSeconds : Int` - number of seconds to fade in new title and subtitle
+- `staySeconds : Int` - number of seconds to have the title and subtitle stay on screen
+- `fadeOutSeconds : Int` - number of seconds to fade out title and subtitle
+
+Support of dynamic properties that script can use to persist data per-World or per-Entity.  Note that properties must be registered using the propertyRegistry in the new WorldInitialize event
+
+**DynamicPropertiesDefinition**
+- Added `function defineNumber(identifier: string): void` - Defines a dynamic number property
+- Added `function defineString(identifier: string, maxLength: number): void` - Defines a dynamic string property
+- Added `function defineBoolean(identifier: string): void` - Defines a dynamic boolean property
+- Added event `worldInitialize(worldInitializeEvent: WorldInitializeEvent)` - Fires during world load and contains the property registry used for declaring dynamic properties
+
+**PropertyRegistry**
+- Added `function registerEntityTypeDynamicProperties(propertiesDefinition: DynamicPropertiesDefinition, entityType: EntityType)` - Registers dynamic property definitions for the given EntityType
+- Added `function registerWorldDynamicProperties(propertiesDefinition: DynamicPropertiesDefinition)` - Registers property definitions for the world
+
+**World object/Entity object additions:**
+- Added `function setDynamicProperty(identifier: string, value: boolean | string | number)` - Adds a dynamic property to the world/entity
+- Added `function getDynamicProperty(identifier: string): boolean | string | number` - Gets a dynamic property from the world/entity if it exists, otherwise returns undefined
+- Added `function removeDynamicProperty(identifier: string): boolean` - Removes a dynamic property value from the world/entity
+
+**New events:**
+- Added event `events.projectileHit` - Fires when a projectile hits a Block or Entity
+- Added event `events.itemStartUseOn` - Sent when the player first interacts with a block
+- Added event `events.itemStopUseOn` - Sent when fire if the block is successfully interacted with and the block has changed - such as when grass is turned to a path with a Shovel
+- Added event `events.itemStartCharge–`  Sent when the player first starts using a charging/animated item
+- Added event `events.itemCompleteCharge` - Sent when the item has completed its charge action
+- Added event `events.itemReleaseCharge` - Sent when the user has finished using the item and released the build action
+- Added event `events.itemStopCharge` - Sent either when the player has finished an items use cycle or when the player has released the use action with the item
+- ItemStartUseOnEvent Added read only property `buildBlockLocation` - The result build block position. Useful for determining where a block was placed
+- Added member `player?: Player` to the LeverActivate event - The player that activated the lever
+
+## Minecraft Beta & Preview - 1.18.30.26/27
+> **Posted: 16 March 2022**
+> Information on the Minecraft Preview and Beta:
+> - Preview Version: 1.18.30.27
+> - Beta Version: 1.18.30.26
+
+- Added event `'leverActivate'` - fires when a lever is toggled
+- Added optional argument `showParticles: bool = true` to function addEffect
+
+## Minecraft Beta & Preview - 1.18.30.22/23
+> **Posted: 9 March 2022**
+> Information on the Minecraft Preview and Beta:
+> - Preview Version: 1.18.30.23 (iOS: 1.18.30.24)
+> - Beta Version: 1.18.30.22  
+
+EntityType
+- Added read-only property `id: string` - The identifier for the entity type
+
+EntityTypes
+- Added `function get(identifier: string)`: EntityType- Returns the corresponding EntityType for the given identifier
+- Added `function getAll()`: EntityTypeIterator- Returns an iterator containing all registered entity types
+
+MinecraftEntityTypes
+- Provides EntityType constants for each standard Minecraft entity type
 
 ## Minecraft Beta & Preview - 1.18.30.20/21
 > **Posted: 3 March 2022**
@@ -112,7 +191,7 @@ Highly requested suggestion for the GameTest community.
 **mojang-minecraft module updates:**
 
 **World**
-- Updated property direction to blockFace in world.events.beforeItemUseOn and world.events.itemUseOn
+- Updated property direction to blockFace in world.events.beforeItemUseOn and world.`events.itemUseOn` 
 - Added event World.event.beforeDataDrivenEntityTriggerEvent - Fires before the data driven trigger is applied
 - Added event World.event.dataDrivenEntityTriggerEvent - Fires after the data driven trigger is applied
 - For the above events, each accept an optional EntityDataDrivenTriggerEventOptions
