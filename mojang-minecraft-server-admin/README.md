@@ -6,3 +6,5 @@
 ## Module Contents
 
 ### [store variables](./variables.md)
+
+### [store secrets](./secrets.md)
