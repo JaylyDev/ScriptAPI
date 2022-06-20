@@ -1,32 +1,231 @@
-# GameTest Database
-this repository is filled with code examples for GameTest Framework API
+# GameTest Code example
+this repository is filled with code examples for variables in GameTest Framework module
 
-## Portfolios
-- ### [mojang-minecraft](./mojang-minecraft/)
-- ### [mojang-minecraft-ui](./mojang-minecraft-ui/)
-- ### [mojang-minecraft-server-admin](./mojang-minecraft-server-admin/)
-- ### [mojang-net](./mojang-net/)
-- ### [utilities](./utilities/)
+# Index
+The definitions and code examples are dependent with Minecraft version 1.18.20
 
-# GameTest API modules
-GameTest Framework has the following modules as of Minecraft version 1.19.0
+If one of the variables does not have definitions, create an issue or read Microsoft Docs
+- mojang-minecraft: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/mojang-minecraft
+- mojang-gametest: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-gametest/mojang-gametest
+- mojang-minecraft-ui: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft-ui/mojang-minecraft-ui
 
-___
+## mojang-minecraft
+### Enumerations
+- [Direction (v1.16.230.50)](./mojang-minecraft/enumerations/Direction.md)
+- [GameMode (v1.18.10.21)](./mojang-minecraft/enumerations/gamemode.md)
 
-**World/Realm/Server modules**
-> These modules work across anywhere in Minecraft: Bedrock Edition
+### Classes
+- [BeforeChatEvent (v1.17.20.23)](./mojang-minecraft/classes/BeforeChatEvent.md)
+- [BeforeChatEventSignal (v1.17.20.23)](./mojang-minecraft/classes/BeforeChatEvent.md)
+- [BeforeDataDrivenEntityTriggerEvent (v1.18.20.21)](./mojang-minecraft/classes/BeforeDataDrivenEntityTriggerEvent.md)
+- [BeforeDataDrivenEntityTriggerEventSignal (v1.18.20.21)](./mojang-minecraft/classes/BeforeDataDrivenEntityTriggerEvent.md)
+- [BeforeExplosionEvent (v1.17.20.20)](./mojang-minecraft/classes/BeforeExplosionEvent.md)
+- [BeforeExplosionEventSignal (v1.17.20.20)](./mojang-minecraft/classes/BeforeExplosionEvent.md)
+- [BeforeItemDefinitionEventSignal (v1.17.10.21)](./mojang-minecraft/classes/BeforeItemDefinitionEvent.md)
+- [BeforeItemDefinitionTriggeredEvent (v1.17.10.21)](./mojang-minecraft/classes/BeforeItemDefinitionEvent.md)
+- [BeforeItemUseEvent (v1.18.10.20)](./mojang-minecraft/classes/BeforeItemUseEvent.md)
+- [BeforeItemUseEventSignal (v1.18.10.20)](./mojang-minecraft/classes/BeforeItemUseEvent.md)
+- [BeforeItemUseOnEvent (v1.18.10.20)](./mojang-minecraft/classes/BeforeItemUseOnEvent.md)
+- [BeforeItemUseOnEventSignal (v1.18.10.20)](./mojang-minecraft/classes/BeforeItemUseOnEvent.md)
+- [BeforePistonActivateEvent (v1.17.20.20)](./mojang-minecraft/classes/BeforePistonActivateEvent.md)
+- [BeforePistonActivateEventSignal (v1.17.20.20)](./mojang-minecraft/classes/BeforePistonActivateEvent.md)
+- [Block (v1.17.10.21)](./mojang-minecraft/classes/Block.md) <!-- Blocks (removed) (v1.16.210.60) -->
+- [BlockAreaSize (v1.17.10.21)](./mojang-minecraft/classes/BlockAreaSize.md)
+- [BlockBreakEvent (v1.18.10.21)](./mojang-minecraft/classes/BlockBreakEvent.md)
+- [BlockBreakEventSignal (v1.18.10.21)](./mojang-minecraft/classes/BlockBreakEvent.md)
+- [BlockComponent (v1.17.10.21)](./mojang-minecraft/classes/BlockComponent.md)
+- [BlockEvent (v1.17.10.21)](./mojang-minecraft/classes/BlockEvent.md)
+- [BlockExplodeEvent (v1.17.20.20)](./mojang-minecraft/classes/BlockExplodeEvent.md)
+- [BlockExplodeEventSignal (v1.17.20.20)](./mojang-minecraft/classes/BlockExplodeEvent.md)
+- BlockHitInformation (v1.19.0.20/21)
+- [BlockInventoryComponent (v1.17.10.21)](./mojang-minecraft/classes/BlockInventoryComponent.md)
+- [BlockInventoryComponentContainer (v1.17.10.21)](./mojang-minecraft/classes/BlockInventoryComponentContainer.md)
+- [BlockLavaContainerComponent (v1.17.10.21)](./mojang-minecraft/classes/BlockLavaContainerComponent.md)
+- [BlockLocation (v1.16.220.50)](./mojang-minecraft/classes/BlockLocation.md)
+- [BlockPermutation (v1.17.10.21)](./mojang-minecraft/classes/BlockPermutation.md)
+- [BlockPistonComponent (v1.17.10.21)](./mojang-minecraft/classes/BlockPistonComponent.md)
+- [BlockPlaceEvent (v1.18.10.21)](./mojang-minecraft/classes/BlockPlaceEvent.md)
+- [BlockPlaceEventSignal (v1.18.10.21)](./mojang-minecraft/classes/BlockPlaceEvent.md)
+- [BlockPotionContainerComponent (v1.17.10.21)](./mojang-minecraft/classes/BlockPotionContainerComponent.md)
+- [BlockProperties (v1.17.10.21)](./mojang-minecraft/classes/BlockProperties.md)
+- [BlockRaycastOptions (v1.18.10.20)](./mojang-minecraft/classes/BlockRaycastOptions.md)
+- [BlockRecordPlayerComponent (v1.17.10.21)](./mojang-minecraft/classes/BlockRecordPlayerComponent.md)
+- [totalBlocksnowContainerComponent (v1.17.10.21)](./mojang-minecraft/classes/totalBlocksnowContainerComponent.md)
+- [BlockType (v1.17.10.21)](./mojang-minecraft/classes/BlockType.md)
+- [BlockWaterContainerComponent (v1.17.10.21)](./mojang-minecraft/classes/BlockWaterContainerComponent.md)
+- [BoolBlockProperty (v1.17.10.21)](./mojang-minecraft/classes/BoolBlockProperty.md)
+- [ChatEvent (v1.17.10.21)](./mojang-minecraft/classes/ChatEvent.md)
+- [ChatEventSignal (v1.17.10.21)](./mojang-minecraft/classes/ChatEvent.md)
+- [Color (v1.17.10.21)](./mojang-minecraft/classes/Color.md)
+- [Container (v1.17.10.21)](./mojang-minecraft/classes/Container.md)
+- [DataDrivenEntityTriggerEvent (v1.17.10.21)](./mojang-minecraft/classes/DataDrivenEntityTriggerEvent.md)
+- [DataDrivenEntityTriggerEventSignal (v1.17.10.21)](./mojang-minecraft/classes/DataDrivenEntityTriggerEvent.md)
+- [DefinitionModifier (v1.17.10.21)](./mojang-minecraft/classes/DefinitionModifier.md)
+- [Dimension (v1.16.230.50)](./mojang-minecraft/classes/Dimension.md)
+- DynamicPropertiesDefinition (v1.19.0.20/21)
+- [Effect (v1.17.10.21)](./mojang-minecraft/classes/Effect.md)
+- [EffectAddEvent (v1.17.10.22)](./mojang-minecraft/classes/EffectAddEvent.md)
+- [EffectAddEventSignal (v1.17.10.22)](./mojang-minecraft/classes/EffectAddEvent.md)
+- [EffectType (v1.17.10.21)](./mojang-minecraft/classes/EffectType.md)
+- [Enchantment (v1.18.20.21)](./mojang-minecraft/classes/Enchantments.md)
+- [EnchantmentList (v1.18.20.21)](./mojang-minecraft/classes/Enchantments.md)
+- [EnchantmentSlot (v1.18.20.21)](./mojang-minecraft/classes/Enchantments.md)
+- [EnchantmentType (v1.18.20.21)](./mojang-minecraft/classes/Enchantments.md)
+- [Entity (v1.16.220.51)](./mojang-minecraft/classes/Entity.md)
+- [EntityAddRiderComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityAddRiderComponent.md)
+- [EntityAgeableComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityAgeableComponent.md)
+- [EntityBreathableComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityBreathableComponent.md)
+- EntityCanClimbComponent (v1.18.20.21)
+- EntityCanFlyComponent (v1.18.20.21)
+- EntityCanPowerJumpComponent (v1.18.20.21)
+- [EntityColorComponent (v1.16.230.50)](./mojang-minecraft/classes/EntityColorComponent.md)
+- [EntityCreateEvent (v1.17.10.22)](./mojang-minecraft/classes/EntityCreateEvent.md)
+- [EntityCreateEventSignal (v1.17.10.22)](./mojang-minecraft/classes/EntityCreateEvent.md)
+- [EntityDataDrivenTriggerEventOptions (v1.18.20.21)](./mojang-minecraft/classes/EntityDataDrivenTriggerEventOptions.md)
+- [EntityDefinitionFeedItem (v1.17.10.21)](./mojang-minecraft/classes/EntityDefinitionFeedItem.md)
+- [EntityEventOptions (v1.17.10.21)](./mojang-minecraft/classes/EntityEventOptions.md)
+- EntityFireImmuneComponent (v1.18.20.21)
+- EntityFloatsInLiquidComponent (v1.18.20.21)
+- [EntityFlyingSpeedComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityFlyingSpeedComponent.md)
+- EntityFrictionModifierComponent (v1.18.20.21)
+- EntityGroundOffsetComponent (v1.18.20.21)
+- [EntityHealableComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityHealableComponent.md)
+- [EntityHealthComponent (v1.16.230.50)](./mojang-minecraft/classes/EntityHealthComponent.md)
+- EntityHitEvent (v1.18.20.21)
+- EntityHitEventSignal (v1.18.20.21)
+- [EntityInventoryComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityInventoryComponent.md)
+- EntityIsBabyComponent (v1.18.20.21)
+- EntityIsChargedComponent (v1.18.20.21)
+- EntityIsChestedComponent (v1.18.20.21)
+- EntityIsDyableComponent (v1.18.20.21)
+- EntityIsHiddenWhenInvisibleComponent (v1.18.20.21)
+- EntityIsIgnitedComponent (v1.18.20.21)
+- EntityIsIllagerCaptainComponent (v1.18.20.21)
+- EntityIsSaddledComponent (v1.18.20.21)
+- EntityIsShakingComponent (v1.18.20.21)
+- EntityIsShearedComponent (v1.18.20.21)
+- EntityIsStackableComponent (v1.18.20.21)
+- EntityIsStunnedComponent (v1.18.20.21)
+- EntityIsTamedComponent (v1.18.20.21)
+- EntityItemComponent (v1.18.20.21)
+- [EntityIterator (v1.17.10.21)](./mojang-minecraft/classes/EntityIterator.md)
+- [EntityLavaMovementComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityLavaMovementComponent.md)
+- [EntityLeashableComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityLeashableComponent.md)
+- EntityMarkVariantComponent (v1.18.20.21)
+- [EntityMountTamingComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMountTamingComponent.md)
+- [EntityMovementAmphibiousComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementAmphibiousComponent.md)
+- [EntityMovementBasicComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementBasicComponent.md)
+- [EntityMovementComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementComponent.md)
+- [EntityMovementFlyComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementFlyComponent.md)
+- [EntityMovementGenericComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementGenericComponent.md)
+- [EntityMovementGlideComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementGlideComponent.md)
+- [EntityMovementHoverComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementHoverComponent.md)
+- [EntityMovementJumpComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementJumpComponent.md)
+- [EntityMovementSkipComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementSkipComponent.md)
+- [EntityMovementSwayComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityMovementSwayComponent.md)
+- [EntityNavigationClimbComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityNavigationClimbComponent.md)
+- [EntityNavigationFloatComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityNavigationFloatComponent.md)
+- [EntityNavigationFlyComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityNavigationFlyComponent.md)
+- [EntityNavigationGenericComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityNavigationGenericComponent.md)
+- [EntityNavigationHoverComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityNavigationHoverComponent.md)
+- [EntityNavigationWalkComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityNavigationWalkComponent.md)
+- EntityPushThroughComponent (v1.18.20.21)
+- [EntityQueryOptions (v1.17.10.21)](./mojang-minecraft/classes/EntityQueryOptions.md)
+- [EntityQueryScoreOptions (v1.17.10.21)](./mojang-minecraft/classes/EntityQueryScoreOptions.md)
+- [EntityRaycastOptions (v1.17.10.21)](./mojang-minecraft/classes/EntityRaycastOptions.md)
+- [EntityRideableComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityRideableComponent.md)
+- EntityScaleComponent (v1.18.20.21)
+- EntitySkinIdComponent (v1.18.20.21)
+- EntityVariantComponent (v1.18.20.21)
+- EntityWantsJockeyComponent (v1.18.20.21)
+- [EntityStrengthComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityStrengthComponent.md)
+- [EntityTameableComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityTameableComponent.md)
+- [EntityUnderwaterMovementComponent (v1.17.10.21)](./mojang-minecraft/classes/EntityUnderwaterMovementComponent.md)
+- [Events (v1.17.10.21)](./mojang-minecraft/classes/Events.md)
+- [ExplosionEvent (v1.17.20.20)](./mojang-minecraft/classes/ExplosionEvent.md)
+- [ExplosionEventSignal (v1.17.20.20)](./mojang-minecraft/classes/ExplosionEvent.md)
+- [ExplosionOptions (v1.17.10.21)](./mojang-minecraft/classes/ExplosionOptions.md)
+- [FeedItem (v1.17.10.21)](./mojang-minecraft/classes/FeedItem.md)
+- [FeedItemEffect (v1.17.10.21)](./mojang-minecraft/classes/FeedItemEffect.md)
+- [FilterGroup (v1.17.10.21)](./mojang-minecraft/classes/FilterGroup.md)
+- [FluidContainer (v1.17.10.21)](./mojang-minecraft/classes/FluidContainer.md)
+- [IBlockProperty (v1.17.10.21)](./mojang-minecraft/classes/IBlockProperty.md)
+- [IEntityComponent (v1.17.10.21)](./mojang-minecraft/classes/IEntityComponent.md)
+- [IntBlockProperty (v1.17.10.21)](./mojang-minecraft/classes/IntBlockProperty.md)
+- [InventoryComponentContainer (v1.17.10.21)](./mojang-minecraft/classes/InventoryComponentContainer.md)
+- [ItemCooldownComponent (v1.18.10.21)](./mojang-minecraft/classes/ItemCooldownComponent.md)
+- [ItemDefinitionEventSignal (v1.17.10.21)](./mojang-minecraft/classes/ItemDefinitionEvent.md)
+- [ItemDefinitionTriggeredEvent (v1.17.10.21)](./mojang-minecraft/classes/ItemDefinitionTriggeredEvent.md)
+- [ItemDurabilityComponent (v1.17.10.21)](./mojang-minecraft/classes/ItemDurabilityComponent.md)
+- [ItemEnchantsComponent (v1.17.10.21)](./mojang-minecraft/classes/ItemEnchantsComponent.md)
+- [ItemFoodComponent (v1.17.10.21)](./mojang-minecraft/classes/ItemFoodComponent.md)
+- [Items (v1.17.10.21)](./mojang-minecraft/classes/Items.md)
+- [ItemStack (v1.16.220.50)](./mojang-minecraft/classes/ItemStack.md)
+- [ItemType (v1.18.10.21)](./mojang-minecraft/classes/ItemType.md)
+- [ItemUseEvent (v1.18.10.20)](./mojang-minecraft/classes/ItemUseEvent.md)
+- [ItemUseEventSignal (v1.18.10.20)](./mojang-minecraft/classes/ItemUseEvent.md)
+- [ItemUseOnEvent (v1.18.10.20)](./mojang-minecraft/classes/ItemUseOnEvent.md)
+- [ItemUseOnEventSignal (v1.18.10.20)](./mojang-minecraft/classes/ItemUseOnEvent.md)
+- [Location (v1.17.10.21)](./mojang-minecraft/classes/Location.md)
+- [MinecraftBlockTypes (v1.17.10.22)](./mojang-minecraft/classes/MinecraftBlockTypes.md)
+- MinecraftDimensionTypes (v1.18.20.21)
+- [MinecraftEffectTypes (v1.16.230.52)](./mojang-minecraft/classes/MinecraftEffectTypes.md)
+- [MinecraftEnchantmentTypes (v1.17.10.21)](./mojang-minecraft/classes/MinecraftEnchantmentTypes.md)
+- [MinecraftItemTypes (v1.16.230.52)](./mojang-minecraft/classes/MinecraftItemTypes.md)
+- [MolangVariableMap (v1.17.10.21)](./mojang-minecraft/classes/MolangVariableMap.md)
+- [NavigationResult (v1.17.10.21)](./mojang-minecraft/classes/NavigationResult.md)
+- [NumberRange (v1.17.10.21)](./mojang-minecraft/classes/NumberRange.md)
+- [PistonActivateEvent (v1.17.10.21)](./mojang-minecraft/classes/PistonActivateEvent.md)
+- [PistonActivateEventSignal (v1.17.10.21)](./mojang-minecraft/classes/PistonActivateEvent.md)
+- [PitchYawRotation (v1.17.10.21)](./mojang-minecraft/classes/PitchYawRotation.md)
+- [Player (v1.17.10.21)](./mojang-minecraft/classes/Player.md)
+- [PlayerInventoryComponentContainer (v1.17.10.21)](./mojang-minecraft/classes/PlayerInventoryComponentContainer.md)
+- [PlayerIterator (v1.17.10.21)](./mojang-minecraft/classes/PlayerIterator.md)
+- [PlayerJoinEvent (v1.17.10.21)](./mojang-minecraft/classes/PlayerJoinEvent.md)
+- [PlayerJoinEventSignal (v1.17.10.21)](./mojang-minecraft/classes/PlayerJoinEvent.md)
+- [PlayerLeaveEvent (v1.17.10.21)](./mojang-minecraft/classes/PlayerLeaveEvent.md)
+- [PlayerLeaveEventSignal (v1.17.10.21)](./mojang-minecraft/classes/PlayerLeaveEvent.md)
+- [Seat (v1.17.10.21)](./mojang-minecraft/classes/Seat.md)
+- SoundOptions (v1.18.20.21)
+- [StringBlockProperty (v1.17.10.21)](./mojang-minecraft/classes/StringBlockProperty.md)
+- [TickEvent (v1.17.10.21)](./mojang-minecraft/classes/TickEvent.md)
+- [TickEventSignal (v1.17.10.21)](./mojang-minecraft/classes/TickEvent.md)
+- [Trigger (v1.17.10.21)](./mojang-minecraft/classes/Trigger.md)
+- [Vector (v1.18.20.23)](./mojang-minecraft/classes/Vector.md)
+- [WeatherChangeEvent (v1.17.10.22)](./mojang-minecraft/classes/WeatherChangeEvent.md)
+- [WeatherChangeEventSignal (v1.17.10.22)](./mojang-minecraft/classes/WeatherChangeEvent.md)
+- [World (v1.17.10.21)](./mojang-minecraft/classes/World.md)
 
-- mojang-minecraft:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/mojang-minecraft
-- mojang-gametest:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-gametest/mojang-gametest
-- mojang-minecraft-ui:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft-ui/mojang-minecraft-ui
+### Constants
+- [TicksPerSecond (v1.17.20.20)](./mojang-minecraft/constants/tickspersecond.md)
 
-**Bedrock Dedicated Server modules**
-> These modules works on [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients.
+### Objects
+- [world (v1.17.20.20)](./mojang-minecraft/objects/world.md)
 
-- mojang-net:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-net/mojang-net
-- mojang-minecraft-server-admin:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft-server-admin/mojang-minecraft-server-admin
+## mojang-gametest
+### Enumerations
+- FluidType (v1.17.10.21)
+
+### Classes
+- [FenceConnectivity (v1.17.20.23)](./mojang-gametest/classes/FenceConnectivity.md)
+- GameTestSequence (v1.17.20.23)
+- RegistrationBuilder (v1.17.10.21)
+- SimulatedPlayer (v1.17.10.21)
+- Tags (v1.17.10.21)
+- Test (v1.17.10.21)
+
+### Functions
+- [register (v1.16.210.60)](./mojang-gametest/functions/register.md)
+
+## mojang-minecraft-ui
+### Classes
+- [ActionFormData (v1.18.20.21)](./mojang-minecraft-ui/classes/ActionFormData.md)
+- [ActionFormResponse (v1.18.20.21)](./mojang-minecraft-ui/classes/ActionFormData.md)
+- [FormResponse (v1.18.20.21)](./mojang-minecraft-ui/classes/FormResponse.md)
+- [MessageFormData (v1.18.20.21)](./mojang-minecraft-ui/classes/MessageFormData.md)
+- [MessageFormResponse (v1.18.20.21)](./mojang-minecraft-ui/classes/MessageFormData.md)
+- [ModalFormData (v1.18.20.21)](./mojang-minecraft-ui/classes/ModalFormData.md)
+- [ModalFormResponse (v1.18.20.21)](./mojang-minecraft-ui/classes/ModalFormData.md)
+
+
+**This repository is not affiliated with Mojang Studios**
