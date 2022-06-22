@@ -5,6 +5,6 @@
 
 ## Module Contents
 
-### [store variables](./variables.md)
+### [store and load variables](./variables.md)
 
-### [store secrets](./secrets.md)
+### [store and load secrets](./secrets.md)

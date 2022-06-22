@@ -5,4 +5,6 @@
 
 ## Module Contents
 
-### [http](./http.js)
+### [Enable mojang-net on BDS](./enbale-mojang-net.md)
+
+### [http class](./http.js)
