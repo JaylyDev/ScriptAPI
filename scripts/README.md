@@ -14,4 +14,4 @@
 
 ### [CPS Counter](./cps_counter.js)
 
-### [Timers Module](./)
+### [Timers Module](./timers)
