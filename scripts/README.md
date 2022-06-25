@@ -1,6 +1,4 @@
-# mojang-minecraft Module
-
-## Contents
+# Contents
 
 ### [Form inside a form](./another-form.js)
 
@@ -13,3 +11,7 @@
 ### [JSON stringify](./json-stringify.js)
 
 ### [Sell items](./sell-items.js)
+
+### [CPS Counter](./cps_counter.js)
+
+### [Timers Module](./)
