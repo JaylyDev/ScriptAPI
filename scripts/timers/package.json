@@ -1,0 +1,13 @@
+{
+  "type": "module",
+  "name": "timers",
+  "version": "1.1.0",
+  "main": "timers.js",
+  "scripts": {
+    "test": "tsc && node timers-test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": ""
+}
