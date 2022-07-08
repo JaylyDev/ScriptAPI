@@ -1,0 +1,23 @@
+name: "GameTest"
+
+on:
+  push:
+    branches-ignore:
+      - "legacy"
+  pull_request:
+    branches-ignore:
+      - "legacy"
+
+permissions:
+  contents: read
+
+jobs:
+  gametest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: npm install
+      - run: npm install
+
+      - name: tsc
+      - run: tsc

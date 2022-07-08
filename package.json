@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "@types/mojang-gametest": "^0.1.5",
-    "@types/mojang-minecraft": "^0.1.6",
-    "@types/mojang-minecraft-server-admin": "^0.1.0",
-    "@types/mojang-minecraft-ui": "^0.1.0",
-    "@types/mojang-net": "^0.1.0"
+    "@types/mojang-gametest": "latest",
+    "@types/mojang-minecraft": "latest",
+    "@types/mojang-minecraft-server-admin": "latest",
+    "@types/mojang-minecraft-ui": "latest",
+    "@types/mojang-net": "latest"
   },
   "name": "gametest-db",
   "description": "this repository is filled with code examples for variables in GameTest Framework module",
