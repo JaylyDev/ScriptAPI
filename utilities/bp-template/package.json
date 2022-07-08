@@ -1,0 +1,20 @@
+{
+  "name": "bp-template",
+  "version": "1.0.0",
+  "description": "gametest-pack-generator",
+  "main": "manifest.js",
+  "scripts": {
+    "test": "node manifest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaylyDev/GametestDB.git"
+  },
+  "author": "JaylyMC",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/JaylyDev/GametestDB/issues"
+  },
+  "homepage": "https://github.com/JaylyDev/GametestDB#readme"
+}

@@ -15,3 +15,5 @@
 ### [CPS Counter](./cps_counter.js)
 
 ### [Timers Module](./timers)
+
+### [mojang-net-auth](./mojang-net-auth/)
