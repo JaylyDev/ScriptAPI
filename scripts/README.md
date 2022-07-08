@@ -17,3 +17,9 @@
 ### [Timers Module](./timers)
 
 ### [mojang-net-auth](./mojang-net-auth/)
+
+### [Command Handler](./commandHandler.js)
+
+### [Compass Prompt](./compass-prompt.js)
+
+### [/help](./help_command.js)
