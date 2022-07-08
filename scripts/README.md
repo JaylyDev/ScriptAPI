@@ -23,3 +23,5 @@
 ### [Compass Prompt](./compass-prompt.js)
 
 ### [/help](./help_command.js)
+
+### [Shop UI](./shopui.js)
