@@ -1,12 +1,6 @@
 name: "GameTest"
 
-on:
-  push:
-    branches-ignore:
-      - "legacy"
-  pull_request:
-    branches-ignore:
-      - "legacy"
+on: [push, pull_request]
 
 jobs:
   gametest:
