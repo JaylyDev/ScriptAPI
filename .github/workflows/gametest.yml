@@ -1,0 +1,18 @@
+name: gametest
+
+on: [push, pull_request]
+
+jobs:
+  gametest:
+    name: debug
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: npm install
+        run: npm install
+
+      - name: tsc
+        run: tsc

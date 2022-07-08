@@ -25,7 +25,7 @@ ModalForm.icon("textures/blocks/bedrock");
 ModalForm.slider("slider", 0, 100, 50);
 
 // Adds a textbox to the form.
-ModalForm.textField("text field");
+ModalForm.textField("text field", "text");
 
 // This builder method sets the title for the modal dialog.
 ModalForm.title("Modal Form");
