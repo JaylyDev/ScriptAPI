@@ -18,6 +18,7 @@ jobs:
     steps:
       - name: npm install
         run: npm install
+        working-directory: .
 
       - name: tsc
         run: tsc
