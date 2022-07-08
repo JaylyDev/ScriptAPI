@@ -1,4 +1,4 @@
-import { http, HttpRequest } from "mojang-net";
+import { http, HttpHeader, HttpRequest, HttpRequestMethod } from "mojang-net";
 
 // simple http get url random get function
 http.get("https://api.ipify.org?format=json").then(res => {
@@ -17,8 +17,8 @@ http.get("https://api.ipify.org?format=json").then(res => {
 const request = new HttpRequest("https://api.github.com/repos/MicrosoftDocs/minecraft-creator/git/trees/main?recursive=1");
 
 request.uri = "https://api.github.com/repos/MicrosoftDocs/minecraft-creator/git/trees/main?recursive=1";
-request.headers = { "User-Agent": null };
-request.method = "GET";
+request.headers = [new HttpHeader("User-Agent", null)];
+request.method = HttpRequestMethod.GET;
 
 http.request(request).then(res => {
   // Do something with the response.

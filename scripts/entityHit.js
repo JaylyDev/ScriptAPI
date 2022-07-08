@@ -10,6 +10,7 @@ world.events.entityHit.subscribe((evd) => {
     /**
      * @type {EntityHealthComponent}
      */
+    // @ts-ignore
     const h = ent.getComponent('health');
     if (!h) return;
     h.setCurrent(h.current - 100);
