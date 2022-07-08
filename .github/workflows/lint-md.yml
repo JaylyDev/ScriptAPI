@@ -1,12 +1,14 @@
+name: markdown-link-check
+
 on: [push, pull_request]
 
 jobs:
-  lint-md:
-    name: "lint-md"
+  markdown-link-check:
+    name: action
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Markdown link check
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
+      - name: Markdown links check
+        uses: ruzickap/action-my-markdown-link-checker@v1

@@ -1,8 +1,10 @@
+name: gametest
+
 on: [push, pull_request]
 
 jobs:
   gametest:
-    name: "GameTest"
+    name: debug
     runs-on: ubuntu-latest
 
     steps:
