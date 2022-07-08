@@ -18,5 +18,8 @@ jobs:
   lint-md:
     runs-on: ubuntu-latest
     steps:
-      - name: markdown-link-check
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Markdown link check
         uses: gaurav-nelson/github-action-markdown-link-check@1.0.14
