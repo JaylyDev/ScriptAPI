@@ -1,9 +1,8 @@
-name: "GameTest"
-
 on: [push, pull_request]
 
 jobs:
   gametest:
+    name: "GameTest"
     runs-on: ubuntu-latest
 
     steps:

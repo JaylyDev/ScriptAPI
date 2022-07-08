@@ -1,7 +1,8 @@
-name: "lint-md"
+on: [push, pull_request]
 
 jobs:
   lint-md:
+    name: "lint-md"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
