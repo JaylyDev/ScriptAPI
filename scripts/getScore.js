@@ -1,5 +1,7 @@
 // https://discord.com/channels/862462061594017802/944054708123861002/988871809816465479
-import { world } from "mojang-minecraft";
+import { Entity, world } from "mojang-minecraft";
+
+const player = [...world.getPlayers()][0];
 const myVar = getScore('my Objective', player, true)
 
 /**

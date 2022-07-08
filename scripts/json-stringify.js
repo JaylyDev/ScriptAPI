@@ -1,6 +1,5 @@
 /**
  * Native JSON stringify function
- * @type {(value: any, replacer?: (this: any, key: string, value: any) => any, space?: string | number): string}
  */
 const __stringify = JSON.stringify;
 
@@ -21,8 +20,8 @@ function cloneJSON(obj) {
     return cloneA;
   }
   var cloneO = {};
-  for (var i in obj) {
-    cloneO[i] = cloneJSON(obj[i]);
+  for (var e in obj) {
+    cloneO[e] = cloneJSON(obj[e]);
   }
   return cloneO;
 };
@@ -41,4 +40,5 @@ function JSONStringify (value, replacer, space) {
   return __stringify(cloneJSON(value), replacer, space);
 };
 
+// @ts-ignore
 JSON.stringify = JSONStringify;

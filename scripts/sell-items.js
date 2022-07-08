@@ -21,6 +21,7 @@ const sell = (player) => {
     /**
      * @type {PlayerInventoryComponentContainer} The player's inventory container
      */
+    // @ts-ignore
     const inv = player.getComponent('inventory').container, { size } = inv
     const voidSlot = new ItemStack(Items.get('minecraft:air'), 1, 0)
     let amount = 0;

@@ -1,4 +1,4 @@
-import { world } from "mojang-minecraft"
+import { Player, world } from "mojang-minecraft"
 import { ActionFormData } from "mojang-minecraft-ui"
 
 const gui = new ActionFormData()
@@ -12,6 +12,7 @@ gui.button('§l§eMoney Transactions')
 
 world.events.beforeItemUse.subscribe(data => {
     const source = data.source
+    if (!(source instanceof Player)) return;
     if (data.item.id === 'minecraft:compass') gui.show(source).then(result => {
         if (result.isCanceled) console.warn('GUI was canceled')
         if (result.selection === 0) source.runCommand('give @s diamond 1')
