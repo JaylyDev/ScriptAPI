@@ -9,3 +9,7 @@
 ### Dynamic property usage
   - [**registerEntityTypeDynamicProperties**](./DynamicProperty/registerEntityTypeDynamicProperties.js)
   - [**registerWorldDynamicProperties**](./DynamicProperty/registerWorldDynamicProperties.js)
+
+### [Enchantments](./Enchantment/enchantment.js)
+
+### [Set item lore](./setLore/index.js)

@@ -33,17 +33,15 @@ GameTest Framework has the following modules as of Minecraft version 1.19.0
 > These modules work across anywhere in Minecraft: Bedrock Edition
 
 - mojang-minecraft:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/mojang-minecraft
-- mojang-gametest:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-gametest/mojang-gametest
-- mojang-minecraft-ui:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft-ui/mojang-minecraft-ui
-
+  - [Microsoft Docs](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/mojang-minecraft)- mojang-gametest:
+  - [Microsoft Docs](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-gametest/mojang-gametest)- mojang-minecraft-ui:
+  - [Microsoft Docs](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft-ui/mojang-minecraft-ui)
 **Bedrock Dedicated Server modules**
 
-> These modules works on [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients.
+| ⚠️These modules works on [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients. |
+| --- |
 
 - mojang-net:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-net/mojang-net
+  - [Microsoft Docs](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-net/mojang-net)
 - mojang-minecraft-server-admin:
-  - Microsoft Docs: https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft-server-admin/mojang-minecraft-server-admin
+  - [Microsoft Docs](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft-server-admin/mojang-minecraft-server-admin)
