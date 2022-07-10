@@ -1,7 +1,8 @@
+// https://discord.com/channels/523663022053392405/854033525546942464/995831911039647824
 import { Player, world } from "mojang-minecraft"
 
 /**
- * 
+ * Get score
  * @param {string} objective 
  * @param {Player | string} target 
  * @param {boolean} useZero 
