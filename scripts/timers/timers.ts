@@ -36,11 +36,9 @@ class Timer {
                     };
                 };
             } else {
-                if (await this._destroyed === true) return;
-
                 const executionTime = idleStart + idleTimeout;
                 while (new Date().getTime() < executionTime) {
-                    void 0;
+                    if (await this._destroyed === true) return;
                 };
                 
                 this._onTimeout(...args);
