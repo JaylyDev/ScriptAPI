@@ -13,3 +13,5 @@
 ### [Enchantments](./Enchantment/enchantment.js)
 
 ### [Set item lore](./setLore/index.js)
+
+### [Get/Set Scoreboard](./scoreboard/index.js)
