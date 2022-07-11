@@ -1,0 +1,12 @@
+[submodule "scripts/iBlqzed/GametestExamples"]
+	path = scripts/iBlqzed/GametestExamples
+	url = https://github.com/iBlqzed/GametestExamples.git
+[submodule "scripts/smell-of-curry/portfolio"]
+	path = scripts/smell-of-curry/portfolio
+	url = https://github.com/Bedrock-Gamtest/portfolio.git
+[submodule "scripts/smell-of-curry/Smelly-Anti-Cheat"]
+	path = scripts/smell-of-curry/Smelly-Anti-Cheat
+	url = https://github.com/Smelly-API/Smelly-Anti-Cheat.git
+[submodule "scripts/smell-of-curry/Smelly-API"]
+	path = scripts/smell-of-curry/Smelly-API
+	url = https://github.com/Smelly-API/Smelly-API.git
