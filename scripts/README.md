@@ -1,34 +1,34 @@
 # Contents
 
-### [Form inside a form](./another-form.js)
+### [Form inside a form](./FrankyRay/another-form.js)
 
-### [Commands class](./commands.ts)
+### [Commands class](./JaylyDev/commands.ts)
 
-### [Removes 100 HP when player hits](./entityHit.js)
+### [Removes 100 HP when player hits](./MajestikButter/entityHit.js)
 
-### [Get score from scoreboard](./getScore.js)
+### [Get score from scoreboard](./iBlqzed/GametestExamples/javascript/getScore.js)
 
-### [JSON stringify](./json-stringify.js)
+### [JSON stringify](./JaylyDev/json-stringify.js)
 
-### [Sell items](./sell-items.js)
+### [Sell items](./iBlqzed/sell-items.js)
 
-### [CPS Counter](./cps_counter.js)
+### [CPS Counter](./JaylyDev/cps_counter.js)
 
-### [Timers Module](./timers)
+### [Timers Module](./JaylyDev/timers/)
 
-### [mojang-net-auth](./mojang-net-auth/)
+### [mojang-net-auth](./JaylyDev/mojang-net-auth/)
 
-### [Command Handler](./commandHandler.js)
+### [Command Handler](./JaylyDev/commandHandler.js)
 
 ### [Compass Prompt](./compass-prompt.js)
 
-### [/help](./help_command.js)
+### [/help](./JaylyDev/help_command.js)
 
 ### [Shop UI](./shopui.js)
 
-### [Scoreboard level up](./scoreboard/levelup.js)
+### [Scoreboard level up](./JaylyDev/scoreboard/levelup.js)
 
-### [Player death event signal](./PlayerDeathEvent.js)
+### [Player death event signal](./JaylyDev/PlayerDeathEvent.js)
 
 ```js
 import { PlayerDeathEventSignal } from "./PlayerDeathEvent.js";
