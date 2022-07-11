@@ -15,4 +15,4 @@ jobs:
         run: npm install
 
       - name: tsc
-        run: tsc
+        run: tsc --build --verbose
