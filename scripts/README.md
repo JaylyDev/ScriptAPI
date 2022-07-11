@@ -28,17 +28,15 @@
 
 ### [Scoreboard level up](./scoreboard/levelup.js)
 
-### [Entity death event signal](./EntityDeathEvent.js)
+### [Player death event signal](./PlayerDeathEvent.js)
 
-Example Usage:
 ```js
-import { EntityDeathEventSignal } from "./EntityDeathEvent.js";
+import { PlayerDeathEventSignal } from "./PlayerDeathEvent.js";
 
-let deathEvent = new EntityDeathEventSignal();
+let playerDeath = new PlayerDeathEventSignal();
 
-deathEvent.subscribe(function (evd) {
-  evd.deadEntity.runCommand("say i'm dead");
+let callback = playerDeath.subscribe(({player}) => {
+  // callback function
+  playerDeath.unsubscribe(callback); // unsubscribes
 });
-
-deathEvent.unsubscribe();
 ```
