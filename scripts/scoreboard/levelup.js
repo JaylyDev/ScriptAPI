@@ -26,10 +26,10 @@ function levelup() {
     let xpmax = getScore('xpmax', player, true);
     let level = getScore('level', player, true);
     if (xp == xpmax && level <= 100) {
-      world.getDimension("overworld").runCommand(`scoreboard players add @s level 1`)
-      world.getDimension("overworld").runCommand(`scoreboard players set @s xp 0`)
+      player.runCommand(`scoreboard players add @s level 1`)
+      player.runCommand(`scoreboard players set @s xp 0`)
       xpmax += xpmax + (xpmax * 0.03)
-      world.getDimension("overworld").runCommand(`scoreboard players set @s xpmax ${xpmax}`)
+      player.runCommand(`scoreboard players set @s xpmax ${xpmax}`)
     }
   }
 }

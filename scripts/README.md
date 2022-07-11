@@ -25,3 +25,20 @@
 ### [/help](./help_command.js)
 
 ### [Shop UI](./shopui.js)
+
+### [Scoreboard level up](./scoreboard/levelup.js)
+
+### [Entity death event signal](./EntityDeathEvent.js)
+
+Example Usage:
+```js
+import { EntityDeathEventSignal } from "./EntityDeathEvent.js";
+
+let deathEvent = new EntityDeathEventSignal();
+
+deathEvent.subscribe(function (evd) {
+  evd.deadEntity.runCommand("say i'm dead");
+});
+
+deathEvent.unsubscribe();
+```

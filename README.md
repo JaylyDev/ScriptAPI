@@ -20,7 +20,7 @@ this repository is filled with code examples for GameTest Framework API
   Collections of open source code that allows you to do all kinds of crazy stuff
   
 - ### [utilities](./utilities/)
-  Projects that are not related to GameTest API.
+  Projects that are not directly related to GameTest API, scripts inside that folder are mostly for running in a Node.js engine.
 
 # GameTest API modules
 
@@ -44,6 +44,6 @@ GameTest Framework has the following modules as of Minecraft version 1.19.0
 | ⚠️These modules works on [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients. |
 | --- |
 
-- mojang-net:
+- mojang-net
 
-- mojang-minecraft-server-admin:
+- mojang-minecraft-server-admin
