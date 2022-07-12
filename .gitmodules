@@ -10,3 +10,9 @@
 [submodule "scripts/smell-of-curry/Smelly-API"]
 	path = scripts/smell-of-curry/Smelly-API
 	url = https://github.com/Smelly-API/Smelly-API.git
+[submodule "scripts/mrpatches123/patchy-api"]
+	path = scripts/mrpatches123/patchy-api
+	url = https://github.com/mrpatches123/patchy-api
+[submodule "scripts/MCBE-Utilities/BeAPI"]
+	path = scripts/MCBE-Utilities/BeAPI
+	url = https://github.com/MCBE-Utilities/BeAPI.git

@@ -6,7 +6,7 @@
 
 ### [Removes 100 HP when player hits](./MajestikButter/entityHit.js)
 
-### [Get score from scoreboard](./iBlqzed/GametestExamples/javascript/getScore.js)
+### [iBlqzed/GametestExamples](https://github.com/iBlqzed/GametestExamples)
 
 ### [JSON stringify](./JaylyDev/json-stringify.js)
 
@@ -40,3 +40,12 @@ let callback = playerDeath.subscribe(({player}) => {
   playerDeath.unsubscribe(callback); // unsubscribes
 });
 ```
+
+### [BeAPI](https://github.com/MCBE-Utilities/BeAPI)
+
+### [Patchy API](https://github.com/mrpatches123/patchy-api)
+
+### Smell of curry
+  - [**smelly anti cheat**](https://github.com/Smelly-API/Smelly-Anti-Cheat)
+  - [**smelly api**](https://github.com/Smelly-API/Smelly-API)
+  - [**his portfolio**](https://github.com/Bedrock-Gamtest/portfolio)
