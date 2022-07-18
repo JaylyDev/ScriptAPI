@@ -1,7 +1,21 @@
 import { Dimension, Player, Entity } from "mojang-minecraft";
 
-Dimension.prototype.runCommandAsync = async (commandString) => this.runCommand(await commandString);
+export class CommandResult {
+  'successCount' = 1;
+  constructor() {};
+};
 
-Player.prototype.runCommandAsync = async (commandString) => this.runCommand(await commandString);
+Dimension.prototype.runCommandAsync = async function (commandString) {
+  this.runCommand(await commandString);
+  return new CommandResult();
+};
 
-Entity.prototype.runCommandAsync = async (commandString) => this.runCommand(await commandString);
+Player.prototype.runCommandAsync = async function (commandString) {
+  this.runCommand(await commandString);
+  return new CommandResult();
+};
+
+Entity.prototype.runCommandAsync = async function (commandString) {
+  this.runCommand(await commandString);
+  return new CommandResult();
+};
