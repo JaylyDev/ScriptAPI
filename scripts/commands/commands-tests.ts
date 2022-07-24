@@ -1,4 +1,4 @@
-import { Commands } from "./index.ts";
+import { Commands } from "./index.js";
 
 let timerA = Date.now();
 Commands.run("say Hello World");
