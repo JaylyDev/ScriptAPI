@@ -1,4 +1,4 @@
-import { CommandResult, Dimension, Entity } from "mojang-minecraft";
+import { CommandResult, Dimension, Entity, world } from "mojang-minecraft";
 
 /**
  * Contains a method that lets you run console commands within
@@ -19,11 +19,11 @@ export class Commands {
    * @throws This function can throw errors.
    * @example commands.js
    * ```typescript
-   *        Commands.run("say You got a new high score!", World.getDimension("overworld"));
-   *        Commands.run("scoreboard players set @p score 10", World.getDimension("overworld"));
+   *        Commands.run("say You got a new high score!");
+   *        Commands.run("scoreboard players set @p score 10", world.getDimension("overworld"));
    * ```
    */
-  static run(commandString: string, target: Dimension | Entity): any {
+  static run(commandString: string, target: Dimension | Entity = world.getDimension("overworld")): any {
     if (target instanceof Dimension || Entity) return target.runCommand(commandString);
     else throw TypeError("Native type conversion failed");
   };
@@ -45,7 +45,7 @@ export class Commands {
    * an indicator of command results.
    * @throws This function can throw errors.
    */
-  static async runAsync(commandString: string, target: Dimension | Entity): Promise<CommandResult> {
+  static async runAsync(commandString: string, target: Dimension | Entity = world.getDimension("overworld")): Promise<CommandResult> {
     if (target instanceof Dimension || Entity) return target.runCommandAsync(commandString);
     else throw TypeError("Native type conversion failed");
   };
