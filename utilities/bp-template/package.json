@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/JaylyDev/GametestDB/issues"
   },
-  "homepage": "https://github.com/JaylyDev/GametestDB#readme"
+  "homepage": "https://github.com/JaylyDev/GametestDB#readme",
+  "devDependencies": {
+    "@types/uuid": "^8.3.4"
+  }
 }
