@@ -16,3 +16,6 @@ jobs:
 
       - name: tsc
         run: tsc
+
+      - name: gulp
+        run: gulp
