@@ -1,3 +1,8 @@
+/**
+ * @license MIT
+ * @author JaylyMC
+ * @project https://github.com/JaylyDev/GametestDB/
+ */
 import { SimulatedPlayer } from "./SimulatedPlayer.js";
 import * as GameTest from "mojang-gametest";
 import { BlockLocation, ExplosionOptions, ItemStack, MinecraftEffectTypes, MinecraftItemTypes } from "mojang-minecraft";

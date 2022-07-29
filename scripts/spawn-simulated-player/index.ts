@@ -1,3 +1,8 @@
+/**
+ * @license MIT
+ * @author JaylyMC
+ * @project https://github.com/JaylyDev/GametestDB/
+ */
 import * as mojangMinecraft from "mojang-minecraft";
 import * as mojangGametest from "mojang-gametest";
 import { SimulatedPlayer } from "../simulated-player/SimulatedPlayer.js";

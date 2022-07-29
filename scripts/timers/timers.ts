@@ -1,4 +1,9 @@
 /**
+ * @license MIT
+ * @author JaylyMC
+ * @project https://github.com/JaylyDev/GametestDB/
+ */
+/**
  * The `timer` module exposes a global API for scheduling functions to
  * be called at some future period of time.
  *

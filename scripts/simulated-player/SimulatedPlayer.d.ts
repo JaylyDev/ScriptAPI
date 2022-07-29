@@ -1,3 +1,8 @@
+/**
+ * @license MIT
+ * @author JaylyMC
+ * @project https://github.com/JaylyDev/GametestDB/
+ */
 import * as mojangGametest from "mojang-gametest";
 import * as mojangMinecraft from "mojang-minecraft";
 /**
@@ -33,8 +38,8 @@ export declare class SimulatedPlayer {
     /**
      * True if the player is currently using a sneaking movement.
     */
-    get "isSneaking"(): boolean;
-    set "isSneaking"(value: boolean);
+    get 'isSneaking'(): boolean;
+    set 'isSneaking'(value: boolean);
     /**
      * Current location of the player.
      * @throws This property can throw when used.
@@ -48,8 +53,8 @@ export declare class SimulatedPlayer {
     /**
      * Optional name tag of the player.
      */
-    get "nameTag"(): string;
-    set "nameTag"(value: string);
+    get 'nameTag'(): string;
+    set 'nameTag'(value: string);
     /**
      * Contains methods for manipulating the on-screen display of a
      * Player.

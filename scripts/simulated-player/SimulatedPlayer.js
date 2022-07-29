@@ -50,7 +50,7 @@ var SimulatedPlayer = /** @class */ (function () {
         configurable: true
     });
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, "isSneaking", {
+    Object.defineProperty(SimulatedPlayer.prototype, 'isSneaking', {
         /**
          * True if the player is currently using a sneaking movement.
         */
@@ -83,7 +83,7 @@ var SimulatedPlayer = /** @class */ (function () {
         configurable: true
     });
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, "nameTag", {
+    Object.defineProperty(SimulatedPlayer.prototype, 'nameTag', {
         /**
          * Optional name tag of the player.
          */

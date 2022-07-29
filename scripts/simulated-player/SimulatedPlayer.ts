@@ -1,3 +1,8 @@
+/**
+ * @license MIT
+ * @author JaylyMC
+ * @project https://github.com/JaylyDev/GametestDB/
+ */
 import * as mojangGametest from "mojang-gametest";
 import * as mojangMinecraft from "mojang-minecraft";
 
@@ -34,10 +39,10 @@ export class SimulatedPlayer {
   /**
    * True if the player is currently using a sneaking movement.
   */
-  public get "isSneaking" (): boolean {
+  public get 'isSneaking' (): boolean {
     return this.__player.isSneaking;
   }
-  public set "isSneaking" (value: boolean) {
+  public set 'isSneaking' (value: boolean) {
     this.__player.isSneaking = value;
   }
   /**
@@ -53,10 +58,10 @@ export class SimulatedPlayer {
   /**
    * Optional name tag of the player.
    */
-  public get "nameTag" (): string {
+  public get 'nameTag' (): string {
     return this.__player.nameTag;
   }
-  public set "nameTag" (value: string) {
+  public set 'nameTag' (value: string) {
     this.__player.nameTag = value;
   }
   /**
