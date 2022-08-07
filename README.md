@@ -22,9 +22,32 @@ this repository is filled with code examples for GameTest Framework API
 - ### [utilities](./utilities/)
   Projects that are not directly related to GameTest API, scripts inside that folder are mostly for running in a Node.js engine.
 
+## Contributing
+
+Please contribute to this repository if you can.
+
+To create a new script package, create a folder structure based on the following:
+
+```
+GametestDB (root)
+└───scripts
+    └───new-package
+          index.js
+          index.ts (optional)
+          LICENSE
+          new-package-tests.js
+          new-package-tests.ts (optional)
+          README.md (optional)
+```
+
+In the example `new-package` is the package name, you must include
+- a main file (e.g. `index.js` and `index.ts`)
+- a `LICENSE` file
+- a test file (e.g. `new-package-tests.js` and `new-package-tests.ts`). The test file must be based on package name and add with `-tests.js/ts`.
+
 # GameTest API modules
 
-GameTest Framework has the following modules as of Minecraft version 1.19.0
+GameTest Framework has the following modules as of Minecraft version 1.19.10
 
 ---
 
