@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "ES2015",
+    "target": "ES5",
+    "lib": ["ES2015", "DOM"],
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "types": [],
+    "downlevelIteration": true
+  },
+  "files": [
+    "index.ts",
+    "commands-tests.ts"
+  ]
+}
