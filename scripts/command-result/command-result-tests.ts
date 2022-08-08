@@ -1,5 +1,5 @@
 import { world } from "mojang-minecraft";
-import { CommandResult } from ".";
+import { CommandResult } from "./index.js";
 
 let overworld = world.getDimension("overworld");
 let command: CommandResult = overworld.runCommand("testfor @a");
