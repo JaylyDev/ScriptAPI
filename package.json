@@ -1,11 +1,10 @@
 {
-  "dependencies": {
-  },
+  "dependencies": {},
   "name": "gametest-db",
   "description": "this repository is filled with code examples for variables in GameTest Framework module",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc"
   },
   "repository": {
     "type": "git",
@@ -20,12 +19,13 @@
   "homepage": "https://github.com/JaylyDev/GametestDB#readme",
   "type": "module",
   "devDependencies": {
-    "uuid": "^8.3.2",
     "@types/mojang-gametest": "^0.1.5",
     "@types/mojang-minecraft": "^0.1.6",
     "@types/mojang-minecraft-server-admin": "^0.1.0",
     "@types/mojang-minecraft-ui": "^0.1.0",
     "@types/mojang-net": "^0.1.0",
-    "@types/node": "^18.0.3"
+    "@types/node": "^18.0.3",
+    "typescript": "^4.7.4",
+    "uuid": "^8.3.2"
   }
 }
