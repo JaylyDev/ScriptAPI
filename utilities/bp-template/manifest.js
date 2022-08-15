@@ -1,7 +1,9 @@
-const fs = require("fs");
-const path = require("path");
-const uuid = require("uuid");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from 'url';
+import * as uuid from "uuid";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const name = "createWorldScreen.experimentalGameTest";
 const description = "createWorldScreen.experimentalGameTestDescription";
 /** @type {"script" | "javascript"} */
