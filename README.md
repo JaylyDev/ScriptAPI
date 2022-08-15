@@ -34,7 +34,7 @@ GametestDB (root)
     └───new-package
           index.js
           index.ts (optional)
-          LICENSE
+          LICENSE (optional)
           new-package-tests.js
           new-package-tests.ts (optional)
           README.md (optional)
@@ -42,7 +42,6 @@ GametestDB (root)
 
 In the example `new-package` is the package name, you must include
 - a main file (e.g. `index.js` and `index.ts`)
-- a `LICENSE` file
 - a test file (e.g. `new-package-tests.js` and `new-package-tests.ts`). The test file must be based on package name and add with `-tests.js/ts`.
 
 # GameTest API modules

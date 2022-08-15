@@ -1,6 +1,6 @@
 import * as http from "http";
-import { tokens } from "./tokens.json";
 
+const tokens: string[] = [ "jayly" ];
 const port: number = 14589;
 const host: string = "localhost";
 
