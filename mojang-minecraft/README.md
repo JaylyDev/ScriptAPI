@@ -15,3 +15,5 @@
 ### [Set item lore](./setLore/index.js)
 
 ### [Get/Set Scoreboard](./scoreboard/index.js)
+
+### [Cancel Watchdog Terminate](./watchdog/beforeWatchdogTerminate.js)
