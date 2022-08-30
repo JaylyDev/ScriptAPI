@@ -169,7 +169,7 @@ export class SimulatedPlayer {
    * Direction to place the specified item within.
    * @throws This function can throw errors.
    */
-  breakBlock(blockLocation: mojangMinecraft.BlockLocation, direction?: number): boolean { return this.__player.breakBlock(blockLocation, direction) };
+  breakBlock(blockLocation: mojangMinecraft.BlockLocation, direction?: mojangMinecraft.Direction): boolean { return this.__player.breakBlock(blockLocation, direction) };
   /**
    * @remarks
    * Gets the first block that intersects with the vector of the
@@ -289,7 +289,7 @@ export class SimulatedPlayer {
    * Direction to place the specified item within.
    * @throws This function can throw errors.
    */
-  interactWithBlock(blockLocation: mojangMinecraft.BlockLocation, direction?: number): boolean { return this.__player.interactWithBlock(blockLocation, direction) };
+  interactWithBlock(blockLocation: mojangMinecraft.BlockLocation, direction?: mojangMinecraft.Direction): boolean { return this.__player.interactWithBlock(blockLocation, direction) };
   /**
    * @remarks
    * Causes the simulated player to interact with a mob. Returns
@@ -670,7 +670,7 @@ export class SimulatedPlayer {
    * Block-face-relative Y position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemInSlotOnBlock(slot: number, blockLocation: mojangMinecraft.BlockLocation, direction?: number, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY) };
+  useItemInSlotOnBlock(slot: number, blockLocation: mojangMinecraft.BlockLocation, direction?: mojangMinecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY) };
   /**
    * @remarks
    * Causes the simulated player to use an item on a block. The
@@ -688,7 +688,7 @@ export class SimulatedPlayer {
    * Block-face-relative Y position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemOnBlock(itemStack: mojangMinecraft.ItemStack, blockLocation: mojangMinecraft.BlockLocation, direction?: number, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY) };
+  useItemOnBlock(itemStack: mojangMinecraft.ItemStack, blockLocation: mojangMinecraft.BlockLocation, direction?: mojangMinecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY) };
   public constructor (player: mojangGametest.SimulatedPlayer, test: mojangGametest.Test) {
     this.__player = player;
     this.__test = test;

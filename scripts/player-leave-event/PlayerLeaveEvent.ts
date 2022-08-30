@@ -136,7 +136,7 @@ class Player {
    * the entity, undefined is returned.
    */
   getComponent(componentId: string): IEntityComponent {
-    return this.__PlayerComponents.find(function (component) {
+    return this.__PlayerComponents.find(function (component: any) {
       if (!componentId.startsWith("minecraft:")) componentId = "minecraft:" + componentId;
       if (component.id === componentId) return true;
     });
@@ -177,7 +177,7 @@ class Player {
    * 'minecraft:' is assumed.
    */
   public hasComponent(componentId: string): boolean {
-    let componentIndex = this.__PlayerComponents.findIndex(entityComponent => entityComponent.id === componentId);
+    let componentIndex = this.__PlayerComponents.findIndex((entityComponent: any) => entityComponent.id === componentId);
 
     if (componentIndex < 0) return false;
     else return true;
