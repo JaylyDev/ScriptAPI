@@ -46,7 +46,7 @@ In the example `new-package` is the package name, you must include
 
 # GameTest API modules
 
-GameTest Framework has the following modules as of Minecraft version 1.19.10
+GameTest Framework has the following modules as of Minecraft version 1.19.30
 
 ---
 
