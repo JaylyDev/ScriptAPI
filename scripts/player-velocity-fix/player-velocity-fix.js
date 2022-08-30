@@ -1,3 +1,6 @@
+// @ts-nocheck
+// This file is auto-generated, if the file is not up to date
+// please compile the index.ts file yourself
 /**
  * @license MIT
  * @author JaylyMC
