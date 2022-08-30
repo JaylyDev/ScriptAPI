@@ -4,7 +4,7 @@
  * @project https://github.com/JaylyDev/GametestDB/
  */
 import { Vector, Player, Location, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent, MinecraftEffectTypes } from "mojang-minecraft";
-import { Commands } from "../Commands/index.js";
+import { Commands } from "../commands/index.js";
 import { clearInterval, setInterval } from "../timers/timers.js";
 
 function trunc (x: number, decimal: number): number {
