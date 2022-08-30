@@ -14,8 +14,8 @@ jobs:
       - name: npm install
         run: |
           npm install
-          find ./scripts/* -maxdepth 2 -name package.json -execdir pwd && npm install \;
-          find ./utilities/* -maxdepth 2 -name package.json -execdir pwd && npm install \;
+          find ./scripts/* -maxdepth 2 -name package.json -execdir (pwd && npm install) \;
+          find ./utilities/* -maxdepth 2 -name package.json -execdir (pwd && npm install) \;
 
       - name: tsc debug
         run: tsc
