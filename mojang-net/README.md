@@ -7,4 +7,10 @@
 
 ### [Enable mojang-net on BDS](./enbale-mojang-net.md)
 
-### [http class](./http.js)
+### [mojang-net with node.js](./mcnet-with-nodejs/)
+
+<!-- August 2022 update -->
+
+### [Performs a simple HTTP get request.](./http-get/)
+
+### [Performs a HTTP request with HTTP headers.](./http-request/)

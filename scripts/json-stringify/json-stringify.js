@@ -1,4 +1,9 @@
 /**
+ * @license MIT
+ * @author JaylyMC
+ * @project https://github.com/JaylyDev/GametestDB/
+ */
+/**
  * Native JSON stringify function
  */
 const __stringify = JSON.stringify;

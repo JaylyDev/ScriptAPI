@@ -15,3 +15,7 @@
 ### [Set item lore](./setLore/index.js)
 
 ### [Get/Set Scoreboard](./scoreboard/index.js)
+
+### [Cancel Watchdog Terminate](./watchdog/beforeWatchdogTerminate.js)
+
+![](https://media.discordapp.net/attachments/852517995308646410/1009680002209546240/unknown.png)

@@ -1,3 +1,8 @@
+/**
+ * @license MIT
+ * @author JaylyMC
+ * @project https://github.com/JaylyDev/GametestDB/
+ */
 import { Vector, ExplosionOptions, MinecraftEffectTypes, Player, EntityHealthComponent } from "mojang-minecraft";
 
 /**

@@ -49,6 +49,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
 var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -58,6 +74,11 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+/**
+ * @license MIT
+ * @author JaylyMC
+ * @project https://github.com/JaylyDev/GametestDB/
+ */
 /**
  * The `timer` module exposes a global API for scheduling functions to
  * be called at some future period of time.
@@ -97,7 +118,7 @@ var Timer = /** @class */ (function () {
                             return [2 /*return*/];
                         executionTime = idleStart + idleTimeout;
                         if (new Date().getTime() >= executionTime) {
-                            this._onTimeout.apply(this, args);
+                            this._onTimeout.apply(this, __spreadArray([], __read(args), false));
                             this._idleStart = idleStart = new Date().getTime();
                         }
                         ;
@@ -117,7 +138,7 @@ var Timer = /** @class */ (function () {
                         return [3 /*break*/, 5];
                     case 7:
                         ;
-                        this._onTimeout.apply(this, args);
+                        this._onTimeout.apply(this, __spreadArray([], __read(args), false));
                         _a.label = 8;
                     case 8:
                         ;
@@ -137,7 +158,7 @@ var Timeout = /** @class */ (function (_super) {
         for (var _i = 5; _i < arguments.length; _i++) {
             args[_i - 5] = arguments[_i];
         }
-        var _this = _super.apply(this, __spreadArray([idleTimeout, idleStart, onTimeout, repeat, destroyed], args, false)) || this;
+        var _this = _super.apply(this, __spreadArray([idleTimeout, idleStart, onTimeout, repeat, destroyed], __read(args), false)) || this;
         _this._idleTimeout = idleTimeout;
         _this._idleStart = idleStart;
         _this._onTimeout = onTimeout;
@@ -170,7 +191,7 @@ var Immediate = /** @class */ (function () {
                     case 1:
                         if ((_a.sent()) === true)
                             return [2 /*return*/];
-                        return [4 /*yield*/, this._onImmediate.apply(this, args)];
+                        return [4 /*yield*/, this._onImmediate.apply(this, __spreadArray([], __read(args), false))];
                     case 2:
                         _a.sent();
                         return [2 /*return*/];
@@ -212,7 +233,7 @@ function setTimeout(callback, ms) {
     var idleTime = typeof ms === "number" ? ms : 1;
     var startTime = new Date().getTime();
     // @ts-ignore
-    return new (Timeout.bind.apply(Timeout, __spreadArray([void 0, idleTime, startTime, callback, false, false], args, false)))();
+    return new (Timeout.bind.apply(Timeout, __spreadArray([void 0, idleTime, startTime, callback, false, false], __read(args), false)))();
 }
 ;
 /**
@@ -252,7 +273,7 @@ function setInterval(callback, ms) {
     var idleTime = typeof ms === "number" ? ms : 1;
     var startTime = new Date().getTime();
     // @ts-ignore
-    return new (Timer.bind.apply(Timer, __spreadArray([void 0, idleTime, startTime, callback, true, false], args, false)))();
+    return new (Timer.bind.apply(Timer, __spreadArray([void 0, idleTime, startTime, callback, true, false], __read(args), false)))();
 }
 ;
 /**
@@ -291,7 +312,7 @@ function setImmediate(callback) {
     }
     Validation(callback, Function);
     // @ts-ignore
-    return new (Immediate.bind.apply(Immediate, __spreadArray([void 0, callback], args, false)))();
+    return new (Immediate.bind.apply(Immediate, __spreadArray([void 0, callback], __read(args), false)))();
 }
 ;
 /**

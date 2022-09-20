@@ -12,11 +12,13 @@
   },
   "author": "JaylyMC",
   "license": "MIT",
-  "type": "module",
   "bugs": {
     "url": "https://github.com/JaylyDev/GametestDB/issues"
   },
   "homepage": "https://github.com/JaylyDev/GametestDB#readme",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
     "@types/uuid": "^8.3.4"
   }
