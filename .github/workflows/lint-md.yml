@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   markdown-link-check:
-    name: action
+    name: 'Link Checker'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

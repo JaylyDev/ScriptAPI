@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   gametest:
-    name: debug
+    name: 'Script Debug'
     runs-on: ubuntu-latest
 
     steps:
@@ -12,10 +12,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: npm install
-        run: npm install
+        run: |
+          pwd && npm install
+          find ./scripts/* -maxdepth 2 -name package.json -execdir sh -c 'pwd && npm install' \;
+          find ./utilities/* -maxdepth 2 -name package.json -execdir sh -c 'pwd && npm install' \;
 
-      - name: tsc
-        run: tsc
-
-      - name: gulp
+      - name: gulp debug
         run: gulp
