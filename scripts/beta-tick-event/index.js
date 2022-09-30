@@ -1,4 +1,4 @@
-import { system, world } from 'mojang-minecraft';
+import { system, world } from '@minecraft/server';
 class TickEvent {
     constructor() {
         this.subscriptions = {};
