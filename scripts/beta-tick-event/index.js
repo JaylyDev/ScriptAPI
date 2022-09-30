@@ -46,6 +46,7 @@ class TickEvent {
 
         console.warn(Object.keys(this.subscriptions).length);
         if (Object.keys(this.subscriptions).length <= 1) {
+            // @ts-ignore
             system.run(() => { this.__checkTicks = false; });
         }
         this.subscriptions[key] = () => { };
