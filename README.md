@@ -48,11 +48,15 @@ In the example `new-package` is the package name, you must include
 - a main file (e.g. `index.js` and `index.ts`)
 - a test file (e.g. `my-package-tests.js` and `my-package-tests.ts`). The test file must be based on package name and add with `-tests.js/ts`.
 
+| Script Samples Update (for v1.19.40 or above) |
+| --- |
+⚠️ Please **Do Not** use new Script API modules and old Script API modules at the same time. This repository still has old modules like `mojang-minecraft` for compatibility.<br/>We recommend upload scripts that works in Minecraft version v1.19.40 with the new Script API modules, such as `@minecraft/server`.
+
 ## Script status
 
 This repository uses TypeScript compiler to test script files by validing with declaration files of Script API modules, making sure they are up-to-date when using in the latest Minecraft versions.
 
-<img src="https://user-images.githubusercontent.com/65847850/192581677-8d36e2ac-456a-46fd-8713-e87508be085a.png" align="left" width="400"></a>
+<img src="https://user-images.githubusercontent.com/65847850/192581677-8d36e2ac-456a-46fd-8713-e87508be085a.png" align="left" width="40%"></a>
 
 Most of the time the checks succeed, which means scripts inside should not have any syntax errors when using in stable version of Minecraft.
 
