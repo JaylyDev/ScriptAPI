@@ -8,11 +8,6 @@ const choices = ["choice 1", "choice 2", "choice 3"];
 
 ModalForm.dropdown("dropdown", choices);
 
-// Adds an icon to the form using a graphic resource from a resource pack.
-// However it doesn't work.
-ModalForm.icon("textures/blocks/bedrock");
-
-
 /**
  * @remarks
  * Adds a numeric slider to the form.

@@ -6,22 +6,22 @@ This repository is filled with community driven script samples for Minecraft Bed
   
 - ### [scripts](./scripts/)
   Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
-  > ⚠️ Some scripts might use `mojang-net` and `mojang-minecraft-server-admin` module, which the modules are only available in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients.
+  > ⚠️ Some scripts might use `@minecraft/server-net` and `@minecraft/server-admin` module, which the modules are only available in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients.
   
-- ### [mojang-minecraft](./mojang-minecraft/)
-  Basic usage of manipulating Script API features within `mojang-minecraft` module
+- ### [@minecraft/server](./@minecraft/server/)
+  Basic usage of manipulating Script API features within `@minecraft/server` module
   
-- ### [mojang-gametest](./mojang-gametest/)
-  Basic usage of creating GameTests or spawning a simulated player using `mojang-gametest` module
+- ### [@minecraft/server-gametest](./@minecraft/server-gametest/)
+  Basic usage of creating GameTests or spawning a simulated player using `@minecraft/server-gametest` module
 
-- ### [mojang-minecraft-ui](./mojang-minecraft-ui/)
-  Basic usage of manipulating server forms available in `mojang-minecraft-ui` module
+- ### [@minecraft/server-ui](./@minecraft/server-ui/)
+  Basic usage of manipulating server forms available in `@minecraft/server-ui` module
 
-- ### [mojang-minecraft-server-admin](./mojang-minecraft-server-admin/)
-  Basic usage of loading secrets and variables from `mojang-minecraft-server-admin` module
+- ### [@minecraft/server-admin](./@minecraft/server-admin/)
+  Basic usage of loading secrets and variables from `@minecraft/server-admin` module
 
-- ### [mojang-net](./mojang-net/)
-  Basic usage of executing HTTP-based requests using `mojang-net` module
+- ### [@minecraft/server-net](./@minecraft/server-net/)
+  Basic usage of executing HTTP-based requests using `@minecraft/server-net` module
   
 - ### [utilities](./utilities/)
   Projects that are not directly related to Script API, scripts inside that folder are mostly for running in a Node.js engine.
