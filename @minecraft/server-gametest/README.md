@@ -1,5 +1,5 @@
 # mojang-minecraft Module
 
-## Script examples
+## Module Contents
 
-### [Spawn simulated player](/scripts/spawn-simulated-player)
+### [Spawn simulated player](./spawn-simulated-player.md)
