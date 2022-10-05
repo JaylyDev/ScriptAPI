@@ -2,4 +2,4 @@
 
 ## Script examples
 
-### [Spawn simulated player](../scripts/spawn-simulated-player)
+### [Spawn simulated player](/scripts/spawn-simulated-player)
