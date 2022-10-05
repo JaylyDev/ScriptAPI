@@ -10,4 +10,4 @@
 
 ## Script examples
 
-### [Display another form after a form](../scripts/another-form)
+### [Display another form after a form](./form-after-form.md)
