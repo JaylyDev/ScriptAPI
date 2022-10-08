@@ -19,3 +19,33 @@
 ### [Cancel Watchdog Terminate](./watchdog/beforeWatchdogTerminate.js)
 
 ![](https://media.discordapp.net/attachments/852517995308646410/1009680002209546240/unknown.png)
+
+## Available Versions
+- 1.0.0-beta
+```json
+{
+    // @minecraft/server
+    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+    "version": "1.0.0-beta"
+}
+```
+```json
+{
+    "module_name": "@minecraft/server",
+    "version": "1.0.0-beta"
+}
+```
+- 0.1.0
+```json
+{
+    // mojang-minecraft
+    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+    "version": [ 0, 1, 0 ]
+}
+```
+```json
+{
+    "module_name": "mojang-minecraft",
+    "version": [ 0, 1, 0 ]
+}
+```

@@ -1,4 +1,4 @@
-name: gametest
+name: API
 
 on: [push, pull_request]
 
