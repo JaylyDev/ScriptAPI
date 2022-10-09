@@ -29,7 +29,7 @@ export default function Player(player: mc.Player): PlayerExtra {
         return getGamemode(player);
       },
       kick(reason: string) {
-        player.runCommand(`kick ${player.name} ${reason}`);
+        player.runCommand(`kick "${player.name}" ${reason}`);
       },
       getScore(objectiveId: string) {
         return mc.world.scoreboard
