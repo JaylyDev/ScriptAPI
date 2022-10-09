@@ -36,5 +36,5 @@ export class Dimensions {
      */
     static 'theEnd' = world.getDimension('minecraft:the_end');
     /** @protected */
-    constructor();
+    constructor() {};
 }
