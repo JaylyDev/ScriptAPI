@@ -5,7 +5,7 @@ import { Player, GameMode } from '@minecraft/server';
  * Gets the game mode for an entity.
  * @param {Player} player
  * The player to retrieve.
- * @returns {GameMode} Player's gamemode
+ * @returns {Promise<GameMode>} Player's gamemode
  * @throws This function can throw errors.
  */
  export function getGamemode(player) {
