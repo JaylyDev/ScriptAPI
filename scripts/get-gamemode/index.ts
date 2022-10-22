@@ -1,9 +1,11 @@
+// @ts-nocheck
 import { Player } from "@minecraft/server";
 
 /**
  * Get player gamemode
  * @param player 
  * @returns gamemode number
+ * @deprecated
  */
 export function getGamemode(player: Player): string {
   const GameModes = ['survival', 'creative', 'adventure', 'spectator'];
