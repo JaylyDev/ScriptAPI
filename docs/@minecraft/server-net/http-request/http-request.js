@@ -1,4 +1,4 @@
-import { http, HttpHeader, HttpRequest, HttpRequestMethod } from "mojang-net";
+import { http, HttpHeader, HttpRequest, HttpRequestMethod } from "@minecraft/server-net";
 
 /**
  * URL await to request
@@ -14,7 +14,7 @@ config.addHeader("key", "value");
 config.setHeaders([new HttpHeader("key", "value"), new HttpHeader("foo", "bar")]);
 
 // get value from secrets
-import { secrets } from "mojang-minecraft-server-admin";
+import { secrets } from "@minecraft/server-admin";
 
 let secretToken = secrets.get("token");
 

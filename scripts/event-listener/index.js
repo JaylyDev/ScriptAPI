@@ -1,4 +1,4 @@
-import { system, world } from "mojang-minecraft";
+import { system, world } from "@minecraft/server";
 const addSystemEventListener = (eventType, listener) => {
     return system.events[eventType].subscribe(listener);
 };

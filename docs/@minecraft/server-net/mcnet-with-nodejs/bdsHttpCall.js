@@ -1,4 +1,4 @@
-import { http, HttpHeader, HttpRequest, HttpRequestMethod } from "mojang-net";
+import { http, HttpRequest, HttpRequestMethod } from "@minecraft/server-net";
 
 const port = 8080;
 let request = new HttpRequest(`http://localhost:${port}`);

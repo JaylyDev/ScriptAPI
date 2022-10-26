@@ -1,4 +1,4 @@
-import { Location, MinecraftEntityTypes, world } from "mojang-minecraft";
+import { Location, MinecraftEntityTypes, world } from "@minecraft/server";
 import { addEventListener, removeEventListener, addSystemEventListener } from './index';
 
 let weatherChangeEvent = addEventListener('weatherChange', function (event) {

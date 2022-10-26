@@ -1,5 +1,5 @@
-import { secrets } from "mojang-minecraft-server-admin";
-import { http, HttpRequest, HttpRequestMethod, HttpHeader } from "mojang-net";
+import { secrets } from "@minecraft/server-admin";
+import { http, HttpRequest, HttpRequestMethod, HttpHeader } from "@minecraft/server-net";
 
 const req = new HttpRequest("https://localhost:8080/api/");
 

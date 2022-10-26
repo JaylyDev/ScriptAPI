@@ -3,34 +3,34 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import * as mojangGametest from "mojang-gametest";
-import * as mojangMinecraft from "mojang-minecraft";
+import * as GameTest from "@minecraft/server-gametest";
+import * as Minecraft from "@minecraft/server";
 
 /**
  * A simulated player can be used to represent
  * how a player moves throughout the world and to support
  * testing of how entities and the environment will react to a
  * player. This type derives much of its structure and methods
- * from the {@link mojangMinecraft.Player} type.
+ * from the {@link Minecraft.Player} type.
  */
 export class SimulatedPlayer {
-  private '__player': mojangGametest.SimulatedPlayer;
-  private '__test': mojangGametest.Test;
+  private '__player': GameTest.SimulatedPlayer;
+  private '__test': GameTest.Test;
   /**
    * Dimension that the simulated player is currently within.
    * @throws This property can throw when used.
    */
-  public get 'dimension' (): mojangMinecraft.Dimension { return this.__player.dimension };
+  public get 'dimension' (): Minecraft.Dimension { return this.__player.dimension };
   /**
    * Location of the center of the head component of the player.
    * @throws This property can throw when used.
    */
-  public get 'headLocation' (): mojangMinecraft.Location { return this.__player.headLocation };
+  public get 'headLocation' (): Minecraft.Location { return this.__player.headLocation };
   /**
    * Rotation of the head across pitch and yaw angles.
    * @throws This property can throw when used.
    */
-  public get 'headRotation' (): mojangMinecraft.XYRotation { return this.__player.headRotation };
+  public get 'headRotation' (): Minecraft.XYRotation { return this.__player.headRotation };
   /**
    * Identifier for the player.
    * @throws This property can throw when used.
@@ -49,7 +49,7 @@ export class SimulatedPlayer {
    * Current location of the player.
    * @throws This property can throw when used.
    */
-  public get 'location' (): mojangMinecraft.Location { return this.__player.location };
+  public get 'location' (): Minecraft.IVec3 { return this.__player.location };
   /**
    * Name of the player.
    * @throws This property can throw when used.
@@ -68,17 +68,17 @@ export class SimulatedPlayer {
    * Contains methods for manipulating the on-screen display of a
    * Player.
    */
-  public get 'onScreenDisplay' (): mojangMinecraft.ScreenDisplay { return this.__player.onScreenDisplay };
+  public get 'onScreenDisplay' (): Minecraft.ScreenDisplay { return this.__player.onScreenDisplay };
   /**
    * Main rotation of the entity.
    * @throws This property can throw when used.
    */
-  public get 'rotation' (): mojangMinecraft.XYRotation { return this.__player.rotation };
+  public get 'rotation' (): Minecraft.XYRotation { return this.__player.rotation };
   /**
    * Returns a scoreboard identity that represents this entity.
    * @throws This property can throw when used.
    */
-  public get 'scoreboard' (): mojangMinecraft.ScoreboardIdentity { return this.__player.scoreboard };
+  public get 'scoreboard' (): Minecraft.ScoreboardIdentity { return this.__player.scoreboard };
   /**
    * Manages the selected slot in the player's hotbar.
    */
@@ -92,22 +92,19 @@ export class SimulatedPlayer {
    * Retrieves or sets an entity that is used as the target of
    * AI-related behaviors, like attacking.
    */
-  public get 'target' (): mojangMinecraft.Entity {
+  public get 'target' (): Minecraft.Entity {
     return this.__player.target;
   };
-  public set 'target' (value: mojangMinecraft.Entity) {
-    this.__player.target = value;
-  }
   /**
    * Current speed of the player across X, Y, and Z dimensions.
    * @throws This property can throw when used.
    */
-  public get 'velocity' (): mojangMinecraft.Vector { return this.__player.velocity };
+  public get 'velocity' (): Minecraft.Vector { return this.__player.velocity };
   /**
    * Vector of the current view of the player.
    * @throws This property can throw when used.
    */
-  public get 'viewVector' (): mojangMinecraft.Vector { return this.__player.viewVector };
+  public get 'viewVector' (): Minecraft.Vector { return this.__player.viewVector };
   /**
    * @remarks
    * Adds an effect, like poison, to the entity.
@@ -120,7 +117,7 @@ export class SimulatedPlayer {
    * @param showParticles
    * @throws This function can throw errors.
    */
-  addEffect(effectType: mojangMinecraft.EffectType, duration: number, amplifier?: number, showParticles?: boolean): void { return this.__player.addEffect(effectType, duration, amplifier, showParticles) };
+  addEffect(effectType: Minecraft.EffectType, duration: number, amplifier?: number, showParticles?: boolean): void { return this.__player.addEffect(effectType, duration, amplifier, showParticles) };
   /**
    * @remarks
    * Adds experience to a simulated player.
@@ -156,7 +153,7 @@ export class SimulatedPlayer {
    * @param entity
    * @throws This function can throw errors.
    */
-  attackEntity(entity: mojangMinecraft.Entity): boolean { return this.__player.attackEntity(entity) };
+  attackEntity(entity: Minecraft.Entity): boolean { return this.__player.attackEntity(entity) };
   /**
    * @remarks
    * Destroys the block at blockLocation, respecting the rules of
@@ -169,7 +166,7 @@ export class SimulatedPlayer {
    * Direction to place the specified item within.
    * @throws This function can throw errors.
    */
-  breakBlock(blockLocation: mojangMinecraft.BlockLocation, direction?: mojangMinecraft.Direction): boolean { return this.__player.breakBlock(blockLocation, direction) };
+  breakBlock(blockLocation: Minecraft.BlockLocation, direction?: Minecraft.Direction): boolean { return this.__player.breakBlock(blockLocation, direction) };
   /**
    * @remarks
    * Gets the first block that intersects with the vector of the
@@ -178,7 +175,7 @@ export class SimulatedPlayer {
    * Additional options for processing this raycast query.
    * @throws This function can throw errors.
    */
-  getBlockFromViewVector(options?: mojangMinecraft.BlockRaycastOptions): mojangMinecraft.Block { return this.__player.getBlockFromViewVector(options) };
+  getBlockFromViewVector(options?: Minecraft.BlockRaycastOptions): Minecraft.Block { return this.__player.getBlockFromViewVector(options) };
   /**
    * @remarks
    * Gets a component (that represents additional capabilities)
@@ -189,13 +186,13 @@ export class SimulatedPlayer {
    * 'minecraft:' is assumed. If the component is not present on
    * the entity, undefined is returned.
    */
-  getComponent(componentId: string): mojangMinecraft.IEntityComponent { return this.__player.getComponent(componentId) };
+  getComponent(componentId: string): Minecraft.IEntityComponent { return this.__player.getComponent(componentId) };
   /**
    * @remarks
    * Returns all components that are both present on this entity
    * and supported by the API.
    */
-  getComponents(): mojangMinecraft.IEntityComponent[] { return this.__player.getComponents() };
+  getComponents(): Minecraft.IEntityComponent[] { return this.__player.getComponents() };
   /**
    * @remarks
    * Returns a property value.
@@ -216,7 +213,7 @@ export class SimulatedPlayer {
    * effect is not present.
    * @throws This function can throw errors.
    */
-  getEffect(effectType: mojangMinecraft.EffectType): mojangMinecraft.Effect { return this.__player.getEffect(effectType) };
+  getEffect(effectType: Minecraft.EffectType): Minecraft.Effect { return this.__player.getEffect(effectType) };
   /**
    * @remarks
    * Gets the first entity that intersects with the vector of the
@@ -225,7 +222,7 @@ export class SimulatedPlayer {
    * Additional options for processing this raycast query.
    * @throws This function can throw errors.
    */
-  getEntitiesFromViewVector(options?: mojangMinecraft.EntityRaycastOptions): mojangMinecraft.Entity[] { return this.__player.getEntitiesFromViewVector(options) };
+  getEntitiesFromViewVector(options?: Minecraft.EntityRaycastOptions): Minecraft.Entity[] { return this.__player.getEntitiesFromViewVector(options) };
   /**
    * @remarks
    * Gets the current item cooldown time for a particular
@@ -251,7 +248,7 @@ export class SimulatedPlayer {
    * Whether to set the selected slot once given.
    * @throws This function can throw errors.
    */
-  giveItem(itemStack: mojangMinecraft.ItemStack, selectSlot?: boolean): boolean { return this.__player.giveItem(itemStack, selectSlot) };
+  giveItem(itemStack: Minecraft.ItemStack, selectSlot?: boolean): boolean { return this.__player.giveItem(itemStack, selectSlot) };
   /**
    * @remarks
    * Returns true if the specified component is present on this
@@ -289,7 +286,7 @@ export class SimulatedPlayer {
    * Direction to place the specified item within.
    * @throws This function can throw errors.
    */
-  interactWithBlock(blockLocation: mojangMinecraft.BlockLocation, direction?: mojangMinecraft.Direction): boolean { return this.__player.interactWithBlock(blockLocation, direction) };
+  interactWithBlock(blockLocation: Minecraft.BlockLocation, direction?: Minecraft.Direction): boolean { return this.__player.interactWithBlock(blockLocation, direction) };
   /**
    * @remarks
    * Causes the simulated player to interact with a mob. Returns
@@ -298,7 +295,7 @@ export class SimulatedPlayer {
    * Entity to interact with.
    * @throws This function can throw errors.
    */
-  interactWithEntity(entity: mojangMinecraft.Entity): boolean { return this.__player.interactWithEntity(entity) };
+  interactWithEntity(entity: Minecraft.Entity): boolean { return this.__player.interactWithEntity(entity) };
   /**
    * @remarks
    * Causes the simulated player to jump.
@@ -330,7 +327,7 @@ export class SimulatedPlayer {
    * @param blockLocation
    * @throws This function can throw errors.
    */
-  lookAtBlock(blockLocation: mojangMinecraft.BlockLocation): void { return this.__player.lookAtBlock(blockLocation) };
+  lookAtBlock(blockLocation: Minecraft.BlockLocation): void { return this.__player.lookAtBlock(blockLocation) };
   /**
    * @remarks
    * Rotates the simulated player's head/body to look at the
@@ -338,7 +335,7 @@ export class SimulatedPlayer {
    * @param entity
    * @throws This function can throw errors.
    */
-  lookAtEntity(entity: mojangMinecraft.Entity): void { return this.__player.lookAtEntity(entity) };
+  lookAtEntity(entity: Minecraft.Entity): void { return this.__player.lookAtEntity(entity) };
   /**
    * @remarks
    * Rotates the simulated player's head/body to look at the
@@ -346,7 +343,7 @@ export class SimulatedPlayer {
    * @param location
    * @throws This function can throw errors.
    */
-  lookAtLocation(location: mojangMinecraft.Location): void { return this.__player.lookAtLocation(location) };
+  lookAtLocation(location: Minecraft.Location): void { return this.__player.lookAtLocation(location) };
   /**
    * @remarks
    * Orders the simulated player to walk in the given direction
@@ -377,7 +374,7 @@ export class SimulatedPlayer {
    * @param speed
    * @throws This function can throw errors.
    */
-  moveToBlock(blockLocation: mojangMinecraft.BlockLocation, speed?: number): void { return this.__player.moveToBlock(blockLocation, speed) };
+  moveToBlock(blockLocation: Minecraft.BlockLocation, speed?: number): void { return this.__player.moveToBlock(blockLocation, speed) };
   /**
    * @remarks
    * Orders the simulated player to move to the given location in
@@ -387,7 +384,7 @@ export class SimulatedPlayer {
    * @param speed
    * @throws This function can throw errors.
    */
-  moveToLocation(location: mojangMinecraft.Location, speed?: number): void { return this.__player.moveToLocation(location, speed) };
+  moveToLocation(location: Minecraft.Location, speed?: number): void { return this.__player.moveToLocation(location, speed) };
   /**
    * @remarks
    * Orders the simulated player to move to a specific block
@@ -400,7 +397,7 @@ export class SimulatedPlayer {
    * @param speed
    * @throws This function can throw errors.
    */
-  navigateToBlock(blockLocation: mojangMinecraft.BlockLocation, speed?: number): mojangMinecraft.NavigationResult { return this.__player.navigateToBlock(blockLocation, speed) };
+  navigateToBlock(blockLocation: Minecraft.BlockLocation, speed?: number): Minecraft.NavigationResult { return this.__player.navigateToBlock(blockLocation, speed) };
   /**
    * @remarks
    * Will use navigation to follow the selected entity to within
@@ -410,7 +407,7 @@ export class SimulatedPlayer {
    * @param speed
    * @throws This function can throw errors.
    */
-  navigateToEntity(entity: mojangMinecraft.Entity, speed?: number): mojangMinecraft.NavigationResult { return this.__player.navigateToEntity(entity, speed) };
+  navigateToEntity(entity: Minecraft.Entity, speed?: number): Minecraft.NavigationResult { return this.__player.navigateToEntity(entity, speed) };
   /**
    * @remarks
    * Orders the simulated player to move to a specific location
@@ -423,7 +420,7 @@ export class SimulatedPlayer {
    * @param speed
    * @throws This function can throw errors.
    */
-  navigateToLocation(location: mojangMinecraft.Location, speed?: number): mojangMinecraft.NavigationResult { return this.__player.navigateToLocation(location, speed) };
+  navigateToLocation(location: Minecraft.Location, speed?: number): Minecraft.NavigationResult { return this.__player.navigateToLocation(location, speed) };
   /**
    * @remarks
    * Use navigation to follow the route provided via the
@@ -435,7 +432,7 @@ export class SimulatedPlayer {
    * Net speed to use for doing the navigation.
    * @throws This function can throw errors.
    */
-  navigateToLocations(locations: mojangMinecraft.Location[], speed?: number): void { return this.__player.navigateToLocations(locations, speed) };
+  navigateToLocations(locations: Minecraft.Location[], speed?: number): void { return this.__player.navigateToLocations(locations, speed) };
   /**
    * @remarks
    * This method is inherited from Player, but is inoperative in
@@ -446,7 +443,7 @@ export class SimulatedPlayer {
    * Additional optional options for the sound.
    * @throws This function can throw errors.
    */
-  playSound(soundID: string, soundOptions?: mojangMinecraft.SoundOptions): void { return this.__player.playSound(soundID, soundOptions) };
+  playSound(soundID: string, soundOptions?: Minecraft.SoundOptions): void { return this.__player.playSound(soundID, soundOptions) };
   /**
    * @remarks
    * Removes a specified property.
@@ -487,8 +484,11 @@ export class SimulatedPlayer {
    *        player.runCommand("scoreboard players set @s score 10");
    *
    * ```
+   * @deprecated
    */
-  runCommand(commandString: string): any { return this.__player.runCommand(commandString) };
+  runCommand(commandString: string): never {
+    throw new ReferenceError("runCommand function has been deprecated");
+  };
   /**
    * @remarks
    * Runs a particular command asynchronously from the context of
@@ -503,7 +503,7 @@ export class SimulatedPlayer {
    * command response values.
    * @throws This function can throw errors.
    */
-  runCommandAsync(commandString: string): Promise<mojangMinecraft.CommandResult> { return this.__player.runCommandAsync(commandString) };
+  runCommandAsync(commandString: string): Promise<Minecraft.CommandResult> { return this.__player.runCommandAsync(commandString) };
   /**
    * @remarks
    * Causes the simulated player to turn to face the provided
@@ -529,7 +529,7 @@ export class SimulatedPlayer {
    * Game mode to set.
    * @throws This function can throw errors.
    */
-  setGameMode(gameMode: mojangMinecraft.GameMode): void { return this.__player.setGameMode(gameMode) };
+  setGameMode(gameMode: Minecraft.GameMode): void { return this.__player.setGameMode(gameMode) };
   /**
    * @remarks
    * Sets a particular item for the simulated player.
@@ -541,7 +541,7 @@ export class SimulatedPlayer {
    * Whether to set the selected slot once set.
    * @throws This function can throw errors.
    */
-  setItem(itemStack: mojangMinecraft.ItemStack, slot: number, selectSlot?: boolean): boolean { return this.__player.setItem(itemStack, slot, selectSlot) };
+  setItem(itemStack: Minecraft.ItemStack, slot: number, selectSlot?: boolean): boolean { return this.__player.setItem(itemStack, slot, selectSlot) };
   /**
    * @remarks
    * Sets the main rotation of the entity.
@@ -557,7 +557,7 @@ export class SimulatedPlayer {
    * X/Y/Z components of the velocity.
    * @throws This function can throw errors.
    */
-  setVelocity(velocity: mojangMinecraft.Vector): void { return this.__player.setVelocity(velocity) };
+  setVelocity(velocity: Minecraft.Vector): void { return this.__player.setVelocity(velocity) };
   /**
    * @remarks
    * Sets the item cooldown time for a particular cooldown
@@ -609,7 +609,7 @@ export class SimulatedPlayer {
    * Y rotation of the player after teleportation.
    * @throws This function can throw errors.
    */
-  teleport(location: mojangMinecraft.Location, dimension: mojangMinecraft.Dimension, xRotation: number, yRotation: number): void { return this.__player.teleport(location, dimension, xRotation, yRotation) };
+  teleport(location: Minecraft.Location, dimension: Minecraft.Dimension, xRotation: number, yRotation: number): void { return this.__player.teleport(location, dimension, xRotation, yRotation) };
   /**
    * @remarks
    * Teleports the selected player to a new location, and will
@@ -622,7 +622,7 @@ export class SimulatedPlayer {
    * Location that this player will be facing.
    * @throws This function can throw errors.
    */
-  teleportFacing(location: mojangMinecraft.Location, dimension: mojangMinecraft.Dimension, facingLocation: mojangMinecraft.Location): void { return this.__player.teleportFacing(location, dimension, facingLocation) };
+  teleportFacing(location: Minecraft.Location, dimension: Minecraft.Dimension, facingLocation: Minecraft.Location): void { return this.__player.teleportFacing(location, dimension, facingLocation) };
   /**
    * @remarks
    * Triggers an entity type event. For every entity, a number of
@@ -643,7 +643,7 @@ export class SimulatedPlayer {
    * Item to use.
    * @throws This function can throw errors.
    */
-  useItem(itemStack: mojangMinecraft.ItemStack): boolean { return this.__player.useItem(itemStack) };
+  useItem(itemStack: Minecraft.ItemStack): boolean { return this.__player.useItem(itemStack) };
   /**
    * @remarks
    * Causes the simulated player to hold and use an item in their
@@ -670,7 +670,7 @@ export class SimulatedPlayer {
    * Block-face-relative Y position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemInSlotOnBlock(slot: number, blockLocation: mojangMinecraft.BlockLocation, direction?: mojangMinecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY) };
+  useItemInSlotOnBlock(slot: number, blockLocation: Minecraft.BlockLocation, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY) };
   /**
    * @remarks
    * Causes the simulated player to use an item on a block. The
@@ -688,8 +688,8 @@ export class SimulatedPlayer {
    * Block-face-relative Y position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemOnBlock(itemStack: mojangMinecraft.ItemStack, blockLocation: mojangMinecraft.BlockLocation, direction?: mojangMinecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY) };
-  public constructor (player: mojangGametest.SimulatedPlayer, test: mojangGametest.Test) {
+  useItemOnBlock(itemStack: Minecraft.ItemStack, blockLocation: Minecraft.BlockLocation, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY) };
+  public constructor (player: GameTest.SimulatedPlayer, test: GameTest.Test) {
     this.__player = player;
     this.__test = test;
   };
