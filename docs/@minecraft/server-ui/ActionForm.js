@@ -1,5 +1,5 @@
-// import action form from 'mojang-minecraft-ui' module;
-import { ActionFormData } from "mojang-minecraft-ui";
+// import action form from '@minecraft/server' module;
+import { ActionFormData } from "@minecraft/server-ui";
 
 const ActionForm = new ActionFormData();
 
@@ -12,19 +12,19 @@ ActionForm.body("This is the body text for the modal form.");
 // Adds a button to this form with an icon from a resource
 ActionForm.button("button icon", "textures/blocks/bedrock");
 
-// get player object from world object in 'mojang-minecraft' module
-import { world } from "mojang-minecraft";
+// get player object from world object in '@minecraft/server' module
+import { world } from "@minecraft/server";
 const player = [...world.getPlayers()][0];
 
 ActionForm.show(player)
 // This method returns a promise that resolves when the form has a response.
 .then(function (formResponse) {
     // The form response is an object with the following properties:
-    // isCanceled: boolean
+    // canceled: boolean
     // selection: number
 
-    const { isCanceled, selection } = formResponse;
-    console.warn(`isCanceled: ${isCanceled}`);
+    const { canceled, selection } = formResponse;
+    console.warn(`canceled: ${canceled}`);
     console.warn(`selection: ${selection}`);
 })
 // This method executes when an error in the promise function occurs.

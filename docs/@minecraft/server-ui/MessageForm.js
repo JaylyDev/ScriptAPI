@@ -1,5 +1,5 @@
-// import message form from 'mojang-minecraft-ui' module;
-import { MessageFormData } from "mojang-minecraft-ui";
+// import message form from '@minecraft/server-ui' module;
+import { MessageFormData } from "@minecraft/server-ui";
 
 const MessageForm = new MessageFormData();
 
@@ -29,19 +29,19 @@ MessageForm.button2("button 2");
  */
 MessageForm.title("Message Form");
 
-// get player object from world object in 'mojang-minecraft' module
-import { world } from "mojang-minecraft";
+// get player object from world object in '@minecraft/server' module
+import { world } from "@minecraft/server";
 const player = [...world.getPlayers()][0];
 
 MessageForm.show(player)
 // This method returns a promise that resolves when the form has a response.
 .then(function (formResponse) {
     // The form response is an object with the following properties:
-    // isCanceled: boolean
+    // canceled: boolean
     // selection: number
 
-    const { isCanceled, selection } = formResponse;
-    console.warn(`isCanceled: ${isCanceled}`);
+    const { canceled, selection } = formResponse;
+    console.warn(`canceled: ${canceled}`);
     console.warn(`selection: ${selection}`);
 })
 // This method executes when an error in the promise function occurs.

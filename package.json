@@ -1,6 +1,6 @@
 {
-  "name": "gametest-db",
-  "description": "this repository is filled with code examples for variables in GameTest Framework module",
+  "name": "script-api",
+  "description": "this repository is filled with community driven scripts for Minecraft scripting",
   "version": "1.0.0",
   "scripts": {
     "test": "tsc"
