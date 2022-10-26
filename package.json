@@ -17,7 +17,7 @@
   "homepage": "https://github.com/JaylyDev/GametestDB#readme",
   "type": "module",
   "devDependencies": {
-    "@minecraft/server": "beta",
+    "@minecraft/server": "preview",
     "@minecraft/server-admin": "beta",
     "@minecraft/server-gametest": "beta",
     "@minecraft/server-net": "beta",
