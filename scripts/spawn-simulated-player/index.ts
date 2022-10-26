@@ -3,8 +3,8 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import * as mojangMinecraft from "mojang-minecraft";
-import * as mojangGametest from "mojang-gametest";
+import * as MinecraftServer from "@minecraft/server";
+import * as GameTest from "@minecraft/server-gametest";
 import { SimulatedPlayer } from "../simulated-player/SimulatedPlayer.js";
 
 /**
@@ -12,18 +12,18 @@ import { SimulatedPlayer } from "../simulated-player/SimulatedPlayer.js";
  * @param target The player the simulated player is going to spawn at
  * @param callback Implementation of the simulated player
  */
-export function SpawnSimulatedPlayer (target: mojangMinecraft.Player, callback: (player: SimulatedPlayer) => void) {
+export function SpawnSimulatedPlayer (target: MinecraftServer.Player, callback: (player: SimulatedPlayer) => void) {
   const testClassName = "Jayly";
   const testName = "SpawnSimulatedPlayer";
 
-  if (!(target instanceof mojangMinecraft.Player)) throw new TypeError("Native type conversion failed.");
+  if (!(target instanceof MinecraftServer.Player)) throw new TypeError("Native type conversion failed.");
 
-  mojangGametest.registerAsync(testClassName, testName, async function (test) {
-    let simulatedplayer = test.spawnSimulatedPlayer(new mojangMinecraft.BlockLocation(0, 1, 0));
+  GameTest.registerAsync(testClassName, testName, async function (test) {
+    let simulatedplayer = test.spawnSimulatedPlayer(new MinecraftServer.BlockLocation(0, 1, 0));
     callback(new SimulatedPlayer(simulatedplayer, test));
   }).structureName("DebugTests:always_succeed")
-    .tag(mojangGametest.Tags.suiteDefault)
+    .tag(GameTest.Tags.suiteDefault)
     .maxTicks(0x7fffffff);
   
-  target.runCommand(`gametest run ${testClassName}:${testName}`);
+  target.runCommandAsync(`gametest run ${testClassName}:${testName}`);
 };

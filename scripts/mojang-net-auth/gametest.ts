@@ -1,4 +1,4 @@
-import { http as Http, HttpHeader, HttpRequest, HttpRequestMethod, HttpResponse, HttpClient as httpClient } from "mojang-net";
+import { http as Http, HttpHeader, HttpRequest, HttpRequestMethod, HttpResponse, HttpClient as httpClient } from "@minecraft/server-net";
 
 class authoration {
   static authorized: boolean = false;

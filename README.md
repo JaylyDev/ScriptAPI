@@ -8,24 +8,21 @@ This repository is filled with community driven script samples for Minecraft Bed
   Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
   > ⚠️ Some scripts might use `@minecraft/server-net` and `@minecraft/server-admin` module, which the modules are only available in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients.
   
-- ### [@minecraft/server](./@minecraft/server/)
+- ### [@minecraft/server](./docs/@minecraft/server/)
   Basic usage of manipulating Script API features within `@minecraft/server` module
   
-- ### [@minecraft/server-gametest](./@minecraft/server-gametest/)
+- ### [@minecraft/server-gametest](./docs/@minecraft/server-gametest/)
   Basic usage of creating GameTests or spawning a simulated player using `@minecraft/server-gametest` module
 
-- ### [@minecraft/server-ui](./@minecraft/server-ui/)
+- ### [@minecraft/server-ui](./docs/@minecraft/server-ui/)
   Basic usage of manipulating server forms available in `@minecraft/server-ui` module
 
-- ### [@minecraft/server-admin](./@minecraft/server-admin/)
+- ### [@minecraft/server-admin](./docs/@minecraft/server-admin/)
   Basic usage of loading secrets and variables from `@minecraft/server-admin` module
 
-- ### [@minecraft/server-net](./@minecraft/server-net/)
+- ### [@minecraft/server-net](./docs/@minecraft/server-net/)
   Basic usage of executing HTTP-based requests using `@minecraft/server-net` module
   
-- ### [utilities](./utilities/)
-  Projects that are not directly related to Script API, scripts inside that folder are mostly for running in a Node.js engine.
-
 ## Contributing
 
 Please contribute to this repository if you can.
@@ -48,9 +45,19 @@ In the example `new-package` is the package name, you must include
 - a main file (e.g. `index.js` and `index.ts`)
 - a test file (e.g. `my-package-tests.js` and `my-package-tests.ts`). The test file must be based on package name and add with `-tests.js/ts`.
 
-| Script Samples Update (for v1.19.40 or above) |
-| --- |
-⚠️ Please **Do Not** use new Script API modules and old Script API modules at the same time. This repository still has old modules like `mojang-minecraft` for compatibility.<br/>We recommend upload scripts that works in Minecraft version v1.19.40 with the new Script API modules, such as `@minecraft/server`.
+### Script modules version
+
+When submitting new package, the package must not import new Script API modules and old Script API modules in the same script file. This repository still has old modules like `mojang-minecraft` for compatibility.
+
+We recommend upload scripts that uses new Script API modules (script module version 1.0.0 or above), such as the latest beta version of `@minecraft/server`, and not `mojang-minecraft` version `0.1.0`.
+
+### Acknowledgements
+
+When you submit a new package and you want to publicly declare your work, you are allowed to insert credits under the following files:
+
+- `LICENSE` file with the license and your name
+- Adding your name to the end of the line, like `// Author: JaylyDev <https://github.com/JaylyDev>`.
+- Add your name in `README.md` file in the package
 
 ## Script status
 

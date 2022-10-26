@@ -1,6 +1,6 @@
 import LZString from "./index.js";
-import { http, HttpRequest } from "mojang-net";
-import { world } from "mojang-minecraft";
+import { http, HttpRequest } from "@minecraft/server-net";
+import { world } from "@minecraft/server";
 
 async function Main () {
   const response = await http.request(new HttpRequest('https://docs.microsoft.com/en-us/minecraft/creator/opbuildpdf/toc.pdf'));
@@ -19,7 +19,7 @@ let started = false;
 world.events.beforeChat.subscribe(() => {
   if (started) return;
 
-  world.getDimension("overworld").runCommand("say Unit test starts");
+  world.say("Unit test starts");
   started = true;
   Main().catch((err) => {
     console.error(err);
