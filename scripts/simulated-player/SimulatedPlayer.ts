@@ -49,7 +49,7 @@ export class SimulatedPlayer {
    * Current location of the player.
    * @throws This property can throw when used.
    */
-  public get 'location' (): Minecraft.IVec3 { return this.__player.location };
+  public get 'location' (): Minecraft.Vector3 { return this.__player.location };
   /**
    * Name of the player.
    * @throws This property can throw when used.
