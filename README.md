@@ -36,20 +36,20 @@ JaylyDev/ScriptAPI (root)
           index.js
           index.ts (optional)
           LICENSE (optional)
-          my-package-tests.js
-          my-package-tests.ts (optional)
+          tests.js
+          tests.ts (optional)
           README.md (optional)
 ```
 
 In the example `new-package` is the package name, you must include
-- a main file (e.g. `index.js` and `index.ts`)
-- a test file (e.g. `my-package-tests.js` and `my-package-tests.ts`). The test file must be based on package name and add with `-tests.js/ts`.
+- a main file (e.g. `index.js` or `index.ts`)
+- a test file (e.g. `tests.js` or `tests.ts`).
 
 ### Script modules version
 
 When submitting new package, the package must not import new Script API modules and old Script API modules in the same script file. This repository still has old modules like `mojang-minecraft` for compatibility.
 
-We recommend upload scripts that uses new Script API modules (script module version 1.0.0 or above), such as the latest beta version of `@minecraft/server`, and not `mojang-minecraft` version `0.1.0`.
+We recommend upload scripts that uses the latest version of Script API modules. For more infomation please visit [here](./CONTRIBUTING.md).
 
 ### Acknowledgements
 
@@ -63,7 +63,7 @@ When you submit a new package and you want to publicly declare your work, you ar
 
 This repository uses TypeScript compiler to test script files by validing with declaration files of Script API modules, making sure they are up-to-date when using in the latest Minecraft versions.
 
-<img src="https://user-images.githubusercontent.com/65847850/192581677-8d36e2ac-456a-46fd-8713-e87508be085a.png" align="left" width="40%"></a>
+<img src="https://user-images.githubusercontent.com/65847850/192581677-8d36e2ac-456a-46fd-8713-e87508be085a.png" align="left" width="500"></a>
 
 Most of the time the checks succeed, which means scripts inside should not have any syntax errors when using in stable version of Minecraft.
 
