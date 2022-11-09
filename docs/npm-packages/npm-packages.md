@@ -1,5 +1,68 @@
 # npm packages
 
+## Latest Beta Script Modules for Minecraft Preview
+
+- **[@minecraft/server@1.1.0-beta](https://www.npmjs.com/package/@minecraft/server/v/beta)**
+
+- **[@minecraft/server-ui@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-ui/v/beta)**
+
+- **[@minecraft/server-admin@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-admin/v/beta)**
+
+- **[@minecraft/server-gametest@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-gametest/v/beta)**
+
+- **[@minecraft/server-net@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-net/v/beta)**
+
+```
+npm install @minecraft/server@beta
+npm install @minecraft/server-ui@beta
+npm install @minecraft/server-net@beta
+npm install @minecraft/server-admin@beta
+npm install @minecraft/server-gametest@beta
+```
+
+## Latest Beta Script Modules Minecraft (Release)
+
+- **[@minecraft/server@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server/v/latest)**
+
+- **[@minecraft/server-ui@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-ui/v/latest)**
+
+- **[@minecraft/server-admin@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-admin/v/latest)**
+
+- **[@minecraft/server-gametest@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-gametest/v/latest)**
+
+- **[@minecraft/server-net@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-net/v/latest)**
+
+```
+npm install @minecraft/server@latest
+npm install @minecraft/server-ui@latest
+npm install @minecraft/server-net@latest
+npm install @minecraft/server-admin@latest
+npm install @minecraft/server-gametest@latest
+```
+
+## Preview 1.19.50.24
+
+- **[@minecraft/server@1.1.0-beta](https://www.npmjs.com/package/@minecraft/server/v/1.1.0-beta.preview.1.19.50.24)**
+
+- **[@minecraft/server-ui@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-ui/v/1.0.0-beta.preview.1.19.50.24)**
+
+- **[@minecraft/server-admin@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-admin/v/1.0.0-beta.preview.1.19.50.24)**
+
+- **[@minecraft/server-gametest@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-gametest/v/1.0.0-beta.preview.1.19.50.24)**
+
+- **[@minecraft/server-net@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-net/v/1.0.0-beta.preview.1.19.50.24)**
+
+```
+npm install @minecraft/server@1.1.0-beta.preview.1.19.50.24
+npm install @minecraft/server-ui@1.0.0-beta.preview.1.19.50.24
+npm install @minecraft/server-net@1.0.0-beta.preview.1.19.50.24
+npm install @minecraft/server-admin@1.0.0-beta.preview.1.19.50.24
+npm install @minecraft/server-gametest@1.0.0-beta.preview.1.19.50.24
+```
+
+- **[@minecraft/server@1.0.0](https://www.npmjs.com/package/@minecraft/server/v/1.0.0-preview.1.19.50.24)**
+  > ⚠️Warning: This script module is not compatible with Beta API script modules
+
 ## Preview 1.19.50.22
 
 - **[@minecraft/server@1.1.0-beta](https://www.npmjs.com/package/@minecraft/server/v/1.1.0-beta.preview.1.19.50.22)**
