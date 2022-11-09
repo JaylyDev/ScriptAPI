@@ -1,4 +1,5 @@
-#### Commands that can't be replaced with JS code for now
+# API Missing Features for Slash Commands
+#### The following command features are not implemented in scripting API (as of 1.19.50).
 
 - `/kick`
 - `/gamemode`
