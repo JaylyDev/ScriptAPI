@@ -10,7 +10,11 @@ world.events.beforeChat.subscribe(async (event) => {
   modalForm.dropdown('Dropdown', ['0','1']);
   
   const response = await forceShow(event.sender, modalForm);
-  response['formValues']
+  
+  // response should be ModalFormResponse
+  for (const value of response.formValues) {
+    console.log(value);
+  }
 });
 
 world.events.beforeItemUse.subscribe(async (event) => {
@@ -23,6 +27,9 @@ world.events.beforeItemUse.subscribe(async (event) => {
   form.button('button');
   
   const response = await forceShow(event.source, form);
+  
+  // response should be ActionFormResponse
+  world.say(String(response.selection));
 });
 
 
@@ -36,5 +43,8 @@ system.run(async function () {
     form.button2('button');
 
     const response = await forceShow(player, form);
+    
+    // response should be MessageFormResponse
+    world.say(String(response.selection));
   };
 });
