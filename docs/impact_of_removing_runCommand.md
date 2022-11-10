@@ -10,12 +10,12 @@ What will happen if `.runCommand` removed from Gametest/Script API?
 # Damage
 
 1. There's no way to give damage to players & entities
-2. Opening GUI with custom command will not possible (unless there's another way) because it's need damage for close the chat ui
+2. Opening GUI with custom command will not possible (unless there's another way) because it's need damage for close the chat UI
 
 # Execute
 
-1. Execute can be useful to run command with lot of if/unless condition for simplicity or maybe performance
-2. Cannot run `/loot` command
+1. New execute can be useful to run command with lot of if/unless condition for simplicity or maybe performance
+2. Cannot run `/loot` command with execute
 
 # Function
 
@@ -36,13 +36,11 @@ What will happen if `.runCommand` removed from Gametest/Script API?
 
 # List
 
-1. Cannot get how many players can join the world (Player Join Limit)
+1. Cannot get how many players can join the world (player join limit)
 
 # Gamemode
 
 1. Cannot set player's gamemode
-2. Cannot run command with new execute. This is much better rather than detect using script API for simplicity and maybe performance
-3. Cannot run `/loot` command
 
 # Locate
 
@@ -76,4 +74,3 @@ Following useful command are cannot to run for mapmaking:
 4. Music
 5. Playsound & Stopsound
 6. Weather
-7. Cannot get how many players can join the world (Player Join Limit)
