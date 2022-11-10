@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { world, system, Player } from "@minecraft/server";
 import { ModalFormData, ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { forceShow } from "force-show";
 
@@ -14,6 +14,7 @@ world.events.beforeChat.subscribe(async (event) => {
 });
 
 world.events.beforeItemUse.subscribe(async (event) => {
+  if (!(event.source instanceof Player)) return;
   event.cancel = true;
 
   const form = new ActionFormData();
@@ -26,15 +27,14 @@ world.events.beforeItemUse.subscribe(async (event) => {
 
 
 
-system.run(() => {
+system.run(async function () {
   for (let player of world.getAllPlayers()) {
-  event.cancel = true;
 
-  const form = new MessageFormData();
-  form.title('title');
-  form.button1('button');
-  form.button2('button');
-  
-  const response = await forceShow(player, form);
+    const form = new MessageFormData();
+    form.title('title');
+    form.button1('button');
+    form.button2('button');
+
+    const response = await forceShow(player, form);
   };
 });
