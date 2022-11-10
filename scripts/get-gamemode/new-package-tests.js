@@ -1,4 +1,4 @@
-import { world } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 import { getGamemode } from "./index";
 
 world.events.leverActivate.subscribe(({player}) => {
