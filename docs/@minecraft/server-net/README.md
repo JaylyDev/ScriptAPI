@@ -5,9 +5,9 @@
 
 ## Module Contents
 
-### [Enable @minecraft/server-net on BDS](./enbale-server-net.md)
+### [Enable @minecraft/server-net on BDS](./enable-server-net.md)
 
-### [@minecraft/server-net with node.js](./mcnet-with-nodejs/)
+### [@minecraft/server-net with node.js](./server-net-with-nodejs/)
 
 <!-- August 2022 update -->
 

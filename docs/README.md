@@ -11,3 +11,7 @@
 ### [@minecraft/server-admin](./%40minecraft/server-admin/)
 
 ### [@minecraft/server-gametest](./%40minecraft/server-gametest/)
+
+### [npm-packages](./npm-packages/npm-packages.md)
+
+### [Learn JavaScript](./JavaScript/)

@@ -29,11 +29,11 @@ In the `permissions.json` file, enable mojang-net module by adding `"mojang-net"
 ```json
 {
   "allowed_modules": [
-    "mojang-gametest",
-    "mojang-minecraft",
-    "mojang-minecraft-ui",
-    "mojang-minecraft-server-admin",
-    "mojang-net"
+    "@minecraft/server-gametest",
+    "@minecraft/server",
+    "@minecraft/server-ui",
+    "@minecraft/server-admin",
+    "@minecraft/server-net"
   ]
 }
 ```
