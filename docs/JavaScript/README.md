@@ -76,7 +76,7 @@ These features exist in vanilla (most engine / frameworks) JavaScript global sco
 ### **Minecraft features**
 The following features are added into Minecraft JavaScript global scope. They're imported from [QuickJS](https://github.com/bellard/quickjs) or modified by the Minecraft developers.
 
-- [print](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/print)
+- [print](./print.md)
 - [__date_clock](./__date_clock.md)
 - [InternalError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError)
 - [JSON.stringify](./JSON/stringify.md)

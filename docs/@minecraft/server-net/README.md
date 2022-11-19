@@ -1,13 +1,13 @@
-# mojang-minecraft-server-admin Module
+# @minecraft/server-net Module
 
 | ⚠️WARNING: you can only use this module in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock)! |
 | --- |
 
 ## Module Contents
 
-### [Enable mojang-net on BDS](./enbale-mojang-net.md)
+### [Enable @minecraft/server-net on BDS](./enbale-server-net.md)
 
-### [mojang-net with node.js](./mcnet-with-nodejs/)
+### [@minecraft/server-net with node.js](./mcnet-with-nodejs/)
 
 <!-- August 2022 update -->
 
