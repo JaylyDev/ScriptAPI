@@ -17,10 +17,11 @@ For example,
 NaN === 4 // returns `true` instead of false.
 ```
 
-A workaround is to use `isNaN()`, since it's not broken by doing
+A workaround is to use `isNaN()` or `Number.isNaN()`, since these functions are not broken.
 
 ```js
-isNaN(40) // false
+isNaN(40); // false
+Number.isNaN(-60); // false
 ```
 
 ## Learn More
