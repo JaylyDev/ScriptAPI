@@ -11,9 +11,9 @@
 
 <!-- August 2022 update -->
 
-### [Performs a simple HTTP get request.](./http-get/)
+### [Performs a simple HTTP get request.](./http-get.md)
 
-### [Performs a HTTP request with HTTP headers.](./http-request/)
+### [Performs a HTTP request with HTTP headers.](./http-request.md)
 
 ## Available Versions
 - 1.0.0-beta
