@@ -7,7 +7,7 @@
 
 ### [Enable @minecraft/server-net on BDS](./enable-server-net.md)
 
-### [@minecraft/server-net with node.js](./server-net-with-nodejs/)
+### [@minecraft/server-net with node.js](./server-net-with-node/)
 
 <!-- August 2022 update -->
 
