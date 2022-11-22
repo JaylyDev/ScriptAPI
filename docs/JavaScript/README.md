@@ -73,7 +73,7 @@ These features exist in vanilla (most engine / frameworks) JavaScript global sco
   > "capabilities": ["script_eval"]
   > ```
 
-### **Minecraft features**
+### **Minecraft API**
 The following features are added into Minecraft JavaScript global scope. They're imported from [QuickJS](https://github.com/bellard/quickjs) or modified by the Minecraft developers.
 
 - [print](./print.md)
@@ -81,3 +81,4 @@ The following features are added into Minecraft JavaScript global scope. They're
 - [InternalError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError)
 - [JSON.stringify](./JSON/stringify.md)
 - [NaN](./NaN.md)
+- [Interface (Syntax)](./interface.md)

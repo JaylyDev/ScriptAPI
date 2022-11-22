@@ -12,6 +12,8 @@
 
 ### [@minecraft/server-gametest](./%40minecraft/server-gametest/)
 
-### [npm-packages](./npm-packages/npm-packages.md)
+### [npm-packages](./MinecraftApi/npm-packages.md)
+
+### [script_eval](./MinecraftApi/script_eval.md)
 
 ### [Learn JavaScript](./JavaScript/)
