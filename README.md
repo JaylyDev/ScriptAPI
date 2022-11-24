@@ -8,19 +8,19 @@ This repository is filled with community driven script samples for Minecraft Bed
   Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
   > ⚠️ Some scripts might use `@minecraft/server-net` and `@minecraft/server-admin` module, which the modules are only available in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients.
   
-- ### [@minecraft/server](./docs/@minecraft/server/)
+- ### [@minecraft/server](./docs/MinecraftApi/@minecraft/server/)
   Basic usage of manipulating Script API features within `@minecraft/server` module
   
-- ### [@minecraft/server-gametest](./docs/@minecraft/server-gametest/)
+- ### [@minecraft/server-gametest](./docs/MinecraftApi/@minecraft/server-gametest/)
   Basic usage of creating GameTests or spawning a simulated player using `@minecraft/server-gametest` module
 
-- ### [@minecraft/server-ui](./docs/@minecraft/server-ui/)
+- ### [@minecraft/server-ui](./docs/MinecraftApi/@minecraft/server-ui/)
   Basic usage of manipulating server forms available in `@minecraft/server-ui` module
 
-- ### [@minecraft/server-admin](./docs/@minecraft/server-admin/)
+- ### [@minecraft/server-admin](./docs/MinecraftApi/@minecraft/server-admin/)
   Basic usage of loading secrets and variables from `@minecraft/server-admin` module
 
-- ### [@minecraft/server-net](./docs/@minecraft/server-net/)
+- ### [@minecraft/server-net](./docs/MinecraftApi/@minecraft/server-net/)
   Basic usage of executing HTTP-based requests using `@minecraft/server-net` module
   
 ## Contributing
