@@ -9,6 +9,7 @@ updates:
     directory: /
     reviewers:
       - "JaylyDev"
+    target-branch: "main"
     schedule:
       interval: daily
 
@@ -18,3 +19,8 @@ updates:
       - "JaylyDev"
     schedule:
       interval: daily
+    target-branch: "main"
+    # Allow up to 10 open pull requests for npm dependencies
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "@types/mojang-*"
