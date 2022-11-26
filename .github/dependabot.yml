@@ -18,5 +18,3 @@ updates:
       - "JaylyDev"
     schedule:
       interval: daily
-    allow:
-      - versions: ["beta"]
