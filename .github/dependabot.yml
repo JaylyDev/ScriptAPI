@@ -21,7 +21,4 @@ updates:
       interval: daily
     target-branch: "main"
     # Allow up to 10 open pull requests for npm dependencies
-    ignore:
-      - dependency-name: "@types/mojang-*"
-      - dependency-name: "@minecraft/*"
-        versions: ["*-beta.preview.*"]
+    open-pull-requests-limit: 10
