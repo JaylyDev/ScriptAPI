@@ -21,7 +21,7 @@
     "@minecraft/server-admin": "1.0.0-beta.preview.1.19.50.25",
     "@minecraft/server-gametest": "1.0.0-beta.preview.1.19.50.25",
     "@minecraft/server-net": "1.0.0-beta.preview.1.19.50.25",
-    "@minecraft/server-ui": "1.0.0-beta.preview.1.19.50.25",
+    "@minecraft/server-ui": "1.0.0-beta.11940b24",
     "@types/mojang-minecraft": "^0.1.6",
     "@types/mojang-minecraft-ui": "^0.1.0"
   },
