@@ -7,10 +7,16 @@ version: 2
 updates:
   - package-ecosystem: github-actions
     directory: /
+    reviewers:
+      - "JaylyDev"
     schedule:
       interval: daily
 
   - package-ecosystem: npm
     directory: /
+    reviewers:
+      - "JaylyDev"
     schedule:
       interval: daily
+    allow:
+      - versions: ["beta"]
