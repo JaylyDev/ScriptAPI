@@ -20,5 +20,6 @@ updates:
     schedule:
       interval: daily
     target-branch: "main"
-    # Allow up to 10 open pull requests for npm dependencies
-    open-pull-requests-limit: 10
+    ignore:
+      # Don't submit minecraft submodules pull requests
+      - dependency-name: "@minecraft/*"
