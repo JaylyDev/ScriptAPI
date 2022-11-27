@@ -13,5 +13,4 @@ http.createServer((req, res) => {
       "Content-Type": "text/plain"
     }).end(payload);
   });
-  console.log(JSON.stringify(req.headers));
 }).listen(port);
