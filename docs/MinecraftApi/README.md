@@ -9,7 +9,7 @@ An API is a kind of mutual or one-sided interaction between two or more Applicat
 Maybe you have already heard it ([Script API](#script-api)) somewhere, it is important to know what is hidden under this name. A lot of people imagine different things like Codes, Scripts, Programming Languages, (`Mysterious Experiments in Minecraft? :]` ), but in reality it is only, [API](#what-is-an-api) so it is not a programming language, script, code, or program, it is a set of functions that allow us to interact with the world of minecraft! This API is also well documented in official web site [here](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/minecraft-server)!
 
 ## Why should I use the Script API?
-Whether you want it or not is up to you, but why should you? As explained in the article below, without the [API](#scrip-api) you wouldn't be able to interact with Minecraft World, it follows that your script in Minecraft Pack would have no effect in Minecraft World, that's all.
+Whether you want it or not is up to you, but why should you? As explained in the article below, without the [API](#script-api) you wouldn't be able to interact with Minecraft World, it follows that your script in Minecraft Pack would have no effect in Minecraft World, that's all.
 
 ## API Modules?
 

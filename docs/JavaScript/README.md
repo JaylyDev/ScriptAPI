@@ -14,14 +14,14 @@ These features exist in vanilla (most engine / frameworks) JavaScript global sco
   > ```json
   > "capabilities": ["script_eval"]
   > ```
-- [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
-- [EvalError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError)
-- [RangeError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError)
-- [ReferenceError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError)
-- [SyntaxError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError)
-- [TypeError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError)
-- [URIError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError)
-- [AggregateError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError)
+- [Error](./Error.md#error)
+- [EvalError](./Error.md#error-types)
+- [RangeError](./Error.md#error-types)
+- [ReferenceError](./Error.md#error-types)
+- [SyntaxError](./Error.md#error-types)
+- [TypeError](./Error.md#error-types)
+- [URIError](./Error.md#error-types)
+- [AggregateError](./Error.md#error-types)
 - [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 - [parseInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
 - [parseFloat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseFloat)
@@ -78,7 +78,7 @@ The following features are added into Minecraft JavaScript global scope. They're
 
 - [print](./print.md)
 - [__date_clock](./__date_clock.md)
-- [InternalError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError)
+- [InternalError](./Error.md#error-types)
 - [JSON.stringify](./JSON/stringify.md)
 - [NaN](./NaN.md)
 - [Interface (Syntax)](./interface.md)
