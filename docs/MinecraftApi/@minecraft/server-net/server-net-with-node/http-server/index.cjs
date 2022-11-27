@@ -17,7 +17,7 @@ app.get('/get-response', function (request, response) {
     response.status(200);
     response.send('ok');
 });
-app.post('/request-response', function (request, response) {
+app.all('/request-response', function (request, response) {
     var method = request.method;
     var body = request.body;
     console.log("[request-response] Receive ".concat(method, ". ").concat(body));
@@ -28,4 +28,3 @@ app.post('/request-response', function (request, response) {
 app.listen(port, function () {
     console.log("Example app listening on port ".concat(port));
 });
-//# sourceMappingURL=index.js.map
