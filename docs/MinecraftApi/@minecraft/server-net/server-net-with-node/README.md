@@ -6,7 +6,7 @@ You may want to connect Minecraft to your local network using server-net module 
   - `send_request()`: Creates a POST request to localhost.
   - `get_response()`: Get data from Node.js in localhost.
   - `request_response()`: Creates a POST request and returns data from localhost.
-- [http-server](./http-server/index.ts): Node.js script for creating a server to receive HTTP requests.
+- [http-server](./http-server/index.cts): Node.js script for creating a server to receive HTTP requests.
   - This script creates a server at port 3000
   - `app.post('/send-request')`: receives POST requests only on /send-request (localhost:3000/send-request).
   - `app.post('/get-response')`: receives GET requests and send a response with data (localhost:3000/get-response).
