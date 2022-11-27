@@ -3,177 +3,110 @@
  * how a player moves throughout the world and to support
  * testing of how entities and the environment will react to a
  * player. This type derives much of its structure and methods
- * from the {@link mojangMinecraft.Player} type.
+ * from the {@link Minecraft.Player} type.
  */
-var SimulatedPlayer = /** @class */ (function () {
-    function SimulatedPlayer(player, test) {
-        this.__player = player;
-        this.__test = test;
+export class SimulatedPlayer {
+    /**
+     * Dimension that the simulated player is currently within.
+     * @throws This property can throw when used.
+     */
+    get 'dimension'() { return this.__player.dimension; }
+    ;
+    /**
+     * Location of the center of the head component of the player.
+     * @throws This property can throw when used.
+     */
+    get 'headLocation'() { return this.__player.headLocation; }
+    ;
+    /**
+     * Rotation of the head across pitch and yaw angles.
+     * @throws This property can throw when used.
+     */
+    get 'headRotation'() { return this.__player.headRotation; }
+    ;
+    /**
+     * Identifier for the player.
+     * @throws This property can throw when used.
+     */
+    get 'id'() { return this.__player.id; }
+    ;
+    /**
+     * True if the player is currently using a sneaking movement.
+    */
+    get 'isSneaking'() {
+        return this.__player.isSneaking;
     }
-    Object.defineProperty(SimulatedPlayer.prototype, 'dimension', {
-        /**
-         * Dimension that the simulated player is currently within.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.dimension; },
-        enumerable: false,
-        configurable: true
-    });
+    set 'isSneaking'(value) {
+        this.__player.isSneaking = value;
+    }
+    /**
+     * Current location of the player.
+     * @throws This property can throw when used.
+     */
+    get 'location'() { return this.__player.location; }
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'headLocation', {
-        /**
-         * Location of the center of the head component of the player.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.headLocation; },
-        enumerable: false,
-        configurable: true
-    });
+    /**
+     * Name of the player.
+     * @throws This property can throw when used.
+     */
+    get 'name'() { return this.__player.name; }
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'headRotation', {
-        /**
-         * Rotation of the head across pitch and yaw angles.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.headRotation; },
-        enumerable: false,
-        configurable: true
-    });
+    /**
+     * Optional name tag of the player.
+     */
+    get 'nameTag'() {
+        return this.__player.nameTag;
+    }
+    set 'nameTag'(value) {
+        this.__player.nameTag = value;
+    }
+    /**
+     * Contains methods for manipulating the on-screen display of a
+     * Player.
+     */
+    get 'onScreenDisplay'() { return this.__player.onScreenDisplay; }
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'id', {
-        /**
-         * Identifier for the player.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.id; },
-        enumerable: false,
-        configurable: true
-    });
+    /**
+     * Main rotation of the entity.
+     * @throws This property can throw when used.
+     */
+    get 'rotation'() { return this.__player.rotation; }
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'isSneaking', {
-        /**
-         * True if the player is currently using a sneaking movement.
-        */
-        get: function () {
-            return this.__player.isSneaking;
-        },
-        set: function (value) {
-            this.__player.isSneaking = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(SimulatedPlayer.prototype, 'location', {
-        /**
-         * Current location of the player.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.location; },
-        enumerable: false,
-        configurable: true
-    });
+    /**
+     * Returns a scoreboard identity that represents this entity.
+     * @throws This property can throw when used.
+     */
+    get 'scoreboard'() { return this.__player.scoreboard; }
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'name', {
-        /**
-         * Name of the player.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.name; },
-        enumerable: false,
-        configurable: true
-    });
+    /**
+     * Manages the selected slot in the player's hotbar.
+     */
+    get 'selectedSlot'() {
+        return this.__player.selectedSlot;
+    }
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'nameTag', {
-        /**
-         * Optional name tag of the player.
-         */
-        get: function () {
-            return this.__player.nameTag;
-        },
-        set: function (value) {
-            this.__player.nameTag = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(SimulatedPlayer.prototype, 'onScreenDisplay', {
-        /**
-         * Contains methods for manipulating the on-screen display of a
-         * Player.
-         */
-        get: function () { return this.__player.onScreenDisplay; },
-        enumerable: false,
-        configurable: true
-    });
+    set 'selectedSlot'(value) {
+        this.__player.selectedSlot = value;
+    }
+    /**
+     * Retrieves or sets an entity that is used as the target of
+     * AI-related behaviors, like attacking.
+     */
+    get 'target'() {
+        return this.__player.target;
+    }
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'rotation', {
-        /**
-         * Main rotation of the entity.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.rotation; },
-        enumerable: false,
-        configurable: true
-    });
+    /**
+     * Current speed of the player across X, Y, and Z dimensions.
+     * @throws This property can throw when used.
+     */
+    get 'velocity'() { return this.__player.velocity; }
     ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'scoreboard', {
-        /**
-         * Returns a scoreboard identity that represents this entity.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.scoreboard; },
-        enumerable: false,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'selectedSlot', {
-        /**
-         * Manages the selected slot in the player's hotbar.
-         */
-        get: function () {
-            return this.__player.selectedSlot;
-        },
-        set: function (value) {
-            this.__player.selectedSlot = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'target', {
-        /**
-         * Retrieves or sets an entity that is used as the target of
-         * AI-related behaviors, like attacking.
-         */
-        get: function () {
-            return this.__player.target;
-        },
-        set: function (value) {
-            this.__player.target = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'velocity', {
-        /**
-         * Current speed of the player across X, Y, and Z dimensions.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.velocity; },
-        enumerable: false,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(SimulatedPlayer.prototype, 'viewVector', {
-        /**
-         * Vector of the current view of the player.
-         * @throws This property can throw when used.
-         */
-        get: function () { return this.__player.viewVector; },
-        enumerable: false,
-        configurable: true
-    });
+    /**
+     * Vector of the current view of the player.
+     * @throws This property can throw when used.
+     */
+    get 'viewDirection'() { return this.__player.viewDirection; }
     ;
     /**
      * @remarks
@@ -187,7 +120,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param showParticles
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.addEffect = function (effectType, duration, amplifier, showParticles) { return this.__player.addEffect(effectType, duration, amplifier, showParticles); };
+    addEffect(effectType, duration, amplifier, showParticles) { return this.__player.addEffect(effectType, duration, amplifier, showParticles); }
     ;
     /**
      * @remarks
@@ -196,7 +129,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Amount of experience to add.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.addExperience = function (amount) { return this.__player.addExperience(amount); };
+    addExperience(amount) { return this.__player.addExperience(amount); }
     ;
     /**
      * @remarks
@@ -205,7 +138,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Content of the tag to add.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.addTag = function (tag) { return this.__player.addTag(tag); };
+    addTag(tag) { return this.__player.addTag(tag); }
     ;
     /**
      * @remarks
@@ -215,7 +148,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * selection is performed by raycasting from the player's head.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.attack = function () { return this.__player.attack(); };
+    attack() { return this.__player.attack(); }
     ;
     /**
      * @remarks
@@ -227,7 +160,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param entity
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.attackEntity = function (entity) { return this.__player.attackEntity(entity); };
+    attackEntity(entity) { return this.__player.attackEntity(entity); }
     ;
     /**
      * @remarks
@@ -241,7 +174,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Direction to place the specified item within.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.breakBlock = function (blockLocation, direction) { return this.__player.breakBlock(blockLocation, direction); };
+    breakBlock(blockLocation, direction) { return this.__player.breakBlock(blockLocation, direction); }
     ;
     /**
      * @remarks
@@ -251,7 +184,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Additional options for processing this raycast query.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.getBlockFromViewVector = function (options) { return this.__player.getBlockFromViewVector(options); };
+    getBlockFromViewDirection(options) { return this.__player.getBlockFromViewDirection(options); }
     ;
     /**
      * @remarks
@@ -263,14 +196,14 @@ var SimulatedPlayer = /** @class */ (function () {
      * 'minecraft:' is assumed. If the component is not present on
      * the entity, undefined is returned.
      */
-    SimulatedPlayer.prototype.getComponent = function (componentId) { return this.__player.getComponent(componentId); };
+    getComponent(componentId) { return this.__player.getComponent(componentId); }
     ;
     /**
      * @remarks
      * Returns all components that are both present on this entity
      * and supported by the API.
      */
-    SimulatedPlayer.prototype.getComponents = function () { return this.__player.getComponents(); };
+    getComponents() { return this.__player.getComponents(); }
     ;
     /**
      * @remarks
@@ -281,7 +214,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * property has not been set.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.getDynamicProperty = function (identifier) { return this.__player.getDynamicProperty(identifier); };
+    getDynamicProperty(identifier) { return this.__player.getDynamicProperty(identifier); }
     ;
     /**
      * @remarks
@@ -293,7 +226,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * effect is not present.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.getEffect = function (effectType) { return this.__player.getEffect(effectType); };
+    getEffect(effectType) { return this.__player.getEffect(effectType); }
     ;
     /**
      * @remarks
@@ -303,7 +236,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Additional options for processing this raycast query.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.getEntitiesFromViewVector = function (options) { return this.__player.getEntitiesFromViewVector(options); };
+    getEntitiesFromViewDirection(options) { return this.__player.getEntitiesFromViewDirection(options); }
     ;
     /**
      * @remarks
@@ -314,14 +247,14 @@ var SimulatedPlayer = /** @class */ (function () {
      * cooldown for.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.getItemCooldown = function (itemCategory) { return this.__player.getItemCooldown(itemCategory); };
+    getItemCooldown(itemCategory) { return this.__player.getItemCooldown(itemCategory); }
     ;
     /**
      * @remarks
      * Returns all tags associated with this simulated player.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.getTags = function () { return this.__player.getTags(); };
+    getTags() { return this.__player.getTags(); }
     ;
     /**
      * @remarks
@@ -332,7 +265,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Whether to set the selected slot once given.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.giveItem = function (itemStack, selectSlot) { return this.__player.giveItem(itemStack, selectSlot); };
+    giveItem(itemStack, selectSlot) { return this.__player.giveItem(itemStack, selectSlot); }
     ;
     /**
      * @remarks
@@ -343,7 +276,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * to retrieve. If no namespace prefix is specified,
      * 'minecraft:' is assumed.
      */
-    SimulatedPlayer.prototype.hasComponent = function (componentId) { return this.__player.hasComponent(componentId); };
+    hasComponent(componentId) { return this.__player.hasComponent(componentId); }
     ;
     /**
      * @remarks
@@ -352,7 +285,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Identifier of the tag to test for.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.hasTag = function (tag) { return this.__player.hasTag(tag); };
+    hasTag(tag) { return this.__player.hasTag(tag); }
     ;
     /**
      * @remarks
@@ -361,7 +294,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * interaction was successful. Maximum range is 6 blocks.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.interact = function () { return this.__player.interact(); };
+    interact() { return this.__player.interact(); }
     ;
     /**
      * @remarks
@@ -374,7 +307,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Direction to place the specified item within.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.interactWithBlock = function (blockLocation, direction) { return this.__player.interactWithBlock(blockLocation, direction); };
+    interactWithBlock(blockLocation, direction) { return this.__player.interactWithBlock(blockLocation, direction); }
     ;
     /**
      * @remarks
@@ -384,7 +317,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Entity to interact with.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.interactWithEntity = function (entity) { return this.__player.interactWithEntity(entity); };
+    interactWithEntity(entity) { return this.__player.interactWithEntity(entity); }
     ;
     /**
      * @remarks
@@ -393,26 +326,26 @@ var SimulatedPlayer = /** @class */ (function () {
      * True if a jump was performed.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.jump = function () { return this.__player.jump(); };
+    jump() { return this.__player.jump(); }
     ;
     /**
      * @remarks
      * Removes this simulated player from the world.
      */
-    SimulatedPlayer.prototype.kick = function (reason) {
+    kick(reason) {
         if (reason)
-            this.__test.print("\u00A7e".concat(this.__player.name, " is kicked from the game: ").concat(reason));
+            this.__test.print(`§e${this.__player.name} is kicked from the game: ${reason}`);
         else
-            this.__test.print("\u00A7e".concat(this.__player.name, " is kicked from the game"));
+            this.__test.print(`§e${this.__player.name} is kicked from the game`);
         return this.__test.removeSimulatedPlayer(this.__player);
-    };
+    }
     ;
     /**
      * @remarks
      * Kills this entity. The entity will drop loot as normal.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.kill = function () { return this.__player.kill(); };
+    kill() { return this.__player.kill(); }
     ;
     /**
      * @remarks
@@ -421,7 +354,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param blockLocation
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.lookAtBlock = function (blockLocation) { return this.__player.lookAtBlock(blockLocation); };
+    lookAtBlock(blockLocation) { return this.__player.lookAtBlock(blockLocation); }
     ;
     /**
      * @remarks
@@ -430,7 +363,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param entity
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.lookAtEntity = function (entity) { return this.__player.lookAtEntity(entity); };
+    lookAtEntity(entity) { return this.__player.lookAtEntity(entity); }
     ;
     /**
      * @remarks
@@ -439,7 +372,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param location
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.lookAtLocation = function (location) { return this.__player.lookAtLocation(location); };
+    lookAtLocation(location) { return this.__player.lookAtLocation(location); }
     ;
     /**
      * @remarks
@@ -450,7 +383,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param speed
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.move = function (westEast, northSouth, speed) { return this.__player.move(westEast, northSouth, speed); };
+    move(westEast, northSouth, speed) { return this.__player.move(westEast, northSouth, speed); }
     ;
     /**
      * @remarks
@@ -461,7 +394,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param speed
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.moveRelative = function (leftRight, backwardForward, speed) { return this.__player.moveRelative(leftRight, backwardForward, speed); };
+    moveRelative(leftRight, backwardForward, speed) { return this.__player.moveRelative(leftRight, backwardForward, speed); }
     ;
     /**
      * @remarks
@@ -473,7 +406,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param speed
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.moveToBlock = function (blockLocation, speed) { return this.__player.moveToBlock(blockLocation, speed); };
+    moveToBlock(blockLocation, speed) { return this.__player.moveToBlock(blockLocation, speed); }
     ;
     /**
      * @remarks
@@ -484,7 +417,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param speed
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.moveToLocation = function (location, speed) { return this.__player.moveToLocation(location, speed); };
+    moveToLocation(location, speed) { return this.__player.moveToLocation(location, speed); }
     ;
     /**
      * @remarks
@@ -498,7 +431,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param speed
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.navigateToBlock = function (blockLocation, speed) { return this.__player.navigateToBlock(blockLocation, speed); };
+    navigateToBlock(blockLocation, speed) { return this.__player.navigateToBlock(blockLocation, speed); }
     ;
     /**
      * @remarks
@@ -509,7 +442,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param speed
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.navigateToEntity = function (entity, speed) { return this.__player.navigateToEntity(entity, speed); };
+    navigateToEntity(entity, speed) { return this.__player.navigateToEntity(entity, speed); }
     ;
     /**
      * @remarks
@@ -523,7 +456,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param speed
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.navigateToLocation = function (location, speed) { return this.__player.navigateToLocation(location, speed); };
+    navigateToLocation(location, speed) { return this.__player.navigateToLocation(location, speed); }
     ;
     /**
      * @remarks
@@ -536,7 +469,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Net speed to use for doing the navigation.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.navigateToLocations = function (locations, speed) { return this.__player.navigateToLocations(locations, speed); };
+    navigateToLocations(locations, speed) { return this.__player.navigateToLocations(locations, speed); }
     ;
     /**
      * @remarks
@@ -548,7 +481,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Additional optional options for the sound.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.playSound = function (soundID, soundOptions) { return this.__player.playSound(soundID, soundOptions); };
+    playSound(soundID, soundOptions) { return this.__player.playSound(soundID, soundOptions); }
     ;
     /**
      * @remarks
@@ -556,7 +489,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param identifier
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.removeDynamicProperty = function (identifier) { return this.__player.removeDynamicProperty(identifier); };
+    removeDynamicProperty(identifier) { return this.__player.removeDynamicProperty(identifier); }
     ;
     /**
      * @remarks
@@ -565,7 +498,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Content of the tag to remove.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.removeTag = function (tag) { return this.__player.removeTag(tag); };
+    removeTag(tag) { return this.__player.removeTag(tag); }
     ;
     /**
      * @remarks
@@ -574,7 +507,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param angleInDegrees
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.rotateBody = function (angleInDegrees) { return this.__player.rotateBody(angleInDegrees); };
+    rotateBody(angleInDegrees) { return this.__player.rotateBody(angleInDegrees); }
     ;
     /**
      * @remarks
@@ -593,8 +526,11 @@ var SimulatedPlayer = /** @class */ (function () {
      *        player.runCommand("scoreboard players set @s score 10");
      *
      * ```
+     * @deprecated
      */
-    SimulatedPlayer.prototype.runCommand = function (commandString) { return this.__player.runCommand(commandString); };
+    runCommand(commandString) {
+        throw new ReferenceError("runCommand function has been deprecated");
+    }
     ;
     /**
      * @remarks
@@ -610,7 +546,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * command response values.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.runCommandAsync = function (commandString) { return this.__player.runCommandAsync(commandString); };
+    runCommandAsync(commandString) { return this.__player.runCommandAsync(commandString); }
     ;
     /**
      * @remarks
@@ -619,7 +555,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param angleInDegrees
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.setBodyRotation = function (angleInDegrees) { return this.__player.setBodyRotation(angleInDegrees); };
+    setBodyRotation(angleInDegrees) { return this.__player.setBodyRotation(angleInDegrees); }
     ;
     /**
      * @remarks
@@ -629,7 +565,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Data value of the property to set.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.setDynamicProperty = function (identifier, value) { return this.__player.setDynamicProperty(identifier, value); };
+    setDynamicProperty(identifier, value) { return this.__player.setDynamicProperty(identifier, value); }
     ;
     /**
      * @remarks
@@ -639,7 +575,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Game mode to set.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.setGameMode = function (gameMode) { return this.__player.setGameMode(gameMode); };
+    setGameMode(gameMode) { return this.__player.setGameMode(gameMode); }
     ;
     /**
      * @remarks
@@ -652,7 +588,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Whether to set the selected slot once set.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.setItem = function (itemStack, slot, selectSlot) { return this.__player.setItem(itemStack, slot, selectSlot); };
+    setItem(itemStack, slot, selectSlot) { return this.__player.setItem(itemStack, slot, selectSlot); }
     ;
     /**
      * @remarks
@@ -661,7 +597,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * @param degreesY
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.setRotation = function (degreesX, degreesY) { return this.__player.setRotation(degreesX, degreesY); };
+    setRotation(degreesX, degreesY) { return this.__player.setRotation(degreesX, degreesY); }
     ;
     /**
      * @remarks
@@ -670,7 +606,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * X/Y/Z components of the velocity.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.setVelocity = function (velocity) { return this.__player.setVelocity(velocity); };
+    setVelocity(velocity) { return this.__player.setVelocity(velocity); }
     ;
     /**
      * @remarks
@@ -683,21 +619,21 @@ var SimulatedPlayer = /** @class */ (function () {
      * Duration in ticks of the item cooldown.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.startItemCooldown = function (itemCategory, tickDuration) { return this.__player.startItemCooldown(itemCategory, tickDuration); };
+    startItemCooldown(itemCategory, tickDuration) { return this.__player.startItemCooldown(itemCategory, tickDuration); }
     ;
     /**
      * @remarks
      * Stops destroying the block that is currently being hit.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.stopBreakingBlock = function () { return this.__player.stopBreakingBlock(); };
+    stopBreakingBlock() { return this.__player.stopBreakingBlock(); }
     ;
     /**
      * @remarks
      * Stops interacting with entities or blocks.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.stopInteracting = function () { return this.__player.stopInteracting(); };
+    stopInteracting() { return this.__player.stopInteracting(); }
     ;
     /**
      * @remarks
@@ -705,14 +641,14 @@ var SimulatedPlayer = /** @class */ (function () {
      * moving.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.stopMoving = function () { return this.__player.stopMoving(); };
+    stopMoving() { return this.__player.stopMoving(); }
     ;
     /**
      * @remarks
      * Stops using the currently active item.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.stopUsingItem = function () { return this.__player.stopUsingItem(); };
+    stopUsingItem() { return this.__player.stopUsingItem(); }
     ;
     /**
      * @remarks
@@ -727,7 +663,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Y rotation of the player after teleportation.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.teleport = function (location, dimension, xRotation, yRotation) { return this.__player.teleport(location, dimension, xRotation, yRotation); };
+    teleport(location, dimension, xRotation, yRotation) { return this.__player.teleport(location, dimension, xRotation, yRotation); }
     ;
     /**
      * @remarks
@@ -741,7 +677,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Location that this player will be facing.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.teleportFacing = function (location, dimension, facingLocation) { return this.__player.teleportFacing(location, dimension, facingLocation); };
+    teleportFacing(location, dimension, facingLocation) { return this.__player.teleportFacing(location, dimension, facingLocation); }
     ;
     /**
      * @remarks
@@ -754,7 +690,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * not specified, minecraft: is assumed.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.triggerEvent = function (eventName) { return this.__player.triggerEvent(eventName); };
+    triggerEvent(eventName) { return this.__player.triggerEvent(eventName); }
     ;
     /**
      * @remarks
@@ -764,7 +700,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Item to use.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.useItem = function (itemStack) { return this.__player.useItem(itemStack); };
+    useItem(itemStack) { return this.__player.useItem(itemStack); }
     ;
     /**
      * @remarks
@@ -774,7 +710,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Index of the inventory slot.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.useItemInSlot = function (slot) { return this.__player.useItemInSlot(slot); };
+    useItemInSlot(slot) { return this.__player.useItemInSlot(slot); }
     ;
     /**
      * @remarks
@@ -793,7 +729,7 @@ var SimulatedPlayer = /** @class */ (function () {
      * Block-face-relative Y position where to place the item.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.useItemInSlotOnBlock = function (slot, blockLocation, direction, faceLocationX, faceLocationY) { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY); };
+    useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY) { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY); }
     ;
     /**
      * @remarks
@@ -812,10 +748,12 @@ var SimulatedPlayer = /** @class */ (function () {
      * Block-face-relative Y position where to place the item.
      * @throws This function can throw errors.
      */
-    SimulatedPlayer.prototype.useItemOnBlock = function (itemStack, blockLocation, direction, faceLocationX, faceLocationY) { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY); };
+    useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY) { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY); }
     ;
+    constructor(player, test) {
+        this.__player = player;
+        this.__test = test;
+    }
     ;
-    return SimulatedPlayer;
-}());
-export { SimulatedPlayer };
+}
 ;
