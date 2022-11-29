@@ -37,8 +37,35 @@ new ModalFormData().title('ModalFormData')
 
 ### Message Form Data
 
-// TODO
+```js
+const form = new MessageFormData();
+
+// required
+form.title('Title');
+form.body('Body');
+
+// optional
+form.button1('button1');
+form.button2('button2');
+
+// Show form to player
+ModalForm.show(player);
+```
 
 ### Action Form Data
 
-// TODO
+```js
+import { ActionFormData } from '@minecraft/server-ui';
+
+const action = new ActionFormData();
+
+// required
+action.title('title');
+action.body('body');
+
+// require at least one button
+action.button('button');
+
+// show
+action.show(player);
+```

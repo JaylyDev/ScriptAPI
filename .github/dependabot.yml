@@ -20,6 +20,3 @@ updates:
     schedule:
       interval: daily
     target-branch: "main"
-    ignore:
-      # Don't submit minecraft submodules pull requests
-      - dependency-name: "@minecraft/*"

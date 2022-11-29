@@ -40,6 +40,46 @@ npm install @minecraft/server-admin@latest
 npm install @minecraft/server-gametest@latest
 ```
 
+## Preview 1.19.60.20
+
+- **[@minecraft/server@1.1.0-beta](https://www.npmjs.com/package/@minecraft/server/v/1.1.0-beta.preview.1.19.60.20)**
+
+- **[@minecraft/server-ui@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-ui/v/1.0.0-beta.preview.1.19.60.20)**
+
+- **[@minecraft/server-admin@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-admin/v/1.0.0-beta.preview.1.19.60.20)**
+
+- **[@minecraft/server-gametest@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-gametest/v/1.0.0-beta.preview.1.19.60.20)**
+
+- **[@minecraft/server-net@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-net/v/1.0.0-beta.preview.1.19.60.20)**
+
+```
+npm install @minecraft/server@1.1.0-beta.preview.1.19.60.20
+npm install @minecraft/server-ui@1.0.0-beta.preview.1.19.60.20
+npm install @minecraft/server-net@1.0.0-beta.preview.1.19.60.20
+npm install @minecraft/server-admin@1.0.0-beta.preview.1.19.60.20
+npm install @minecraft/server-gametest@1.0.0-beta.preview.1.19.60.20
+```
+
+## Preview 1.19.50.25
+
+- **[@minecraft/server@1.1.0-beta](https://www.npmjs.com/package/@minecraft/server/v/1.1.0-beta.preview.1.19.50.25)**
+
+- **[@minecraft/server-ui@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-ui/v/1.0.0-beta.preview.1.19.50.25)**
+
+- **[@minecraft/server-admin@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-admin/v/1.0.0-beta.preview.1.19.50.25)**
+
+- **[@minecraft/server-gametest@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-gametest/v/1.0.0-beta.preview.1.19.50.25)**
+
+- **[@minecraft/server-net@1.0.0-beta](https://www.npmjs.com/package/@minecraft/server-net/v/1.0.0-beta.preview.1.19.50.25)**
+
+```
+npm install @minecraft/server@1.1.0-beta.preview.1.19.50.25
+npm install @minecraft/server-ui@1.0.0-beta.preview.1.19.50.25
+npm install @minecraft/server-net@1.0.0-beta.preview.1.19.50.25
+npm install @minecraft/server-admin@1.0.0-beta.preview.1.19.50.25
+npm install @minecraft/server-gametest@1.0.0-beta.preview.1.19.50.25
+```
+
 ## Preview 1.19.50.24
 
 - **[@minecraft/server@1.1.0-beta](https://www.npmjs.com/package/@minecraft/server/v/1.1.0-beta.preview.1.19.50.24)**
