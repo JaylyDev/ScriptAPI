@@ -2,7 +2,7 @@ import { Player, GameMode } from '@minecraft/server';
 
 /**
  * @remarks
- * Gets the game mode for an entity.
+ * Gets the game mode for an entity asynchronously.
  * @param {Player} player
  * The player to retrieve.
  * @returns {Promise<GameMode>} Player's gamemode
