@@ -44,6 +44,7 @@ const itemTypes = {
       "minecraft:netherrite_hoe"
   ]
 };
+import { InventoryComponentContainer } from "@minecraft/server";
 import { world, Player } from "mojang-minecraft";
 const enchants = {};
 const names = {};
@@ -100,6 +101,10 @@ export function getEnchants(item) {
 }
 world.events.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
   if (entity instanceof Player) {
+    /**
+     * @type {InventoryComponentContainer}
+     */
+    //@ts-ignore
       const inv = entity.getComponent("inventory").container;
       const item = inv.getItem(entity.selectedSlot);
       if (!item)
@@ -114,6 +119,10 @@ world.events.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
 });
 world.events.entityHurt.subscribe(({ hurtEntity, damagingEntity, damage }) => {
   if (damagingEntity instanceof Player) {
+    /**
+     * @type {InventoryComponentContainer}
+     */
+    //@ts-ignore
       const inv = damagingEntity.getComponent("inventory").container;
       const item = inv.getItem(damagingEntity.selectedSlot);
       if (!item)
@@ -146,6 +155,11 @@ world.events.beforeItemUseOn.subscribe(({ source, item, blockLocation }) => {
   }
 });
 world.events.blockBreak.subscribe(({ player, block, brokenBlockPermutation }) => {
+    
+    /**
+     * @type {InventoryComponentContainer}
+     */
+    //@ts-ignore
   const inv = player.getComponent("inventory").container;
   const item = inv.getItem(player.selectedSlot);
   if (!item)

@@ -1,4 +1,4 @@
-import { world } from "mojang-minecraft"
+import { InventoryComponentContainer, world } from "@minecraft/server"
 import { addEnchant, Enchant } from "./index"
 
 const bleedEnchant = new Enchant({
@@ -7,10 +7,14 @@ const bleedEnchant = new Enchant({
 })
 
 bleedEnchant.onHurt(data => {
-    data.hurtEntity.runCommand(`damage @s 2`)
+    data.hurtEntity.runCommandAsync(`damage @s 2`)
 })
 
 world.events.beforeChat.subscribe(data => {
+    /**
+     * @type {InventoryComponentContainer}
+     */
+    //@ts-ignore
     const inv = data.sender.getComponent("inventory").container
     const item = inv.getItem(data.sender.selectedSlot)
     addEnchant(item, 'bleed', 5)

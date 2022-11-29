@@ -1,5 +1,5 @@
 // Author: iBlqzed <https://github.com/iBlqzed>
-import { Player, ItemStack, Entity, Block, BlockPermutation } from "mojang-minecraft";
+import { Player, ItemStack, Entity, Block, BlockPermutation } from "@minecraft/server";
 export declare class Enchant {
     protected id: string;
     constructor(info: EnchantInfo);
