@@ -22,7 +22,7 @@
     "@minecraft/server-gametest": "beta",
     "@minecraft/server-net": "beta",
     "@minecraft/server-ui": "beta",
-    "@types/mojang-minecraft": "0.1.6",
+    "@types/mojang-minecraft": "0.1.7",
     "@types/mojang-minecraft-ui": "0.1.0"
   },
   "devDependencies": {
