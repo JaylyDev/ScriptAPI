@@ -11,12 +11,13 @@ updates:
       - "JaylyDev"
     target-branch: "main"
     schedule:
-      interval: daily
+      interval: weekly
 
   - package-ecosystem: npm
+    open-pull-requests-limit: 50
     directory: /
     reviewers:
       - "JaylyDev"
     schedule:
-      interval: daily
+      interval: weekly
     target-branch: "main"
