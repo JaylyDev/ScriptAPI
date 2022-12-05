@@ -8,7 +8,7 @@ world.events.beforeChat.subscribe((event) => {
 
 world.events.chat.subscribe((event) => {
   /**
-   * @type {import("@minecraft/server").IRawMessage}
+   * @type {import("@minecraft/server").RawMessage}
    */
   // @ts-ignore
   const rawtext = MinecraftLanguageKeys["chat.type.text"];

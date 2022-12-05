@@ -104,7 +104,7 @@ export class SimulatedPlayer {
    * Vector of the current view of the player.
    * @throws This property can throw when used.
    */
-  public get 'viewVector' (): Minecraft.Vector { return this.__player.viewVector };
+  public get 'viewDirection' (): Minecraft.Vector3 { return this.__player.viewDirection };
   /**
    * @remarks
    * Adds an effect, like poison, to the entity.
@@ -175,7 +175,7 @@ export class SimulatedPlayer {
    * Additional options for processing this raycast query.
    * @throws This function can throw errors.
    */
-  getBlockFromViewVector(options?: Minecraft.BlockRaycastOptions): Minecraft.Block { return this.__player.getBlockFromViewVector(options) };
+  getBlockFromViewDirection(options?: Minecraft.BlockRaycastOptions): Minecraft.Block { return this.__player.getBlockFromViewDirection(options) };
   /**
    * @remarks
    * Gets a component (that represents additional capabilities)
@@ -222,7 +222,7 @@ export class SimulatedPlayer {
    * Additional options for processing this raycast query.
    * @throws This function can throw errors.
    */
-  getEntitiesFromViewVector(options?: Minecraft.EntityRaycastOptions): Minecraft.Entity[] { return this.__player.getEntitiesFromViewVector(options) };
+  getEntitiesFromViewDirection(options?: Minecraft.EntityRaycastOptions): Minecraft.Entity[] { return this.__player.getEntitiesFromViewDirection(options) };
   /**
    * @remarks
    * Gets the current item cooldown time for a particular

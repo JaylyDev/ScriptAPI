@@ -22,11 +22,11 @@
     "@minecraft/server-gametest": "beta",
     "@minecraft/server-net": "beta",
     "@minecraft/server-ui": "beta",
-    "@types/mojang-minecraft": "^0.1.6",
-    "@types/mojang-minecraft-ui": "^0.1.0"
+    "@types/mojang-minecraft": "0.1.6",
+    "@types/mojang-minecraft-ui": "0.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18.7.14",
+    "@types/node": "^18.11.10",
     "typescript": "^4.8.4"
   }
 }
