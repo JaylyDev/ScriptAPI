@@ -1,16 +1,36 @@
-import { world, system } from "@minecraft/server";
+import { world, system, Player } from "@minecraft/server";
 
 /**
- * @param {(number) => void} callback
+ * get latency between scripting api and command block (Dimension.runCommandAsync)
+ * @param {(latency: number) => void} callback
  */
-export async function getLatency (callback) {
+export function getServerLatency (callback) {
   const startTime = Date.now();
-  const id = "latency.test";
-  const event = system.events.scriptEventReceive.subscribe(() => {
+  const id = "latency:test";
+  const onScriptEventReceive = system.events.scriptEventReceive.subscribe((event) => {
     if (event.id === id) {
-      system.events.scriptEventReceive.unsubscribe(event);
+      system.events.scriptEventReceive.unsubscribe(onScriptEventReceive);
       callback(Date.now() - startTime);
     };
   });
-  world.getDimension("overworks").runCommandAsync("scriptevent " + id + " message");
+  world.getDimension("overworld").runCommandAsync("scriptevent " + id)
+                                 .catch(console.error);
+};
+
+/**
+ * get latency between scripting api and player
+ * @param {Player} player
+ * @param {(latency: number) => void} callback
+ */
+export function getPlayerLatency (player, callback) {
+  const startTime = Date.now();
+  const id = "latency:test";
+  const onScriptEventReceive = system.events.scriptEventReceive.subscribe((event) => {
+    if (event.id === id) {
+      system.events.scriptEventReceive.unsubscribe(onScriptEventReceive);
+      callback(Date.now() - startTime);
+    };
+  });
+  player.runCommandAsync("scriptevent " + id)
+        .catch(console.error);
 };
