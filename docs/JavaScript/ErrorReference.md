@@ -9,6 +9,9 @@ These errors can be a helpful debugging your code, but the reported problem isn'
 
 ### InternalError: string too long
 
+- Occurs when length of string is over `((1 << 30) - 1)`.
+- This error should not occur if `script-watchdog-memory-limit` has not been modified.
+
 ### InternalError: out of memory
 
 - This error occurs when the combined memory usage exceeds 250 megabytes.
@@ -19,7 +22,7 @@ These errors can be a helpful debugging your code, but the reported problem isn'
 
 - Occurs when there is a recursive function (a function that calls itself) without an exit point.
 
-- Example code:
+Example code:
 
 ```js
 function loop(x) {
@@ -31,228 +34,195 @@ loop(0);
 ```
 
 ### InternalError: interrupted
+ 
+- Occurs when runtime has a negligible cost.
 
 ### InternalError: invalid index for append
 
-### InternalError: invalid ret value
+- There was an unexpected assignment somewhere.
+- Click [**here**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_assignment_left-hand_side) for more infomation.
 
-### InternalError: iterator_close_return
+<!-- ### InternalError: invalid ret value -->
+
+<!-- ### InternalError: iterator_close_return -->
 
 ### InternalError: too many local variables
 
+- When the local variable indexes reaches above 16 bits.
+
 ### InternalError: too many arguments
 
-### InternalError: unexpected ellipsis token
+- When the local variable indexes reaches above 16 bits.
 
-### InternalError: too many closure variables
+<!-- ### InternalError: unexpected ellipsis token -->
 
-### InternalError: invalid digit
+<!-- ### InternalError: too many closure variables -->
 
-### InternalError: out of memory in regexp execution
+<!-- ### InternalError: invalid digit -->
+
+<!-- ### InternalError: out of memory in regexp execution -->
 
 ### RangeError: invalid array length
+
 - Occurs when specifying an array length that is either negative, a floating number or exceeds the maximum supported by the platform. [**Source**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_array_length)
 
-### RangeError: invalid array index
+<!-- ### RangeError: invalid array index -->
 
 ### RangeError: radix must be between 2 and 36
 
-### RangeError: invalid number of digits
+- This occurs when the optional radix parameter of the `Number.prototype.toString()` method was specified and is not between 2 and 36. [**Source**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Bad_radix)
 
-### RangeError: invalid code point
+<!-- ### RangeError: invalid number of digits -->
 
-### RangeError: invalid repeat count
+<!-- ### RangeError: invalid code point -->
 
-### RangeError: bad normalization form
+<!-- ### RangeError: invalid repeat count -->
+
+<!-- ### RangeError: bad normalization form -->
 
 ### RangeError: Date value is NaN
 
-### RangeError: invalid array buffer length
+- This exception occurs when the Date object contains an invalid date. [**Source**](https://stackoverflow.com/a/54462335)
 
-### RangeError: invalid offset
+```js
+new Date('undefined').toISOString()
+```
 
-### RangeError: invalid length
+<!-- ### RangeError: invalid offset -->
 
-### RangeError: invalid byteOffset
+<!-- ### RangeError: invalid length -->
 
-### RangeError: invalid byteLength
+<!-- ### RangeError: invalid byteOffset -->
 
-### RangeError: out of bound
+<!-- ### RangeError: invalid byteLength -->
 
-### ReferenceError: unsupported reference to 'super### ReferenceError: 'this' can be initialized only once
+<!-- ### RangeError: out of bound -->
 
-### SyntaxError: unparenthesized unary expression can't appear on the left-hand side of ### SyntaxError: invalid regular expression flags
+<!-- ### ReferenceError: unsupported reference to 'super' -->
 
-### TypeError: unsupported operation
+<!-- ### ReferenceError: 'this' can be initialized only once -->
+
+<!-- ### SyntaxError: unparenthesized unary expression can't appear on the left-hand side of 'any' -->
+
+### SyntaxError: invalid regular expression flags
+
+- Occurs when the flags in a regular expression contain any flag.
+- Click [**here**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Bad_regexp_flag) for more infomation.
+
+<!-- ### TypeError: unsupported operation -->
 
 ### TypeError: invalid object type
 
-### TypeError: not an object
+<!-- ### TypeError: not an object -->
 
-### TypeError: not a symbol
+<!-- ### TypeError: not a symbol -->
 
-### TypeError: object is not extensible
+<!-- ### TypeError: object is not extensible -->
 
-### TypeError: circular prototype chain
+<!-- ### TypeError: circular prototype chain -->
 
-### TypeError: operand 'prototype' property is not an object
+<!-- ### TypeError: operand 'prototype' property is not an object -->
 
-### TypeError: invalid 'instanceof' right operand
+<!-- ### TypeError: invalid 'instanceof' right operand -->
 
-### TypeError: expecting \<brand> private field
+<!-- ### TypeError: expecting \<brand> private field -->
 
-### TypeError: invalid brand on object
+<!-- ### TypeError: invalid brand on object -->
 
 ### TypeError: no setter for property
 
+- This occurs when trying to set a new value to a property, for which only a getter is defined.
+- This is common when attempting to set property on native objects from native modules.
+
 ### TypeError: could not delete property
+
+- Click [**here**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Non_configurable_array_element) for more infomation.
 
 ### TypeError: toPrimitive
 
+- Click [**here**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive) for more infomation.
+
+Example code:
+
+```js
+import("@minecraft/server").then(res => String(res))
+                           .catch(console.error);
+```
+
 ### TypeError: cannot convert symbol to number
+
+- occurs when attempting to convert a Symbol, to a number.
 
 ### TypeError: cannot convert symbol to string
 
-### TypeError: null or undefined are forbidden
+- occurs when attempting to convert a Symbol, to a string.
 
-### TypeError: invalid 'in' operand
+<!-- ### TypeError: null or undefined are forbidden -->
 
-### TypeError: invalid property access
+<!-- ### TypeError: invalid 'in' operand -->
+
+<!-- ### TypeError: invalid property access -->
 
 ### TypeError: value is not iterable
 
-### TypeError: iterator must return an object
+- This occurs when an iteration happens over a value that is not an iterable object.
+- Click [**here**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/is_not_iterable) for more infomation.
 
-### TypeError: parent class must be constructor
+<!-- ### TypeError: iterator must return an object -->
 
-### TypeError: parent prototype must be an object or null
+<!-- ### TypeError: parent class must be constructor -->
+
+<!-- ### TypeError: parent prototype must be an object or null -->
 
 ### TypeError: must be called with new
 
+- You must use `new` to create an instance of a user-defined object type or of one of the built-in object types that has a constructor function. [**Source**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new)
+
 ### TypeError: not a function
 
-### TypeError: derived class constructor must return an object or undefined
+- This occurs when there was an attempt to call a value from a function, but the value is not actually a function. [**Source**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_function)
 
-### TypeError: class constructors must be invoked with 'new### TypeError: iterator does not have a throw method
+<!-- ### TypeError: derived class constructor must return an object or undefined -->
+
+### TypeError: class constructors must be invoked with 'new'
+
+- You must use `new` to create an instance of a user-defined object type or of one of the built-in object types that has a constructor function. [**Source**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new)
+
+<!-- ### TypeError: iterator does not have a throw method -->
 
 ### TypeError: value has no property
 
+- This occurs when you attempt to access properties of `null` and `undefined`. They don't have any. [**Source**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/No_properties)
+
 ### TypeError: not a constructor
 
-### TypeError: not a generator
+- The value is not a class.
+- Read [**here**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_constructor) for more infomation.
 
-### TypeError: cannot invoke a running generator
+<!-- ### TypeError: not a generator -->
 
-### TypeError: not an AsyncGenerator object
+<!-- ### TypeError: cannot invoke a running generator -->
 
-### TypeError: import.meta not supported in this context
+<!-- ### TypeError: not an AsyncGenerator object -->
 
-### TypeError: no function filename for import### TypeError: bytecode function expected
+<!-- ### TypeError: import.meta not supported in this context -->
 
-### TypeError: eval is not supported
+<!-- ### TypeError: no function filename for import -->
+
+<!-- ### TypeError: bytecode function expected -->
+
+<!-- ### TypeError: eval is not supported -->
 
 ### TypeError: circular reference
 
-### TypeError: cannot convert to object
+- This occurs when object references to itself in a property. `JSON.stringify()` doesn't try to solve them and fails accordingly.
 
-### TypeError: invalid getter
+<!-- ### TypeError: cannot convert to object -->
 
-### TypeError: invalid setter
+<!-- ### TypeError: invalid getter
 
-### TypeError: cannot have setter/getter and value or writable
+### TypeError: invalid setter -->
 
-### TypeError: not a prototype
+---
 
-### TypeError: proxy preventExtensions handler returned false
-
-### TypeError: not a object
-
-### TypeError: Array loo long
-
-### TypeError: empty array
-
-### TypeError: Array too long
-
-### TypeError: not a number
-
-### TypeError: not a boolean
-
-### TypeError: not a string
-
-### TypeError: regex not supported
-
-### TypeError: regexp must have the 'g' flag
-
-### TypeError: string expected
-
-### TypeError: flags must be undefined
-
-### TypeError: RegExp exec method must return an object or null
-
-### TypeError: revoked proxy
-
-### TypeError: proxy: inconsistent prototype
-
-### TypeError: proxy: bad prototype
-
-### TypeError: proxy: inconsistent isExtensible
-
-### TypeError: proxy: inconsistent preventExtensions
-
-### TypeError: proxy: inconsistent has
-
-### TypeError: proxy: inconsistent get
-
-### TypeError: proxy: inconsistent set
-
-### TypeError: proxy: cannot set property
-
-### TypeError: proxy: inconsistent getOwnPropertyDescriptor
-
-### TypeError: proxy: defineProperty exception
-
-### TypeError: proxy: inconsistent defineProperty
-
-### TypeError: proxy: inconsistent deleteProperty
-
-### TypeError: proxy: properties must be strings or symbols
-
-### TypeError: proxy: duplicate property
-
-### TypeError: proxy: target property must be present in proxy ownKeys
-
-### TypeError: proxy: property not present in target were returned by non extensible proxy
-
-### TypeError: set/add is not a function
-
-### TypeError: promise self resolution
-
-### TypeError: resolving function already set
-
-### TypeError: not an Async-from-Sync Iterator
-
-### TypeError: not a Date object
-
-### TypeError: invalid hint
-
-### TypeError: object needs toISOString method
-
-### TypeError: ArrayBuffer is detached
-
-### TypeError: cannot use identical ArrayBuffer
-
-### TypeError: new ArrayBuffer is too small
-
-### TypeError: TypedArray length is too small
-
-### TypeError: cannot be called
-
-### URIError: expecting %%
-
-### URIError: expecting hex digit
-
-### URIError: malformed UTF-8
-
-### URIError: invalid character
-
-### URIError: expecting surrogate pair
+If you can't find the errors you want, put it in a search engine.
