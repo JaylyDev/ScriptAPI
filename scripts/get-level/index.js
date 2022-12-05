@@ -11,6 +11,7 @@ export function getPlayerExperienceLevel (player) {
   let distance = maxLevel - minLevel;
   let playerIndex = -1;
 
+  // bisection algorithm is used here to find level
   while (minLevel !== maxLevel) {
     playerIndex = [...world.getPlayers({ minLevel, maxLevel })].findIndex((pl) => pl === player);
     if (playerIndex > -1) {
