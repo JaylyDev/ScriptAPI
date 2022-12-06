@@ -2,6 +2,24 @@
 
 This documents all scripting API modules dependencies, including manifest dependencies details and npm installation details.
 
+<h3>Index:</h3>
+
+- **Latest release**: [**Release 1.19.50**](#release-11950)
+- **Latest preview**: [**Preview 1.19.60.22**](#preview-1196022)
+- [_Release 1.19.50_](#release-11950)
+- [_Preview 1.19.60.22_](#preview-1196022)
+- [_Preview 1.19.60.20_](#preview-1196020)
+- [_Preview 1.19.50.25_](#preview-1195025)
+- [_Preview 1.19.50.24_](#preview-1195024)
+- [_Preview 1.19.50.22_](#preview-1195022)
+- [_Preview 1.19.50.21_](#preview-1195021)
+- [_Preview 1.19.50.20_](#preview-1195020)
+- [_Release 1.19.40_](#release-11940)
+- [_Beta 1.19.40.23_](#beta-1194023)
+- [_Release 1.19.30 or below_](#release-11930-or-below)
+
+---
+
 ## Release 1.19.50
 
 ### Beta API modules
@@ -177,6 +195,8 @@ This documents all scripting API modules dependencies, including manifest depend
   ```
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
+
+---
 
 ## Preview 1.19.60.22
 
@@ -354,7 +374,11 @@ This documents all scripting API modules dependencies, including manifest depend
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
 
+---
+
 ## Preview 1.19.60.20
+
+<details>
 
 ### Beta API modules
 
@@ -530,7 +554,13 @@ This documents all scripting API modules dependencies, including manifest depend
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
 
+---
+
+</details>
+
 ## Preview 1.19.50.25
+
+<details>
 
 ### Beta API modules
 
@@ -706,7 +736,13 @@ This documents all scripting API modules dependencies, including manifest depend
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
 
+---
+
+</details>
+
 ## Preview 1.19.50.24
+
+<details>
 
 ### Beta API modules
 
@@ -882,7 +918,13 @@ This documents all scripting API modules dependencies, including manifest depend
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
 
+---
+
+</details>
+
 ## Preview 1.19.50.22
+
+<details>
 
 ### Beta API modules
 
@@ -1058,7 +1100,13 @@ This documents all scripting API modules dependencies, including manifest depend
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
 
+---
+
+</details>
+
 ## Preview 1.19.50.21
+
+<details>
 
 ### Beta API modules
 
@@ -1234,7 +1282,13 @@ This documents all scripting API modules dependencies, including manifest depend
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
 
+---
+
+</details>
+
 ## Preview 1.19.50.20
+
+<details>
 
 ### Beta API modules
 
@@ -1389,7 +1443,13 @@ This documents all scripting API modules dependencies, including manifest depend
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
 
+---
+
+</details>
+
 ## Release 1.19.40
+
+<details>
 
 ### Beta API modules
 
@@ -1544,7 +1604,15 @@ This documents all scripting API modules dependencies, including manifest depend
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
 
-## Beta 1.19.40.23 <!-- <>These npm versions are really confusing -->
+---
+
+</details>
+
+## Beta 1.19.40.23
+
+<!-- <>These npm versions are really confusing -->
+
+<details>
 
 ### Beta API modules
 
@@ -1698,3 +1766,61 @@ This documents all scripting API modules dependencies, including manifest depend
   ```
   npm i @types/mojang-minecraft-ui@0.1.0
   ```
+
+---
+
+</details>
+
+## Release 1.19.30 or below
+
+<details>
+
+**Manifest details**:
+
+```json
+"dependencies": [
+    {
+        "description": "mojang-gametest",
+        "uuid": "6f4b6893-1bb6-42fd-b458-7fa3d0c89616",
+        "version": [0, 1, 0]
+    },
+    {
+        "description": "mojang-minecraft",
+        "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
+        "version": [0, 1, 0]
+    },
+    {
+        "description": "mojang-minecraft-ui",
+        "uuid": "2bd50a27-ab5f-4f40-a596-3641627c635e",
+        "version": [0, 1, 0]
+    },
+    {
+        "description": "mojang-net",
+        "uuid": "777b1798-13a6-401c-9cba-0cf17e31a81b",
+        "version": [0, 1, 0]
+    },
+    {
+        "description": "mojang-minecraft-server-admin",
+        "uuid": "53d7f2bf-bf9c-49c4-ad1f-7c803d947920",
+        "version": [0, 1, 0]
+    }
+]
+```
+
+**Reference**:
+
+- [`mojang-minecraft`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/mojang-minecraft)
+- [`mojang-gametest`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/mojang-gametest)
+- [`mojang-minecraft-ui`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/mojang-minecraft-ui)
+- [`mojang-minecraft-server-admin`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/mojang-minecraft-server-admin)
+- [`mojang-net`](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/mojang-net)
+
+**Installation**:
+
+```sh-session
+npm install --save @types/mojang-minecraft
+npm install --save @types/mojang-gametest
+npm install --save @types/mojang-minecraft-ui
+npm install --save @types/mojang-minecraft-server-admin
+npm install --save @types/mojang-net
+```

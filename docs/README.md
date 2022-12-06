@@ -15,8 +15,7 @@ Some example scripts and explaination of using the modules
 ### [Install Typings](./TypeScript/install-typings.md)
 > Type definitions for minecraft submodules.
 
-### [npm-packages](./MinecraftApi/npm-packages.md)
-> Tutorial on downloading Minecraft's type definitions.
+### [Script Module Dependencies](./MinecraftApi/dependencies.md)
 
 ### [script_eval](./MinecraftApi/script_eval.md)
 > The script_eval capability on behavior pack's manifest
