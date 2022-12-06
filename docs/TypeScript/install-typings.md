@@ -14,29 +14,6 @@ It's not neccessary, but if you have VS Code (Available on PC & Browser), it mak
 
 ## Script API Modules type definitions
 
-### The typings for latest version of script module are available in NPM, which is installed via Node.js
+The typings for latest version of script module are available in NPM, which is installed via Node.js
 
-- ### [@minecraft/server](https://www.npmjs.com/package/@minecraft/server)
-  ```
-  npm install @minecraft/server
-  ```
-
-- ### [@minecraft/server-gametest](https://www.npmjs.com/package/@minecraft/server-gametest)
-  ```
-  npm install @minecraft/server-gametest
-  ```
-
-- ### [@minecraft/server-ui](https://www.npmjs.com/package/@minecraft/server-ui)
-  ```
-  npm install @minecraft/server-ui
-  ```
-
-- ### [@minecraft/server-admin](https://www.npmjs.com/package/@minecraft/server-admin)
-  ```
-  npm install @minecraft/server-admin
-  ```
-
-- ### [@minecraft/server-net](https://www.npmjs.com/package/@minecraft/server-net)
-  ```
-  npm install @minecraft/server-net
-  ```
+Check out [**this link**](../MinecraftApi/dependencies.md) to find out which version of scripting API modules to install.
