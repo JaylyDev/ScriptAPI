@@ -9,7 +9,7 @@ Method `runCommand` has been removed from Gametest/Script API.
 
 Consider `runCommandAsync` as an alternative.
 
-## Commands affected by the removal of runCommand?
+## Commands affected by the removal of runCommand
 
 `runCommandAsync` doesn't return much information.
 
