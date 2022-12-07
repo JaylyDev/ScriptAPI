@@ -112,3 +112,5 @@ Following commands useful for mapmaking are cannot be replaced with JS code:
 2. `/fog`
 3. `/stopsound`
 4. `/weather`
+5. `/setspawnpoint` `/clearspawnpoint`
+6. `/clone`
