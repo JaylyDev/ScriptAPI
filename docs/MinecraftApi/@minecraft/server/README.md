@@ -20,7 +20,7 @@
 
 ### [runCommandAsync](./runCommandAsync.md)
 
-### [Impact of removing runCommand](./impact_of_removing_runCommand.md)
+### [runCommand (removed)](./runCommand.md)
 
 ![](https://media.discordapp.net/attachments/852517995308646410/1009680002209546240/unknown.png)
 
