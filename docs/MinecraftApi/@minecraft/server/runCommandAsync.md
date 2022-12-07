@@ -106,7 +106,7 @@ however, the following command features are not implemented in scripting API (as
 
 ### Other Commands
 
-Following commands useful for mapmaking are cannot be replaced with JS code:
+Following commands useful for mapmaking cannot be replaced with JS code:
 
 1. `/camerashake`
 2. `/fog`
