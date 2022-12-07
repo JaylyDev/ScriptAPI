@@ -1,105 +1,114 @@
 # runCommandAsync
 
-Runs a particular command asynchronously from the context of the broader dimension.  Note that there is a maximum queue of 128 asynchronous commands that can be run in a given tick.
+Runs a particular command asynchronously from the context of the broader dimension.
+Note that there is a maximum queue of 128 asynchronous commands that can be run in a given tick.
 
-Normally we recommend avoiding using commands, however, the following command features are not implemented in scripting API (as of 1.19.50).
+Returns a `Promise<CommandResult>` . Throws an error **synchronously** if the queue is full.
 
-## @s[hasitem=]
+## Commands you have to use
 
-1. Can't access enderchest.
+Normally we recommend avoiding using commands,
+however, the following command features are not implemented in scripting API (as of 1.19.50).
+
+### @s
+
+1. Can't get entity by unique id.
+
+### @s[hasitem=]
+
+1. Can't access ender chest.
 2. Can't access equipments.
 
-## /replaceitem
+### /replaceitem
 
-1. Can't access enderchest.
+1. Can't access ender chest.
 2. Can't access equipments.
 
-## /clear
+### /clear
 
-1. Can't access enderchest.
+1. Can't access ender chest.
 2. Can't access equipments.
 
-## /tickingarea
+### /tickingarea
 
 1. Can't access ticking areas.
 
-## /kick
+### /kick
 
 1. Can't kick player.
 
-## /setblock
+### /setblock
 
 1. `/setblock ... destroy`
 
-## /fill
+### /fill
 
 1. `/fill` is fast.
 
-## /ability
+### /ability
 
-1. You can't set abilities for each players
-2. You can't read player's abilites
+1. You can't set abilities for each player.
+2. You can't read player's abilites.
 
-## /damage
+### /damage
 
-1. There's no way to give damage to players & entities
-2. Opening GUI with custom command will not possible (unless there's another way) because it's need damage for close the chat UI
+1. There's no way to give damage to players & entities.
+2. Opening GUI with custom command will not possible (unless there's another way) because it's need damage for close the chat UI.
 
-## /execute
+### /execute
 
-1. New execute can be useful to run command with lot of if/unless condition for simplicity or maybe performance
-2. Cannot run `/loot` command with execute
+1. New execute can be useful to run command with lot of if/unless condition for simplicity or maybe performance.
+2. Cannot run `/loot` command with /execute.
 
-## /function
+### /function
 
-1. Cannot run function command
+1. Cannot run mcfunctions.
 
-## /gamerule
+### /gamerule
 
-1. Cannot set any game rules
-2. Cannot read game rules’ value
+1. Cannot set any game rules.
+2. Cannot read game rules' value.
 
-## /give
+### /give
 
-1. Cannot give item with these following NBT Data
+1. Cannot give item with these following NBT Data:
     1. `minecraft:can_place_on`
     2. `minecraft:can_destroy`
     3. `minecraft:item_lock`
     4. `minecraft:keep_in_inventory`
 
-## /gamemode
+### /gamemode
 
-1. Cannot set player's gamemode
+1. Cannot set player's gamemode.
 
-## /locate
+### /locate
 
-1. Cannot get structure’s location
-2. Cannot get biome’s location
+1. Cannot get structure's location.
+2. Cannot get biome's location.
 
-## /loot
+### /loot
 
-1. Even though the loot is broken from the start, but it's useful for drop or set the item to players/world
+1. Even though the loot is broken from the start, but it's useful for drop or set the item to players/world.
 
-## /scoreboard
+### /scoreboard
 
-1. Cannot add/set/remove/operation/reset players/entities’ score
+1. Cannot add/set/remove/operation/reset players/entities' scores.
 
-## /time
+### /time
 
-1. Cannot set world’s time
-2. Cannot get world’s time (relative and daytime)
+1. Cannot set world's time.
+2. Cannot get world's time (relative and daytime).
 
-## /xp
+### /xp
 
-1. Cannot set/get player’s experience
+1. Cannot set player's experience.
+2. Cannot get player's experience.
 
-## Another Commands
+### Other Commands
 
 Following commands useful for mapmaking are cannot be replaced with JS code:
 
-1. Camerashake
-2. Event
-3. Fog
-4. Music
-5. Playsound & Stopsound
-6. Weather
+1. `/camerashake`
+2. `/fog`
+3. `/stopsound`
+4. `/weather`
