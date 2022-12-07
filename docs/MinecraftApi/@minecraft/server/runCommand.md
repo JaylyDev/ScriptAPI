@@ -3,7 +3,7 @@
 Method `runCommand` has been removed from Gametest/Script API.
 The replacement `runCommandAsync` doesn't return much information.
 
-What has been affected?
+What have been affected?
 
 ## /ability
 
