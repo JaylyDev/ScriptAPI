@@ -15,7 +15,7 @@ entity.runCommandAsync(`testfor @s[rm=0.1,x=${x},y=${y},z=${z}]`);
 
 It would fail, because `runCommandAsync` executes the command in the next tick (after the entity moves).
 
-In `system.run`, `runCommandAsync` **in the sync part of callback** executes the command in the **same tick** (**still next tick** not current tick).
+In `system.run`, `runCommandAsync` **in the sync part of callback** executes the command in the **same tick** (still next tick **not current tick**).
 Other code in the sync part of callback executes before the command.
 
 ```javascript
