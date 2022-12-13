@@ -6,6 +6,11 @@ Accepts 1 argument: the callback.
 Normally, it runs the function in the next tick.
 
 ## Delay
+
+We can implement a tick timeout using `system.run`.
+
+Note that `delay=0` will probably(not always) execute the function at the end of current tick.
+
 ```javascript
 function setTickTimeout(callback, delay = 1) {
   if (delay < 1) {
