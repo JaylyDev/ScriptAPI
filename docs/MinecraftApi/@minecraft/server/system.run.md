@@ -2,7 +2,31 @@
 
 Runs a specified function at a future time.
 Accepts 1 argument: the callback.
+
 Normally, it runs the function in the next tick.
+
+## Delay
+```javascript
+function setDelay(callback, delay = 1) {
+  if (delay < 1) {
+    Promise.resolve().then(callback);
+    return;
+  }
+  if (!(Number.isFinite(delay))) {
+    throw new Error("delay is not finite");
+  }
+  const n = Math.floor(delay);
+  let i = n;
+  (function tick() {
+    i--;
+    if (i > 0) {
+      system.run(tick);
+      return;
+    }
+    system.run(callback);
+  })();
+}
+```
 
 ## Improve runCommandAsync
 
