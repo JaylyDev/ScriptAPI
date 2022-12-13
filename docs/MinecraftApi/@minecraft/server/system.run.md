@@ -15,8 +15,7 @@ function setTickTimeout(callback, delay = 1) {
   if (!(Number.isFinite(delay))) {
     throw new Error("delay is not finite");
   }
-  const n = Math.floor(delay);
-  let i = n;
+  let i = Math.floor(delay);
   (function tick() {
     i--;
     if (i > 0) {
