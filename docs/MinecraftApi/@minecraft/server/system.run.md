@@ -7,7 +7,7 @@ Normally, it runs the function in the next tick.
 
 ## Delay
 ```javascript
-function setDelay(callback, delay = 1) {
+function setTickTimeout(callback, delay = 1) {
   if (delay < 1) {
     Promise.resolve().then(callback);
     return;
