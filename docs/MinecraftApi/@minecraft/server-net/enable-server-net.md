@@ -1,4 +1,8 @@
-# Enable mojang-net module in Bedrock Dedicated Server
+# Enable `@minecraft/server-net` module in Bedrock Dedicated Server
+
+1. Download Bedrock Server from https://www.minecraft.net/en-us/download/server/bedrock
+
+2. Extract the zip file on a folder.
 
 This is the tree for default BDS:
 ```
@@ -20,11 +24,12 @@ Bedrock Server
 │       └───resource_packs
 └───world_templates
 ```
-> Modify files in default folder allows every GameTest add-ons have access to mojang-net module.
-> 
-> It is recommended to assign appropriate permissons for each GameTest behavior pack.
 
-In the `permissions.json` file, enable mojang-net module by adding `"mojang-net"` in the `allowed_modules` key:
+3. In the `permissions.json` file located in `config/<pack_id>/permissions.json` or `config/default/permissions.json`, enable `@minecraft/server-net` module by adding `"@minecraft/server-net"` in the `allowed_modules` key.
+
+> Modify files in default folder allows every add-ons with server-net module enabled in dependencies have access to @minecraft/server-net module.
+> 
+> It is recommended to assign appropriate permissons for each script behavior pack.
 
 ```json
 {
@@ -33,7 +38,9 @@ In the `permissions.json` file, enable mojang-net module by adding `"mojang-net"
     "@minecraft/server",
     "@minecraft/server-ui",
     "@minecraft/server-admin",
+    "@minecraft/server-editor",
     "@minecraft/server-net"
   ]
 }
+
 ```
