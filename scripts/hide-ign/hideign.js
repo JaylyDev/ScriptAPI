@@ -1,5 +1,5 @@
 // Script examples for ScriptAPI
-// Author: Jayly#1397 <undefined>
+// Author: Jayly#1397 <Jayly Discord>
 import { world } from "mojang-minecraft";
 
 function hideign() {
