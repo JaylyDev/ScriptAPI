@@ -1,0 +1,1 @@
+https://cdn.discordapp.com/ephemeral-attachments/1054957318502088797/1054999723662114826/ansi.js
