@@ -1,7 +1,7 @@
 // Script examples for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
-//         rld, <TimeOfDay } from '@minecraft/server';>
-// Author: Usernam#2058 <Jayly Discord>
+//         Usernam#2058 <Jayly Discord>
+import { world, TimeOfDay } from '@minecraft/server';
 
 /**
  * @returns The hours and minutes of the world time.
