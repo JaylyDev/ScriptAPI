@@ -1,6 +1,7 @@
 // Script examples for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 //         Usernam#2058 <Jayly Discord>
+//         Usernam#2058 <Jayly Discord>
 import { world, TimeOfDay } from '@minecraft/server';
 
 /**
