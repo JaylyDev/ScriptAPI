@@ -1,6 +1,6 @@
 // Script examples for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
-import { Player, world } from "@minecraft/server";
+//         mrpatches123#0348 <<Bedrock Scripting API>>
 const overworld = world.getDimension("overworld"),
   nether = world.getDimension("nether"),
   end = world.getDimension("the end");
