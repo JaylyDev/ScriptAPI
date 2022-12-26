@@ -1,6 +1,6 @@
 // Script examples for ScriptAPI
-// Author: Jayly#1397 <Jayly Discord>
-import { Player, system } from "@minecraft/server";
+// Author: Worldwidebrine <https://github.com/Worldwidebrine>
+//         Jayly#1397 <<Jayly Discord>>
 import { ActionFormData, MessageFormData, ModalFormData } from "@minecraft/server-ui";
 
 /**
