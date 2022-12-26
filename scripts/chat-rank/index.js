@@ -1,7 +1,6 @@
 // Script examples for ScriptAPI
-// Author: WavePlayz <Bedrock Addons>
-// command: /tag @s add rank:Owner
-import { world } from "@minecraft/server";
+// Author: WavePlayz <Bedrock Add-Ons>
+//          </tag @s add rank:Owner>
 
 world.events.beforeChat.subscribe((eventData) => {
   const { message, sender } = eventData;
