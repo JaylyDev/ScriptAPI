@@ -1,5 +1,6 @@
 // Script examples for ScriptAPI
 // Author: WavePlayz <Bedrock Add-Ons>
+
 // command: /tag @s add rank:Owner
 import { world } from "@minecraft/server";
 
