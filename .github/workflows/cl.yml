@@ -1,4 +1,4 @@
-name: API
+name: CI
 
 on: 
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   debug:
-    name: 'Script Debug'
+    name: 'typecheck'
     runs-on: ubuntu-latest
 
     steps:
@@ -22,4 +22,4 @@ jobs:
           find ./docs/* -maxdepth 5 -name package.json -execdir sh -c 'pwd && npm install' \;
 
       - name: tsc debug
-        run: tsc
+        run: tsc -b --verbose
