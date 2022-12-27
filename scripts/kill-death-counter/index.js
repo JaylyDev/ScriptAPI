@@ -1,6 +1,7 @@
 // Script examples for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
-//         mrpatches123#0348 <<<Bedrock Scripting API>>>
+//         mrpatches123#0348 <Bedrock Scripting API>
+
 import { world, Player, EntityHealthComponent } from "@minecraft/server";
 
 const overworld = world.getDimension("overworld"),
