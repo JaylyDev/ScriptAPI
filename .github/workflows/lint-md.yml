@@ -8,7 +8,7 @@ on:
 
 jobs:
   markdown-link-check:
-    if: ${{ github.event.label.name == 'docs' }}
+    if: ${{ (github.event.label.name == 'docs' && github.event_name == 'pull_request') || github.event_name == 'push' }}
     name: 'Check Links'
     runs-on: ubuntu-latest
     steps:
