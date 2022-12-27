@@ -1,9 +1,13 @@
 name: API
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-  gametest:
+  debug:
     name: 'Script Debug'
     runs-on: ubuntu-latest
 
