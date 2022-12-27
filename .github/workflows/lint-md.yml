@@ -1,10 +1,15 @@
-name: markdown-link-check
+name: 'Link Checker'
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   markdown-link-check:
-    name: 'Link Checker'
+    if: ${{ github.event.label.name == 'docs' }}
+    name: 'Check Links'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
