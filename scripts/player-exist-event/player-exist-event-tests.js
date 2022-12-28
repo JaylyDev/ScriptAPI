@@ -4,7 +4,7 @@ import { MessageFormData } from "mojang-minecraft-ui";
 let playerExist = new PlayerExistEventSignal();
 
 let callback = playerExist.subscribe(({player, timeTaken}) => {
-  player.runCommand("say I just joined this world, and it only took me " + timeTaken + " milliseconds");
+  player.runCommandAsync("say I just joined this world, and it only took me " + timeTaken + " milliseconds");
 
   new MessageFormData()
   .title("Welcome")
