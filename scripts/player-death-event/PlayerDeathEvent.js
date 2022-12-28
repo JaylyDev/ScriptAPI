@@ -74,4 +74,7 @@ class PlayerDeathEventSignalDeprecated {
   };
 };
 
+/**
+ * @deprecated
+ */
 export const PlayerDeathEventSignal = deprecate(PlayerDeathEventSignalDeprecated.constructor, "PlayerDeathEvent class is deprecated. Use EntityDeathEvent instead.");
