@@ -30,10 +30,12 @@ const emittedIds = [];
  * fn2(); // Does not emit a deprecation warning because it has the same id
  * ```
  *
- * @param {Function} fn The function that is being deprecated.
+ *
+ * @template {Function} T
+ * @param {T} fn The function that is being deprecated.
  * @param {string} msg A warning message to display when the deprecated function is invoked.
  * @param {string} [id] A deprecation id. See the `list of deprecated APIs` for a list of ids.
- * @return {Function} The deprecated function wrapped to emit a warning.
+ * @return {T} The deprecated function wrapped to emit a warning.
  */
 export function deprecate(fn, msg, id) {
   let deprecationMessage = "";
@@ -46,8 +48,9 @@ export function deprecate(fn, msg, id) {
 
   function deprecated() {
     console.warn(deprecationMessage);
-    return fn.apply(this, arguments);
+    return fn.call(this, arguments);
   }
 
+  // @ts-ignore
   return deprecated;
 }
