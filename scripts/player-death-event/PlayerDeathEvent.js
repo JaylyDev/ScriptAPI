@@ -1,8 +1,12 @@
+// Script examples for ScriptAPI
+// Author: Jayly#1397 <Jayly Discord>
+
 /**
  * @license MIT
  * @author JaylyMC
  */
 import { EntityHealthComponent, world, Player } from "mojang-minecraft";
+import { deprecate } from "deprecate/deprecate";
 
 /**
  * Contains information related to an player death.
@@ -19,7 +23,7 @@ export class PlayerDeathEvent {
 /**
  * Manages callbacks that are connected to when an player dies.
  */
-export class PlayerDeathEventSignal {
+class PlayerDeathEventSignalDeprecated {
   /**
    * Subscribe
    * @param {(arg: PlayerDeathEvent) => void} arg 
@@ -69,3 +73,5 @@ export class PlayerDeathEventSignal {
     arg["playerDeath"] = false;
   };
 };
+
+export const PlayerDeathEventSignal = deprecate(PlayerDeathEventSignalDeprecated.constructor, "PlayerDeathEvent class is deprecated. Use EntityDeathEvent instead.");
