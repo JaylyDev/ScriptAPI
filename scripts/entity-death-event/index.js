@@ -1,59 +1,68 @@
-/**
- * @license MIT
- * @author JaylyMC
- */
-import { EntityHealthComponent, world, Entity } from "mojang-minecraft";
+// Script examples for ScriptAPI
+// Author: Jayly#1397 <Jayly Discord>
+
+import { EntityHealthComponent, EntityHurtEvent, world } from "@minecraft/server";
 
 /**
- * Contains information related to an entity death.
+ * @typedef EntityDeathCallback
+ * @property {(arg: EntityHurtEvent) => void} callback
+ * @property {import("@minecraft/server").EntityEventOptions} options
  */
-export class EntityDeathEvent {
-  /**
-   * @param {string} cause
-   * @param {number} damage
-   * @param {Entity} damagingEntity
-   * @param {Entity} hurtEntity
-   * @param {Entity} projectile
-   */
-  constructor (cause, damage, damagingEntity, hurtEntity, projectile) {
-    this.cause = cause;
-    this.damage = damage;
-    this.damagingEntity = damagingEntity;
-    this.deadEntity = hurtEntity;
-    this.projectile = projectile;
+/**
+ * @type {EntityDeathCallback[]}
+ */
+const callbacks = [];
+
+// backend
+world.events.entityHurt.subscribe((event) => {
+  const { hurtEntity } = event;
+
+  if (!hurtEntity) return;
+
+  /** @type {EntityHealthComponent} */
+  const health = hurtEntity.getComponent(EntityHealthComponent.componentId);
+
+  if (health.current > 0) return;
+
+  for (const callback of callbacks) {
+    const { entities, entityTypes } = callback.options;
+    if (entities instanceof Array && !entities?.includes(hurtEntity)) break;
+    if (entityTypes instanceof Array && !entityTypes?.includes(hurtEntity.typeId)) break;
+    callback.callback(event);
   };
-};
+});
+
 
 /**
  * Manages callbacks that are connected to when an entity dies.
  */
-export class EntityDeathEventSignal {
+class EntityDeathEventSignal {
   /**
-   * Subscribe
-   * @param {(arg: EntityDeathEvent) => void} arg 
-   * @return {(arg: EntityDeathEvent) => void}
+   * @remarks
+   * Adds a callback that will be called when an entity dies.
+   * @param {(arg: EntityHurtEvent) => void} callback
+   * @param {import("@minecraft/server").EntityEventOptions} options
+   * @returns {(arg: EntityHurtEvent) => void}
    */
-  subscribe (arg) {
-    arg["entityDeath"] = true;
-    
-    let callback = world.events.entityHurt.subscribe(function ({ cause, damage, damagingEntity, hurtEntity, projectile }) {
-      if (arg["entityDeath"] !== true) world.events.entityHurt.unsubscribe(callback);
-      /** @type {EntityHealthComponent} */
-      // @ts-ignore
-      const health = hurtEntity.getComponent("health");
-
-      if (health.current <= 0) arg(new EntityDeathEvent(cause, damage, damagingEntity, hurtEntity, projectile));
-    });
-
-    return arg;
+  subscribe(callback, options = {}) {
+    callbacks.push({ options, callback });
   };
-
   /**
-   * Unsubscribe
-   * @param {(arg: EntityDeathEvent) => void} arg 
-   * @return {void}
+   * @remarks
+   * Removes a callback from being called when an entity dies.
+   * @param {(arg: EntityHurtEvent) => void} callback
+   * @throws This function can throw errors.
    */
-  unsubscribe (arg) {
-    arg["entityDeath"] = false;
+  unsubscribe(callback) {
+    const index = callbacks.findIndex((value) => value.callback === callback);
+    callbacks.splice(index);
   };
-};
+}
+
+const entityDeath = new EntityDeathEventSignal();
+
+entityDeath.subscribe(() => {
+  console.warn("Hello");
+})
+
+export { entityDeath, EntityDeathEventSignal };
