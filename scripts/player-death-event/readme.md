@@ -1,3 +1,8 @@
+# Deprecated
+
+PlayerDeathEvent class is deprecated. Use [EntityDeathEvent](../entity-death-event) instead.
+
+---
 This package detects player death event
 
 # Usage
