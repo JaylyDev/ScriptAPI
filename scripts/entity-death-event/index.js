@@ -20,6 +20,7 @@ world.events.entityHurt.subscribe((event) => {
   if (!hurtEntity) return;
 
   /** @type {EntityHealthComponent} */
+  // @ts-expect-error
   const health = hurtEntity.getComponent(EntityHealthComponent.componentId);
 
   if (health.current > 0) return;
@@ -46,6 +47,7 @@ class EntityDeathEventSignal {
    */
   subscribe(callback, options = {}) {
     callbacks.push({ options, callback });
+    return callback;
   };
   /**
    * @remarks
