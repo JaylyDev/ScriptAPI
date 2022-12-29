@@ -1,4 +1,4 @@
-import { EntityInventoryComponent, Items, ItemStack, MinecraftBlockTypes, MinecraftItemTypes, Player, world } from 'mojang-minecraft';
+import { EntityInventoryComponent, Items, ItemStack, MinecraftBlockTypes, MinecraftItemTypes, Player, world } from '@minecraft/server';
 
 const chestsType = [
   MinecraftBlockTypes.chest,
@@ -16,7 +16,7 @@ world.events.beforeItemUseOn.subscribe((event) => {
   const inventory = player.getComponent('inventory');
 
   if (chestsType.includes(block.type)) {
-    if (Items.get(inventory.container.getItem(player.selectedSlot)?.id ?? 'minecraft:air') === key) {
+    if (Items.get(inventory.container.getItem(player.selectedSlot)?.typeId ?? 'minecraft:air') === key) {
       event.cancel = false;
     }
     else {

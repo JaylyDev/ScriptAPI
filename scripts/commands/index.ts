@@ -1,4 +1,4 @@
-import { CommandResult, Dimension, Entity, world, Player } from "mojang-minecraft";
+import { CommandResult, Dimension, Entity, world, Player } from "@minecraft/server";
 
 /**
  * Main class for custom command functions, with the player that execute
@@ -40,7 +40,7 @@ export class Commands {
    * ```
    */
   static run(commandString: string, target: Dimension | Entity = world.getDimension("overworld")): any {
-    if (target instanceof Dimension || Entity) return target.runCommand(commandString);
+    if (target instanceof Dimension || Entity) return target.runCommandAsync(commandString);
     else throw TypeError("Native type conversion failed");
   };
 
@@ -81,7 +81,7 @@ export class Commands {
    * @example example1.js
    * ```typescript
    *          Commands.register("!", "test", function (arg) {
-   *              arg.player.runCommand(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
+   *              arg.player.runCommandAsync(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
    *          });
    * ```
    */
@@ -97,7 +97,7 @@ export class Commands {
           let { statusMessage } = JSON.parse(err);
           console.error(err);
           // @ts-ignore
-          !!arg.sender.tell ? arg.sender.tell(`§c${statusMessage}`) : arg.sender.runCommand(`tellraw @s {"rawtext":[{"text": "§c${statusMessage}"}]}`);
+          !!arg.sender.tell ? arg.sender.tell(`§c${statusMessage}`) : arg.sender.runCommandAsync(`tellraw @s {"rawtext":[{"text": "§c${statusMessage}"}]}`);
         };
       };
     });

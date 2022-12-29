@@ -1,5 +1,5 @@
-import { world } from "mojang-minecraft";
-import * as MinecraftUi from "mojang-minecraft-ui";
+import { world } from "@minecraft/server";
+import * as MinecraftUi from "@minecraft/server-ui";
 
 const player = [...world.getPlayers()][0];
 const Shopitems = [
@@ -17,7 +17,7 @@ let shopui = new MinecraftUi.ActionFormData()
   .button("§2Utilitaires§8", "textures/ui/debug_glyph_color.png");
 shopui.show(player).then((res) => {
   if (res.isCanceled == true)
-    return player.runCommand(
+    return player.runCommandAsync(
       `tellraw ${player.nameTag} {"rawtext": [{"text": "§r§8[§aOcto §eShop§8] §cAchat annulé!§r"}]}`
     );
 

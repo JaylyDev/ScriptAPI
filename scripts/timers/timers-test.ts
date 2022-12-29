@@ -2,13 +2,13 @@ import {
     setTimeout, setImmediate, setInterval,
     clearImmediate, clearInterval, clearTimeout
 } from "./timers.js";
-import { world } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 
 function stdout (...data: any[]): any {
-    return world.getDimension("overworld").runCommand(`say §r` + data.join(" "));
+    return world.getDimension("overworld").runCommandAsync(`say §r` + data.join(" "));
 };
 function stderr (...data: any[]): any {
-    return world.getDimension("overworld").runCommand(`say §c` + data.join(" "));
+    return world.getDimension("overworld").runCommandAsync(`say §c` + data.join(" "));
 };
 
 // timeout test

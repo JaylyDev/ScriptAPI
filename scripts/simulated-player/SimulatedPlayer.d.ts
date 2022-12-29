@@ -460,8 +460,8 @@ export declare class SimulatedPlayer {
      * @throws This function can throw errors.
      * @example commands.js
      * ```typescript
-     *        player.runCommand("say You got a new high score!");
-     *        player.runCommand("scoreboard players set @s score 10");
+     *        player.runCommandAsync("say You got a new high score!");
+     *        player.runCommandAsync("scoreboard players set @s score 10");
      *
      * ```
      * @deprecated

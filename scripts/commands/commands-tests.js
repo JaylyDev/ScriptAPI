@@ -31,6 +31,6 @@ var timerB = Date.now();
 Commands.runAsync("say Hello World in async");
 console.warn("Commands.runAsync time: ".concat(Date.now() - timerB, " ms"));
 Commands.register("#", "sayhi", function (res) {
-    res.player.runCommand("say hi ".concat(__spreadArray([], __read(res.argv), false).join(", ")));
+    res.player.runCommandAsync("say hi ".concat(__spreadArray([], __read(res.argv), false).join(", ")));
 });
 console.log("End of test");

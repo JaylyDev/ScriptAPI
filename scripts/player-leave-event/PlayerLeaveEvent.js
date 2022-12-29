@@ -3,7 +3,7 @@
  * @author JaylyMC
  * @link https://github.com/JaylyDev/GameTestDB
  */
-import { world } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 import "mojang-gametest"; // import "mojang-gametest" native module to support Simulated Players
 /**
  * @license MIT
@@ -44,7 +44,7 @@ function comparePlayer(playerA, playerB) {
  * Player wrapper to save as much data into a new object.
  *
  * Keeping this class private to avoid confusion between
- * Player class from "mojang-minecraft" module.
+ * Player class from "@minecraft/server" module.
  */
 class Player {
     /**
@@ -82,7 +82,7 @@ class Player {
         this.selectedSlot = player.selectedSlot;
         this.target = player.target;
         this.velocity = player.velocity;
-        this.viewVector = player.viewVector;
+        this.viewDirection = player.viewDirection;
     }
     /**
      * @remarks

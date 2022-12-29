@@ -1,5 +1,5 @@
-// import modal form from 'mojang-minecraft-ui' module;
-import { ModalFormData } from "mojang-minecraft-ui";
+// import modal form from '@minecraft/server-ui' module;
+import { ModalFormData } from "@minecraft/server-ui";
 
 const ModalForm = new ModalFormData();
 
@@ -28,19 +28,19 @@ ModalForm.title("Modal Form");
 // Adds a toggle checkbox button to the form.
 ModalForm.toggle("toggle");
 
-// get player object from world object in 'mojang-minecraft' module
-import { world } from "mojang-minecraft";
+// get player object from world object in '@minecraft/server' module
+import { world } from "@minecraft/server";
 const player = [...world.getPlayers()][0];
 
 ModalForm.show(player)
 // This method returns a promise that resolves when the form has a response.
 .then(function (formResponse) {
     // The form response is an object with the following properties:
-    // isCanceled: boolean
+    // canceled: boolean
     // formValues: any[]
 
-    const { isCanceled, formValues } = formResponse;
-    console.warn(`isCanceled: ${isCanceled}`);
+    const { canceled, formValues } = formResponse;
+    console.warn(`canceled: ${canceled}`);
     console.warn(`formValues: ${formValues}`);
 })
 // This method executes when an error in the promise function occurs.

@@ -1,4 +1,4 @@
-import { Enchantment, EnchantmentList, EntityInventoryComponent, ItemEnchantsComponent, MinecraftEnchantmentTypes, Player, world } from "mojang-minecraft";
+import { Enchantment, EnchantmentList, EntityInventoryComponent, ItemEnchantsComponent, MinecraftEnchantmentTypes, Player, world } from "@minecraft/server";
 
 (
   /**

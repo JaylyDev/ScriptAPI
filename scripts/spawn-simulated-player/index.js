@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as mojangMinecraft from "mojang-minecraft";
+import * as mojangMinecraft from "@minecraft/server";
 import * as mojangGametest from "mojang-gametest";
 import { SimulatedPlayer } from "../simulated-player/SimulatedPlayer.js";
 /**
@@ -59,6 +59,6 @@ export function SpawnSimulatedPlayer(target, callback) {
     }).structureName("DebugTests:always_succeed")
         .tag(mojangGametest.Tags.suiteDefault)
         .maxTicks(0x7fffffff);
-    target.runCommand("gametest run ".concat(testClassName, ":").concat(testName));
+    target.runCommandAsync("gametest run ".concat(testClassName, ":").concat(testName));
 }
 ;

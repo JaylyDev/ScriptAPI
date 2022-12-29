@@ -1,5 +1,5 @@
 import { PlayerExistEventSignal } from "./PlayerExistEvent.js";
-import { MessageFormData } from "mojang-minecraft-ui";
+import { MessageFormData } from "@minecraft/server-ui";
 
 let playerExist = new PlayerExistEventSignal();
 

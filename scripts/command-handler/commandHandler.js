@@ -1,8 +1,8 @@
-import { world } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 
 function runCommand(command) {
     try {
-        return world.getDimension('overworld').runCommand(command);
+        return world.getDimension('overworld').runCommandAsync(command);
     } catch (e) {
         return JSON.parse(e)
     };

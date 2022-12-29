@@ -7,7 +7,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-import { world, MinecraftEffectTypes, MinecraftItemTypes, ItemStack, ExplosionOptions, Location } from "mojang-minecraft";
+import { world, MinecraftEffectTypes, MinecraftItemTypes, ItemStack, ExplosionOptions, Location } from "@minecraft/server";
 import { SpawnSimulatedPlayer } from "./index.js";
 var host = __spreadArray([], world.getPlayers(), true)[0];
 SpawnSimulatedPlayer(host, function (simulatedPlayer) {

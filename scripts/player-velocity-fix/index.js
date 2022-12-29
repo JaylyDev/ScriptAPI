@@ -3,7 +3,7 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import { Player, Location, MinecraftEntityTypes, MinecraftEffectTypes } from "mojang-minecraft";
+import { Player, Location, MinecraftEntityTypes, MinecraftEffectTypes } from "@minecraft/server";
 import { Commands } from "../Commands/index.js";
 import { clearInterval, setInterval } from "../timers/timers.js";
 function trunc(x, decimal) {
