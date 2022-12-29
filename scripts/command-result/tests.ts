@@ -1,8 +1,9 @@
-import { world } from "@minecraft/server";
-import { CommandResult } from "./index.js";
+// @ts-ignore
+import { world } from "mojang-minecraft";
+import type { CommandResult } from "./index.js";
 
 let overworld = world.getDimension("overworld");
-let command: CommandResult = overworld.runCommandAsync("testfor @a");
+let command: CommandResult = overworld.runCommand("testfor @a");
 
 console.warn(command.victim);
 

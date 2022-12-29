@@ -2,7 +2,8 @@
  * @license MIT
  * @author JaylyMC
  */
-import { world, Player } from "@minecraft/server";
+// @ts-ignore
+import { world, Player } from "mojang-minecraft";
 
 /**
  * Contains information related to an player death.

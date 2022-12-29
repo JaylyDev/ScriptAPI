@@ -3,7 +3,7 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import { Vector, Player, Location, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent, MinecraftEffectTypes } from "@minecraft/server";
+import { Vector3, Player, Location, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent, MinecraftEffectTypes } from "@minecraft/server";
 import { Commands } from "../commands/index.js";
 import { clearInterval, setInterval } from "../timers/timers.js";
 
@@ -16,14 +16,17 @@ function trunc (x: number, decimal: number): number {
  * @remarks
  * Sets a velocity for the entity to move with.
  * Fixes GameTest native player.setVelocity
- * @param {Vector} velocity
+ * @param {Vector3} velocity
  * @param {Player} player
  * @throws This function can throw errors.
 */
-export function setVelocity (velocity: Vector, player: Player) {
+export function setVelocity (velocity: Vector3, player: Player) {
   if (!(player instanceof Player)) throw TypeError("Native type conversion failed.");
 
-  const entity = player.dimension.spawnEntity(MinecraftEntityTypes.minecart.id, player.location);
+  const entity = player.dimension.spawnEntity(
+    MinecraftEntityTypes.minecart.id,
+    new Location(player.location.x, player.location.y, player.location.z)
+  );
   entity.triggerEvent('minecraft:ageable_grow_up'); // Make them adult
   entity.triggerEvent('minecraft:on_saddled');      // Add saddle to pig
 

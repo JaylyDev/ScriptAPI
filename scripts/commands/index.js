@@ -13,7 +13,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -34,17 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __values = (this && this.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 import { Dimension, Entity, world } from "@minecraft/server";
 /**
  * Main class for custom command functions, with the player that execute
@@ -53,40 +42,24 @@ import { Dimension, Entity, world } from "@minecraft/server";
  */
 var Command = /** @class */ (function () {
     function Command(argv, player) {
-        this.argv = (function () {
-            var argv_1, argv_1_1, arg, e_1_1;
-            var e_1, _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _b.trys.push([0, 5, 6, 7]);
-                        argv_1 = __values(argv), argv_1_1 = argv_1.next();
-                        _b.label = 1;
-                    case 1:
-                        if (!!argv_1_1.done) return [3 /*break*/, 4];
-                        arg = argv_1_1.value;
-                        return [4 /*yield*/, arg];
-                    case 2:
-                        _b.sent();
-                        _b.label = 3;
-                    case 3:
-                        argv_1_1 = argv_1.next();
-                        return [3 /*break*/, 1];
-                    case 4: return [3 /*break*/, 7];
-                    case 5:
-                        e_1_1 = _b.sent();
-                        e_1 = { error: e_1_1 };
-                        return [3 /*break*/, 7];
-                    case 6:
-                        try {
-                            if (argv_1_1 && !argv_1_1.done && (_a = argv_1.return)) _a.call(argv_1);
-                        }
-                        finally { if (e_1) throw e_1.error; }
-                        return [7 /*endfinally*/];
-                    case 7: return [2 /*return*/];
-                }
-            });
-        })();
+        this.argv = (function () { var _i, argv_1, arg; return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _i = 0, argv_1 = argv;
+                    _a.label = 1;
+                case 1:
+                    if (!(_i < argv_1.length)) return [3 /*break*/, 4];
+                    arg = argv_1[_i];
+                    return [4 /*yield*/, arg];
+                case 2:
+                    _a.sent();
+                    _a.label = 3;
+                case 3:
+                    _i++;
+                    return [3 /*break*/, 1];
+                case 4: return [2 /*return*/];
+            }
+        }); })();
         this.__player = player;
     }
     Object.defineProperty(Command.prototype, "player", {

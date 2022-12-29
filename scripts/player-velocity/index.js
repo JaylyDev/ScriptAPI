@@ -3,7 +3,8 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import { Vector, ExplosionOptions, MinecraftEffectTypes, Player, EntityHealthComponent } from "@minecraft/server";
+// @ts-ignore
+import { Vector, ExplosionOptions, MinecraftEffectTypes, Player, EntityHealthComponent } from "mojang-minecraft";
 
 /**
  * @remarks
@@ -31,7 +32,7 @@ export function setVelocity (velocity, player) {
   // create explosion & set velocity
   player.setVelocity(velocity);
   player.dimension.createExplosion(player.location, 0.001, explosion);
-  player.runCommandAsync("stopsound @s random.explode");
+  player.runCommand("stopsound @s random.explode");
   
   // set health back to previous value before instant health
   health.setCurrent(currentHp);
