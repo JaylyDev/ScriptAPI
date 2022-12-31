@@ -16,9 +16,9 @@ let shopui = new MinecraftUi.ActionFormData()
   .button("§2Objets§8", "textures/items/apple.png")
   .button("§2Utilitaires§8", "textures/ui/debug_glyph_color.png");
 shopui.show(player).then((res) => {
-  if (res.isCanceled == true)
+  if (res.canceled == true)
     return player.runCommandAsync(
-      `tellraw ${player.nameTag} {"rawtext": [{"text": "§r§8[§aOcto §eShop§8] §cAchat annulé!§r"}]}`
+      `tellraw ${player.name} {"rawtext": [{"text": "§r§8[§aOcto §eShop§8] §cAchat annulé!§r"}]}`
     );
 
   // MENU BLOCK
