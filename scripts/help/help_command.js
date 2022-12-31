@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { world } from "mojang-minecraft";
 
 export default function () {
