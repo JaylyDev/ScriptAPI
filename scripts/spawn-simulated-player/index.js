@@ -34,8 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as mojangMinecraft from "@minecraft/server";
-import * as mojangGametest from "mojang-gametest";
+import * as server from "@minecraft/server";
+import * as GameTest from "@minecraft/server-gametest";
 import { SimulatedPlayer } from "../simulated-player/SimulatedPlayer.js";
 /**
  * Spawns a simulated player
@@ -45,19 +45,19 @@ import { SimulatedPlayer } from "../simulated-player/SimulatedPlayer.js";
 export function SpawnSimulatedPlayer(target, callback) {
     var testClassName = "Jayly";
     var testName = "SpawnSimulatedPlayer";
-    if (!(target instanceof mojangMinecraft.Player))
+    if (!(target instanceof server.Player))
         throw new TypeError("Native type conversion failed.");
-    mojangGametest.registerAsync(testClassName, testName, function (test) {
+    GameTest.registerAsync(testClassName, testName, function (test) {
         return __awaiter(this, void 0, void 0, function () {
             var simulatedplayer;
             return __generator(this, function (_a) {
-                simulatedplayer = test.spawnSimulatedPlayer(new mojangMinecraft.BlockLocation(0, 1, 0));
+                simulatedplayer = test.spawnSimulatedPlayer(new server.BlockLocation(0, 1, 0));
                 callback(new SimulatedPlayer(simulatedplayer, test));
                 return [2 /*return*/];
             });
         });
     }).structureName("DebugTests:always_succeed")
-        .tag(mojangGametest.Tags.suiteDefault)
+        .tag(GameTest.Tags.suiteDefault)
         .maxTicks(0x7fffffff);
     target.runCommandAsync("gametest run ".concat(testClassName, ":").concat(testName));
 }

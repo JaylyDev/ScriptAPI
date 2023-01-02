@@ -13,7 +13,7 @@ The file is located in `config/<pack_id>/secrets.json`.
 To load the secrets in Minecraft:
 
 ```js
-import { secrets } from "mojang-minecraft-server-admin";
+import { secrets } from "@minecraft/server-admin";
 
 // A list of available, configured server secrets.
 console.warn(secrets.names);

@@ -1,4 +1,4 @@
-# mojang-minecraft Module
+# @minecraft/server Module
 
 ## Module Contents
 
@@ -42,14 +42,7 @@
 - 0.1.0
 ```json
 {
-    // mojang-minecraft
-    "uuid": "b26a4d4c-afdf-4690-88f8-931846312678",
-    "version": [ 0, 1, 0 ]
-}
-```
-```json
-{
-    "module_name": "mojang-minecraft",
-    "version": [ 0, 1, 0 ]
+    "module_name": "@minecraft/server",
+    "version": "0.1.0"
 }
 ```

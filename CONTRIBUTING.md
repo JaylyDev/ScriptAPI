@@ -1,12 +1,13 @@
 # Contributing
 
-Contributing infomation. This info changes because Script API is currently in active development, and breaking changes are frequent. 
+Contributing infomation. This info changes because Script API is currently in active development, and breaking changes are frequent.
 
 ## Scripts
 
-When submitting a new package. You must use modules with the following dependencies:
+When submitting a new package. The scripts are assumed that they can be used with the latest beta module of script modules in latest version of Minecraft Preview, the following is a reference of a manifest dependencies and NPM packages for meeting the criteria of submitting or updating a script sample:
 
 **manifest.json**
+
 ```json
 "dependencies": [
     {
@@ -39,20 +40,3 @@ When submitting a new package. You must use modules with the following dependenc
 - [`@minecraft/server-net@beta`](https://www.npmjs.com/package/@minecraft/server-net/v/beta)
 - [`@minecraft/server-gametest@beta`](https://www.npmjs.com/package/@minecraft/server-gametest/v/beta)
 - [`@minecraft/server-admin@beta`](https://www.npmjs.com/package/@minecraft/server-admin/v/beta)
-
----
-
-or if you want to use alpha version of API modules, you are only allowed to use these modules:
-
-```json
-"dependencies": [
-    {
-        "module_name": "mojang-minecraft",
-        "version": "0.1.0"
-    },
-    {
-        "module_name": "mojang-minecraft-ui",
-        "version": "0.1.0"
-    }
-]
-```

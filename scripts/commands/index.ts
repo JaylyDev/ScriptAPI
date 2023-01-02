@@ -96,8 +96,7 @@ export class Commands {
         } catch (err) {
           let { statusMessage } = JSON.parse(err);
           console.error(err);
-          // @ts-ignore
-          !!arg.sender.tell ? arg.sender.tell(`§c${statusMessage}`) : arg.sender.runCommandAsync(`tellraw @s {"rawtext":[{"text": "§c${statusMessage}"}]}`);
+          arg.sender.tell(`§c${statusMessage}`);
         };
       };
     });
