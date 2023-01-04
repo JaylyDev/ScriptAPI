@@ -5,7 +5,7 @@
  * @license MIT
  * @author JaylyMC
  */
-import { EntityHealthComponent, world, Player } from "mojang-minecraft";
+import { EntityHealthComponent, world, Player } from "@minecraft/server";
 import { deprecate } from "deprecate/deprecate";
 
 /**

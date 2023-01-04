@@ -13,7 +13,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -34,18 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __values = (this && this.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
-import { Dimension, Entity, world } from "mojang-minecraft";
+import { Dimension, Entity, world } from "@minecraft/server";
 /**
  * Main class for custom command functions, with the player that execute
  * this command with additional arguments split in an iterable iterator
@@ -53,40 +42,24 @@ import { Dimension, Entity, world } from "mojang-minecraft";
  */
 var Command = /** @class */ (function () {
     function Command(argv, player) {
-        this.argv = (function () {
-            var argv_1, argv_1_1, arg, e_1_1;
-            var e_1, _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _b.trys.push([0, 5, 6, 7]);
-                        argv_1 = __values(argv), argv_1_1 = argv_1.next();
-                        _b.label = 1;
-                    case 1:
-                        if (!!argv_1_1.done) return [3 /*break*/, 4];
-                        arg = argv_1_1.value;
-                        return [4 /*yield*/, arg];
-                    case 2:
-                        _b.sent();
-                        _b.label = 3;
-                    case 3:
-                        argv_1_1 = argv_1.next();
-                        return [3 /*break*/, 1];
-                    case 4: return [3 /*break*/, 7];
-                    case 5:
-                        e_1_1 = _b.sent();
-                        e_1 = { error: e_1_1 };
-                        return [3 /*break*/, 7];
-                    case 6:
-                        try {
-                            if (argv_1_1 && !argv_1_1.done && (_a = argv_1.return)) _a.call(argv_1);
-                        }
-                        finally { if (e_1) throw e_1.error; }
-                        return [7 /*endfinally*/];
-                    case 7: return [2 /*return*/];
-                }
-            });
-        })();
+        this.argv = (function () { var _i, argv_1, arg; return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _i = 0, argv_1 = argv;
+                    _a.label = 1;
+                case 1:
+                    if (!(_i < argv_1.length)) return [3 /*break*/, 4];
+                    arg = argv_1[_i];
+                    return [4 /*yield*/, arg];
+                case 2:
+                    _a.sent();
+                    _a.label = 3;
+                case 3:
+                    _i++;
+                    return [3 /*break*/, 1];
+                case 4: return [2 /*return*/];
+            }
+        }); })();
         this.__player = player;
     }
     Object.defineProperty(Command.prototype, "player", {
@@ -115,31 +88,6 @@ var Commands = /** @class */ (function () {
     }
     /**
      * @remarks
-     * Runs a particular command from the context.
-     * @param commandString
-     * Command to run. Note that command strings should not start
-     * with slash.
-     * @param target
-     * Target to be used as context for the command to run
-     * within.
-     * @returns For commands that return data, returns a JSON structure with command response values.
-     * @throws This function can throw errors.
-     * @example commands.js
-     * ```typescript
-     *        Commands.run("say You got a new high score!");
-     *        Commands.run("scoreboard players set @p score 10", world.getDimension("overworld"));
-     * ```
-     */
-    Commands.run = function (commandString, target) {
-        if (target === void 0) { target = world.getDimension("overworld"); }
-        if (target instanceof Dimension || Entity)
-            return target.runCommand(commandString);
-        else
-            throw TypeError("Native type conversion failed");
-    };
-    ;
-    /**
-     * @remarks
      * Runs a particular command asynchronously from the context.
      * Where possible - and especially for
      * long-running operations - you should use runCommandAsync
@@ -159,11 +107,13 @@ var Commands = /** @class */ (function () {
         if (target === void 0) { target = world.getDimension("overworld"); }
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                if (target instanceof Dimension || Entity)
-                    return [2 /*return*/, target.runCommandAsync(commandString)];
-                else
-                    throw TypeError("Native type conversion failed");
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        if (!(target instanceof Dimension || Entity)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, target.runCommandAsync(commandString)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2: throw TypeError("Native type conversion failed");
+                }
             });
         });
     };
@@ -183,7 +133,7 @@ var Commands = /** @class */ (function () {
      * @example example1.js
      * ```typescript
      *          Commands.register("!", "test", function (arg) {
-     *              arg.player.runCommand(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
+     *              arg.player.runCommandAsync(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
      *          });
      * ```
      */
@@ -200,8 +150,7 @@ var Commands = /** @class */ (function () {
                 catch (err) {
                     var statusMessage = JSON.parse(err).statusMessage;
                     console.error(err);
-                    // @ts-ignore
-                    !!arg.sender.tell ? arg.sender.tell("\u00A7c".concat(statusMessage)) : arg.sender.runCommand("tellraw @s {\"rawtext\":[{\"text\": \"\u00A7c".concat(statusMessage, "\"}]}"));
+                    arg.sender.tell("\u00A7c".concat(statusMessage));
                 }
                 ;
             }

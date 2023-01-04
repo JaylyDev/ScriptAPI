@@ -1,4 +1,4 @@
-import { Player, Entity, world, ScoreboardIdentityType, ScoreboardIdentity, ScoreboardObjective } from "mojang-minecraft";
+import { Player, Entity, world, ScoreboardIdentityType, ScoreboardIdentity, ScoreboardObjective } from "@minecraft/server";
 
 /**
  * Get all scoreboard scores from a player or entity.

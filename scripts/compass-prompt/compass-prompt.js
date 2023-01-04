@@ -1,5 +1,5 @@
-import { Player, world } from "mojang-minecraft"
-import { ActionFormData } from "mojang-minecraft-ui"
+import { Player, world } from "@minecraft/server"
+import { ActionFormData } from "@minecraft/server-ui"
 
 const gui = new ActionFormData()
 gui.title('§l§bServer Gui')
@@ -13,12 +13,12 @@ gui.button('§l§eMoney Transactions')
 world.events.beforeItemUse.subscribe(data => {
     const source = data.source
     if (!(source instanceof Player)) return;
-    if (data.item.id === 'minecraft:compass') gui.show(source).then(result => {
-        if (result.isCanceled) console.warn('GUI was canceled')
-        if (result.selection === 0) source.runCommand('give @s diamond 1')
-        if (result.selection === 1) source.runCommand('give @s diamond 1')
-        if (result.selection === 2) source.runCommand('give @s diamond 1')
-        if (result.selection === 3) source.runCommand('give @s diamond 1')
-        if (result.selection === 2) source.runCommand('give @s diamond 1')
+    if (data.item.typeId === 'minecraft:compass') gui.show(source).then(result => {
+        if (result.canceled) console.warn('GUI was canceled')
+        if (result.selection === 0) source.runCommandAsync('give @s diamond 1')
+        if (result.selection === 1) source.runCommandAsync('give @s diamond 1')
+        if (result.selection === 2) source.runCommandAsync('give @s diamond 1')
+        if (result.selection === 3) source.runCommandAsync('give @s diamond 1')
+        if (result.selection === 2) source.runCommandAsync('give @s diamond 1')
     })
 });

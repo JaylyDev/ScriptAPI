@@ -1,4 +1,4 @@
-import { world } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 
 // get delta time from tick event
 world.events.tick.subscribe(({

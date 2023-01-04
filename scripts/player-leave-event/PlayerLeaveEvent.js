@@ -1,10 +1,19 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 /**
  * @license MIT
  * @author JaylyMC
  * @link https://github.com/JaylyDev/GameTestDB
  */
-import { world } from "mojang-minecraft";
-import "mojang-gametest"; // import "mojang-gametest" native module to support Simulated Players
+import { world, Vector } from "@minecraft/server";
+import "@minecraft/server-gametest"; // import "@minecraft/server-gametest" native module to support Simulated Players
 /**
  * @license MIT
  * @author JaylyMC
@@ -44,9 +53,9 @@ function comparePlayer(playerA, playerB) {
  * Player wrapper to save as much data into a new object.
  *
  * Keeping this class private to avoid confusion between
- * Player class from "mojang-minecraft" module.
+ * Player class from "@minecraft/server" module.
  */
-class Player {
+var Player = /** @class */ (function () {
     /**
      * @remarks
      * Manually assign some player property to the new player class
@@ -54,16 +63,16 @@ class Player {
      * despawned entities.
      * @param {MinecraftPlayer} player
      */
-    constructor(player) {
+    function Player(player) {
         // PRIVATE PROPERTIES
         // This properties should not be used by public
         try {
-            this.__PlayerBlockFromViewVector = player.getBlockFromViewVector();
+            this.__PlayerBlockFromViewDirection = player.getBlockFromViewDirection();
         }
         catch (_a) { }
         ;
         try {
-            this.__PlayerEntitiesFromViewVector = player.getEntitiesFromViewVector();
+            this.__PlayerEntitiesFromViewDirection = player.getEntitiesFromViewDirection();
         }
         catch (_b) { }
         ;
@@ -82,7 +91,7 @@ class Player {
         this.selectedSlot = player.selectedSlot;
         this.target = player.target;
         this.velocity = player.velocity;
-        this.viewVector = player.viewVector;
+        this.viewDirection = new Vector(player.viewDirection.x, player.viewDirection.y, player.viewDirection.z);
     }
     /**
      * @remarks
@@ -90,9 +99,9 @@ class Player {
      * view of this entity.
      * @throws This function can throw errors.
      */
-    getBlockFromViewVector() {
-        return this.__PlayerBlockFromViewVector;
-    }
+    Player.prototype.getBlockFromViewDirection = function () {
+        return this.__PlayerBlockFromViewDirection;
+    };
     ;
     /**
      * @remarks
@@ -104,23 +113,23 @@ class Player {
      * 'minecraft:' is assumed. If the component is not present on
      * the entity, undefined is returned.
      */
-    getComponent(componentId) {
+    Player.prototype.getComponent = function (componentId) {
         return this.__PlayerComponents.find(function (component) {
             if (!componentId.startsWith("minecraft:"))
                 componentId = "minecraft:" + componentId;
             if (component.id === componentId)
                 return true;
         });
-    }
+    };
     ;
     /**
      * @remarks
      * Returns all components that are both present on this entity
      * and supported by the API.
      */
-    getComponents() {
+    Player.prototype.getComponents = function () {
         return this.__PlayerComponents;
-    }
+    };
     ;
     /**
      * @remarks
@@ -129,18 +138,18 @@ class Player {
      * Additional options for processing this raycast query.
      * @throws This function can throw errors.
      */
-    getEntitiesFromViewVector() {
-        return this.__PlayerEntitiesFromViewVector;
-    }
+    Player.prototype.getEntitiesFromViewDirection = function () {
+        return this.__PlayerEntitiesFromViewDirection;
+    };
     ;
     /**
      * @remarks
      * Returns all tags associated with an entity.
      * @throws This function can throw errors.
      */
-    getTags() {
+    Player.prototype.getTags = function () {
         return this.__PlayerTags;
-    }
+    };
     ;
     /**
      * @remarks
@@ -151,13 +160,13 @@ class Player {
      * to retrieve. If no namespace prefix is specified,
      * 'minecraft:' is assumed.
      */
-    hasComponent(componentId) {
-        let componentIndex = this.__PlayerComponents.findIndex(entityComponent => entityComponent.id === componentId);
+    Player.prototype.hasComponent = function (componentId) {
+        var componentIndex = this.__PlayerComponents.findIndex(function (entityComponent) { return entityComponent.id === componentId; });
         if (componentIndex < 0)
             return false;
         else
             return true;
-    }
+    };
     ;
     /**
      * @remarks
@@ -166,33 +175,38 @@ class Player {
      * Identifier of the tag to test for.
      * @throws This function can throw errors.
      */
-    hasTag(tag) {
-        let tagIndex = this.__PlayerTags.findIndex(playerTag => playerTag === tag);
+    Player.prototype.hasTag = function (tag) {
+        var tagIndex = this.__PlayerTags.findIndex(function (playerTag) { return playerTag === tag; });
         if (tagIndex < 0)
             return false;
         else
             return true;
-    }
+    };
     ;
     ;
-}
+    return Player;
+}());
 ;
 /**
  * Contains information regarding a player that has left the
  * world.
  */
-export class PlayerLeaveEvent {
-    constructor(player) {
+var PlayerLeaveEvent = /** @class */ (function () {
+    function PlayerLeaveEvent(player) {
         this.player = player;
     }
     ;
-}
+    return PlayerLeaveEvent;
+}());
+export { PlayerLeaveEvent };
 ;
 /**
  * Manages callbacks that are connected to a player leaving the
  * world.
  */
-export class PlayerLeaveEventSignal {
+var PlayerLeaveEventSignal = /** @class */ (function () {
+    function PlayerLeaveEventSignal() {
+    }
     /**
      * @remarks
      * Adds a callback that will be called when a player leaves the
@@ -200,37 +214,41 @@ export class PlayerLeaveEventSignal {
      * @param {(arg: PlayerLeaveEvent) => void} callback
      * @return {(arg: PlayerLeaveEvent) => void}
      */
-    subscribe(callback) {
+    PlayerLeaveEventSignal.prototype.subscribe = function (callback) {
         callback["playerLeave"] = true;
-        let players = [...world.getPlayers()].map(pl => new Player(pl));
-        let executedPlayers = [];
-        let TickEventCallback = world.events.tick.subscribe(() => {
+        var players = __spreadArray([], world.getPlayers(), true).map(function (pl) { return new Player(pl); });
+        var executedPlayers = [];
+        var TickEventCallback = world.events.tick.subscribe(function () {
             if (callback["playerLeave"] !== true)
                 world.events.tick.unsubscribe(TickEventCallback);
             // Change from player class to custom player class
-            let currentPlayers = [...world.getPlayers()];
-            for (let player of players) {
-                let executedPlayerIndex = executedPlayers.findIndex(executedPlayer => comparePlayer(executedPlayer, player));
-                if (!currentPlayers.find(pl => comparePlayer(pl, player)) && executedPlayerIndex < 0) {
+            var currentPlayers = __spreadArray([], world.getPlayers(), true);
+            var _loop_1 = function (player) {
+                var executedPlayerIndex = executedPlayers.findIndex(function (executedPlayer) { return comparePlayer(executedPlayer, player); });
+                if (!currentPlayers.find(function (pl) { return comparePlayer(pl, player); }) && executedPlayerIndex < 0) {
                     executedPlayers.push(player);
-                    let onPlayerJoin = world.events.playerJoin.subscribe((playerJoinEvent) => {
-                        let playerIndex = executedPlayers.findIndex(pl => comparePlayer(pl, playerJoinEvent.player));
+                    var onPlayerSpawn_1 = world.events.playerSpawn.subscribe(function (playerJoinEvent) {
+                        var playerIndex = executedPlayers.findIndex(function (pl) { return comparePlayer(pl, playerJoinEvent.player); });
                         if (playerIndex >= 0) {
                             executedPlayers.splice(playerIndex);
-                            world.events.playerJoin.unsubscribe(onPlayerJoin);
+                            world.events.playerSpawn.unsubscribe(onPlayerSpawn_1);
                         }
                         ;
                     });
                     callback(new PlayerLeaveEvent(player));
                 }
                 ;
+            };
+            for (var _i = 0, players_1 = players; _i < players_1.length; _i++) {
+                var player = players_1[_i];
+                _loop_1(player);
             }
             ;
             players = [];
-            players = [...world.getPlayers()].map(pl => new Player(pl));
+            players = __spreadArray([], world.getPlayers(), true).map(function (pl) { return new Player(pl); });
         });
         return callback;
-    }
+    };
     ;
     /**
      * @remarks
@@ -238,9 +256,11 @@ export class PlayerLeaveEventSignal {
      * the world.
      * @param {(arg: PlayerLeaveEvent) => void} callback
      */
-    unsubscribe(callback) {
+    PlayerLeaveEventSignal.prototype.unsubscribe = function (callback) {
         callback["playerLeave"] = false;
-    }
+    };
     ;
-}
+    return PlayerLeaveEventSignal;
+}());
+export { PlayerLeaveEventSignal };
 ;

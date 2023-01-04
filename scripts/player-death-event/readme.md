@@ -21,7 +21,7 @@ let callback = playerDeath.subscribe(({player}) => {
 
 # Typing
 ```ts
-import { Player } from "mojang-minecraft";
+import { Player } from "@minecraft/server";
 
 export class PlayerDeathEvent {
   player: Player;

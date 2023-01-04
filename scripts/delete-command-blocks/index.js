@@ -1,4 +1,4 @@
-import { world, MinecraftBlockTypes } from "mojang-minecraft";
+import { world, MinecraftBlockTypes } from "@minecraft/server";
 
 async function DeleteCommandBlocks () {
   let CommandBlocks = MinecraftBlockTypes.getAllBlockTypes().filter(blockType => blockType.id.endsWith("command_block"));

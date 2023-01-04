@@ -45,7 +45,7 @@ const itemTypes = {
   ]
 };
 import { InventoryComponentContainer } from "@minecraft/server";
-import { world, Player } from "mojang-minecraft";
+import { world, Player } from "@minecraft/server";
 const enchants = {};
 const names = {};
 export class Enchant {
@@ -79,8 +79,8 @@ export function addEnchant(item, ench, level = 1) {
   if (!(ench in enchants))
       return;
   //@ts-ignore
-  if (enchants[ench].itemCatagory !== "any" && (!itemTypes[enchants[ench].itemCatagory].includes(item.id)))
-      throw new Error(`The enchant ${enchants[ench].name} isn't allowed on item ${item.id}!`);
+  if (enchants[ench].itemCatagory !== "any" && (!itemTypes[enchants[ench].itemCatagory].includes(item.typeId)))
+      throw new Error(`The enchant ${enchants[ench].name} isn't allowed on item ${item.typeId}!`);
   //@ts-ignore
   const lore = item.getLore();
   const index = lore.findIndex(e => names[e.split(" ")[0]] === ench);

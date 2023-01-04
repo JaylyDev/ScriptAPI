@@ -1,9 +1,11 @@
-Replicate Commands class that was in the `Minecraft` module (renamed as `mojang-minecraft`)
+Replicate Commands class that was in the `Minecraft` module (renamed as `@minecraft/server`)
 
 ## Usage
 
 ### Commands.run
-Runs a particular command from the context.
+
+> Deprecated!
+> Runs a particular command from the context.
 
 ```ts
 Commands.run(commandString: string, target?: Dimension | Entity): any
@@ -11,7 +13,7 @@ Commands.run(commandString: string, target?: Dimension | Entity): any
 
 ```js
 import { Commands } from "./index.js";
-import { world } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 
 // original Commands.run command
 Commands.run("scoreboard players add @a score 1");
@@ -21,11 +23,12 @@ Commands.run("say Hello World", player); // execute command as the player
 ```
 
 ### Commands.runAsync
+
 Runs a particular command asynchronously from the context. Where possible - and especially for long-running operations - you should use runCommandAsync over runCommand.
 
 ```ts
-import * as mojangminecraft from "mojang-minecraft";
-Commands.runAsync(commandString: string, target?: Dimension | Entity): Promise<mojangminecraft.CommandResult>
+import * as server from "@minecraft/server";
+Commands.runAsync(commandString: string, target?: Dimension | Entity): Promise<server.CommandResult>
 ```
 
 ```js
@@ -36,6 +39,7 @@ Commands.runAsync("scoreboard players add @a score 1");
 ```
 
 ### Commands.register
+
 Registers a new custom command. This command will become available in Minecraft via [prefix][command].
 
 ```ts

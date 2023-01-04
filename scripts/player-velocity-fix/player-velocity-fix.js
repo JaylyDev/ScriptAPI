@@ -6,7 +6,7 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import { Player, Location, MinecraftEntityTypes, MinecraftEffectTypes } from "mojang-minecraft";
+import { Player, Location, MinecraftEntityTypes, MinecraftEffectTypes } from "@minecraft/server";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -54,7 +54,7 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-import { Dimension, Entity, world } from "mojang-minecraft";
+import { Dimension, Entity, world } from "@minecraft/server";
 /**
  * Main class for custom command functions, with the player that execute
  * this command with additional arguments split in an iterable iterator
@@ -142,7 +142,7 @@ var Commands = /** @class */ (function () {
     Commands.run = function (commandString, target) {
         if (target === void 0) { target = world.getDimension("overworld"); }
         if (target instanceof Dimension || Entity)
-            return target.runCommand(commandString);
+            return target.runCommandAsync(commandString);
         else
             throw TypeError("Native type conversion failed");
     };
@@ -192,7 +192,7 @@ var Commands = /** @class */ (function () {
      * @example example1.js
      * ```typescript
      *          Commands.register("!", "test", function (arg) {
-     *              arg.player.runCommand(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
+     *              arg.player.runCommandAsync(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
      *          });
      * ```
      */
@@ -210,7 +210,7 @@ var Commands = /** @class */ (function () {
                     var statusMessage = JSON.parse(err).statusMessage;
                     console.error(err);
                     // @ts-ignore
-                    !!arg.sender.tell ? arg.sender.tell("\u00A7c".concat(statusMessage)) : arg.sender.runCommand("tellraw @s {\"rawtext\":[{\"text\": \"\u00A7c".concat(statusMessage, "\"}]}"));
+                    !!arg.sender.tell ? arg.sender.tell("\u00A7c".concat(statusMessage)) : arg.sender.runCommandAsync("tellraw @s {\"rawtext\":[{\"text\": \"\u00A7c".concat(statusMessage, "\"}]}"));
                 }
                 ;
             }

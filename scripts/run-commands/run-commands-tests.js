@@ -1,4 +1,4 @@
-import { BlockLocation, world } from 'mojang-minecraft';
+import { BlockLocation, world } from '@minecraft/server';
 import { runCommands, runCommandsAsync } from './index.js';
 
 // spawns a zombie then runs commands 

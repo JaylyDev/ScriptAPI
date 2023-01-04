@@ -1,5 +1,5 @@
 // https://discord.com/channels/523663022053392405/854033525546942464/988294124392284181
-import { Items, ItemStack, Player, PlayerInventoryComponentContainer } from "mojang-minecraft";
+import { Items, ItemStack, Player, PlayerInventoryComponentContainer } from "@minecraft/server";
 
 let sellItems = [{
     id: 'minecraft:sand',
@@ -28,11 +28,11 @@ const sell = (player) => {
     for (let i = 0; i < size; i++) {
         const item = inv.getItem(i)
         if (!item) continue;
-        const soldItem = sellItems.find(element => element.id === item.id)
+        const soldItem = sellItems.find(element => element.id === item.typeId)
         if (!soldItem) continue;
         amount = amount + soldItem.value * item.amount
         inv.setItem(i, voidSlot)
     }
-    player.runCommand(`scoreboard players add @s Money ${amount}`)
+    player.runCommandAsync(`scoreboard players add @s Money ${amount}`)
     return amount
 }

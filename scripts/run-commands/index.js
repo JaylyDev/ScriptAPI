@@ -1,4 +1,4 @@
-import { Entity, Dimension } from "mojang-minecraft";
+import { Entity, Dimension } from "@minecraft/server";
 
 /**
  * Run commands in one function
@@ -8,7 +8,7 @@ import { Entity, Dimension } from "mojang-minecraft";
 export function runCommands (target, ...commandString) {
     const results = [];
     for (const command of commandString) {
-        results.push(target.runCommand(command));
+        results.push(target.runCommandAsync(command));
     };
     return results;
 };

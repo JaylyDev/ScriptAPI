@@ -1,5 +1,5 @@
 // https://discord.com/channels/523663022053392405/854033525546942464/995831911039647824
-import { Player, world } from "mojang-minecraft"
+import { Player, world } from "@minecraft/server"
 
 /**
  * Get score
@@ -26,10 +26,10 @@ function levelup() {
     let xpmax = getScore('xpmax', player, true);
     let level = getScore('level', player, true);
     if (xp == xpmax && level <= 100) {
-      player.runCommand(`scoreboard players add @s level 1`)
-      player.runCommand(`scoreboard players set @s xp 0`)
+      player.runCommandAsync(`scoreboard players add @s level 1`)
+      player.runCommandAsync(`scoreboard players set @s xp 0`)
       xpmax += xpmax + (xpmax * 0.03)
-      player.runCommand(`scoreboard players set @s xpmax ${xpmax}`)
+      player.runCommandAsync(`scoreboard players set @s xpmax ${xpmax}`)
     }
   }
 }

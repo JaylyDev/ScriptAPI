@@ -47,9 +47,9 @@ In the example `new-package` is the package name, you must include
 
 ### Script modules version
 
-When submitting new package, the package must not import new Script API modules and old Script API modules in the same script file. This repository still has old modules like `mojang-minecraft` for compatibility.
+The script samples are intended to be used with the latest beta module of script modules in latest version of Minecraft Preview, and the latest version of Minecraft, this depends on the scale of changes happens in Scripting API in Minecraft Preview.
 
-We recommend upload scripts that uses the latest version of Script API modules. For more infomation please visit [here](./CONTRIBUTING.md).
+For submitting or updating script samples, we recommend upload scripts that uses the latest version of Script API modules. For more infomation please visit [here](./CONTRIBUTING.md).
 
 ### Acknowledgements
 

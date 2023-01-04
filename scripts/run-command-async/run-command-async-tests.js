@@ -1,4 +1,4 @@
-import { world } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 
 let commands = [
   () => world.getDimension("overworld").runCommandAsync("say Dimension native runCommandAsync"),
@@ -10,7 +10,7 @@ let commands = [
 for (let command of commands) {
   let time = new Date().getTime();
   command();
-  world.getDimension("overworld").runCommand(`say ${new Date().getTime() - time}`);
+  world.getDimension("overworld").runCommandAsync(`say ${new Date().getTime() - time}`);
 };
 
 //custom runCommandAsync
@@ -18,5 +18,5 @@ import "./index.js";
 for (let command of commands) {
   let time = new Date().getTime();
   command();
-  world.getDimension("overworld").runCommand(`say ${new Date().getTime() - time}`);
+  world.getDimension("overworld").runCommandAsync(`say ${new Date().getTime() - time}`);
 };

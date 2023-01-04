@@ -25,4 +25,4 @@ function respond_deny (response: http.ServerResponse): void {
 const server: http.Server = http.createServer(listener);
 
 server.listen(port, host);
-console.log(`Connecting @mojang-net/gametest to host [${host}] on port [${port}].`);
+console.log(`Connecting @minecraft/server-net to host [${host}] on port [${port}].`);
