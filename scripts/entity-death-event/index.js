@@ -63,8 +63,4 @@ class EntityDeathEventSignal {
 
 const entityDeath = new EntityDeathEventSignal();
 
-entityDeath.subscribe(() => {
-  console.warn("Hello");
-})
-
 export { entityDeath, EntityDeathEventSignal };
