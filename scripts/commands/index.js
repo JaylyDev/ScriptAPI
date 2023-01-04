@@ -88,31 +88,6 @@ var Commands = /** @class */ (function () {
     }
     /**
      * @remarks
-     * Runs a particular command from the context.
-     * @param commandString
-     * Command to run. Note that command strings should not start
-     * with slash.
-     * @param target
-     * Target to be used as context for the command to run
-     * within.
-     * @returns For commands that return data, returns a JSON structure with command response values.
-     * @throws This function can throw errors.
-     * @example commands.js
-     * ```typescript
-     *        Commands.run("say You got a new high score!");
-     *        Commands.run("scoreboard players set @p score 10", world.getDimension("overworld"));
-     * ```
-     */
-    Commands.run = function (commandString, target) {
-        if (target === void 0) { target = world.getDimension("overworld"); }
-        if (target instanceof Dimension || Entity)
-            return target.runCommandAsync(commandString);
-        else
-            throw TypeError("Native type conversion failed");
-    };
-    ;
-    /**
-     * @remarks
      * Runs a particular command asynchronously from the context.
      * Where possible - and especially for
      * long-running operations - you should use runCommandAsync
@@ -132,11 +107,13 @@ var Commands = /** @class */ (function () {
         if (target === void 0) { target = world.getDimension("overworld"); }
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                if (target instanceof Dimension || Entity)
-                    return [2 /*return*/, target.runCommandAsync(commandString)];
-                else
-                    throw TypeError("Native type conversion failed");
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        if (!(target instanceof Dimension || Entity)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, target.runCommandAsync(commandString)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2: throw TypeError("Native type conversion failed");
+                }
             });
         });
     };
@@ -173,8 +150,7 @@ var Commands = /** @class */ (function () {
                 catch (err) {
                     var statusMessage = JSON.parse(err).statusMessage;
                     console.error(err);
-                    // @ts-ignore
-                    !!arg.sender.tell ? arg.sender.tell("\u00A7c".concat(statusMessage)) : arg.sender.runCommandAsync("tellraw @s {\"rawtext\":[{\"text\": \"\u00A7c".concat(statusMessage, "\"}]}"));
+                    arg.sender.tell("\u00A7c".concat(statusMessage));
                 }
                 ;
             }

@@ -8,12 +8,13 @@
     "noImplicitThis": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
+    "moduleResolution": "node",
     "baseUrl": ".",
     "types": [],
     "downlevelIteration": true
   },
   "files": [
     "index.ts",
-    "commands-tests.ts"
+    "tests.ts"
   ]
 }
