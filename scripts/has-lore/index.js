@@ -7,6 +7,6 @@ import { ItemStack } from '@minecraft/server';
 /**
  * @param {ItemStack} item
  */
-export default function hasLore (item) {
+export function hasLore (item) {
   return item.getLore().length > 0
 }
