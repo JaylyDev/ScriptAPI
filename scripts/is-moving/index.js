@@ -1,13 +1,13 @@
 // Script examples for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
-import { Entity, Player } from "@minecraft/server";
+
 
 /**
  * 
  * @param {number} x 
  */
 function MathRound (x) {
-  return Math.round(x * 10000) / 10000;
+  return Math.round(x * 1000) / 1000;
 };
 
 /**
@@ -26,8 +26,8 @@ function isMoving (entity) {
     z: MathRound(entity.velocity.z)
   };
 
-  if (vector.x === 0 && vector.y === 0 && vector.z === 0) return true;
-  else return false;
+  if (vector.x === 0 && vector.y === 0 && vector.z === 0) return false;
+  else return true;
 };;
 
 export default isMoving;
