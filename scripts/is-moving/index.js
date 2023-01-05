@@ -1,6 +1,7 @@
 // Script examples for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 
+import { Entity, Player } from "@minecraft/server";
 
 /**
  * 
