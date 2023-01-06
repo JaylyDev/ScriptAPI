@@ -15,14 +15,14 @@ overworld
   .runCommandAsync("scoreboard objectives add kills dummy")
   .catch((error) => console.warn(error));
 world.events.entityHurt.subscribe(
-  ({ hurtEntity, damagingEntity }) => {
+  ({ hurtEntity, damageSource }) => {
     /** @type {EntityHealthComponent} */
     // @ts-ignore
     const health = hurtEntity.getComponent("health");
     if (health.current > 0) return;
     hurtEntity.runCommandAsync("scoreboard players add @s deaths 1");
-    if (!(damagingEntity instanceof Player)) return;
-    damagingEntity.runCommandAsync("scoreboard players add @s kills 1");
+    if (!(damageSource.damagingEntity instanceof Player)) return;
+    damageSource.damagingEntity.runCommandAsync("scoreboard players add @s kills 1");
   },
   { entityTypes: ["minecraft:player"] }
 );
