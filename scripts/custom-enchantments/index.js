@@ -117,20 +117,20 @@ world.events.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
       });
   }
 });
-world.events.entityHurt.subscribe(({ hurtEntity, damagingEntity, damage }) => {
-  if (damagingEntity instanceof Player) {
+world.events.entityHurt.subscribe(({ hurtEntity, damageSource, damage }) => {
+  if (damageSource.damagingEntity instanceof Player) {
     /**
      * @type {InventoryComponentContainer}
      */
     //@ts-ignore
       const inv = damagingEntity.getComponent("inventory").container;
-      const item = inv.getItem(damagingEntity.selectedSlot);
+      const item = inv.getItem(damageSource.damagingEntity.selectedSlot);
       if (!item)
           return;
       const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
       itemEnchants.forEach((e) => {
           if (e.data?.hurt) {
-              e.data.hurt({ player: damagingEntity, level: romanToInt(e.lore.slice(e.data.display.length + 1)), hurtEntity, damage, item });
+              e.data.hurt({ player: damageSource.damagingEntity, level: romanToInt(e.lore.slice(e.data.display.length + 1)), hurtEntity, damage, item });
           }
       });
   }

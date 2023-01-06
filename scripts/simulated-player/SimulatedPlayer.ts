@@ -125,7 +125,7 @@ export class SimulatedPlayer {
    * Amount of experience to add.
    * @throws This function can throw errors.
    */
-  addExperience(amount: number): boolean { return this.__player.addExperience(amount) };
+  addExperience(amount: number): number { return this.__player.addExperience(amount) };
   /**
    * @remarks
    * Adds a specified tag to a simulated player.
