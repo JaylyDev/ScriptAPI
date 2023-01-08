@@ -8,7 +8,7 @@ Returns a `Promise<CommandResult>` . Throws an error **synchronously** if the qu
 ## Commands you have to use
 
 Normally we recommend avoiding using commands,
-however, the following command features are not implemented in scripting API (as of 1.19.50).
+however, the following command features are not implemented in scripting API (as of 1.19.60).
 
 ### @s
 
