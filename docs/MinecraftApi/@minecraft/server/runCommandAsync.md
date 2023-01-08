@@ -39,11 +39,12 @@ however, the following command features are not implemented in scripting API (as
 
 ### /setblock
 
-1. `/setblock ... destroy`
+1. Can't destroy block `/setblock ... destroy`
 
 ### /clone
 
 1. Can't clone blocks.
+2. Can't move blocks.
 
 ### /ability
 
