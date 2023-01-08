@@ -99,6 +99,25 @@ however, the following command features are not implemented in scripting API (as
 1. Cannot set world's time.
 2. Cannot get world's time (relative and daytime).
 
+### /worldspawn
+
+1. Can't get world spawn point.
+2. Can't set world spawn point.
+
+### /spawnpoint
+
+1. Can't get player spawn point.
+2. Can't set player spawn point.
+
+### /clearspawnpoint
+
+1. Can't clear player spawn point.
+
+### /weather
+
+1. Can't get weather directly.
+2. Can't set weather.
+
 ### Other Commands
 
 Following commands useful for mapmaking cannot be replaced with JS code:
@@ -106,5 +125,3 @@ Following commands useful for mapmaking cannot be replaced with JS code:
 1. `/camerashake`
 2. `/fog`
 3. `/stopsound`
-4. `/weather`
-5. `/setspawnpoint` `/clearspawnpoint`
