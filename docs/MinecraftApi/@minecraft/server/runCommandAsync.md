@@ -99,7 +99,7 @@ however, the following command features are not implemented in scripting API (as
 1. Cannot set world's time.
 2. Cannot get world's time (relative and daytime).
 
-### /worldspawn
+### /setworldspawn
 
 1. Can't get world spawn point.
 2. Can't set world spawn point.
