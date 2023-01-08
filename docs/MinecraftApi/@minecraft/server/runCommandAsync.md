@@ -41,9 +41,9 @@ however, the following command features are not implemented in scripting API (as
 
 1. `/setblock ... destroy`
 
-### /fill
+### /clone
 
-1. `/fill` is fast.
+1. Can't clone blocks.
 
 ### /ability
 
@@ -99,11 +99,6 @@ however, the following command features are not implemented in scripting API (as
 1. Cannot set world's time.
 2. Cannot get world's time (relative and daytime).
 
-### /xp
-
-1. Cannot set player's experience.
-2. Cannot get player's experience.
-
 ### Other Commands
 
 Following commands useful for mapmaking cannot be replaced with JS code:
@@ -113,4 +108,3 @@ Following commands useful for mapmaking cannot be replaced with JS code:
 3. `/stopsound`
 4. `/weather`
 5. `/setspawnpoint` `/clearspawnpoint`
-6. `/clone`
