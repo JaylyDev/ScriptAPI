@@ -91,10 +91,6 @@ however, the following command features are not implemented in scripting API (as
 
 1. Even though the loot is broken from the start, but it's useful for drop or set the item to players/world.
 
-### /scoreboard
-
-1. Cannot add/set/remove/operation/reset players/entities' scores.
-
 ### /time
 
 1. Cannot set world's time.
