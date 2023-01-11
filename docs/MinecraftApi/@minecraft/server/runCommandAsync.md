@@ -3,6 +3,9 @@
 Runs a particular command asynchronously from the context of the broader dimension.
 Note that there is a maximum queue of 128 asynchronous commands that can be run in a given tick.
 
+Usually, it executes the command in the next tick.
+To run command in the same tick, you have to [delay the JS code](./system.run.md#improve-runcommandasync).
+
 Returns a `Promise<CommandResult>` . Throws an error **synchronously** if the queue is full.
 
 ## Commands you have to use
