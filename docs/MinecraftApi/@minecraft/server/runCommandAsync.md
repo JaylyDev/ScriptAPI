@@ -141,3 +141,8 @@ however, the following command features are not implemented in scripting API (as
 ### /stopsound
 
 1. Can't stop playing a sound.
+
+### /dialogue
+
+1. Can't open the NPC dialogue to player.
+2. Can't change the dialogue displayed by an NPC.
