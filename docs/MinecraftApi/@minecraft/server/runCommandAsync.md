@@ -130,10 +130,14 @@ however, the following command features are not implemented in scripting API (as
 
 1. Can't enable/disable mobevent.
 
-## Other Commands
+### /camerashake
 
-Following commands useful for mapmaking cannot be replaced with JS code:
+1. Can't add/stop camera shake for player.
 
-1. `/camerashake`
-2. `/fog`
-3. `/stopsound`
+### /fog
+
+1. Can't manage active fog settings for player.
+
+### /stopsound
+
+1. Can't stop playing a sound.
