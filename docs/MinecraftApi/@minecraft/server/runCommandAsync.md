@@ -3,12 +3,15 @@
 Runs a particular command asynchronously from the context of the broader dimension.
 Note that there is a maximum queue of 128 asynchronous commands that can be run in a given tick.
 
+Usually, it executes the command in the next tick.
+To run command in the same tick, you have to [delay the JS code](./system.run.md#improve-runcommandasync).
+
 Returns a `Promise<CommandResult>` . Throws an error **synchronously** if the queue is full.
 
 ## Commands you have to use
 
 Normally we recommend avoiding using commands,
-however, the following command features are not implemented in scripting API (as of 1.19.50).
+however, the following command features are not implemented in scripting API (as of 1.19.60).
 
 ### @s
 
@@ -39,11 +42,16 @@ however, the following command features are not implemented in scripting API (as
 
 ### /setblock
 
-1. `/setblock ... destroy`
+1. Can't destroy block `/setblock ... destroy`
 
-### /fill
+### /clone
 
-1. `/fill` is fast.
+1. Can't clone blocks.
+2. Can't move blocks.
+
+### /titleraw
+
+1. Can't display raw title.
 
 ### /ability
 
@@ -80,6 +88,7 @@ however, the following command features are not implemented in scripting API (as
 ### /gamemode
 
 1. Cannot set player's gamemode.
+2. Cannot set world default gamemode.
 
 ### /locate
 
@@ -90,27 +99,50 @@ however, the following command features are not implemented in scripting API (as
 
 1. Even though the loot is broken from the start, but it's useful for drop or set the item to players/world.
 
-### /scoreboard
+### /setworldspawn
 
-1. Cannot add/set/remove/operation/reset players/entities' scores.
+1. Can't get world spawn point.
+2. Can't set world spawn point.
 
-### /time
+### /spawnpoint
 
-1. Cannot set world's time.
-2. Cannot get world's time (relative and daytime).
+1. Can't get player spawn point.
+2. Can't set player spawn point.
 
-### /xp
+### /clearspawnpoint
 
-1. Cannot set player's experience.
-2. Cannot get player's experience.
+1. Can't clear player spawn point.
 
-### Other Commands
+### /weather
 
-Following commands useful for mapmaking cannot be replaced with JS code:
+1. Can't get weather directly.
+2. Can't set weather.
 
-1. `/camerashake`
-2. `/fog`
-3. `/stopsound`
-4. `/weather`
-5. `/setspawnpoint` `/clearspawnpoint`
-6. `/clone`
+### /difficulty
+
+1. Can't set world difficulty.
+
+### /playanimation
+
+1. Can't play client entity animation.
+
+### /mobevent
+
+1. Can't enable/disable mobevent.
+
+### /camerashake
+
+1. Can't add/stop camera shake for player.
+
+### /fog
+
+1. Can't manage active fog settings for player.
+
+### /stopsound
+
+1. Can't stop playing a sound.
+
+### /dialogue
+
+1. Can't open the NPC dialogue to player.
+2. Can't change the dialogue displayed by an NPC.
