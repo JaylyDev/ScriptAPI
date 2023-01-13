@@ -49,6 +49,10 @@ however, the following command features are not implemented in scripting API (as
 1. Can't clone blocks.
 2. Can't move blocks.
 
+### /titleraw
+
+1. Can't display raw title.
+
 ### /ability
 
 1. You can't set abilities for each player.
