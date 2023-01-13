@@ -88,6 +88,7 @@ however, the following command features are not implemented in scripting API (as
 ### /gamemode
 
 1. Cannot set player's gamemode.
+2. Cannot set world default gamemode.
 
 ### /locate
 
@@ -117,7 +118,19 @@ however, the following command features are not implemented in scripting API (as
 1. Can't get weather directly.
 2. Can't set weather.
 
-### Other Commands
+### /difficulty
+
+1. Can't set world difficulty.
+
+### /playanimation
+
+1. Can't play client entity animation.
+
+### /mobevent
+
+1. Can't enable/disable mobevent.
+
+## Other Commands
 
 Following commands useful for mapmaking cannot be replaced with JS code:
 
