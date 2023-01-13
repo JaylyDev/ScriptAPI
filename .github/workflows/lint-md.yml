@@ -10,6 +10,9 @@ on:
 
 jobs:
   markdown-link-check:
+    ## this action only runs in one of the following conditons
+    ## PR is labelled with docs tag
+    ## It's a push commit
     if: ${{ (github.event.label.name == 'docs' && github.event_name == 'pull_request') || github.event_name == 'push' }}
     name: 'Check Links'
     runs-on: ubuntu-latest
