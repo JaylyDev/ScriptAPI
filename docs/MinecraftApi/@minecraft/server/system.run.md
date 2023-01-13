@@ -49,9 +49,9 @@ Other code in the sync part of callback executes before the command.
 ```javascript
 // current tick
 system.run(() => {
-  const { x, y, z } = entity.location; // next tick
-  const promise = entity.runCommandAsync(`testfor @s[rm=0.1,x=${x},y=${y},z=${z}]`); // next tick after other code
-  console.warn("test started"); // next tick
+  const { x, y, z } = entity.location; // next tick before command
+  const promise = entity.runCommandAsync(`testfor @s[rm=0.1,x=${x},y=${y},z=${z}]`); // next tick
+  console.warn("test started"); // next tick before command
 });
 // current tick
 ```
