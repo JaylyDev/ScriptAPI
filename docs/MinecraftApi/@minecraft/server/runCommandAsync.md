@@ -94,11 +94,6 @@ however, the following command features are not implemented in scripting API (as
 
 1. Even though the loot is broken from the start, but it's useful for drop or set the item to players/world.
 
-### /time
-
-1. Cannot set world's time.
-2. Cannot get world's time (relative and daytime).
-
 ### /setworldspawn
 
 1. Can't get world spawn point.
