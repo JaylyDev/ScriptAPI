@@ -1,5 +1,5 @@
 // Script examples for ScriptAPI
-// Author: Jayly#1397 <Jayly Discord>
+// Author: Andy Earnshaw <https://github.com/andyearnshaw/Intl.js>
 
 // Type definitions for intl 1.2
 // Project: https://github.com/andyearnshaw/Intl.js
