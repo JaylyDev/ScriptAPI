@@ -8,6 +8,9 @@ on:
     types: [ labeled ]
 
 
+env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   markdown-link-check:
     ## this action only runs in one of the following conditons

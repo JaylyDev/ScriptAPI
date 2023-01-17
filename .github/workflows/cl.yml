@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
 
+env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
 jobs:
   debug:
     name: 'Type Check'
