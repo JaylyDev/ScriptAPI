@@ -1,7 +1,6 @@
 // Script examples for ScriptAPI
 // Author: Andy Earnshaw <https://github.com/andyearnshaw/Intl.js>
 
-// @ts-nocheck
 /******/ var __webpack_modules__ = ({
 
 /***/ 267:
@@ -456,6 +455,7 @@ var realDefineProp = function () {
 }();
 
 // Need a workaround for getters in ES3
+// @ts-ignore
 var es3 = !realDefineProp && !Object.prototype.__defineGetter__;
 
 // We use this a lot (and need it for proto-less objects)
@@ -537,6 +537,7 @@ function log10Floor(n) {
     if (typeof Math.log10 === 'function') return Math.floor(Math.log10(n));
 
     var x = Math.round(Math.log(n) * Math.LOG10E);
+    // @ts-ignore
     return x - (Number('1e' + x) > n);
 }
 
@@ -572,6 +573,7 @@ function createRegExpRestore() {
     var regExpCache = {
         lastMatch: RegExp.lastMatch || '',
         leftContext: RegExp.leftContext,
+        // @ts-ignore
         multiline: RegExp.multiline,
         input: RegExp.input
     },
@@ -1574,6 +1576,7 @@ function /* 9.2.5 */ResolveLocale(availableLocales, requestedLocales, options, r
                         // internal method of indexOf with keyLocaleData as the this
                         // value and an argument list containing the single item
                         // "true".
+                        // @ts-ignore
                         var _valuePos = indexOf(keyLocaleData, 'true');
 
                         // b. If valuePos ≠ -1, then
@@ -2630,6 +2633,7 @@ function ToRawFixed(x, minInteger, minFraction, maxFraction) {
         var exp = (idx = m.indexOf('e')) > -1 ? m.slice(idx + 1) : 0;
         if (exp) {
             m = m.slice(0, idx).replace('.', '');
+            // @ts-ignore
             m += arrJoin.call(Array(exp - (m.length - 1) + 1), '0');
         }
     }
@@ -2801,6 +2805,7 @@ function computeFinalPatterns(formatObj) {
     //  'In patterns, two single quotes represents a literal single quote, either
     //   inside or outside single quotes. Text within single quotes is not
     //   interpreted in any way (except for two adjacent single quotes).'
+    // @ts-ignore
     formatObj.pattern12 = formatObj.extendedPattern.replace(/'([^']*)'/g, function ($0, literal) {
         return literal ? literal : "'";
     });
@@ -4134,6 +4139,7 @@ function FormatToPartsDateTime(dateTimeFormat, x) {
  * When the ToLocalTime abstract operation is called with arguments date, calendar, and
  * timeZone, the following steps are taken:
  */
+// @ts-ignore
 function ToLocalTime(date, calendar, timeZone) {
     // 1. Apply calendrical calculations on date for the given calendar and time zone to
     //    produce weekday, era, year, month, day, hour, minute, second, and inDST values.
@@ -4212,6 +4218,7 @@ var ls = Intl.__localeSensitiveProtos = {
     //    Intl.NumberFormat is the standard built-in constructor defined in 11.1.3.
     // 5. Return the result of calling the FormatNumber abstract operation
     //    (defined in 11.3.2) with arguments numberFormat and x.
+    // @ts-ignore
     return FormatNumber(new NumberFormatConstructor(arguments[0], arguments[1]), this);
 };
 
@@ -4242,6 +4249,7 @@ var ls = Intl.__localeSensitiveProtos = {
     // 6. Let dateTimeFormat be the result of creating a new object as if by the
     //    expression new Intl.DateTimeFormat(locales, options) where
     //    Intl.DateTimeFormat is the standard built-in constructor defined in 12.1.3.
+    // @ts-ignore
     var dateTimeFormat = new DateTimeFormatConstructor(locales, options);
 
     // 7. Return the result of calling the FormatDateTime abstract operation (defined
@@ -4277,6 +4285,7 @@ var ls = Intl.__localeSensitiveProtos = {
     // 6. Let dateTimeFormat be the result of creating a new object as if by the
     //    expression new Intl.DateTimeFormat(locales, options) where
     //    Intl.DateTimeFormat is the standard built-in constructor defined in 12.1.3.
+    // @ts-ignore
     var dateTimeFormat = new DateTimeFormatConstructor(locales, options);
 
     // 7. Return the result of calling the FormatDateTime abstract operation (defined
@@ -4311,6 +4320,7 @@ var ls = Intl.__localeSensitiveProtos = {
     // 6. Let dateTimeFormat be the result of creating a new object as if by the
     //    expression new Intl.DateTimeFormat(locales, options) where
     //    Intl.DateTimeFormat is the standard built-in constructor defined in 12.1.3.
+    // @ts-ignore
     var dateTimeFormat = new DateTimeFormatConstructor(locales, options);
 
     // 7. Return the result of calling the FormatDateTime abstract operation (defined
@@ -5103,6 +5113,7 @@ addLocaleData(b[5][712]);
 addLocaleData(b[5][713]);
 addLocaleData(b[5][714]);
 addLocaleData(b[5][715]);
+// @ts-ignore
 })(IntlPolyfill.__addLocaleData);
 
 /***/ })
@@ -5137,8 +5148,10 @@ addLocaleData(b[5][715]);
 /******/ /* webpack/runtime/define property getters */
 /******/ (() => {
 /******/ 	// define getter functions for harmony exports
+// @ts-ignore
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
+// @ts-ignore
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
@@ -5148,6 +5161,7 @@ addLocaleData(b[5][715]);
 /******/ 
 /******/ /* webpack/runtime/global */
 /******/ (() => {
+// @ts-ignore
 /******/ 	__webpack_require__.g = (function() {
 /******/ 		if (typeof globalThis === 'object') return globalThis;
 /******/ 		try {
@@ -5160,13 +5174,16 @@ addLocaleData(b[5][715]);
 /******/ 
 /******/ /* webpack/runtime/hasOwnProperty shorthand */
 /******/ (() => {
+// @ts-ignore
 /******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ })();
 /******/ 
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
+(() => // @ts-ignore
+// @ts-ignore
+{
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
