@@ -16,5 +16,5 @@ world.events.beforeChat.subscribe((eventData) => {
 
   eventData.cancel = true;
 
-  world.say(rank + " " + sender.name + ": " + message);
+  world.sendMessage(rank + " " + sender.name + ": " + message);
 });

@@ -6,9 +6,9 @@ import { sleep as sleepMS } from "./sleep";
 import { sleep as sleepTick } from "./tick";
 
 sleepMS(1000).then(() => {
-  world.say("Delayed for 1 second.");
+  world.sendMessage("Delayed for 1 second.");
 });
 
 sleepTick(100).then(() => {
-  world.say("Delayed for 100 ticks (5 seconds).");
+  world.sendMessage("Delayed for 100 ticks (5 seconds).");
 });

@@ -5,5 +5,5 @@ import { hasLore } from './index';
 import { world } from '@minecraft/server';
 
 world.events.beforeItemUse.subscribe(({item}) => {
-  if (hasLore(item)) world.say("Item has lore!");
+  if (hasLore(item)) world.sendMessage("Item has lore!");
 });

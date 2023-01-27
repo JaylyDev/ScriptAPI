@@ -100,13 +100,13 @@ export class SimulatedPlayer {
      * Current speed of the player across X, Y, and Z dimensions.
      * @throws This property can throw when used.
      */
-    get 'velocity'() { return this.__player.velocity; }
+    get 'velocity'() { return this.__player.getVelocity(); }
     ;
     /**
      * Vector of the current view of the player.
      * @throws This property can throw when used.
      */
-    get 'viewDirection'() { return this.__player.viewDirection; }
+    get 'viewDirection'() { return this.__player.getViewDirection(); }
     ;
     /**
      * @remarks

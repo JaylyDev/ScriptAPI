@@ -7,7 +7,7 @@ import { variables } from "@minecraft/server-admin";
  * @returns 
  */
 function say (message) {
-  return world.say(message);
+  return world.sendMessage(message);
 };
 
 // A list of available, configured server variables.

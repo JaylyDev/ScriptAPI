@@ -1,8 +1,8 @@
 import { system, world } from "@minecraft/server";
 import { getPlayerExperienceLevel } from "get-level";
 
-system.runSchedule(() => {
+system.runInterval(() => {
   for (const player of world.getAllPlayers()) {
-    player.tell(`Player level: ${getPlayerExperienceLevel(player)}`);
+    player.sendMessage(`Player level: ${getPlayerExperienceLevel(player)}`);
   }
 });

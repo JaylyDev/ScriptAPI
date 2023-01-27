@@ -1,4 +1,4 @@
-import { world, MinecraftBlockTypes } from "@minecraft/server";
+import { world, MinecraftBlockTypes, system } from "@minecraft/server";
 
 async function DeleteCommandBlocks () {
   let CommandBlocks = MinecraftBlockTypes.getAllBlockTypes().filter(blockType => blockType.id.endsWith("command_block"));
@@ -15,4 +15,4 @@ async function DeleteCommandBlocks () {
   };
 };
 
-world.events.tick.subscribe(DeleteCommandBlocks);
+system.runInterval(DeleteCommandBlocks);

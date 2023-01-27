@@ -31,7 +31,7 @@ world.events.beforeItemUse.subscribe(async (event) => {
   const response = await forceShow(event.source, form);
   
   // response should be ActionFormResponse
-  world.say(String(response.selection));
+  world.sendMessage(String(response.selection));
 });
 
 
@@ -47,7 +47,7 @@ system.run(async function () {
     const response = await forceShow(player, form);
     
     // response should be MessageFormResponse
-    world.say(String(response.selection));
+    world.sendMessage(String(response.selection));
   };
 });
 

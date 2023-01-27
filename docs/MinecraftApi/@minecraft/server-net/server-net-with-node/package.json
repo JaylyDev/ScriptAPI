@@ -10,8 +10,8 @@
   "author": "Jayly",
   "license": "MIT",
   "dependencies": {
-    "@minecraft/server": "^1.1.0-beta.preview.1.19.50.25",
-    "@minecraft/server-net": "^1.0.0-beta.preview.1.19.50.25",
+    "@minecraft/server": "^1.1.0-beta.1.19.70-preview.20",
+    "@minecraft/server-net": "^1.0.0-beta.1.19.70-preview.20",
     "express": "^4.18.2"
   },
   "devDependencies": {

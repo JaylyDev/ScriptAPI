@@ -21,11 +21,11 @@ export function getBlockData(block) {
     // @ts-expect-error
     const bit = needProps.find((e) => typeof e.value === "boolean");
 
-    const data = main.validValues.findIndex((e) => e === main.value);
+    const data = main.getValidValues().findIndex((e) => e === main.value);
 
     // Cannot find property...
     if (data === -1) return 0;
     // Return finded
-    if (bit?.value) return data + main.validValues.length;
+    if (bit?.value) return data + main.getValidValues().length;
     else return data;
 }

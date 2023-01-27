@@ -29,11 +29,11 @@ function getRanks(player: Player): string[] {
 
 world.events.beforeChat.subscribe((data) => {
   data.sendToTargets = true;
-  data.targets = [];
+  data.setTargets([]);
 });
 
 world.events.chat.subscribe((data) => {
   const ranks = getRanks(data.sender).join("§r§l§8][§r");
   const message = data.message;
-  world.say(`§r§l§8[§r${ranks}§r§l§8]§r§7 ${data.sender.name}:§r ${message}`);
+  world.sendMessage(`§r§l§8[§r${ranks}§r§l§8]§r§7 ${data.sender.name}:§r ${message}`);
 });

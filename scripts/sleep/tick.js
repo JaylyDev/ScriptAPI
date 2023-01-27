@@ -9,9 +9,9 @@ import { system } from "@minecraft/server";
  */
 export function sleep(tick) {
   return new Promise((resolve) => {
-    const id = system.runSchedule(() => {
+    const id = system.runInterval(() => {
       resolve();
-      system.clearRunSchedule(id);
+      system.clearRun(id);
     }, tick);
   });
 }

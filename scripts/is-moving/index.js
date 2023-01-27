@@ -22,9 +22,9 @@ function isMoving (entity) {
    * @type {import("@minecraft/server").Vector3}
    */
   const vector = {
-    x: MathRound(entity.velocity.x),
-    y: MathRound(entity.velocity.y),
-    z: MathRound(entity.velocity.z)
+    x: MathRound(entity.getVelocity().x),
+    y: MathRound(entity.getVelocity().y),
+    z: MathRound(entity.getVelocity().z)
   };
 
   if (vector.x === 0 && vector.y === 0 && vector.z === 0) return false;

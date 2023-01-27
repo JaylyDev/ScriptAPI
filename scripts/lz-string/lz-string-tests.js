@@ -19,7 +19,7 @@ let started = false;
 world.events.beforeChat.subscribe(() => {
   if (started) return;
 
-  world.say("Unit test starts");
+  world.sendMessage("Unit test starts");
   started = true;
   Main().catch((err) => {
     console.error(err);

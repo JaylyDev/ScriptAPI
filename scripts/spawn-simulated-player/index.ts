@@ -19,7 +19,12 @@ export function SpawnSimulatedPlayer (target: MinecraftServer.Player, callback: 
   if (!(target instanceof MinecraftServer.Player)) throw new TypeError("Native type conversion failed.");
 
   GameTest.registerAsync(testClassName, testName, async function (test) {
-    let simulatedplayer = test.spawnSimulatedPlayer(new MinecraftServer.BlockLocation(0, 1, 0));
+    let simulatedplayer = test.spawnSimulatedPlayer({
+      x: 0,
+
+      y: 1,
+      z: 0
+    });
     callback(new SimulatedPlayer(simulatedplayer, test));
   }).structureName("DebugTests:always_succeed")
     .tag(GameTest.Tags.suiteDefault)

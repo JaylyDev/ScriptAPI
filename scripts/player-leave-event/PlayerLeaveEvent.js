@@ -90,8 +90,8 @@ var Player = /** @class */ (function () {
         this.scoreboard = player.scoreboard;
         this.selectedSlot = player.selectedSlot;
         this.target = player.target;
-        this.velocity = player.velocity;
-        this.viewDirection = new Vector(player.viewDirection.x, player.viewDirection.y, player.viewDirection.z);
+        this.getVelocity() = player.getVelocity();
+        this.viewDirection = new Vector(player.getViewDirection().x, player.getViewDirection().y, player.getViewDirection().z);
     }
     /**
      * @remarks
@@ -218,9 +218,9 @@ var PlayerLeaveEventSignal = /** @class */ (function () {
         callback["playerLeave"] = true;
         var players = __spreadArray([], world.getPlayers(), true).map(function (pl) { return new Player(pl); });
         var executedPlayers = [];
-        var TickEventCallback = world.events.tick.subscribe(function () {
+        var TickEventCallback = system.runInterval(function () {
             if (callback["playerLeave"] !== true)
-                world.events.tick.unsubscribe(TickEventCallback);
+                system.clearRun(TickEventCallback);
             // Change from player class to custom player class
             var currentPlayers = __spreadArray([], world.getPlayers(), true);
             var _loop_1 = function (player) {
