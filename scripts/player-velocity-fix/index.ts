@@ -3,7 +3,7 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import { Vector3, Player, Location, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent, MinecraftEffectTypes } from "@minecraft/server";
+import { Vector3, Player, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent, MinecraftEffectTypes } from "@minecraft/server";
 import { Commands } from "../commands/index.js";
 import { clearInterval, setInterval } from "../timers/timers.js";
 
@@ -25,7 +25,7 @@ export function setVelocity (velocity: Vector3, player: Player) {
 
   const entity = player.dimension.spawnEntity(
     MinecraftEntityTypes.minecart.id,
-    new Location(player.location.x, player.location.y, player.location.z)
+    player.location
   );
   entity.triggerEvent('minecraft:ageable_grow_up'); // Make them adult
   entity.triggerEvent('minecraft:on_saddled');      // Add saddle to pig
@@ -40,7 +40,7 @@ export function setVelocity (velocity: Vector3, player: Player) {
 
   let onInterval = setInterval((isEntityMoving: Entity) => {
     try {      
-      const { x, y, z } = isEntityMoving.velocity;
+      const { x, y, z } = isEntityMoving.getVelocity();
 
       if (trunc(x, 2) === 0 && trunc(y, 1) === 0 && trunc(z, 2) === 0) {
         clearInterval(onInterval);   // clear timer
@@ -48,7 +48,7 @@ export function setVelocity (velocity: Vector3, player: Player) {
         
         // teleport entity to void to avoid mob loot drops
         let { location } = entity;
-        entity.teleport(new Location(location.x, -100, location.z), entity.dimension, 0, 0);
+        entity.teleport({ x: location.x, y: -100, z: location.z}, entity.dimension, 0, 0);
         entity.kill();
       } else {
         // Force the player to ride the entity until the entity lands

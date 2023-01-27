@@ -22,10 +22,10 @@ export function getBlockData(block: Block) {
 
     const bit = needProps.find((e) => typeof e.value === "boolean") as BoolBlockProperty;
 
-    const data = main.validValues.findIndex((e: string | number): boolean => e === main.value);
+    const data = main.getValidValues().findIndex((e: string | number): boolean => e === main.value);
 
     // Cannot find property...
     if (data === -1) return 0;
-    if (bit?.value) return data + main.validValues.length;
+    if (bit?.value) return data + main.getValidValues().length;
     else return data;
 }

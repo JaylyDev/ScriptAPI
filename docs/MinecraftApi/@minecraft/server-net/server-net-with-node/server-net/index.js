@@ -2,7 +2,7 @@ import { http, HttpRequest, HttpRequestMethod } from '@minecraft/server-net';
 import { world } from '@minecraft/server';
 const url = 'http://localhost:3000';
 function errorHandler(err) {
-    world.say(String(err));
+    world.sendMessage(String(err));
 }
 ;
 async function send_request() {
@@ -16,7 +16,7 @@ async function send_request() {
 async function get_response() {
     const path = '/get-response';
     const response = await http.get(url + path);
-    world.say(response.body);
+    world.sendMessage(response.body);
 }
 ;
 async function request_response() {
@@ -25,7 +25,7 @@ async function request_response() {
     request.body = 'Body';
     request.method = HttpRequestMethod.POST;
     const response = await http.request(request);
-    world.say(response.body);
+    world.sendMessage(response.body);
 }
 ;
 send_request().catch(errorHandler);

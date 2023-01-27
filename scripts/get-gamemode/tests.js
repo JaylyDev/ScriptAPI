@@ -6,5 +6,5 @@ import { getGamemode } from "get-gamemode";
 world.events.beforeChat.subscribe((event) => {
   if (event.message !== 'gamemode') return;
   const gamemode = getGamemode(event.sender);
-  event.sender.tell('GameMode' + gamemode);
+  event.sender.sendMessage('GameMode' + gamemode);
 })

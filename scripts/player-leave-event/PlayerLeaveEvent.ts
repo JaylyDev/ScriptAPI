@@ -3,7 +3,7 @@
  * @author JaylyMC
  * @link https://github.com/JaylyDev/GameTestDB
  */
-import { world, Player as MinecraftPlayer, Dimension, Location, Block, Entity, IEntityComponent, ScoreboardIdentity, Vector, XYRotation, TickEvent, Vector3, PlayerSpawnEvent } from "@minecraft/server";
+import { world, Player as MinecraftPlayer, Dimension, Block, Entity, IEntityComponent, ScoreboardIdentity, Vector, XYRotation, TickEvent, Vector3, PlayerSpawnEvent, system } from "@minecraft/server";
 import "@minecraft/server-gametest"; // import "@minecraft/server-gametest" native module to support Simulated Players
 
 /**
@@ -61,7 +61,7 @@ class Player {
    * Location of the center of the head component of the player.
    * @throws This property can throw when used.
    */
-  public readonly 'headLocation': Location;
+  public readonly 'headLocation': Vector3;
   /**
    * Identifier for the player.
    * @throws This property can throw when used.
@@ -211,6 +211,7 @@ class Player {
     this.__PlayerTags = player.getTags();
 
     // PUBLIC PROPERTIES
+    const velocity = player.getVelocity();
     this.dimension = player.dimension;
     this.headLocation = player.headLocation;
     this.id = player.id;
@@ -218,12 +219,12 @@ class Player {
     this.location = player.location;
     this.name = player.name;
     this.nameTag = player.nameTag;
-    this.rotation = player.rotation;
+    this.rotation = player.getRotation();
     this.scoreboard = player.scoreboard;
     this.selectedSlot = player.selectedSlot;
     this.target = player.target;
-    this.velocity = player.velocity;
-    this.viewDirection = new Vector(player.viewDirection.x, player.viewDirection.y, player.viewDirection.z);
+    this.velocity = new Vector(velocity.x, velocity.y, velocity.z);
+    this.viewDirection = new Vector(player.getViewDirection().x, player.getViewDirection().y, player.getViewDirection().z);
   };
 };
 
@@ -257,8 +258,8 @@ export class PlayerLeaveEventSignal {
     let players: Player[] = [...world.getPlayers()].map(pl => new Player(pl));
     let executedPlayers: Player[] = [];
 
-    let TickEventCallback: (arg: TickEvent) => void = world.events.tick.subscribe(() => {
-      if (callback["playerLeave"] !== true) world.events.tick.unsubscribe(TickEventCallback);
+    let TickEventCallback = system.runInterval(() => {
+      if (callback["playerLeave"] !== true) system.clearRun(TickEventCallback);
 
       // Change from player class to custom player class
       let currentPlayers: MinecraftPlayer[] = [...world.getPlayers()];

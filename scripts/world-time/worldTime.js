@@ -9,7 +9,7 @@ import { world, TimeOfDay } from '@minecraft/server';
  * import { world } from '@minecraft/server';
  * 
  * const { hours, minutes } = GetWorldTime();
- * world.say(`The time is ${hours}:${minutes}`);
+ * world.sendMessage(`The time is ${hours}:${minutes}`);
  */
 function GetWorldTime () {
   const daytime = world.getTime() + 6000;

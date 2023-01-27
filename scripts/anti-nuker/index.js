@@ -1,5 +1,5 @@
 // Author: iBlqzed <https://github.com/iBlqzed>
-import { world } from "@minecraft/server"
+import { system, world } from "@minecraft/server"
 
 const log = new Map()
 const blockLog = new Map()
@@ -23,7 +23,7 @@ world.events.blockBreak.subscribe(({ block, brokenBlockPermutation, dimension, p
   log.set(player.name, { time: Date.now(), amount: ++old.amount })
 })
 
-world.events.tick.subscribe(() => {
+system.runInterval(() => {
   [...log.keys()]?.forEach(pN => {
     if (log.get(pN).amount > 5) {
       const player = [...world.getPlayers()].find(pL => pL.name === pN)
@@ -46,12 +46,12 @@ world.events.playerLeave.subscribe((data) => (log.delete(data.playerName)) && (b
  */
 function setTickTimeout(callback, tick, loop = false) {
   let cT = 0
-  const tE = world.events.tick.subscribe((data) => {
+  const tE = system.runInterval((data) => {
     if (cT === 0) cT = data.currentTick + tick
     if (cT <= data.currentTick) {
       try { callback() } catch (e) { console.warn(`${e} : ${e.stack}`) }
       if (loop) cT += tick
-      else world.events.tick.unsubscribe(tE)
+      else system.clearRun(tE)
     }
   })
 }

@@ -150,7 +150,7 @@ var Commands = /** @class */ (function () {
                 catch (err) {
                     var statusMessage = JSON.parse(err).statusMessage;
                     console.error(err);
-                    arg.sender.tell("\u00A7c".concat(statusMessage));
+                    arg.sender.sendMessage("\u00A7c".concat(statusMessage));
                 }
                 ;
             }
