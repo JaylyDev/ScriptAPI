@@ -1,7 +1,8 @@
 import { system, world } from "@minecraft/server";
+import { tick } from "tick-event";
 
 // get delta time from tick event
-system.runInterval(({
+tick.subscribe(({
   deltaTime // Time since the last tick was fired.
 }) => {
   // display on player using on screen display

@@ -1,5 +1,6 @@
 // Author: iBlqzed <https://github.com/iBlqzed>
 import { system, world } from "@minecraft/server"
+import { TickEventSignal } from "tick-event"
 
 const log = new Map()
 const blockLog = new Map()
@@ -45,13 +46,14 @@ world.events.playerLeave.subscribe((data) => (log.delete(data.playerName)) && (b
  * }, 20)
  */
 function setTickTimeout(callback, tick, loop = false) {
+  const tickEvent = new TickEventSignal();
   let cT = 0
-  const tE = system.runInterval((data) => {
+  const tE = tickEvent.subscribe((data) => {
     if (cT === 0) cT = data.currentTick + tick
     if (cT <= data.currentTick) {
       try { callback() } catch (e) { console.warn(`${e} : ${e.stack}`) }
       if (loop) cT += tick
-      else system.clearRun(tE)
+      else tickEvent.unsubscribe(tE)
     }
   })
 }
