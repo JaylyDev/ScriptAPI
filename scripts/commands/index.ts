@@ -74,7 +74,7 @@ export class Commands {
         } catch (err) {
           let { statusMessage } = JSON.parse(err);
           console.error(err);
-          arg.sender.tell(`§c${statusMessage}`);
+          arg.sender.sendMessage(`§c${statusMessage}`);
         };
       };
     });

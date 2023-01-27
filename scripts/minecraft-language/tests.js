@@ -2,7 +2,7 @@ import { world } from "@minecraft/server";
 import { MinecraftLanguageKeys } from "./index";
 
 world.events.beforeChat.subscribe((event) => {
-  event.targets = [];
+  event.setTargets([]);
   event.sendToTargets = true;
 });
 
@@ -13,5 +13,5 @@ world.events.chat.subscribe((event) => {
   // @ts-ignore
   const rawtext = MinecraftLanguageKeys["chat.type.text"];
   rawtext.with = [event.sender.name, event.message];
-  world.say(rawtext);
+  world.sendMessage(rawtext);
 });

@@ -5,7 +5,7 @@
  * @license MIT
  * @author JaylyMC
  */
-import { EntityHealthComponent, world, Player } from "@minecraft/server";
+import { EntityHealthComponent, world, Player, system } from "@minecraft/server";
 import { deprecate } from "deprecate/deprecate";
 
 /**
@@ -37,7 +37,7 @@ export class PlayerDeathEventSignal {
      * @type {Player[]}
      */
     const deadPlayers = [];
-    let callback = world.events.tick.subscribe(() => {
+    let callback = system.runInterval(() => {
       for (let player of world.getPlayers()) {
         if (!player.hasComponent("health")) return;
         /**
@@ -50,15 +50,15 @@ export class PlayerDeathEventSignal {
           if (playerIndex < 0) {
             arg(new PlayerDeathEvent(player));
             deadPlayers.push(player);
-            let playerDeathCallback = world.events.tick.subscribe(() => {
+            let playerDeathCallback = system.runInterval(() => {
               if (health.current > 0) {
                 deadPlayers.splice(playerIndex, 1);
-                world.events.tick.unsubscribe(playerDeathCallback);
+                system.clearRun(playerDeathCallback);
               };
             });
           }      
         } else if (arg["playerDeath"] === false) {
-          world.events.tick.unsubscribe(callback);
+          system.clearRun(callback);
         };
       }
     });

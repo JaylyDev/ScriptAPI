@@ -4,7 +4,7 @@
 import { getBlockData } from "./index";
 import { system, world } from "@minecraft/server";
 
-system.runSchedule(() => {
+system.runInterval(() => {
     for (const player of world.getAllPlayers()) {
         const block = player.getBlockFromViewDirection();
         if (!block) continue;

@@ -12,5 +12,5 @@ const netherCreativePlayers = getPlayers(world.getDimension('nether'), {
 });
 
 for (const player of netherCreativePlayers) {
-  player.tell('Hello nether!');
+  player.sendMessage('Hello nether!');
 }

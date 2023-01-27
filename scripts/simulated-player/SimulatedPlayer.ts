@@ -25,7 +25,7 @@ export class SimulatedPlayer {
    * Location of the center of the head component of the player.
    * @throws This property can throw when used.
    */
-  public get 'headLocation' (): Minecraft.Location { return this.__player.headLocation };
+  public get 'headLocation' (): Minecraft.Vector3 { return this.__player.headLocation };
   /**
    * Rotation of the head across pitch and yaw angles.
    * @throws This property can throw when used.
@@ -73,7 +73,7 @@ export class SimulatedPlayer {
    * Main rotation of the entity.
    * @throws This property can throw when used.
    */
-  public get 'rotation' (): Minecraft.XYRotation { return this.__player.rotation };
+  public get 'rotation' (): Minecraft.XYRotation { return this.__player.getRotation() };
   /**
    * Returns a scoreboard identity that represents this entity.
    * @throws This property can throw when used.
@@ -99,12 +99,12 @@ export class SimulatedPlayer {
    * Current speed of the player across X, Y, and Z dimensions.
    * @throws This property can throw when used.
    */
-  public get 'velocity' (): Minecraft.Vector { return this.__player.velocity };
+  public get 'velocity' (): Minecraft.Vector { return new Minecraft.Vector(this.__player.getVelocity().x, this.__player.getVelocity().y, this.__player.getVelocity().z) };
   /**
    * Vector of the current view of the player.
    * @throws This property can throw when used.
    */
-  public get 'viewDirection' (): Minecraft.Vector3 { return this.__player.viewDirection };
+  public get 'viewDirection' (): Minecraft.Vector3 { return this.__player.getViewDirection() };
   /**
    * @remarks
    * Adds an effect, like poison, to the entity.
@@ -166,7 +166,7 @@ export class SimulatedPlayer {
    * Direction to place the specified item within.
    * @throws This function can throw errors.
    */
-  breakBlock(blockLocation: Minecraft.BlockLocation, direction?: Minecraft.Direction): boolean { return this.__player.breakBlock(blockLocation, direction) };
+  breakBlock(blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction): boolean { return this.__player.breakBlock(blockLocation, direction) };
   /**
    * @remarks
    * Gets the first block that intersects with the vector of the
@@ -227,7 +227,7 @@ export class SimulatedPlayer {
    * @remarks
    * Gets the current item cooldown time for a particular
    * cooldown category.
-   * @param itemCategory
+velocity   * @param itemCategory
    * Specifies the cooldown category to retrieve the current
    * cooldown for.
    * @throws This function can throw errors.
@@ -286,7 +286,7 @@ export class SimulatedPlayer {
    * Direction to place the specified item within.
    * @throws This function can throw errors.
    */
-  interactWithBlock(blockLocation: Minecraft.BlockLocation, direction?: Minecraft.Direction): boolean { return this.__player.interactWithBlock(blockLocation, direction) };
+  interactWithBlock(blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction): boolean { return this.__player.interactWithBlock(blockLocation, direction) };
   /**
    * @remarks
    * Causes the simulated player to interact with a mob. Returns
@@ -327,7 +327,7 @@ export class SimulatedPlayer {
    * @param blockLocation
    * @throws This function can throw errors.
    */
-  lookAtBlock(blockLocation: Minecraft.BlockLocation): void { return this.__player.lookAtBlock(blockLocation) };
+  lookAtBlock(blockLocation: Minecraft.Vector3): void { return this.__player.lookAtBlock(blockLocation) };
   /**
    * @remarks
    * Rotates the simulated player's head/body to look at the
@@ -343,7 +343,7 @@ export class SimulatedPlayer {
    * @param location
    * @throws This function can throw errors.
    */
-  lookAtLocation(location: Minecraft.Location): void { return this.__player.lookAtLocation(location) };
+  lookAtLocation(location: Minecraft.Vector3): void { return this.__player.lookAtLocation(location) };
   /**
    * @remarks
    * Orders the simulated player to walk in the given direction
@@ -374,7 +374,7 @@ export class SimulatedPlayer {
    * @param speed
    * @throws This function can throw errors.
    */
-  moveToBlock(blockLocation: Minecraft.BlockLocation, speed?: number): void { return this.__player.moveToBlock(blockLocation, speed) };
+  moveToBlock(blockLocation: Minecraft.Vector3, speed?: number): void { return this.__player.moveToBlock(blockLocation, speed) };
   /**
    * @remarks
    * Orders the simulated player to move to the given location in
@@ -384,7 +384,7 @@ export class SimulatedPlayer {
    * @param speed
    * @throws This function can throw errors.
    */
-  moveToLocation(location: Minecraft.Location, speed?: number): void { return this.__player.moveToLocation(location, speed) };
+  moveToLocation(location: Minecraft.Vector3, speed?: number): void { return this.__player.moveToLocation(location, speed) };
   /**
    * @remarks
    * Orders the simulated player to move to a specific block
@@ -397,7 +397,7 @@ export class SimulatedPlayer {
    * @param speed
    * @throws This function can throw errors.
    */
-  navigateToBlock(blockLocation: Minecraft.BlockLocation, speed?: number): Minecraft.NavigationResult { return this.__player.navigateToBlock(blockLocation, speed) };
+  navigateToBlock(blockLocation: Minecraft.Vector3, speed?: number): Minecraft.NavigationResult { return this.__player.navigateToBlock(blockLocation, speed) };
   /**
    * @remarks
    * Will use navigation to follow the selected entity to within
@@ -420,7 +420,7 @@ export class SimulatedPlayer {
    * @param speed
    * @throws This function can throw errors.
    */
-  navigateToLocation(location: Minecraft.Location, speed?: number): Minecraft.NavigationResult { return this.__player.navigateToLocation(location, speed) };
+  navigateToLocation(location: Minecraft.Vector3, speed?: number): Minecraft.NavigationResult { return this.__player.navigateToLocation(location, speed) };
   /**
    * @remarks
    * Use navigation to follow the route provided via the
@@ -432,7 +432,7 @@ export class SimulatedPlayer {
    * Net speed to use for doing the navigation.
    * @throws This function can throw errors.
    */
-  navigateToLocations(locations: Minecraft.Location[], speed?: number): void { return this.__player.navigateToLocations(locations, speed) };
+  navigateToLocations(locations: Minecraft.Vector3[], speed?: number): void { return this.__player.navigateToLocations(locations, speed) };
   /**
    * @remarks
    * This method is inherited from Player, but is inoperative in
@@ -609,7 +609,7 @@ export class SimulatedPlayer {
    * Y rotation of the player after teleportation.
    * @throws This function can throw errors.
    */
-  teleport(location: Minecraft.Location, dimension: Minecraft.Dimension, xRotation: number, yRotation: number): void { return this.__player.teleport(location, dimension, xRotation, yRotation) };
+  teleport(location: Minecraft.Vector3, dimension: Minecraft.Dimension, xRotation: number, yRotation: number): void { return this.__player.teleport(location, dimension, xRotation, yRotation) };
   /**
    * @remarks
    * Teleports the selected player to a new location, and will
@@ -622,7 +622,7 @@ export class SimulatedPlayer {
    * Location that this player will be facing.
    * @throws This function can throw errors.
    */
-  teleportFacing(location: Minecraft.Location, dimension: Minecraft.Dimension, facingLocation: Minecraft.Location): void { return this.__player.teleportFacing(location, dimension, facingLocation) };
+  teleportFacing(location: Minecraft.Vector3, dimension: Minecraft.Dimension, facingLocation: Minecraft.Vector3): void { return this.__player.teleportFacing(location, dimension, facingLocation) };
   /**
    * @remarks
    * Triggers an entity type event. For every entity, a number of
@@ -670,7 +670,7 @@ export class SimulatedPlayer {
    * Block-face-relative Y position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemInSlotOnBlock(slot: number, blockLocation: Minecraft.BlockLocation, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY) };
+  useItemInSlotOnBlock(slot: number, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY) };
   /**
    * @remarks
    * Causes the simulated player to use an item on a block. The
@@ -688,7 +688,7 @@ export class SimulatedPlayer {
    * Block-face-relative Y position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemOnBlock(itemStack: Minecraft.ItemStack, blockLocation: Minecraft.BlockLocation, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY) };
+  useItemOnBlock(itemStack: Minecraft.ItemStack, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY) };
   public constructor (player: GameTest.SimulatedPlayer, test: GameTest.Test) {
     this.__player = player;
     this.__test = test;

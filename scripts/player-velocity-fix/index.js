@@ -33,7 +33,7 @@ export function setVelocity(velocity, player) {
     entity.setVelocity(velocity);
     var onInterval = setInterval(function (isEntityMoving) {
         try {
-            var _a = isEntityMoving.velocity, x = _a.x, y = _a.y, z = _a.z;
+            var _a = isEntityMoving.getVelocity(), x = _a.x, y = _a.y, z = _a.z;
             if (trunc(x, 2) === 0 && trunc(y, 1) === 0 && trunc(z, 2) === 0) {
                 clearInterval(onInterval); // clear timer
                 rideable === null || rideable === void 0 ? void 0 : rideable.ejectRider(player); // eject rider
