@@ -1,3 +1,6 @@
+// Script examples for ScriptAPI
+// Author: iBlqzed <https://github.com/iBlqzed>
+
 /**
  * Database
  */
