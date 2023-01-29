@@ -1,3 +1,6 @@
+// Script examples for ScriptAPI
+// Author: iBlqzed <https://github.com/iBlqzed>
+
 import { world } from "@minecraft/server";
 const names = [];
 /**
