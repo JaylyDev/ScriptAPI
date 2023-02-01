@@ -1,3 +1,7 @@
+# Public Archive
+
+Documentation from this ScriptAPI Repository will not be updated. Check out [Bedrock Wiki](https://wiki.bedrock.dev/) and [Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) for up-to-date infomation.
+
 # Documentation
 
 Some example scripts and explaination of using the modules
