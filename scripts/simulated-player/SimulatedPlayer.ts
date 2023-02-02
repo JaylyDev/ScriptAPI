@@ -25,7 +25,7 @@ export class SimulatedPlayer {
    * Location of the center of the head component of the player.
    * @throws This property can throw when used.
    */
-  public get 'headLocation' (): Minecraft.Vector3 { return this.__player.headLocation };
+  public get 'headLocation' (): Minecraft.Vector3 { return this.__player.getHeadLocation() };
   /**
    * Rotation of the head across pitch and yaw angles.
    * @throws This property can throw when used.
@@ -557,7 +557,7 @@ velocity   * @param itemCategory
    * X/Y/Z components of the velocity.
    * @throws This function can throw errors.
    */
-  setVelocity(velocity: Minecraft.Vector): void { return this.__player.setVelocity(velocity) };
+  setVelocity(velocity: Minecraft.Vector): void { return this.__player.applyImpulse(velocity) };
   /**
    * @remarks
    * Sets the item cooldown time for a particular cooldown

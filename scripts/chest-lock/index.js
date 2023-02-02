@@ -10,7 +10,7 @@ const key = MinecraftItemTypes.recoveryCompass;
 world.events.beforeItemUseOn.subscribe((event) => {
   const player = event.source;
   if (!(player instanceof Player)) return;
-  const block = player.dimension.getBlock(event.blockLocation);
+  const block = player.dimension.getBlock(event.getBlockLocation());
   /** @type {EntityInventoryComponent} */
   // @ts-ignore
   const inventory = player.getComponent('inventory');

@@ -145,12 +145,12 @@ world.events.beforeItemUse.subscribe(({ source, item }) => {
       });
   }
 });
-world.events.beforeItemUseOn.subscribe(({ source, item, blockLocation }) => {
-  if (source instanceof Player) {
-      const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
+world.events.beforeItemUseOn.subscribe((event) => {
+  if (event.source instanceof Player) {
+      const itemEnchants = event.item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
       itemEnchants.forEach((e) => {
           if (e.data?.rightClickBlock)
-              e.data.rightClickBlock({ player: source, level: romanToInt(e.lore.slice(e.data.display.length + 1)), item, block: source.dimension.getBlock(blockLocation) });
+              e.data.rightClickBlock({ player: event.source, level: romanToInt(e.lore.slice(e.data.display.length + 1)), item: event.item, block: event.source.dimension.getBlock(event.getBlockLocation()) });
       });
   }
 });
