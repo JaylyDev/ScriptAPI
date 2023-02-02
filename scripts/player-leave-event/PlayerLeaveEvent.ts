@@ -213,7 +213,7 @@ class Player {
     // PUBLIC PROPERTIES
     const velocity = player.getVelocity();
     this.dimension = player.dimension;
-    this.headLocation = player.headLocation;
+    this.headLocation = player.getHeadLocation();
     this.id = player.id;
     this.isSneaking = player.isSneaking;
     this.location = player.location;

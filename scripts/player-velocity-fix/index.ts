@@ -36,7 +36,7 @@ export function setVelocity (velocity: Vector3, player: Player) {
   
   entity.addEffect(MinecraftEffectTypes.invisibility, 0x7fff, 255, false); // makes the entity invisible
   entity.addEffect(MinecraftEffectTypes.resistance, 0x7fff, 255, false); // makes the entity invisible
-  entity.setVelocity(velocity);
+  entity.applyImpulse(velocity);
 
   let onInterval = setInterval((isEntityMoving: Entity) => {
     try {      
