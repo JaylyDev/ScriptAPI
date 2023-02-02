@@ -50,7 +50,7 @@ export function subtractScore(entity, objectiveId, score) {
  */
 export function divideScore(entity, objectiveId, score) {
   const previousScore = getScore(entity, objectiveId);
-  return setScore(entity, objectiveId, parseInt(previousScore / score));
+  return setScore(entity, objectiveId, Math.floor(previousScore / score));
 }
 /**
  * Test if the score recorded for entity on objective in range.
