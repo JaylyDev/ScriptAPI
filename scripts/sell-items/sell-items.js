@@ -23,7 +23,7 @@ const sell = (player) => {
      */
     // @ts-ignore
     const inv = player.getComponent('inventory').container, { size } = inv
-    const voidSlot = new ItemStack(Items.get('minecraft:air'), 1, 0)
+    const voidSlot = new ItemStack(Items.get('minecraft:air'), 1)
     let amount = 0;
     for (let i = 0; i < size; i++) {
         const item = inv.getItem(i)
