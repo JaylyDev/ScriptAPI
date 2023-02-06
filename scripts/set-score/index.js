@@ -1,7 +1,7 @@
 // Script examples for ScriptAPI
 // Author: Jayly#1397 <Bedrock Add-Ons>
 
-import { Entity, ScoreboardObjective, DisplaySlotId } from "@minecraft/server";
+import { Entity, ScoreboardObjective, DisplaySlotId, world } from "@minecraft/server";
 /**
  * Set entity score and fetch scoreboard objective display
  * @param {Entity} entity 
