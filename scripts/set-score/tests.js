@@ -3,7 +3,7 @@
 
 import { world } from "@minecraft/server";
 import { setScore } from "./index";
-import { getScore } from "get-score/get-score";
+import { getScore } from "./getScore";
 
 world.events.chat.subscribe((event) => {
   if (!event.sender.scoreboard) return;
