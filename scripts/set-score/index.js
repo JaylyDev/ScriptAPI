@@ -1,16 +1,20 @@
 // Script examples for ScriptAPI
-// Author: Jayly#1397 <Bedrock Add-Ons>
+// Author: Jayly#1397 <Jayly Discord>
 
-import { Entity, ScoreboardObjective, DisplaySlotId, world } from "@minecraft/server";
+import { Entity, world, DisplaySlotId } from "@minecraft/server";
 /**
  * Set entity score and fetch scoreboard objective display
  * @param {Entity} entity 
- * @param {ScoreboardObjective} objective 
+ * @param {string} objectiveId 
  * @param {number} score 
  */
-function setScore (entity, objective, score) {
+function setScore (entity, objectiveId, score) {
+  // Check if scoreboard object exist first
+  const objective = world.scoreboard.getObjective(objectiveId);
+  if (!objective) throw new ReferenceError('Scoreboard objective does not exist in world.');
+
   // If entity doesnt have scoreboard property, run command
-  if (!entity.scoreboard) entity.runCommandAsync('scoreboard players set @s ' + objective.id + ' ' + score);
+  if (!entity.scoreboard) entity.runCommandAsync('scoreboard players set @s ' + objective + ' ' + score);
   else entity.scoreboard.setScore(objective, score);
 
   // fetch scoreboard objective display
