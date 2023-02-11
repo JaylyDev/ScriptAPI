@@ -1,6 +1,8 @@
 // Script examples for ScriptAPI
 // Author: defowler2005#4812 <Jayly Discord>
 
+import { ActionFormData } from "@minecraft/server-ui";
+
 const Tpa_Main = new ActionFormData();
 Tpa_Main.title('§dTpa options')
 Tpa_Main.body('§bSelect an option')
