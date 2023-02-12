@@ -3,12 +3,11 @@
 
 import { world } from "@minecraft/server";
 import { setScore } from "./index";
-
-const objective = world.scoreboard.getObjective('messages');
+import { getScore } from "./getScore";
 
 world.events.chat.subscribe((event) => {
   if (!event.sender.scoreboard) return;
 
-  const score = event.sender.scoreboard.getScore(objective);
-  setScore(event.sender, objective, score + 1);
+  const score = getScore(event.sender, 'messages');
+  setScore(event.sender, 'messages', score + 1);
 })
