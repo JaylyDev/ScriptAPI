@@ -34,7 +34,7 @@ world.events.chat.subscribe((event) => {
     value: event.sender.id
   });
 
-  event.sender.tell('Player ID: ' + playerId);
+  event.sender.sendMessage('Player ID: ' + playerId);
 
   // remove property
   rest.request('/players', {

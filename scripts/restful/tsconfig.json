@@ -5,5 +5,5 @@
     "moduleResolution": "node",
     "esModuleInterop": true
   },
-  "files": [ "index.ts", "encoding.ts" ]
+  "files": [ "index.ts", "encoding.ts", "tests.ts" ]
 }
