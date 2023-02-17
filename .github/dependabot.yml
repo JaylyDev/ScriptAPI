@@ -23,5 +23,3 @@ updates:
     target-branch: "main"
     ignore:
       - dependency-name: "@types/*"
-        # ignore all patch updates from types organization
-        update-types: ["version-update:semver-patch"]
