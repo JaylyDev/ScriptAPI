@@ -1,3 +1,6 @@
+// Script examples for ScriptAPI
+// Author: Jayly#1397 <Jayly Discord>
+
 import { system, TickEvent } from "@minecraft/server";
 
 let lastTick = NaN;
@@ -9,6 +12,7 @@ const callbacks = [];
 system.runInterval(() => {
   const { currentTick } = system;
   const deltaTime = (Date.now() - lastTick) / 1000;
+  lastTick = Date.now();
 
   for (const callback of callbacks) {
     callback({ deltaTime, currentTick });
