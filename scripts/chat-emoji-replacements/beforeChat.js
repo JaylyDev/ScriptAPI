@@ -7,7 +7,7 @@ const replacements = {
     "food": ""
 };
 
-export function beforeChat(msg) {
+function beforeChat(msg) {
     const player = msg.sender;
     if (!getScore("chatRankSet", player)) {
         let message = msg.message;
@@ -20,3 +20,5 @@ export function beforeChat(msg) {
         msg.cancel = true;
     }
 }
+
+world.events.beforeChat.subscribe(msg => beforeChat(msg));

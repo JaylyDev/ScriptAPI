@@ -1,22 +1,8 @@
-import("@minecraft/server").Vector3
-import("@minecraft/server").Player
-
-/**
- * Calculates the magnitude of a Vector3.
- * @param {Vector3} vector - The Vector3 input.
- * @returns {number} The magnitude of the vector.
- */
-export function magnitude(vector) {
+function magnitude(vector) {
     return Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
 }
 
-/**
- * Calculates the distance between an position and another position.
- * @param {Vector3} posA - The position of first point.
- * @param {Vector3} posB - The position of second point.
- * @returns {Vector3} The distance between the two points.
- */
-export function calculateDistance(posA, posB) {
+function calculateDistance(posA, posB) {
     let direction = {
         x: posA.x - posB.x,
         y: posA.y - posB.y,
@@ -25,14 +11,7 @@ export function calculateDistance(posA, posB) {
     return magnitude(direction);
 }
 
-/**
- * Calculates the knockback vector based on an entity's position, a force source position, and the force magnitude.
- * @param {Vector3} entityPosition - The position of the entity as a Vector3.
- * @param {Vector3} forceSourcePosition - The position of the force source as a Vector3.
- * @param {Vector3} forceMagnitude - The magnitude of the force to be applied.
- * @returns {Vector3} The knockback vector as a Vector3.
- */
-export function calculateKnockbackVector(entityPosition, pusherPosition, forceMagnitude) {
+function calculateKnockbackVector(entityPosition, pusherPosition, forceMagnitude) {
     let direction = {
         x: entityPosition.x - pusherPosition.x,
         y: entityPosition.y - pusherPosition.y,
@@ -58,7 +37,7 @@ export function calculateKnockbackVector(entityPosition, pusherPosition, forceMa
     return knockback;
 }
 
-export function createShockwave(player, spawnPos, strength, range, damageFactor = 1) {
+function createShockwave(player, spawnPos, strength, range, damageFactor = 1) {
     // Create the needed variables for kb and pos
     const dimension = player.dimension;
     const entities = [...dimension.getEntities({ location: spawnPos, maxDistance: range, excludeNames: [player.name], excludeFamilies: ["inanimate"], excludeTypes: ["item"], excludeTags: ["anti_shockwave"] })];

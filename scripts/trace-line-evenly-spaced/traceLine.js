@@ -1,4 +1,4 @@
-export function traceLine(startPoint, endPoint, numOfPoints) {
+function traceLine(startPoint, endPoint, numOfPoints) {
 	class Point {
 		constructor(x, y, z) {
 			this.x = x;

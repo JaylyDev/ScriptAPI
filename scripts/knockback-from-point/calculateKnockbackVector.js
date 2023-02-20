@@ -1,22 +1,8 @@
-import("@minecraft/server").Vector3
-
-/**
- * Calculates the magnitude of a Vector3.
- * @param {Vector3} entityPosition - The Vector3 input.
- * @returns {number} The magnitude of the vector.
- */
-export function magnitude(vector) {
+function magnitude(vector) {
     return Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
 }
 
-/**
- * Calculates the knockback vector based on an entity's position, a force source position, and the force magnitude.
- * @param {Vector3} entityPosition - The position of the entity as a Vector3.
- * @param {Vector3} forceSourcePosition - The position of the force source as a Vector3.
- * @param {Vector3} forceMagnitude - The magnitude of the force to be applied.
- * @returns {Vector3} The knockback vector as a Vector3.
- */
-export function calculateKnockbackVector(entityPosition, pusherPosition, forceMagnitude) {
+function calculateKnockbackVector(entityPosition, pusherPosition, forceMagnitude) {
     let direction = {
         x: entityPosition.x - pusherPosition.x,
         y: entityPosition.y - pusherPosition.y,
