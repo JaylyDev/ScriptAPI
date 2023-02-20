@@ -1,6 +1,8 @@
+import { Vector3 } from "@minecraft/server";
+
 /**
  * Calculates the magnitude of a Vector3.
- * @param {Vector3} entityPosition - The Vector3 input.
+ * @param {Vector3} vector - The Vector3 input.
  * @returns {number} The magnitude of the vector.
  */
 export function magnitude(vector) {
@@ -9,10 +11,9 @@ export function magnitude(vector) {
 
 /**
  * Calculates the distance between an position and another position.
- * @param {Vector3} entityPosition - The position of the entity as a Vector3.
- * @param {Vector3} forceSourcePosition - The position of the force source as a Vector3.
- * @param {Vector3} forceMagnitude - The magnitude of the force to be applied.
- * @returns {Vector3} The knockback vector as a Vector3.
+ * @param {Vector3} posA - The position of first point.
+ * @param {Vector3} posB - The position of second point.
+ * @returns {Vector3} The distance between the two points.
  */
 export function calculateDistance(posA, posB) {
     let direction = {
