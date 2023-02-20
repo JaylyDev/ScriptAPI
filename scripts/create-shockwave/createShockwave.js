@@ -1,4 +1,5 @@
-import { Vector3 } from "@minecraft/server";
+import("@minecraft/server").Vector3
+import("@minecraft/server").Player
 
 /**
  * Calculates the magnitude of a Vector3.

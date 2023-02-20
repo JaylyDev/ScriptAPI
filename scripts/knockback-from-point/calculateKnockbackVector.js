@@ -1,3 +1,5 @@
+import("@minecraft/server").Vector3
+
 /**
  * Calculates the magnitude of a Vector3.
  * @param {Vector3} entityPosition - The Vector3 input.

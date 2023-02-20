@@ -1,4 +1,5 @@
-import { Player, Vector3 } from "@minecraft/server";
+import("@minecraft/server").Vector3
+import("@minecraft/server").Player
 
 /**
  * Normalizes the given vector and scales it by the factor `s`.
