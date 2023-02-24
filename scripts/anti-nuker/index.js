@@ -13,13 +13,13 @@ world.events.blockBreak.subscribe(({ block, brokenBlockPermutation, dimension, p
   if (blockLog.has(player.name) && log.get(player.name).amount === 0) {
     dimension.getBlock(blockLog.get(player.name).location).setPermutation(blockLog.get(player.name).permutation)
     setTickTimeout(() => {
-      dimension.getEntitiesAtBlockLocation(blockLog.get(player.name)?.location ?? block.location)?.filter((entity) => entity.id === "minecraft:item")?.forEach((item) => item.kill())
+      dimension.getEntitiesAtBlockLocation(blockLog.get(player.name)?.location ?? block.location)?.filter((entity) => entity.typeId === "minecraft:item")?.forEach((item) => item.kill())
       blockLog.delete(player.name)
     }, 0)
   }
   dimension.getBlock(block.location).setPermutation(brokenBlockPermutation)
   setTickTimeout(() => {
-    dimension.getEntitiesAtBlockLocation(block.location)?.filter((entity) => entity.id === "minecraft:item").forEach((item) => item.kill())
+    dimension.getEntitiesAtBlockLocation(block.location)?.filter((entity) => entity.typeId === "minecraft:item").forEach((item) => item.kill())
   }, 0)
   log.set(player.name, { time: Date.now(), amount: ++old.amount })
 })

@@ -116,6 +116,7 @@ class Player {
    * @throws This property can throw when used.
    */
   public readonly 'viewDirection': Vector;
+  readonly typeId: string;
   /**
    * @remarks
    * Gets the first block that intersects with the vector of the
@@ -136,9 +137,9 @@ class Player {
    * the entity, undefined is returned.
    */
   getComponent(componentId: string): IEntityComponent {
-    return this.__PlayerComponents.find(function (component: any) {
+    return this.__PlayerComponents.find(function (component: IEntityComponent) {
       if (!componentId.startsWith("minecraft:")) componentId = "minecraft:" + componentId;
-      if (component.id === componentId) return true;
+      if (component.typeId === componentId) return true;
     });
   };
   /**
@@ -215,6 +216,7 @@ class Player {
     this.dimension = player.dimension;
     this.headLocation = player.getHeadLocation();
     this.id = player.id;
+    this.typeId = player.typeId;
     this.isSneaking = player.isSneaking;
     this.location = player.location;
     this.name = player.name;

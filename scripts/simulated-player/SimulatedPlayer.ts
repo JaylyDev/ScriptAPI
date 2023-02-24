@@ -37,6 +37,12 @@ export class SimulatedPlayer {
    */
   public get 'id' (): string { return this.__player.id };
   /**
+   * Unique identifier of the type of the entity - for example,
+   * 'minecraft:player'.
+   * @throws This property can throw when used.
+   */
+  public get 'typeId' (): string { return this.__player.typeId };
+  /**
    * True if the player is currently using a sneaking movement.
   */
   public get 'isSneaking' (): boolean {

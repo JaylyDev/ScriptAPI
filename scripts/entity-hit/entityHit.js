@@ -2,7 +2,7 @@
 import { EntityHealthComponent, world } from "@minecraft/server";
 
 world.events.entityHit.subscribe((evd) => {
-    if (evd.entity.id !== 'minecraft:player') return;
+    if (evd.entity.typeId !== 'minecraft:player') return;
 
     const ent = evd.hitEntity;
     if (!ent) return;
