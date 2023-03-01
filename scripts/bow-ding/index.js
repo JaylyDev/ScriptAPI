@@ -1,7 +1,13 @@
-import { Player, world } from "@minecraft/server";
+import { Player, world, MinecraftEntityTypes } from "@minecraft/server";
 
 world.events.projectileHit.subscribe((arg) => {
-  if (arg.getEntityHit()?.entity instanceof Player && arg.source instanceof Player) {
+  if (arg.getEntityHit()?.entity instanceof Player
+      && arg.source instanceof Player
+      && arg.projectile.typeId === MinecraftEntityTypes.arrow.id
+  ) {
+    /**
+      * @type {import("@minecraft/server").SoundOptions}
+      */
     const soundOption = {
         volume: 0.4,
         pitch: 0.5,
