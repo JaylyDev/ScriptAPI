@@ -19,7 +19,7 @@
   "dependencies": {
     "@minecraft/server": "1.1.0-beta.1.19.70-preview.24",
     "@minecraft/server-admin": "1.0.0-beta.1.19.70-preview.24",
-    "@minecraft/server-gametest": "1.0.0-beta.1.19.70-preview.24",
+    "@minecraft/server-gametest": "1.0.0-beta.1.19.70-preview.23",
     "@minecraft/server-net": "1.0.0-beta.1.19.70-preview.24",
     "@minecraft/server-ui": "1.0.0-beta.1.19.70-preview.24"
   },
