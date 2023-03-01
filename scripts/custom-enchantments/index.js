@@ -1,3 +1,6 @@
+// Script examples for ScriptAPI
+// Author: Jayly#1397 <Jayly Discord>
+
 // Author: iBlqzed <https://github.com/iBlqzed>
 const itemTypes = {
   sword: [
@@ -118,6 +121,7 @@ world.events.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
   }
 });
 world.events.entityHurt.subscribe(({ hurtEntity, damageSource, damage }) => {
+  if (!damageSource) return;
   if (damageSource.damagingEntity instanceof Player) {
     /**
      * @type {InventoryComponentContainer}
