@@ -61,7 +61,7 @@ export default function testScore(
 
   // Player
   if (typeof player == "string") {
-    this.plr = this.obj.getParticipants().find((v) => (v.displayName = player));
+    this.plr = this.obj.getParticipants().find((v) => (v.displayName == player));
   } else {
     this.plr = player;
   }
