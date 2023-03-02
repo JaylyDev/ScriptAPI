@@ -13,7 +13,7 @@ const bleedEnchant = new Enchant({
 
 bleedEnchant.onHurt(data => {
     data.hurtEntity.runCommandAsync(`say testeo`)
-    world.say("hello world")
+    world.sendMessage("hello world")
 })
 
 world.events.beforeChat.subscribe(data => {
