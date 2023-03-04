@@ -7,21 +7,10 @@ This repository is filled with community driven script samples for Minecraft Bed
 - ### [scripts](./scripts/)
   Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
   > ⚠️ Some scripts might use `@minecraft/server-net` and `@minecraft/server-admin` module, which the modules are only available in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients.
-  
-- ### [@minecraft/server](./docs/MinecraftApi/@minecraft/server/)
-  Basic usage of manipulating Script API features within `@minecraft/server` module
-  
-- ### [@minecraft/server-gametest](./docs/MinecraftApi/@minecraft/server-gametest/)
-  Basic usage of creating GameTests or spawning a simulated player using `@minecraft/server-gametest` module
 
-- ### [@minecraft/server-ui](./docs/MinecraftApi/@minecraft/server-ui/)
-  Basic usage of manipulating server forms available in `@minecraft/server-ui` module
-
-- ### [@minecraft/server-admin](./docs/MinecraftApi/@minecraft/server-admin/)
-  Basic usage of loading secrets and variables from `@minecraft/server-admin` module
-
-- ### [@minecraft/server-net](./docs/MinecraftApi/@minecraft/server-net/)
-  Basic usage of executing HTTP-based requests using `@minecraft/server-net` module
+- ### [docs](./docs/)
+  Contains technical documentation of Script API features.
+  > 🚫 Documentation are no longer being updated. Check out [Bedrock Wiki](https://wiki.bedrock.dev/) and [Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) for up-to-date infomation.
   
 ## Contributing
 
@@ -29,41 +18,39 @@ Please contribute to this repository if you can.
 
 To create a new script package, create a folder structure based on the following:
 
+| File          | Purpose |
+| ------------- | ------- |
+| `index.js` or `index.ts`  | This is main file for the package. |
+| `tests.ts` | This contains sample code which tests the typings. This code does *not* run, but it is type-checked. |
+| `tsconfig.json` | This allows you to run `tsc` within the package. |
+| `README.md`   | Infomation for the package. |
+
+To add yourself as a script author:
+
+Adding your name to the end of the line, as in `// Author: Alice <url>, Bob <url>`.
+Or if there are more people, it can be multiline
+```js
+// Author: Alice <url>
+//         Bob <url>
+//         Steve <url>
+//         John <url>
 ```
-JaylyDev/ScriptAPI (root)
-└───scripts
-    └───my-package
-          index.js
-          index.ts (optional)
-          LICENSE (optional)
-          tests.js
-          tests.ts (optional)
-          README.md (optional)
-```
 
-In the example `new-package` is the package name, you must include
-- a main file (e.g. `index.js` or `index.ts`)
-- a test file (e.g. `tests.js` or `tests.ts`).
+### Script Versioning
 
-### Script modules version
+The script samples are intended to be used within the latest version of Minecraft or Minecraft Preview, using latest development version of Script API modules.
 
-The script samples are intended to be used with the latest beta module of script modules in latest version of Minecraft Preview, and the latest version of Minecraft, this depends on the scale of changes happens in Scripting API in Minecraft Preview.
+For submitting or updating script samples, you must upload scripts that works in the latest version of Script API modules in latest Minecraft Preview. For more infomation please visit [here](./CONTRIBUTING.md).
 
-For submitting or updating script samples, we recommend upload scripts that uses the latest version of Script API modules. For more infomation please visit [here](./CONTRIBUTING.md).
+To access older versions of scripts, this repository uses [GitHub's tags feature](https://github.com/JaylyDev/ScriptAPI/tags) to allow users to access previous versions of repository for scripts that uses a specific Minecraft version.
 
-### Acknowledgements
-
-When you submit a new package and you want to publicly declare your work, you are allowed to insert credits under the following files:
-
-- `LICENSE` file with the license and your name
-- Adding your name to the end of the line, like `// Author: JaylyDev <https://github.com/JaylyDev>`.
-- Add your name in `README.md` file in the package
+![github_tags](https://user-images.githubusercontent.com/65847850/222926832-8c8db1d5-f6d6-41be-bfeb-f4efdd5d46b5.png)
 
 ## Script status
 
 This repository uses TypeScript compiler to test script files by validing with declaration files of Script API modules, making sure they are up-to-date when using in the latest Minecraft versions.
 
-<img src="https://user-images.githubusercontent.com/65847850/192581677-8d36e2ac-456a-46fd-8713-e87508be085a.png" align="left" width="500"></a>
+![success_checks](https://user-images.githubusercontent.com/65847850/222813970-7f24a869-37a5-4e73-b2fd-03f321fdb4d1.png)
 
 Most of the time the checks succeed, which means scripts inside should not have any syntax errors when using in stable version of Minecraft.
 

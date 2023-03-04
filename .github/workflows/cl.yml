@@ -10,7 +10,7 @@ env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
 jobs:
-  debug:
+  type-check:
     name: 'Type Check'
     runs-on: ubuntu-latest
 
@@ -24,5 +24,22 @@ jobs:
           find ./scripts/* -maxdepth 2 -name package.json -execdir sh -c 'pwd && npm install' \;
           find ./docs/* -maxdepth 5 -name package.json -execdir sh -c 'pwd && npm install' \;
 
-      - name: tsc debug
-        run: tsc -b --verbose
+      - name: Build tsc
+        run: tsc --build --verbose
+
+  format-check:
+    name: 'Format Check'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: npm install
+        run: npm install
+
+      - name: Build tools
+        run: npm run tools
+
+      - name: Format Check
+        run: node ./tools/index.js

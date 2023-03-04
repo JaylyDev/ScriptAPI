@@ -1,13 +1,7 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
-    "noEmit": true,
-    "module": "ES2020",
-    "target": "ES2021",
-    "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "./scripts",
-    "rootDirs": [ "scripts" ]
-  }
+  "files": [],
+  "references": [
+    { "path": "tools" },
+    { "path": "scripts" }
+  ]
 }
