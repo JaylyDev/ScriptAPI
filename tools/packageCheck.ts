@@ -107,7 +107,7 @@ export function execute () {
     warningsLength += warnings.length;
   };
 
-  console.log(`Found ${errorsLength} errors and ${warningsLength} warnings in ${errorPacks.length} script package names.`);
+  console.log(`Found ${errorsLength} errors and ${warningsLength} warnings.`);
 
   for (const errorPack of errorPacks) {
     const filepathDisplay = printFilePath(errorPack.path);

@@ -1,7 +1,7 @@
-// Script examples for ScriptAPI
+// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 import { system, world } from "@minecraft/server";
-import isMoving from "is-moving";
+import isMoving from "is-moving/index";
 
 system.runInterval(() => {
   for (const player of world.getPlayers()) {

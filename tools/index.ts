@@ -1,5 +1,6 @@
 import * as headerChecks from "./headerChecks";
 import * as packageCheck from "./packageCheck";
+import * as testScriptChecks from "./testScriptChecks";
 
 function log (...args: string[]) {
   console.log('');
@@ -15,7 +16,7 @@ function runTasks (tasks: Task[]): number {
   const taskStatus: number[] = [];
 
   for (const task of tasks) {
-    log(task.message);
+    log(task.message + '...');
     const statusCode = task.execute();
     taskStatus.push(statusCode);
   };
@@ -26,7 +27,8 @@ function runTasks (tasks: Task[]): number {
 };
 
 const exitCode = runTasks([
-  { message: "Checking script file headers...", execute: headerChecks.execute },
-  { message: "Checking script names...", execute: packageCheck.execute },
+  { message: "Checking script file headers", execute: headerChecks.execute },
+  { message: "Checking script names", execute: packageCheck.execute },
+  { message: "Looking for test files in packages", execute: testScriptChecks.execute }
 ]);
 process.exit(exitCode);

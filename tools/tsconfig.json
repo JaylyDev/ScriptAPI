@@ -8,6 +8,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "allowUnreachableCode": false,
+    "resolveJsonModule": true,
     "composite": false,
     "types": ["node"],
     "lib": ["es2022"]

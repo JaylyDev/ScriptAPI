@@ -1,3 +1,4 @@
+// Uses @definitelytyped/header-parser
 import pm from "parsimmon";
 
 /*
@@ -6,7 +7,7 @@ import pm from "parsimmon";
 
   // Script example for ScriptAPI
   // Author: My Self <https://github.com/me>, Some Other Guy <https://github.com/otherguy>
-  // Project
+  // Project: https://github.com/JaylyDev/ScriptAPI
 
 */
 
@@ -98,7 +99,7 @@ function contributorsParser(): pm.Parser<readonly Author[]> {
   return pm.sepBy1(contributor, separator);
 }
 
-const projectParser = pm.regexp(/\r?\n\/\/ Project: [^\r\n]+/);
+const projectParser = pm.regexp(/\r?\n\/\/ Project: https:\/\/[^\r\n]+/);
 
 declare module "parsimmon" {
   // tslint:disable-next-line no-unnecessary-qualifier

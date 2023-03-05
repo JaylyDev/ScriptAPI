@@ -36,6 +36,16 @@ Or if there are more people, it can be multiline
 //         John <url>
 ```
 
+Each package is versioned via GitHub repository tags. In order to secure credentials for scripts, each main file requires basic credentials with the right format. For example, here are the first few lines of script example:
+
+```js
+// Script example for ScriptAPI
+// Author: Contributor A <https://github.com/contributor-a>
+//         Contributor B <https://github.com/contributor-b>
+//         Contributor C <https://contributor-c.com/>
+// Project: https://github.com/JaylyDev/ScriptAPI
+```
+
 ### Script Versioning
 
 The script samples are intended to be used within the latest version of Minecraft or Minecraft Preview, using latest development version of Script API modules.
