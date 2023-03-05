@@ -1,6 +1,6 @@
 // https://discord.com/channels/523663022053392405/854033525546942464/988466192383615066
-import { world } from "mojang-minecraft";
-import { ActionFormData } from "mojang-minecraft-ui"
+import { world } from "@minecraft/server";
+import { ActionFormData } from "@minecraft/server-ui"
 
 const player = [...world.getPlayers()][0];
 new ActionFormData()
@@ -12,7 +12,7 @@ new ActionFormData()
   });
 
 /**
- * @param {import("mojang-minecraft").Player} player
+ * @param {import("@minecraft/server").Player} player
  */
 function anotherUI(player) {
   // This function ONLY hold one form

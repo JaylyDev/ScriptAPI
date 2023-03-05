@@ -16,7 +16,7 @@ The file is located in `config/<pack_id>/variables.json`.
 To load the variables in Minecraft:
 
 ```js
-import { variables } from "mojang-minecraft-server-admin";
+import { variables } from "@minecraft/server-admin";
 
 // A list of available, configured server variables.
 console.warn(variables.names);

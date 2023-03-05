@@ -1,4 +1,4 @@
-import { EntityInventoryComponent, world } from "mojang-minecraft";
+import { EntityInventoryComponent, world } from "@minecraft/server";
 
 const player = [...world.getPlayers()][0];
 

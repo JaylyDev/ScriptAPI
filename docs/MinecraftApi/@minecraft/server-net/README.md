@@ -16,14 +16,6 @@
 ### [Performs a HTTP request with HTTP headers.](./http-request.md)
 
 ## Available Versions
-- 1.0.0-beta
-```json
-{
-    // @minecraft/server-net
-    "uuid": "777b1798-13a6-401c-9cba-0cf17e31a81b",
-    "version": "1.0.0-beta"
-}
-```
 ```json
 {
     "module_name": "@minecraft/server-net",

@@ -1,10 +1,17 @@
-name: API
+name: CI
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
 
+env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
 jobs:
-  gametest:
-    name: 'Script Debug'
+  debug:
+    name: 'Type Check'
     runs-on: ubuntu-latest
 
     steps:
@@ -18,4 +25,4 @@ jobs:
           find ./docs/* -maxdepth 5 -name package.json -execdir sh -c 'pwd && npm install' \;
 
       - name: tsc debug
-        run: tsc
+        run: tsc -b --verbose

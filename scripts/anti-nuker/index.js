@@ -1,5 +1,6 @@
 // Author: iBlqzed <https://github.com/iBlqzed>
-import { world } from "@minecraft/server"
+import { system, world } from "@minecraft/server"
+import { TickEventSignal } from "tick-event"
 
 const log = new Map()
 const blockLog = new Map()
@@ -12,18 +13,18 @@ world.events.blockBreak.subscribe(({ block, brokenBlockPermutation, dimension, p
   if (blockLog.has(player.name) && log.get(player.name).amount === 0) {
     dimension.getBlock(blockLog.get(player.name).location).setPermutation(blockLog.get(player.name).permutation)
     setTickTimeout(() => {
-      dimension.getEntitiesAtBlockLocation(blockLog.get(player.name)?.location ?? block.location)?.filter((entity) => entity.id === "minecraft:item")?.forEach((item) => item.kill())
+      dimension.getEntitiesAtBlockLocation(blockLog.get(player.name)?.location ?? block.location)?.filter((entity) => entity.typeId === "minecraft:item")?.forEach((item) => item.kill())
       blockLog.delete(player.name)
     }, 0)
   }
   dimension.getBlock(block.location).setPermutation(brokenBlockPermutation)
   setTickTimeout(() => {
-    dimension.getEntitiesAtBlockLocation(block.location)?.filter((entity) => entity.id === "minecraft:item").forEach((item) => item.kill())
+    dimension.getEntitiesAtBlockLocation(block.location)?.filter((entity) => entity.typeId === "minecraft:item").forEach((item) => item.kill())
   }, 0)
   log.set(player.name, { time: Date.now(), amount: ++old.amount })
 })
 
-world.events.tick.subscribe(() => {
+system.runInterval(() => {
   [...log.keys()]?.forEach(pN => {
     if (log.get(pN).amount > 5) {
       const player = [...world.getPlayers()].find(pL => pL.name === pN)
@@ -45,13 +46,14 @@ world.events.playerLeave.subscribe((data) => (log.delete(data.playerName)) && (b
  * }, 20)
  */
 function setTickTimeout(callback, tick, loop = false) {
+  const tickEvent = new TickEventSignal();
   let cT = 0
-  const tE = world.events.tick.subscribe((data) => {
+  const tE = tickEvent.subscribe((data) => {
     if (cT === 0) cT = data.currentTick + tick
     if (cT <= data.currentTick) {
       try { callback() } catch (e) { console.warn(`${e} : ${e.stack}`) }
       if (loop) cT += tick
-      else world.events.tick.unsubscribe(tE)
+      else tickEvent.unsubscribe(tE)
     }
   })
 }

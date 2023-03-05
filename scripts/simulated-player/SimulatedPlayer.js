@@ -1,3 +1,4 @@
+import * as Minecraft from "@minecraft/server";
 /**
  * A simulated player can be used to represent
  * how a player moves throughout the world and to support
@@ -16,7 +17,7 @@ export class SimulatedPlayer {
      * Location of the center of the head component of the player.
      * @throws This property can throw when used.
      */
-    get 'headLocation'() { return this.__player.headLocation; }
+    get 'headLocation'() { return this.__player.getHeadLocation(); }
     ;
     /**
      * Rotation of the head across pitch and yaw angles.
@@ -29,6 +30,13 @@ export class SimulatedPlayer {
      * @throws This property can throw when used.
      */
     get 'id'() { return this.__player.id; }
+    ;
+    /**
+     * Unique identifier of the type of the entity - for example,
+     * 'minecraft:player'.
+     * @throws This property can throw when used.
+     */
+    get 'typeId'() { return this.__player.typeId; }
     ;
     /**
      * True if the player is currently using a sneaking movement.
@@ -70,7 +78,7 @@ export class SimulatedPlayer {
      * Main rotation of the entity.
      * @throws This property can throw when used.
      */
-    get 'rotation'() { return this.__player.rotation; }
+    get 'rotation'() { return this.__player.getRotation(); }
     ;
     /**
      * Returns a scoreboard identity that represents this entity.
@@ -100,13 +108,13 @@ export class SimulatedPlayer {
      * Current speed of the player across X, Y, and Z dimensions.
      * @throws This property can throw when used.
      */
-    get 'velocity'() { return this.__player.velocity; }
+    get 'velocity'() { return new Minecraft.Vector(this.__player.getVelocity().x, this.__player.getVelocity().y, this.__player.getVelocity().z); }
     ;
     /**
      * Vector of the current view of the player.
      * @throws This property can throw when used.
      */
-    get 'viewDirection'() { return this.__player.viewDirection; }
+    get 'viewDirection'() { return this.__player.getViewDirection(); }
     ;
     /**
      * @remarks
@@ -242,7 +250,7 @@ export class SimulatedPlayer {
      * @remarks
      * Gets the current item cooldown time for a particular
      * cooldown category.
-     * @param itemCategory
+  velocity   * @param itemCategory
      * Specifies the cooldown category to retrieve the current
      * cooldown for.
      * @throws This function can throw errors.
@@ -522,8 +530,8 @@ export class SimulatedPlayer {
      * @throws This function can throw errors.
      * @example commands.js
      * ```typescript
-     *        player.runCommand("say You got a new high score!");
-     *        player.runCommand("scoreboard players set @s score 10");
+     *        player.runCommandAsync("say You got a new high score!");
+     *        player.runCommandAsync("scoreboard players set @s score 10");
      *
      * ```
      * @deprecated
@@ -606,7 +614,7 @@ export class SimulatedPlayer {
      * X/Y/Z components of the velocity.
      * @throws This function can throw errors.
      */
-    setVelocity(velocity) { return this.__player.setVelocity(velocity); }
+    setVelocity(velocity) { return this.__player.applyImpulse(velocity); }
     ;
     /**
      * @remarks

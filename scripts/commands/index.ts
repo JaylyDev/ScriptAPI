@@ -1,4 +1,4 @@
-import { CommandResult, Dimension, Entity, world, Player } from "mojang-minecraft";
+import { CommandResult, Dimension, Entity, world, Player } from "@minecraft/server";
 
 /**
  * Main class for custom command functions, with the player that execute
@@ -24,28 +24,6 @@ export class Command {
 export class Commands {
   /**
    * @remarks
-   * Runs a particular command from the context.
-   * @param commandString
-   * Command to run. Note that command strings should not start
-   * with slash.
-   * @param target
-   * Target to be used as context for the command to run
-   * within.
-   * @returns For commands that return data, returns a JSON structure with command response values.
-   * @throws This function can throw errors.
-   * @example commands.js
-   * ```typescript
-   *        Commands.run("say You got a new high score!");
-   *        Commands.run("scoreboard players set @p score 10", world.getDimension("overworld"));
-   * ```
-   */
-  static run(commandString: string, target: Dimension | Entity = world.getDimension("overworld")): any {
-    if (target instanceof Dimension || Entity) return target.runCommand(commandString);
-    else throw TypeError("Native type conversion failed");
-  };
-
-  /**
-   * @remarks
    * Runs a particular command asynchronously from the context.
    * Where possible - and especially for
    * long-running operations - you should use runCommandAsync
@@ -62,7 +40,7 @@ export class Commands {
    * @throws This function can throw errors.
    */
   static async runAsync(commandString: string, target: Dimension | Entity = world.getDimension("overworld")): Promise<CommandResult> {
-    if (target instanceof Dimension || Entity) return target.runCommandAsync(commandString);
+    if (target instanceof Dimension || Entity) return await target.runCommandAsync(commandString);
     else throw TypeError("Native type conversion failed");
   };
 
@@ -81,7 +59,7 @@ export class Commands {
    * @example example1.js
    * ```typescript
    *          Commands.register("!", "test", function (arg) {
-   *              arg.player.runCommand(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
+   *              arg.player.runCommandAsync(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
    *          });
    * ```
    */
@@ -96,8 +74,7 @@ export class Commands {
         } catch (err) {
           let { statusMessage } = JSON.parse(err);
           console.error(err);
-          // @ts-ignore
-          !!arg.sender.tell ? arg.sender.tell(`§c${statusMessage}`) : arg.sender.runCommand(`tellraw @s {"rawtext":[{"text": "§c${statusMessage}"}]}`);
+          arg.sender.sendMessage(`§c${statusMessage}`);
         };
       };
     });

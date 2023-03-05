@@ -1,3 +1,6 @@
+// Script examples for ScriptAPI
+// Author: Jayly#1397 <Jayly Discord>
+
 // Author: iBlqzed <https://github.com/iBlqzed>
 const itemTypes = {
   sword: [
@@ -45,7 +48,7 @@ const itemTypes = {
   ]
 };
 import { InventoryComponentContainer } from "@minecraft/server";
-import { world, Player } from "mojang-minecraft";
+import { world, Player } from "@minecraft/server";
 const enchants = {};
 const names = {};
 export class Enchant {
@@ -79,8 +82,8 @@ export function addEnchant(item, ench, level = 1) {
   if (!(ench in enchants))
       return;
   //@ts-ignore
-  if (enchants[ench].itemCatagory !== "any" && (!itemTypes[enchants[ench].itemCatagory].includes(item.id)))
-      throw new Error(`The enchant ${enchants[ench].name} isn't allowed on item ${item.id}!`);
+  if (enchants[ench].itemCatagory !== "any" && (!itemTypes[enchants[ench].itemCatagory].includes(item.typeId)))
+      throw new Error(`The enchant ${enchants[ench].name} isn't allowed on item ${item.typeId}!`);
   //@ts-ignore
   const lore = item.getLore();
   const index = lore.findIndex(e => names[e.split(" ")[0]] === ench);
@@ -117,20 +120,21 @@ world.events.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
       });
   }
 });
-world.events.entityHurt.subscribe(({ hurtEntity, damagingEntity, damage }) => {
-  if (damagingEntity instanceof Player) {
+world.events.entityHurt.subscribe(({ hurtEntity, damageSource, damage }) => {
+  if (!damageSource) return;
+  if (damageSource.damagingEntity instanceof Player) {
     /**
      * @type {InventoryComponentContainer}
      */
     //@ts-ignore
       const inv = damagingEntity.getComponent("inventory").container;
-      const item = inv.getItem(damagingEntity.selectedSlot);
+      const item = inv.getItem(damageSource.damagingEntity.selectedSlot);
       if (!item)
           return;
       const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
       itemEnchants.forEach((e) => {
           if (e.data?.hurt) {
-              e.data.hurt({ player: damagingEntity, level: romanToInt(e.lore.slice(e.data.display.length + 1)), hurtEntity, damage, item });
+              e.data.hurt({ player: damageSource.damagingEntity, level: romanToInt(e.lore.slice(e.data.display.length + 1)), hurtEntity, damage, item });
           }
       });
   }
@@ -145,12 +149,12 @@ world.events.beforeItemUse.subscribe(({ source, item }) => {
       });
   }
 });
-world.events.beforeItemUseOn.subscribe(({ source, item, blockLocation }) => {
-  if (source instanceof Player) {
-      const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
+world.events.beforeItemUseOn.subscribe((event) => {
+  if (event.source instanceof Player) {
+      const itemEnchants = event.item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
       itemEnchants.forEach((e) => {
           if (e.data?.rightClickBlock)
-              e.data.rightClickBlock({ player: source, level: romanToInt(e.lore.slice(e.data.display.length + 1)), item, block: source.dimension.getBlock(blockLocation) });
+              e.data.rightClickBlock({ player: event.source, level: romanToInt(e.lore.slice(e.data.display.length + 1)), item: event.item, block: event.source.dimension.getBlock(event.getBlockLocation()) });
       });
   }
 });

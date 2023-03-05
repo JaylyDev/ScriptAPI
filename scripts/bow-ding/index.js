@@ -1,11 +1,18 @@
-import { Player, SoundOptions, world } from "mojang-minecraft";
+import { Player, world, MinecraftEntityTypes } from "@minecraft/server";
 
 world.events.projectileHit.subscribe((arg) => {
-  if (arg.entityHit?.entity instanceof Player && arg.source instanceof Player) {
-    let soundOption = new SoundOptions();
-    soundOption.volume = 0.4;
-    soundOption.pitch = 0.5;
-
+  if (arg.getEntityHit()?.entity instanceof Player
+      && arg.source instanceof Player
+      && arg.projectile.typeId === MinecraftEntityTypes.arrow.id
+  ) {
+    /**
+      * @type {import("@minecraft/server").SoundOptions}
+      */
+    const soundOption = {
+        volume: 0.4,
+        pitch: 0.5,
+    }
+    
     arg.source.playSound("random.orb", soundOption);
   };
 });

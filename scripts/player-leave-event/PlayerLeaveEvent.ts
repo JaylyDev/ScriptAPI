@@ -3,8 +3,8 @@
  * @author JaylyMC
  * @link https://github.com/JaylyDev/GameTestDB
  */
-import { world, Player as MinecraftPlayer, Dimension, Location, ScreenDisplay, Block, BlockRaycastOptions, CommandResult, Effect, EffectType, Entity, EntityRaycastOptions, IEntityComponent, ScoreboardIdentity, SoundOptions, Vector, XYRotation, TickEvent, PlayerJoinEvent } from "mojang-minecraft";
-import "mojang-gametest"; // import "mojang-gametest" native module to support Simulated Players
+import { world, Player as MinecraftPlayer, Dimension, Block, Entity, IEntityComponent, ScoreboardIdentity, Vector, XYRotation, TickEvent, Vector3, PlayerSpawnEvent, system } from "@minecraft/server";
+import "@minecraft/server-gametest"; // import "@minecraft/server-gametest" native module to support Simulated Players
 
 /**
  * @license MIT
@@ -45,12 +45,12 @@ function comparePlayer (playerA: Player | MinecraftPlayer, playerB: Player | Min
  * Player wrapper to save as much data into a new object.
  * 
  * Keeping this class private to avoid confusion between
- * Player class from "mojang-minecraft" module.
+ * Player class from "@minecraft/server" module.
  */
 class Player {
-  private '__PlayerBlockFromViewVector': Block;
+  private '__PlayerBlockFromViewDirection': Block;
   private '__PlayerComponents': IEntityComponent[];
-  private '__PlayerEntitiesFromViewVector': Entity[];
+  private '__PlayerEntitiesFromViewDirection': Entity[];
   private '__PlayerTags': string[];
   /**
    * Dimension that the entity is currently within.
@@ -61,7 +61,7 @@ class Player {
    * Location of the center of the head component of the player.
    * @throws This property can throw when used.
    */
-  public readonly 'headLocation': Location;
+  public readonly 'headLocation': Vector3;
   /**
    * Identifier for the player.
    * @throws This property can throw when used.
@@ -75,7 +75,7 @@ class Player {
    * Current location of the player.
    * @throws This property can throw when used.
    */
-  public readonly 'location': Location;
+  public readonly 'location': Vector3;
   /**
    * Name of the player.
    * @throws This property can throw when used.
@@ -115,15 +115,16 @@ class Player {
    * Vector of the current view of the player.
    * @throws This property can throw when used.
    */
-  public readonly 'viewVector': Vector;
+  public readonly 'viewDirection': Vector;
+  readonly typeId: string;
   /**
    * @remarks
    * Gets the first block that intersects with the vector of the
    * view of this entity.
    * @throws This function can throw errors.
    */
-  public getBlockFromViewVector(): Block {
-    return this.__PlayerBlockFromViewVector;
+  public getBlockFromViewDirection(): Block {
+    return this.__PlayerBlockFromViewDirection;
   };
   /**
    * @remarks
@@ -136,9 +137,9 @@ class Player {
    * the entity, undefined is returned.
    */
   getComponent(componentId: string): IEntityComponent {
-    return this.__PlayerComponents.find(function (component: any) {
+    return this.__PlayerComponents.find(function (component: IEntityComponent) {
       if (!componentId.startsWith("minecraft:")) componentId = "minecraft:" + componentId;
-      if (component.id === componentId) return true;
+      if (component.typeId === componentId) return true;
     });
   };
   /**
@@ -156,8 +157,8 @@ class Player {
    * Additional options for processing this raycast query.
    * @throws This function can throw errors.
    */
-  public getEntitiesFromViewVector(): Entity[] {
-    return this.__PlayerEntitiesFromViewVector;
+  public getEntitiesFromViewDirection(): Entity[] {
+    return this.__PlayerEntitiesFromViewDirection;
   };
   /**
    * @remarks
@@ -205,25 +206,27 @@ class Player {
   public constructor (player: MinecraftPlayer) {
     // PRIVATE PROPERTIES
     // This properties should not be used by public
-    try { this.__PlayerBlockFromViewVector = player.getBlockFromViewVector(); } catch {};
-    try { this.__PlayerEntitiesFromViewVector = player.getEntitiesFromViewVector(); } catch {};
+    try { this.__PlayerBlockFromViewDirection = player.getBlockFromViewDirection(); } catch {};
+    try { this.__PlayerEntitiesFromViewDirection = player.getEntitiesFromViewDirection(); } catch {};
     this.__PlayerComponents = cloneJSON(player.getComponents());
     this.__PlayerTags = player.getTags();
 
     // PUBLIC PROPERTIES
+    const velocity = player.getVelocity();
     this.dimension = player.dimension;
-    this.headLocation = player.headLocation;
+    this.headLocation = player.getHeadLocation();
     this.id = player.id;
+    this.typeId = player.typeId;
     this.isSneaking = player.isSneaking;
     this.location = player.location;
     this.name = player.name;
     this.nameTag = player.nameTag;
-    this.rotation = player.rotation;
+    this.rotation = player.getRotation();
     this.scoreboard = player.scoreboard;
     this.selectedSlot = player.selectedSlot;
     this.target = player.target;
-    this.velocity = player.velocity;
-    this.viewVector = player.viewVector;
+    this.velocity = new Vector(velocity.x, velocity.y, velocity.z);
+    this.viewDirection = new Vector(player.getViewDirection().x, player.getViewDirection().y, player.getViewDirection().z);
   };
 };
 
@@ -257,8 +260,8 @@ export class PlayerLeaveEventSignal {
     let players: Player[] = [...world.getPlayers()].map(pl => new Player(pl));
     let executedPlayers: Player[] = [];
 
-    let TickEventCallback: (arg: TickEvent) => void = world.events.tick.subscribe(() => {
-      if (callback["playerLeave"] !== true) world.events.tick.unsubscribe(TickEventCallback);
+    let TickEventCallback = system.runInterval(() => {
+      if (callback["playerLeave"] !== true) system.clearRun(TickEventCallback);
 
       // Change from player class to custom player class
       let currentPlayers: MinecraftPlayer[] = [...world.getPlayers()];
@@ -268,11 +271,11 @@ export class PlayerLeaveEventSignal {
         if (!currentPlayers.find(pl => comparePlayer(pl, player)) && executedPlayerIndex < 0) {
           executedPlayers.push(player);
 
-          let onPlayerJoin: (arg: PlayerJoinEvent) => void = world.events.playerJoin.subscribe((playerJoinEvent) => {
+          let onPlayerSpawn: (arg: PlayerSpawnEvent) => void = world.events.playerSpawn.subscribe((playerJoinEvent) => {
             let playerIndex = executedPlayers.findIndex(pl => comparePlayer(pl, playerJoinEvent.player));
             if (playerIndex >= 0) {
               executedPlayers.splice(playerIndex);
-              world.events.playerJoin.unsubscribe(onPlayerJoin);
+              world.events.playerSpawn.unsubscribe(onPlayerSpawn);
             };
           });
           

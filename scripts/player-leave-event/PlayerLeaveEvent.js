@@ -3,8 +3,8 @@
  * @author JaylyMC
  * @link https://github.com/JaylyDev/GameTestDB
  */
-import { world } from "mojang-minecraft";
-import "mojang-gametest"; // import "mojang-gametest" native module to support Simulated Players
+import { world, Vector, system } from "@minecraft/server";
+import "@minecraft/server-gametest"; // import "@minecraft/server-gametest" native module to support Simulated Players
 /**
  * @license MIT
  * @author JaylyMC
@@ -44,54 +44,17 @@ function comparePlayer(playerA, playerB) {
  * Player wrapper to save as much data into a new object.
  *
  * Keeping this class private to avoid confusion between
- * Player class from "mojang-minecraft" module.
+ * Player class from "@minecraft/server" module.
  */
 class Player {
-    /**
-     * @remarks
-     * Manually assign some player property to the new player class
-     * before failed to get property due to GameTest can't fetch
-     * despawned entities.
-     * @param {MinecraftPlayer} player
-     */
-    constructor(player) {
-        // PRIVATE PROPERTIES
-        // This properties should not be used by public
-        try {
-            this.__PlayerBlockFromViewVector = player.getBlockFromViewVector();
-        }
-        catch (_a) { }
-        ;
-        try {
-            this.__PlayerEntitiesFromViewVector = player.getEntitiesFromViewVector();
-        }
-        catch (_b) { }
-        ;
-        this.__PlayerComponents = cloneJSON(player.getComponents());
-        this.__PlayerTags = player.getTags();
-        // PUBLIC PROPERTIES
-        this.dimension = player.dimension;
-        this.headLocation = player.headLocation;
-        this.id = player.id;
-        this.isSneaking = player.isSneaking;
-        this.location = player.location;
-        this.name = player.name;
-        this.nameTag = player.nameTag;
-        this.rotation = player.rotation;
-        this.scoreboard = player.scoreboard;
-        this.selectedSlot = player.selectedSlot;
-        this.target = player.target;
-        this.velocity = player.velocity;
-        this.viewVector = player.viewVector;
-    }
     /**
      * @remarks
      * Gets the first block that intersects with the vector of the
      * view of this entity.
      * @throws This function can throw errors.
      */
-    getBlockFromViewVector() {
-        return this.__PlayerBlockFromViewVector;
+    getBlockFromViewDirection() {
+        return this.__PlayerBlockFromViewDirection;
     }
     ;
     /**
@@ -108,7 +71,7 @@ class Player {
         return this.__PlayerComponents.find(function (component) {
             if (!componentId.startsWith("minecraft:"))
                 componentId = "minecraft:" + componentId;
-            if (component.id === componentId)
+            if (component.typeId === componentId)
                 return true;
         });
     }
@@ -129,8 +92,8 @@ class Player {
      * Additional options for processing this raycast query.
      * @throws This function can throw errors.
      */
-    getEntitiesFromViewVector() {
-        return this.__PlayerEntitiesFromViewVector;
+    getEntitiesFromViewDirection() {
+        return this.__PlayerEntitiesFromViewDirection;
     }
     ;
     /**
@@ -152,7 +115,7 @@ class Player {
      * 'minecraft:' is assumed.
      */
     hasComponent(componentId) {
-        let componentIndex = this.__PlayerComponents.findIndex(entityComponent => entityComponent.id === componentId);
+        let componentIndex = this.__PlayerComponents.findIndex((entityComponent) => entityComponent.id === componentId);
         if (componentIndex < 0)
             return false;
         else
@@ -174,6 +137,45 @@ class Player {
             return true;
     }
     ;
+    /**
+     * @remarks
+     * Manually assign some player property to the new player class
+     * before failed to get property due to GameTest can't fetch
+     * despawned entities.
+     * @param {MinecraftPlayer} player
+     */
+    constructor(player) {
+        // PRIVATE PROPERTIES
+        // This properties should not be used by public
+        try {
+            this.__PlayerBlockFromViewDirection = player.getBlockFromViewDirection();
+        }
+        catch (_a) { }
+        ;
+        try {
+            this.__PlayerEntitiesFromViewDirection = player.getEntitiesFromViewDirection();
+        }
+        catch (_b) { }
+        ;
+        this.__PlayerComponents = cloneJSON(player.getComponents());
+        this.__PlayerTags = player.getTags();
+        // PUBLIC PROPERTIES
+        const velocity = player.getVelocity();
+        this.dimension = player.dimension;
+        this.headLocation = player.getHeadLocation();
+        this.id = player.id;
+        this.typeId = player.typeId;
+        this.isSneaking = player.isSneaking;
+        this.location = player.location;
+        this.name = player.name;
+        this.nameTag = player.nameTag;
+        this.rotation = player.getRotation();
+        this.scoreboard = player.scoreboard;
+        this.selectedSlot = player.selectedSlot;
+        this.target = player.target;
+        this.velocity = new Vector(velocity.x, velocity.y, velocity.z);
+        this.viewDirection = new Vector(player.getViewDirection().x, player.getViewDirection().y, player.getViewDirection().z);
+    }
     ;
 }
 ;
@@ -204,20 +206,20 @@ export class PlayerLeaveEventSignal {
         callback["playerLeave"] = true;
         let players = [...world.getPlayers()].map(pl => new Player(pl));
         let executedPlayers = [];
-        let TickEventCallback = world.events.tick.subscribe(() => {
+        let TickEventCallback = system.runInterval(() => {
             if (callback["playerLeave"] !== true)
-                world.events.tick.unsubscribe(TickEventCallback);
+                system.clearRun(TickEventCallback);
             // Change from player class to custom player class
             let currentPlayers = [...world.getPlayers()];
             for (let player of players) {
                 let executedPlayerIndex = executedPlayers.findIndex(executedPlayer => comparePlayer(executedPlayer, player));
                 if (!currentPlayers.find(pl => comparePlayer(pl, player)) && executedPlayerIndex < 0) {
                     executedPlayers.push(player);
-                    let onPlayerJoin = world.events.playerJoin.subscribe((playerJoinEvent) => {
+                    let onPlayerSpawn = world.events.playerSpawn.subscribe((playerJoinEvent) => {
                         let playerIndex = executedPlayers.findIndex(pl => comparePlayer(pl, playerJoinEvent.player));
                         if (playerIndex >= 0) {
                             executedPlayers.splice(playerIndex);
-                            world.events.playerJoin.unsubscribe(onPlayerJoin);
+                            world.events.playerSpawn.unsubscribe(onPlayerSpawn);
                         }
                         ;
                     });

@@ -1,4 +1,4 @@
-import { DynamicPropertiesDefinition, MinecraftEntityTypes, world } from "mojang-minecraft";
+import { DynamicPropertiesDefinition, MinecraftEntityTypes, world } from "@minecraft/server";
 
 world.events.worldInitialize.subscribe(({propertyRegistry}) => {
   // add boolean dynamic property

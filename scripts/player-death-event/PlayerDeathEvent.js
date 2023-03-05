@@ -1,11 +1,16 @@
+// Script examples for ScriptAPI
+// Author: Jayly#1397 <Jayly Discord>
+
 /**
  * @license MIT
  * @author JaylyMC
  */
-import { EntityHealthComponent, world, Player } from "mojang-minecraft";
+import { EntityHealthComponent, world, Player, system } from "@minecraft/server";
+import { deprecate } from "deprecate/deprecate";
 
 /**
  * Contains information related to an player death.
+ * @deprecated
  */
 export class PlayerDeathEvent {
   /**
@@ -18,6 +23,7 @@ export class PlayerDeathEvent {
 
 /**
  * Manages callbacks that are connected to when an player dies.
+ * @deprecated
  */
 export class PlayerDeathEventSignal {
   /**
@@ -31,7 +37,7 @@ export class PlayerDeathEventSignal {
      * @type {Player[]}
      */
     const deadPlayers = [];
-    let callback = world.events.tick.subscribe(() => {
+    let callback = system.runInterval(() => {
       for (let player of world.getPlayers()) {
         if (!player.hasComponent("health")) return;
         /**
@@ -44,15 +50,15 @@ export class PlayerDeathEventSignal {
           if (playerIndex < 0) {
             arg(new PlayerDeathEvent(player));
             deadPlayers.push(player);
-            let playerDeathCallback = world.events.tick.subscribe(() => {
+            let playerDeathCallback = system.runInterval(() => {
               if (health.current > 0) {
                 deadPlayers.splice(playerIndex, 1);
-                world.events.tick.unsubscribe(playerDeathCallback);
+                system.clearRun(playerDeathCallback);
               };
             });
           }      
         } else if (arg["playerDeath"] === false) {
-          world.events.tick.unsubscribe(callback);
+          system.clearRun(callback);
         };
       }
     });
@@ -69,3 +75,13 @@ export class PlayerDeathEventSignal {
     arg["playerDeath"] = false;
   };
 };
+
+PlayerDeathEventSignal.prototype.subscribe = deprecate(
+  PlayerDeathEventSignal.prototype.subscribe,
+  'PlayerDeathEvent.subscribe() is deprecated. Use EntityDeathEvent.subscribe() instead.',
+);
+
+PlayerDeathEventSignal.prototype.unsubscribe = deprecate(
+  PlayerDeathEventSignal.prototype.unsubscribe,
+  'PlayerDeathEvent.unsubscribe() is deprecated. Use EntityDeathEvent.unsubscribe() instead.'
+);

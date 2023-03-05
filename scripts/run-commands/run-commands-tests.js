@@ -1,9 +1,13 @@
-import { BlockLocation, world } from 'mojang-minecraft';
+import { world } from '@minecraft/server';
 import { runCommands, runCommandsAsync } from './index.js';
 
 // spawns a zombie then runs commands 
 runCommands(
-    world.getDimension('overworld').spawnEntity('minecraft:zombie', new BlockLocation(0, 64, 0)),
+    world.getDimension('overworld').spawnEntity('minecraft:zombie', {
+        x: 0,
+        y: 64,
+        z: 0
+    }),
     'say Hello World!',
     'scoreboard players add @s zombies 1'
 );

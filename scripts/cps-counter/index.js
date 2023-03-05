@@ -1,7 +1,7 @@
-import { MinecraftEntityTypes, world, Player } from "mojang-minecraft";
+import { MinecraftEntityTypes, world, Player } from "@minecraft/server";
 
 world.events.entityHit.subscribe(function ({ entity }) {
-  entity.id === MinecraftEntityTypes.player.id &&
+  entity.typeId === MinecraftEntityTypes.player.id &&
     (entity["clicks"] || (entity["clicks"] = []),
       entity["clicks"].push({ timestamp: new Date().getTime() }));
 });

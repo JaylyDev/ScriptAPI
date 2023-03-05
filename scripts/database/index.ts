@@ -1,4 +1,7 @@
-import { world } from "mojang-minecraft"
+// Script examples for ScriptAPI
+// Author: iBlqzed <https://github.com/iBlqzed>
+
+import { world } from "@minecraft/server"
 
 const names: string[] = []
 
@@ -110,5 +113,5 @@ export class Database {
  * @example runCommand(`give @a diamond`)
  */
 function runCommand(cmd: string): { error: boolean, data: any } {
-    try { return { error: false, data: world.getDimension('overworld').runCommand(cmd) } } catch { return { error: true, data: undefined } }
+    try { return { error: false, data: world.getDimension('overworld').runCommandAsync(cmd) } } catch { return { error: true, data: undefined } }
 }

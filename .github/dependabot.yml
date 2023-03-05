@@ -19,5 +19,7 @@ updates:
     reviewers:
       - "JaylyDev"
     schedule:
-      interval: weekly
+      interval: daily
     target-branch: "main"
+    ignore:
+      - dependency-name: "@types/*"

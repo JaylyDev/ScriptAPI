@@ -31,7 +31,7 @@ class IncompatibleEnchantmentAlertEventSignal {
    * @param {(arg0: IncompatibleEnchantmentAlertEvent) => void} callback
    */
     subscribe(callback) {
-        return system.runSchedule(function () {
+        return system.runInterval(function () {
             for (const player of world.getAllPlayers()) {
                 /**
                  * @type {EntityInventoryComponent}
@@ -56,7 +56,7 @@ class IncompatibleEnchantmentAlertEventSignal {
     }
     ;
     unsubscribe(id) {
-        system.clearRunSchedule(id);
+        system.clearRun(id);
     }
     ;
 }

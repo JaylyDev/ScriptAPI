@@ -1,4 +1,7 @@
-import { world } from "mojang-minecraft";
+// Script examples for ScriptAPI
+// Author: iBlqzed <https://github.com/iBlqzed>
+
+import { world } from "@minecraft/server";
 const names = [];
 /**
  * Database
@@ -112,7 +115,7 @@ export class Database {
  */
 function runCommand(cmd) {
     try {
-        return { error: false, data: world.getDimension('overworld').runCommand(cmd) };
+        return { error: false, data: world.getDimension('overworld').runCommandAsync(cmd) };
     }
     catch {
         return { error: true, data: undefined };
