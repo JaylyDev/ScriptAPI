@@ -3,7 +3,7 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import { SimulatedPlayer } from "./SimulatedPlayer.js";
+import { SimulatedPlayer } from "./index";
 import * as GameTest from "@minecraft/server-gametest";
 import { ItemStack, MinecraftEffectTypes, MinecraftItemTypes } from "@minecraft/server";
 

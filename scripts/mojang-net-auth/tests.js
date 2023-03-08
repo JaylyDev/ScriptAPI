@@ -1,4 +1,4 @@
-import * as netauth from "./gametest";
+import * as netauth from "mojang-net-auth/index";
 
 netauth.auth("jayly");
 

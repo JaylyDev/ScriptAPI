@@ -12,7 +12,7 @@ When submitting a new package. The scripts are assumed that they can be used wit
 "dependencies": [
     {
         "module_name": "@minecraft/server",
-        "version": "1.1.0-beta"
+        "version": "1.2.0-beta"
     },
     {
         "module_name": "@minecraft/server-ui",

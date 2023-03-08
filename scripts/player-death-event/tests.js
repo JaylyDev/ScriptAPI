@@ -1,4 +1,4 @@
-import { PlayerDeathEventSignal } from "./PlayerDeathEvent.js";
+import { PlayerDeathEventSignal } from "./index";
 
 let playerDeath = new PlayerDeathEventSignal();
 

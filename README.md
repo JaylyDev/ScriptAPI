@@ -16,6 +16,8 @@ This repository is filled with community driven script samples for Minecraft Bed
 
 Please contribute to this repository if you can.
 
+The repository features a Pull Request system that inspires heavily from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped). This implementation serves to ensure the attribution of code ownership to the script authors who manages of their scripts.
+
 To create a new script package, create a folder structure based on the following:
 
 | File          | Purpose |
@@ -40,9 +42,9 @@ Each package is versioned via GitHub repository tags. In order to secure credent
 
 ```js
 // Script example for ScriptAPI
-// Author: Contributor A <https://github.com/contributor-a>
-//         Contributor B <https://github.com/contributor-b>
-//         Contributor C <https://contributor-c.com/>
+// Author: Alice <https://github.com/alice>
+//         Bob <https://github.com/bob>
+//         Steve <https://steve.com/>
 // Project: https://github.com/JaylyDev/ScriptAPI
 ```
 
