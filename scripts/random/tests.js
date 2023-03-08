@@ -1,6 +1,7 @@
 // Script example for ScriptAPI
 // Author: Jacob Rus <https://github.com/jrus>
 // Project: https://github.com/JaylyDev/ScriptAPI
+//          https://github.com/JaylyDev/ScriptAPI
 
 import random from "./index";
 
@@ -25,7 +26,7 @@ random.randrange(45)
 random.randint(5, 18)
 
 // randomly choose an element of an array
-array = 'abcdefg'.split('')
+var array = 'abcdefg'.split('')
 random.choice(array)
 
 // choose 4 elements from the array, ordered, chosen without replacement
@@ -65,10 +66,10 @@ random.vonmisesvariate(Math.PI, Math.PI/2)
 
 // it’s possible to save and restore the state of the PRNG, allowing the same
 // set of random numbers to be generated in the same order:
-some_state = random.getstate()
+var some_state = random.getstate()
 
-a = random.random()
-for (let index = 0; index < 1000; index++) {
+const a = random.random()
+for (var index = 0; index < 1000; index++) {
   random.random();
 }
 
@@ -81,7 +82,7 @@ random.random() == a
 // If the built-in PRNG doesn’t meet your needs, it is easy to
 // override with your own PRNG. But this module also ships with
 // a couple of alternatives.
-import {BaseRandom, BuiltinRandom, HighQualityRandom} from "./index";
+const {BaseRandom, BuiltinRandom, HighQualityRandom} = random;
 
 // First, `BuiltinRandom` generates random numbers approximately 10
 // times as fast as `Random`. It calls the built-in `Math.random`
@@ -90,14 +91,14 @@ import {BaseRandom, BuiltinRandom, HighQualityRandom} from "./index";
 // engines have PRNGs with rather poor performance on statistical
 // tests of randomness, and this class also does not support setting
 // a custom seed or saving/restoring the PRNG state.
-random = new BuiltinRandom();
-random.random()
+var __random = new BuiltinRandom();
+__random.random()
 
 // The other PRNG provided has a much longer period and should pass
 // more rigorous statistical tests, at the cost of running roughly 8–10
 // times slower:
-random = new HighQualityRandom();
-random.random()
+var __random = new HighQualityRandom();
+__random.random()
 
 // It is also quite straight-forward to implement a better custom PRNG:
 class XKCDRandom extends BaseRandom {
