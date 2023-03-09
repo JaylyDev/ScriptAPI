@@ -1,5 +1,5 @@
 // https://discord.com/channels/523663022053392405/854033525546942464/988294124392284181
-import { Items, ItemStack, MinecraftItemTypes, Player, PlayerInventoryComponentContainer } from "@minecraft/server";
+import { Items, ItemStack, MinecraftItemTypes, Player, PlayerContainer } from "@minecraft/server";
 
 let sellItems = [{
     id: 'minecraft:sand',
@@ -19,7 +19,7 @@ let sellItems = [{
  */
 const sell = (player) => {
     /**
-     * @type {PlayerInventoryComponentContainer} The player's inventory container
+     * @type {PlayerContainer} The player's inventory container
      */
     // @ts-ignore
     const inv = player.getComponent('inventory').container, { size } = inv
