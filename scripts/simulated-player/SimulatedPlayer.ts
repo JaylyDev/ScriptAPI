@@ -192,13 +192,13 @@ export class SimulatedPlayer {
    * 'minecraft:' is assumed. If the component is not present on
    * the entity, undefined is returned.
    */
-  getComponent(componentId: string): Minecraft.IEntityComponent { return this.__player.getComponent(componentId) };
+  getComponent(componentId: string): Minecraft.EntityComponent { return this.__player.getComponent(componentId) };
   /**
    * @remarks
    * Returns all components that are both present on this entity
    * and supported by the API.
    */
-  getComponents(): Minecraft.IEntityComponent[] { return this.__player.getComponents() };
+  getComponents(): Minecraft.EntityComponent[] { return this.__player.getComponents() };
   /**
    * @remarks
    * Returns a property value.

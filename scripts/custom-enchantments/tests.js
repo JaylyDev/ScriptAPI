@@ -1,4 +1,4 @@
-import { InventoryComponentContainer, world } from "@minecraft/server"
+import { Container, world } from "@minecraft/server"
 import { addEnchant, Enchant } from "./index"
 
 const bleedEnchant = new Enchant({
@@ -12,7 +12,7 @@ bleedEnchant.onHurt(data => {
 
 world.events.beforeChat.subscribe(data => {
     /**
-     * @type {InventoryComponentContainer}
+     * @type {Container}
      */
     //@ts-ignore
     const inv = data.sender.getComponent("inventory").container
