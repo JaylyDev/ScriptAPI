@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: JaylyDev <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { Player, world, MinecraftEntityTypes } from "@minecraft/server";
 
 world.events.projectileHit.subscribe((arg) => {

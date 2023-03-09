@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { ScoreboardObjective, world } from '@minecraft/server';
 import { b64_to_utf8, utf8_to_b64 } from './encoding';
 

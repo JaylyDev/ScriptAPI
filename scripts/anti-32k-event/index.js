@@ -1,3 +1,7 @@
+// Script example for ScriptAPI
+// Author: JaylyMC <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
+
 import { Enchantment, Entity, EntityInventoryComponent, ItemEnchantsComponent, ItemStack, system, TicksPerSecond, world } from '@minecraft/server';
 const tickInterval = TicksPerSecond;
 class IncompatibleEnchantmentAlertEvent {

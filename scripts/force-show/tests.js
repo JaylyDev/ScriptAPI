@@ -1,8 +1,9 @@
-// Script examples for ScriptAPI
+// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { world, system, Player } from "@minecraft/server";
 import { ModalFormData, ActionFormData, MessageFormData } from "@minecraft/server-ui";
-import { forceShow } from "force-show";
+import { forceShow } from "force-show/index";
 
 world.events.beforeChat.subscribe(async (event) => {
   event.cancel = true;

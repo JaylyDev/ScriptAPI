@@ -1,6 +1,6 @@
-// Script examples for ScriptAPI
+// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
-
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { EntityDeathEventSignal } from "./index.js";
 
 const entityDeath = new EntityDeathEventSignal();

@@ -1,6 +1,9 @@
+// Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iBlqzed>
+// Project: https://github.com/JaylyDev/ScriptAPI
+
 import { system, world } from "@minecraft/server"
-import { TickEventSignal } from "tick-event"
+import { TickEventSignal } from "tick-event/index"
 
 const log = new Map()
 const blockLog = new Map()

@@ -1,5 +1,4 @@
 import { world } from "@minecraft/server";
-import { platform } from "os";
 import { RequestMethod, REST } from "./index";
 
 const rest = new REST('demo'); // id is demo, lower case

@@ -1,6 +1,6 @@
 // Script examples for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
-
+// Project: https://github.com/JaylyDev/ScriptAPI
 // https://github.com/JaylyDev/ScriptAPI/issues/112
 
 import { Container, world } from "@minecraft/server"

@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: JaylyDev <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { world, MinecraftBlockTypes, system } from "@minecraft/server";
 
 async function DeleteCommandBlocks () {

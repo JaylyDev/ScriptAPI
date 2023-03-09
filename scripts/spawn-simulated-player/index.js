@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import * as server from "@minecraft/server";
 import * as GameTest from "@minecraft/server-gametest";
-import { SimulatedPlayer } from "../simulated-player/SimulatedPlayer.js";
+import { SimulatedPlayer } from "../simulated-player/index";
 /**
  * Spawns a simulated player
  * @param target The player the simulated player is going to spawn at

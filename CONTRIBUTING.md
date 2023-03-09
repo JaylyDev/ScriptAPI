@@ -4,16 +4,22 @@ Contributing infomation. This info changes because Script API is currently in ac
 
 ## Scripts
 
-When submitting a new package. The scripts are assumed that they can be used with the latest beta module of script modules in latest version of Minecraft Preview, the following is a reference of a manifest dependencies and NPM packages for meeting the criteria of submitting or updating a script sample:
+When submitting a new package. The scripts are assumed that they can be used with the latest beta module of script modules in latest version of Minecraft Preview, the following is a reference of a manifest dependencies and NPM packages for meeting the criteria of submitting or updating a script sample.
 
 **manifest.json**
+
+This repository may have scripts that requires the following dependencies with their latest module version:
 
 ```json
 "dependencies": [
     {
         "module_name": "@minecraft/server",
-        "version": "1.1.0-beta"
+        "version": "1.2.0-beta"
     },
+    {
+        "module_name": "@minecraft/server-editor",
+        "version": "0.1.0-beta"
+    }
     {
         "module_name": "@minecraft/server-ui",
         "version": "1.0.0-beta"
@@ -30,6 +36,15 @@ When submitting a new package. The scripts are assumed that they can be used wit
         "module_name": "@minecraft/server-net",
         "version": "1.0.0-beta"
     }
+]
+```
+
+This repository may have scripts that requires the following capabilities:
+
+```json
+"capabilities": [
+    "editorExtension",
+    "script_eval"
 ]
 ```
 

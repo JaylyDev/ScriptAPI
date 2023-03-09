@@ -1,4 +1,6 @@
+// Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iBlqzed>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { Player, ItemStack, Entity, Block, BlockPermutation } from "@minecraft/server";
 export declare class Enchant {
     protected id: string;

@@ -3,7 +3,10 @@
   "description": "this repository is filled with community driven scripts for Minecraft scripting",
   "version": "1.0.0",
   "scripts": {
-    "test": "tsc"
+    "test": "tsc",
+    "build": "tsc --build",
+    "tools": "cd tools && tsc",
+    "ci": "cd scripts && tsc"
   },
   "repository": {
     "type": "git",
@@ -15,7 +18,6 @@
     "url": "https://github.com/JaylyDev/ScriptAPI/issues"
   },
   "homepage": "https://github.com/JaylyDev/ScriptAPI#readme",
-  "type": "module",
   "dependencies": {
     "@minecraft/server": "1.2.0-beta.1.19.80-preview.20",
     "@minecraft/server-admin": "1.0.0-beta.1.19.80-preview.20",
@@ -25,6 +27,8 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.10",
+    "@types/parsimmon": "1.10.6",
+    "parsimmon": "1.18.1",
     "typescript": "^4.9.5"
   }
 }

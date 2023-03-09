@@ -1,0 +1,22 @@
+{
+  "packages": [
+    "chat-rank",
+    "chest-lock",
+    "command-types",
+    "dimension-entities",
+    "dimensions",
+    "get-scores",
+    "is-host",
+    "is-operator",
+    "lz-string",
+    "minecraft-language",
+    "player-extra",
+    "player-velocity-fix",
+    "remove-permission",
+    "run-command-async",
+    "run-commands",
+    "set-permission",
+    "shopui",
+    "timers"
+  ]
+}
