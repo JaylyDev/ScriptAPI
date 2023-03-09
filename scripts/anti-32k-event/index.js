@@ -44,6 +44,8 @@ class IncompatibleEnchantmentAlertEventSignal {
                 const inventory = player.getComponent(EntityInventoryComponent.componentId);
                 for (let index = 0; index < inventory.container.size; index++) {
                     const item = inventory.container.getItem(index);
+                    /** @type {ItemEnchantsComponent} */
+                    // @ts-ignore
                     const enchantments = item === null || item === void 0 ? void 0 : item.getComponent(ItemEnchantsComponent.componentId);
                     if (!item || !enchantments)
                         continue;

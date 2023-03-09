@@ -46,7 +46,7 @@ const itemTypes = {
       "minecraft:netherrite_hoe"
   ]
 };
-import { InventoryComponentContainer } from "@minecraft/server";
+import { Container } from "@minecraft/server";
 import { world, Player } from "@minecraft/server";
 const enchants = {};
 const names = {};
@@ -104,7 +104,7 @@ export function getEnchants(item) {
 world.events.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
   if (entity instanceof Player) {
     /**
-     * @type {InventoryComponentContainer}
+     * @type {Container}
      */
     //@ts-ignore
       const inv = entity.getComponent("inventory").container;
@@ -123,7 +123,7 @@ world.events.entityHurt.subscribe(({ hurtEntity, damageSource, damage }) => {
   if (!damageSource) return;
   if (damageSource.damagingEntity instanceof Player) {
     /**
-     * @type {InventoryComponentContainer}
+     * @type {Container}
      */
     //@ts-ignore
       const inv = damagingEntity.getComponent("inventory").container;
@@ -160,7 +160,7 @@ world.events.beforeItemUseOn.subscribe((event) => {
 world.events.blockBreak.subscribe(({ player, block, brokenBlockPermutation }) => {
     
     /**
-     * @type {InventoryComponentContainer}
+     * @type {Container}
      */
     //@ts-ignore
   const inv = player.getComponent("inventory").container;

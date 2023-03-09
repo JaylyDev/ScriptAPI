@@ -14,7 +14,7 @@
  * items that have hacked enchants and clears the item from inventory
  * --------------------------------------------------------------------------
  */
-import { MinecraftEnchantmentTypes, EnchantmentList, world, EntityInventoryComponent, system } from "@minecraft/server";
+import { MinecraftEnchantmentTypes, world, EntityInventoryComponent, system, ItemEnchantsComponent } from "@minecraft/server";
 
 function onTick () {
   for (const player of world.getPlayers()) {
@@ -25,8 +25,10 @@ function onTick () {
     for (let i = 0; i < container.size; i++) {
       const item = container.getItem(i);
       if (!item) continue;
-      /** @type {EnchantmentList} */
-      const enchantments = item.getComponent("enchantments").enchantments;
+      /** @type {ItemEnchantsComponent} */
+      // @ts-ignore
+      const enchants = item.getComponent("enchantments");
+      const enchantments = enchants.enchantments;
       let change = false;
       for (const Enchantment in MinecraftEnchantmentTypes) {
         const ItemEnchantment = enchantments.getEnchantment(MinecraftEnchantmentTypes[Enchantment]);
@@ -45,7 +47,7 @@ function onTick () {
         else if (ItemEnchantment.level > ItemEnchantment.type.maxLevel) changeLevel();
       }
       if (!change) continue;
-      item.getComponent("enchantments").enchantments = enchantments;
+      enchants.enchantments = enchantments;
       container.setItem(i, item);
     }
   }

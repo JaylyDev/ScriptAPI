@@ -1,7 +1,7 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world, Player as MinecraftPlayer, Dimension, Block, Entity, IEntityComponent, ScoreboardIdentity, Vector, XYRotation, TickEvent, Vector3, PlayerSpawnEvent, system } from "@minecraft/server";
+import { world, Player as MinecraftPlayer, Dimension, Block, Entity, EntityComponent, ScoreboardIdentity, Vector, XYRotation, Vector3, PlayerSpawnEvent, system } from "@minecraft/server";
 import "@minecraft/server-gametest"; // import "@minecraft/server-gametest" native module to support Simulated Players
 
 /**
@@ -47,7 +47,7 @@ function comparePlayer (playerA: Player | MinecraftPlayer, playerB: Player | Min
  */
 class Player {
   private '__PlayerBlockFromViewDirection': Block;
-  private '__PlayerComponents': IEntityComponent[];
+  private '__PlayerComponents': EntityComponent[];
   private '__PlayerEntitiesFromViewDirection': Entity[];
   private '__PlayerTags': string[];
   /**
@@ -134,8 +134,8 @@ class Player {
    * 'minecraft:' is assumed. If the component is not present on
    * the entity, undefined is returned.
    */
-  getComponent(componentId: string): IEntityComponent {
-    return this.__PlayerComponents.find(function (component: IEntityComponent) {
+  getComponent(componentId: string): EntityComponent {
+    return this.__PlayerComponents.find(function (component: EntityComponent) {
       if (!componentId.startsWith("minecraft:")) componentId = "minecraft:" + componentId;
       if (component.typeId === componentId) return true;
     });
@@ -145,7 +145,7 @@ class Player {
    * Returns all components that are both present on this entity
    * and supported by the API.
    */
-  public getComponents(): IEntityComponent[] {
+  public getComponents(): EntityComponent[] {
     return this.__PlayerComponents;
   };
   /**

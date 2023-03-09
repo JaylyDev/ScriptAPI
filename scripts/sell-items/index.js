@@ -1,7 +1,7 @@
 // Script example for ScriptAPI
 // Author: iBlqzed#3612 <Bedrock Add-Ons>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { Player, PlayerInventoryComponentContainer } from "@minecraft/server";
+import { Player, Container } from "@minecraft/server";
 
 let sellItems = [{
     id: 'minecraft:sand',
@@ -21,7 +21,7 @@ let sellItems = [{
  */
 const sell = (player) => {
     /**
-     * @type {PlayerInventoryComponentContainer} The player's inventory container
+     * @type {Container} The player's inventory container
      */
     // @ts-ignore
     const inv = player.getComponent('inventory').container, { size } = inv
