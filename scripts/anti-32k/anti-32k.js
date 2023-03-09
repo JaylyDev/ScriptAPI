@@ -9,7 +9,7 @@
  * items that have hacked enchants and clears the item from inventory
  * --------------------------------------------------------------------------
  */
-import { MinecraftEnchantmentTypes, EnchantmentList, world, EntityInventoryComponent, system, ItemEnchantsComponent } from "@minecraft/server";
+import { MinecraftEnchantmentTypes, world, EntityInventoryComponent, system, ItemEnchantsComponent } from "@minecraft/server";
 
 function onTick () {
   for (const player of world.getPlayers()) {
