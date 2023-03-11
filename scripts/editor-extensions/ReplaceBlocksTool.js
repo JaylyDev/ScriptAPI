@@ -1,6 +1,6 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "color/index.js";
+import { Color } from "color/index";
 export default function(uiSession) {
     const tool = uiSession.toolRail.addTool(
         {
@@ -39,8 +39,8 @@ export default function(uiSession) {
                 y: 0,
                 z: 0,
             },
-            blockType: "minecraft:stone",
-            replaceWith: "minecraft:stone",
+            blockType: Server.MinecraftBlockTypes.stone,
+            replaceWith: Server.MinecraftBlockTypes.stone,
         }
     );
 

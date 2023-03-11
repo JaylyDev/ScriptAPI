@@ -48,14 +48,14 @@ export default function(uiSession) {
     const settings = Editor.createPaneBindingObject(
         pane,
         {
-            strctureName: "",
+            structureName: "",
             rotation: "0_degrees",
         }
     );
     
     pane.addString(
         settings,
-        "strctureName",
+        "structureName",
         {
             titleAltText: "Structure Name",
         },
@@ -99,10 +99,10 @@ export default function(uiSession) {
                             uiSession.extensionContext.selectionManager.selection.clear();
                         } else if (mouseProps.inputType == Editor.MouseInputType.ButtonUp) {
                             const player = uiSession.extensionContext.player;
-                            if(settings.strctureName.trim().length == 0) return;
+                            if(settings.structureName.trim().length == 0) return;
                             player.dimension.runCommandAsync(
                                 "structure load "
-                                + settings.strctureName
+                                + settings.structureName
                                 + " "
                                 + uiSession.extensionContext.cursor.position.x
                                 + " "
