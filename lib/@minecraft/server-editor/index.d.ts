@@ -8,12 +8,21 @@
  * }
  * ```
  */
-import { Events, Vector3 } from "@minecraft/server";
-import { Extension, ExtensionContext, Selection } from '@minecraft/server-editor-bindings';
+import { Events, Player, Vector3 } from "@minecraft/server";
+import {
+    Extension,
+    ExtensionContext,
+    Selection,
+} from "@minecraft/server-editor-bindings";
 export * from "@minecraft/server-editor-bindings";
 
+type BedrockEventType = keyof Events;
+type BedrockEventHandler = Events[BedrockEventType];
+
 declare class BaseControl {
-    protected constructor();
+    private _visible: boolean;
+    private _enabled: boolean;
+    private _disposed: boolean;
     get visible(): boolean;
     get enabled(): boolean;
     hide(): void;
@@ -25,36 +34,79 @@ declare class BaseControl {
 }
 
 interface ToolParams {
-    displayString: string;
-    displayStringLocId: string;
-    icon: string;
-    tooltip: string;
-    tooltipLocId: string;
+    displayString?: string;
+    displayStringLocId?: string;
+    icon?: string;
+    tooltip?: string;
+    tooltipLocId?: string;
 }
 
 declare class EventToken {
+    constructor(_event: BedrockEventHandler);
     unsubscribe(): void;
 }
 
-declare class EventSinkImpl {
-    subscribe(
-        handler: (eventArgs: { isActiveTool: boolean }) => void
-    ): EventToken;
-    unsubscribe(token: EventToken): void;
-    trigger(eventArgs: { isActiveTool: boolean }): void;
+interface EventSinkImplArgument {
+    isActiveTool: boolean;
 }
-
+/**
+ * Implementation of a simple event sink. Takes a handler with a payload T and provides
+ * a mechanism to subscribe from the public interface. Holding a reference to the class
+ * provides the mechanism for triggering listeners. Super simple at the moment, can be
+ * expanded to support notifications on listeners being added, unsubscribe all, or targeted
+ * events if needed.
+ *
+ * @internal
+ */
+declare class EventSinkImpl {
+    subscribe(handler: (eventArgs: EventSinkImplArgument) => void): EventToken;
+    unsubscribe(token: EventToken): void;
+    trigger(eventArgs: EventSinkImplArgument): void;
+}
+/**
+ * Centralized host for all events from server to a player client. Provides a structured and type safe way
+ * for a consumer to send events since the raw contract between client and server is purely stringified
+ * JSON.
+ *
+ * There must be a client event dispatcher per player.
+ *
+ * @internal
+ */
+declare class ClientEventDispatcher {}
 declare class ModalToolContainer extends BaseControl {
+    private _eventDispatcher: ClientEventDispatcher;
+    private _actionManager: ActionManagerImpl;
+    private _currentTools: ModalTool[];
+    private _selectedToolId?: string;
     get id(): "editorUI:toolRail";
     get currentTools(): ModalTool[];
     get selectedOptionId(): string | undefined;
     setSelectedOptionId(value: string, update: boolean): void;
     addTool(prams: ToolParams): ModalTool;
     removeTool(id: string): void;
-    onModalToolActivation: EventSinkImpl;
+    private _sendUpdateMessage(): void
+    private _sendDestroyMessage(): void;
 }
-
+declare class ContextInputManager extends BaseInputManager {
+    constructor(eventDispatcher: ClientEventDispatcher, inputContext: EditorInputContext);
+    registerMouseWheelBinding(action: EditorInputContext, inputMappingId: InputModifier): void;
+    registerMouseButtonBinding(action: EditorInputContext, inputMappingId: InputModifier): void;
+    registerMouseDragBinding(action: EditorInputContext, inputMappingId: InputModifier): void;
+    registerKeyBinding(action: EditorInputContext, button: Action, modifier: KeyboardKey, inputMappingId: InputModifier): void
+    unregisterBindings(): void
+}
+/**
+ * @beta
+ */
 declare class ModalTool extends BaseControl {
+    constructor(_eventDispatcher: ClientEventDispatcher, parent: ModalToolContainer, params: Menu)
+    private _eventDispatcher: ClientEventDispatcher;
+    onModalToolActivation: EventSinkImpl;
+    private _id: string;
+    private _parent: ModalToolContainer;
+    private _panesBound: PropertyPane[];
+    private _modalToolParams: Menu;
+    private _inputManager: ContextInputManager;
     get id(): string;
     hide(): void;
     show(): void;
@@ -76,6 +128,14 @@ interface MenuProps {
 }
 
 declare class Menu extends BaseControl {
+    constructor(props: any, _dispatcher: any, _actionId: any, _parent: any);
+    private _dispatcher: ClientEventDispatcher;
+    private _actionId: string;
+    private _parent;
+    private _id: string;
+    private _submenu: Menu[];
+    private _displayStringLocId: string;
+    private _name: string;
     get id(): string;
     get submenu(): Menu[];
     get displayStringLocId(): string;
@@ -85,23 +145,27 @@ declare class Menu extends BaseControl {
     get disposed(): boolean;
     set disposed(value: boolean);
     addItem(params: MenuProps, action: Action): Menu;
-    replaceAction(action: any): void;
+    replaceAction(action: Action): void;
+    addSeparator(): void;
+    private _sendUpdateMessage(): void;
+    private _sendDestroyMessage(): void;
+    private _removeChild(value: Menu): void;
     addSeparator(): void;
 }
 
 declare class PropertyItem {
     action: Action;
-    get id(): string;
-    get paneId(): string;
-    get obj(): any;
-    get property(): any;
-    get typeName(): string;
-    get propertyItemOptions(): any;
-    get enable(): boolean;
+    private _id: string;
+    private _paneId: string;
+    private _obj: any;
+    private _property: any;
+    private _typeName: string;
+    private _propertyItemOptions: any;
+    private _enable: boolean;
     set enable(value: boolean);
-    get visible(): boolean;
+    private _visible: boolean;
     set visible(value: boolean);
-    get value(): any;
+    private _value: any;
     sendPropertyUpdate(): void;
     dispose(): void;
 }
@@ -109,14 +173,14 @@ declare class PropertyItem {
 declare class PropertyPane extends BaseControl {
     onPropertyPaneVisibilityUpdated: EventSinkImpl;
     setPropertyItemValue(propertyName: string, newValue: any): void;
-    get id(): string;
-    get parentPaneId(): string;
-    get propertyItems(): PropertyItem[];
-    get titleStringId(): string;
+    private _id: string;
+    private _parentPaneId: string;
+    private _propertyItems: PropertyItem[];
+    private _titleStringId: string;
     set titleStringId(value: string);
-    get titleAltText(): string;
+    private _titleAltText: string;
     set titleAltText(value: string);
-    get width(): number;
+    private _width: number;
     findProperty(propertyName: string): PropertyItem;
     findPropertyRecursive(propertyName: string): PropertyItem;
     createPropertyPane(options: PaneOptions): PropertyItem;
@@ -161,8 +225,8 @@ declare class PropertyPane extends BaseControl {
 }
 
 declare class StatusBarItem extends BaseControl {
-    get id(): string;
-    get text(): string;
+    private _id: string;
+    private _text: string;
     set text(value: string);
 }
 
@@ -178,8 +242,14 @@ interface Action {
     actionType: ActionTypes;
     onExecute: ActionCallback;
 }
-
+declare class ClientEventListener {}
+/**
+ * Implementation of the ActionManager
+ */
 declare class ActionManagerImpl {
+    eventDispatcher: ClientEventDispatcher;
+    eventListener: ClientEventListener;
+    player: Player;
     createAction(options: CreateActionOptions): Action;
     teardown(): void;
 }
@@ -206,27 +276,47 @@ declare class BuiltInUIManagerImpl {
 }
 
 interface PaneOptions {
-    titleStringId: string;
-    titleAltText: string;
-    width: number;
+    titleStringId?: string;
+    titleAltText?: string;
+    width?: number;
+    min?: number;
+    allowedBlocks?: string[]
+    dropdownItems?: any[]
+    pane?: PropertyPane;
+    maxX?: number;
+    maxY?: number;
+    maxZ?: number;
+    minX?: number;
+    minY?: number;
+    minZ?: number;
 }
 
-declare class PlayerUISession<STORAGE> {
-    protected constructor();
-    scratchStorage: STORAGE;
-    teardown(): void;
-    get toolRail(): ModalToolContainer;
-    createMenu(props: MenuProps): Menu;
-    createPropertyPane(options: PaneOptions): PropertyPane;
-    createStatusBarItem(
-        alignment: EditorStatusBarAlignment,
-        size: number
-    ): StatusBarItem;
+/**
+ * Represents a UI session for a given player
+ * @internal
+ */
+declare class PlayerUISession {
+    private _builtInUIManager: BuiltInUIManagerImpl;
+    private _actionManager: ActionManagerImpl;
+    private _modalToolContainer: ModalToolContainer;
+    private _clientUXListenerUnregister: Function;
+    private _extensionContext: ExtensionContext;
+    private _clientEventDispatcher: ClientEventDispatcher;
+    private _propertyPanes: Map<any, any>;
+    private _eventSubscriptionCache: BedrockEventSubscriptionCache;
+    private _inputManager: GlobalInputManager;
+    private createPropertyPaneInternal(options: any, parentPaneId: any): PropertyPane;
+    scratchStorage: any;
+    teardown(): void
+    get toolRail(): ModalToolContainer
+    createMenu(props: any): Menu
+    createPropertyPane(options: any): PropertyPane;
+    createStatusBarItem(alignment: any, size: any): StatusBarItem;
     get actionManager(): ActionManagerImpl;
-    get inputManager(): GlobalInputManager;
+    get inputManager(): ContextInputManager;
     get extensionContext(): ExtensionContext;
     get builtInUIManager(): BuiltInUIManagerImpl;
-    get eventSubscriptionCache(): BedrockEventSubscriptionCache;
+    get eventSubscriptionCache(): BedrockEventSubscriptionCache
 }
 
 export enum ActionTypes {
@@ -239,7 +329,7 @@ export class BedrockEventSubscriptionCache {
     subscribeToBedrockEvent(event: string, ...params: any[]): Function;
     teardown(): void;
 }
-    
+
 export enum EDITOR_PANE_PROPERTY_ITEM_TYPE {
     Number = "editorUI:Number",
     String = "editorUI:String",
@@ -433,8 +523,8 @@ export function executeLargeOperation(
 
 export function getLocalizationId(locId: string): string;
 
-export function registerEditorExtension<STORAGE>(
+export function registerEditorExtension(
     extensionName: string,
-    activationFunction?: (uiSession: PlayerUISession<STORAGE>) => void,
-    shutdownFunction?: (uiSession: PlayerUISession<STORAGE>) => void
+    activationFunction?: (uiSession: PlayerUISession) => void,
+    shutdownFunction?: (uiSession: PlayerUISession) => void
 ): Extension;

@@ -9,7 +9,6 @@
  * ```
  */
 import { Color, Player, Vector3 } from "@minecraft/server";
-
 export class BlockVolume {
     constructor(a: Vector3, b: Vector3);
     contains(other: Vector3): boolean;
@@ -22,18 +21,15 @@ export class BlockVolume {
     max: Vector3;
     volume: number;
 }
-
 export enum BlockVolumeIntersection {
     disjoint = 0,
     contains = 1,
     intersects = 2,
 }
-
 export class BlockVolumeIterator implements Iterable<BlockVolume> {
     protected constructor();
     [Symbol.iterator](): Iterator<BlockVolume>;
 }
-
 export class BoundingBox {
     constructor(
         minX: number,
@@ -57,7 +53,6 @@ export class BoundingBox {
     spanY: number;
     spanZ: number;
 }
-
 export class ClipboardItem {
     protected constructor();
     readFromSelection;
@@ -68,14 +63,11 @@ export class ClipboardItem {
     size;
     isEmpty;
 }
-
 export class ClipboardManager {
     protected constructor();
     create(): any;
-
     clipboard: ClipboardItem;
 }
-
 export enum ClipboardMirrorAxis {
     none = "none",
     X = "X",
@@ -88,39 +80,29 @@ export enum ClipboardRotation {
     Rotate180 = "Rotate180",
     Rotate270 = "Rotate270",
 }
-
 export class ClipboardWriteOptions {
     anchor;
     offset;
     mirror;
     rotation;
 }
-
 export class Cursor {
     getState(): any;
-
-    setState(): any;
-
+    setState(state: any): any;
     moveBy(): any;
-
     resetToDefaultState(): any;
-
     show(): any;
-
     hide(): any;
-
     position: Vector3;
     faceDirection: number;
     isVisible: boolean;
 }
-
 export enum CursorControlMode {
     Keyboard = 0,
     Mouse = 1,
     KeyboardAndMouse = 2,
     Fixed = 3,
 }
-
 export class CursorState {
     color: Color;
     controlMode: CursorControlMode;
@@ -128,18 +110,15 @@ export class CursorState {
     visible: boolean;
     fixedModeDistance: number;
 }
-
 export enum CursorTargetMode {
     Block = 0,
     Face = 1,
 }
-
 export class Extension {
     protected constructor();
     description: string;
     notes: string;
 }
-
 export class ExtensionContext {
     protected constructor();
     player: Player;
@@ -148,7 +127,6 @@ export class ExtensionContext {
     clipboardManager: ClipboardManager;
     cursor: Cursor;
 }
-
 export class MinecraftEditor {
     protected constructor();
     registerExtension(
@@ -173,18 +151,15 @@ export class Selection {
     fillColor: Color;
     borderColor: Color;
 }
-
 export enum SelectionBlockVolumeAction {
     add = 0,
     subtract = 1,
 }
-
 export class SelectionManager {
     protected constructor();
     createSelection(): any;
     selection: Selection;
 }
-
 export class TransactionManager {
     protected constructor();
     undo(): any;
@@ -192,13 +167,12 @@ export class TransactionManager {
     undoSize(): any;
     redoSize(): any;
     trackBlockChangeList(): any;
-    trackBlockChangeArea(): any;
-    trackBlockChangeSelection(): any;
+    trackBlockChangeArea(min: Vector3, max: Vector3): any;
+    trackBlockChangeSelection(selection: any): any;
     commitTrackedChanges(): any;
     discardTrackedChanges(): any;
-    openTransaction(): any;
+    openTransaction(transaction: string): any;
     commitOpenTransaction(): any;
     discardOpenTransaction(): any;
 }
-
 export const editor: MinecraftEditor;
