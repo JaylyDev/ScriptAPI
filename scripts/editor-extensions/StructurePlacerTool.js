@@ -1,5 +1,5 @@
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "../color";
+import { Color } from "color/index.js";
 export default function(uiSession) {
     const tool = uiSession.toolRail.addTool(
         {

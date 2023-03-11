@@ -1,7 +1,7 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import * as EditorUtilities from "../editor-utilities";
-import { Color } from "../color";
+import * as EditorUtilities from "editor-utilities/index";
+import { Color } from "../color/index";
 export default function(uiSession) {
     const tool = uiSession.toolRail.addTool(
         {

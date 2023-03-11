@@ -1,4 +1,4 @@
-import { Vector3 } from "@minecraft/server";
+import { Vector } from "@minecraft/server";
 
 /**
  * Direction
@@ -6,7 +6,7 @@ import { Vector3 } from "@minecraft/server";
  * @remarks
  * Direction maps to C++ Direction::FacingID
  */
-enum Direction {
+declare enum Direction {
   Forward = 'Forward',
   Right = 'Right',
   Back = 'Back',
@@ -20,14 +20,14 @@ enum Direction {
  * @remarks
  * Return a unit vector for a given Direction
  */
-function getDirectionVector(direction: Direction): Vector
+declare function getDirectionVector(direction: Direction): Vector
 /**
  * getScaledDirectionVector
  * @beta
  * @remarks
  * Return a scaled vector for a given Direction
  */
-function getScaledDirectionVector(direction, scale): Vector
+declare function getScaledDirectionVector(direction: Direction, scale: number): Vector
 /**
  * getRotationCorrectedDirection
  * @beta
@@ -35,7 +35,7 @@ function getScaledDirectionVector(direction, scale): Vector
  * Convert a given absolute Direction enum to one which is relative to the specified Y rotation
  *  (Generally Player view vector Y component)
  */
-function getRotationCorrectedDirection(rotationY, realDirection): string | number 
+declare function getRotationCorrectedDirection(rotationY: number, realDirection: Direction): string | number 
 /**
  * getRotationCorrectedDirectionVector
  * @beta
@@ -43,7 +43,7 @@ function getRotationCorrectedDirection(rotationY, realDirection): string | numbe
  * Convert a given absolute Direction enum to a direction vector which is relative to the Y rotation
  *  (Generally Player view vector Y component)
  */
-function getRotationCorrectedDirectionVector(rotationY, realDirection): Vector
+declare function getRotationCorrectedDirectionVector(rotationY: number, realDirection: Direction): Vector
 
 export {
   Direction,
