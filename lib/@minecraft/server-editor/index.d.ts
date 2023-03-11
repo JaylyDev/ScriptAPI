@@ -8,7 +8,7 @@
  * }
  * ```
  */
-import { Events, Player, Vector3 } from "@minecraft/server";
+import { Events, Player, System, Vector3 } from "@minecraft/server";
 import {
     Extension,
     ExtensionContext,
@@ -72,7 +72,13 @@ declare class EventSinkImpl {
  *
  * @internal
  */
-declare class ClientEventDispatcher {}
+declare class ClientEventDispatcher {
+    constructor(_system: System);
+    private _system: System;
+    initialize(): Player;
+    dispatchEvent(type: any, payload: any, replacer: any): void;
+    flush(): void;
+}
 declare class ModalToolContainer extends BaseControl {
     private _eventDispatcher: ClientEventDispatcher;
     private _actionManager: ActionManagerImpl;
@@ -84,22 +90,43 @@ declare class ModalToolContainer extends BaseControl {
     setSelectedOptionId(value: string, update: boolean): void;
     addTool(prams: ToolParams): ModalTool;
     removeTool(id: string): void;
-    private _sendUpdateMessage(): void
+    private _sendUpdateMessage(): void;
     private _sendDestroyMessage(): void;
 }
 declare class ContextInputManager extends BaseInputManager {
-    constructor(eventDispatcher: ClientEventDispatcher, inputContext: EditorInputContext);
-    registerMouseWheelBinding(action: EditorInputContext, inputMappingId: InputModifier): void;
-    registerMouseButtonBinding(action: EditorInputContext, inputMappingId: InputModifier): void;
-    registerMouseDragBinding(action: EditorInputContext, inputMappingId: InputModifier): void;
-    registerKeyBinding(action: EditorInputContext, button: Action, modifier: KeyboardKey, inputMappingId: InputModifier): void
-    unregisterBindings(): void
+    constructor(
+        eventDispatcher: ClientEventDispatcher,
+        inputContext: EditorInputContext
+    );
+    registerMouseWheelBinding(
+        action: EditorInputContext,
+        inputMappingId: InputModifier
+    ): void;
+    registerMouseButtonBinding(
+        action: EditorInputContext,
+        inputMappingId: InputModifier
+    ): void;
+    registerMouseDragBinding(
+        action: EditorInputContext,
+        inputMappingId: InputModifier
+    ): void;
+    registerKeyBinding(
+        action: EditorInputContext,
+        button: Action,
+        modifier: KeyboardKey,
+        inputMappingId: InputModifier
+    ): void;
+    unregisterBindings(): void;
 }
 /**
  * @beta
  */
 declare class ModalTool extends BaseControl {
-    constructor(_eventDispatcher: ClientEventDispatcher, parent: ModalToolContainer, params: Menu)
+    constructor(
+        _eventDispatcher: ClientEventDispatcher,
+        parent: ModalToolContainer,
+        params: Menu
+    );
     private _eventDispatcher: ClientEventDispatcher;
     onModalToolActivation: EventSinkImpl;
     private _id: string;
@@ -242,7 +269,7 @@ interface Action {
     actionType: ActionTypes;
     onExecute: ActionCallback;
 }
-declare class ClientEventListener {}
+declare class ClientEventListener { }
 /**
  * Implementation of the ActionManager
  */
@@ -253,8 +280,11 @@ declare class ActionManagerImpl {
     createAction(options: CreateActionOptions): Action;
     teardown(): void;
 }
-
+/**
+ * @beta
+ */
 declare class BaseInputManager {
+    eventDispatcher: ClientEventDispatcher;
     unregisterAllBindings(): void;
 }
 
@@ -280,8 +310,8 @@ interface PaneOptions {
     titleAltText?: string;
     width?: number;
     min?: number;
-    allowedBlocks?: string[]
-    dropdownItems?: any[]
+    allowedBlocks?: string[];
+    dropdownItems?: any[];
     pane?: PropertyPane;
     maxX?: number;
     maxY?: number;
@@ -305,18 +335,21 @@ declare class PlayerUISession {
     private _propertyPanes: Map<any, any>;
     private _eventSubscriptionCache: BedrockEventSubscriptionCache;
     private _inputManager: GlobalInputManager;
-    private createPropertyPaneInternal(options: any, parentPaneId: any): PropertyPane;
+    private createPropertyPaneInternal(
+        options: any,
+        parentPaneId: any
+    ): PropertyPane;
     scratchStorage: any;
-    teardown(): void
-    get toolRail(): ModalToolContainer
-    createMenu(props: any): Menu
+    teardown(): void;
+    get toolRail(): ModalToolContainer;
+    createMenu(props: any): Menu;
     createPropertyPane(options: any): PropertyPane;
     createStatusBarItem(alignment: any, size: any): StatusBarItem;
     get actionManager(): ActionManagerImpl;
     get inputManager(): ContextInputManager;
     get extensionContext(): ExtensionContext;
     get builtInUIManager(): BuiltInUIManagerImpl;
-    get eventSubscriptionCache(): BedrockEventSubscriptionCache
+    get eventSubscriptionCache(): BedrockEventSubscriptionCache;
 }
 
 export enum ActionTypes {
