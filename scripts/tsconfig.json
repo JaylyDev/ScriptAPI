@@ -13,6 +13,8 @@
       "@minecraft/server-net": [ "../node_modules/@minecraft/server-net/index.d.ts" ],
       "@minecraft/server-admin": [ "../node_modules/@minecraft/server-admin/index.d.ts" ],
       "@minecraft/server-gametest": [ "../node_modules/@minecraft/server-gametest/index.d.ts" ],
+      "@minecraft/server-editor": [ "../lib/@minecraft/server-editor/index.d.ts" ],
+      "@minecraft/server-editor-bindings": [ "../lib/@minecraft/server-editor-bindings/index.d.ts" ]
     },
     "types": [],
     "typeRoots": [],
