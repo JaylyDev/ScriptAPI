@@ -34,6 +34,7 @@ declare class BaseControl {
 }
 
 interface ToolParams {
+    name?: string;
     displayString?: string;
     displayStringLocId?: string;
     icon?: string;
@@ -112,7 +113,7 @@ declare class ContextInputManager extends BaseInputManager {
     ): void;
     registerKeyBinding(
         action: EditorInputContext,
-        button: Action,
+        button: Action<ActionTypes>,
         modifier: KeyboardKey,
         inputMappingId: InputModifier
     ): void;
@@ -139,11 +140,11 @@ declare class ModalTool extends BaseControl {
     show(): void;
     dispose(): void;
     bindPropertyPane(pane: PropertyPane): void;
-    registerMouseButtonBinding(action: Action): void;
-    registerMouseWheelBinding(action: Action): void;
-    registerMouseDragBinding(action: Action): void;
+    registerMouseButtonBinding(action: Action<ActionTypes>): void;
+    registerMouseWheelBinding(action: Action<ActionTypes>): void;
+    registerMouseDragBinding(action: Action<ActionTypes>): void;
     registerKeyBinding(
-        action: Action,
+        action: Action<ActionTypes>,
         button: KeyboardKey,
         modifier: InputModifier
     ): void;
@@ -171,8 +172,8 @@ declare class Menu extends BaseControl {
     dispose(): void;
     get disposed(): boolean;
     set disposed(value: boolean);
-    addItem(params: MenuProps, action: Action): Menu;
-    replaceAction(action: Action): void;
+    addItem(params: MenuProps, action: Action<ActionTypes>): Menu;
+    replaceAction(action: Action<ActionTypes>): void;
     addSeparator(): void;
     private _sendUpdateMessage(): void;
     private _sendDestroyMessage(): void;
@@ -181,7 +182,7 @@ declare class Menu extends BaseControl {
 }
 
 declare class PropertyItem {
-    action: Action;
+    action: Action<ActionTypes>;
     private _id: string;
     private _paneId: string;
     private _obj: any;
@@ -257,18 +258,40 @@ declare class StatusBarItem extends BaseControl {
     set text(value: string);
 }
 
-type ActionCallback = (mouseRay: any, mouseProps: any) => void;
-
-interface CreateActionOptions {
-    actionType: ActionTypes;
-    onExecute: ActionCallback;
+interface MouseRay {
+    direction: Vector3;
+    location: Vector3;
+    cursorBlockLocation: Vector3;
+    rayHit: boolean;
 }
 
-interface Action {
+interface MouseProps {
+    mouseAction: MouseActionType;
+    modifiers: { shift: boolean; ctrl: boolean; alt: boolean };
+    inputType: MouseInputType;
+}
+
+interface ActionPayload {
+    [ActionTypes.NoArgsAction]: () => void;
+    [ActionTypes.MouseRayCastAction]: (
+        mouseRay: MouseRay,
+        mouseProps: MouseProps
+    ) => void;
+}
+
+interface CreateActionOptions<T extends keyof ActionPayload> {
+    actionType: T;
+    onExecute: ActionPayload[T];
+}
+
+interface Action<T extends keyof ActionPayload> {
     id: string;
-    actionType: ActionTypes;
-    onExecute: ActionCallback;
+    actionType: T;
+    onExecute: ActionPayload[T];
 }
+/**
+ * @internal
+ */
 declare class ClientEventListener { }
 /**
  * Implementation of the ActionManager
@@ -277,7 +300,9 @@ declare class ActionManagerImpl {
     eventDispatcher: ClientEventDispatcher;
     eventListener: ClientEventListener;
     player: Player;
-    createAction(options: CreateActionOptions): Action;
+    createAction<T extends keyof ActionPayload>(
+        options: CreateActionOptions<T>
+    ): Action<T>;
     teardown(): void;
 }
 /**
@@ -291,7 +316,7 @@ declare class BaseInputManager {
 export class GlobalInputManager extends BaseInputManager {
     registerKeyBinding(
         inputContextId: EditorInputContext,
-        action: Action,
+        action: Action<ActionTypes>,
         button: KeyboardKey,
         modifier: InputModifier
     ): void;
@@ -305,13 +330,20 @@ declare class BuiltInUIManagerImpl {
     navigateToFeedback(): void;
 }
 
+interface DropdownItem {
+    displayAltText: string;
+    displayStringId?: string;
+    value: any;
+}
+
 interface PaneOptions {
     titleStringId?: string;
-    titleAltText?: string;
+    titleAltText: string;
     width?: number;
     min?: number;
+    max?: number;
     allowedBlocks?: string[];
-    dropdownItems?: any[];
+    dropdownItems?: DropdownItem[];
     pane?: PropertyPane;
     maxX?: number;
     maxY?: number;
@@ -319,6 +351,10 @@ interface PaneOptions {
     minX?: number;
     minY?: number;
     minZ?: number;
+    enable?: boolean;
+    showSlider?: boolean;
+    variant?: string;
+    onChange?: (_obj: any, _property: string, _oldValue: any, _newValue: any) => void;
 }
 
 /**
@@ -336,14 +372,14 @@ declare class PlayerUISession {
     private _eventSubscriptionCache: BedrockEventSubscriptionCache;
     private _inputManager: GlobalInputManager;
     private createPropertyPaneInternal(
-        options: any,
-        parentPaneId: any
+        options: PaneOptions,
+        parentPaneId: string
     ): PropertyPane;
-    scratchStorage: any;
+    scratchStorage: Record<string, any>;
     teardown(): void;
     get toolRail(): ModalToolContainer;
-    createMenu(props: any): Menu;
-    createPropertyPane(options: any): PropertyPane;
+    createMenu(props: MenuProps): Menu;
+    createPropertyPane(options: PaneOptions): PropertyPane;
     createStatusBarItem(alignment: any, size: any): StatusBarItem;
     get actionManager(): ActionManagerImpl;
     get inputManager(): ContextInputManager;

@@ -157,15 +157,15 @@ export enum SelectionBlockVolumeAction {
 }
 export class SelectionManager {
     protected constructor();
-    createSelection(): BoundingBox;
+    createSelection(): Selection;
     selection: Selection;
 }
 export class TransactionManager {
     protected constructor();
-    undo(): any;
-    redo(): any;
-    undoSize(): any;
-    redoSize(): any;
+    undo(): void;
+    redo(): void;
+    undoSize(): number;
+    redoSize(): number;
     trackBlockChangeList(): any;
     trackBlockChangeArea(min: Vector3, max: Vector3): void;
     trackBlockChangeSelection(selection: Selection): void;
