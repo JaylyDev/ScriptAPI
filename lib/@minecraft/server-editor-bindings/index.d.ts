@@ -8,7 +8,7 @@
  * }
  * ```
  */
-import { Color, Player, Vector3 } from "@minecraft/server";
+import { Color, Player, Vector3, World } from "@minecraft/server";
 export class BlockVolume {
     constructor(a: Vector3, b: Vector3);
     contains(other: Vector3): boolean;
@@ -55,13 +55,13 @@ export class BoundingBox {
 }
 export class ClipboardItem {
     protected constructor();
-    readFromSelection;
+    readFromSelection(selection: Selection): void;
     readFromWorld;
-    writeToWorld;
-    getPredictedWriteAsSelection;
-    clear;
-    size;
-    isEmpty;
+    writeToWorld(location: Vector3, options: ClipboardWriteOptions): void;
+    getPredictedWriteAsSelection(location: Vector3, options: ClipboardWriteOptions): Selection;
+    clear(): void;
+    size: Vector3;
+    isEmpty: boolean;
 }
 export class ClipboardManager {
     protected constructor();
@@ -81,18 +81,18 @@ export enum ClipboardRotation {
     Rotate270 = "Rotate270",
 }
 export class ClipboardWriteOptions {
-    anchor;
-    offset;
-    mirror;
-    rotation;
+    anchor: Vector3;
+    offset: Vector3;
+    mirror: ClipboardMirrorAxis;
+    rotation: ClipboardRotation;
 }
 export class Cursor {
-    getState(): any;
-    setState(state: any): any;
-    moveBy(): any;
-    resetToDefaultState(): any;
-    show(): any;
-    hide(): any;
+    getState(): CursorState;
+    setState(state: CursorState): void;
+    moveBy(vector: Vector3): void;
+    resetToDefaultState(): void;
+    show(): void;
+    hide(): void;
     position: Vector3;
     faceDirection: number;
     isVisible: boolean;
@@ -137,13 +137,13 @@ export class MinecraftEditor {
 }
 export class Selection {
     protected constructor();
-    clear(): any;
-    pushVolume(): any;
-    popVolume(): any;
-    copyFrom(): any;
-    getBlockPositionIterator(): any;
-    moveBy(): any;
-    moveTo(): any;
+    clear(): void;
+    pushVolume(action: SelectionBlockVolumeAction, volume: BlockVolume): any;
+    popVolume(): void;
+    copyFrom(selection: Selection): void;
+    getBlockPositionIterator(): BlockVolumeIterator;
+    moveBy(vector: Vector3): void;
+    moveTo(vector: Vector3): void;
     peekLastVolume: BlockVolume;
     boundingBox: BoundingBox;
     isEmpty: boolean;
@@ -157,7 +157,7 @@ export enum SelectionBlockVolumeAction {
 }
 export class SelectionManager {
     protected constructor();
-    createSelection(): any;
+    createSelection(): BoundingBox;
     selection: Selection;
 }
 export class TransactionManager {
@@ -167,12 +167,12 @@ export class TransactionManager {
     undoSize(): any;
     redoSize(): any;
     trackBlockChangeList(): any;
-    trackBlockChangeArea(min: Vector3, max: Vector3): any;
-    trackBlockChangeSelection(selection: any): any;
-    commitTrackedChanges(): any;
-    discardTrackedChanges(): any;
-    openTransaction(transaction: string): any;
-    commitOpenTransaction(): any;
-    discardOpenTransaction(): any;
+    trackBlockChangeArea(min: Vector3, max: Vector3): void;
+    trackBlockChangeSelection(selection: Selection): void;
+    commitTrackedChanges(): void;
+    discardTrackedChanges(): void;
+    openTransaction(transaction: string): void;
+    commitOpenTransaction(): void;
+    discardOpenTransaction(): void;
 }
 export const editor: MinecraftEditor;
