@@ -8,7 +8,7 @@
  * }
  * ```
  */
-import { Color, Player, Vector3, World } from "@minecraft/server";
+import { Color, Player, Vector3 } from "@minecraft/server";
 export class BlockVolume {
     constructor(a: Vector3, b: Vector3);
     contains(other: Vector3): boolean;
