@@ -11,7 +11,7 @@ function pushCommitGit (packages: string[]) {
   ];
   const commands = [
     "git add scripts",
-    `git commit -m ${JSON.stringify(title)} ${JSON.stringify(description)}`,
+    `git commit -m ${JSON.stringify(title)} -m ${description.join('\\\\n')}`,
     "git push origin main",
   ];
 
