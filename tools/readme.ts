@@ -1,3 +1,4 @@
+import { execSync } from "child_process";
 import { readdirSync, writeFileSync } from "fs";
 import { exec } from "node:child_process";
 import path from "path";
@@ -18,12 +19,12 @@ function pushCommitGit (packages: string[]) {
     "git describe",
     "git add scripts",
     `git commit -m ${JSON.stringify(title)} -m ${description.join('\\\\n')}`,
-    "git push origin main",
+    "git push",
   ];
 
   for (const cmd of commands) {
     console.log(cmd);
-    exec(cmd, console.log);
+    console.log(execSync(cmd));
   }
 };
 
