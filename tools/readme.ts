@@ -22,7 +22,7 @@ function pushCommitGit (packages: string[]) {
 
   for (const cmd of commands) {
     console.log(cmd);
-    console.log(execSync(cmd).toString());
+    console.log(execSync(cmd.replaceAll('\\n', '\n')).toString());
   }
 };
 
