@@ -17,14 +17,7 @@ function pushCommitGit (packages: string[]) {
 
   for (const cmd of commands) {
     console.log(cmd);
-    exec(cmd, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`exec error: ${error}`);
-        return;
-      }
-      console.log(`stdout: ${stdout}`);
-      console.log(`stderr: ${stderr}`);
-    });
+    exec(cmd, console.log);
   }
 };
 
