@@ -8,7 +8,7 @@ function pushCommitGit (packages: string[]) {
   const title = `Add README to ${packages.length} packages`;
   const description = [
     `Add README file to the following packages:`,
-    ...packages.map(v => '- ' + v)
+    packages.join(', ')
   ];
   const commands = [
     "git --version",
