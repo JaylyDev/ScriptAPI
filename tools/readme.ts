@@ -16,7 +16,7 @@ function pushCommitGit (packages: string[]) {
     'git config user.name "github-actions[bot]"',
     "git status",
     "git add scripts",
-    `git commit -m ${JSON.stringify(title)} -m ${description.join('\\\\n')}`,
+    `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
     "git push",
   ];
 
