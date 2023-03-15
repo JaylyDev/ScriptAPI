@@ -96,7 +96,7 @@ export function execute (): 0 | 1 {
   }
 
   // attempt to commit
-  // pushCommitGit(scriptsChanged);
+  pushCommitGit(scriptsChanged);
   
   return 0;
 }
