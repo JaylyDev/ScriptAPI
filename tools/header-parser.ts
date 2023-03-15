@@ -56,7 +56,7 @@ function isParseError(x: {}): x is ParseError {
 }
 
 /** @param strict If true, we allow fewer things to be parsed. Turned on by linting. */
-function parseHeader(text: string): Header | ParseError {
+export function parseHeader(text: string): Header | ParseError {
   const res = headerParser().parse(text);
   return res.status
     ? res.value
