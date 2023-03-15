@@ -1,4 +1,4 @@
-// Type definition for @minecraft/server-editor-bindings 0.3
+// Type definition for @minecraft/server-editor-bindings 0.3.1
 /**
  * Manifest details
  * ```json
@@ -56,7 +56,7 @@ export class BoundingBox {
 export class ClipboardItem {
     protected constructor();
     readFromSelection(selection: Selection): void;
-    readFromWorld;
+    readFromWorld(a: Vector3, b: Vector3): any;
     writeToWorld(location: Vector3, options: ClipboardWriteOptions): void;
     getPredictedWriteAsSelection(location: Vector3, options: ClipboardWriteOptions): Selection;
     clear(): void;
@@ -65,7 +65,7 @@ export class ClipboardItem {
 }
 export class ClipboardManager {
     protected constructor();
-    create(): any;
+    create(): ClipboardItem;
     clipboard: ClipboardItem;
 }
 export enum ClipboardMirrorAxis {
@@ -129,7 +129,7 @@ export class ExtensionContext {
 }
 export class MinecraftEditor {
     protected constructor();
-    registerExtension(
+    registerExtension_Internal(
         extensionName: string,
         activationFunction: (context: ExtensionContext) => void,
         shutdownFunction: (context: ExtensionContext) => void
@@ -166,7 +166,7 @@ export class TransactionManager {
     redo(): void;
     undoSize(): number;
     redoSize(): number;
-    trackBlockChangeList(): any;
+    trackBlockChangeList(list: Vector3[]): any;
     trackBlockChangeArea(min: Vector3, max: Vector3): void;
     trackBlockChangeSelection(selection: Selection): void;
     commitTrackedChanges(): void;
@@ -176,3 +176,4 @@ export class TransactionManager {
     discardOpenTransaction(): void;
 }
 export const editor: MinecraftEditor;
+export const ExtensionOptionalParameters: undefined
