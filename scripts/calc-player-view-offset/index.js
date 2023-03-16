@@ -1,6 +1,13 @@
 // Script example for ScriptAPI
 // Author: GlitchyTurtle32 <https://github.com/GlitchyTurtle>
 // Project: https://github.com/JaylyDev/ScriptAPI
+
+import { Player } from "@minecraft/server";
+
+/**
+ * @param {import("@minecraft/server").Vector3} vector
+ * @param {number} s
+ */
 function normalizeVector (vector,s) {
     let l = Math.hypot(vector.x,vector.y,vector.z)
     return {
@@ -10,7 +17,13 @@ function normalizeVector (vector,s) {
     }
 }
 
-function calcVectorOffset (player, xf, yf, zf, d = player.getViewDirection(), l = player.location) {
+/**
+ * @param {Player} player
+ * @param {number} xf
+ * @param {number} yf
+ * @param {number} zf
+ */
+export function calcVectorOffset (player, xf, yf, zf, d = player.getViewDirection(), l = player.location) {
     let m = Math.hypot(d.x, d.z);
     let xx = normalizeVector({
         x: d.z,

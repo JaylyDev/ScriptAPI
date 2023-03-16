@@ -28,10 +28,10 @@ function levelup() {
     let xpmax = getScore('xpmax', player, true);
     let level = getScore('level', player, true);
     if (xp == xpmax && level <= 100) {
-      player.runCommandAsync(`scoreboard players add @s level 1`)
-      player.runCommandAsync(`scoreboard players set @s xp 0`)
+      player.runCommand(`scoreboard players add @s level 1`)
+      player.runCommand(`scoreboard players set @s xp 0`)
       xpmax += xpmax + (xpmax * 0.03)
-      player.runCommandAsync(`scoreboard players set @s xpmax ${xpmax}`)
+      player.runCommand(`scoreboard players set @s xpmax ${xpmax}`)
     }
   }
 }

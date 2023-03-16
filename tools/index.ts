@@ -1,6 +1,7 @@
 import * as headerChecks from "./headerChecks";
 import * as packageCheck from "./packageCheck";
 import * as testScriptChecks from "./testScriptChecks";
+import * as readme from "./readme";
 
 function log (...args: string[]) {
   console.log('');
@@ -29,6 +30,8 @@ function runTasks (tasks: Task[]): number {
 const exitCode = runTasks([
   { message: "Checking script file headers", execute: headerChecks.execute },
   { message: "Checking script names", execute: packageCheck.execute },
-  { message: "Looking for test files in packages", execute: testScriptChecks.execute }
+  { message: "Looking for test files in packages", execute: testScriptChecks.execute },
+  { message: "Adding README for packages", execute: readme.execute },
 ]);
+
 process.exit(exitCode);

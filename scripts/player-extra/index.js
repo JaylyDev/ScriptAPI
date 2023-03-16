@@ -6,7 +6,7 @@ export default function Player(player) {
             return getGamemode(player);
         },
         kick(reason) {
-            player.runCommandAsync(`kick "${player.name}" ${reason}`);
+            player.runCommand(`kick "${player.name}" ${reason}`);
         },
         getScore(objectiveId) {
             return mc.world.scoreboard

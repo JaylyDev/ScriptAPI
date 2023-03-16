@@ -4,6 +4,7 @@
 import { world } from '@minecraft/server';
 import { b64_to_utf8, utf8_to_b64 } from './encoding';
 ;
+const overworld = world.getDimension('overworld');
 export class RESTError extends Error {
 }
 ;
@@ -101,10 +102,7 @@ export class REST {
                 const encrypted = table.toRawtext();
                 // version increment
                 const version = participant.getScore(this.scoreboard);
-                (async () => {
-                    await world.getDimension('overworld')
-                        .runCommandAsync(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
-                });
+                overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
             }
             ;
         }
@@ -133,12 +131,8 @@ export class REST {
             const encrypted = table.toRawtext();
             // version increment
             const version = participant.getScore(this.scoreboard);
-            return new Promise((resolve, reject) => {
-                world.getDimension('overworld')
-                    .runCommandAsync(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`)
-                    .catch(reject);
-                resolve(version);
-            });
+            overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
+            return version + 1;
         }
         // create a new route
         else if (options.method === RequestMethod.POST) {
@@ -146,12 +140,7 @@ export class REST {
                 throw new RESTError('Cannot create new route. Route ' + JSON.stringify(route) + ' already exists.');
             const rawtext = JSON.stringify({ route, data: [] });
             const table = new Table(rawtext.toString());
-            return new Promise((resolve, reject) => {
-                world.getDimension('overworld')
-                    .runCommandAsync(`scoreboard players set ${JSON.stringify(table.toRawtext())} ${JSON.stringify(this.scoreboard.id)} 1`)
-                    .then(() => resolve())
-                    .catch(reject);
-            });
+            overworld.runCommand(`scoreboard players set ${JSON.stringify(table.toRawtext())} ${JSON.stringify(this.scoreboard.id)} 1`);
         }
         // create a new member from route
         else if (options.method === RequestMethod.PUT) {
@@ -166,12 +155,7 @@ export class REST {
             table.data.push(member);
             const encrypted = table.toRawtext();
             // version increment
-            return new Promise((resolve, reject) => {
-                world.getDimension('overworld')
-                    .runCommandAsync(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} 1`)
-                    .then(() => resolve())
-                    .catch(reject);
-            });
+            overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} 1`);
         }
         else
             throw new RESTError('Request method ' + options.method + ' not acceptable.');

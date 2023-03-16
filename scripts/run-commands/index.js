@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Jayly#1397 <Jayly Discord>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { Entity, Dimension } from "@minecraft/server";
 
 /**
@@ -8,7 +11,7 @@ import { Entity, Dimension } from "@minecraft/server";
 export function runCommands (target, ...commandString) {
     const results = [];
     for (const command of commandString) {
-        results.push(target.runCommandAsync(command));
+        results.push(target.runCommand(command));
     };
     return results;
 };

@@ -91,6 +91,28 @@ var Commands = /** @class */ (function () {
     }
     /**
      * @remarks
+     * Runs a particular command synchronously from the context.
+     * @param commandString
+     * Command to run. Note that command strings should not start
+     * with slash.
+     * @param target
+     * Target to be used as context for the command to run
+     * within.
+     * @returns
+     * For commands that return data, returns a CommandResult with
+     * an indicator of command results.
+     * @throws This function can throw errors.
+     */
+    Commands.run = function (commandString, target) {
+        if (target === void 0) { target = world.getDimension("overworld"); }
+        if (target instanceof Dimension || Entity)
+            return target.runCommand(commandString);
+        else
+            throw TypeError("Native type conversion failed");
+    };
+    ;
+    /**
+     * @remarks
      * Runs a particular command asynchronously from the context.
      * Where possible - and especially for
      * long-running operations - you should use runCommandAsync

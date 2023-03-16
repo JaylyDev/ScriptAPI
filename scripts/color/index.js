@@ -11,11 +11,9 @@ export class Color {
 	 * @returns 
 	 */
 	constructor(r, g, b, a) {
-		return {
-			red: r,
-			green: g,
-			blue: b,
-			alpha: a,
-		};
+		this.red = r;
+		this.green = g;
+		this.blue = b;
+		this.alpha = a;
 	};
 };

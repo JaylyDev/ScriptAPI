@@ -1,10 +1,11 @@
 # Page Form
 
-split buttons to different forms 
+split buttons to different forms
 
 ![video](./example.gif)
 
 Dependencies:
+
 - [`force-show`](../force-show/index.js)
 
 Example:
@@ -31,5 +32,4 @@ world.events.itemUse.subscribe(({ source }) => {
       source
     ).then(console.warn);
 });
-
 ```

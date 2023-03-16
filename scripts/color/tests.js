@@ -1,3 +1,8 @@
 import { Color } from "./index";
 
-new Color(1, 1, 1, 1);
+const color = new Color(1, 1, 1, 1);
+
+color.red
+color.green
+color.blue
+color.alpha
