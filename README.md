@@ -25,7 +25,7 @@ To create a new script package, create a folder structure based on the following
 | File                     | Purpose                                                                                              |
 | ------------------------ | ---------------------------------------------------------------------------------------------------- |
 | `index.js` or `index.ts` | This is main file for the package.                                                                   |
-| `tests.ts`               | This contains sample code which tests the typings. This code does _not_ run, but it is type-checked. |
+| `tests.js` or `tests.ts` | This contains sample code which tests the typings. This code does _not_ run, but it is type-checked. |
 | `tsconfig.json`          | This allows you to run `tsc` within the package.                                                     |
 | `README.md`              | Infomation for the package.                                                                          |
 
