@@ -7,7 +7,7 @@
     "declaration": true
   },
   "files": [
-    "SimulatedPlayer.ts",
-    "simulated-player-tests.ts"
+    "index.ts",
+    "tests.ts"
   ]
 }

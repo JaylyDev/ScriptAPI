@@ -138,7 +138,7 @@ export class REST {
         const version = participant.getScore(this.scoreboard);
         (async () => {
           await world.getDimension('overworld')
-            .runCommandAsync(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
+            .runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
         });
       };
     }
@@ -172,7 +172,7 @@ export class REST {
       const version = participant.getScore(this.scoreboard);
       return new Promise((resolve, reject) => {
         world.getDimension('overworld')
-          .runCommandAsync(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`)
+          .runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`)
           .catch(reject);
         resolve(version);
       });
@@ -185,7 +185,7 @@ export class REST {
       const table = new Table(rawtext.toString());
       return new Promise((resolve, reject) => {
         world.getDimension('overworld')
-          .runCommandAsync(`scoreboard players set ${JSON.stringify(table.toRawtext())} ${JSON.stringify(this.scoreboard.id)} 1`)
+          .runCommand(`scoreboard players set ${JSON.stringify(table.toRawtext())} ${JSON.stringify(this.scoreboard.id)} 1`)
           .then(() => resolve())
           .catch(reject);
       });
@@ -207,7 +207,7 @@ export class REST {
       // version increment
       return new Promise((resolve, reject) => {
         world.getDimension('overworld')
-          .runCommandAsync(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} 1`)
+          .runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} 1`)
           .then(() => resolve())
           .catch(reject);
       });

@@ -1,6 +1,9 @@
 // Script example for ScriptAPI
 // Author: GlitchyTurtle32 <https://github.com/GlitchyTurtle>
 // Project: https://github.com/JaylyDev/ScriptAPI
+
+import { Player } from "@minecraft/server";
+
 /**
  * @param {import("@minecraft/server").Vector3} vector
  */
@@ -53,12 +56,12 @@ function calculateKnockbackVector(entityPosition, pusherPosition, forceMagnitude
 }
 
 /**
- * @param {{ dimension: any; name: any; }} player
+ * @param {Player} player
  * @param {any} spawnPos
  * @param {number} strength
  * @param {any} range
  */
-function createShockwave(player, spawnPos, strength, range, damageFactor = 1) {
+export function createShockwave(player, spawnPos, strength, range, damageFactor = 1) {
     // Create the needed variables for kb and pos
     const dimension = player.dimension;
     const entities = [...dimension.getEntities({ location: spawnPos, maxDistance: range, excludeNames: [player.name], excludeFamilies: ["inanimate"], excludeTypes: ["item"], excludeTags: ["anti_shockwave"] })];

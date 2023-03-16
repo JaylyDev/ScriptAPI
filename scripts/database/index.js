@@ -116,7 +116,7 @@ export class Database {
  */
 function runCommand(cmd) {
     try {
-        return { error: false, data: world.getDimension('overworld').runCommandAsync(cmd) };
+        return { error: false, data: world.getDimension('overworld').runCommand(cmd) };
     }
     catch {
         return { error: true, data: undefined };

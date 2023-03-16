@@ -4,11 +4,10 @@ Replicate Commands class that was in the `Minecraft` module (renamed as `@minecr
 
 ### Commands.run
 
-> Deprecated!
-> Runs a particular command from the context.
+Runs a particular command from the context.
 
 ```ts
-Commands.run(commandString: string, target?: Dimension | Entity): any
+Commands.run(commandString: string, target?: Dimension | Entity): CommandResult
 ```
 
 ```js
@@ -28,7 +27,7 @@ Runs a particular command asynchronously from the context. Where possible - and 
 
 ```ts
 import * as server from "@minecraft/server";
-Commands.runAsync(commandString: string, target?: Dimension | Entity): Promise<server.CommandResult>
+Commands.runAsync(commandString: string, target?: Dimension | Entity): Promise<CommandResult>
 ```
 
 ```js

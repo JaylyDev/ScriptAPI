@@ -1,7 +1,7 @@
-# jayly-task
+# run-commands
 
 ## Description
-Run multiple commands in a tick.
+Function that runs multiple commands in same tick
 
 ## Credits
 These scripts were written by Jayly#1397 on Jayly Discord

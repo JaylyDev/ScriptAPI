@@ -8,7 +8,7 @@ import { world } from "@minecraft/server";
  */
 export function runCommand(command) {
     try {
-        return world.getDimension('overworld').runCommandAsync(command);
+        return world.getDimension('overworld').runCommand(command);
     } catch (e) {
         return JSON.parse(e)
     };

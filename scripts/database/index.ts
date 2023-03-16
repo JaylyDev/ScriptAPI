@@ -114,5 +114,5 @@ export class Database {
  * @example runCommand(`give @a diamond`)
  */
 function runCommand(cmd: string): { error: boolean, data: any } {
-    try { return { error: false, data: world.getDimension('overworld').runCommandAsync(cmd) } } catch { return { error: true, data: undefined } }
+    try { return { error: false, data: world.getDimension('overworld').runCommand(cmd) } } catch { return { error: true, data: undefined } }
 }

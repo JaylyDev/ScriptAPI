@@ -31,5 +31,5 @@ import { Player, GameMode } from '@minecraft/server';
  */
 export function setGamemode(player, gameMode) {
     if (!(player instanceof Player) || Object.values(GameMode).includes(gameMode)) throw new TypeError('Type conversion failed');
-    player.runCommandAsync(`gamemode ${gameMode}`);
+    player.runCommand(`gamemode ${gameMode}`);
 };

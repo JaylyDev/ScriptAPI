@@ -19,7 +19,7 @@ let sellItems = [{
  * @param {Player} player Player
  * @returns {number} The amount that of money that the player made
  */
-const sell = (player) => {
+export const sell = (player) => {
     /**
      * @type {Container} The player's inventory container
      */
@@ -34,6 +34,6 @@ const sell = (player) => {
         amount = amount + soldItem.value * item.amount
         inv.setItem(i);
     }
-    player.runCommandAsync(`scoreboard players add @s Money ${amount}`)
+    player.runCommand(`scoreboard players add @s Money ${amount}`)
     return amount
 }
