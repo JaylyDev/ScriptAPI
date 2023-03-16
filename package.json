@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/JaylyDev/ScriptAPI#readme",
   "dependencies": {
-    "@minecraft/server": "1.2.0-beta.1.19.80-preview.20",
-    "@minecraft/server-admin": "1.0.0-beta.1.19.80-preview.20",
-    "@minecraft/server-gametest": "1.0.0-beta.1.19.80-preview.20",
-    "@minecraft/server-net": "1.0.0-beta.1.19.80-preview.20",
-    "@minecraft/server-ui": "1.0.0-beta.1.19.80-preview.20"
+    "@minecraft/server": "1.2.0-beta.1.19.80-preview.21",
+    "@minecraft/server-admin": "1.0.0-beta.1.19.80-preview.21",
+    "@minecraft/server-gametest": "1.0.0-beta.1.19.80-preview.21",
+    "@minecraft/server-net": "1.0.0-beta.1.19.80-preview.21",
+    "@minecraft/server-ui": "1.0.0-beta.1.19.80-preview.21"
   },
   "devDependencies": {
     "@types/node": "^18.11.10",
