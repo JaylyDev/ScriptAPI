@@ -21,7 +21,7 @@ export class Database {
         if (this.name.length > 13 || this.name.length === 0)
             throw new Error(`Database names can't be more than 13 characters long, and it can't be nothing!`);
         names.push(this.name);
-        runCommand(`scoreboard objectives add "DB_${this.name}" dummy`);
+        runCommandAsync(`scoreboard objectives add "DB_${this.name}" dummy`);
         world.scoreboard.getObjective(`DB_${this.name}`).getParticipants().forEach(e => this.data.set(e.displayName.split("_")[0].replaceAll(/\\"/g, '"'), JSON.parse(e.displayName.split("_").filter((v, i) => i > 0).join("_").replaceAll(/\\"/g, '"'))));
     }
     /**
@@ -41,8 +41,8 @@ export class Database {
         if ((JSON.stringify(value).replaceAll(/"/g, '\\"').length + key.replaceAll(/"/g, '\\"').length + 1) > 32000)
             throw new Error(`Database setter to long... somehow`);
         if (this.data.has(key))
-            runCommand(`scoreboard players reset "${key.replaceAll(/"/g, '\\"')}_${JSON.stringify(this.data.get(key)).replaceAll(/"/g, '\\"')}" "DB_${this.name}"`);
-        runCommand(`scoreboard players set "${key.replaceAll(/"/g, '\\"')}_${JSON.stringify(value).replaceAll(/"/g, '\\"')}" "DB_${this.name}" 0`);
+            runCommandAsync(`scoreboard players reset "${key.replaceAll(/"/g, '\\"')}_${JSON.stringify(this.data.get(key)).replaceAll(/"/g, '\\"')}" "DB_${this.name}"`);
+        runCommandAsync(`scoreboard players set "${key.replaceAll(/"/g, '\\"')}_${JSON.stringify(value).replaceAll(/"/g, '\\"')}" "DB_${this.name}" 0`);
         this.data.set(key, value);
     }
     /**
@@ -72,7 +72,7 @@ export class Database {
     delete(key) {
         if (!this.data.has(key))
             return;
-        runCommand(`scoreboard players reset "${key.replaceAll(/"/g, '\\"')}_${JSON.stringify(this.data.get(key)).replaceAll(/"/g, '\\"')}" "DB_${this.name}"`);
+        runCommandAsync(`scoreboard players reset "${key.replaceAll(/"/g, '\\"')}_${JSON.stringify(this.data.get(key)).replaceAll(/"/g, '\\"')}" "DB_${this.name}"`);
         this.data.delete(key);
     }
     /**
@@ -93,8 +93,8 @@ export class Database {
      * Clears all values in the database
      */
     clear() {
-        runCommand(`scoreboard objectives remove "DB_${this.name}"`);
-        runCommand(`scoreboard objectives add "DB_${this.name}" dummy`);
+        runCommandAsync(`scoreboard objectives remove "DB_${this.name}"`);
+        runCommandAsync(`scoreboard objectives add "DB_${this.name}" dummy`);
         this.data.clear();
     }
     /**
@@ -112,11 +112,11 @@ export class Database {
  * Run a command!
  * @param {string} cmd Command to run
  * @returns {{ error: boolean, data: any }} Whether or not the command errors, and command data
- * @example runCommand(`give @a diamond`)
+ * @example runCommandAsync(`give @a diamond`)
  */
-function runCommand(cmd) {
+function runCommandAsync(cmd) {
     try {
-        return { error: false, data: world.getDimension('overworld').runCommand(cmd) };
+        return { error: false, data: world.getDimension('overworld').runCommandAsync(cmd) };
     }
     catch {
         return { error: true, data: undefined };
