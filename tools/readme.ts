@@ -96,7 +96,8 @@ export function execute (): 0 | 1 {
   }
 
   // attempt to commit
-  pushCommitGit(scriptsChanged);
+  if (scriptsChanged.length > 0) pushCommitGit(scriptsChanged);
+  else console.log("All script packages have a README file.");
   
   return 0;
 }
