@@ -4,4 +4,5 @@ player-exist-event is no longer supported, as [PlayerSpawnEvent class](https://l
 
 For 1.1.0-beta, use index.js
 For 0.1.0, use PlayerExistEvent_old.js
+
 ---

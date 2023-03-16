@@ -10,29 +10,29 @@ This package is experimental.
 import { world } from "@minecraft/server";
 import { RequestMethod, REST } from "./index";
 
-const rest = new REST('demo'); // id is demo, lower case
+const rest = new REST("demo"); // id is demo, lower case
 
 (async () => {
-  await rest.request('/players', { method: RequestMethod.POST }); // create a route
+  await rest.request("/players", { method: RequestMethod.POST }); // create a route
 
   // save data for all players into a table
   for (const player of world.getAllPlayers()) {
-    await rest.request('/players', {
+    await rest.request("/players", {
       method: RequestMethod.PUT,
       key: player.name,
-      value: player.id
+      value: player.id,
     });
-  };
+  }
 })().catch(console.error);
 
 world.events.chat.subscribe((event) => {
   /**
    * Get player id from REST
    */
-  const playerId = rest.request('/players', { 
+  const playerId = rest.request("/players", {
     method: RequestMethod.GET,
-    key: event.sender.name
+    key: event.sender.name,
   });
-  event.sender.tell('Player ID: ' + playerId);
-})
+  event.sender.tell("Player ID: " + playerId);
+});
 ```

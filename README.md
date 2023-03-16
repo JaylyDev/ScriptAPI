@@ -3,15 +3,17 @@
 This repository is filled with community driven script samples for Minecraft Bedrock Script API.
 
 ## Script Samples
-  
+
 - ### [scripts](./scripts/)
+
   Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
+
   > ⚠️ Some scripts might use `@minecraft/server-net` and `@minecraft/server-admin` module, which the modules are only available in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients.
 
 - ### [docs](./docs/)
   Contains technical documentation of Script API features.
   > 🚫 Documentation are no longer being updated. Check out [Bedrock Wiki](https://wiki.bedrock.dev/) and [Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) for up-to-date infomation.
-  
+
 ## Contributing
 
 Please contribute to this repository if you can.
@@ -20,17 +22,18 @@ The repository features a Pull Request system that inspires heavily from [Defini
 
 To create a new script package, create a folder structure based on the following:
 
-| File          | Purpose |
-| ------------- | ------- |
-| `index.js` or `index.ts`  | This is main file for the package. |
-| `tests.ts` | This contains sample code which tests the typings. This code does *not* run, but it is type-checked. |
-| `tsconfig.json` | This allows you to run `tsc` within the package. |
-| `README.md`   | Infomation for the package. |
+| File                     | Purpose                                                                                              |
+| ------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `index.js` or `index.ts` | This is main file for the package.                                                                   |
+| `tests.ts`               | This contains sample code which tests the typings. This code does _not_ run, but it is type-checked. |
+| `tsconfig.json`          | This allows you to run `tsc` within the package.                                                     |
+| `README.md`              | Infomation for the package.                                                                          |
 
 To add yourself as a script author:
 
 Adding your name to the end of the line, as in `// Author: Alice <url>, Bob <url>`.
 Or if there are more people, it can be multiline
+
 ```js
 // Author: Alice <url>
 //         Bob <url>

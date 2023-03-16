@@ -1,6 +1,7 @@
 # json-stringify
 
 ## Description
+
 Modified JSON stringify function.
 Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
 
@@ -11,4 +12,5 @@ Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
 **returns** `string` JavaScript Object Notation (JSON) string.
 
 ## Credits
+
 These scripts were written by [JaylyMC](https://github.com/JaylyDev)
