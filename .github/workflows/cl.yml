@@ -24,6 +24,12 @@ jobs:
       - name: Build tsc
         run: tsc --build --verbose
 
+      - name: Commit changes
+        if: ${{ github.event_name == 'push' }}
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: ./scripts
+
   format-check:
     name: 'Format Check'
     runs-on: ubuntu-latest
@@ -43,8 +49,9 @@ jobs:
 
       - name: Format Check
         run: node ./tools/index.js
-
-      - uses: actions/upload-artifact@v3
+        
+      - name: Commit changes
+        if: ${{ github.event_name == 'push' }}
+        uses: EndBug/add-and-commit@v9
         with:
-          name: README files
-          path: node_modules/.cache
+          add: ./scripts
