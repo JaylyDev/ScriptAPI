@@ -41,9 +41,7 @@ jobs:
       - name: Format Check
         run: node ./tools/index.js
 
-      - name: Push changes # push the output folder to your repo
-        uses: ad-m/github-push-action@master
+      - name: Try commit
+        uses: EndBug/add-and-commit@v9
         with:
-          github_token: ${{ secrets.GH_PAT }}
-          force: true
-          force_with_lease: true
+          add: 'scripts'

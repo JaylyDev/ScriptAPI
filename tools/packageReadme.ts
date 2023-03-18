@@ -5,10 +5,6 @@ import { parseHeader } from "./header-parser";
 import { readmeFilenames, scripts, scriptsPath } from "./utils";
 
 function pushCommitGit (packages: string[]) {
-  // add auth token
-  writeFileSync('./github-token', process.env.PR_TOKEN ?? '');
-
-  // github commit push
   const title = `Add README to ${packages.length} packages`;
   const description = [
     `Add README file to the following packages:`,
@@ -16,11 +12,12 @@ function pushCommitGit (packages: string[]) {
   ];
   const commands = [
     "git --version",
-    'git config --global user.email "github-actions@github.com"',
-    'git config --global user.name "github-actions"',
-    "git add ./scripts",
+    'git config user.email "41898282+github-actions[bot]@users.noreply.github.com"',
+    'git config user.name "github-actions[bot]"',
     "git status",
+    "git add scripts",
     `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
+    "git push origin HEAD:" + process.env.REF,
   ];
 
   for (const cmd of commands) {
@@ -98,7 +95,7 @@ export function execute (): 0 | 1 {
   }
 
   // attempt to commit
-  if (scriptsChanged.length > 0) pushCommitGit(scriptsChanged);
+  if (scriptsChanged.length > 0) console.warn(`Add README to ${scriptsChanged.length} packages`);
   else console.log("All script packages have a README file.");
   
   return 0;
