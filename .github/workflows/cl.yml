@@ -47,4 +47,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: README files
-          path: temp
+          path: node_modules/.cache

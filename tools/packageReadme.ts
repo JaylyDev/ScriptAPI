@@ -4,28 +4,6 @@ import path from "path";
 import { parseHeader } from "./header-parser";
 import { readmeFilenames, scripts, scriptsPath } from "./utils";
 
-function pushCommitGit (packages: string[]) {
-  const title = `Add README to ${packages.length} packages`;
-  const description = [
-    `Add README file to the following packages:`,
-    packages.join(', ')
-  ];
-  const commands = [
-    "git --version",
-    'git config user.email "41898282+github-actions[bot]@users.noreply.github.com"',
-    'git config user.name "github-actions[bot]"',
-    "git status",
-    "git add scripts",
-    `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
-    "git push origin HEAD:" + process.env.REF,
-  ];
-
-  for (const cmd of commands) {
-    console.log(cmd);
-    console.log(execSync(cmd.replaceAll('\\n', '\n')).toString());
-  }
-};
-
 function isValidHttpUrl(string: string) {
   let url;
   try {
