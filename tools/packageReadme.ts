@@ -16,12 +16,11 @@ function pushCommitGit (packages: string[]) {
   ];
   const commands = [
     "git --version",
-    'git config user.email "41898282+github-actions[bot]@users.noreply.github.com"',
-    'git config user.name "github-actions[bot]"',
+    'git config user.email "github-actions@github.com"',
+    'git config user.name "github-actions"',
     "git status",
     "git add scripts",
     `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
-    "gh auth login --with-token < ./github-token",
     "git push origin HEAD:" + process.env.REF,
   ];
 

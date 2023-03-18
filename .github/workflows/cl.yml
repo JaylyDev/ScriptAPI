@@ -31,8 +31,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
 
       - name: npm install
         run: npm install
@@ -42,5 +40,3 @@ jobs:
 
       - name: Format Check
         run: node ./tools/index.js
-        env:
-          REF: ${{ github.ref }}
