@@ -1,6 +1,5 @@
 import { execSync } from "child_process";
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
-import { exec } from "node:child_process";
 import path from "path";
 import { parseHeader } from "./header-parser";
 import { readmeFilenames, scripts, scriptsPath } from "./utils";
