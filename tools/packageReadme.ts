@@ -16,9 +16,9 @@ function pushCommitGit (packages: string[]) {
     'git config user.email "41898282+github-actions[bot]@users.noreply.github.com"',
     'git config user.name "github-actions[bot]"',
     "git status",
+    "git checkout " + process.env.REF,
     "git add scripts",
     `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
-    "git checkout " + process.env.REF,
     "git push origins",
   ];
 
