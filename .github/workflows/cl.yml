@@ -34,6 +34,11 @@ jobs:
         with:
           token: ${{ github.token }}
 
+      - name: Checkout again
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
+
       - name: npm install
         run: npm install
 
