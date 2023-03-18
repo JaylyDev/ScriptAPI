@@ -1,7 +1,3 @@
-// Script example for ScriptAPI
-// Author: iBlqzed <https://github.com/iBlqzed>
-// Project: https://github.com/JaylyDev/ScriptAPI
-
 /**
  * Database
  */

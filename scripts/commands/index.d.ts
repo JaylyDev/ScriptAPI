@@ -1,30 +1,21 @@
-// Script example for ScriptAPI
-// Author: Jayly <https://github.com/JaylyDev>
-// Project: https://github.com/JaylyDev/ScriptAPI
-import { Dimension, Entity, world } from "@minecraft/server";
+import { CommandResult, Dimension, Entity, Player } from "@minecraft/server";
 /**
  * Main class for custom command functions, with the player that execute
  * this command with additional arguments split in an iterable iterator
  * string array.
  */
-export class Command {
-    get player() { return this.__player; }
-    get argv0() { return this.argv.next().value; }
-    ;
-    constructor(argv, player) {
-        this.argv = (function* () { for (let arg of argv)
-            yield arg; })();
-        this.__player = player;
-    }
-    ;
+export declare class Command {
+    private __player;
+    argv: IterableIterator<string>;
+    get player(): Player;
+    get argv0(): string;
+    constructor(argv: string[], player: Player);
 }
-;
 /**
  * Contains a method that lets you run console commands within
  * Minecraft.
  */
-// tslint:disable-next-line:no-unnecessary-class
-export class Commands {
+export declare class Commands {
     /**
      * @remarks
      * Runs a particular command synchronously from the context.
@@ -39,13 +30,7 @@ export class Commands {
      * an indicator of command results.
      * @throws This function can throw errors.
      */
-    static run(commandString, target = world.getDimension("overworld")) {
-        if (target instanceof Dimension || Entity)
-            return target.runCommand(commandString);
-        else
-            throw TypeError("Native type conversion failed");
-    }
-    ;
+    static run(commandString: string, target?: Dimension | Entity): CommandResult;
     /**
      * @remarks
      * Runs a particular command asynchronously from the context.
@@ -63,13 +48,7 @@ export class Commands {
      * an indicator of command results.
      * @throws This function can throw errors.
      */
-    static async runAsync(commandString, target = world.getDimension("overworld")) {
-        if (target instanceof Dimension || Entity)
-            return await target.runCommandAsync(commandString);
-        else
-            throw TypeError("Native type conversion failed");
-    }
-    ;
+    static runAsync(commandString: string, target?: Dimension | Entity): Promise<CommandResult>;
     /**
      * @remarks
      * Registers a new custom command. This command will become
@@ -89,26 +68,5 @@ export class Commands {
      *          });
      * ```
      */
-    static register(prefix, command, commandFunction) {
-        if (prefix.startsWith("/"))
-            throw Error("Unable to register slash commands.");
-        world.events.beforeChat.subscribe((arg) => {
-            var argv = arg.message.split(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g).filter(e => e.trim().length > 0);
-            if (argv[0] === `${prefix}${command}`) {
-                arg.cancel = true;
-                try {
-                    commandFunction(new Command(argv, arg.sender));
-                }
-                catch (err) {
-                    let { statusMessage } = JSON.parse(err);
-                    console.error(err);
-                    arg.sender.sendMessage(`§c${statusMessage}`);
-                }
-                ;
-            }
-            ;
-        });
-    }
-    ;
+    static register(prefix: string, command: string, commandFunction: (arg: Command) => void): void;
 }
-;

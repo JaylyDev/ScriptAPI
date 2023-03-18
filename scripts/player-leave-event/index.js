@@ -148,12 +148,12 @@ class Player {
         try {
             this.__PlayerBlockFromViewDirection = player.getBlockFromViewDirection();
         }
-        catch (_a) { }
+        catch { }
         ;
         try {
             this.__PlayerEntitiesFromViewDirection = player.getEntitiesFromViewDirection();
         }
-        catch (_b) { }
+        catch { }
         ;
         this.__PlayerComponents = cloneJSON(player.getComponents());
         this.__PlayerTags = player.getTags();

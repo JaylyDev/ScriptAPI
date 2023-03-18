@@ -1,8 +1,3 @@
-/**
- * @license MIT
- * @author JaylyMC
- * @project https://github.com/JaylyDev/GametestDB/
- */
 import * as GameTest from "@minecraft/server-gametest";
 import * as Minecraft from "@minecraft/server";
 /**

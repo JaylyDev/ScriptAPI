@@ -29,7 +29,7 @@ function getRanks(player) {
 }
 world.events.beforeChat.subscribe((data) => {
     data.sendToTargets = true;
-    data.targets = [];
+    data.setTargets([]);
 });
 world.events.chat.subscribe((data) => {
     const ranks = getRanks(data.sender).join("§r§l§8][§r");
