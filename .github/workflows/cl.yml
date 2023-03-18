@@ -6,6 +6,8 @@ on:
       - main
   pull_request:
 
+permissions: read-all|write-all
+
 jobs:
   type-check:
     name: 'Type Check'
@@ -34,7 +36,6 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.GH_PAT }}
 
       - name: npm install
         run: npm install
