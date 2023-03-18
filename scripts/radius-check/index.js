@@ -2,6 +2,8 @@
 // Author: THE BOSS9345#0193 <Bedrock Add-Ons>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
+import { Player } from "@minecraft/server";
+
 /**
  * Checks if the player is located within a specific radius of a block
  * @param {Player} player The player to check
