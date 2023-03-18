@@ -6,9 +6,6 @@ on:
       - main
   pull_request:
 
-env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
 jobs:
   type-check:
     name: 'Type Check'
@@ -34,6 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: npm install
         run: npm install
@@ -43,5 +43,8 @@ jobs:
 
       - name: Format Check
         run: node ./tools/index.js
-        env:
-          REF: ${{ github.ref }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: README files
+          path: node_modules/.cache
