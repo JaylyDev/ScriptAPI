@@ -5,6 +5,10 @@ import { parseHeader } from "./header-parser";
 import { readmeFilenames, scripts, scriptsPath } from "./utils";
 
 function pushCommitGit (packages: string[]) {
+  // add auth token
+  writeFileSync('./github-token', process.env.PR_TOKEN ?? '');
+
+  // github commit push
   const title = `Add README to ${packages.length} packages`;
   const description = [
     `Add README file to the following packages:`,
@@ -17,7 +21,7 @@ function pushCommitGit (packages: string[]) {
     "git status",
     "git add scripts",
     `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
-    "gh auth login --with-token",
+    "gh auth login --with-token < ./github-token",
     "git push origin HEAD:" + process.env.REF,
   ];
 
