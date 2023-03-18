@@ -6,8 +6,6 @@ on:
       - main
   pull_request:
 
-permissions: write-all
-
 jobs:
   type-check:
     name: 'Type Check'
@@ -46,7 +44,7 @@ jobs:
       - name: Format Check
         run: node ./tools/index.js
 
-      - name: Try commit
-        uses: EndBug/add-and-commit@v9
+      - uses: actions/upload-artifact@v3
         with:
-          add: 'scripts'
+          name: README files
+          path: temp

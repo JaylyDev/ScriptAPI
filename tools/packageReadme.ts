@@ -38,6 +38,7 @@ function isValidHttpUrl(string: string) {
 
 function makeReadme (script: string) {
   const indexJs = path.resolve(scriptsPath, script, 'index.js');
+  const readmePath = path.resolve(process.cwd(), 'temp', script, 'README.md');
   const readmeDefault = [
     '# ' + script,
     '',
@@ -51,7 +52,7 @@ function makeReadme (script: string) {
 
   if (!existsSync(indexJs)) {
     console.error(script, "missing index.js");
-    writeFileSync(path.resolve(scriptsPath, script, 'README.md'), readmeDefault.join('\n'));
+    writeFileSync(readmePath, readmeDefault.join('\n'));
     return;
   };
   
@@ -68,11 +69,11 @@ function makeReadme (script: string) {
     const creditsSubheadingIndex = readmeDefault.findIndex((v) => v.startsWith('## Credits'));
     readmeDefault[creditsSubheadingIndex + 1] = credits;
     
-    writeFileSync(path.resolve(scriptsPath, script, 'README.md'), readmeDefault.join('\n'));
+    writeFileSync(readmePath, readmeDefault.join('\n'));
   }
   else {
     console.error(script, "doesn't have header in index.js");
-    writeFileSync(path.resolve(scriptsPath, script, 'README.md'), readmeDefault.join('\n'));
+    writeFileSync(readmePath, readmeDefault.join('\n'));
   }
 }
 
@@ -95,7 +96,7 @@ export function execute (): 0 | 1 {
   }
 
   // attempt to commit
-  if (scriptsChanged.length > 0) console.warn(`Add README to ${scriptsChanged.length} packages`);
+  if (scriptsChanged.length > 0) console.warn(`Add README to ${scriptsChanged.length} packages, please check artifacts for generated files.`);
   else console.log("All script packages have a README file.");
   
   return 0;
