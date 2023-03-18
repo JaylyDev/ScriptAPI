@@ -17,6 +17,7 @@ function pushCommitGit (packages: string[]) {
     "git status",
     "git add scripts",
     `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
+    "gh auth login --with-token " + process.env.PR_TOKEN,
     "git push origin HEAD:" + process.env.REF,
   ];
 
