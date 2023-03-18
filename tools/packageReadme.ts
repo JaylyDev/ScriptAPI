@@ -16,8 +16,8 @@ function pushCommitGit (packages: string[]) {
   ];
   const commands = [
     "git --version",
-    'git config --local user.email "github-actions@github.com"',
-    'git config --local user.name "github-actions"',
+    'git config --global user.email "github-actions@github.com"',
+    'git config --global user.name "github-actions"',
     "git add ./scripts",
     "git status",
     `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
