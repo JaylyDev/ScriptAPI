@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
+    // script environment
     "module": "es2020",
     "target": "es2021",
     "moduleResolution": "classic",
@@ -18,8 +17,8 @@
     },
     "types": [],
     "typeRoots": [],
-    // debug purpsoses
-    "noEmit": true,
+    "declaration": true,
+    // repository config
     "diagnostics": true,
-  },
+  }
 }
