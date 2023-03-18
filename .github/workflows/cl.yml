@@ -43,3 +43,5 @@ jobs:
 
       - name: Format Check
         run: node ./tools/index.js
+        env:
+          REF: ${{ github.ref }}

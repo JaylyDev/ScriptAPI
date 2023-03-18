@@ -18,7 +18,8 @@ function pushCommitGit (packages: string[]) {
     "git status",
     "git add scripts",
     `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
-    "git push --force",
+    "git checkout " + process.env.REF,
+    "git push origins",
   ];
 
   for (const cmd of commands) {
