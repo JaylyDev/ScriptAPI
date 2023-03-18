@@ -1,4 +1,4 @@
-// Type definition for @minecraft/server-editor 0.3
+// Type definition for @minecraft/server-editor 0.3.1
 /**
  * Manifest details
  * ```json
