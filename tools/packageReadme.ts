@@ -51,7 +51,12 @@ function makeReadme (script: string) {
     ''
   ];
 
-  mkdir(path.resolve(tempDir, script), console.warn);
+  try {
+    mkdirSync(path.resolve(tempDir, script), { recursive: true });    
+  } catch (error) {
+    console.error(error);
+  }
+
   if (!existsSync(indexJs)) {
     console.error(script, "missing index.js");
     writeFileSync(readmePath, readmeDefault.join('\n'));
