@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
+  pull_request_target:
+    types:
+      - opened
 
 jobs:
   type-check:
@@ -33,11 +35,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ github.token }}
-
-      - name: Checkout again
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_PAT }}
 
       - name: npm install
         run: npm install
