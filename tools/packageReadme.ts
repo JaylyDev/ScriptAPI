@@ -1,31 +1,8 @@
 import { execSync } from "child_process";
-import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
-import { exec } from "node:child_process";
+import { existsSync, mkdir, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
 import { parseHeader } from "./header-parser";
 import { readmeFilenames, scripts, scriptsPath } from "./utils";
-
-function pushCommitGit (packages: string[]) {
-  const title = `Add README to ${packages.length} packages`;
-  const description = [
-    `Add README file to the following packages:`,
-    packages.join(', ')
-  ];
-  const commands = [
-    "git --version",
-    'git config user.email "41898282+github-actions[bot]@users.noreply.github.com"',
-    'git config user.name "github-actions[bot]"',
-    "git status",
-    "git add scripts",
-    `git commit -m ${JSON.stringify(title)} -m ${JSON.stringify(description.join('\n'))}`,
-    "git push",
-  ];
-
-  for (const cmd of commands) {
-    console.log(cmd);
-    console.log(execSync(cmd.replaceAll('\\n', '\n')).toString());
-  }
-};
 
 function isValidHttpUrl(string: string) {
   let url;
@@ -39,6 +16,8 @@ function isValidHttpUrl(string: string) {
 
 function makeReadme (script: string) {
   const indexJs = path.resolve(scriptsPath, script, 'index.js');
+  const tempDir = path.resolve(process.cwd(), 'node_modules/.cache');
+  const readmePath = path.resolve(tempDir, script, 'README.md');
   const readmeDefault = [
     '# ' + script,
     '',
@@ -50,9 +29,15 @@ function makeReadme (script: string) {
     ''
   ];
 
+  try {
+    mkdirSync(path.resolve(tempDir, script), { recursive: true });    
+  } catch (error) {
+    console.error(error);
+  }
+
   if (!existsSync(indexJs)) {
     console.error(script, "missing index.js");
-    writeFileSync(path.resolve(scriptsPath, script, 'README.md'), readmeDefault.join('\n'));
+    writeFileSync(readmePath, readmeDefault.join('\n'));
     return;
   };
   
@@ -69,11 +54,11 @@ function makeReadme (script: string) {
     const creditsSubheadingIndex = readmeDefault.findIndex((v) => v.startsWith('## Credits'));
     readmeDefault[creditsSubheadingIndex + 1] = credits;
     
-    writeFileSync(path.resolve(scriptsPath, script, 'README.md'), readmeDefault.join('\n'));
+    writeFileSync(readmePath, readmeDefault.join('\n'));
   }
   else {
     console.error(script, "doesn't have header in index.js");
-    writeFileSync(path.resolve(scriptsPath, script, 'README.md'), readmeDefault.join('\n'));
+    writeFileSync(readmePath, readmeDefault.join('\n'));
   }
 }
 
@@ -96,7 +81,7 @@ export function execute (): 0 | 1 {
   }
 
   // attempt to commit
-  if (scriptsChanged.length > 0) pushCommitGit(scriptsChanged);
+  if (scriptsChanged.length > 0) console.warn(`Add README to ${scriptsChanged.length} packages, please check artifacts for generated files.`);
   else console.log("All script packages have a README file.");
   
   return 0;

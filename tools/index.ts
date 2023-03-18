@@ -1,7 +1,7 @@
 import * as headerChecks from "./headerChecks";
 import * as packageCheck from "./packageCheck";
 import * as testScriptChecks from "./testScriptChecks";
-import * as readme from "./readme";
+import * as readme from "./packageReadme";
 
 function log (...args: string[]) {
   console.log('');
