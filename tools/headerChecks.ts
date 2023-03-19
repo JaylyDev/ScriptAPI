@@ -44,6 +44,7 @@ function checkScripts () {
         jsEmittedFileLines.splice(0, 0, ...header);
 
         fs.writeFileSync(fullpath, jsEmittedFileLines.join('\n'));
+        hasError = false;
       };
     };
     hasError ? packagesHaveError++ : null;
