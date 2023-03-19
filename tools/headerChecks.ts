@@ -66,7 +66,8 @@ export function execute () {
   const results = checkScripts();  
   const statusCode = results.packagesHaveError > 0 ? 1 : 0;
 
-  if (statusCode > 0) printMessages(results.errorMessages, results.packagesHaveError);
+  printMessages(results.errorMessages, results.packagesHaveError);
+  console.log('Exit task with code', statusCode);
   
   return statusCode;
 };
