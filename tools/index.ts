@@ -22,7 +22,7 @@ function runTasks (tasks: Task[]): number {
     taskStatus.push(statusCode);
   };
 
-  console.log(taskStatus.map((status, index) => `Task: ${tasks[index]}, Status: ${status}`));
+  console.log(taskStatus.map((status, index) => `Task: ${tasks[index].message}, Status: ${status}`));
 
   if (taskStatus.length <= 0) return 1;
   else if (taskStatus.filter(status => status !== 0).length > 0) return 1;
