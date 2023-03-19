@@ -100,6 +100,7 @@ import * as mc from '@minecraft/server'
       * This Is A Method For Adding Score To Target
       * @param {Object} target - The Target's Object To Add Score
       * @param {string} Objective - The Id Of Objective
+      * @param {number} score - The Number To Add
       * @returns {ScoreboardM} - Returns The Main ScoreboardM Object
       * @throws {Error} - Throws Error When Objective Doesnt Exist
       */
