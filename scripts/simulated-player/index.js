@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import * as Minecraft from "@minecraft/server";
 /**
  * A simulated player can be used to represent
