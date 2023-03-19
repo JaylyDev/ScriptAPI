@@ -71,10 +71,9 @@ function headerParser(): pm.Parser<Header> {
     projectParser,
     pm.all, // Don't care about the rest of the file
     // tslint:disable-next-line:variable-name
-    (str, _defsBy, contributors, _project, typeScriptVersion) => ({
+    (str, _defsBy, contributors, _project) => ({
       nonNpm: str.endsWith("non-npm package "),
       contributors,
-      typeScriptVersion,
     })
   );
 }

@@ -24,10 +24,28 @@ function checkScripts () {
       const fullpath = path.resolve(scriptPath, file);
       const content = fs.readFileSync(fullpath).toString();
       const parseError = validate(content);
+      const tsSourceFilename = 'index.ts';
+      const isEmittedFile = path.extname(fullpath) === '.js' && fs.existsSync(path.resolve(scriptPath, tsSourceFilename));
       
-      if (!!parseError) {
+      if (!!parseError && !isEmittedFile) {
         errorMessages.push(`${printFilePath(fullpath)} ${renderParseError(parseError)}`);
         hasError = true;
+      }
+      else if (!!parseError && isEmittedFile) {
+        errorMessages.push(`${printFilePath(fullpath)} ${renderParseError(parseError)}. Adding header fro ${file} from index.ts`);
+        const fullTspath = path.resolve(scriptPath, tsSourceFilename);
+        const tsFile = fs.readFileSync(fullTspath).toString();
+
+        const lines = tsFile.split(/\n|\r\n/);
+        const jsEmittedFileLines = content.split(/\n|\r\n/);
+        const startOfHeader = lines.findIndex((value) => /\/\/ Script example for ScriptAPI/.test(value));
+        const endOfHeader = lines.findIndex((value) => /\r?\n\/\/ Project: https:\/\/[^\r\n]+/.test('\n' + value));
+        const header = lines.slice(startOfHeader, endOfHeader - startOfHeader + 1);
+        jsEmittedFileLines.splice(0, 0, ...header);
+
+        console.log(startOfHeader, endOfHeader)
+
+        fs.writeFileSync(fullpath, jsEmittedFileLines.join('\n'));
       };
     };
     hasError ? packagesHaveError++ : null;

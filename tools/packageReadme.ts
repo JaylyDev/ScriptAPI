@@ -1,5 +1,4 @@
-import { execSync } from "child_process";
-import { existsSync, mkdir, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
 import { parseHeader } from "./header-parser";
 import { readmeFilenames, scripts, scriptsPath } from "./utils";
@@ -16,8 +15,7 @@ function isValidHttpUrl(string: string) {
 
 function makeReadme (script: string) {
   const indexJs = path.resolve(scriptsPath, script, 'index.js');
-  const tempDir = path.resolve(process.cwd(), 'node_modules/.cache');
-  const readmePath = path.resolve(tempDir, script, 'README.md');
+  const readmePath = path.resolve(scriptsPath, script, 'README.md');
   const readmeDefault = [
     '# ' + script,
     '',
@@ -28,13 +26,6 @@ function makeReadme (script: string) {
     '',
     ''
   ];
-
-  try {
-    mkdirSync(path.resolve(tempDir, script), { recursive: true });    
-  } catch (error) {
-    console.error(error);
-  }
-
   if (!existsSync(indexJs)) {
     console.error(script, "missing index.js");
     writeFileSync(readmePath, readmeDefault.join('\n'));
