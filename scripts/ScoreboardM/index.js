@@ -1,8 +1,6 @@
-
-// ScoreboardM Codes
-// Author: GamerFile <Bedrock Add-ons>
+// Script example for ScriptAPI
+// Author: GamerFile <https://github.com/GamerFile>
 // Project: https://github.com/JaylyDev/ScriptAPI
-
 
 import * as mc from '@minecraft/server'
 
@@ -26,7 +24,7 @@ import * as mc from '@minecraft/server'
          /**
       * This method tells whether a objective exist or not
       * @param {string} id - The Id Of Objective
-      * @returns {Boolean} - Returns True Or False , If Objective Exists then
+      * @returns {boolean} - Returns True Or False , If Objective Exists then
       */
     hasObj : function(id) {
         if (this.getObj(id)) {
@@ -63,7 +61,7 @@ import * as mc from '@minecraft/server'
       * This Is A Method For Setting Target's Score
       * @param {Object} target - The Target's Object To Set Score
       * @param {string} Objective - The Id Of Objective
-      * @param {Number} score - Score To Be Setted To Target
+      * @param {number} score - Score To Be Setted To Target
       * @returns {ScoreboardM} - Returns The Main Object
       * @throws {Error} - Throws Error When Objective Doesnt Exist
       */
@@ -79,7 +77,7 @@ import * as mc from '@minecraft/server'
       * This Is A Method For Getting Target's Score
       * @param {Object} target - The Target's Object To Get Score
       * @param {string} Objective - The Id Of Objective
-      * @returns {ScoreboardM} - Returns The Target's Score
+      * @returns {number} - Returns The Target's Score
       * @throws {Error} - Throws Error When Objective Doesnt Exist
       */
     getScore : function(target, Objective) {
@@ -126,7 +124,7 @@ import * as mc from '@minecraft/server'
     },
     /**
      * This Method Is To Get An Array Of Names Having Given Score. Could Work On Fakeplayers , Players And Entities
-     * @param {Number} score - Score To Get Names
+     * @param {number} score - Score To Get Names
      * @param {string} Objective - Id Of Objective To Get Names
      * @returns {String[] | undefined} - Contains All Names and also undefined it there isnt any of that score
      */
