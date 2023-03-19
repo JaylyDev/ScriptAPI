@@ -43,9 +43,8 @@ function checkScripts () {
         const header = lines.slice(startOfHeader, endOfHeader - startOfHeader + 1);
         jsEmittedFileLines.splice(0, 0, ...header);
 
-        console.log(startOfHeader, endOfHeader)
-
         fs.writeFileSync(fullpath, jsEmittedFileLines.join('\n'));
+        hasError = false;
       };
     };
     hasError ? packagesHaveError++ : null;
