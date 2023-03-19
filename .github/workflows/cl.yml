@@ -5,6 +5,9 @@ on:
     branches:
       - main
   pull_request:
+  schedule: 
+    ## run action every wednesdat at 20:00 UTC
+    - cron: "00 20 * * 3"
 
 jobs:
   type-check:
@@ -24,12 +27,15 @@ jobs:
       - name: Build tsc
         run: tsc --build --verbose
 
-      - name: Commit changes
-        if: ${{ github.event_name == 'push' }}
+      - run: git pull
+
+      - name: Commit Changes
+        if: always() && ${{ github.event_name == 'schedule' }}
         uses: EndBug/add-and-commit@v9
         with:
           add: ./scripts
-          message: 'Upload emitted JS script files.'
+          message: 'Upload transpiled JS files.'
+          default_author: github_actions
 
   format-check:
     name: 'Format Check'
@@ -38,9 +44,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: npm install
         run: npm install
@@ -50,12 +53,13 @@ jobs:
 
       - name: Format Check
         run: node ./tools/index.js
-        
-      - name: Commit changes
-        if: ${{ github.event_name == 'push' }}
+
+      - run: git pull
+
+      - name: Commit Changes
+        if: always() && ${{ github.event_name == 'schedule' }}
         uses: EndBug/add-and-commit@v9
         with:
           add: ./scripts
           message: 'Upload generated README files.'
-
-  
+          default_author: github_actions

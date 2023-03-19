@@ -15,6 +15,6 @@
   },
   "files": [
     "index.ts",
-    "spawn-simulated-player-test.ts"
+    "tests.ts"
   ]
 }
