@@ -44,7 +44,6 @@ function checkScripts () {
         jsEmittedFileLines.splice(0, 0, ...header);
 
         fs.writeFileSync(fullpath, jsEmittedFileLines.join('\n'));
-        hasError = false;
       };
     };
     hasError ? packagesHaveError++ : null;
@@ -63,9 +62,10 @@ function printMessages (messages: string[], packagesHaveError: number) {
 
 // main entry
 export function execute () {
-  const results = checkScripts();
-  printMessages(results.errorMessages, results.packagesHaveError);
+  const results = checkScripts();  
+  const statusCode = results.packagesHaveError > 0 ? 1 : 0;
+
+  if (statusCode > 0) printMessages(results.errorMessages, results.packagesHaveError);
   
-  const statusCode = results.errorMessages.length > 0 ? 1 : 0;
   return statusCode;
 };
