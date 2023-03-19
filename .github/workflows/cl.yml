@@ -30,7 +30,7 @@ jobs:
       - run: git pull
 
       - name: Commit Changes
-        if: always() && ${{ github.event_name == 'schedule' }}
+        if: ${{ github.event_name == 'schedule' }}
         uses: EndBug/add-and-commit@v9
         with:
           add: ./scripts
@@ -57,7 +57,7 @@ jobs:
       - run: git pull
 
       - name: Commit Changes
-        if: always() && ${{ github.event_name == 'schedule' }}
+        if: ${{ github.event_name == 'schedule' }}
         uses: EndBug/add-and-commit@v9
         with:
           add: ./scripts
