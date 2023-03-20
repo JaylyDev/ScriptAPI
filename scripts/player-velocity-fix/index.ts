@@ -1,3 +1,6 @@
+// Script example for ScriptAPi
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/GametestDB/
 /**
  * @license MIT
  * @author JaylyMC
@@ -5,7 +8,7 @@
  */
 import { Vector3, Player, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent, MinecraftEffectTypes } from "@minecraft/server";
 import { Commands } from "../commands/index.js";
-import { clearInterval, setInterval } from "../timers/timers.js";
+import { clearInterval, setInterval } from "../timers/index.js";
 
 function trunc (x: number, decimal: number): number {
   let y = 10 ** decimal;

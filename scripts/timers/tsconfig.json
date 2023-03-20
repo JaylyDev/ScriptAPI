@@ -12,7 +12,7 @@
     "types": []
   },
   "files": [
-    "timers.ts",
-    "timers-test.ts"
+    "index.ts",
+    "tests.ts"
   ]
 }

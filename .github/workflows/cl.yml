@@ -10,8 +10,8 @@ on:
     - cron: "00 20 * * 3"
 
 jobs:
-  type-check:
-    name: 'Type Check'
+  checks:
+    name: 'Script Check'
     runs-on: ubuntu-latest
 
     steps:
@@ -24,31 +24,8 @@ jobs:
           find ./scripts/* -maxdepth 2 -name package.json -execdir sh -c 'pwd && npm install' \;
           find ./docs/* -maxdepth 5 -name package.json -execdir sh -c 'pwd && npm install' \;
 
-      - name: Build tsc
+      - name: Type Check
         run: tsc --build --verbose
-
-      - name: Commit Changes
-        if: ${{ github.event_name == 'schedule' }}
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: ./scripts
-          message: 'Upload transpiled JS files.'
-          default_author: github_actions
-          pull: '-v'
-
-  format-check:
-    name: 'Format Check'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: npm install
-        run: npm install
-
-      - name: Build tools
-        run: npm run tools
 
       - name: Format Check
         run: node ./tools/index.js
@@ -60,6 +37,6 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           add: ./scripts
-          message: 'Upload generated README files.'
+          message: 'Upload generated files.'
           default_author: github_actions
           pull: '-v'
