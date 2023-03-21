@@ -5,6 +5,9 @@ on:
     branches:
       - main
   pull_request:
+  schedule: 
+    ## run action every wednesdat at 20:00 UTC
+    - cron: "00 20 * * 3"
 
 jobs:
   checks:
@@ -30,6 +33,7 @@ jobs:
           event_name: ${{ github.event_name }}
 
       - name: Commit Changes
+        if: ${{ github.event_name == 'schedule' }}
         uses: EndBug/add-and-commit@v9
         with:
           add: ./scripts
