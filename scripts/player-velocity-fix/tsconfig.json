@@ -9,11 +9,11 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "baseUrl": ".",
-    "moduleResolution": "Node",
     "types": [],
     "downlevelIteration": true
   },
   "files": [
     "index.ts"
-  ]
+  ],
+  "extends": "../tsconfig.json"
 }

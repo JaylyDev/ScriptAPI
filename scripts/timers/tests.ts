@@ -1,7 +1,7 @@
 import {
     setTimeout, setImmediate, setInterval,
     clearImmediate, clearInterval, clearTimeout
-} from "./timers.js";
+} from "./index.js";
 import { world } from "@minecraft/server";
 
 function stdout (...data: any[]): any {
