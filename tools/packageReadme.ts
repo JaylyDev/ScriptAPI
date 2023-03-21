@@ -72,7 +72,7 @@ export function execute (): 0 | 1 {
   }
 
   // attempt to commit
-  if (scriptsChanged.length > 0 && process.env.event_name === 'schedule') console.warn(`Add README to ${scriptsChanged.length} packages.`);
+  if (scriptsChanged.length > 0 && true) console.warn(`Add README to ${scriptsChanged.length} packages.`);
   else if (scriptsChanged.length > 0) console.warn(`There are ${scriptsChanged.length} packages don't have README. Add a README to your package so that users know how to get started.`);
   else console.log("All script packages have a README file.");
   
