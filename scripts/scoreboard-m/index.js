@@ -65,7 +65,7 @@ export const ScoreboardM = {
     /**
      * This Method For Getting Objective Object
      * @param {string} id - The Id Of Objective
-     * @returns {mc.scoreboardObjective} - Returns The Objective Object
+     * @returns {mc.ScoreboardObjective} - Returns The Objective Object
      */
     getObj: function(id) {
         if (mc.world.scoreboard.getObjective(id)) {
@@ -202,7 +202,7 @@ export const ScoreboardM = {
     /**
      * This Method Is To Get An Array Of Names And Scores Having. Could Work On Fakeplayers
      * @param {string} obj - Id Of Objective To Get Names And Scores
-     * @returns {[{name: string,score: number}...] | undefined} - Contains All Names And Scores and also undefined it there isnt any of that score
+     * @returns {{name: any,score: any}[] | undefined} - Contains All Names And Scores and also undefined it there isnt any of that score
      */
     getList: function(obj) {
 
