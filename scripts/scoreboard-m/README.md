@@ -48,7 +48,7 @@ ScoreboardM.clearDisplaySlot("sidebar") // this clears the given slot
 *this example explains how.*
 
 ```js
-import { ScoreboardM } from "ScoreboardM.js";
+import { ScoreboardM } from "index.js";
 
 let fp = { name: "Our Fake player"}; //we assigned fake player on a object
 
