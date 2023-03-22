@@ -8,7 +8,7 @@
 *This example will explain it.*
 
 ```js
-import { ScoreboardM } from "ScoreboardM.js";
+import { ScoreboardM } from "index.js";
 
 ScoreboardM.newObj("id","val") //This is for assigning new objective to the world.
 
