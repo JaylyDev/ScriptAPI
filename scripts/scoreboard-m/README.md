@@ -28,6 +28,8 @@ ScoreboardM.addScore(player,"objectiveid",100) //This Adds The given score to ta
 
 ScoreboardM.getNameByScore(10,"ObjectiveId")// This returns array of name that has given score in given Objective 
 
+ScoreboardM.removeName({name: "name"},"objectiveId") //This removes the given name from given objective if exists.
+
 ScoreboardM.getList("objectiveId") // This returns an array of objects containing name and score 
 
 ScoreboardM.getDisplaySlot("sidebar") // returns display Options of objective that is currently Displaying on the given slot.
