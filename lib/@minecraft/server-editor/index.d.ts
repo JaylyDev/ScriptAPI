@@ -77,7 +77,14 @@ declare class ClientEventDispatcher {
     constructor(_system: System);
     private _system: System;
     initialize(): Player;
+    /**
+     * Dispatches and event of type T with the appropriate payload. See ServerEventPayloadMapping for the
+     * correct mapping of payload to server event type
+     */
     dispatchEvent(type: any, payload: any, replacer: any): void;
+    /**
+     * Fires off all payloads in event queue and removes any tick registration
+     */
     flush(): void;
 }
 declare class ModalToolContainer extends BaseControl {
@@ -312,7 +319,9 @@ declare class BaseInputManager {
     eventDispatcher: ClientEventDispatcher;
     unregisterAllBindings(): void;
 }
-
+/**
+ * @beta
+ */
 export class GlobalInputManager extends BaseInputManager {
     registerKeyBinding(
         inputContextId: EditorInputContext,
@@ -323,10 +332,25 @@ export class GlobalInputManager extends BaseInputManager {
 }
 
 declare class BuiltInUIManagerImpl {
+    /**
+     * Updates the visibility of the control demo
+     */
     updateUISettingsPanelVisibility(visibility: boolean): void;
+    /**
+     * Updates the visibility of the welcome panel
+     */
     updateWelcomePanelVisibility(visibility: boolean): void;
+    /**
+     * Navigates to the pause screen
+     */
     navigateToPauseScreen(): void;
+    /**
+     * Navigates to the documentation site
+     */
     navigateToDocumentation(): void;
+    /**
+     * Navigates to the feedback site
+     */
     navigateToFeedback(): void;
 }
 
@@ -403,7 +427,16 @@ export enum ActionTypes {
  */
 export class BedrockEventSubscriptionCache {
     constructor(mEvents: Events);
-    subscribeToBedrockEvent(event: string, ...params: any[]): Function;
+    /**
+     * Subcribes to a bedrock event using the key of the desired event. When subscribed, the event handler
+     * is both returned, but also cached internally for unsubscription. This means the caller of the subscription
+     * does not need to worry about unsubscription since the cache will automatically unsubscribe handlers
+     * on overall teardown.
+     *
+     * @param event - The event on the bedrock APIs to which to subscribe
+     * @param params - The parameters to the subscription method for the event. Auto complete will display this for you
+     */
+    subscribeToBedrockEvent<T extends keyof Events>(event: T, ...params: Parameters<Events[T]['subscribe']>): ReturnType<Events[T]['subscribe']>;
     teardown(): void;
     private mEvents: Events;
     private subscribedEvents: object;
