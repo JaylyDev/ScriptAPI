@@ -1,4 +1,4 @@
-// Type definition for @minecraft/server-editor 0.3.1
+// Type definition for @minecraft/server-editor 0.3
 /**
  * Manifest details
  * ```json
@@ -387,18 +387,31 @@ declare class PlayerUISession {
     get builtInUIManager(): BuiltInUIManagerImpl;
     get eventSubscriptionCache(): BedrockEventSubscriptionCache;
 }
-
+/**
+ * The types of actions that are supported. This type corresponds to the expected arguments
+ * passed by the onExecute handler of an action.
+ * @beta
+ */
 export enum ActionTypes {
     NoArgsAction = "NoArgsAction",
     MouseRayCastAction = "MouseRayCastAction",
 }
-
+/**
+ * A cache for bedrock event subscriptions. Stores off a subscription by event key, and upon
+ * teardown unregisters all subscriptions.
+ * @beta
+ */
 export class BedrockEventSubscriptionCache {
     constructor(mEvents: Events);
     subscribeToBedrockEvent(event: string, ...params: any[]): Function;
     teardown(): void;
+    private mEvents: Events;
+    private subscribedEvents: object;
 }
-
+/**
+ * Type of item that can be added to the property pane
+ * @beta
+ */
 export enum EDITOR_PANE_PROPERTY_ITEM_TYPE {
     Number = "editorUI:Number",
     String = "editorUI:String",
@@ -410,24 +423,37 @@ export enum EDITOR_PANE_PROPERTY_ITEM_TYPE {
     Action = "editorUI:Action",
     Vec3 = "editorUI:Vec3",
 }
-
+/**
+ * @beta Global editor input contexts
+ */
 export enum EditorInputContext {
     GlobalEditor = "global.editor",
     GlobalToolMode = "global.toolMode",
     Viewport = "local.toolMode.viewport",
 }
-
+/**
+ * Types of events that may be sent by the server to the client side UX. These events each have their own
+ * independent set of payloads in the message that may have a wide set of types of operations. This allows messages to
+ * be sent with an EventType and Payload, but with easy type safe deduction of the payload type leveraging
+ * discriminated unions and type fields.
+ * @internal
+ */
 export enum EditorServerEventType {
     ServerActionEvents = "Editor::ServerActionEvents",
     ServerInputBindingEvents = "Editor::ServerInputBindingEvents",
     ServerUXEvents = "Editor::ServerUXEvents",
 }
-
+/**
+ * @beta
+ */
 export enum EditorStatusBarAlignment {
     Right = 0,
     Left = 1,
 }
-
+/**
+ * Input modifier flags to create chorded bindings
+ * @beta
+ */
 export enum InputModifier {
     Unused = 0,
     None = 1,
@@ -436,11 +462,18 @@ export enum InputModifier {
     Shift = 8,
     Any = 15,
 }
+/**
+ * Keyboard Key Actions
+ * @beta
+ */
 export enum KeyInputType {
     Press = 1,
     Release = 2,
 }
-
+/**
+ * Keyboard key - Reference: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode#constants_for_keycode_value
+ * @beta
+ */
 export enum KeyboardKey {
     BACKSPACE = 8,
     TAB = 9,
@@ -535,20 +568,29 @@ export enum KeyboardKey {
     BRACKET_CLOSE = 221,
     QUOTE = 222,
 }
-
+/**
+ * Mouse device action categories
+ * @beta
+ */
 export enum MouseActionCategory {
     Button = 1,
     Wheel = 2,
     Drag = 3,
 }
-
+/**
+ * Detailed mouse device actions
+ * @beta
+ */
 export enum MouseActionType {
     LeftButton = 1,
     MiddleButton = 2,
     RightButton = 3,
     Wheel = 4,
 }
-
+/**
+ * Input event information about mouse actions
+ * @beta
+ */
 export enum MouseInputType {
     ButtonDown = 1,
     ButtonUp = 2,
@@ -558,7 +600,10 @@ export enum MouseInputType {
     Drag = 6,
     DragEnd = 7,
 }
-
+/**
+ * The set of events that may be sent by the server side UI pertaining to actions
+ * @internal
+ */
 export enum ServerUXEventType {
     UpdatePropertyPane = 1,
     DestroyPropertyPane = 2,
@@ -579,19 +624,40 @@ export enum ServerUXEventType {
     UpdateWelcomePanelVisibility_deprecated = 17,
     UpdateClientPanelVisibility = 18,
 }
-
+/**
+ * Takes the input object and bind it to the pane.
+ * @beta
+ */
 export function createPaneBindingObject<T>(
     propertyPane: PropertyPane,
     target: T
 ): T;
-
+/**
+ * Executes an operation over a selection via chunks to allow splitting operation over multiple game ticks
+ * @param selection - the selection to iterator over
+ * @param operation - the operation to apply over each block location
+ * @beta
+ */
 export function executeLargeOperation(
     selection: Selection,
     operation: (blockLocation: Vector3) => void
 ): Promise<void>;
-
+/**
+ * Adds the resource pack editor prefix and returns the full localization ID
+ * @beta
+ */
 export function getLocalizationId(locId: string): string;
-
+/**
+ * Registers an editor extension into Minecraft. This function calls underlying functionality to register an extension but provides
+ * helpful and contextual wrappers for individual client lifetimes. The onActivation function is called whenever a client
+ * joins a session, while the shutdown is called when a client leaves. There may be other circumstances in which these are
+ * called as well based on client state that is an implementation detail of the system.
+ *
+ * The generic type parameter exists as a mechanism for provide generic player contextual storage of data on the IPlayerUISession
+ * object returned during activation. See IPlayerUISession for more information.
+ *
+ * @beta
+ */
 export function registerEditorExtension(
     extensionName: string,
     activationFunction?: (uiSession: PlayerUISession) => void,
