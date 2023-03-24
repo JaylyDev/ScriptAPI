@@ -1,4 +1,4 @@
-// Type definition for @minecraft/server-editor-bindings 0.3.1
+// Type definition for @minecraft/server-editor-bindings 0.3
 /**
  * Manifest details
  * ```json
