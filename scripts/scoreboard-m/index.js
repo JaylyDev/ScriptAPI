@@ -97,7 +97,7 @@ export const ScoreboardM = {
      */
     setScore: function(target, Objective, score) {
         if (this.getObj(Objective)) {
-            mc.world.getDimension("overworld").runCommandAsync(`scoreboard players set "${target.name}" "${Objective}" ${Number(score)}`)
+            mc.world.getDimension("overworld").runCommand(`scoreboard players set "${target.name}" "${Objective}" ${Number(score)}`)
             return this
         } else {
             throw new Error("Objective Doesnt exist . At setScore()")
@@ -135,7 +135,7 @@ export const ScoreboardM = {
      */
     addScore: function(target, Objective, score) {
         if (this.getObj(Objective)) {
-            mc.world.getDimension("overworld").runCommandAsync(`scoreboard players add "${target.name}" "${Objective}" ${score}`)
+            mc.world.getDimension("overworld").runCommand(`scoreboard players add "${target.name}" "${Objective}" ${score}`)
             return this
         } else {
             throw new Error("Objective Doesn't exist. at addScore()")
@@ -150,7 +150,7 @@ export const ScoreboardM = {
      */
     removeName: function(target,Objective) {
         if (this.hasObj(Objective)) {
-            mc.world.getDimension("overworld").runCommandAsync(`scoreboard players reset "${target.name}" "${Objective}"`)
+            mc.world.getDimension("overworld").runCommand(`scoreboard players reset "${target.name}" "${Objective}"`)
             return this;
         } else {
             throw new Error("Objective Doesn't exist. at removeName()")
