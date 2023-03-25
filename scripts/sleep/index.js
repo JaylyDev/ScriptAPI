@@ -1,7 +1,7 @@
 // Script example for ScriptAPI
 // Author: stackoverflow <https://stackoverflow.com/a/41957152>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { setTimeout } from "timers/timers";
+import { setTimeout } from "timers/index";
 
 /**
  * sleep

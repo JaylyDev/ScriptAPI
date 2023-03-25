@@ -2,8 +2,7 @@
   "files": [],
   "exclude": [ "docs", "node_modules" ],
   "references": [
-    { "path": "tools" },
-    { "path": "scripts/tsconfig.json" },
-    { "path": "scripts/jsconfig.json" }
+    { "path": "tools/tsconfig.json" },
+    { "path": "scripts/tsconfig.json" }
   ]
 }

@@ -2,8 +2,8 @@
 // Author: GlitchyTurtle32 <https://github.com/GlitchyTurtle>
 // Project: https://github.com/JaylyDev/ScriptAPI
 /**
- * @param {{ x: number; y: number; z: number; }} startPoint
- * @param {{ x: number; y: number; z: number; }} endPoint
+ * @param {import("@minecraft/server").Vector3} startPoint
+ * @param {import("@minecraft/server").Vector3} endPoint
  * @param {number} numOfPoints
  */
 function traceLine(startPoint, endPoint, numOfPoints) {
