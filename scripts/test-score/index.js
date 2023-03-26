@@ -21,10 +21,10 @@ const WILDCARD_INT = {
  * @param {string|ScoreboardObjective} objective
  * Scoreboard objective
  *
- * @param {string|number|null} min
+ * @param {"*"|number|null} min
  * Minimum value/number (Allowed value: "*" - Wildcard Int)
  *
- * @param {string|number|null} max
+ * @param {"*"|number|null} max
  * Maximum value/number (Allowed value: "*" - Wildcard Int)
  *
  * @return {boolean}
