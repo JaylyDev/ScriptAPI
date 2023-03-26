@@ -35,7 +35,7 @@ declare function getScaledDirectionVector(direction: Direction, scale: number): 
  * Convert a given absolute Direction enum to one which is relative to the specified Y rotation
  *  (Generally Player view vector Y component)
  */
-declare function getRotationCorrectedDirection(rotationY: number, realDirection: Direction): string | number 
+declare function getRotationCorrectedDirection(rotationY: number, realDirection: Direction): Direction | number 
 /**
  * getRotationCorrectedDirectionVector
  * @beta
