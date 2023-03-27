@@ -1,6 +1,6 @@
 // Script example for ScriptAPI
 // Author: Usernam#2058 <Jayly Discord>
-//         Remember M9 #8416 <Bedrock Add-Ons>
+//         Remember M9#8416 <Bedrock Add-Ons>
 //         SI Silicon <https://github.com/SIsilicon>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
