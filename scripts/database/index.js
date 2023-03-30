@@ -1,6 +1,6 @@
-// Script examples for ScriptAPI
+// Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iBlqzed>
-
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { world } from "@minecraft/server";
 const names = [];
 /**
@@ -115,7 +115,7 @@ export class Database {
  */
 function runCommand(cmd) {
     try {
-        return { error: false, data: world.getDimension('overworld').runCommandAsync(cmd) };
+        return { error: false, data: world.getDimension('overworld').runCommand(cmd) };
     }
     catch {
         return { error: true, data: undefined };

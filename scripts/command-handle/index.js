@@ -1,4 +1,6 @@
+// Script example for ScriptAPI
 // Author: Smell of Curry <https://github.com/smell-of-curry>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { Player, world } from "@minecraft/server";
 
 //Prefix for all custom commands

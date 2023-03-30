@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 /**
  * @license MIT
  * @author JaylyMC
@@ -5,7 +8,7 @@
  */
 import * as MinecraftServer from "@minecraft/server";
 import * as GameTest from "@minecraft/server-gametest";
-import { SimulatedPlayer } from "../simulated-player/SimulatedPlayer.js";
+import { SimulatedPlayer } from "../simulated-player/index";
 
 /**
  * Spawns a simulated player

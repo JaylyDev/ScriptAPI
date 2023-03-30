@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "module": "ES2015",
     "target": "ES5",
     "lib": ["ES2015"],
     "forceConsistentCasingInFileNames": true,
@@ -8,11 +7,10 @@
     "noImplicitThis": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
-    "baseUrl": ".",
-    "types": []
   },
   "files": [
-    "timers.ts",
-    "timers-test.ts"
-  ]
+    "index.ts",
+    "tests.ts"
+  ],
+  "extends": "../tsconfig.json"
 }

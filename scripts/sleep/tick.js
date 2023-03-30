@@ -1,6 +1,6 @@
-// Script examples for ScriptAPI
+// Script example for ScriptAPI
 // Author: Aex66 <Bedrock Scripting API>
-
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { system } from "@minecraft/server";
 
 /**

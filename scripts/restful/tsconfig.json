@@ -2,8 +2,8 @@
   "compilerOptions": {
     "module": "es2020",
     "target": "es2020",
-    "moduleResolution": "node",
     "esModuleInterop": true
   },
-  "files": [ "index.ts", "encoding.ts", "tests.ts" ]
+  "files": [ "index.ts", "encoding.ts", "tests.ts" ],
+  "extends": "../tsconfig.json"
 }

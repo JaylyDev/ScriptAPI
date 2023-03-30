@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import * as mc from "@minecraft/server";
 import { getGamemode } from "get-gamemode/index";
 import { ActionFormData, MessageFormData, ModalFormData} from "@minecraft/server-ui";
@@ -29,7 +32,7 @@ export default function Player(player: mc.Player): PlayerExtra {
         return getGamemode(player);
       },
       kick(reason: string) {
-        player.runCommandAsync(`kick "${player.name}" ${reason}`);
+        player.runCommand(`kick "${player.name}" ${reason}`);
       },
       getScore(objectiveId: string) {
         return mc.world.scoreboard

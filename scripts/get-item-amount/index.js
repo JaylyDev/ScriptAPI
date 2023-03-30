@@ -1,5 +1,6 @@
-// Script examples for ScriptAPI
+// Script example for ScriptAPI
 // Author: Herobrine64#3928 <Bedrock Add-Ons>
+// Project: https://github.com/JaylyDev/ScriptAPI
 
 import { EntityInventoryComponent, Player } from "@minecraft/server";
 

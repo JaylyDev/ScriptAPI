@@ -1,6 +1,6 @@
 'use strict';
-import { Vector } from "vector-polyfill";
-import 'json-stringify';
+import { Vector } from "vector-polyfill/index";
+import 'json-stringify/index';
 import * as mc from '@minecraft/server';
 
 function polyfill() {

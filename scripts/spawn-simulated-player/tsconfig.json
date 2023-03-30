@@ -9,12 +9,12 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "baseUrl": ".",
-    "moduleResolution": "node",
     "downlevelIteration": true,
     "types": []
   },
   "files": [
     "index.ts",
-    "spawn-simulated-player-test.ts"
-  ]
+    "tests.ts"
+  ],
+  "extends": "../tsconfig.json"
 }

@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: bot174 <https://github.com/bot174>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { RawMessage } from "@minecraft/server";
 export type langKey =
   | "accessibility.disableTTS"

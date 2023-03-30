@@ -1,7 +1,8 @@
-// Script examples for ScriptAPI
+// Script example for ScriptAPI
 // Author: Andy Earnshaw <https://github.com/andyearnshaw/Intl.js>
+// Project: https://github.com/andyearnshaw/Intl.js
 
-import Intl from './intl';
+import Intl from 'intl/index.js';
 
 const locales = 'en-US'
 Intl.Collator(locales).compare('10', '20');
