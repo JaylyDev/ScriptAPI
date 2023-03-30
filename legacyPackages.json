@@ -1,0 +1,16 @@
+{
+  "packages": [
+    "chat-rank",
+    "chest-lock",
+    "dimension-entities",
+    "dimensions",
+    "get-scores",
+    "is-host",
+    "is-operator",
+    "lz-string",
+    "remove-permission",
+    "run-command-async",
+    "set-permission",
+    "shopui"
+  ]
+}

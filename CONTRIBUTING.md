@@ -1,18 +1,25 @@
 # Contributing
 
-Contributing infomation. This info changes because Script API is currently in active development, and breaking changes are frequent. 
+Contributing infomation. This info changes because Script API is currently in active development, and breaking changes are frequent.
 
 ## Scripts
 
-When submitting a new package. You must use modules with the following dependencies:
+When submitting a new package. The scripts are assumed that they can be used with the latest beta module of script modules in latest version of Minecraft Preview, the following is a reference of a manifest dependencies and NPM packages for meeting the criteria of submitting or updating a script sample.
 
 **manifest.json**
+
+This repository may have scripts that requires the following dependencies with their latest module version:
+
 ```json
 "dependencies": [
     {
         "module_name": "@minecraft/server",
-        "version": "1.1.0-beta"
+        "version": "1.2.0-beta"
     },
+    {
+        "module_name": "@minecraft/server-editor",
+        "version": "0.1.0-beta"
+    }
     {
         "module_name": "@minecraft/server-ui",
         "version": "1.0.0-beta"
@@ -32,6 +39,15 @@ When submitting a new package. You must use modules with the following dependenc
 ]
 ```
 
+This repository may have scripts that requires the following capabilities:
+
+```json
+"capabilities": [
+    "editorExtension",
+    "script_eval"
+]
+```
+
 **NPM packages:**
 
 - [`@minecraft/server@beta`](https://www.npmjs.com/package/@minecraft/server/v/beta)
@@ -39,20 +55,3 @@ When submitting a new package. You must use modules with the following dependenc
 - [`@minecraft/server-net@beta`](https://www.npmjs.com/package/@minecraft/server-net/v/beta)
 - [`@minecraft/server-gametest@beta`](https://www.npmjs.com/package/@minecraft/server-gametest/v/beta)
 - [`@minecraft/server-admin@beta`](https://www.npmjs.com/package/@minecraft/server-admin/v/beta)
-
----
-
-or if you want to use alpha version of API modules, you are only allowed to use these modules:
-
-```json
-"dependencies": [
-    {
-        "module_name": "mojang-minecraft",
-        "version": "0.1.0"
-    },
-    {
-        "module_name": "mojang-minecraft-ui",
-        "version": "0.1.0"
-    }
-]
-```

@@ -1,4 +1,8 @@
-import { world } from "mojang-minecraft"
+// Script example for ScriptAPI
+// Author: iBlqzed <https://github.com/iBlqzed>
+// Project: https://github.com/JaylyDev/ScriptAPI
+
+import { world } from "@minecraft/server"
 
 const names: string[] = []
 

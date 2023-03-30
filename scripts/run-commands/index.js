@@ -1,4 +1,7 @@
-import { Entity, Dimension } from "mojang-minecraft";
+// Script example for ScriptAPI
+// Author: Jayly#1397 <Jayly Discord>
+// Project: https://github.com/JaylyDev/ScriptAPI
+import { Entity, Dimension } from "@minecraft/server";
 
 /**
  * Run commands in one function

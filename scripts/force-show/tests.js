@@ -1,6 +1,9 @@
+// Script example for ScriptAPI
+// Author: Jayly#1397 <Jayly Discord>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { world, system, Player } from "@minecraft/server";
 import { ModalFormData, ActionFormData, MessageFormData } from "@minecraft/server-ui";
-import { forceShow } from "force-show";
+import { forceShow } from "force-show/index";
 
 world.events.beforeChat.subscribe(async (event) => {
   event.cancel = true;
@@ -29,7 +32,7 @@ world.events.beforeItemUse.subscribe(async (event) => {
   const response = await forceShow(event.source, form);
   
   // response should be ActionFormResponse
-  world.say(String(response.selection));
+  world.sendMessage(String(response.selection));
 });
 
 
@@ -45,6 +48,15 @@ system.run(async function () {
     const response = await forceShow(player, form);
     
     // response should be MessageFormResponse
-    world.say(String(response.selection));
+    world.sendMessage(String(response.selection));
   };
+});
+
+// test timeout feature
+world.events.chat.subscribe((event) => {
+  const { sender, message } = event;
+
+  forceShow(sender, new MessageFormData().title('Title').body(message), 10).then((res) => {
+    console.log('Success');
+  }).catch(console.error);
 });

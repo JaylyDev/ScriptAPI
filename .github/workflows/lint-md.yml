@@ -1,14 +1,26 @@
-name: markdown-link-check
+name: 'Link Checker'
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [ labeled ]
 
 jobs:
   markdown-link-check:
-    name: 'Link Checker'
+    ## this action only runs in one of the following conditons
+    ## PR is labelled with docs tag
+    ## It's a push commit
+    if: ${{ (github.event.label.name == 'docs' && github.event_name == 'pull_request') || github.event_name == 'push' }}
+    name: 'Check Links'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Markdown links check
         uses: ruzickap/action-my-markdown-link-checker@v1
+        with:
+          exclude: |
+            docs/

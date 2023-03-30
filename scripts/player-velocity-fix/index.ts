@@ -1,11 +1,14 @@
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/GametestDB/
 /**
  * @license MIT
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import { Vector, Player, Location, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent, MinecraftEffectTypes } from "mojang-minecraft";
+import { Vector3, Player, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent, MinecraftEffectTypes } from "@minecraft/server";
 import { Commands } from "../commands/index.js";
-import { clearInterval, setInterval } from "../timers/timers.js";
+import { clearInterval, setInterval } from "../timers/index.js";
 
 function trunc (x: number, decimal: number): number {
   let y = 10 ** decimal;
@@ -16,14 +19,17 @@ function trunc (x: number, decimal: number): number {
  * @remarks
  * Sets a velocity for the entity to move with.
  * Fixes GameTest native player.setVelocity
- * @param {Vector} velocity
+ * @param {Vector3} velocity
  * @param {Player} player
  * @throws This function can throw errors.
 */
-export function setVelocity (velocity: Vector, player: Player) {
+export function setVelocity (velocity: Vector3, player: Player) {
   if (!(player instanceof Player)) throw TypeError("Native type conversion failed.");
 
-  const entity = player.dimension.spawnEntity(MinecraftEntityTypes.minecart.id, player.location);
+  const entity = player.dimension.spawnEntity(
+    MinecraftEntityTypes.minecart.id,
+    player.location
+  );
   entity.triggerEvent('minecraft:ageable_grow_up'); // Make them adult
   entity.triggerEvent('minecraft:on_saddled');      // Add saddle to pig
 
@@ -33,11 +39,11 @@ export function setVelocity (velocity: Vector, player: Player) {
   
   entity.addEffect(MinecraftEffectTypes.invisibility, 0x7fff, 255, false); // makes the entity invisible
   entity.addEffect(MinecraftEffectTypes.resistance, 0x7fff, 255, false); // makes the entity invisible
-  entity.setVelocity(velocity);
+  entity.applyImpulse(velocity);
 
   let onInterval = setInterval((isEntityMoving: Entity) => {
     try {      
-      const { x, y, z } = isEntityMoving.velocity;
+      const { x, y, z } = isEntityMoving.getVelocity();
 
       if (trunc(x, 2) === 0 && trunc(y, 1) === 0 && trunc(z, 2) === 0) {
         clearInterval(onInterval);   // clear timer
@@ -45,7 +51,7 @@ export function setVelocity (velocity: Vector, player: Player) {
         
         // teleport entity to void to avoid mob loot drops
         let { location } = entity;
-        entity.teleport(new Location(location.x, -100, location.z), entity.dimension, 0, 0);
+        entity.teleport({ x: location.x, y: -100, z: location.z}, entity.dimension, 0, 0);
         entity.kill();
       } else {
         // Force the player to ride the entity until the entity lands
