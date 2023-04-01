@@ -10,7 +10,7 @@ These files are used for validating types for the ScriptAPI repository. If you w
 
 Example tsconfig.json file:
 
-```json
+```jsonc
 {
   "compilerOptions": {
     "paths": {
@@ -27,6 +27,18 @@ Example tsconfig.json file:
 }
 ```
 
+Or copy and paste the `@minecraft/server-editor` and the `@minecraft/server-editor-bindings` folders in the `node_modules` folder:
+
+```
+project
+└───node_modules
+    └───@minecraft
+        └───server-editor
+        │       index.d.ts
+        └───server-editor-bindings
+                index.d.ts
+```
+
 To test if this works, you can go on VSCode and type some variable names to see if auto complete will detect variable from modules:
 
 - `@minecraft/server-editor`
@@ -35,7 +47,7 @@ To test if this works, you can go on VSCode and type some variable names to see 
 
 - `@minecraft/server-editor-bindings`
 
-![server_editor_bindings](https://media.discordapp.net/attachments/867015810312962063/1089631135623028798/image.png?width=911&height=178)
+![server_editor_bindings](https://media.discordapp.net/attachments/867015810312962063/1089631135623028798/image.png)
 
 ## Versions
 
