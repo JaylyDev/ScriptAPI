@@ -1,7 +1,7 @@
 name: Dependencies
 
 on:
-  workflow-dispatch:
+  workflow_dispatch:
   schedule: 
     - cron: "00 20 * * *"
 
