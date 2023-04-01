@@ -1,4 +1,4 @@
-import { setTimeout, setImmediate, setInterval, clearImmediate, clearInterval, clearTimeout } from "./timers.js";
+import { setTimeout, setImmediate, setInterval, clearImmediate, clearInterval, clearTimeout } from "./index.js";
 import { world } from "@minecraft/server";
 function stdout(...data) {
     return world.getDimension("overworld").runCommandAsync(`say §r` + data.join(" "));
