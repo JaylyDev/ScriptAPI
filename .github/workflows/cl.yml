@@ -6,8 +6,8 @@ on:
       - main
   pull_request:
   schedule: 
-    ## run action every wednesdat at 20:00 UTC
-    - cron: "00 20 * * 3"
+    ## run action every sunday at 20:00 UTC
+    - cron: "00 20 * * 0"
 
 jobs:
   checks:
@@ -40,3 +40,4 @@ jobs:
           message: 'Upload generated files.'
           default_author: github_actions
           pull: '-v'
+          force: true
