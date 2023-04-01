@@ -36,4 +36,4 @@ jobs:
           body: Updated NPM packages in package.json, please review.
           labels: dependencies
           branch: dependency/update
-          base: ${GITHUB_REF##*/}
+          base: main
