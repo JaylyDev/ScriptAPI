@@ -1,6 +1,5 @@
 import axios from "axios";
 import * as fs from 'fs';
-import * as path from 'path';
 import type * as npm from "@npm/types";
 import packageJson from "../../package.json";
 import { execSync } from "child_process";
