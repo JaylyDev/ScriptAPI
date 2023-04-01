@@ -1,0 +1,39 @@
+name: Dependencies
+
+on:
+  workflow-dispatch:
+  schedule: 
+    - cron: "00 20 * * *"
+
+jobs:
+  checks:
+    name: 'Script Check'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: npm install
+        run: |
+          npm install
+          npm list
+
+      - name: tsc build
+        run: npm run tools
+
+      - name: Update dependency
+        id: update
+        run: node ./tools/dependency/index.js
+
+      - run: echo ${{ steps.changes.outputs.changed }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: Update package.json
+          title: Update package.json
+          body: Updated NPM packages in package.json, please review.
+          labels: dependencies
+          branch: dependency/update
+          base: ${GITHUB_REF##*/}
