@@ -33,7 +33,7 @@ jobs:
           event_name: ${{ github.event_name }}
 
       - name: Create Pull Request
-        if: ${{ github.event_name == "schedule" }}
+        if: ${{ github.event_name == 'schedule' }}
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: Upload generated files
