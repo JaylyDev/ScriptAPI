@@ -15,27 +15,30 @@ function isValidHttpUrl(string: string) {
 
 function makeReadme (script: string) {
   const indexJs = path.resolve(scriptsPath, script, 'index.js');
+  const indexTs = path.resolve(scriptsPath, script, 'index.ts');
   const readmePath = path.resolve(scriptsPath, script, 'README.md');
   const readmeDefault = [
     '# ' + script,
     '',
     '## Description',
-    '',
+    '> This README is auto generated, Edit the README so that users know what this package does.',
     '',
     '## Credits',
     '',
     ''
   ];
-  if (!existsSync(indexJs)) {
-    console.error(script, "missing index.js");
+  if (!existsSync(indexJs) && !existsSync(indexTs)) {
+    console.error(script, "missing index.js and index.ts");
     writeFileSync(readmePath, readmeDefault.join('\n'));
     return;
   };
+
+  const indexfile = existsSync(indexTs) ? indexTs : indexJs;
   
   /**
    * header
    */
-  const header = parseHeader(readFileSync(indexJs).toString());
+  const header = parseHeader(readFileSync(indexfile).toString());
   if ('contributors' in header) {
     const credits = "These scripts were written by " + header.contributors.map((v) => {
       if (isValidHttpUrl(v.url)) return `[${v.name}](${v.url})`;
@@ -48,7 +51,7 @@ function makeReadme (script: string) {
     writeFileSync(readmePath, readmeDefault.join('\n'));
   }
   else {
-    console.error(script, "doesn't have header in index.js");
+    console.error(script, "doesn't have header in index file");
     writeFileSync(readmePath, readmeDefault.join('\n'));
   }
 }
