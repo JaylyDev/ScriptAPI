@@ -30,7 +30,7 @@ export function execute (): 0 {
     }
   };
 
-  if (noTestScripts.length > 0)  console.warn(`There are ${noTestScripts.length} package(s) do not have any unit test scripts:\n${noTestScripts.join(', ')} `);
+  if (noTestScripts.length > 0)  console.warn(`There are ${noTestScripts.length} package(s) do not have any unit test scripts:\n${noTestScripts.map(script => printFilePath(script)).join(', ')} `);
 
   return 0;
 }
