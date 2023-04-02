@@ -2,8 +2,6 @@ name: CI
 
 on: 
   push:
-    branches:
-      - main
   pull_request:
   schedule: 
     ## run action every sunday at 20:00 UTC
