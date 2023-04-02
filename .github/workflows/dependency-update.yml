@@ -35,3 +35,4 @@ jobs:
           labels: dependencies
           branch: dependency/update
           base: main
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>

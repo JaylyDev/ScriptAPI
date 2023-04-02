@@ -4,13 +4,15 @@ import { printFilePath, scripts, scriptsPath } from "./utils";
 
 const testFilenames = ['tests', 'tests.js', 'tests.ts'];
 
-export function execute (): 0 {  
+export function execute (): 0 {
+  const noTestScripts: string[] = [];
+
   for (const scriptName of scripts) {
     const scriptPath = path.resolve(scriptsPath, scriptName);
     const files = readdirSync(scriptPath);
     const testFiles = files.filter(x => testFilenames.includes(x));
 
-    if (testFiles.length <= 0) console.warn(`${printFilePath(scriptPath)} does not have any unit test scripts.`);
+    if (testFiles.length <= 0) noTestScripts.push(scriptPath);
     else {
       for (const file of testFiles) {
         const filepath = path.resolve(scriptPath, file)
@@ -27,6 +29,8 @@ export function execute (): 0 {
       }
     }
   };
+
+  if (noTestScripts.length > 0)  console.warn(`There are ${noTestScripts.length} package(s) do not have any unit test scripts:\n${noTestScripts.join(', ')} `);
 
   return 0;
 }
