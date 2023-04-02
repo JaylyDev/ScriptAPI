@@ -1,6 +1,6 @@
 ## Checklist
 
-Please fill in the checklist.
+Please fill in the checklist. To mark a task as complete, use `[x]`.
 
 - [ ] Use a meaningful title for the pull request. Include the name of the script(s) modified.
 - [ ] Test your code locally prior to submission.
