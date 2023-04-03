@@ -723,15 +723,19 @@ export class SelectionBehavior {
         min: 1,
         max: 16,
         showSlider: true,
-        onChange: (_obj, _property, _oldValue, _newValue) => {
+        onChange: async (_obj, _property, _oldValue, _newValue) => {
           console.warn(_property, _oldValue, _newValue, blockPickers.length);
           while (blockPickers.length < _newValue) {
+            await null; // using await null in an async function to avoid making the server hangs
+
             blockPickers.push(subPaneFill.addBlockPicker(this.settingsObject, 'block', {
               titleAltText: 'Block Type',
               allowedBlocks
             }));
           }
           while (blockPickers.length > _newValue) {
+            await null; // using await null in an async function to avoid making the server hangs
+
             const lastBlockPicker = blockPickers[blockPickers.length - 1];
             lastBlockPicker.visible = false;
             lastBlockPicker.enable = false;
