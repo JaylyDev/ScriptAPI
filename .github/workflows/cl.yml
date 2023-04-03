@@ -41,5 +41,5 @@ jobs:
           body: Transpiled TypeScript files and created README files, please review.
           labels: scripts
           branch: scripts/update
-          base: ${GITHUB_REF##*/}
+          base: ${{ github.ref_name }}
           author: joyloy-bot <121162959+joyloy-bot@users.noreply.github.com>

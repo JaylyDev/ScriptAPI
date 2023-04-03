@@ -36,5 +36,5 @@ jobs:
           body: Updated NPM packages in package.json, please review.
           labels: dependencies
           branch: dependency/update
-          base: ${GITHUB_REF##*/}
+          base: ${{ github.ref_name }}
           author: joyloy-bot <121162959+joyloy-bot@users.noreply.github.com>
