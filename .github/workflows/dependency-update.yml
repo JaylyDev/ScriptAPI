@@ -29,10 +29,12 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
+          token: ${{ secrets.JAYLYBOT_TOKEN }}
+          push-to-fork: joyloy-bot/ScriptAPI
           commit-message: Update package.json and package-lock.json
           title: Update npm packages
           body: Updated NPM packages in package.json, please review.
           labels: dependencies
           branch: dependency/update
           base: main
-          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: joyloy-bot <121162959+joyloy-bot@users.noreply.github.com>

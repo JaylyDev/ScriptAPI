@@ -34,10 +34,12 @@ jobs:
         if: ${{ github.event_name == 'schedule' }}
         uses: peter-evans/create-pull-request@v4
         with:
+          token: ${{ secrets.JAYLYBOT_TOKEN }}
+          push-to-fork: joyloy-bot/ScriptAPI
           commit-message: Upload generated files
           title: Upload generated files for scripts
           body: Transpiled TypeScript files and created README files, please review.
           labels: scripts
           branch: scripts/update
           base: main
-          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: joyloy-bot <121162959+joyloy-bot@users.noreply.github.com>
