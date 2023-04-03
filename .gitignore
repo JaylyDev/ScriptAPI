@@ -2,9 +2,9 @@
 node_modules/
 
 # Tools build files
-tools/*.js
-tools/*.js.map
-tools/*.d.ts
+tools/**/*.js
+tools/**/*.js.map
+tools/**/*.d.ts
 
 # Logs
 logs

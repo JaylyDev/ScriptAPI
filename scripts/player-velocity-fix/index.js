@@ -8,7 +8,7 @@
  */
 import { Player, MinecraftEntityTypes, MinecraftEffectTypes } from "@minecraft/server";
 import { Commands } from "../commands/index.js";
-import { clearInterval, setInterval } from "../timers/timers.js";
+import { clearInterval, setInterval } from "../timers/index.js";
 function trunc(x, decimal) {
     let y = 10 ** decimal;
     return Math.trunc(x * y) / y;

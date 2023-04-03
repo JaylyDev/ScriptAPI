@@ -3,7 +3,7 @@ var _a;
  * Contains a description of a vector.
  * @implements {Vector3}
  */
-export class Vector {
+class Vector {
     /**
      * @remarks
      * Creates a new instance of an abstract vector.
@@ -268,3 +268,4 @@ Vector.up = new _a(0, 1, 0);
  * @readonly
  */
 Vector.zero = new _a(0, 0, 0);
+export { Vector };

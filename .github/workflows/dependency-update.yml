@@ -1,14 +1,13 @@
-name: CI
+name: Dependencies
 
-on: 
-  push:
-  pull_request:
+on:
+  workflow_dispatch:
   schedule: 
     - cron: "00 20 * * *"
 
 jobs:
   checks:
-    name: 'Script Check'
+    name: 'Update'
     runs-on: ubuntu-latest
 
     steps:
@@ -17,29 +16,26 @@ jobs:
 
       - name: npm install
         run: |
-          pwd && npm install
-          find ./scripts/* -maxdepth 2 -name package.json -execdir sh -c 'pwd && npm install' \;
-          find ./docs/* -maxdepth 5 -name package.json -execdir sh -c 'pwd && npm install' \;
+          npm install
+          npm list
 
-      - name: Type Check
-        run: tsc --build --verbose
+      - name: tsc build
+        run: npm run tools
 
-      - name: Format Check
-        run: node ./tools/index.js
-        env:
-          event_name: ${{ github.event_name }}
+      - name: Update dependency
+        id: update
+        run: node ./tools/dependency/index.js
 
       - name: Create Pull Request
-        if: ${{ github.event_name == 'schedule' }}
         id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.JAYLYBOT_TOKEN }}
           push-to-fork: jayly-bot/ScriptAPI
-          commit-message: Upload generated files
-          title: Upload generated files for scripts
-          body: Transpiled TypeScript files and created README files, please review.
-          branch: scripts/update
+          commit-message: Update package.json and package-lock.json
+          title: Update npm packages
+          body: Updated NPM packages in package.json, please review.
+          branch: dependency/update
           base: main
           author: jayly-bot <121162959+jayly-bot@users.noreply.github.com>
 
@@ -48,7 +44,7 @@ jobs:
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - $ISSUE"
-          gh pr edit $ISSUE --add-label "scripts"
+          gh pr edit $ISSUE --add-label "dependencies"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-url }}

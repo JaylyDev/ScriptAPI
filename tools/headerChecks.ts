@@ -32,7 +32,7 @@ function checkScripts () {
         hasError = true;
       }
       else if (!!parseError && isEmittedFile) {
-        errorMessages.push(`${printFilePath(fullpath)} ${renderParseError(parseError)}. Adding header fro ${file} from index.ts`);
+        errorMessages.push(`${printFilePath(fullpath)} ${renderParseError(parseError)}. Adding header from index.ts to ${file}`);
         const fullTspath = path.resolve(scriptPath, tsSourceFilename);
         const tsFile = fs.readFileSync(fullTspath).toString();
 
