@@ -2,8 +2,6 @@ name: CI
 
 on: 
   push:
-    branches:
-      - main
   pull_request:
   schedule: 
     ## run action every sunday at 20:00 UTC
@@ -32,12 +30,14 @@ jobs:
         env:
           event_name: ${{ github.event_name }}
 
-      - name: Commit Changes
+      - name: Create Pull Request
         if: ${{ github.event_name == 'schedule' }}
-        uses: EndBug/add-and-commit@v9
+        uses: peter-evans/create-pull-request@v4
         with:
-          add: ./scripts
-          message: 'Upload generated files.'
-          default_author: github_actions
-          pull: '-v'
-          force: true
+          commit-message: Upload generated files
+          title: Upload generated files for scripts
+          body: Transpiled TypeScript files and created README files, please review.
+          labels: scripts
+          branch: scripts/update
+          base: main
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
