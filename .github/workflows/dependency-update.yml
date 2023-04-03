@@ -36,5 +36,12 @@ jobs:
           body: Updated NPM packages in package.json, please review.
           labels: dependencies
           branch: dependency/update
-          base: ${{ github.ref_name }}
+          base: main
           author: joyloy-bot <121162959+joyloy-bot@users.noreply.github.com>
+
+      - name: Check outputs
+        if: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+          gh pr edit ${{ steps.cpr.outputs.pull-request-number }} --add-label "dependencies"
