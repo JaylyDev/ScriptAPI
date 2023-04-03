@@ -35,13 +35,13 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.JAYLYBOT_TOKEN }}
-          push-to-fork: joyloy-bot/ScriptAPI
+          push-to-fork: jayly-bot/ScriptAPI
           commit-message: Upload generated files
           title: Upload generated files for scripts
           body: Transpiled TypeScript files and created README files, please review.
           branch: scripts/update
           base: main
-          author: joyloy-bot <121162959+joyloy-bot@users.noreply.github.com>
+          author: jayly-bot <121162959+jayly-bot@users.noreply.github.com>
 
       - name: Check outputs
         if: ${{ steps.cpr.outputs.pull-request-number }}
