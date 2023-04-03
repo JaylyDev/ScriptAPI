@@ -43,5 +43,8 @@ jobs:
         if: ${{ steps.cpr.outputs.pull-request-number }}
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-          gh pr edit ${{ steps.cpr.outputs.pull-request-number }} --add-label "dependencies"
+          echo "Pull Request URL - $ISSUE"
+          gh pr edit $ISSUE --add-label "dependencies"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-url }}
