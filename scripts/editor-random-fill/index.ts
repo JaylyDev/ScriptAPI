@@ -1,208 +1,888 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { MinecraftBlockTypes, Vector } from "@minecraft/server";
-import { registerEditorExtension, CursorControlMode, CursorTargetMode, EditorInputContext, ActionTypes, KeyboardKey, InputModifier, createPaneBindingObject, BlockVolume, SelectionBlockVolumeAction, MouseActionType, MouseInputType, executeLargeOperation } from "@minecraft/server-editor";
-import { getRotationCorrectedDirectionVector, Direction } from "editor-utilities/index";
+import {
+  MinecraftBlockTypes,
+  system,
+  BlockType,
+  Vector,
+  Vector3,
+} from "@minecraft/server";
+import {
+  KeyboardKey,
+  IPlayerUISession,
+  MouseRay,
+  IModalTool,
+  Action,
+  ActionTypes,
+  SelectionBlockVolumeAction,
+  BlockVolume,
+  MouseActionType,
+  MouseInputType,
+  CursorControlMode,
+  InputModifier,
+  getLocalizationId,
+  CursorTargetMode,
+  EditorInputContext,
+  executeLargeOperation,
+  createPaneBindingObject,
+  registerEditorExtension,
+  IPropertyPane,
+  IPropertyItem,
+  ExtensionContext,
+  CursorState,
+} from "@minecraft/server-editor";
+import {
+  getRotationCorrectedDirectionVector,
+  Direction,
+} from "editor-utilities/index";
+import {
+  getRelativeXYAxisAsNormal,
+  growVolumeAlongViewAxis,
+  intersectRayPlane,
+  shrinkVolumeAlongViewAxis,
+} from "./functions";
 
-registerEditorExtension('randomFill', (uiSession) => {
-    const tool = uiSession.toolRail.addTool(
-        {
-            displayString: "Random Fill (CTRL + R)",
-            tooltip: "Left mouse click or drag-to-paint",
-            icon: "pack://textures/editor/Select-Fill.png?filtering=point",
-        },
-    );
+// ------------------------------------------------------------------------------------------------
+// General collection of selection related variables for this instance
+// ------------------------------------------------------------------------------------------------
+enum SelectionCursorMode {
+  Freeform = 0,
+  FixedDistance = 1,
+  AdjacentFace = 2
+};
 
-    const currentCursorState = uiSession.extensionContext.cursor.getState();
-    currentCursorState.color = {
-        red: 1,
-        green: 1,
-        blue: 0,
-        alpha: 1
+const Controls = {
+  Up: KeyboardKey.PAGE_UP,
+  Down: KeyboardKey.PAGE_DOWN,
+  Forward: KeyboardKey.UP,
+  Back: KeyboardKey.DOWN,
+  Left: KeyboardKey.LEFT,
+  Right: KeyboardKey.RIGHT,
+  Select: KeyboardKey.ENTER,
+  Clear: KeyboardKey.KEY_D,
+};
+
+interface SettingsObject {
+  origin: Vector3;
+  size: Vector3;
+  block: BlockType;
+}
+
+const TicksRefreshRate = 5;
+// ------------------------------------------------------------------------------------------------
+export class SelectionBehavior {
+  tool: IModalTool;
+  uiSession: IPlayerUISession;
+  fnUnregisterToolBindings: () => void;
+  singleClick: (uiSession: IPlayerUISession, mouseRay: MouseRay, shiftPressed: boolean, ctrlPressed: boolean, altPressed: boolean) => void;
+  lastAnchorPosition: Vector3;
+  moveTopSelection: (uiSession: IPlayerUISession, lastAnchor: Vector3, direction: Direction) => Vector3;
+  moveBlockCursorManually: (uiSession: IPlayerUISession, direction: Direction) => void;
+  moveAllSelections: (uiSession: IPlayerUISession, anchorPosition: Vector3, direction: Direction) => Vector3;
+  shrinkVolume: (uiSession: IPlayerUISession, direction: Direction) => void;
+  growVolume: (uiSession: IPlayerUISession, direction: Direction) => void;
+  bindToolInput: (uiSession: IPlayerUISession) => void;
+  toolCursorState: CursorState;
+  onTickRefresh: (uiSession: IPlayerUISession, tool: IModalTool) => void;
+  tickRefreshHandle: number;
+  settingsObject: SettingsObject;
+  originPropertyItem: IPropertyItem;
+  sizePropertyItem: IPropertyItem;
+  addSettingsPane: (uiSession: IPlayerUISession) => void;
+  pane: IPropertyPane;
+  addTool: (uiSession: IPlayerUISession) => IModalTool;
+  bindGlobalActivationShortcut: (uiSession: IPlayerUISession, storage: Record<string, any>) => void;
+  performFillOperation: (context: ExtensionContext, fillType: BlockType) => Promise<void>;
+  executeFillAction: Action<ActionTypes.NoArgsAction>;
+  get toolId() {
+    return this.tool.id;
+  }
+  constructor(uiSession: IPlayerUISession) {
+    this.uiSession = uiSession;
+    this.fnUnregisterToolBindings = () => {
+      this.tool.unregisterInputBindings();
     };
-    currentCursorState.controlMode = CursorControlMode.KeyboardAndMouse;
-    currentCursorState.targetMode = CursorTargetMode.Block;
-    currentCursorState.visible = true;
-
-    const previewSelection = uiSession.extensionContext.selectionManager.createSelection();
-    previewSelection.visible = true;
-    previewSelection.borderColor = {
-        red: 0,
-        green: 0.5,
-        blue: 0.5,
-        alpha: 0.2
-    };
-    previewSelection.fillColor = {
-        red: 0,
-        green: 0,
-        blue: 0.5,
-        alpha: 0.1
-    };
-
-    uiSession.scratchStorage = {
-        currentCursorState,
-        previewSelection,
-    };
-
-    tool.onModalToolActivation.subscribe(
-        eventData => {
-            if (eventData.isActiveTool)
-                uiSession.extensionContext.cursor.setState(uiSession.scratchStorage.currentCursorState);
-        },
-    );
-
-    uiSession.inputManager.registerKeyBinding(
-        EditorInputContext.GlobalToolMode,
-        uiSession.actionManager.createAction(
-            {
-                actionType: ActionTypes.NoArgsAction,
-                onExecute: () => {
-                    uiSession.toolRail.setSelectedOptionId(tool.id, true);
-                },
-            },
-        ),
-        KeyboardKey.KEY_R,
-        InputModifier.Control,
-    );
-
-    const pane = uiSession.createPropertyPane(
-        {
-            titleAltText: "Cube",
-        },
-    );
-
-    const settings = createPaneBindingObject(
-        pane,
-        {
-            size: 3,
-            hollow: false,
-            face: false,
-            blockType: MinecraftBlockTypes.stone,
+    this.singleClick = (uiSession: IPlayerUISession, mouseRay: MouseRay, shiftPressed: boolean, ctrlPressed: boolean, altPressed: boolean) => {
+      const clickLoc = mouseRay.cursorBlockLocation;
+      // Nothing pressed, then clear the stack and create a single 1x1x1
+      if (!shiftPressed && !ctrlPressed && !altPressed) {
+        uiSession.extensionContext.selectionManager.selection.clear();
+        uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, new BlockVolume(clickLoc, clickLoc));
+        // Store this as the anchor point
+        this.lastAnchorPosition = clickLoc;
+      }
+      // Shift pressed, an no volume exists - create a single 1x1x1
+      //  if a volume does exist - use it to anchor the min corner and make a volume
+      //  from anchor to new click
+      else if (shiftPressed && !ctrlPressed && !altPressed) {
+        if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
+          // Create a new 1x1x1 selection volume at the click position
+          uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, new BlockVolume(clickLoc, clickLoc));
+          // Store this as the anchor point
+          this.lastAnchorPosition = clickLoc;
         }
-    );
-
-    pane.addNumber(
-        settings,
-        "size",
-        {
-            titleAltText: "Brush Size",
-            min: 1,
-            max: 16,
-            showSlider: true,
+        else {
+          // Use the last anchor point (i.e. the first click selection) as the
+          // corner for the new click, and defining a new volume area
+          const lastAnchorPosition = this.lastAnchorPosition;
+          uiSession.extensionContext.selectionManager.selection.popVolume();
+          const newVolume = new BlockVolume(lastAnchorPosition, clickLoc);
+          uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
         }
-    );
-    pane.addBool(
-        settings,
-        "hollow", {
-        titleAltText: "Hollow",
-    }
-    );
-    pane.addBool(settings, "face", {
-        titleAltText: "Face Mode",
+      }
+      // Control pressed and no volume exists - create a single 1x1x1
+      //  If a volume exists, just push a new 1x1x1 to the stack
+      else if (ctrlPressed && !shiftPressed && !altPressed) {
+        uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, new BlockVolume(clickLoc, clickLoc));
+        // Store this as the anchor point
+        this.lastAnchorPosition = clickLoc;
+      }
+      // If ALT is pressed, and there IS already a full volume, then we're going into 3-click volume
+      // mode and we need to do some intersection calculations
+      else if (altPressed && !shiftPressed && !ctrlPressed) {
+        if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
+          // Create a new 1x1x1 selection volume at the click position
+          uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, new BlockVolume(clickLoc, clickLoc));
+          // Store this as the anchor point
+          this.lastAnchorPosition = clickLoc;
+        }
+        else {
+          const currentVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
+          const currentBounds = currentVolume.boundingBox;
+          const translatedRayLocation = Vector.subtract(new Vector(mouseRay.location.x, mouseRay.location.y, mouseRay.location.z), new Vector(currentBounds.min.x, currentBounds.min.y, currentBounds.min.z));
+          const XYPlaneNormal = getRelativeXYAxisAsNormal(uiSession.extensionContext.player.getRotation().y);
+          const intersection = intersectRayPlane(translatedRayLocation, mouseRay.direction, XYPlaneNormal, 0);
+          if (intersection) {
+            const translatedIntersection = Vector.add(intersection, new Vector(currentBounds.min.x, currentBounds.min.y, currentBounds.min.z));
+            const newY = Math.ceil(translatedIntersection.y) - 1;
+            const newVolume = new BlockVolume({ x: currentBounds.min.x, y: currentBounds.min.y, z: currentBounds.min.z }, { x: currentBounds.max.x, y: newY, z: currentBounds.max.z });
+            uiSession.extensionContext.selectionManager.selection.popVolume();
+            uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+          }
+        }
+      }
+    };
+    this.moveTopSelection = (uiSession: IPlayerUISession, lastAnchor: Vector3, direction: Direction): Vector3 => {
+      if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
+        return undefined;
+      }
+      const lastVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
+      uiSession.extensionContext.selectionManager.selection.popVolume();
+      const rotationY = uiSession.extensionContext.player.getRotation().y;
+      const correctedVector = getRotationCorrectedDirectionVector(rotationY, direction);
+      const newVolume = lastVolume.offset({ x: correctedVector.x, y: correctedVector.y, z: correctedVector.z });
+      uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+      // Update the last cursor click position with the move vector
+      // so that extend-click operations work correctly with the new corner position
+      const updatedClick = {
+        x: lastAnchor.x + correctedVector.x,
+        y: lastAnchor.y + correctedVector.y,
+        z: lastAnchor.z + correctedVector.z,
+      };
+      return updatedClick;
+    };
+    this.moveBlockCursorManually = (uiSession: IPlayerUISession, direction: Direction) => {
+      const rotationY = uiSession.extensionContext.player.getRotation().y;
+      const rotationCorrectedVector = getRotationCorrectedDirectionVector(rotationY, direction);
+      uiSession.extensionContext.cursor.moveBy(rotationCorrectedVector);
+    };
+    this.moveAllSelections = (uiSession: IPlayerUISession, anchorPosition: Vector3, direction: Direction): Vector3 => {
+      if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
+        return undefined;
+      }
+      const rotationY = uiSession.extensionContext.player.getRotation().y;
+      const correctedVector = getRotationCorrectedDirectionVector(rotationY, direction);
+      uiSession.extensionContext.selectionManager.selection.moveBy({
+        x: correctedVector.x,
+        y: correctedVector.y,
+        z: correctedVector.z,
+      });
+      const updatedClick = {
+        x: anchorPosition.x + correctedVector.x,
+        y: anchorPosition.y + correctedVector.y,
+        z: anchorPosition.z + correctedVector.z,
+      };
+      return updatedClick;
+    };
+    this.shrinkVolume = (uiSession: IPlayerUISession, direction: Direction) => {
+      if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
+        return;
+      }
+      const lastVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
+      uiSession.extensionContext.selectionManager.selection.popVolume();
+      const rotationY = uiSession.extensionContext.player.getRotation().y;
+      const newVolume = shrinkVolumeAlongViewAxis(lastVolume, rotationY, direction, 1);
+      uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+    };
+    this.growVolume = (uiSession: IPlayerUISession, direction: Direction) => {
+      if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
+        return;
+      }
+      const lastVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
+      uiSession.extensionContext.selectionManager.selection.popVolume();
+      const rotationY = uiSession.extensionContext.player.getRotation().y;
+      const newVolume = growVolumeAlongViewAxis(lastVolume, rotationY, direction, 1);
+      uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+    };
+    // Input and tool binding functions
+    // ------------------------------------------------------------------------------------------------
+    this.bindToolInput = (uiSession: IPlayerUISession) => {
+      // Bind Single Mouse Click
+      const singleClickAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.MouseRayCastAction,
+        onExecute: (mouseRay, mouseProps) => {
+          if (mouseProps.mouseAction === MouseActionType.LeftButton) {
+            if (mouseProps.inputType === MouseInputType.ButtonDown) {
+              if (mouseRay.rayHit || this.toolCursorState.controlMode === CursorControlMode.Fixed) {
+                this.singleClick(uiSession, mouseRay, mouseProps.modifiers.shift, mouseProps.modifiers.ctrl, mouseProps.modifiers.alt);
+              }
+              else {
+                // If we're clicking on nothing or something too far away - clear the selection stack
+                uiSession.extensionContext.selectionManager.selection.clear();
+              }
+            }
+          }
+        },
+      });
+      this.tool.registerMouseButtonBinding(singleClickAction);
+      // Bind Keyboard MOVE functions
+      const keyUpAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          uiSession.extensionContext.cursor.moveBy(Vector.up);
+        },
+      });
+      const keyDownAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          uiSession.extensionContext.cursor.moveBy(Vector.down);
+        },
+      });
+      const keyLeftAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.moveBlockCursorManually(uiSession, Direction.Left);
+        },
+      });
+      const keyRightAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.moveBlockCursorManually(uiSession, Direction.Right);
+        },
+      });
+      const keyForwardAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.moveBlockCursorManually(uiSession, Direction.Forward);
+        },
+      });
+      const keyBackAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.moveBlockCursorManually(uiSession, Direction.Back);
+        },
+      });
+      // Bind arrow keys to manual cursor control
+      this.tool.registerKeyBinding(keyForwardAction, Controls.Forward, InputModifier.None);
+      this.tool.registerKeyBinding(keyBackAction, Controls.Back, InputModifier.None);
+      this.tool.registerKeyBinding(keyLeftAction, Controls.Left, InputModifier.None);
+      this.tool.registerKeyBinding(keyRightAction, Controls.Right, InputModifier.None);
+      this.tool.registerKeyBinding(keyUpAction, Controls.Up, InputModifier.None);
+      this.tool.registerKeyBinding(keyDownAction, Controls.Down, InputModifier.None);
+      const mouseWheelAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.MouseRayCastAction,
+        onExecute: (mouseRay, mouseProps) => {
+          if (mouseProps.inputType === MouseInputType.WheelOut) {
+            if (mouseProps.modifiers.shift) {
+              this.growVolume(uiSession, Direction.Left);
+              this.growVolume(uiSession, Direction.Right);
+            }
+            else if (mouseProps.modifiers.ctrl) {
+              this.growVolume(uiSession, Direction.Forward);
+              this.growVolume(uiSession, Direction.Back);
+            }
+            else if (mouseProps.modifiers.alt) {
+              this.growVolume(uiSession, Direction.Up);
+              this.growVolume(uiSession, Direction.Down);
+            }
+            else if (this.toolCursorState.controlMode === CursorControlMode.Fixed) {
+              uiSession.extensionContext.cursor.moveBy(Vector.forward);
+            }
+          }
+          else if (mouseProps.inputType === MouseInputType.WheelIn) {
+            if (mouseProps.modifiers.shift) {
+              this.shrinkVolume(uiSession, Direction.Left);
+              this.shrinkVolume(uiSession, Direction.Right);
+            }
+            else if (mouseProps.modifiers.ctrl) {
+              this.shrinkVolume(uiSession, Direction.Forward);
+              this.shrinkVolume(uiSession, Direction.Back);
+            }
+            else if (mouseProps.modifiers.alt) {
+              this.shrinkVolume(uiSession, Direction.Up);
+              this.shrinkVolume(uiSession, Direction.Down);
+            }
+            else if (this.toolCursorState.controlMode === CursorControlMode.Fixed) {
+              uiSession.extensionContext.cursor.moveBy(Vector.back);
+            }
+          }
+        },
+      });
+      this.tool.registerMouseWheelBinding(mouseWheelAction);
+      // Bind ARROWS+ALT for MOVE selection volume (single)
+      // -----------------------------------------
+      const moveSelectionUpAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveTopSelection(uiSession, this.lastAnchorPosition, Direction.Up);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveSelectionDownAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveTopSelection(uiSession, this.lastAnchorPosition, Direction.Down);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveSelectionLeftAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveTopSelection(uiSession, this.lastAnchorPosition, Direction.Left);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveSelectionRightAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveTopSelection(uiSession, this.lastAnchorPosition, Direction.Right);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveSelectionForwardAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveTopSelection(uiSession, this.lastAnchorPosition, Direction.Forward);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveSelectionBackAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveTopSelection(uiSession, this.lastAnchorPosition, Direction.Back);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      // Bind arrow keys to manual cursor control
+      this.tool.registerKeyBinding(moveSelectionForwardAction, Controls.Forward, InputModifier.Alt);
+      this.tool.registerKeyBinding(moveSelectionBackAction, Controls.Back, InputModifier.Alt);
+      this.tool.registerKeyBinding(moveSelectionLeftAction, Controls.Left, InputModifier.Alt);
+      this.tool.registerKeyBinding(moveSelectionRightAction, Controls.Right, InputModifier.Alt);
+      this.tool.registerKeyBinding(moveSelectionUpAction, Controls.Up, InputModifier.Alt);
+      this.tool.registerKeyBinding(moveSelectionDownAction, Controls.Down, InputModifier.Alt);
+      // Bind ARROWS+ALT+CTRL to move ALL selections
+      const moveAllSelectionUpAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveAllSelections(uiSession, this.lastAnchorPosition, Direction.Up);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveAllSelectionDownAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveAllSelections(uiSession, this.lastAnchorPosition, Direction.Down);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveAllSelectionLeftAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveAllSelections(uiSession, this.lastAnchorPosition, Direction.Left);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveAllSelectionRightAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveAllSelections(uiSession, this.lastAnchorPosition, Direction.Right);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveAllSelectionForwardAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveAllSelections(uiSession, this.lastAnchorPosition, Direction.Forward);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      const moveAllSelectionBackAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          const updatedAnchor = this.moveAllSelections(uiSession, this.lastAnchorPosition, Direction.Back);
+          if (updatedAnchor) {
+            this.lastAnchorPosition = updatedAnchor;
+          }
+        },
+      });
+      this.tool.registerKeyBinding(moveAllSelectionForwardAction, Controls.Forward, InputModifier.Alt | InputModifier.Control);
+      this.tool.registerKeyBinding(moveAllSelectionBackAction, Controls.Back, InputModifier.Alt | InputModifier.Control);
+      this.tool.registerKeyBinding(moveAllSelectionLeftAction, Controls.Left, InputModifier.Alt | InputModifier.Control);
+      this.tool.registerKeyBinding(moveAllSelectionRightAction, Controls.Right, InputModifier.Alt | InputModifier.Control);
+      this.tool.registerKeyBinding(moveAllSelectionUpAction, Controls.Up, InputModifier.Alt | InputModifier.Control);
+      this.tool.registerKeyBinding(moveAllSelectionDownAction, Controls.Down, InputModifier.Alt | InputModifier.Control);
+      // Bind ARROW+SHIFT
+      const keyGrowUpAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.growVolume(uiSession, Direction.Up);
+        },
+      });
+      this.tool.registerKeyBinding(keyGrowUpAction, Controls.Up, InputModifier.Shift);
+      const keyGrowDownAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.growVolume(uiSession, Direction.Down);
+        },
+      });
+      this.tool.registerKeyBinding(keyGrowDownAction, Controls.Down, InputModifier.Shift);
+      const keyGrowForwardAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.growVolume(uiSession, Direction.Forward);
+        },
+      });
+      this.tool.registerKeyBinding(keyGrowForwardAction, Controls.Forward, InputModifier.Shift);
+      const keyGrowBackAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.growVolume(uiSession, Direction.Back);
+        },
+      });
+      this.tool.registerKeyBinding(keyGrowBackAction, Controls.Back, InputModifier.Shift);
+      const keyGrowLeftAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.growVolume(uiSession, Direction.Left);
+        },
+      });
+      this.tool.registerKeyBinding(keyGrowLeftAction, Controls.Left, InputModifier.Shift);
+      const keyGrowRightAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.growVolume(uiSession, Direction.Right);
+        },
+      });
+      this.tool.registerKeyBinding(keyGrowRightAction, Controls.Right, InputModifier.Shift);
+      // Bind ARROW+CTRL
+      const keyShrinkUpAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.shrinkVolume(uiSession, Direction.Up);
+        },
+      });
+      this.tool.registerKeyBinding(keyShrinkUpAction, Controls.Up, InputModifier.Control);
+      const keyShrinkDownAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.shrinkVolume(uiSession, Direction.Down);
+        },
+      });
+      this.tool.registerKeyBinding(keyShrinkDownAction, Controls.Down, InputModifier.Control);
+      const keyShrinkForwardAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.shrinkVolume(uiSession, Direction.Forward);
+        },
+      });
+      this.tool.registerKeyBinding(keyShrinkForwardAction, Controls.Forward, InputModifier.Control);
+      const keyShrinkBackAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.shrinkVolume(uiSession, Direction.Back);
+        },
+      });
+      this.tool.registerKeyBinding(keyShrinkBackAction, Controls.Back, InputModifier.Control);
+      const keyShrinkLeftAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.shrinkVolume(uiSession, Direction.Left);
+        },
+      });
+      this.tool.registerKeyBinding(keyShrinkLeftAction, Controls.Left, InputModifier.Control);
+      const keyShrinkRightAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          this.shrinkVolume(uiSession, Direction.Right);
+        },
+      });
+      this.tool.registerKeyBinding(keyShrinkRightAction, Controls.Right, InputModifier.Control);
+    };
+    this.onTickRefresh = (uiSession: IPlayerUISession, tool) => {
+      let ticks = 0;
+      this.tickRefreshHandle = system.run(() => {
+        if (uiSession.extensionContext.selectionManager === undefined) {
+          return;
+        }
+        if (!this.settingsObject) {
+          console.error('Pane settings object not defined, unable to refresh values for selection.');
+          return;
+        }
+        if (ticks++ % TicksRefreshRate === 0) {
+          ticks = 0;
+          let x = 0, y = 0, z = 0;
+          let sx = 0, sy = 0, sz = 0;
+          const selection = uiSession.extensionContext.selectionManager.selection;
+          if (selection && !selection.isEmpty) {
+            const bounds = selection.peekLastVolume.boundingBox;
+            x = bounds.min.x;
+            y = bounds.min.y;
+            z = bounds.min.z;
+            sx = bounds.spanX;
+            sy = bounds.spanY;
+            sz = bounds.spanZ;
+            if (!this.originPropertyItem?.enable) {
+              if (this.originPropertyItem) {
+                this.originPropertyItem.enable = true;
+              }
+            }
+            if (!this.sizePropertyItem?.enable) {
+              if (this.sizePropertyItem) {
+                this.sizePropertyItem.enable = true;
+              }
+            }
+          }
+          else {
+            if (this.originPropertyItem?.enable) {
+              if (this.originPropertyItem) {
+                this.originPropertyItem.enable = false;
+              }
+            }
+            if (this.sizePropertyItem?.enable) {
+              if (this.sizePropertyItem) {
+                this.sizePropertyItem.enable = false;
+              }
+            }
+          }
+          // If our current selection object settings
+          if (this.settingsObject.origin.x !== x ||
+            this.settingsObject.origin.y !== y ||
+            this.settingsObject.origin.z !== z ||
+            this.settingsObject.size.x !== sx ||
+            this.settingsObject.size.y !== sy ||
+            this.settingsObject.size.z !== sz) {
+            this.settingsObject.origin.x = Math.trunc(x);
+            this.settingsObject.origin.y = Math.trunc(y);
+            this.settingsObject.origin.z = Math.trunc(z);
+            this.settingsObject.size.x = Math.trunc(sx);
+            this.settingsObject.size.y = Math.trunc(sy);
+            this.settingsObject.size.z = Math.trunc(sz);
+          }
+        }
+        if (uiSession.toolRail.selectedOptionId === tool.id) {
+          this.tickRefreshHandle = system.run(() => this.onTickRefresh(uiSession, tool));
+        }
+      });
+    };
+    // Add a settings pane for the modal Tool
+    this.addSettingsPane = (uiSession: IPlayerUISession) => {
+      this.pane.addDropdown(this.settingsObject, 'selectionMode', {
+        titleStringId: getLocalizationId('selectionTool.selectionMode'),
+        titleAltText: 'Mode',
+        enable: true,
+        dropdownItems: [
+          {
+            displayAltText: 'Freeform',
+            displayStringId: getLocalizationId('selectionTool.selectionMode.mouseAndKeyboard'),
+            value: SelectionCursorMode.Freeform,
+          },
+          {
+            displayAltText: 'Fixed Distance',
+            displayStringId: getLocalizationId('selectionTool.selectionMode.fixedDistance'),
+            value: SelectionCursorMode.FixedDistance,
+          },
+          {
+            displayAltText: 'Adjacent Face',
+            displayStringId: getLocalizationId('selectionTool.selectionMode.adjacent'),
+            value: SelectionCursorMode.AdjacentFace,
+          },
+        ],
         onChange: (_obj, _property, _oldValue, _newValue) => {
-            if (uiSession.scratchStorage === undefined) {
-                console.error('Cylinder storage was not initialized.');
+          const oldVal = _oldValue;
+          const newVal = _newValue;
+          let cursorControlMode = CursorControlMode.KeyboardAndMouse;
+          let cursorTargetMode = CursorTargetMode.Block;
+          if (oldVal !== newVal) {
+            switch (newVal) {
+              case SelectionCursorMode.Freeform:
+                cursorControlMode = CursorControlMode.KeyboardAndMouse;
+                cursorTargetMode = CursorTargetMode.Block;
+                break;
+              case SelectionCursorMode.FixedDistance:
+                cursorControlMode = CursorControlMode.Fixed;
+                cursorTargetMode = CursorTargetMode.Block;
+                break;
+              case SelectionCursorMode.AdjacentFace:
+                cursorControlMode = CursorControlMode.KeyboardAndMouse;
+                cursorTargetMode = CursorTargetMode.Face;
+                break;
+              default:
+                console.error(`Unknown value from selection mode drop-down`);
                 return;
             }
-            uiSession.scratchStorage.currentCursorState.targetMode = settings.face
-                ? CursorTargetMode.Face
-                : CursorTargetMode.Block;
-            uiSession.extensionContext.cursor.setState(uiSession.scratchStorage.currentCursorState);
+            this.toolCursorState = uiSession.extensionContext.cursor.getState();
+            this.toolCursorState.controlMode = cursorControlMode;
+            this.toolCursorState.targetMode = cursorTargetMode;
+            uiSession.extensionContext.cursor.setState(this.toolCursorState);
+          }
         },
-    });
-    pane.addBlockPicker(
-        settings,
-        "blockType",
-        {
-            titleAltText: "Block Type",
+      });
+      const onOriginOrSizeChange = (_obj, _property, _oldValue, _newValue) => {
+        if (_oldValue === _newValue) {
+          return;
         }
-    );
-
-    tool.bindPropertyPane(pane);
-
-    const onExecute = () => {
-        if (!uiSession.scratchStorage?.previewSelection) {
-            console.error('Cube storage was not initialized.');
-            return;
-        };
-
-        const previewSelection = uiSession.scratchStorage.previewSelection;
-        const player = uiSession.extensionContext.player;
-        const targetBlock = player.dimension.getBlock(uiSession.extensionContext.cursor.position);
-        if (!targetBlock) return;
-
-        const rotationY = uiSession.extensionContext.player.getRotation().y;
-
-        const directionRight = getRotationCorrectedDirectionVector(rotationY, Direction.Right);
-        const directionForward = getRotationCorrectedDirectionVector(rotationY, Direction.Back);
-        const relativeDirection = Vector.add(Vector.add(directionRight, directionForward), Vector.up);
-        const sizeHalf = Math.floor(settings.size / 2);
-        let fromOffset = Vector.multiply(relativeDirection, -sizeHalf);
-        const toOffset = Vector.multiply(relativeDirection, settings.size - 1);
-        const isEven = settings.size % 2 === 0;
-        if (isEven) fromOffset = Vector.add(fromOffset, Vector.up);
-        const location = targetBlock.location;
-        const from = {
-            x: location.x + fromOffset.x,
-            y: location.y + fromOffset.y,
-            z: location.z + fromOffset.z,
-        };
-        const to = { x: from.x + toOffset.x, y: from.y + toOffset.y, z: from.z + toOffset.z };
-        const blockVolume = new BlockVolume(from, to);
-
-        if (uiSession.scratchStorage.lastVolumePlaced?.equals(blockVolume.boundingBox)) return;
-
-        previewSelection.pushVolume(SelectionBlockVolumeAction.add, blockVolume);
-        uiSession.scratchStorage.lastVolumePlaced = blockVolume.boundingBox;
-        if (settings.hollow &&
-            blockVolume.boundingBox.spanX > 2 &&
-            blockVolume.boundingBox.spanY > 2 &&
-            blockVolume.boundingBox.spanZ > 2) {
-            const subtractBlockVolume = new BlockVolume({ x: from.x, y: from.y + 1, z: from.z }, { x: to.x, y: to.y - 1, z: to.z });
-            previewSelection.pushVolume(SelectionBlockVolumeAction.subtract, subtractBlockVolume);
-        };
+        const selection = uiSession.extensionContext.selectionManager.selection;
+        if (!selection.isEmpty) {
+          const lastVolume = selection.peekLastVolume;
+          if (lastVolume) {
+            const min = {
+              x: this.settingsObject.origin.x,
+              y: this.settingsObject.origin.y,
+              z: this.settingsObject.origin.z,
+            };
+            const max = {
+              x: this.settingsObject.origin.x + this.settingsObject.size.x - 1,
+              y: this.settingsObject.origin.y + this.settingsObject.size.y - 1,
+              z: this.settingsObject.origin.z + this.settingsObject.size.z - 1,
+            };
+            const newVolume = new BlockVolume(min, max);
+            selection.popVolume();
+            selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+          }
+        }
+      };
+      const subPaneTransform = this.pane.createPropertyPane({
+        titleStringId: getLocalizationId('selectionTool.transformPane.title'),
+        titleAltText: 'Transform',
+      });
+      this.originPropertyItem = subPaneTransform.addVec3(this.settingsObject, 'origin', {
+        titleStringId: getLocalizationId('selectionTool.transformPane.origin'),
+        titleAltText: 'Origin',
+        enable: true,
+        minX: -0x80000000,
+        minY: -0x80000000,
+        minZ: -0x80000000,
+        onChange: onOriginOrSizeChange,
+      });
+      this.sizePropertyItem = subPaneTransform.addVec3(this.settingsObject, 'size', {
+        titleStringId: getLocalizationId('selectionTool.transformPane.size'),
+        titleAltText: 'Size',
+        enable: true,
+        minX: 1,
+        minY: 1,
+        minZ: 1,
+        maxX: 100,
+        maxY: 100,
+        maxZ: 100,
+        onChange: onOriginOrSizeChange,
+      });
+      // Fill
+      const subPaneFill = this.pane.createPropertyPane({
+        titleStringId: getLocalizationId('selectionTool.fillPane.title'),
+        titleAltText: 'Fill Selection',
+      });
+      const blockPickers: IPropertyItem[] = [];
+      subPaneFill.addNumber(createPaneBindingObject(subPaneFill, {
+        size: 1,
+      }), 'size', {
+        titleStringId: getLocalizationId('toolRail.cubeBrushSettings.size'),
+        titleAltText: 'Brush Size',
+        min: 1,
+        max: 16,
+        showSlider: true,
+        onChange: (_obj, _property, _oldValue, _newValue) => {
+          console.warn(_property, _oldValue, _newValue, blockPickers.length);
+          while (blockPickers.length < _newValue) {
+            blockPickers.push(subPaneFill.addBlockPicker(this.settingsObject, 'block', {
+              titleAltText: 'Block Type',
+              allowedBlocks
+            }));
+          }
+          while (blockPickers.length > _newValue) {
+            const lastBlockPicker = blockPickers[blockPickers.length - 1];
+            lastBlockPicker.visible = false;
+            lastBlockPicker.enable = false;
+            lastBlockPicker.dispose();
+            blockPickers.pop();
+          }
+          subPaneFill.update(true);
+        },
+      });
+      subPaneFill.addButtonAndBindAction(this.executeFillAction, {
+        titleStringId: getLocalizationId('selectionTool.fillPane.fillAction'),
+        titleAltText: 'Fill Selection',
+      });
+      this.pane.addDivider();
+      // CTRL+D
+      const actionClearSelection = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          uiSession.extensionContext.selectionManager.selection.clear();
+        },
+      });
+      this.pane.addButtonAndBindAction(actionClearSelection, {
+        titleStringId: getLocalizationId('selectionTool.deselect'),
+        titleAltText: 'Deselect',
+        variant: 'secondary',
+      });
+      this.tool.bindPropertyPane(this.pane);
     };
+    // Add a modal tool to the tool rail and set up an activation subscription to set/unset the cursor states
+    this.addTool = (uiSession: IPlayerUISession) => {
+      const tool = uiSession.toolRail.addTool({
+        displayString: 'Random Fill (CTRL + S)',
+        icon: 'pack://textures/editor/Select-Fill.png?filtering=point',
+        tooltip: 'Random Fill Tool',
+      });
+      tool.onModalToolActivation.subscribe((eventData) => {
+        if (eventData.isActiveTool) {
+          uiSession.extensionContext.cursor.setState(this.toolCursorState);
+          // Start refreshing the position
+          this.onTickRefresh(uiSession, tool);
+        }
+      });
+      return tool;
+    };
+    // Bind the tool activation to a keypress on a global level
+    this.bindGlobalActivationShortcut = (uiSession: IPlayerUISession, storage: Record<string, any>) => {
+      const toggleAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          uiSession.toolRail.setSelectedOptionId(this.tool.id, true);
+        },
+      });
+      const deselectAction = uiSession.actionManager.createAction({
+        actionType: ActionTypes.NoArgsAction,
+        onExecute: () => {
+          uiSession.extensionContext.selectionManager.selection.clear();
+        },
+      });
+      uiSession.inputManager.registerKeyBinding(EditorInputContext.GlobalEditor, toggleAction, KeyboardKey.KEY_S, InputModifier.Control);
+      uiSession.inputManager.registerKeyBinding(EditorInputContext.GlobalToolMode, this.executeFillAction, KeyboardKey.KEY_F, InputModifier.Control);
+      uiSession.inputManager.registerKeyBinding(EditorInputContext.GlobalEditor, deselectAction, KeyboardKey.KEY_D, InputModifier.Control);
+      storage.coreMenuItems?.edit.addItem({ name: 'menuBar.edit.quickFill', displayStringLocId: getLocalizationId('menuBar.edit.quickFill') }, this.executeFillAction);
+      storage.coreMenuItems?.edit.addItem({ name: 'menuBar.edit.deselect', displayStringLocId: getLocalizationId('menuBar.edit.deselect') }, deselectAction);
+    };
+    this.performFillOperation = async (context, fillType) => {
+      const player = context.player;
+      const dimension = player.dimension;
+      if (context.selectionManager.selection.isEmpty) {
+        // Need a better way to surface errors and warnings to the user - this only prints to the
+        // chat window, so if it's not open - you don't see it
+        player.sendMessage('No selection available to fill');
+        return;
+      }
+      context.transactionManager.openTransaction('Select-Fill');
+      const bounds = context.selectionManager.selection.boundingBox;
+      context.transactionManager.trackBlockChangeArea(bounds.min, bounds.max);
+      await executeLargeOperation(context.selectionManager.selection, (blockLocation) => {
+        const block = dimension.getBlock(blockLocation);
+        if (block) {
+          block.isWaterlogged = false;
+          block.setType(fillType);
+        }
+      })
+        .catch(e => {
+          console.error(e);
+          context.transactionManager.discardOpenTransaction();
+        })
+        .then(() => {
+          context.transactionManager.commitOpenTransaction();
+        });
+    };
+    const storage = uiSession.scratchStorage;
+    if (!storage) {
+      throw new Error('Can not instantiate Selection functionality without valid CoreEditor storage.');
+    }
+    // Add the tool to the tool rail
+    this.tool = this.addTool(uiSession);
+    // Create pane.
+    this.pane = uiSession.createPropertyPane({
+      titleAltText: 'Random Fill',
+    });
+    /**
+     * Allowed blocks for the block picker
+     */
+    const allowedBlocks = MinecraftBlockTypes.getAllBlockTypes().map<string>(blockType => blockType.id.replace('minecraft:', ''));
 
-    tool.registerMouseButtonBinding(
-        uiSession.actionManager.createAction(
-            {
-                actionType: ActionTypes.MouseRayCastAction,
-                onExecute: async (mouseRay, mouseProps) => {
-                    if (mouseProps.mouseAction == MouseActionType.LeftButton) {
-                        if (mouseProps.inputType == MouseInputType.ButtonDown) {
-                            uiSession.extensionContext.transactionManager.openTransaction("cylinderTool");
-                            uiSession.scratchStorage.previewSelection.clear();
-                            onExecute();
-                        } else if (mouseProps.inputType == MouseInputType.ButtonUp) {
-                            const player = uiSession.extensionContext.player;
+    // Here is the binding created.
+    this.settingsObject = createPaneBindingObject(this.pane, {
+      selectionMode: SelectionCursorMode.Freeform,
+      origin: { x: 0, y: 0, z: 0 },
+      size: { x: 0, y: 0, z: 0 },
+      block: MinecraftBlockTypes.bedrock,
+    });
+    // This is the initial cursor state for Selection
+    this.toolCursorState = uiSession.extensionContext.cursor.getState();
+    this.toolCursorState.color = { red: 1, green: 1, blue: 0, alpha: 1 }; // Yellow
+    this.toolCursorState.controlMode = CursorControlMode.KeyboardAndMouse;
+    this.toolCursorState.targetMode = CursorTargetMode.Block;
+    this.toolCursorState.visible = true;
+    this.lastAnchorPosition = { x: 0, y: 0, z: 0 };
+    this.executeFillAction = uiSession.actionManager.createAction({
+      actionType: ActionTypes.NoArgsAction,
+      onExecute: () => {
+        this.performFillOperation(uiSession.extensionContext, this.settingsObject.block).catch(e => console.error(e));
+      },
+    });
+    // Add a settings pane for options
+    this.addSettingsPane(uiSession);
+    // bind mouse actions
+    this.bindToolInput(uiSession);
+    // We want global activation, so bind it into a keypress
+    this.bindGlobalActivationShortcut(uiSession, storage);
+    uiSession.toolRail.setSelectedOptionId(this.tool.id, true);
+  }
+  teardown() {
+    // Shutdown
+    console.log('Shutting down minecraft::selection behavior\n');
+    if (this.tickRefreshHandle !== undefined) {
+      system.clearRun(this.tickRefreshHandle);
+      this.tickRefreshHandle = undefined;
+    }
+    this.fnUnregisterToolBindings();
+    // If we're doing a /reload - clear the selection
+    this.uiSession.extensionContext.selectionManager.selection.clear();
+  }
+}
 
-                            uiSession.extensionContext.transactionManager.trackBlockChangeSelection(uiSession.scratchStorage.previewSelection);
-                            await executeLargeOperation(uiSession.scratchStorage.previewSelection, blockLocation => {
-                                const block = player.dimension.getBlock(blockLocation);
-                                block.setType(settings.blockType);
-                            }).catch(() => {
-                                uiSession.extensionContext.transactionManager.commitOpenTransaction();
-                                uiSession.scratchStorage?.previewSelection.clear();
-                            }).then(() => {
-                                uiSession.extensionContext.transactionManager.commitOpenTransaction();
-                                uiSession.scratchStorage?.previewSelection.clear();
-                            });
-                        };
-                    };
-                },
-            },
-        ),
-    );
-
-    tool.registerMouseDragBinding(
-        uiSession.actionManager.createAction(
-            {
-                actionType: ActionTypes.MouseRayCastAction,
-                onExecute: (mouseRay, mouseProps) => {
-                    if (mouseProps.inputType === MouseInputType.Drag) onExecute();
-                },
-            },
-        ),
-    );
+registerEditorExtension('randomFill', (uiSession) => {
+  uiSession.scratchStorage = {};
+  // Initialize tool rail.
+  uiSession.toolRail.show();
+  // Add selection functionality
+  new SelectionBehavior(uiSession);
 });
