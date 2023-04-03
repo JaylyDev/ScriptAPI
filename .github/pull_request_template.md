@@ -1,6 +1,6 @@
 ## Checklist
 
-Please fill in the checklist. To mark a task as complete, use `[x]`.
+Please fill in the checklist. To mark a task as complete, replace `[ ]` with `[x]`.
 
 - [ ] Use a meaningful title for the pull request. Include the name of the script(s) modified.
 - [ ] Test your code locally prior to submission.
@@ -12,7 +12,7 @@ Please fill in the checklist. To mark a task as complete, use `[x]`.
 Adding new script examples:
 
 - [ ] Add a README to explain what the scripts do.
-- [ ] Add a `tests.js` file to test against your main script (optional).
+- [ ] Add `tests.js` or `tests.ts` file to test against your main script (optional).
 - [ ] Add code header in `index.js` or `index.ts` file in your package:
 
 ```js
