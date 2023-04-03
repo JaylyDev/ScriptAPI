@@ -27,6 +27,7 @@ jobs:
         run: node ./tools/dependency/index.js
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.JAYLYBOT_TOKEN }}
