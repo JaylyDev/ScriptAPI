@@ -27,12 +27,24 @@ jobs:
         run: node ./tools/dependency/index.js
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
+          token: ${{ secrets.JAYLYBOT_TOKEN }}
+          push-to-fork: jayly-bot/ScriptAPI
           commit-message: Update package.json and package-lock.json
           title: Update npm packages
           body: Updated NPM packages in package.json, please review.
-          labels: dependencies
           branch: dependency/update
           base: main
-          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: jayly-bot <121162959+jayly-bot@users.noreply.github.com>
+
+      - name: Check outputs
+        if: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - $ISSUE"
+          gh pr edit $ISSUE --add-label "dependencies"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-url }}

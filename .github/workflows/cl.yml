@@ -4,8 +4,7 @@ on:
   push:
   pull_request:
   schedule: 
-    ## run action every sunday at 20:00 UTC
-    - cron: "00 20 * * 0"
+    - cron: "00 20 * * *"
 
 jobs:
   checks:
@@ -32,12 +31,24 @@ jobs:
 
       - name: Create Pull Request
         if: ${{ github.event_name == 'schedule' }}
+        id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
+          token: ${{ secrets.JAYLYBOT_TOKEN }}
+          push-to-fork: jayly-bot/ScriptAPI
           commit-message: Upload generated files
           title: Upload generated files for scripts
           body: Transpiled TypeScript files and created README files, please review.
-          labels: scripts
           branch: scripts/update
           base: main
-          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: jayly-bot <121162959+jayly-bot@users.noreply.github.com>
+
+      - name: Check outputs
+        if: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - $ISSUE"
+          gh pr edit $ISSUE --add-label "scripts"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-url }}
