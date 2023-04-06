@@ -32,8 +32,7 @@ declare class BaseControl {
     dispose(): void;
     update(force: boolean): void;
 }
-
-interface ToolParams {
+export interface ToolParams {
     name?: string;
     displayString?: string;
     displayStringLocId?: string;
@@ -46,8 +45,7 @@ declare class EventToken {
     constructor(_event: BedrockEventHandler);
     unsubscribe(): void;
 }
-
-interface EventSinkImplArgument {
+export interface EventSinkImplArgument {
     isActiveTool: boolean;
 }
 /**
@@ -155,13 +153,12 @@ declare class ModalTool extends BaseControl {
         button: KeyboardKey,
         modifier: InputModifier
     ): void;
+    unregisterInputBindings(): void;
 }
-
-interface MenuProps {
+export interface MenuProps {
     name: string;
     displayStringLocId: string;
 }
-
 declare class Menu extends BaseControl {
     constructor(props: any, _dispatcher: any, _actionId: any, _parent: any);
     private _dispatcher: ClientEventDispatcher;
@@ -179,7 +176,7 @@ declare class Menu extends BaseControl {
     dispose(): void;
     get disposed(): boolean;
     set disposed(value: boolean);
-    addItem(params: MenuProps, action: Action<ActionTypes>): Menu;
+    addItem(params: MenuProps, action?: Action<ActionTypes>): Menu;
     replaceAction(action: Action<ActionTypes>): void;
     addSeparator(): void;
     private _sendUpdateMessage(): void;
@@ -218,8 +215,8 @@ declare class PropertyPane extends BaseControl {
     private _width: number;
     findProperty(propertyName: string): PropertyItem;
     findPropertyRecursive(propertyName: string): PropertyItem;
-    createPropertyPane(options: PaneOptions): PropertyItem;
-    removePropertyPane(paneToRemove: PropertyItem): boolean;
+    createPropertyPane(options: PaneOptions): PropertyPane;
+    removePropertyPane(paneToRemove: PropertyPane): boolean;
     hide(): void;
     show(): void;
     addString(
@@ -264,34 +261,30 @@ declare class StatusBarItem extends BaseControl {
     private _text: string;
     set text(value: string);
 }
-
-interface MouseRay {
+export interface MouseRay {
     direction: Vector3;
     location: Vector3;
     cursorBlockLocation: Vector3;
     rayHit: boolean;
 }
-
-interface MouseProps {
+export interface MouseProps {
     mouseAction: MouseActionType;
     modifiers: { shift: boolean; ctrl: boolean; alt: boolean };
     inputType: MouseInputType;
 }
-
-interface ActionPayload {
+export interface ActionPayload {
     [ActionTypes.NoArgsAction]: () => void;
     [ActionTypes.MouseRayCastAction]: (
         mouseRay: MouseRay,
         mouseProps: MouseProps
     ) => void;
 }
-
-interface CreateActionOptions<T extends keyof ActionPayload> {
+export interface CreateActionOptions<T extends keyof ActionPayload> {
     actionType: T;
     onExecute: ActionPayload[T];
 }
 
-interface Action<T extends keyof ActionPayload> {
+export interface Action<T extends keyof ActionPayload> {
     id: string;
     actionType: T;
     onExecute: ActionPayload[T];
@@ -353,14 +346,12 @@ declare class BuiltInUIManagerImpl {
      */
     navigateToFeedback(): void;
 }
-
-interface DropdownItem {
+export interface DropdownItem {
     displayAltText: string;
     displayStringId?: string;
     value: any;
 }
-
-interface PaneOptions {
+export interface PaneOptions {
     titleStringId?: string;
     titleAltText: string;
     width?: number;
@@ -378,7 +369,12 @@ interface PaneOptions {
     enable?: boolean;
     showSlider?: boolean;
     variant?: string;
-    onChange?: (_obj: any, _property: string, _oldValue: any, _newValue: any) => void;
+    onChange?: (
+        _obj: any,
+        _property: string,
+        _oldValue: any,
+        _newValue: any
+    ) => void;
 }
 
 /**
@@ -436,7 +432,7 @@ export class BedrockEventSubscriptionCache {
      * @param event - The event on the bedrock APIs to which to subscribe
      * @param params - The parameters to the subscription method for the event. Auto complete will display this for you
      */
-    subscribeToBedrockEvent<T extends keyof Events>(event: T, ...params: Parameters<Events[T]['subscribe']>): ReturnType<Events[T]['subscribe']>;
+    subscribeToBedrockEvent<T extends keyof Events>(event: T, ...params: Parameters<Events[T]["subscribe"]>): ReturnType<Events[T]["subscribe"]>;
     teardown(): void;
     private mEvents: Events;
     private subscribedEvents: object;
@@ -696,3 +692,24 @@ export function registerEditorExtension(
     activationFunction?: (uiSession: PlayerUISession) => void,
     shutdownFunction?: (uiSession: PlayerUISession) => void
 ): Extension;
+
+/**
+ * Interface for internal PlayerUISession class
+ */
+export interface IPlayerUISession extends PlayerUISession { }
+/**
+ * Interface for internal ModalTool class
+ */
+export interface IModalTool extends ModalTool { }
+/**
+ * Interface for internal PropertyPane class
+ */
+export interface IPropertyPane extends PropertyPane { }
+/**
+ * Interface for internal PropertyItem class
+ */
+export interface IPropertyItem extends PropertyItem { }
+/**
+ * Interface for internal Menu class
+ */
+export interface IMenu extends Menu { }
