@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Unknown <Bedrock Add-Ons>
+// Project: https://discord.gg/bedrock-addons
 /**
  * @param {import("@minecraft/server").ItemStack} item
  */
