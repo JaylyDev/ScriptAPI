@@ -673,7 +673,7 @@ velocity   * @param itemCategory
    * Block-face-relative Y position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemInSlotOnBlock(slot: number, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocation?: Minecraft.Vector2): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocation) };
+  useItemInSlotOnBlock(slot: number, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocation?: Minecraft.Vector3): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocation) };
   /**
    * @remarks
    * Causes the simulated player to use an item on a block. The
@@ -691,7 +691,7 @@ velocity   * @param itemCategory
    * Block-face-relative Y position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemOnBlock(itemStack: Minecraft.ItemStack, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocation?:Minecraft.Vector2): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocation) };
+  useItemOnBlock(itemStack: Minecraft.ItemStack, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocation?:Minecraft.Vector3): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocation) };
   public constructor (player: GameTest.SimulatedPlayer, test: GameTest.Test) {
     this.__player = player;
     this.__test = test;
