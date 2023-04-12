@@ -28,7 +28,7 @@ export class SimulatedPlayer {
    * Rotation of the head across pitch and yaw angles.
    * @throws This property can throw when used.
    */
-  public get 'headRotation' (): Minecraft.XYRotation { return this.__player.headRotation };
+  public get 'headRotation' (): Minecraft.Vector2 { return this.__player.headRotation };
   /**
    * Identifier for the player.
    * @throws This property can throw when used.
@@ -77,12 +77,12 @@ export class SimulatedPlayer {
    * Main rotation of the entity.
    * @throws This property can throw when used.
    */
-  public get 'rotation' (): Minecraft.XYRotation { return this.__player.getRotation() };
+  public get 'rotation' (): Minecraft.Vector2 { return this.__player.getRotation() };
   /**
    * Returns a scoreboard identity that represents this entity.
    * @throws This property can throw when used.
    */
-  public get 'scoreboard' (): Minecraft.ScoreboardIdentity { return this.__player.scoreboard };
+  public get 'scoreboard' (): Minecraft.ScoreboardIdentity { return this.__player.scoreboardIdentity };
   /**
    * Manages the selected slot in the player's hotbar.
    */

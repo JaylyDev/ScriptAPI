@@ -6,7 +6,7 @@ world.beforeEvents.chatSend.subscribe((event) => {
   event.sendToTargets = true;
 });
 
-world.events.chat.subscribe((event) => {
+world.events.chatSend.subscribe((event) => {
   /**
    * @type {import("@minecraft/server").RawMessage}
    */

@@ -14,7 +14,7 @@ export default function Player(player) {
         getScore(objectiveId) {
             return mc.world.scoreboard
                 .getObjective(objectiveId)
-                .getScore(player.scoreboard);
+                .getScore(player.scoreboardIdentity);
         },
         showForm(form, callback) {
             form.show(player).then(callback);

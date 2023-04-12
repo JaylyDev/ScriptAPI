@@ -31,7 +31,7 @@ world.beforeEvents.chatSend.subscribe((data) => {
     data.sendToTargets = true;
     data.setTargets([]);
 });
-world.events.chat.subscribe((data) => {
+world.events.chatSend.subscribe((data) => {
     const ranks = getRanks(data.sender).join("§r§l§8][§r");
     const message = data.message;
     world.sendMessage(`§r§l§8[§r${ranks}§r§l§8]§r§7 ${data.sender.name}:§r ${message}`);

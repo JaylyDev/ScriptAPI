@@ -87,7 +87,7 @@ export class SimulatedPlayer {
      * Returns a scoreboard identity that represents this entity.
      * @throws This property can throw when used.
      */
-    get 'scoreboard'() { return this.__player.scoreboard; }
+    get 'scoreboard'() { return this.__player.scoreboardIdentity; }
     ;
     /**
      * Manages the selected slot in the player's hotbar.

@@ -53,7 +53,7 @@ system.run(async function () {
 });
 
 // test timeout feature
-world.events.chat.subscribe((event) => {
+world.events.chatSend.subscribe((event) => {
   const { sender, message } = event;
 
   forceShow(sender, new MessageFormData().title('Title').body(message), 10).then((res) => {

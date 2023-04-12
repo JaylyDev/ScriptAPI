@@ -153,7 +153,7 @@ world.beforeEvents.itemUseOn.subscribe((event) => {
       const itemEnchants = event.item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
       itemEnchants.forEach((e) => {
           if (e.data?.rightClickBlock)
-              e.data.rightClickBlock({ player: event.source, level: romanToInt(e.lore.slice(e.data.display.length + 1)), item: event.item, block: event.source.dimension.getBlock(event.getBlockLocation()) });
+              e.data.rightClickBlock({ player: event.source, level: romanToInt(e.lore.slice(e.data.display.length + 1)), item: event.item, block: event.source.dimension.getBlock(event.faceLocation) });
       });
   }
 });

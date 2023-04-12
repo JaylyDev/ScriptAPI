@@ -10,7 +10,7 @@ import { world, Entity } from "@minecraft/server";
  */
 export function getScore(entity, objectiveId) {
   const objective = world.scoreboard.getObjective(objectiveId);
-  return entity.scoreboard.getScore(objective);
+  return entity.scoreboardIdentity.getScore(objective);
 }
 /**
  * Sets the score recorded for entity on objective
@@ -20,7 +20,7 @@ export function getScore(entity, objectiveId) {
  */
 export function setScore(entity, objectiveId, score) {
   const objective = world.scoreboard.getObjective(objectiveId);
-  return entity.scoreboard.setScore(objective, score);
+  return entity.scoreboardIdentity.setScore(objective, score);
 }
 /**
  * Add the score recorded for entity on objective

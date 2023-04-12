@@ -1,4 +1,4 @@
-import { Player as MinecraftPlayer, Dimension, Block, Entity, EntityComponent, ScoreboardIdentity, Vector, XYRotation, Vector3 } from "@minecraft/server";
+import { Player as MinecraftPlayer, Dimension, Block, Entity, EntityComponent, ScoreboardIdentity, Vector, Vector2, Vector3 } from "@minecraft/server";
 import "@minecraft/server-gametest";
 /**
  * Player wrapper to save as much data into a new object.
@@ -48,7 +48,7 @@ declare class Player {
      * Main rotation of the entity.
      * @throws This property can throw when used.
      */
-    readonly 'rotation': XYRotation;
+    readonly 'rotation': Vector2;
     /**
      * Returns a scoreboard identity that represents this entity.
      * @throws This property can throw when used.
