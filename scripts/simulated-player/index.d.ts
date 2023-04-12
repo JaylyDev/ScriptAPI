@@ -424,7 +424,7 @@ export declare class SimulatedPlayer {
      * Additional optional options for the sound.
      * @throws This function can throw errors.
      */
-    playSound(soundID: string, soundOptions?: Minecraft.SoundOptions): void;
+    playSound(soundID: string, soundOptions?: Minecraft.PlayerSoundOptions): void;
     /**
      * @remarks
      * Removes a specified property.

@@ -11,7 +11,7 @@ const replacements = {
 };
 
 /**
- * @param {import("@minecraft/server").BeforeChatEvent} msg
+ * @param {import("@minecraft/server").ChatSendBeforeEvent} msg
  */
 function beforeChat(msg) {
     const player = msg.sender;

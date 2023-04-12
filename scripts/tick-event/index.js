@@ -1,9 +1,12 @@
 // Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { system, TickEvent } from "@minecraft/server";
+import { system } from "@minecraft/server";
 
 let lastTick = NaN;
+/**
+ * @typedef {{ currentTick: number, deltaTime: number }} TickEvent
+ */
 /**
  * @type {((event: TickEvent) => void)[]}
  */

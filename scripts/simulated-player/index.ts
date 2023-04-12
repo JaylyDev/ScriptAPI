@@ -323,7 +323,7 @@ velocity   * @param itemCategory
    * Kills this entity. The entity will drop loot as normal.
    * @throws This function can throw errors.
    */
-  kill(): void { return this.__player.kill() };
+  kill(): void { this.__player.kill() };
   /**
    * @remarks
    * Rotates the simulated player's head/body to look at the
@@ -447,7 +447,7 @@ velocity   * @param itemCategory
    * Additional optional options for the sound.
    * @throws This function can throw errors.
    */
-  playSound(soundID: string, soundOptions?: Minecraft.SoundOptions): void { return this.__player.playSound(soundID, soundOptions) };
+  playSound(soundID: string, soundOptions?: Minecraft.PlayerSoundOptions): void { return this.__player.playSound(soundID, soundOptions) };
   /**
    * @remarks
    * Removes a specified property.
@@ -553,7 +553,10 @@ velocity   * @param itemCategory
    * @param degreesY
    * @throws This function can throw errors.
    */
-  setRotation(degreesX: number, degreesY: number): void { return this.__player.setRotation(degreesX, degreesY) };
+  setRotation(degreesX: number, degreesY: number): void { return this.__player.setRotation({
+    x: degreesX,
+    y: degreesY
+  }) };
   /**
    * @remarks
    * Sets a velocity for the entity to move with.
@@ -672,9 +675,15 @@ velocity   * @param itemCategory
    * Block-face-relative X position where to place the item.
    * @param faceLocationY
    * Block-face-relative Y position where to place the item.
+   * @param faceLocationZ
+   * Block-face-relative Z position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemInSlotOnBlock(slot: number, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY) };
+  useItemInSlotOnBlock(slot: number, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number, faceLocationZ?: number): boolean { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, {
+    x: faceLocationX,
+    y: faceLocationY,
+    z: faceLocationZ
+  }) };
   /**
    * @remarks
    * Causes the simulated player to use an item on a block. The
@@ -690,9 +699,15 @@ velocity   * @param itemCategory
    * Block-face-relative X position where to place the item.
    * @param faceLocationY
    * Block-face-relative Y position where to place the item.
+   * @param faceLocationZ
+   * Block-face-relative Z position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemOnBlock(itemStack: Minecraft.ItemStack, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY) };
+  useItemOnBlock(itemStack: Minecraft.ItemStack, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocationX?: number, faceLocationY?: number, faceLocationZ?: number): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, {
+    x: faceLocationX,
+    y: faceLocationY,
+    z: faceLocationZ
+  }) };
   public constructor (player: GameTest.SimulatedPlayer, test: GameTest.Test) {
     this.__player = player;
     this.__test = test;

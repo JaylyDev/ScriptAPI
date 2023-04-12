@@ -9,7 +9,7 @@ world.events.projectileHit.subscribe((arg) => {
       && arg.projectile.typeId === MinecraftEntityTypes.arrow.id
   ) {
     /**
-      * @type {import("@minecraft/server").SoundOptions}
+      * @type {import("@minecraft/server").PlayerSoundOptions}
       */
     const soundOption = {
         volume: 0.4,
