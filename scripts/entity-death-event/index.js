@@ -2,11 +2,11 @@
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
-import { EntityHealthComponent, EntityHurtEvent, world } from "@minecraft/server";
+import { EntityHealthComponent, EntityHurtAfterEvent, world } from "@minecraft/server";
 
 /**
  * @typedef EntityDeathCallback
- * @property {(arg: EntityHurtEvent) => void} callback
+ * @property {(arg: EntityHurtAfterEvent) => void} callback
  * @property {import("@minecraft/server").EntityEventOptions} options
  */
 /**
@@ -42,9 +42,9 @@ class EntityDeathEventSignal {
   /**
    * @remarks
    * Adds a callback that will be called when an entity dies.
-   * @param {(arg: EntityHurtEvent) => void} callback
+   * @param {(arg: EntityHurtAfterEvent) => void} callback
    * @param {import("@minecraft/server").EntityEventOptions} options
-   * @returns {(arg: EntityHurtEvent) => void}
+   * @returns {(arg: EntityHurtAfterEvent) => void}
    */
   subscribe(callback, options = {}) {
     callbacks.push({ options, callback });
@@ -53,7 +53,7 @@ class EntityDeathEventSignal {
   /**
    * @remarks
    * Removes a callback from being called when an entity dies.
-   * @param {(arg: EntityHurtEvent) => void} callback
+   * @param {(arg: EntityHurtAfterEvent) => void} callback
    * @throws This function can throw errors.
    */
   unsubscribe(callback) {
