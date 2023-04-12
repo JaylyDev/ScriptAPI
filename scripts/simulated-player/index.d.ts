@@ -70,7 +70,7 @@ export declare class SimulatedPlayer {
      * Returns a scoreboard identity that represents this entity.
      * @throws This property can throw when used.
      */
-    get 'scoreboard'(): Minecraft.ScoreboardIdentity;
+    get 'scoreboard'(): Minecraft.scoreboardIdentityIdentity;
     /**
      * Manages the selected slot in the player's hotbar.
      */

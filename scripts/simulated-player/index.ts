@@ -82,7 +82,7 @@ export class SimulatedPlayer {
    * Returns a scoreboard identity that represents this entity.
    * @throws This property can throw when used.
    */
-  public get 'scoreboard' (): Minecraft.ScoreboardIdentity { return this.__player.scoreboard };
+  public get 'scoreboard' (): Minecraft.scoreboardIdentityIdentity { return this.__player.scoreboardIdentity };
   /**
    * Manages the selected slot in the player's hotbar.
    */

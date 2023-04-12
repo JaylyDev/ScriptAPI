@@ -114,18 +114,18 @@ export class REST {
     if (!regex.test(id)) throw new RESTError('Invalid id.');
 
     const objectiveId = id;
-    this.scoreboard = world.scoreboard.getObjective(objectiveId) ?? world.scoreboard.addObjective(objectiveId, id);
+    this.scoreboardIdentity = world.scoreboard.getObjective(objectiveId) ?? world.scoreboard.addObjective(objectiveId, id);
   };
 
   request<T extends keyof RequestOptions>(route: `/${string}`, options: RequestOption<T>): RequestOptions[T]["response"] {
-    const participant = this.scoreboard.getParticipants().find((value) => new Table(value.displayName).route === route);
+    const participant = this.scoreboardIdentity.getParticipants().find((value) => new Table(value.displayName).route === route);
 
     // delete route
     if (options.method === RequestMethod.DELETE) {
       if (!participant) throw new RESTError('Route not found.');
       const parsedOption = options as RequestOption<RequestMethod.DELETE>;
 
-      if (typeof parsedOption.key !== 'string') this.scoreboard.removeParticipant(participant);
+      if (typeof parsedOption.key !== 'string') this.scoreboardIdentity.removeParticipant(participant);
       else {
         const table = new Table(participant.displayName);
         const memberIndex = table.data.findIndex((value) => value.key === parsedOption.key);
@@ -136,8 +136,8 @@ export class REST {
         const encrypted = table.toRawtext();
 
         // version increment
-        const version = participant.getScore(this.scoreboard);
-        overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
+        const version = participant.getScore(this.scoreboardIdentity);
+        overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboardIdentity.id)} ${version + 1}`);
       };
     }
     // get member value from route
@@ -167,8 +167,8 @@ export class REST {
       const encrypted = table.toRawtext();
 
       // version increment
-      const version = participant.getScore(this.scoreboard);
-      overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
+      const version = participant.getScore(this.scoreboardIdentity);
+      overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboardIdentity.id)} ${version + 1}`);
       return version + 1;
     }
     // create a new route
@@ -177,7 +177,7 @@ export class REST {
 
       const rawtext = JSON.stringify({ route, data: [] });
       const table = new Table(rawtext.toString());
-      overworld.runCommand(`scoreboard players set ${JSON.stringify(table.toRawtext())} ${JSON.stringify(this.scoreboard.id)} 1`);
+      overworld.runCommand(`scoreboard players set ${JSON.stringify(table.toRawtext())} ${JSON.stringify(this.scoreboardIdentity.id)} 1`);
     }
     // create a new member from route
     else if (options.method === RequestMethod.PUT) {
@@ -194,7 +194,7 @@ export class REST {
       const encrypted = table.toRawtext();
 
       // version increment
-      overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} 1`);
+      overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboardIdentity.id)} 1`);
     }
     else throw new RESTError('Request method ' + options.method + ' not acceptable.');
   };

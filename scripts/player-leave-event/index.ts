@@ -220,7 +220,7 @@ class Player {
     this.name = player.name;
     this.nameTag = player.nameTag;
     this.rotation = player.getRotation();
-    this.scoreboard = player.scoreboard;
+    this.scoreboardIdentity = player.scoreboardIdentity;
     this.selectedSlot = player.selectedSlot;
     this.target = player.target;
     this.velocity = new Vector(velocity.x, velocity.y, velocity.z);
