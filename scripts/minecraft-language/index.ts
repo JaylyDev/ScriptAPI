@@ -1056,73 +1056,73 @@ export type langKey =
   | "commands.schedule.invalidOrigin"
   | "commands.schedule.name.empty"
   | "commands.schedule.too.many.areas"
-  | "commands.scoreboardIdentity.description"
-  | "commands.scoreboardIdentity.allMatchesFailed"
-  | "commands.scoreboardIdentity.noMultiWildcard"
-  | "commands.scoreboardIdentity.objectiveNotFound"
-  | "commands.scoreboardIdentity.objectiveReadOnly"
-  | "commands.scoreboardIdentity.objectives.add.alreadyExists"
-  | "commands.scoreboardIdentity.objectives.add.displayTooLong"
-  | "commands.scoreboardIdentity.objectives.add.success"
-  | "commands.scoreboardIdentity.objectives.add.tooLong"
-  | "commands.scoreboardIdentity.objectives.add.wrongType"
-  | "commands.scoreboardIdentity.objectives.add.needName"
-  | "commands.scoreboardIdentity.objectives.description"
-  | "commands.scoreboardIdentity.objectives.list.count"
-  | "commands.scoreboardIdentity.objectives.list.empty"
-  | "commands.scoreboardIdentity.objectives.list.entry"
-  | "commands.scoreboardIdentity.objectives.remove.success"
-  | "commands.scoreboardIdentity.objectives.setdisplay.invalidSlot"
-  | "commands.scoreboardIdentity.objectives.setdisplay.successCleared"
-  | "commands.scoreboardIdentity.objectives.setdisplay.successSet"
-  | "commands.scoreboardIdentity.players.add.success"
-  | "commands.scoreboardIdentity.players.add.multiple.success"
-  | "commands.scoreboardIdentity.players.nameNotFound"
-  | "commands.scoreboardIdentity.players.enable.noTrigger"
-  | "commands.scoreboardIdentity.players.enable.success"
-  | "commands.scoreboardIdentity.players.list.count"
-  | "commands.scoreboardIdentity.players.list.empty"
-  | "commands.scoreboardIdentity.players.list.player.count"
-  | "commands.scoreboardIdentity.players.list.player.empty"
-  | "commands.scoreboardIdentity.players.list.player.entry"
-  | "commands.scoreboardIdentity.players.operation.invalidOperation"
-  | "commands.scoreboardIdentity.players.operation.notFound"
-  | "commands.scoreboardIdentity.players.operation.success"
-  | "commands.scoreboardIdentity.players.offlinePlayerName"
-  | "commands.scoreboardIdentity.players.random.invalidRange"
-  | "commands.scoreboardIdentity.players.remove.success"
-  | "commands.scoreboardIdentity.players.remove.multiple.success"
-  | "commands.scoreboardIdentity.players.reset.success"
-  | "commands.scoreboardIdentity.players.resetscore.success"
-  | "commands.scoreboardIdentity.players.set.success"
-  | "commands.scoreboardIdentity.players.set.multiple.success"
-  | "commands.scoreboardIdentity.players.set.tagError"
-  | "commands.scoreboardIdentity.players.set.tagMismatch"
-  | "commands.scoreboardIdentity.players.score.notFound"
-  | "commands.scoreboardIdentity.players.test.failed"
-  | "commands.scoreboardIdentity.players.test.success"
-  | "commands.scoreboardIdentity.players.get.success"
-  | "commands.scoreboardIdentity.teamNotFound"
-  | "commands.scoreboardIdentity.teams.add.alreadyExists"
-  | "commands.scoreboardIdentity.teams.add.displayTooLong"
-  | "commands.scoreboardIdentity.teams.add.success"
-  | "commands.scoreboardIdentity.teams.add.tooLong"
-  | "commands.scoreboardIdentity.teams.empty.alreadyEmpty"
-  | "commands.scoreboardIdentity.teams.empty.success"
-  | "commands.scoreboardIdentity.teams.join.failure"
-  | "commands.scoreboardIdentity.teams.join.success"
-  | "commands.scoreboardIdentity.teams.leave.failure"
-  | "commands.scoreboardIdentity.teams.leave.noTeam"
-  | "commands.scoreboardIdentity.teams.leave.success"
-  | "commands.scoreboardIdentity.teams.list.count"
-  | "commands.scoreboardIdentity.teams.list.empty"
-  | "commands.scoreboardIdentity.teams.list.entry"
-  | "commands.scoreboardIdentity.teams.list.player.count"
-  | "commands.scoreboardIdentity.teams.list.player.empty"
-  | "commands.scoreboardIdentity.teams.list.player.entry"
-  | "commands.scoreboardIdentity.teams.option.noValue"
-  | "commands.scoreboardIdentity.teams.option.success"
-  | "commands.scoreboardIdentity.teams.remove.success"
+  | "commands.scoreboard.description"
+  | "commands.scoreboard.allMatchesFailed"
+  | "commands.scoreboard.noMultiWildcard"
+  | "commands.scoreboard.objectiveNotFound"
+  | "commands.scoreboard.objectiveReadOnly"
+  | "commands.scoreboard.objectives.add.alreadyExists"
+  | "commands.scoreboard.objectives.add.displayTooLong"
+  | "commands.scoreboard.objectives.add.success"
+  | "commands.scoreboard.objectives.add.tooLong"
+  | "commands.scoreboard.objectives.add.wrongType"
+  | "commands.scoreboard.objectives.add.needName"
+  | "commands.scoreboard.objectives.description"
+  | "commands.scoreboard.objectives.list.count"
+  | "commands.scoreboard.objectives.list.empty"
+  | "commands.scoreboard.objectives.list.entry"
+  | "commands.scoreboard.objectives.remove.success"
+  | "commands.scoreboard.objectives.setdisplay.invalidSlot"
+  | "commands.scoreboard.objectives.setdisplay.successCleared"
+  | "commands.scoreboard.objectives.setdisplay.successSet"
+  | "commands.scoreboard.players.add.success"
+  | "commands.scoreboard.players.add.multiple.success"
+  | "commands.scoreboard.players.nameNotFound"
+  | "commands.scoreboard.players.enable.noTrigger"
+  | "commands.scoreboard.players.enable.success"
+  | "commands.scoreboard.players.list.count"
+  | "commands.scoreboard.players.list.empty"
+  | "commands.scoreboard.players.list.player.count"
+  | "commands.scoreboard.players.list.player.empty"
+  | "commands.scoreboard.players.list.player.entry"
+  | "commands.scoreboard.players.operation.invalidOperation"
+  | "commands.scoreboard.players.operation.notFound"
+  | "commands.scoreboard.players.operation.success"
+  | "commands.scoreboard.players.offlinePlayerName"
+  | "commands.scoreboard.players.random.invalidRange"
+  | "commands.scoreboard.players.remove.success"
+  | "commands.scoreboard.players.remove.multiple.success"
+  | "commands.scoreboard.players.reset.success"
+  | "commands.scoreboard.players.resetscore.success"
+  | "commands.scoreboard.players.set.success"
+  | "commands.scoreboard.players.set.multiple.success"
+  | "commands.scoreboard.players.set.tagError"
+  | "commands.scoreboard.players.set.tagMismatch"
+  | "commands.scoreboard.players.score.notFound"
+  | "commands.scoreboard.players.test.failed"
+  | "commands.scoreboard.players.test.success"
+  | "commands.scoreboard.players.get.success"
+  | "commands.scoreboard.teamNotFound"
+  | "commands.scoreboard.teams.add.alreadyExists"
+  | "commands.scoreboard.teams.add.displayTooLong"
+  | "commands.scoreboard.teams.add.success"
+  | "commands.scoreboard.teams.add.tooLong"
+  | "commands.scoreboard.teams.empty.alreadyEmpty"
+  | "commands.scoreboard.teams.empty.success"
+  | "commands.scoreboard.teams.join.failure"
+  | "commands.scoreboard.teams.join.success"
+  | "commands.scoreboard.teams.leave.failure"
+  | "commands.scoreboard.teams.leave.noTeam"
+  | "commands.scoreboard.teams.leave.success"
+  | "commands.scoreboard.teams.list.count"
+  | "commands.scoreboard.teams.list.empty"
+  | "commands.scoreboard.teams.list.entry"
+  | "commands.scoreboard.teams.list.player.count"
+  | "commands.scoreboard.teams.list.player.empty"
+  | "commands.scoreboard.teams.list.player.entry"
+  | "commands.scoreboard.teams.option.noValue"
+  | "commands.scoreboard.teams.option.success"
+  | "commands.scoreboard.teams.remove.success"
   | "commands.screenshake.description"
   | "commands.screenshake.success"
   | "commands.screenshake.successStop"
@@ -5002,7 +5002,7 @@ export type langKey =
   | "key.copy_facing_coordinates"
   | "key.cycleItemLeft"
   | "key.cycleItemRight"
-  | "key.scoreboardIdentity"
+  | "key.scoreboard"
   | "key.drop"
   | "key.forward"
   | "key.fullscreen"
@@ -10528,73 +10528,73 @@ export const languageKeys: langKey[] = [
   "commands.schedule.invalidOrigin",
   "commands.schedule.name.empty",
   "commands.schedule.too.many.areas",
-  "commands.scoreboardIdentity.description",
-  "commands.scoreboardIdentity.allMatchesFailed",
-  "commands.scoreboardIdentity.noMultiWildcard",
-  "commands.scoreboardIdentity.objectiveNotFound",
-  "commands.scoreboardIdentity.objectiveReadOnly",
-  "commands.scoreboardIdentity.objectives.add.alreadyExists",
-  "commands.scoreboardIdentity.objectives.add.displayTooLong",
-  "commands.scoreboardIdentity.objectives.add.success",
-  "commands.scoreboardIdentity.objectives.add.tooLong",
-  "commands.scoreboardIdentity.objectives.add.wrongType",
-  "commands.scoreboardIdentity.objectives.add.needName",
-  "commands.scoreboardIdentity.objectives.description",
-  "commands.scoreboardIdentity.objectives.list.count",
-  "commands.scoreboardIdentity.objectives.list.empty",
-  "commands.scoreboardIdentity.objectives.list.entry",
-  "commands.scoreboardIdentity.objectives.remove.success",
-  "commands.scoreboardIdentity.objectives.setdisplay.invalidSlot",
-  "commands.scoreboardIdentity.objectives.setdisplay.successCleared",
-  "commands.scoreboardIdentity.objectives.setdisplay.successSet",
-  "commands.scoreboardIdentity.players.add.success",
-  "commands.scoreboardIdentity.players.add.multiple.success",
-  "commands.scoreboardIdentity.players.nameNotFound",
-  "commands.scoreboardIdentity.players.enable.noTrigger",
-  "commands.scoreboardIdentity.players.enable.success",
-  "commands.scoreboardIdentity.players.list.count",
-  "commands.scoreboardIdentity.players.list.empty",
-  "commands.scoreboardIdentity.players.list.player.count",
-  "commands.scoreboardIdentity.players.list.player.empty",
-  "commands.scoreboardIdentity.players.list.player.entry",
-  "commands.scoreboardIdentity.players.operation.invalidOperation",
-  "commands.scoreboardIdentity.players.operation.notFound",
-  "commands.scoreboardIdentity.players.operation.success",
-  "commands.scoreboardIdentity.players.offlinePlayerName",
-  "commands.scoreboardIdentity.players.random.invalidRange",
-  "commands.scoreboardIdentity.players.remove.success",
-  "commands.scoreboardIdentity.players.remove.multiple.success",
-  "commands.scoreboardIdentity.players.reset.success",
-  "commands.scoreboardIdentity.players.resetscore.success",
-  "commands.scoreboardIdentity.players.set.success",
-  "commands.scoreboardIdentity.players.set.multiple.success",
-  "commands.scoreboardIdentity.players.set.tagError",
-  "commands.scoreboardIdentity.players.set.tagMismatch",
-  "commands.scoreboardIdentity.players.score.notFound",
-  "commands.scoreboardIdentity.players.test.failed",
-  "commands.scoreboardIdentity.players.test.success",
-  "commands.scoreboardIdentity.players.get.success",
-  "commands.scoreboardIdentity.teamNotFound",
-  "commands.scoreboardIdentity.teams.add.alreadyExists",
-  "commands.scoreboardIdentity.teams.add.displayTooLong",
-  "commands.scoreboardIdentity.teams.add.success",
-  "commands.scoreboardIdentity.teams.add.tooLong",
-  "commands.scoreboardIdentity.teams.empty.alreadyEmpty",
-  "commands.scoreboardIdentity.teams.empty.success",
-  "commands.scoreboardIdentity.teams.join.failure",
-  "commands.scoreboardIdentity.teams.join.success",
-  "commands.scoreboardIdentity.teams.leave.failure",
-  "commands.scoreboardIdentity.teams.leave.noTeam",
-  "commands.scoreboardIdentity.teams.leave.success",
-  "commands.scoreboardIdentity.teams.list.count",
-  "commands.scoreboardIdentity.teams.list.empty",
-  "commands.scoreboardIdentity.teams.list.entry",
-  "commands.scoreboardIdentity.teams.list.player.count",
-  "commands.scoreboardIdentity.teams.list.player.empty",
-  "commands.scoreboardIdentity.teams.list.player.entry",
-  "commands.scoreboardIdentity.teams.option.noValue",
-  "commands.scoreboardIdentity.teams.option.success",
-  "commands.scoreboardIdentity.teams.remove.success",
+  "commands.scoreboard.description",
+  "commands.scoreboard.allMatchesFailed",
+  "commands.scoreboard.noMultiWildcard",
+  "commands.scoreboard.objectiveNotFound",
+  "commands.scoreboard.objectiveReadOnly",
+  "commands.scoreboard.objectives.add.alreadyExists",
+  "commands.scoreboard.objectives.add.displayTooLong",
+  "commands.scoreboard.objectives.add.success",
+  "commands.scoreboard.objectives.add.tooLong",
+  "commands.scoreboard.objectives.add.wrongType",
+  "commands.scoreboard.objectives.add.needName",
+  "commands.scoreboard.objectives.description",
+  "commands.scoreboard.objectives.list.count",
+  "commands.scoreboard.objectives.list.empty",
+  "commands.scoreboard.objectives.list.entry",
+  "commands.scoreboard.objectives.remove.success",
+  "commands.scoreboard.objectives.setdisplay.invalidSlot",
+  "commands.scoreboard.objectives.setdisplay.successCleared",
+  "commands.scoreboard.objectives.setdisplay.successSet",
+  "commands.scoreboard.players.add.success",
+  "commands.scoreboard.players.add.multiple.success",
+  "commands.scoreboard.players.nameNotFound",
+  "commands.scoreboard.players.enable.noTrigger",
+  "commands.scoreboard.players.enable.success",
+  "commands.scoreboard.players.list.count",
+  "commands.scoreboard.players.list.empty",
+  "commands.scoreboard.players.list.player.count",
+  "commands.scoreboard.players.list.player.empty",
+  "commands.scoreboard.players.list.player.entry",
+  "commands.scoreboard.players.operation.invalidOperation",
+  "commands.scoreboard.players.operation.notFound",
+  "commands.scoreboard.players.operation.success",
+  "commands.scoreboard.players.offlinePlayerName",
+  "commands.scoreboard.players.random.invalidRange",
+  "commands.scoreboard.players.remove.success",
+  "commands.scoreboard.players.remove.multiple.success",
+  "commands.scoreboard.players.reset.success",
+  "commands.scoreboard.players.resetscore.success",
+  "commands.scoreboard.players.set.success",
+  "commands.scoreboard.players.set.multiple.success",
+  "commands.scoreboard.players.set.tagError",
+  "commands.scoreboard.players.set.tagMismatch",
+  "commands.scoreboard.players.score.notFound",
+  "commands.scoreboard.players.test.failed",
+  "commands.scoreboard.players.test.success",
+  "commands.scoreboard.players.get.success",
+  "commands.scoreboard.teamNotFound",
+  "commands.scoreboard.teams.add.alreadyExists",
+  "commands.scoreboard.teams.add.displayTooLong",
+  "commands.scoreboard.teams.add.success",
+  "commands.scoreboard.teams.add.tooLong",
+  "commands.scoreboard.teams.empty.alreadyEmpty",
+  "commands.scoreboard.teams.empty.success",
+  "commands.scoreboard.teams.join.failure",
+  "commands.scoreboard.teams.join.success",
+  "commands.scoreboard.teams.leave.failure",
+  "commands.scoreboard.teams.leave.noTeam",
+  "commands.scoreboard.teams.leave.success",
+  "commands.scoreboard.teams.list.count",
+  "commands.scoreboard.teams.list.empty",
+  "commands.scoreboard.teams.list.entry",
+  "commands.scoreboard.teams.list.player.count",
+  "commands.scoreboard.teams.list.player.empty",
+  "commands.scoreboard.teams.list.player.entry",
+  "commands.scoreboard.teams.option.noValue",
+  "commands.scoreboard.teams.option.success",
+  "commands.scoreboard.teams.remove.success",
   "commands.screenshake.description",
   "commands.screenshake.success",
   "commands.screenshake.successStop",
@@ -14474,7 +14474,7 @@ export const languageKeys: langKey[] = [
   "key.copy_facing_coordinates",
   "key.cycleItemLeft",
   "key.cycleItemRight",
-  "key.scoreboardIdentity",
+  "key.scoreboard",
   "key.drop",
   "key.forward",
   "key.fullscreen",
@@ -20001,73 +20001,73 @@ export class MinecraftLanguageKeys {
   static "commands.schedule.invalidOrigin": RawMessage = {rawtext: [{ translate: "commands.schedule.invalidOrigin",},],};
   static "commands.schedule.name.empty": RawMessage = {rawtext: [{ translate: "commands.schedule.name.empty",},],};
   static "commands.schedule.too.many.areas": RawMessage = {rawtext: [{ translate: "commands.schedule.too.many.areas",},],};
-  static "commands.scoreboardIdentity.description": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.description",},],};
-  static "commands.scoreboardIdentity.allMatchesFailed": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.allMatchesFailed",},],};
-  static "commands.scoreboardIdentity.noMultiWildcard": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.noMultiWildcard",},],};
-  static "commands.scoreboardIdentity.objectiveNotFound": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectiveNotFound",},],};
-  static "commands.scoreboardIdentity.objectiveReadOnly": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectiveReadOnly",},],};
-  static "commands.scoreboardIdentity.objectives.add.alreadyExists": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.alreadyExists",},],};
-  static "commands.scoreboardIdentity.objectives.add.displayTooLong": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.displayTooLong",},],};
-  static "commands.scoreboardIdentity.objectives.add.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.success",},],};
-  static "commands.scoreboardIdentity.objectives.add.tooLong": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.tooLong",},],};
-  static "commands.scoreboardIdentity.objectives.add.wrongType": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.wrongType",},],};
-  static "commands.scoreboardIdentity.objectives.add.needName": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.needName",},],};
-  static "commands.scoreboardIdentity.objectives.description": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.description",},],};
-  static "commands.scoreboardIdentity.objectives.list.count": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.list.count",},],};
-  static "commands.scoreboardIdentity.objectives.list.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.list.empty",},],};
-  static "commands.scoreboardIdentity.objectives.list.entry": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.list.entry",},],};
-  static "commands.scoreboardIdentity.objectives.remove.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.remove.success",},],};
-  static "commands.scoreboardIdentity.objectives.setdisplay.invalidSlot": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.setdisplay.invalidSlot",},],};
-  static "commands.scoreboardIdentity.objectives.setdisplay.successCleared": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.setdisplay.successCleared",},],};
-  static "commands.scoreboardIdentity.objectives.setdisplay.successSet": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.objectives.setdisplay.successSet",},],};
-  static "commands.scoreboardIdentity.players.add.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.add.success",},],};
-  static "commands.scoreboardIdentity.players.add.multiple.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.add.multiple.success",},],};
-  static "commands.scoreboardIdentity.players.nameNotFound": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.nameNotFound",},],};
-  static "commands.scoreboardIdentity.players.enable.noTrigger": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.enable.noTrigger",},],};
-  static "commands.scoreboardIdentity.players.enable.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.enable.success",},],};
-  static "commands.scoreboardIdentity.players.list.count": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.list.count",},],};
-  static "commands.scoreboardIdentity.players.list.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.list.empty",},],};
-  static "commands.scoreboardIdentity.players.list.player.count": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.list.player.count",},],};
-  static "commands.scoreboardIdentity.players.list.player.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.list.player.empty",},],};
-  static "commands.scoreboardIdentity.players.list.player.entry": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.list.player.entry",},],};
-  static "commands.scoreboardIdentity.players.operation.invalidOperation": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.operation.invalidOperation",},],};
-  static "commands.scoreboardIdentity.players.operation.notFound": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.operation.notFound",},],};
-  static "commands.scoreboardIdentity.players.operation.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.operation.success",},],};
-  static "commands.scoreboardIdentity.players.offlinePlayerName": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.offlinePlayerName",},],};
-  static "commands.scoreboardIdentity.players.random.invalidRange": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.random.invalidRange",},],};
-  static "commands.scoreboardIdentity.players.remove.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.remove.success",},],};
-  static "commands.scoreboardIdentity.players.remove.multiple.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.remove.multiple.success",},],};
-  static "commands.scoreboardIdentity.players.reset.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.reset.success",},],};
-  static "commands.scoreboardIdentity.players.resetscore.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.resetscore.success",},],};
-  static "commands.scoreboardIdentity.players.set.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.set.success",},],};
-  static "commands.scoreboardIdentity.players.set.multiple.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.set.multiple.success",},],};
-  static "commands.scoreboardIdentity.players.set.tagError": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.set.tagError",},],};
-  static "commands.scoreboardIdentity.players.set.tagMismatch": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.set.tagMismatch",},],};
-  static "commands.scoreboardIdentity.players.score.notFound": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.score.notFound",},],};
-  static "commands.scoreboardIdentity.players.test.failed": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.test.failed",},],};
-  static "commands.scoreboardIdentity.players.test.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.test.success",},],};
-  static "commands.scoreboardIdentity.players.get.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.players.get.success",},],};
-  static "commands.scoreboardIdentity.teamNotFound": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teamNotFound",},],};
-  static "commands.scoreboardIdentity.teams.add.alreadyExists": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.add.alreadyExists",},],};
-  static "commands.scoreboardIdentity.teams.add.displayTooLong": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.add.displayTooLong",},],};
-  static "commands.scoreboardIdentity.teams.add.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.add.success",},],};
-  static "commands.scoreboardIdentity.teams.add.tooLong": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.add.tooLong",},],};
-  static "commands.scoreboardIdentity.teams.empty.alreadyEmpty": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.empty.alreadyEmpty",},],};
-  static "commands.scoreboardIdentity.teams.empty.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.empty.success",},],};
-  static "commands.scoreboardIdentity.teams.join.failure": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.join.failure",},],};
-  static "commands.scoreboardIdentity.teams.join.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.join.success",},],};
-  static "commands.scoreboardIdentity.teams.leave.failure": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.leave.failure",},],};
-  static "commands.scoreboardIdentity.teams.leave.noTeam": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.leave.noTeam",},],};
-  static "commands.scoreboardIdentity.teams.leave.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.leave.success",},],};
-  static "commands.scoreboardIdentity.teams.list.count": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.count",},],};
-  static "commands.scoreboardIdentity.teams.list.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.empty",},],};
-  static "commands.scoreboardIdentity.teams.list.entry": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.entry",},],};
-  static "commands.scoreboardIdentity.teams.list.player.count": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.player.count",},],};
-  static "commands.scoreboardIdentity.teams.list.player.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.player.empty",},],};
-  static "commands.scoreboardIdentity.teams.list.player.entry": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.player.entry",},],};
-  static "commands.scoreboardIdentity.teams.option.noValue": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.option.noValue",},],};
-  static "commands.scoreboardIdentity.teams.option.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.option.success",},],};
-  static "commands.scoreboardIdentity.teams.remove.success": RawMessage = {rawtext: [{ translate: "commands.scoreboardIdentity.teams.remove.success",},],};
+  static "commands.scoreboard.description": RawMessage = {rawtext: [{ translate: "commands.scoreboard.description",},],};
+  static "commands.scoreboard.allMatchesFailed": RawMessage = {rawtext: [{ translate: "commands.scoreboard.allMatchesFailed",},],};
+  static "commands.scoreboard.noMultiWildcard": RawMessage = {rawtext: [{ translate: "commands.scoreboard.noMultiWildcard",},],};
+  static "commands.scoreboard.objectiveNotFound": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectiveNotFound",},],};
+  static "commands.scoreboard.objectiveReadOnly": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectiveReadOnly",},],};
+  static "commands.scoreboard.objectives.add.alreadyExists": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.add.alreadyExists",},],};
+  static "commands.scoreboard.objectives.add.displayTooLong": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.add.displayTooLong",},],};
+  static "commands.scoreboard.objectives.add.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.add.success",},],};
+  static "commands.scoreboard.objectives.add.tooLong": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.add.tooLong",},],};
+  static "commands.scoreboard.objectives.add.wrongType": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.add.wrongType",},],};
+  static "commands.scoreboard.objectives.add.needName": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.add.needName",},],};
+  static "commands.scoreboard.objectives.description": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.description",},],};
+  static "commands.scoreboard.objectives.list.count": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.list.count",},],};
+  static "commands.scoreboard.objectives.list.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.list.empty",},],};
+  static "commands.scoreboard.objectives.list.entry": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.list.entry",},],};
+  static "commands.scoreboard.objectives.remove.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.remove.success",},],};
+  static "commands.scoreboard.objectives.setdisplay.invalidSlot": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.setdisplay.invalidSlot",},],};
+  static "commands.scoreboard.objectives.setdisplay.successCleared": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.setdisplay.successCleared",},],};
+  static "commands.scoreboard.objectives.setdisplay.successSet": RawMessage = {rawtext: [{ translate: "commands.scoreboard.objectives.setdisplay.successSet",},],};
+  static "commands.scoreboard.players.add.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.add.success",},],};
+  static "commands.scoreboard.players.add.multiple.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.add.multiple.success",},],};
+  static "commands.scoreboard.players.nameNotFound": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.nameNotFound",},],};
+  static "commands.scoreboard.players.enable.noTrigger": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.enable.noTrigger",},],};
+  static "commands.scoreboard.players.enable.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.enable.success",},],};
+  static "commands.scoreboard.players.list.count": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.list.count",},],};
+  static "commands.scoreboard.players.list.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.list.empty",},],};
+  static "commands.scoreboard.players.list.player.count": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.list.player.count",},],};
+  static "commands.scoreboard.players.list.player.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.list.player.empty",},],};
+  static "commands.scoreboard.players.list.player.entry": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.list.player.entry",},],};
+  static "commands.scoreboard.players.operation.invalidOperation": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.operation.invalidOperation",},],};
+  static "commands.scoreboard.players.operation.notFound": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.operation.notFound",},],};
+  static "commands.scoreboard.players.operation.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.operation.success",},],};
+  static "commands.scoreboard.players.offlinePlayerName": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.offlinePlayerName",},],};
+  static "commands.scoreboard.players.random.invalidRange": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.random.invalidRange",},],};
+  static "commands.scoreboard.players.remove.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.remove.success",},],};
+  static "commands.scoreboard.players.remove.multiple.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.remove.multiple.success",},],};
+  static "commands.scoreboard.players.reset.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.reset.success",},],};
+  static "commands.scoreboard.players.resetscore.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.resetscore.success",},],};
+  static "commands.scoreboard.players.set.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.set.success",},],};
+  static "commands.scoreboard.players.set.multiple.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.set.multiple.success",},],};
+  static "commands.scoreboard.players.set.tagError": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.set.tagError",},],};
+  static "commands.scoreboard.players.set.tagMismatch": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.set.tagMismatch",},],};
+  static "commands.scoreboard.players.score.notFound": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.score.notFound",},],};
+  static "commands.scoreboard.players.test.failed": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.test.failed",},],};
+  static "commands.scoreboard.players.test.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.test.success",},],};
+  static "commands.scoreboard.players.get.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.players.get.success",},],};
+  static "commands.scoreboard.teamNotFound": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teamNotFound",},],};
+  static "commands.scoreboard.teams.add.alreadyExists": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.add.alreadyExists",},],};
+  static "commands.scoreboard.teams.add.displayTooLong": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.add.displayTooLong",},],};
+  static "commands.scoreboard.teams.add.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.add.success",},],};
+  static "commands.scoreboard.teams.add.tooLong": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.add.tooLong",},],};
+  static "commands.scoreboard.teams.empty.alreadyEmpty": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.empty.alreadyEmpty",},],};
+  static "commands.scoreboard.teams.empty.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.empty.success",},],};
+  static "commands.scoreboard.teams.join.failure": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.join.failure",},],};
+  static "commands.scoreboard.teams.join.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.join.success",},],};
+  static "commands.scoreboard.teams.leave.failure": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.leave.failure",},],};
+  static "commands.scoreboard.teams.leave.noTeam": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.leave.noTeam",},],};
+  static "commands.scoreboard.teams.leave.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.leave.success",},],};
+  static "commands.scoreboard.teams.list.count": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.list.count",},],};
+  static "commands.scoreboard.teams.list.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.list.empty",},],};
+  static "commands.scoreboard.teams.list.entry": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.list.entry",},],};
+  static "commands.scoreboard.teams.list.player.count": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.list.player.count",},],};
+  static "commands.scoreboard.teams.list.player.empty": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.list.player.empty",},],};
+  static "commands.scoreboard.teams.list.player.entry": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.list.player.entry",},],};
+  static "commands.scoreboard.teams.option.noValue": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.option.noValue",},],};
+  static "commands.scoreboard.teams.option.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.option.success",},],};
+  static "commands.scoreboard.teams.remove.success": RawMessage = {rawtext: [{ translate: "commands.scoreboard.teams.remove.success",},],};
   static "commands.screenshake.description": RawMessage = {rawtext: [{ translate: "commands.screenshake.description",},],};
   static "commands.screenshake.success": RawMessage = {rawtext: [{ translate: "commands.screenshake.success",},],};
   static "commands.screenshake.successStop": RawMessage = {rawtext: [{ translate: "commands.screenshake.successStop",},],};
@@ -23947,7 +23947,7 @@ export class MinecraftLanguageKeys {
   static "key.copy_facing_coordinates": RawMessage = {rawtext: [{ translate: "key.copy_facing_coordinates",},],};
   static "key.cycleItemLeft": RawMessage = {rawtext: [{ translate: "key.cycleItemLeft",},],};
   static "key.cycleItemRight": RawMessage = {rawtext: [{ translate: "key.cycleItemRight",},],};
-  static "key.scoreboardIdentity": RawMessage = {rawtext: [{ translate: "key.scoreboardIdentity",},],};
+  static "key.scoreboard": RawMessage = {rawtext: [{ translate: "key.scoreboard",},],};
   static "key.drop": RawMessage = {rawtext: [{ translate: "key.drop",},],};
   static "key.forward": RawMessage = {rawtext: [{ translate: "key.forward",},],};
   static "key.fullscreen": RawMessage = {rawtext: [{ translate: "key.fullscreen",},],};

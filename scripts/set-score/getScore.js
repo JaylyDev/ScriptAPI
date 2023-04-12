@@ -14,7 +14,7 @@ export function getScore(player, objectiveId, rNull = false) {
   try {
     return world.scoreboard
       .getObjective(objectiveId)
-      .getScore(player.scoreboardIdentity);
+      .getScore(player.scoreboard);
   } catch (error) {
     return rNull ? null : 0;
   }

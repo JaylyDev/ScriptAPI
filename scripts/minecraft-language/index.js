@@ -1055,73 +1055,73 @@ export const languageKeys = [
     "commands.schedule.invalidOrigin",
     "commands.schedule.name.empty",
     "commands.schedule.too.many.areas",
-    "commands.scoreboardIdentity.description",
-    "commands.scoreboardIdentity.allMatchesFailed",
-    "commands.scoreboardIdentity.noMultiWildcard",
-    "commands.scoreboardIdentity.objectiveNotFound",
-    "commands.scoreboardIdentity.objectiveReadOnly",
-    "commands.scoreboardIdentity.objectives.add.alreadyExists",
-    "commands.scoreboardIdentity.objectives.add.displayTooLong",
-    "commands.scoreboardIdentity.objectives.add.success",
-    "commands.scoreboardIdentity.objectives.add.tooLong",
-    "commands.scoreboardIdentity.objectives.add.wrongType",
-    "commands.scoreboardIdentity.objectives.add.needName",
-    "commands.scoreboardIdentity.objectives.description",
-    "commands.scoreboardIdentity.objectives.list.count",
-    "commands.scoreboardIdentity.objectives.list.empty",
-    "commands.scoreboardIdentity.objectives.list.entry",
-    "commands.scoreboardIdentity.objectives.remove.success",
-    "commands.scoreboardIdentity.objectives.setdisplay.invalidSlot",
-    "commands.scoreboardIdentity.objectives.setdisplay.successCleared",
-    "commands.scoreboardIdentity.objectives.setdisplay.successSet",
-    "commands.scoreboardIdentity.players.add.success",
-    "commands.scoreboardIdentity.players.add.multiple.success",
-    "commands.scoreboardIdentity.players.nameNotFound",
-    "commands.scoreboardIdentity.players.enable.noTrigger",
-    "commands.scoreboardIdentity.players.enable.success",
-    "commands.scoreboardIdentity.players.list.count",
-    "commands.scoreboardIdentity.players.list.empty",
-    "commands.scoreboardIdentity.players.list.player.count",
-    "commands.scoreboardIdentity.players.list.player.empty",
-    "commands.scoreboardIdentity.players.list.player.entry",
-    "commands.scoreboardIdentity.players.operation.invalidOperation",
-    "commands.scoreboardIdentity.players.operation.notFound",
-    "commands.scoreboardIdentity.players.operation.success",
-    "commands.scoreboardIdentity.players.offlinePlayerName",
-    "commands.scoreboardIdentity.players.random.invalidRange",
-    "commands.scoreboardIdentity.players.remove.success",
-    "commands.scoreboardIdentity.players.remove.multiple.success",
-    "commands.scoreboardIdentity.players.reset.success",
-    "commands.scoreboardIdentity.players.resetscore.success",
-    "commands.scoreboardIdentity.players.set.success",
-    "commands.scoreboardIdentity.players.set.multiple.success",
-    "commands.scoreboardIdentity.players.set.tagError",
-    "commands.scoreboardIdentity.players.set.tagMismatch",
-    "commands.scoreboardIdentity.players.score.notFound",
-    "commands.scoreboardIdentity.players.test.failed",
-    "commands.scoreboardIdentity.players.test.success",
-    "commands.scoreboardIdentity.players.get.success",
-    "commands.scoreboardIdentity.teamNotFound",
-    "commands.scoreboardIdentity.teams.add.alreadyExists",
-    "commands.scoreboardIdentity.teams.add.displayTooLong",
-    "commands.scoreboardIdentity.teams.add.success",
-    "commands.scoreboardIdentity.teams.add.tooLong",
-    "commands.scoreboardIdentity.teams.empty.alreadyEmpty",
-    "commands.scoreboardIdentity.teams.empty.success",
-    "commands.scoreboardIdentity.teams.join.failure",
-    "commands.scoreboardIdentity.teams.join.success",
-    "commands.scoreboardIdentity.teams.leave.failure",
-    "commands.scoreboardIdentity.teams.leave.noTeam",
-    "commands.scoreboardIdentity.teams.leave.success",
-    "commands.scoreboardIdentity.teams.list.count",
-    "commands.scoreboardIdentity.teams.list.empty",
-    "commands.scoreboardIdentity.teams.list.entry",
-    "commands.scoreboardIdentity.teams.list.player.count",
-    "commands.scoreboardIdentity.teams.list.player.empty",
-    "commands.scoreboardIdentity.teams.list.player.entry",
-    "commands.scoreboardIdentity.teams.option.noValue",
-    "commands.scoreboardIdentity.teams.option.success",
-    "commands.scoreboardIdentity.teams.remove.success",
+    "commands.scoreboard.description",
+    "commands.scoreboard.allMatchesFailed",
+    "commands.scoreboard.noMultiWildcard",
+    "commands.scoreboard.objectiveNotFound",
+    "commands.scoreboard.objectiveReadOnly",
+    "commands.scoreboard.objectives.add.alreadyExists",
+    "commands.scoreboard.objectives.add.displayTooLong",
+    "commands.scoreboard.objectives.add.success",
+    "commands.scoreboard.objectives.add.tooLong",
+    "commands.scoreboard.objectives.add.wrongType",
+    "commands.scoreboard.objectives.add.needName",
+    "commands.scoreboard.objectives.description",
+    "commands.scoreboard.objectives.list.count",
+    "commands.scoreboard.objectives.list.empty",
+    "commands.scoreboard.objectives.list.entry",
+    "commands.scoreboard.objectives.remove.success",
+    "commands.scoreboard.objectives.setdisplay.invalidSlot",
+    "commands.scoreboard.objectives.setdisplay.successCleared",
+    "commands.scoreboard.objectives.setdisplay.successSet",
+    "commands.scoreboard.players.add.success",
+    "commands.scoreboard.players.add.multiple.success",
+    "commands.scoreboard.players.nameNotFound",
+    "commands.scoreboard.players.enable.noTrigger",
+    "commands.scoreboard.players.enable.success",
+    "commands.scoreboard.players.list.count",
+    "commands.scoreboard.players.list.empty",
+    "commands.scoreboard.players.list.player.count",
+    "commands.scoreboard.players.list.player.empty",
+    "commands.scoreboard.players.list.player.entry",
+    "commands.scoreboard.players.operation.invalidOperation",
+    "commands.scoreboard.players.operation.notFound",
+    "commands.scoreboard.players.operation.success",
+    "commands.scoreboard.players.offlinePlayerName",
+    "commands.scoreboard.players.random.invalidRange",
+    "commands.scoreboard.players.remove.success",
+    "commands.scoreboard.players.remove.multiple.success",
+    "commands.scoreboard.players.reset.success",
+    "commands.scoreboard.players.resetscore.success",
+    "commands.scoreboard.players.set.success",
+    "commands.scoreboard.players.set.multiple.success",
+    "commands.scoreboard.players.set.tagError",
+    "commands.scoreboard.players.set.tagMismatch",
+    "commands.scoreboard.players.score.notFound",
+    "commands.scoreboard.players.test.failed",
+    "commands.scoreboard.players.test.success",
+    "commands.scoreboard.players.get.success",
+    "commands.scoreboard.teamNotFound",
+    "commands.scoreboard.teams.add.alreadyExists",
+    "commands.scoreboard.teams.add.displayTooLong",
+    "commands.scoreboard.teams.add.success",
+    "commands.scoreboard.teams.add.tooLong",
+    "commands.scoreboard.teams.empty.alreadyEmpty",
+    "commands.scoreboard.teams.empty.success",
+    "commands.scoreboard.teams.join.failure",
+    "commands.scoreboard.teams.join.success",
+    "commands.scoreboard.teams.leave.failure",
+    "commands.scoreboard.teams.leave.noTeam",
+    "commands.scoreboard.teams.leave.success",
+    "commands.scoreboard.teams.list.count",
+    "commands.scoreboard.teams.list.empty",
+    "commands.scoreboard.teams.list.entry",
+    "commands.scoreboard.teams.list.player.count",
+    "commands.scoreboard.teams.list.player.empty",
+    "commands.scoreboard.teams.list.player.entry",
+    "commands.scoreboard.teams.option.noValue",
+    "commands.scoreboard.teams.option.success",
+    "commands.scoreboard.teams.remove.success",
     "commands.screenshake.description",
     "commands.screenshake.success",
     "commands.screenshake.successStop",
@@ -5001,7 +5001,7 @@ export const languageKeys = [
     "key.copy_facing_coordinates",
     "key.cycleItemLeft",
     "key.cycleItemRight",
-    "key.scoreboardIdentity",
+    "key.scoreboard",
     "key.drop",
     "key.forward",
     "key.fullscreen",
@@ -10528,73 +10528,73 @@ MinecraftLanguageKeys["commands.schedule.functionRan"] = { rawtext: [{ translate
 MinecraftLanguageKeys["commands.schedule.invalidOrigin"] = { rawtext: [{ translate: "commands.schedule.invalidOrigin", },], };
 MinecraftLanguageKeys["commands.schedule.name.empty"] = { rawtext: [{ translate: "commands.schedule.name.empty", },], };
 MinecraftLanguageKeys["commands.schedule.too.many.areas"] = { rawtext: [{ translate: "commands.schedule.too.many.areas", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.description"] = { rawtext: [{ translate: "commands.scoreboardIdentity.description", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.allMatchesFailed"] = { rawtext: [{ translate: "commands.scoreboardIdentity.allMatchesFailed", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.noMultiWildcard"] = { rawtext: [{ translate: "commands.scoreboardIdentity.noMultiWildcard", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectiveNotFound"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectiveNotFound", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectiveReadOnly"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectiveReadOnly", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.add.alreadyExists"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.alreadyExists", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.add.displayTooLong"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.displayTooLong", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.add.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.add.tooLong"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.tooLong", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.add.wrongType"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.wrongType", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.add.needName"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.add.needName", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.description"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.description", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.list.count"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.list.count", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.list.empty"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.list.empty", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.list.entry"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.list.entry", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.remove.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.remove.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.setdisplay.invalidSlot"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.setdisplay.invalidSlot", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.setdisplay.successCleared"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.setdisplay.successCleared", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.objectives.setdisplay.successSet"] = { rawtext: [{ translate: "commands.scoreboardIdentity.objectives.setdisplay.successSet", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.add.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.add.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.add.multiple.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.add.multiple.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.nameNotFound"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.nameNotFound", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.enable.noTrigger"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.enable.noTrigger", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.enable.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.enable.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.list.count"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.list.count", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.list.empty"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.list.empty", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.list.player.count"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.list.player.count", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.list.player.empty"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.list.player.empty", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.list.player.entry"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.list.player.entry", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.operation.invalidOperation"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.operation.invalidOperation", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.operation.notFound"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.operation.notFound", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.operation.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.operation.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.offlinePlayerName"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.offlinePlayerName", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.random.invalidRange"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.random.invalidRange", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.remove.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.remove.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.remove.multiple.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.remove.multiple.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.reset.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.reset.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.resetscore.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.resetscore.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.set.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.set.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.set.multiple.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.set.multiple.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.set.tagError"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.set.tagError", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.set.tagMismatch"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.set.tagMismatch", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.score.notFound"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.score.notFound", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.test.failed"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.test.failed", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.test.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.test.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.players.get.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.players.get.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teamNotFound"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teamNotFound", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.add.alreadyExists"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.add.alreadyExists", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.add.displayTooLong"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.add.displayTooLong", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.add.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.add.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.add.tooLong"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.add.tooLong", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.empty.alreadyEmpty"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.empty.alreadyEmpty", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.empty.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.empty.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.join.failure"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.join.failure", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.join.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.join.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.leave.failure"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.leave.failure", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.leave.noTeam"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.leave.noTeam", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.leave.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.leave.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.list.count"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.count", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.list.empty"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.empty", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.list.entry"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.entry", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.list.player.count"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.player.count", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.list.player.empty"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.player.empty", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.list.player.entry"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.list.player.entry", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.option.noValue"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.option.noValue", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.option.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.option.success", },], };
-MinecraftLanguageKeys["commands.scoreboardIdentity.teams.remove.success"] = { rawtext: [{ translate: "commands.scoreboardIdentity.teams.remove.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.description"] = { rawtext: [{ translate: "commands.scoreboard.description", },], };
+MinecraftLanguageKeys["commands.scoreboard.allMatchesFailed"] = { rawtext: [{ translate: "commands.scoreboard.allMatchesFailed", },], };
+MinecraftLanguageKeys["commands.scoreboard.noMultiWildcard"] = { rawtext: [{ translate: "commands.scoreboard.noMultiWildcard", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectiveNotFound"] = { rawtext: [{ translate: "commands.scoreboard.objectiveNotFound", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectiveReadOnly"] = { rawtext: [{ translate: "commands.scoreboard.objectiveReadOnly", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.add.alreadyExists"] = { rawtext: [{ translate: "commands.scoreboard.objectives.add.alreadyExists", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.add.displayTooLong"] = { rawtext: [{ translate: "commands.scoreboard.objectives.add.displayTooLong", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.add.success"] = { rawtext: [{ translate: "commands.scoreboard.objectives.add.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.add.tooLong"] = { rawtext: [{ translate: "commands.scoreboard.objectives.add.tooLong", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.add.wrongType"] = { rawtext: [{ translate: "commands.scoreboard.objectives.add.wrongType", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.add.needName"] = { rawtext: [{ translate: "commands.scoreboard.objectives.add.needName", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.description"] = { rawtext: [{ translate: "commands.scoreboard.objectives.description", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.list.count"] = { rawtext: [{ translate: "commands.scoreboard.objectives.list.count", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.list.empty"] = { rawtext: [{ translate: "commands.scoreboard.objectives.list.empty", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.list.entry"] = { rawtext: [{ translate: "commands.scoreboard.objectives.list.entry", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.remove.success"] = { rawtext: [{ translate: "commands.scoreboard.objectives.remove.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.setdisplay.invalidSlot"] = { rawtext: [{ translate: "commands.scoreboard.objectives.setdisplay.invalidSlot", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.setdisplay.successCleared"] = { rawtext: [{ translate: "commands.scoreboard.objectives.setdisplay.successCleared", },], };
+MinecraftLanguageKeys["commands.scoreboard.objectives.setdisplay.successSet"] = { rawtext: [{ translate: "commands.scoreboard.objectives.setdisplay.successSet", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.add.success"] = { rawtext: [{ translate: "commands.scoreboard.players.add.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.add.multiple.success"] = { rawtext: [{ translate: "commands.scoreboard.players.add.multiple.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.nameNotFound"] = { rawtext: [{ translate: "commands.scoreboard.players.nameNotFound", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.enable.noTrigger"] = { rawtext: [{ translate: "commands.scoreboard.players.enable.noTrigger", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.enable.success"] = { rawtext: [{ translate: "commands.scoreboard.players.enable.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.list.count"] = { rawtext: [{ translate: "commands.scoreboard.players.list.count", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.list.empty"] = { rawtext: [{ translate: "commands.scoreboard.players.list.empty", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.list.player.count"] = { rawtext: [{ translate: "commands.scoreboard.players.list.player.count", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.list.player.empty"] = { rawtext: [{ translate: "commands.scoreboard.players.list.player.empty", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.list.player.entry"] = { rawtext: [{ translate: "commands.scoreboard.players.list.player.entry", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.operation.invalidOperation"] = { rawtext: [{ translate: "commands.scoreboard.players.operation.invalidOperation", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.operation.notFound"] = { rawtext: [{ translate: "commands.scoreboard.players.operation.notFound", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.operation.success"] = { rawtext: [{ translate: "commands.scoreboard.players.operation.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.offlinePlayerName"] = { rawtext: [{ translate: "commands.scoreboard.players.offlinePlayerName", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.random.invalidRange"] = { rawtext: [{ translate: "commands.scoreboard.players.random.invalidRange", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.remove.success"] = { rawtext: [{ translate: "commands.scoreboard.players.remove.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.remove.multiple.success"] = { rawtext: [{ translate: "commands.scoreboard.players.remove.multiple.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.reset.success"] = { rawtext: [{ translate: "commands.scoreboard.players.reset.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.resetscore.success"] = { rawtext: [{ translate: "commands.scoreboard.players.resetscore.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.set.success"] = { rawtext: [{ translate: "commands.scoreboard.players.set.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.set.multiple.success"] = { rawtext: [{ translate: "commands.scoreboard.players.set.multiple.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.set.tagError"] = { rawtext: [{ translate: "commands.scoreboard.players.set.tagError", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.set.tagMismatch"] = { rawtext: [{ translate: "commands.scoreboard.players.set.tagMismatch", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.score.notFound"] = { rawtext: [{ translate: "commands.scoreboard.players.score.notFound", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.test.failed"] = { rawtext: [{ translate: "commands.scoreboard.players.test.failed", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.test.success"] = { rawtext: [{ translate: "commands.scoreboard.players.test.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.players.get.success"] = { rawtext: [{ translate: "commands.scoreboard.players.get.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.teamNotFound"] = { rawtext: [{ translate: "commands.scoreboard.teamNotFound", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.add.alreadyExists"] = { rawtext: [{ translate: "commands.scoreboard.teams.add.alreadyExists", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.add.displayTooLong"] = { rawtext: [{ translate: "commands.scoreboard.teams.add.displayTooLong", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.add.success"] = { rawtext: [{ translate: "commands.scoreboard.teams.add.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.add.tooLong"] = { rawtext: [{ translate: "commands.scoreboard.teams.add.tooLong", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.empty.alreadyEmpty"] = { rawtext: [{ translate: "commands.scoreboard.teams.empty.alreadyEmpty", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.empty.success"] = { rawtext: [{ translate: "commands.scoreboard.teams.empty.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.join.failure"] = { rawtext: [{ translate: "commands.scoreboard.teams.join.failure", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.join.success"] = { rawtext: [{ translate: "commands.scoreboard.teams.join.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.leave.failure"] = { rawtext: [{ translate: "commands.scoreboard.teams.leave.failure", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.leave.noTeam"] = { rawtext: [{ translate: "commands.scoreboard.teams.leave.noTeam", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.leave.success"] = { rawtext: [{ translate: "commands.scoreboard.teams.leave.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.list.count"] = { rawtext: [{ translate: "commands.scoreboard.teams.list.count", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.list.empty"] = { rawtext: [{ translate: "commands.scoreboard.teams.list.empty", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.list.entry"] = { rawtext: [{ translate: "commands.scoreboard.teams.list.entry", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.list.player.count"] = { rawtext: [{ translate: "commands.scoreboard.teams.list.player.count", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.list.player.empty"] = { rawtext: [{ translate: "commands.scoreboard.teams.list.player.empty", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.list.player.entry"] = { rawtext: [{ translate: "commands.scoreboard.teams.list.player.entry", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.option.noValue"] = { rawtext: [{ translate: "commands.scoreboard.teams.option.noValue", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.option.success"] = { rawtext: [{ translate: "commands.scoreboard.teams.option.success", },], };
+MinecraftLanguageKeys["commands.scoreboard.teams.remove.success"] = { rawtext: [{ translate: "commands.scoreboard.teams.remove.success", },], };
 MinecraftLanguageKeys["commands.screenshake.description"] = { rawtext: [{ translate: "commands.screenshake.description", },], };
 MinecraftLanguageKeys["commands.screenshake.success"] = { rawtext: [{ translate: "commands.screenshake.success", },], };
 MinecraftLanguageKeys["commands.screenshake.successStop"] = { rawtext: [{ translate: "commands.screenshake.successStop", },], };
@@ -14474,7 +14474,7 @@ MinecraftLanguageKeys["key.copy_coordinates"] = { rawtext: [{ translate: "key.co
 MinecraftLanguageKeys["key.copy_facing_coordinates"] = { rawtext: [{ translate: "key.copy_facing_coordinates", },], };
 MinecraftLanguageKeys["key.cycleItemLeft"] = { rawtext: [{ translate: "key.cycleItemLeft", },], };
 MinecraftLanguageKeys["key.cycleItemRight"] = { rawtext: [{ translate: "key.cycleItemRight", },], };
-MinecraftLanguageKeys["key.scoreboardIdentity"] = { rawtext: [{ translate: "key.scoreboardIdentity", },], };
+MinecraftLanguageKeys["key.scoreboard"] = { rawtext: [{ translate: "key.scoreboard", },], };
 MinecraftLanguageKeys["key.drop"] = { rawtext: [{ translate: "key.drop", },], };
 MinecraftLanguageKeys["key.forward"] = { rawtext: [{ translate: "key.forward", },], };
 MinecraftLanguageKeys["key.fullscreen"] = { rawtext: [{ translate: "key.fullscreen", },], };

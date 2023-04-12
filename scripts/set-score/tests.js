@@ -6,7 +6,7 @@ import { setScore } from "./index";
 import { getScore } from "./getScore";
 
 world.events.chat.subscribe((event) => {
-  if (!event.sender.scoreboardIdentity) return;
+  if (!event.sender.scoreboard) return;
 
   const score = getScore(event.sender, 'messages');
   setScore(event.sender, 'messages', score + 1);

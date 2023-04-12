@@ -14,8 +14,8 @@ function setScore (entity, objectiveId, score) {
   if (!objective) throw new ReferenceError('Scoreboard objective does not exist in world.');
 
   // If entity doesnt have scoreboard property, run command
-  if (!entity.scoreboardIdentity) entity.runCommandAsync('scoreboard players set @s ' + objective + ' ' + score);
-  else entity.scoreboardIdentity.setScore(objective, score);
+  if (!entity.scoreboard) entity.runCommandAsync('scoreboard players set @s ' + objective + ' ' + score);
+  else entity.scoreboard.setScore(objective, score);
 
   // fetch scoreboard objective display
   /**

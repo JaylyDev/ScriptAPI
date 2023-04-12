@@ -37,7 +37,7 @@ export default function Player(player: mc.Player): PlayerExtra {
       getScore(objectiveId: string) {
         return mc.world.scoreboard
           .getObjective(objectiveId)
-          .getScore(player.scoreboardIdentity);
+          .getScore(player.scoreboard);
       },
       showForm(form: ModalFormData | MessageFormData | ActionFormData, callback: (response: any) => void) {
         form.show(player).then(callback);

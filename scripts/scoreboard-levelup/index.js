@@ -16,7 +16,7 @@ function getScore(objective, target, useZero = false) {
     if (typeof target == 'string') {
       return obj.getScore(obj.getParticipants().find(v => v.displayName === target));
     }
-    return obj.getScore(target.scoreboardIdentity);
+    return obj.getScore(target.scoreboard);
   } catch {
     return useZero ? 0 : NaN;
   }

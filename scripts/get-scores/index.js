@@ -10,7 +10,7 @@ export function getScores (target) {
   let objectives = world.scoreboard.getObjectives();
   let targetScoreboard = {};
 
-  if (!(target.scoreboardIdentity instanceof ScoreboardIdentity)) return targetScoreboard;
+  if (!(target.scoreboard instanceof ScoreboardIdentity)) return targetScoreboard;
   for (const objective of objectives) targetScoreboard[objective.id] = objective.getScores().find((score) => score.participant.type !== ScoreboardIdentityType.fakePlayer ? score.participant.getEntity() === target : false)?.score;
   return targetScoreboard;
 };
@@ -25,11 +25,11 @@ export function getScores (target) {
 export function getScore (target, objectiveId) {
   let objective = world.scoreboard.getObjective(objectiveId);
 
-  if (!(target.scoreboardIdentity instanceof ScoreboardIdentity)) return;
+  if (!(target.scoreboard instanceof ScoreboardIdentity)) return;
   if (!(objective instanceof ScoreboardObjective)) return;
 
   try {
-    return objective.getScore(target.scoreboardIdentity);
+    return objective.getScore(target.scoreboard);
   } catch (err) {
     console.error(err);
   };

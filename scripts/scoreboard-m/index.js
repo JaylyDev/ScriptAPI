@@ -67,7 +67,7 @@ export const ScoreboardM = {
     /**
      * This Method For Getting Objective Object
      * @param {string} id - The Id Of Objective
-     * @returns {mc.scoreboardIdentityObjective} - Returns The Objective Object
+     * @returns {mc.ScoreboardObjective} - Returns The Objective Object
      */
     getObj: function(id) {
         if (mc.world.scoreboard.getObjective(id)) {
@@ -235,7 +235,7 @@ export const ScoreboardM = {
     /**
      * This Method Is To Getting Display Slot Options That Is Currently Displaying
      * @param {'sidebar' | 'list' | 'belowName'} id - Id Of Slot To Get Options
-     * @returns {mc.scoreboardIdentityObjectiveDisplayOptions} - This Returns Display Options
+     * @returns {mc.ScoreboardObjectiveDisplayOptions} - This Returns Display Options
      * @example 
      * ScoreboardM.getDisplaySlot("sidebar")
      */
@@ -258,7 +258,7 @@ export const ScoreboardM = {
     /**
      * This Sets/Displays Objective At Given Slots
      * @param {'sidebar'|'list'| 'belowName'} id - The Slot Id To Display Objective
-     * @param {mc.scoreboardIdentityObjectiveDisplayOptions} opt - The scoreboard Options to display the Objective
+     * @param {mc.ScoreboardObjectiveDisplayOptions} opt - The scoreboard Options to display the Objective
      * @returns {ScoreboardM} - The Main ScoreboardM Object
      * @example
      * ScoreboardM.setDisplaySlot("sidebar",{objective: ScoreboardM.getObj("money"),sortOrder: 0})
