@@ -613,7 +613,7 @@ velocity   * @param itemCategory
    * Y rotation of the player after teleportation.
    * @throws This function can throw errors.
    */
-  teleport(location: Minecraft.Vector3, dimension: Minecraft.Dimension, xRotation: number, yRotation: number): void { return this.__player.teleport(location, dimension, xRotation, yRotation) };
+  teleport(location: Minecraft.Vector3, dimension: Minecraft.Dimension, xRotation: number, yRotation: number): void { return this.__player.teleport(location, {dimension, rotation:{x:xRotation,y:yRotation}}) };
   /**
    * @remarks
    * Teleports the selected player to a new location, and will
@@ -626,7 +626,7 @@ velocity   * @param itemCategory
    * Location that this player will be facing.
    * @throws This function can throw errors.
    */
-  teleportFacing(location: Minecraft.Vector3, dimension: Minecraft.Dimension, facingLocation: Minecraft.Vector3): void { return this.__player.teleportFacing(location, dimension, facingLocation) };
+  teleportFacing(location: Minecraft.Vector3, dimension: Minecraft.Dimension, facingLocation: Minecraft.Vector3): void { return this.__player.teleport(location, {dimension, facingLocation}) };
   /**
    * @remarks
    * Triggers an entity type event. For every entity, a number of

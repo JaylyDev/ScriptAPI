@@ -42,7 +42,7 @@ export function setVelocity(velocity, player) {
                 rideable?.ejectRider(player); // eject rider
                 // teleport entity to void to avoid mob loot drops
                 let { location } = entity;
-                entity.teleport({ x: location.x, y: -100, z: location.z }, entity.dimension, 0, 0);
+                entity.teleport({ x: location.x, y: -100, z: location.z });
                 entity.kill();
             }
             else {
