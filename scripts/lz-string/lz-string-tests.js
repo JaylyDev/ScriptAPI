@@ -16,7 +16,7 @@ async function Main () {
 };
 
 let started = false;
-world.events.beforeChat.subscribe(() => {
+world.beforeEvents.chatSend.subscribe(() => {
   if (started) return;
 
   world.sendMessage("Unit test starts");

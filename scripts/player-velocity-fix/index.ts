@@ -51,7 +51,7 @@ export function setVelocity (velocity: Vector3, player: Player) {
         
         // teleport entity to void to avoid mob loot drops
         let { location } = entity;
-        entity.teleport({ x: location.x, y: -100, z: location.z}, entity.dimension, 0, 0);
+        entity.teleport({ x: location.x, y: -100, z: location.z});
         entity.kill();
       } else {
         // Force the player to ride the entity until the entity lands

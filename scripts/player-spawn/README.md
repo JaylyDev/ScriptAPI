@@ -2,7 +2,7 @@
 
 ## Description
 
-Usage of PlayerSpawnEvent, when player first join
+Usage of PlayerSpawnAfterEvent, when player first join
 
 ## Credits
 

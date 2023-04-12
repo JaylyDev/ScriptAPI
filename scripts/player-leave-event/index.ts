@@ -1,7 +1,7 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world, Player as MinecraftPlayer, Dimension, Block, Entity, EntityComponent, ScoreboardIdentity, Vector, XYRotation, Vector3, PlayerSpawnEvent, system } from "@minecraft/server";
+import { world, Player as MinecraftPlayer, Dimension, Block, Entity, EntityComponent, ScoreboardIdentity, Vector, Vector2, Vector3, PlayerSpawnAfterEvent, system } from "@minecraft/server";
 import "@minecraft/server-gametest"; // import "@minecraft/server-gametest" native module to support Simulated Players
 
 /**
@@ -87,7 +87,7 @@ class Player {
    * Main rotation of the entity.
    * @throws This property can throw when used.
    */
-  public readonly 'rotation': XYRotation;
+  public readonly 'rotation': Vector2;
   /**
    * Returns a scoreboard identity that represents this entity.
    * @throws This property can throw when used.
@@ -220,7 +220,7 @@ class Player {
     this.name = player.name;
     this.nameTag = player.nameTag;
     this.rotation = player.getRotation();
-    this.scoreboard = player.scoreboard;
+    this.scoreboard = player.scoreboardIdentity;
     this.selectedSlot = player.selectedSlot;
     this.target = player.target;
     this.velocity = new Vector(velocity.x, velocity.y, velocity.z);
@@ -269,7 +269,7 @@ export class PlayerLeaveEventSignal {
         if (!currentPlayers.find(pl => comparePlayer(pl, player)) && executedPlayerIndex < 0) {
           executedPlayers.push(player);
 
-          let onPlayerSpawn: (arg: PlayerSpawnEvent) => void = world.events.playerSpawn.subscribe((playerJoinEvent) => {
+          let onPlayerSpawn: (arg: PlayerSpawnAfterEvent) => void = world.events.playerSpawn.subscribe((playerJoinEvent) => {
             let playerIndex = executedPlayers.findIndex(pl => comparePlayer(pl, playerJoinEvent.player));
             if (playerIndex >= 0) {
               executedPlayers.splice(playerIndex);

@@ -6,7 +6,7 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import { Player, Location, MinecraftEntityTypes, MinecraftEffectTypes } from "@minecraft/server";
+import { Player, MinecraftEntityTypes, MinecraftEffectTypes } from "@minecraft/server";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -199,7 +199,7 @@ var Commands = /** @class */ (function () {
     Commands.register = function (prefix, command, commandFunction) {
         if (prefix.startsWith("/"))
             throw Error("Unable to register slash commands.");
-        world.events.beforeChat.subscribe(function (arg) {
+        world.beforeEvents.chatSend.subscribe(function (arg) {
             var argv = arg.message.split(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g).filter(function (e) { return e.trim().length > 0; });
             if (argv[0] === "".concat(prefix).concat(command)) {
                 arg.cancel = true;
@@ -591,7 +591,7 @@ export function setVelocity(velocity, player) {
                 rideable === null || rideable === void 0 ? void 0 : rideable.ejectRider(player); // eject rider
                 // teleport entity to void to avoid mob loot drops
                 var location_1 = entity.location;
-                entity.teleport(new Location(location_1.x, -100, location_1.z), entity.dimension, 0, 0);
+                entity.teleport({x:location_1.x, y:-100, z:location_1.z});
                 entity.kill();
             }
             else {

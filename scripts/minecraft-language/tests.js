@@ -1,12 +1,12 @@
 import { world } from "@minecraft/server";
 import { MinecraftLanguageKeys } from "./index";
 
-world.events.beforeChat.subscribe((event) => {
+world.beforeEvents.chatSend.subscribe((event) => {
   event.setTargets([]);
   event.sendToTargets = true;
 });
 
-world.events.chat.subscribe((event) => {
+world.events.chatSend.subscribe((event) => {
   /**
    * @type {import("@minecraft/server").RawMessage}
    */

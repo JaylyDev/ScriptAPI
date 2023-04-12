@@ -16,7 +16,7 @@ bleedEnchant.onHurt(data => {
     world.sendMessage("hello world")
 })
 
-world.events.beforeChat.subscribe(data => {
+world.beforeEvents.chatSend.subscribe(data => {
     /**
      * @type {Container}
      */

@@ -11,7 +11,7 @@ const replacements = {
 };
 
 /**
- * @param {import("@minecraft/server").BeforeChatEvent} msg
+ * @param {import("@minecraft/server").ChatSendBeforeEvent} msg
  */
 function beforeChat(msg) {
     const player = msg.sender;
@@ -26,4 +26,4 @@ function beforeChat(msg) {
     msg.cancel = true;
 }
 
-world.events.beforeChat.subscribe(msg => beforeChat(msg));
+world.beforeEvents.chatSend.subscribe(msg => beforeChat(msg));

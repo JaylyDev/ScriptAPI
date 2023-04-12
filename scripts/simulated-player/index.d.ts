@@ -24,7 +24,7 @@ export declare class SimulatedPlayer {
      * Rotation of the head across pitch and yaw angles.
      * @throws This property can throw when used.
      */
-    get 'headRotation'(): Minecraft.XYRotation;
+    get 'headRotation'(): Minecraft.Vector2;
     /**
      * Identifier for the player.
      * @throws This property can throw when used.
@@ -65,7 +65,7 @@ export declare class SimulatedPlayer {
      * Main rotation of the entity.
      * @throws This property can throw when used.
      */
-    get 'rotation'(): Minecraft.XYRotation;
+    get 'rotation'(): Minecraft.Vector2;
     /**
      * Returns a scoreboard identity that represents this entity.
      * @throws This property can throw when used.
@@ -424,7 +424,7 @@ export declare class SimulatedPlayer {
      * Additional optional options for the sound.
      * @throws This function can throw errors.
      */
-    playSound(soundID: string, soundOptions?: Minecraft.SoundOptions): void;
+    playSound(soundID: string, soundOptions?: Minecraft.PlayerSoundOptions): void;
     /**
      * @remarks
      * Removes a specified property.

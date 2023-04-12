@@ -5,8 +5,8 @@ import { world } from "@minecraft/server";
 import { setScore } from "./index";
 import { getScore } from "./getScore";
 
-world.events.chat.subscribe((event) => {
-  if (!event.sender.scoreboard) return;
+world.events.chatSend.subscribe((event) => {
+  if (!event.sender.scoreboardIdentity) return;
 
   const score = getScore(event.sender, 'messages');
   setScore(event.sender, 'messages', score + 1);

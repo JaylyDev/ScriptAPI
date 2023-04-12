@@ -87,7 +87,7 @@ export class SimulatedPlayer {
      * Returns a scoreboard identity that represents this entity.
      * @throws This property can throw when used.
      */
-    get 'scoreboard'() { return this.__player.scoreboard; }
+    get 'scoreboard'() { return this.__player.scoreboardIdentity; }
     ;
     /**
      * Manages the selected slot in the player's hotbar.
@@ -674,7 +674,7 @@ export class SimulatedPlayer {
      * Y rotation of the player after teleportation.
      * @throws This function can throw errors.
      */
-    teleport(location, dimension, xRotation, yRotation) { return this.__player.teleport(location, dimension, xRotation, yRotation); }
+    teleport(location, dimension, xRotation, yRotation) { return this.__player.teleport(location, {dimension, rotation:{x:xRotation,y:yRotation}}); }
     ;
     /**
      * @remarks
@@ -688,7 +688,7 @@ export class SimulatedPlayer {
      * Location that this player will be facing.
      * @throws This function can throw errors.
      */
-    teleportFacing(location, dimension, facingLocation) { return this.__player.teleportFacing(location, dimension, facingLocation); }
+    teleportFacing(location, dimension, facingLocation) { return this.__player.teleport(location, {dimension, facingLocation}); }
     ;
     /**
      * @remarks

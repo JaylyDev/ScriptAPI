@@ -11,6 +11,6 @@ SpawnSimulatedPlayer(host, function (simulatedPlayer) {
         x: 0,
         y: 0,
         z: 0
-    }, world.getDimension("nether"), 0, 0);
+    });
     simulatedPlayer.kick("All tasks completed.");
 });

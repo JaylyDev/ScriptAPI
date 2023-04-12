@@ -13,10 +13,10 @@ gui.button('§l§8Teleport request')
 gui.button('§l§bBank')
 gui.button('§l§eMoney Transactions')
 
-world.events.beforeItemUse.subscribe(data => {
+world.beforeEvents.itemUse.subscribe(data => {
     const source = data.source
     if (!(source instanceof Player)) return;
-    if (data.item.typeId === 'minecraft:compass') gui.show(source).then(result => {
+    if (data.itemStack.typeId === 'minecraft:compass') gui.show(source).then(result => {
         if (result.canceled) console.warn('GUI was canceled')
         if (result.selection === 0) source.runCommandAsync('give @s diamond 1')
         if (result.selection === 1) source.runCommandAsync('give @s diamond 1')
