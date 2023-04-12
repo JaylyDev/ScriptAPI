@@ -1,7 +1,7 @@
 import { world } from "@minecraft/server";
 import { MinecraftLanguageKeys } from "./index";
 
-world.events.beforeChat.subscribe((event) => {
+world.beforeEvents.chatSend.subscribe((event) => {
   event.setTargets([]);
   event.sendToTargets = true;
 });

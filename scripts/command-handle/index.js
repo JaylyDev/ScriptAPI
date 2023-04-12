@@ -33,7 +33,7 @@ function customCommand(command, args, msg, player) {
 }
 
 //Checks if a command was run (checks for the prefix)
-world.events.beforeChat.subscribe((msg) => {
+world.beforeEvents.chatSend.subscribe((msg) => {
   if (!msg.message.startsWith(COMMAND_PREFIX)) return;
   const args = msg.message.slice(COMMAND_PREFIX.length).trim().split(/\s+/);
   msg.cancel = true;

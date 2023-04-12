@@ -6,7 +6,7 @@ import * as Minecraft from "@minecraft/server";
 
 let prefix = "!";
 
-Minecraft.world.events.beforeChat.subscribe((data) => {
+Minecraft.world.beforeEvents.chatSend.subscribe((data) => {
   if (data.message.toLowerCase().startsWith(`${prefix}help`)) {
     data.cancel = true;
     data.sender.runCommandAsync(`tellraw @s {"rawtext":[{"text":"hello"}]}`);

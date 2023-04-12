@@ -1,6 +1,6 @@
 import { world } from "@minecraft/server";
 
-world.events.beforeChat.subscribe((data) => {
+world.beforeEvents.chatSend.subscribe((data) => {
     data.sendToTargets = true
     data.setTargets([])
 })

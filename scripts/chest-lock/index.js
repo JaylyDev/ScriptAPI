@@ -7,7 +7,7 @@ const chestsType = [
 
 const key = MinecraftItemTypes.recoveryCompass;
 
-world.events.beforeItemUseOn.subscribe((event) => {
+world.beforeEvents.itemUseOn.subscribe((event) => {
   const player = event.source;
   if (!(player instanceof Player)) return;
   const block = player.dimension.getBlock(event.getBlockLocation());

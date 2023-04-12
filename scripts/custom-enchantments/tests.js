@@ -10,7 +10,7 @@ bleedEnchant.onHurt(data => {
     data.hurtEntity.runCommandAsync(`damage @s 2`)
 })
 
-world.events.beforeChat.subscribe(data => {
+world.beforeEvents.chatSend.subscribe(data => {
     /**
      * @type {Container}
      */

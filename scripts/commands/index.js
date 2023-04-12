@@ -92,7 +92,7 @@ export class Commands {
     static register(prefix, command, commandFunction) {
         if (prefix.startsWith("/"))
             throw Error("Unable to register slash commands.");
-        world.events.beforeChat.subscribe((arg) => {
+        world.beforeEvents.chatSend.subscribe((arg) => {
             var argv = arg.message.split(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g).filter(e => e.trim().length > 0);
             if (argv[0] === `${prefix}${command}`) {
                 arg.cancel = true;

@@ -4,7 +4,7 @@
 // command: /tag @s add rank:Owner
 import { world } from "@minecraft/server";
 
-world.events.beforeChat.subscribe((eventData) => {
+world.beforeEvents.chatSend.subscribe((eventData) => {
   const { message, sender } = eventData;
 
   let rank = sender

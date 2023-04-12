@@ -5,7 +5,7 @@ import { world, system, Player } from "@minecraft/server";
 import { ModalFormData, ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { forceShow } from "force-show/index";
 
-world.events.beforeChat.subscribe(async (event) => {
+world.beforeEvents.chatSend.subscribe(async (event) => {
   event.cancel = true;
 
   const modalForm = new ModalFormData();
@@ -20,7 +20,7 @@ world.events.beforeChat.subscribe(async (event) => {
   }
 });
 
-world.events.beforeItemUse.subscribe(async (event) => {
+world.beforeEvents.itemUse.subscribe(async (event) => {
   if (!(event.source instanceof Player)) return;
   event.cancel = true;
 

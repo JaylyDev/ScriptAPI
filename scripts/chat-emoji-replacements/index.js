@@ -26,4 +26,4 @@ function beforeChat(msg) {
     msg.cancel = true;
 }
 
-world.events.beforeChat.subscribe(msg => beforeChat(msg));
+world.beforeEvents.chatSend.subscribe(msg => beforeChat(msg));

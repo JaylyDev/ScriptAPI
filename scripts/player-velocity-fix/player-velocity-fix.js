@@ -199,7 +199,7 @@ var Commands = /** @class */ (function () {
     Commands.register = function (prefix, command, commandFunction) {
         if (prefix.startsWith("/"))
             throw Error("Unable to register slash commands.");
-        world.events.beforeChat.subscribe(function (arg) {
+        world.beforeEvents.chatSend.subscribe(function (arg) {
             var argv = arg.message.split(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g).filter(function (e) { return e.trim().length > 0; });
             if (argv[0] === "".concat(prefix).concat(command)) {
                 arg.cancel = true;

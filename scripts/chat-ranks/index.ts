@@ -30,7 +30,7 @@ function getRanks(player: Player): string[] {
   return ranks.length == 0 ? [DEFAULT_RANK] : ranks;
 }
 
-world.events.beforeChat.subscribe((data) => {
+world.beforeEvents.chatSend.subscribe((data) => {
   data.sendToTargets = true;
   data.setTargets([]);
 });

@@ -13,7 +13,7 @@ gui.button('§l§8Teleport request')
 gui.button('§l§bBank')
 gui.button('§l§eMoney Transactions')
 
-world.events.beforeItemUse.subscribe(data => {
+world.beforeEvents.itemUse.subscribe(data => {
     const source = data.source
     if (!(source instanceof Player)) return;
     if (data.item.typeId === 'minecraft:compass') gui.show(source).then(result => {

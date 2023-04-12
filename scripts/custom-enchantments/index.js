@@ -138,7 +138,7 @@ world.events.entityHurt.subscribe(({ hurtEntity, damageSource, damage }) => {
       });
   }
 });
-world.events.beforeItemUse.subscribe(({ source, item }) => {
+world.beforeEvents.itemUse.subscribe(({ source, item }) => {
   if (source instanceof Player) {
       const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
       itemEnchants.forEach((e) => {
@@ -148,7 +148,7 @@ world.events.beforeItemUse.subscribe(({ source, item }) => {
       });
   }
 });
-world.events.beforeItemUseOn.subscribe((event) => {
+world.beforeEvents.itemUseOn.subscribe((event) => {
   if (event.source instanceof Player) {
       const itemEnchants = event.item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
       itemEnchants.forEach((e) => {
