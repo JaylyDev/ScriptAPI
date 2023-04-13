@@ -30,7 +30,7 @@ Set score:
 
 ```js
 import { setScore, ScoreboardAction } from "./index";
-setScore (entity, "objectiveId", 10, ScoreboardAction.set);
+setScore (entity, "objectiveId", 10);
 ```
 
 This function fetches scoreboard objective display by default, to disable this set 5th parameter to `false`:
