@@ -45,7 +45,7 @@ const updateDisplay = (objective) => {
  * @param {string} objectiveId Objective to apply the score to.
  * @param {number} score Score value
  * @param {ScoreboardAction} action Decides whether to add, remove, or set score to entity (default = set)
- * @param {boolean} fetch Fetch scoreboard objective display
+ * @param {boolean} fetch Fetch scoreboard objective display (default = true)
  */
 function setScore(entity, objectiveId, score, action, fetch = true) {
     // Check if scoreboard object exist first
