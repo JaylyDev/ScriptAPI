@@ -8,7 +8,7 @@
  * }
  * ```
  */
-import { BlockLocationIterator, Color, CompoundBlockVolumeAction, Player, Vector3 } from "@minecraft/server";
+import { BlockLocationIterator, BlockVolume, BoundingBox, Color, CompoundBlockVolumeAction, Player, Vector3 } from "@minecraft/server";
 export class ClipboardItem {
     protected constructor();
     readFromSelection(selection: Selection): void;
@@ -42,9 +42,16 @@ export class ClipboardWriteOptions {
     mirror: ClipboardMirrorAxis;
     rotation: ClipboardRotation;
 }
+export interface CursorProperties {
+    outlineColor: Color;
+    controlMode: CursorControlMode;
+    targetMode: CursorTargetMode;
+    visible: boolean;
+    fixedModeDistance?: number;
+}
 export class Cursor {
-    getProperties(): Record<string, any>;
-    setProperties(properties: Record<string, any>): void;
+    getProperties(): CursorProperties;
+    setProperties(properties: CursorProperties): void;
     getPosition(): Vector3;
     moveBy(vector: Vector3): void;
     resetToDefaultState(): void;
@@ -85,10 +92,7 @@ export class MinecraftEditor {
 }
 export interface PushVolumeOptions {
     action: CompoundBlockVolumeAction,
-    volume: {
-        from: Vector3,
-        to: Vector3
-    }
+    volume: BlockVolume
 }
 export class Selection {
     protected constructor();
@@ -97,12 +101,14 @@ export class Selection {
     popVolume(): void;
     copyFrom(selection: Selection): void;
     getBlockLocationIterator(): BlockLocationIterator;
+    getBoundingBox(): BoundingBox;
     moveBy(vector: Vector3): void;
     moveTo(vector: Vector3): void;
+    peekLastVolume(): PushVolumeOptions | undefined;
     getFillColor(): Color;
     getOutlineColor(): Color;
-    setFillColor(): Color;
-    setOutlineColor(): Color;
+    setFillColor(color: Color): void;
+    setOutlineColor(color: Color): void;
     isEmpty: boolean;
     visible: boolean;
 }
