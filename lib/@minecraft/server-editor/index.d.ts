@@ -713,3 +713,6 @@ export interface IPropertyItem extends PropertyItem { }
  * Interface for internal Menu class
  */
 export interface IMenu extends Menu { }
+
+export const ExtensionOptionalParameters: undefined;
+export const CursorProperties: undefined;
