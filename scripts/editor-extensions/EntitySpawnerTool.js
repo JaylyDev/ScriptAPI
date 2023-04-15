@@ -1,7 +1,10 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "color/index";
-export default function(uiSession) {
+import { Color } from "../color/index";
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession
+ */
+export default (uiSession) => {
     const tool = uiSession.toolRail.addTool(
         {
             displayString: "Entity Spawner (CTRL + E)",
@@ -9,27 +12,27 @@ export default function(uiSession) {
             icon: "pack://textures/editor/entity.png?filtering=point",
         },
     );
-    
-    const currentCursorState = uiSession.extensionContext.cursor.getState();
-    currentCursorState.color = new Color(0, 1, 0, 1);
-    currentCursorState.controlMode = Editor.CursorControlMode.KeyboardAndMouse;
-    currentCursorState.targetMode = Editor.CursorTargetMode.Face;
-    currentCursorState.visible = true;
-    
-    const previewSelection = uiSession.extensionContext.selectionManager.createSelection();
+
+    const previewSelection = uiSession.extensionContext.selectionManager.create();
     previewSelection.visible = true;
-    previewSelection.borderColor = new Color(0, 1, 0, 0.2);
-    previewSelection.fillColor = new Color(0, 1, 0, 0.1);
+    previewSelection.setOutlineColor(new Color(0, 1, 0, 0.2));
+    previewSelection.setFillColor(new Color(0, 1, 0, 0.1));
     
     uiSession.scratchStorage = {
-        currentCursorState,
+        currentCursorState: {
+            outlineColor: new Color(0, 1, 0, 1),
+            controlMode: Editor.CursorControlMode.KeyboardAndMouse,
+            targetMode: Editor.CursorTargetMode.Face,
+            visible: true,
+            fixedModeDistance: 5
+        },
         previewSelection,
     };
     
     tool.onModalToolActivation.subscribe(
         eventData => {
             if (eventData.isActiveTool)
-                uiSession.extensionContext.cursor.setState(uiSession.scratchStorage.currentCursorState);
+                uiSession.extensionContext.cursor.setProperties(uiSession.scratchStorage.currentCursorState);
         },
     );
     
@@ -50,13 +53,23 @@ export default function(uiSession) {
     const pane = uiSession.createPropertyPane(
         {
             titleAltText: "Entity Spawner",
+            width: 40,
         },
     );
     
     const settings = Editor.createPaneBindingObject(
         pane,
         {
-            entityType: "minecraft:creeper",
+            nameTag: "",
+            entityType: Server.MinecraftEntityTypes.creeper.id,
+        },
+    );
+
+    pane.addString(
+        settings,
+        "nameTag",
+        {
+            titleAltText: "Name Tag",
         },
     );
     
@@ -65,8 +78,8 @@ export default function(uiSession) {
         "entityType",
         {
             titleAltText: "Entity Type",
-            dropdownItems: [...Server.EntityTypes.getAll()].map(
-                ({ id }) => (
+            dropdownItems: [...Server.EntityTypes.getAll()].map(({ id }) => id).sort().map(
+                (id) => (
                     {
                         value: id,
                         displayAltText: id,
@@ -87,7 +100,7 @@ export default function(uiSession) {
         
         const previewSelection = uiSession.scratchStorage.previewSelection;
         const player = uiSession.extensionContext.player;
-        const targetBlock = player.dimension.getBlock(uiSession.extensionContext.cursor.position);
+        const targetBlock = player.dimension.getBlock(uiSession.extensionContext.cursor.getPosition());
         if (!targetBlock) return;
         const location = targetBlock.location;
         const from = {
@@ -96,11 +109,16 @@ export default function(uiSession) {
             z: location.z,
         };
         const to = { x: from.x, y: from.y, z: from.z };
-        const blockVolume = new Editor.BlockVolume(from, to);
-        if (uiSession.scratchStorage.lastVolumePlaced?.equals(blockVolume.boundingBox)) return;
-        
-        previewSelection.pushVolume(Editor.SelectionBlockVolumeAction.add, blockVolume);
-        uiSession.scratchStorage.lastVolumePlaced = blockVolume.boundingBox;
+        const blockVolume = { from, to };
+        if (uiSession.scratchStorage.lastVolumePlaced && Server.BoundingBoxUtils.equals(uiSession.scratchStorage.lastVolumePlaced, Server.BlockVolumeUtils.getBoundingBox(blockVolume))) return;
+
+        previewSelection.pushVolume(
+            {
+                action: Server.CompoundBlockVolumeAction.Add,
+                volume: blockVolume
+            }
+        );
+        uiSession.scratchStorage.lastVolumePlaced = Server.BlockVolumeUtils.getBoundingBox(blockVolume);
     };
     
     tool.registerMouseButtonBinding(
@@ -117,8 +135,8 @@ export default function(uiSession) {
                                 const player = uiSession.extensionContext.player;
                                 const targetBlock = player.dimension.getBlock(blockLocation);
                                 
-                                if(targetBlock)
-                                    player.dimension.spawnEntity(
+                                if(targetBlock) {
+                                    const entity = player.dimension.spawnEntity(
                                         settings.entityType,
                                         {
                                             x: targetBlock.x + 0.5,
@@ -126,6 +144,9 @@ export default function(uiSession) {
                                             z: targetBlock.z + 0.5,
                                         },
                                     );
+
+                                    entity.nameTag = settings.nameTag;
+                                };
                             }).catch(() => {
                                 uiSession.extensionContext.transactionManager.commitOpenTransaction();
                                 uiSession.scratchStorage?.previewSelection.clear();
