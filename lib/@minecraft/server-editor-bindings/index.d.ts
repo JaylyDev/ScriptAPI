@@ -87,7 +87,8 @@ export class MinecraftEditor {
     registerExtension_Internal(
         extensionName: string,
         activationFunction: (context: ExtensionContext) => void,
-        shutdownFunction: (context: ExtensionContext) => void
+        shutdownFunction: (context: ExtensionContext) => void,
+        optionalParameters?: ExtensionOptionalParameters
     ): Extension;
 }
 export interface PushVolumeOptions {
@@ -133,3 +134,7 @@ export class TransactionManager {
     discardOpenTransaction(): void;
 }
 export const editor: MinecraftEditor;
+export interface ExtensionOptionalParameters {
+    description?: string;
+    notes?: string;
+}

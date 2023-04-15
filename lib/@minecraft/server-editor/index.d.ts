@@ -690,7 +690,8 @@ export function getLocalizationId(locId: string): string;
 export function registerEditorExtension(
     extensionName: string,
     activationFunction?: (uiSession: PlayerUISession) => void,
-    shutdownFunction?: (uiSession: PlayerUISession) => void
+    shutdownFunction?: (uiSession: PlayerUISession) => void,
+    optionalParameters?: ExtensionOptionalParameters
 ): Extension;
 
 /**
@@ -713,5 +714,3 @@ export interface IPropertyItem extends PropertyItem { }
  * Interface for internal Menu class
  */
 export interface IMenu extends Menu { }
-
-export const ExtensionOptionalParameters: undefined;
