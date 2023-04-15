@@ -19,8 +19,8 @@ editor.registerEditorExtension(
 			}
 		)
 		
-		const currentCursorState = uiSession.extensionContext.cursor.getState()
-		currentCursorState.color = {red: 1, green: 0, blue: 1, alpha: 1}
+		const currentCursorState = uiSession.extensionContext.cursor.getProperties()
+		currentCursorState.outlineColor = {red: 1, green: 0, blue: 1, alpha: 1}
 		currentCursorState.controlMode = editor.CursorControlMode.KeyboardAndMouse
 		currentCursorState.targetMode = editor.CursorTargetMode.Face
 		currentCursorState.visible = true
@@ -28,7 +28,7 @@ editor.registerEditorExtension(
 		
 		tool.onModalToolActivation.subscribe(
 			eventData => {
-				if (eventData.isActiveTool) uiSession.extensionContext.cursor.setState(uiSession.scratchStorage.spawnerCursorState)
+				if (eventData.isActiveTool) uiSession.extensionContext.cursor.setProperties(uiSession.scratchStorage.spawnerCursorState)
 			}
 		)
 		

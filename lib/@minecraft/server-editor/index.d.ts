@@ -9,11 +9,7 @@
  * ```
  */
 import { Events, Player, System, Vector3 } from "@minecraft/server";
-import {
-    Extension,
-    ExtensionContext,
-    Selection,
-} from "@minecraft/server-editor-bindings";
+import { Extension, ExtensionContext, Selection, ExtensionOptionalParameters } from "@minecraft/server-editor-bindings";
 export * from "@minecraft/server-editor-bindings";
 
 type BedrockEventType = keyof Events;
@@ -690,7 +686,8 @@ export function getLocalizationId(locId: string): string;
 export function registerEditorExtension(
     extensionName: string,
     activationFunction?: (uiSession: PlayerUISession) => void,
-    shutdownFunction?: (uiSession: PlayerUISession) => void
+    shutdownFunction?: (uiSession: PlayerUISession) => void,
+    optionalParameters?: ExtensionOptionalParameters
 ): Extension;
 
 /**

@@ -1,7 +1,11 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "color/index.js";
-export default function(uiSession) {
+import { Color } from "../color/index.js";
+import { Mesh } from "./mesh";
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession
+ */
+export default (uiSession) => {
     const tool = uiSession.toolRail.addTool(
         {
             displayString: "Cylinder (CTRL + SHIFT + C)",
@@ -9,27 +13,27 @@ export default function(uiSession) {
             icon: "pack://textures/editor/cylinder.png?filtering=point",
         },
     );
-    
-    const currentCursorState = uiSession.extensionContext.cursor.getState();
-    currentCursorState.color = new Color(1, 1, 0, 1);
-    currentCursorState.controlMode = Editor.CursorControlMode.KeyboardAndMouse;
-    currentCursorState.targetMode = Editor.CursorTargetMode.Block;
-    currentCursorState.visible = true;
-    
-    const previewSelection = uiSession.extensionContext.selectionManager.createSelection();
+
+    const previewSelection = uiSession.extensionContext.selectionManager.create();
     previewSelection.visible = true;
-    previewSelection.borderColor = new Color(0, 0.5, 0.5, 0.2);
-    previewSelection.fillColor = new Color(0, 0, 0.5, 0.1);
+    previewSelection.setOutlineColor(new Color(0, 0.5, 0.5, 0.2));
+    previewSelection.setFillColor(new Color(0, 0, 0.5, 0.1));
     
     uiSession.scratchStorage = {
-        currentCursorState,
+        currentCursorState: {
+            outlineColor: new Color(1, 1, 0, 1),
+            controlMode: Editor.CursorControlMode.KeyboardAndMouse,
+            targetMode: Editor.CursorTargetMode.Block,
+            visible: true,
+            fixedModeDistance: 5
+        },
         previewSelection,
     };
     
     tool.onModalToolActivation.subscribe(
         eventData => {
             if (eventData.isActiveTool)
-                uiSession.extensionContext.cursor.setState(uiSession.scratchStorage.currentCursorState);
+                uiSession.extensionContext.cursor.setProperties(uiSession.scratchStorage.currentCursorState);
         },
     );
     
@@ -100,7 +104,7 @@ export default function(uiSession) {
             uiSession.scratchStorage.currentCursorState.targetMode = settings.face
                 ? Editor.CursorTargetMode.Face
                 : Editor.CursorTargetMode.Block;
-            uiSession.extensionContext.cursor.setState(uiSession.scratchStorage.currentCursorState);
+            uiSession.extensionContext.cursor.setProperties(uiSession.scratchStorage.currentCursorState);
         },
     });
     pane.addBlockPicker(
@@ -121,22 +125,26 @@ export default function(uiSession) {
         
         const previewSelection = uiSession.scratchStorage.previewSelection;
         const player = uiSession.extensionContext.player;
-        const targetBlock = player.dimension.getBlock(uiSession.extensionContext.cursor.position);
+        const targetBlock = player.dimension.getBlock(uiSession.extensionContext.cursor.getPosition());
         if (!targetBlock) return;
         const location = targetBlock.location;
         if (
-            uiSession.scratchStorage.lastCursorPosition?.x == uiSession.extensionContext.cursor.position.x
-            && uiSession.scratchStorage.lastCursorPosition?.y == uiSession.extensionContext.cursor.position.y
-            && uiSession.scratchStorage.lastCursorPosition?.z == uiSession.extensionContext.cursor.position.z
+            uiSession.scratchStorage.lastCursorPosition?.x == uiSession.extensionContext.cursor.getPosition().x
+            && uiSession.scratchStorage.lastCursorPosition?.y == uiSession.extensionContext.cursor.getPosition().y
+            && uiSession.scratchStorage.lastCursorPosition?.z == uiSession.extensionContext.cursor.getPosition().z
         ) return;
 
         const cylinder = drawCylinder(location.x, location.y, location.z, settings.size, settings.height, settings.hollow);
-        for (const blockLocation of cylinder) {
-            const blockVolume = new Editor.BlockVolume(blockLocation, blockLocation);
-            previewSelection.pushVolume(Editor.SelectionBlockVolumeAction.add, blockVolume);
+        for (const blockVolume of cylinder.calculateVolumes()) {
+            previewSelection.pushVolume(
+                {
+                    action: Server.CompoundBlockVolumeAction.Add,
+                    volume: blockVolume
+                }
+            );
         };
 
-        uiSession.scratchStorage.lastCursorPosition = uiSession.extensionContext.cursor.position;
+        uiSession.scratchStorage.lastCursorPosition = uiSession.extensionContext.cursor.getPosition();
     };
     
     tool.registerMouseButtonBinding(
@@ -154,8 +162,13 @@ export default function(uiSession) {
 
                             uiSession.extensionContext.transactionManager.trackBlockChangeSelection(uiSession.scratchStorage.previewSelection);
                             await Editor.executeLargeOperation(uiSession.scratchStorage.previewSelection, blockLocation => {
-                                const block = player.dimension.getBlock(blockLocation);
-                                block.setType(settings.blockType);
+                                if (
+                                    blockLocation.y >= -64
+                                    && blockLocation.y <= 320
+                                ) {
+                                    const block = player.dimension.getBlock(blockLocation);
+                                    block.setType(settings.blockType);
+                                };
                             }).catch(() => {
                                 uiSession.extensionContext.transactionManager.commitOpenTransaction();
                                 uiSession.scratchStorage?.previewSelection.clear();
@@ -183,7 +196,7 @@ export default function(uiSession) {
 };
 
 function drawCylinder(x, y, z, radius, height, hollow = false) {
-	const blockLocations = [];
+	const mesh = new Mesh();
 	for (let i = 0; i < height; i++) {
 		let centerX = x;
 		let centerY = y + i;
@@ -210,7 +223,7 @@ function drawCylinder(x, y, z, radius, height, hollow = false) {
 						)
 					)
 				) {
-					blockLocations.push(
+					mesh.add(
 						{
 							x: centerX + j,
 							y: centerY,
@@ -222,5 +235,5 @@ function drawCylinder(x, y, z, radius, height, hollow = false) {
 		};
 	};
 
-	return blockLocations;
+	return mesh;
 };

@@ -8,51 +8,7 @@
  * }
  * ```
  */
-import { Color, Player, Vector3 } from "@minecraft/server";
-export class BlockVolume {
-    constructor(a: Vector3, b: Vector3);
-    contains(other: Vector3): boolean;
-    offset(other: Vector3): BlockVolume;
-    intersects(other: BlockVolume): number;
-    getBlockPositionIterator(): BlockVolumeIterator;
-    equals(other: BlockVolume): boolean;
-    boundingBox: BoundingBox;
-    min: Vector3;
-    max: Vector3;
-    volume: number;
-}
-export enum BlockVolumeIntersection {
-    disjoint = 0,
-    contains = 1,
-    intersects = 2,
-}
-export class BlockVolumeIterator implements Iterable<BlockVolume> {
-    protected constructor();
-    [Symbol.iterator](): Iterator<BlockVolume>;
-}
-export class BoundingBox {
-    constructor(
-        minX: number,
-        minY: number,
-        minZ: number,
-        maxX: number,
-        maxY: number,
-        maxZ: number
-    );
-    equals(other: BoundingBox): boolean;
-    fromBlockLocation(a: Vector3, b: Vector3): BoundingBox;
-    intersects(other: BoundingBox): number;
-    expand(other: BoundingBox): BoundingBox;
-    dilate(x: number, y: number, z: number): BoundingBox;
-    offset(other: Vector3): BoundingBox;
-    contains(other: Vector3): boolean;
-    min: Vector3;
-    max: Vector3;
-    center: Vector3;
-    spanX: number;
-    spanY: number;
-    spanZ: number;
-}
+import { BlockLocationIterator, BlockVolume, BoundingBox, Color, CompoundBlockVolumeAction, Player, Vector3 } from "@minecraft/server";
 export class ClipboardItem {
     protected constructor();
     readFromSelection(selection: Selection): void;
@@ -86,14 +42,21 @@ export class ClipboardWriteOptions {
     mirror: ClipboardMirrorAxis;
     rotation: ClipboardRotation;
 }
+export interface CursorProperties {
+    outlineColor: Color;
+    controlMode: CursorControlMode;
+    targetMode: CursorTargetMode;
+    visible: boolean;
+    fixedModeDistance?: number;
+}
 export class Cursor {
-    getState(): CursorState;
-    setState(state: CursorState): void;
+    getProperties(): CursorProperties;
+    setProperties(properties: CursorProperties): void;
+    getPosition(): Vector3;
     moveBy(vector: Vector3): void;
     resetToDefaultState(): void;
     show(): void;
     hide(): void;
-    position: Vector3;
     faceDirection: number;
     isVisible: boolean;
 }
@@ -103,24 +66,16 @@ export enum CursorControlMode {
     KeyboardAndMouse = 2,
     Fixed = 3,
 }
-export class CursorState {
-    color: Color;
-    controlMode: CursorControlMode;
-    targetMode: CursorTargetMode;
-    visible: boolean;
-    fixedModeDistance: number;
-}
 export enum CursorTargetMode {
     Block = 0,
     Face = 1,
 }
 export class Extension {
     protected constructor();
-    description: string;
-    notes: string;
 }
 export class ExtensionContext {
     protected constructor();
+    extensionName: string;
     player: Player;
     selectionManager: SelectionManager;
     transactionManager: TransactionManager;
@@ -132,32 +87,35 @@ export class MinecraftEditor {
     registerExtension_Internal(
         extensionName: string,
         activationFunction: (context: ExtensionContext) => void,
-        shutdownFunction: (context: ExtensionContext) => void
+        shutdownFunction: (context: ExtensionContext) => void,
+        optionalParameters?: ExtensionOptionalParameters
     ): Extension;
+}
+export interface PushVolumeOptions {
+    action: CompoundBlockVolumeAction,
+    volume: BlockVolume
 }
 export class Selection {
     protected constructor();
     clear(): void;
-    pushVolume(action: SelectionBlockVolumeAction, volume: BlockVolume): any;
+    pushVolume(options: PushVolumeOptions): void;
     popVolume(): void;
     copyFrom(selection: Selection): void;
-    getBlockPositionIterator(): BlockVolumeIterator;
+    getBlockLocationIterator(): BlockLocationIterator;
+    getBoundingBox(): BoundingBox;
     moveBy(vector: Vector3): void;
     moveTo(vector: Vector3): void;
-    peekLastVolume: BlockVolume;
-    boundingBox: BoundingBox;
+    peekLastVolume(): PushVolumeOptions | undefined;
+    getFillColor(): Color;
+    getOutlineColor(): Color;
+    setFillColor(color: Color): void;
+    setOutlineColor(color: Color): void;
     isEmpty: boolean;
     visible: boolean;
-    fillColor: Color;
-    borderColor: Color;
-}
-export enum SelectionBlockVolumeAction {
-    add = 0,
-    subtract = 1,
 }
 export class SelectionManager {
     protected constructor();
-    createSelection(): Selection;
+    create(): Selection;
     selection: Selection;
 }
 export class TransactionManager {
@@ -176,4 +134,7 @@ export class TransactionManager {
     discardOpenTransaction(): void;
 }
 export const editor: MinecraftEditor;
-export const ExtensionOptionalParameters: undefined
+export interface ExtensionOptionalParameters {
+    description?: string;
+    notes?: string;
+}
