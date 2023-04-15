@@ -1,27 +1,32 @@
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "color/index.js";
-export default function(uiSession) {
+import { Color } from "../color/index.js";
+import { Structures } from "structures/index";
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession
+ */
+export default (uiSession) => {
     const tool = uiSession.toolRail.addTool(
         {
             displayString: "Structure Placer (CTRL + P)",
             tooltip: "Left mouse click to place a structure",
-            icon: "pack://textures/editor/structure.png?filtering=point",
+            icon: "pack://textures/editor/structure_placer.png?filtering=point",
         },
     );
-    
-    const currentCursorState = uiSession.extensionContext.cursor.getState();
-    currentCursorState.color = new Color(1, 1, 0, 1);
-    currentCursorState.controlMode = Editor.CursorControlMode.KeyboardAndMouse;
-    currentCursorState.targetMode = Editor.CursorTargetMode.Block;
-    currentCursorState.visible = true;
+
     uiSession.scratchStorage = {
-        spawnerCursorState: currentCursorState,
+        currentCursorState: {
+            outlineColor: new Color(1, 1, 0, 1),
+            controlMode: Editor.CursorControlMode.KeyboardAndMouse,
+            targetMode: Editor.CursorTargetMode.Face,
+            visible: true,
+            fixedModeDistance: 5
+        },
     };
     
     tool.onModalToolActivation.subscribe(
         eventData => {
             if (eventData.isActiveTool)
-                uiSession.extensionContext.cursor.setState(uiSession.scratchStorage.spawnerCursorState);
+                uiSession.extensionContext.cursor.setProperties(uiSession.scratchStorage.currentCursorState);
         },
     );
 
@@ -42,6 +47,7 @@ export default function(uiSession) {
     const pane = uiSession.createPropertyPane(
         {
             titleAltText: "Structure Placer",
+            width: 73,
         },
     );
     
@@ -49,7 +55,13 @@ export default function(uiSession) {
         pane,
         {
             structureName: "",
+            face: true,
+            vanillaStructure: "",
             rotation: "0_degrees",
+            mirror: "none",
+            includeEntities: true,
+            waterlogBlocks: false,
+            removeBlocks: false,
         }
     );
     
@@ -61,29 +73,113 @@ export default function(uiSession) {
         },
     );
 
+    pane.addBool(
+        settings,
+        "face",
+        {
+            titleAltText: "Face Mode",
+            onChange: (_obj, _property, _oldValue, _newValue) => {
+                if (uiSession.scratchStorage === undefined) {
+                    console.error('Cube storage was not initialized.');
+                    return;
+                }
+                uiSession.scratchStorage.currentCursorState.targetMode = settings.face
+                    ? Editor.CursorTargetMode.Face
+                    : Editor.CursorTargetMode.Block;
+                uiSession.extensionContext.cursor.setProperties(uiSession.scratchStorage.currentCursorState);
+            },
+        }
+    );
+
     pane.addDropdown(
         settings,
-        'rotation',
+        "vanillaStructure",
+        {
+            titleAltText: "Vanilla Structure",
+            dropdownItems: Structures.map(
+                (value) => (
+                    {
+                        displayAltText: value,
+                        value,
+                    }
+                ),
+            ),
+            onChange: (_obj, _property, _oldValue, _newValue) => {
+                settings.structureName = settings.vanillaStructure;
+            },
+        },
+    );
+
+    pane.addDropdown(
+        settings,
+        "rotation",
         {
             titleAltText: "Rotation",
             dropdownItems: [
                 {
-                    displayAltText: '0°',
+                    displayAltText: "0°",
                     value: "0_degrees",
                 },
                 {
-                    displayAltText: '90°',
+                    displayAltText: "90°",
                     value: "90_degrees",
                 },
                 {
-                    displayAltText: '180°',
+                    displayAltText: "180°",
                     value: "180_degrees",
                 },
                 {
-                    displayAltText: '270°',
+                    displayAltText: "270°",
                     value: "270_degrees",
                 },
             ],
+        }
+    );
+
+    pane.addDropdown(
+        settings,
+        "mirror",
+        {
+            titleAltText: "Mirror",
+            dropdownItems: [
+                {
+                    displayAltText: "None",
+                    value: "none",
+                },
+                {
+                    displayAltText: "X",
+                    value: "x",
+                },
+                {
+                    displayAltText: "XZ",
+                    value: "xz",
+                },
+                {
+                    displayAltText: "Z",
+                    value: "z",
+                },
+            ],
+        }
+    );
+
+    pane.addBool(
+        settings,
+        "includeEntities", {
+            titleAltText: "Include Entities",
+        }
+    );
+
+    pane.addBool(
+        settings,
+        "waterlogBlocks", {
+            titleAltText: "Waterlog Blocks",
+        }
+    );
+
+    pane.addBool(
+        settings,
+        "removeBlocks", {
+            titleAltText: "Remove Blocks",
         }
     );
     
@@ -94,6 +190,7 @@ export default function(uiSession) {
             {
                 actionType: Editor.ActionTypes.MouseRayCastAction,
                 onExecute: (mouseRay, mouseProps) => {
+                    try {
                     if (mouseProps.mouseAction == Editor.MouseActionType.LeftButton) {
                         if (mouseProps.inputType == Editor.MouseInputType.ButtonDown) {
                             uiSession.extensionContext.selectionManager.selection.clear();
@@ -101,21 +198,30 @@ export default function(uiSession) {
                             const player = uiSession.extensionContext.player;
                             if(settings.structureName.trim().length == 0) return;
                             player.dimension.runCommandAsync(
-                                "structure load "
+                                "structure load \""
                                 + settings.structureName
+                                + "\" "
+                                + uiSession.extensionContext.cursor.getPosition().x
                                 + " "
-                                + uiSession.extensionContext.cursor.position.x
+                                + uiSession.extensionContext.cursor.getPosition().y
                                 + " "
-                                + (uiSession.extensionContext.cursor.position.y + 1)
-                                + " "
-                                + uiSession.extensionContext.cursor.position.z
+                                + uiSession.extensionContext.cursor.getPosition().z
                                 + " "
                                 + settings.rotation
+                                + " "
+                                + settings.mirror
+                                + " "
+                                + settings.includeEntities
+                                + " "
+                                + !settings.removeBlocks
+                                + " "
+                                + settings.waterlogBlocks
                             );
 
                             uiSession.extensionContext.selectionManager.selection.clear();
                         };
                     };
+                    } catch(e) { console.warn(e); };
                 },
             },
         ),
