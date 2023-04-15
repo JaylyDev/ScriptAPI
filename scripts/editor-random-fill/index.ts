@@ -270,16 +270,17 @@ export class SelectionBehavior {
       });
     };
     this.growVolume = (uiSession: IPlayerUISession, direction: Direction) => {
-      if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
-        return;
+      const lastVolumeItem = uiSession.extensionContext.selectionManager.selection.peekLastVolume();
+      if (!lastVolumeItem) {
+          return;
       }
-      const lastVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
+      const lastVolume = lastVolumeItem.volume;
       uiSession.extensionContext.selectionManager.selection.popVolume();
       const rotationY = uiSession.extensionContext.player.getRotation().y;
       const newVolume = growVolumeAlongViewAxis(lastVolume, rotationY, direction, 1);
       uiSession.extensionContext.selectionManager.selection.pushVolume({
-        action: CompoundBlockVolumeAction.Add,
-        volume: newVolume
+          action: lastVolumeItem.action,
+          volume: newVolume
       });
     };
     // Input and tool binding functions
