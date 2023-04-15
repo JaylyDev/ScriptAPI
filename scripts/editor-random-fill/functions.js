@@ -1,5 +1,4 @@
-import { Vector } from "@minecraft/server";
-import { BlockVolume } from "@minecraft/server-editor";
+import { BlockVolumeUtils, BoundingBoxUtils, Vector } from "@minecraft/server";
 import { Direction, getRotationCorrectedDirection } from "editor-utilities/index";
 /**
  * @beta
@@ -86,92 +85,98 @@ function growVolumeAlongAbsoluteAxis(volume, direction, amount) {
     if (amount > maxAxialLength) {
         amount = maxAxialLength;
     }
-    const bounds = volume.boundingBox;
+    const bounds = BlockVolumeUtils.getBoundingBox(volume);
+    const boundSize = BoundingBoxUtils.getSpan(bounds);
     const min = bounds.min;
     const max = bounds.max;
-    const spanX = bounds.spanX;
-    const spanY = bounds.spanY;
-    const spanZ = bounds.spanZ;
+    const spanX = boundSize.x;
+    const spanY = boundSize.y;
+    const spanZ = boundSize.z;
     switch (direction) {
-        case Direction.Up: // +Y Axis
+        case Direction.Up:
             if (spanY + amount > maxAxialLength) {
                 amount = maxAxialLength - spanY;
             }
             max.y += amount;
             break;
-        case Direction.Down: // -Y Axis
+        case Direction.Down:
             if (spanY + amount > maxAxialLength) {
                 amount = maxAxialLength - spanY;
             }
             min.y -= amount;
             break;
-        case Direction.Forward: // +Z Axis
+        case Direction.Forward:
             if (spanZ + amount > maxAxialLength) {
                 amount = maxAxialLength - spanZ;
             }
             max.z += amount;
             break;
-        case Direction.Back: // -Z Axis
+        case Direction.Back:
             if (spanZ + amount > maxAxialLength) {
                 amount = maxAxialLength - spanZ;
             }
             min.z -= amount;
             break;
-        case Direction.Left: // +X Axis
+        case Direction.Left:
             if (spanX + amount > maxAxialLength) {
                 amount = maxAxialLength - spanX;
             }
             max.x += amount;
             break;
-        case Direction.Right: // -X Axis
+        case Direction.Right:
             if (spanX + amount > maxAxialLength) {
                 amount = maxAxialLength - spanX;
             }
             min.x -= amount;
             break;
     }
-    const newVolume = new BlockVolume(min, max);
-    return newVolume;
+    return {
+        from: min,
+        to: max
+    };
 }
 function shrinkVolumeAlongAbsoluteAxis(volume, direction, amount) {
-    const bounds = volume.boundingBox;
+    const bounds = BlockVolumeUtils.getBoundingBox(volume);
+    const boundSize = BoundingBoxUtils.getSpan(bounds);
     const min = bounds.min;
     const max = bounds.max;
-    const spanX = bounds.spanX;
-    const spanY = bounds.spanY;
-    const spanZ = bounds.spanZ;
+    const spanX = boundSize.x;
+    const spanY = boundSize.y;
+    const spanZ = boundSize.z;
     switch (direction) {
-        case Direction.Up: // +Y Axis
+        case Direction.Up:
             if (spanY > amount) {
                 max.y -= amount;
             }
             break;
-        case Direction.Down: // -Y Axis
+        case Direction.Down:
             if (spanY > amount) {
                 min.y += amount;
             }
             break;
-        case Direction.Forward: // +Z Axis
+        case Direction.Forward:
             if (spanZ > amount) {
                 max.z -= amount;
             }
             break;
-        case Direction.Back: // -Z Axis
+        case Direction.Back:
             if (spanZ > amount) {
                 min.z += amount;
             }
             break;
-        case Direction.Left: // +X Axis
+        case Direction.Left:
             if (spanX > amount) {
                 max.x -= amount;
             }
             break;
-        case Direction.Right: // -X Axis
+        case Direction.Right:
             if (spanX > amount) {
                 min.x += amount;
             }
             break;
     }
-    const newVolume = new BlockVolume(min, max);
-    return newVolume;
+    return {
+        from: min,
+        to: max
+    };
 }
