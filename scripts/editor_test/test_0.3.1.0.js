@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { registerEditorExtension, BlockVolume } from "@minecraft/server-editor"
 
 registerEditorExtension(

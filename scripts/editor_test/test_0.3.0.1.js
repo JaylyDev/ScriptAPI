@@ -1,4 +1,5 @@
 // test script for server-editor-bindings 0.3.1
+// @ts-nocheck
 import { registerEditorExtension, ClipboardMirrorAxis, ClipboardRotation } from "@minecraft/server-editor";
 
 registerEditorExtension(

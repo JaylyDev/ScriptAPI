@@ -1,4 +1,5 @@
 // test script for server-editor-bindings 0.3.1
+// @ts-nocheck
 import {
   ActionTypes,
   InputModifier,

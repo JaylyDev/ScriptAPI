@@ -200,7 +200,7 @@ export default (uiSession) => {
         if (_oldValue === _newValue) return;
         const selection = uiSession.extensionContext.selectionManager.selection;
         if (!selection.isEmpty) {
-            const lastVolume = Server.BlockVolumeUtils.selection.peekLastVolume().volume;
+            const lastVolume = selection.peekLastVolume().volume;
             if (lastVolume) {
                 const min = {
                     x: settings.origin.x,

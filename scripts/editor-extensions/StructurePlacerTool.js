@@ -96,8 +96,7 @@ export default (uiSession) => {
         "vanillaStructure",
         {
             titleAltText: "Vanilla Structure",
-            dropdownItems: Structures.map(
-                (value) => (
+            dropdownItems: Array.from(Structures.values(), (value) => (
                     {
                         displayAltText: value,
                         value,
