@@ -604,11 +604,10 @@ export class SimulatedPlayer {
     /**
      * @remarks
      * Sets the main rotation of the entity.
-     * @param degreesX
-     * @param degreesY
+     * @param rotation
      * @throws This function can throw errors.
      */
-    setRotation(degreesX, degreesY) { return this.__player.setRotation(degreesX, degreesY); }
+    setRotation(rotation) { return this.__player.setRotation(rotation); }
     ;
     /**
      * @remarks
@@ -674,7 +673,7 @@ export class SimulatedPlayer {
      * Y rotation of the player after teleportation.
      * @throws This function can throw errors.
      */
-    teleport(location, dimension, xRotation, yRotation) { return this.__player.teleport(location, {dimension, rotation:{x:xRotation,y:yRotation}}); }
+    teleport(location, dimension, xRotation, yRotation) { return this.__player.teleport(location, { dimension, rotation: { x: xRotation, y: yRotation } }); }
     ;
     /**
      * @remarks
@@ -688,7 +687,7 @@ export class SimulatedPlayer {
      * Location that this player will be facing.
      * @throws This function can throw errors.
      */
-    teleportFacing(location, dimension, facingLocation) { return this.__player.teleport(location, {dimension, facingLocation}); }
+    teleportFacing(location, dimension, facingLocation) { return this.__player.teleport(location, { dimension, facingLocation }); }
     ;
     /**
      * @remarks
@@ -740,7 +739,7 @@ export class SimulatedPlayer {
      * Block-face-relative Y position where to place the item.
      * @throws This function can throw errors.
      */
-    useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY) { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocationX, faceLocationY); }
+    useItemInSlotOnBlock(slot, blockLocation, direction, faceLocation) { return this.__player.useItemInSlotOnBlock(slot, blockLocation, direction, faceLocation); }
     ;
     /**
      * @remarks
@@ -759,7 +758,7 @@ export class SimulatedPlayer {
      * Block-face-relative Y position where to place the item.
      * @throws This function can throw errors.
      */
-    useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY) { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocationX, faceLocationY); }
+    useItemOnBlock(itemStack, blockLocation, direction, faceLocation) { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocation); }
     ;
     constructor(player, test) {
         this.__player = player;

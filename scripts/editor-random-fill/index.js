@@ -1,8 +1,8 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { MinecraftBlockTypes, system, Vector, } from "@minecraft/server";
-import { KeyboardKey, ActionTypes, SelectionBlockVolumeAction, BlockVolume, MouseActionType, MouseInputType, CursorControlMode, InputModifier, getLocalizationId, CursorTargetMode, EditorInputContext, executeLargeOperation, createPaneBindingObject, registerEditorExtension, } from "@minecraft/server-editor";
+import { MinecraftBlockTypes, system, Vector, CompoundBlockVolumeAction, BlockVolumeUtils, BoundingBoxUtils } from "@minecraft/server";
+import { KeyboardKey, ActionTypes, MouseActionType, MouseInputType, CursorControlMode, InputModifier, getLocalizationId, CursorTargetMode, EditorInputContext, executeLargeOperation, createPaneBindingObject, registerEditorExtension } from "@minecraft/server-editor";
 import { getRotationCorrectedDirectionVector, Direction, } from "editor-utilities/index";
 import { getRelativeXYAxisAsNormal, growVolumeAlongViewAxis, intersectRayPlane, shrinkVolumeAlongViewAxis, } from "./functions";
 // ------------------------------------------------------------------------------------------------
@@ -41,7 +41,13 @@ export class SelectionBehavior {
             // Nothing pressed, then clear the stack and create a single 1x1x1
             if (!shiftPressed && !ctrlPressed && !altPressed) {
                 uiSession.extensionContext.selectionManager.selection.clear();
-                uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, new BlockVolume(clickLoc, clickLoc));
+                uiSession.extensionContext.selectionManager.selection.pushVolume({
+                    action: CompoundBlockVolumeAction.Add,
+                    volume: {
+                        from: clickLoc,
+                        to: clickLoc
+                    }
+                });
                 // Store this as the anchor point
                 this.lastAnchorPosition = clickLoc;
             }
@@ -51,7 +57,13 @@ export class SelectionBehavior {
             else if (shiftPressed && !ctrlPressed && !altPressed) {
                 if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
                     // Create a new 1x1x1 selection volume at the click position
-                    uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, new BlockVolume(clickLoc, clickLoc));
+                    uiSession.extensionContext.selectionManager.selection.pushVolume({
+                        action: CompoundBlockVolumeAction.Add,
+                        volume: {
+                            from: clickLoc,
+                            to: clickLoc
+                        }
+                    });
                     // Store this as the anchor point
                     this.lastAnchorPosition = clickLoc;
                 }
@@ -60,52 +72,90 @@ export class SelectionBehavior {
                     // corner for the new click, and defining a new volume area
                     const lastAnchorPosition = this.lastAnchorPosition;
                     uiSession.extensionContext.selectionManager.selection.popVolume();
-                    const newVolume = new BlockVolume(lastAnchorPosition, clickLoc);
-                    uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+                    const newVolume = {
+                        from: lastAnchorPosition,
+                        to: clickLoc
+                    };
+                    uiSession.extensionContext.selectionManager.selection.pushVolume({
+                        action: CompoundBlockVolumeAction.Add,
+                        volume: newVolume
+                    });
                 }
             }
             // Control pressed and no volume exists - create a single 1x1x1
             //  If a volume exists, just push a new 1x1x1 to the stack
             else if (ctrlPressed && !shiftPressed && !altPressed) {
-                uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, new BlockVolume(clickLoc, clickLoc));
+                uiSession.extensionContext.selectionManager.selection.pushVolume({
+                    action: CompoundBlockVolumeAction.Add,
+                    volume: {
+                        from: clickLoc,
+                        to: clickLoc
+                    }
+                });
                 // Store this as the anchor point
                 this.lastAnchorPosition = clickLoc;
             }
             // If ALT is pressed, and there IS already a full volume, then we're going into 3-click volume
             // mode and we need to do some intersection calculations
             else if (altPressed && !shiftPressed && !ctrlPressed) {
-                if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
-                    // Create a new 1x1x1 selection volume at the click position
-                    uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, new BlockVolume(clickLoc, clickLoc));
-                    // Store this as the anchor point
+                const currentItem = uiSession.extensionContext.selectionManager.selection.peekLastVolume();
+                if (!currentItem) {
+                    uiSession.extensionContext.selectionManager.selection.pushVolume({
+                        action: CompoundBlockVolumeAction.Add,
+                        volume: {
+                            from: clickLoc,
+                            to: clickLoc
+                        }
+                    });
                     this.lastAnchorPosition = clickLoc;
                 }
                 else {
-                    const currentVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
-                    const currentBounds = currentVolume.boundingBox;
+                    const currentVolume = currentItem.volume;
+                    const currentBounds = BlockVolumeUtils.getBoundingBox(currentVolume);
                     const translatedRayLocation = Vector.subtract(new Vector(mouseRay.location.x, mouseRay.location.y, mouseRay.location.z), new Vector(currentBounds.min.x, currentBounds.min.y, currentBounds.min.z));
                     const XYPlaneNormal = getRelativeXYAxisAsNormal(uiSession.extensionContext.player.getRotation().y);
                     const intersection = intersectRayPlane(translatedRayLocation, mouseRay.direction, XYPlaneNormal, 0);
                     if (intersection) {
                         const translatedIntersection = Vector.add(intersection, new Vector(currentBounds.min.x, currentBounds.min.y, currentBounds.min.z));
                         const newY = Math.ceil(translatedIntersection.y) - 1;
-                        const newVolume = new BlockVolume({ x: currentBounds.min.x, y: currentBounds.min.y, z: currentBounds.min.z }, { x: currentBounds.max.x, y: newY, z: currentBounds.max.z });
                         uiSession.extensionContext.selectionManager.selection.popVolume();
-                        uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+                        uiSession.extensionContext.selectionManager.selection.pushVolume({
+                            action: currentItem.action,
+                            volume: {
+                                from: {
+                                    x: currentBounds.min.x,
+                                    y: currentBounds.min.y,
+                                    z: currentBounds.min.z
+                                },
+                                to: {
+                                    x: currentBounds.max.x,
+                                    y: newY,
+                                    z: currentBounds.max.z
+                                }
+                            }
+                        });
                     }
                 }
             }
         };
         this.moveTopSelection = (uiSession, lastAnchor, direction) => {
-            if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
+            const lastVolumeItem = uiSession.extensionContext.selectionManager.selection.peekLastVolume();
+            if (!lastVolumeItem) {
                 return undefined;
             }
-            const lastVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
+            const lastVolume = lastVolumeItem.volume;
             uiSession.extensionContext.selectionManager.selection.popVolume();
             const rotationY = uiSession.extensionContext.player.getRotation().y;
             const correctedVector = getRotationCorrectedDirectionVector(rotationY, direction);
-            const newVolume = lastVolume.offset({ x: correctedVector.x, y: correctedVector.y, z: correctedVector.z });
-            uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+            const newVolume = BlockVolumeUtils.translate(lastVolume, {
+                x: correctedVector.x,
+                y: correctedVector.y,
+                z: correctedVector.z
+            });
+            uiSession.extensionContext.selectionManager.selection.pushVolume({
+                action: CompoundBlockVolumeAction.Add,
+                volume: newVolume
+            });
             // Update the last cursor click position with the move vector
             // so that extend-click operations work correctly with the new corner position
             const updatedClick = {
@@ -146,17 +196,24 @@ export class SelectionBehavior {
             uiSession.extensionContext.selectionManager.selection.popVolume();
             const rotationY = uiSession.extensionContext.player.getRotation().y;
             const newVolume = shrinkVolumeAlongViewAxis(lastVolume, rotationY, direction, 1);
-            uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+            uiSession.extensionContext.selectionManager.selection.pushVolume({
+                action: CompoundBlockVolumeAction.Add,
+                volume: newVolume
+            });
         };
         this.growVolume = (uiSession, direction) => {
-            if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
+            const lastVolumeItem = uiSession.extensionContext.selectionManager.selection.peekLastVolume();
+            if (!lastVolumeItem) {
                 return;
             }
-            const lastVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
+            const lastVolume = lastVolumeItem.volume;
             uiSession.extensionContext.selectionManager.selection.popVolume();
             const rotationY = uiSession.extensionContext.player.getRotation().y;
             const newVolume = growVolumeAlongViewAxis(lastVolume, rotationY, direction, 1);
-            uiSession.extensionContext.selectionManager.selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+            uiSession.extensionContext.selectionManager.selection.pushVolume({
+                action: lastVolumeItem.action,
+                volume: newVolume
+            });
         };
         // Input and tool binding functions
         // ------------------------------------------------------------------------------------------------
@@ -167,7 +224,7 @@ export class SelectionBehavior {
                 onExecute: (mouseRay, mouseProps) => {
                     if (mouseProps.mouseAction === MouseActionType.LeftButton) {
                         if (mouseProps.inputType === MouseInputType.ButtonDown) {
-                            if (mouseRay.rayHit || this.toolCursorState.controlMode === CursorControlMode.Fixed) {
+                            if (mouseRay.rayHit || this.toolCursorProperties.controlMode === CursorControlMode.Fixed) {
                                 this.singleClick(uiSession, mouseRay, mouseProps.modifiers.shift, mouseProps.modifiers.ctrl, mouseProps.modifiers.alt);
                             }
                             else {
@@ -239,7 +296,7 @@ export class SelectionBehavior {
                             this.growVolume(uiSession, Direction.Up);
                             this.growVolume(uiSession, Direction.Down);
                         }
-                        else if (this.toolCursorState.controlMode === CursorControlMode.Fixed) {
+                        else if (this.toolCursorProperties.controlMode === CursorControlMode.Fixed) {
                             uiSession.extensionContext.cursor.moveBy(Vector.forward);
                         }
                     }
@@ -256,7 +313,7 @@ export class SelectionBehavior {
                             this.shrinkVolume(uiSession, Direction.Up);
                             this.shrinkVolume(uiSession, Direction.Down);
                         }
-                        else if (this.toolCursorState.controlMode === CursorControlMode.Fixed) {
+                        else if (this.toolCursorProperties.controlMode === CursorControlMode.Fixed) {
                             uiSession.extensionContext.cursor.moveBy(Vector.back);
                         }
                     }
@@ -489,14 +546,17 @@ export class SelectionBehavior {
                     let x = 0, y = 0, z = 0;
                     let sx = 0, sy = 0, sz = 0;
                     const selection = uiSession.extensionContext.selectionManager.selection;
-                    if (selection && !selection.isEmpty) {
-                        const bounds = selection.peekLastVolume.boundingBox;
+                    const lastVolumeItem = selection.peekLastVolume();
+                    if (lastVolumeItem) {
+                        const lastVolume = lastVolumeItem.volume;
+                        const bounds = BlockVolumeUtils.getBoundingBox(lastVolume);
+                        const boundSize = BoundingBoxUtils.getSpan(bounds);
                         x = bounds.min.x;
                         y = bounds.min.y;
                         z = bounds.min.z;
-                        sx = bounds.spanX;
-                        sy = bounds.spanY;
-                        sz = bounds.spanZ;
+                        sx = boundSize.x;
+                        sy = boundSize.y;
+                        sz = boundSize.z;
                         if (!this.originPropertyItem?.enable) {
                             if (this.originPropertyItem) {
                                 this.originPropertyItem.enable = true;
@@ -520,13 +580,7 @@ export class SelectionBehavior {
                             }
                         }
                     }
-                    // If our current selection object settings
-                    if (this.settingsObject.origin.x !== x ||
-                        this.settingsObject.origin.y !== y ||
-                        this.settingsObject.origin.z !== z ||
-                        this.settingsObject.size.x !== sx ||
-                        this.settingsObject.size.y !== sy ||
-                        this.settingsObject.size.z !== sz) {
+                    if (this.settingsObject.origin.x !== x || this.settingsObject.origin.y !== y || this.settingsObject.origin.z !== z || this.settingsObject.size.x !== sx || this.settingsObject.size.y !== sy || this.settingsObject.size.z !== sz) {
                         this.settingsObject.origin.x = Math.trunc(x);
                         this.settingsObject.origin.y = Math.trunc(y);
                         this.settingsObject.origin.z = Math.trunc(z);
@@ -586,10 +640,10 @@ export class SelectionBehavior {
                                 console.error(`Unknown value from selection mode drop-down`);
                                 return;
                         }
-                        this.toolCursorState = uiSession.extensionContext.cursor.getState();
-                        this.toolCursorState.controlMode = cursorControlMode;
-                        this.toolCursorState.targetMode = cursorTargetMode;
-                        uiSession.extensionContext.cursor.setState(this.toolCursorState);
+                        this.toolCursorProperties = uiSession.extensionContext.cursor.getProperties();
+                        this.toolCursorProperties.controlMode = cursorControlMode;
+                        this.toolCursorProperties.targetMode = cursorTargetMode;
+                        uiSession.extensionContext.cursor.setProperties(this.toolCursorProperties);
                     }
                 },
             });
@@ -611,9 +665,15 @@ export class SelectionBehavior {
                             y: this.settingsObject.origin.y + this.settingsObject.size.y - 1,
                             z: this.settingsObject.origin.z + this.settingsObject.size.z - 1,
                         };
-                        const newVolume = new BlockVolume(min, max);
+                        const newVolume = {
+                            from: min,
+                            to: max
+                        };
                         selection.popVolume();
-                        selection.pushVolume(SelectionBlockVolumeAction.add, newVolume);
+                        selection.pushVolume({
+                            action: CompoundBlockVolumeAction.Add,
+                            volume: newVolume
+                        });
                     }
                 }
             };
@@ -704,7 +764,7 @@ export class SelectionBehavior {
             });
             tool.onModalToolActivation.subscribe((eventData) => {
                 if (eventData.isActiveTool) {
-                    uiSession.extensionContext.cursor.setState(this.toolCursorState);
+                    uiSession.extensionContext.cursor.setProperties(this.toolCursorProperties);
                     // Start refreshing the position
                     this.onTickRefresh(uiSession, tool);
                 }
@@ -740,23 +800,21 @@ export class SelectionBehavior {
                 player.sendMessage('No selection available to fill');
                 return;
             }
-            context.transactionManager.openTransaction('Select-Fill');
-            const bounds = context.selectionManager.selection.boundingBox;
+            context.transactionManager.openTransaction("Select-Fill");
+            const bounds = context.selectionManager.selection.getBoundingBox();
             context.transactionManager.trackBlockChangeArea(bounds.min, bounds.max);
-            await executeLargeOperation(context.selectionManager.selection, (blockLocation) => {
+            await executeLargeOperation(context.selectionManager.selection, (blockLocation => {
                 const block = dimension.getBlock(blockLocation);
                 if (block) {
                     block.isWaterlogged = false;
                     block.setType(fillType);
                 }
-            })
-                .catch(e => {
+            })).catch((e => {
                 console.error(e);
                 context.transactionManager.discardOpenTransaction();
-            })
-                .then(() => {
+            })).then((() => {
                 context.transactionManager.commitOpenTransaction();
-            });
+            }));
         };
         const storage = uiSession.scratchStorage;
         if (!storage) {
@@ -780,11 +838,11 @@ export class SelectionBehavior {
             block: MinecraftBlockTypes.bedrock,
         });
         // This is the initial cursor state for Selection
-        this.toolCursorState = uiSession.extensionContext.cursor.getState();
-        this.toolCursorState.color = { red: 1, green: 1, blue: 0, alpha: 1 }; // Yellow
-        this.toolCursorState.controlMode = CursorControlMode.KeyboardAndMouse;
-        this.toolCursorState.targetMode = CursorTargetMode.Block;
-        this.toolCursorState.visible = true;
+        this.toolCursorProperties = uiSession.extensionContext.cursor.getProperties();
+        this.toolCursorProperties.outlineColor = { red: 1, green: 1, blue: 0, alpha: 1 }; // Yellow
+        this.toolCursorProperties.controlMode = CursorControlMode.KeyboardAndMouse;
+        this.toolCursorProperties.targetMode = CursorTargetMode.Block;
+        this.toolCursorProperties.visible = true;
         this.lastAnchorPosition = { x: 0, y: 0, z: 0 };
         this.executeFillAction = uiSession.actionManager.createAction({
             actionType: ActionTypes.NoArgsAction,
