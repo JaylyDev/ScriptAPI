@@ -53,6 +53,7 @@ To test if this works, you can go on VSCode and type some variable names to see 
 
 Major to patch versions (`x.x.x`) represents Minecraft Editor API versions, revision version represents changes to type definitions in specific Minecraft editor version.
 
+- `0.3.3.0` (Apr 15, 2023)
 - `0.3.2.1` (Mar 26, 2023)
 - `0.3.2.0` (Mar 24, 2023)
 - `0.3.1.0` (Mar 13, 2023)
