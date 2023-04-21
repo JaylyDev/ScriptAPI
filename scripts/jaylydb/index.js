@@ -1,7 +1,7 @@
-var _a, _b, _c;
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
+var _a, _b, _c;
 import { ScoreboardIdentityType, world } from "@minecraft/server";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**

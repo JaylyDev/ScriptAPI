@@ -1,4 +1,7 @@
-import { EntityInventoryComponent, Items, ItemStack, MinecraftBlockTypes, MinecraftItemTypes, Player, world } from '@minecraft/server';
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
+import { EntityInventoryComponent, ItemTypes, MinecraftBlockTypes, MinecraftItemTypes, Player, world } from '@minecraft/server';
 
 const chestsType = [
   MinecraftBlockTypes.chest,
@@ -16,7 +19,7 @@ world.beforeEvents.itemUseOn.subscribe((event) => {
   const inventory = player.getComponent('inventory');
 
   if (chestsType.includes(block.type)) {
-    if (Items.get(inventory.container.getItem(player.selectedSlot)?.typeId ?? 'minecraft:air') === key) {
+    if (ItemTypes.get(inventory.container.getItem(player.selectedSlot)?.typeId ?? 'minecraft:air') === key) {
       event.cancel = false;
     }
     else {

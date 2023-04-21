@@ -1,7 +1,6 @@
 {
   "packages": [
     "chat-rank",
-    "chest-lock",
     "dimension-entities",
     "dimensions",
     "get-scores",
