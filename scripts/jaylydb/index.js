@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 var _a, _b, _c;
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
