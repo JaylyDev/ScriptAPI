@@ -23,7 +23,7 @@ export function checkItemAmount(player, itemId, clearItems = false) {
         let item = inventory.getItem(i);
         if (item?.typeId != itemId) continue;
         itemAmount += item.amount;
-    }
-    if (clearItems) player.runCommandAsync(`clear @s ${itemId}`);
+        if (clearItems) inventory.setItem(i);
+	};
     return itemAmount;
 }
