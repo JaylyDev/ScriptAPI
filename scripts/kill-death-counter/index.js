@@ -15,7 +15,7 @@ overworld
 overworld
   .runCommandAsync("scoreboard objectives add kills dummy")
   .catch((error) => console.warn(error));
-world.events.entityHurt.subscribe(
+world.afterEvents.entityHurt.subscribe(
   ({ hurtEntity, damageSource }) => {
     /** @type {EntityHealthComponent} */
     // @ts-ignore

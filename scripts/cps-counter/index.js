@@ -3,7 +3,7 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { MinecraftEntityTypes, world, Player } from "@minecraft/server";
 
-world.events.entityHit.subscribe(function ({ entity }) {
+world.afterEvents.entityHit.subscribe(function ({ entity }) {
   entity.typeId === MinecraftEntityTypes.player.id &&
     (entity["clicks"] || (entity["clicks"] = []),
       entity["clicks"].push({ timestamp: new Date().getTime() }));

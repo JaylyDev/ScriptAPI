@@ -28,7 +28,9 @@ export async function getVersion(module: string): Promise<string> {
     return new Date(time[a]).getTime() - new Date(time[b]).getTime();
   }).reverse();
 
-  const latestPreview = sorted.find((v) => v.includes(MinecraftChannel) && v.includes('-' + preReleaseChannel));
+  const latestPreview = sorted.find((v) => module.startsWith("@minecraft/server")
+    ? v.includes(MinecraftChannel) && v.includes('-' + preReleaseChannel)
+    : v.includes('-' + MinecraftChannel));
 
   if (!latestPreview) throw "Cannot fetch latest preview version of " + module;
 

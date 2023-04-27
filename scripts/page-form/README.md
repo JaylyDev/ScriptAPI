@@ -14,7 +14,7 @@ Example:
 import { Player, world } from "@minecraft/server";
 import FormatActionFormButtons from "page-form";
 
-world.events.itemUse.subscribe(({ source }) => {
+world.afterEvents.itemUse.subscribe(({ source }) => {
   if (source instanceof Player)
     FormatActionFormButtons(
       {

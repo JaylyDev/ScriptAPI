@@ -1,7 +1,7 @@
 import { RawMessage, Player } from "@minecraft/server";
 import { ModalFormData, ModalFormResponse } from "@minecraft/server-ui";
 
-class ModalFormDropdown {
+export class ModalFormDropdown {
   label: string | RawMessage;
   options: (string | RawMessage)[];
   defaultValueIndex?: number | undefined;
@@ -12,7 +12,7 @@ class ModalFormDropdown {
   };
 };
 
-class ModalFormSlider {
+export class ModalFormSlider {
   label: string | RawMessage;
   minimumValue: number;
   maximumValue: number;
@@ -27,7 +27,7 @@ class ModalFormSlider {
   };
 };
 
-class ModalFormTextField {
+export class ModalFormTextField {
   label: string | RawMessage;
   placeholderText: string | RawMessage;
   defaultValue: string | undefined;
@@ -38,7 +38,7 @@ class ModalFormTextField {
   };
 };
 
-class ModalFormToggle {
+export class ModalFormToggle {
   label: string | RawMessage;
   defaultValue?: boolean | undefined;
   constructor (label: string | RawMessage, defaultValue?: boolean | undefined) {
@@ -47,13 +47,13 @@ class ModalFormToggle {
   };
 };
 
-type ModalFormContent = ModalFormDropdown | ModalFormSlider | ModalFormTextField | ModalFormToggle;
+export type ModalFormContent = ModalFormDropdown | ModalFormSlider | ModalFormTextField | ModalFormToggle;
 
 /**
  * Used to create a fully customizable pop-up form for a
  * player.
  */
-class ModalFormBuilder extends ModalFormData {
+export class ModalFormBuilder extends ModalFormData {
   /**
    * Title of the pop-up form.
    */
@@ -94,5 +94,3 @@ class ModalFormBuilder extends ModalFormData {
     return this;
   }
 };
-
-export { ModalFormBuilder };

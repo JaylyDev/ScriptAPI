@@ -2,9 +2,16 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
-    "module": "ES2020",
-    "target": "ES2021",
     "allowSyntheticDefaultImports": false,
   },
+  "files": [
+    "BlockAreaSize.ts",
+    "BlockLocation.ts",
+    "index.ts",
+    "Location.ts",
+    "tests.ts",
+    "Vector.ts",
+    "Vector3.ts",
+  ],
   "extends": "../tsconfig.json"
 }

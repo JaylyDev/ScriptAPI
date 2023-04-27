@@ -8,11 +8,13 @@ This repository is filled with community driven script samples for Minecraft Bed
 
   Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
 
-  > ⚠️ Some scripts might use `@minecraft/server-net` and `@minecraft/server-admin` module, which the modules are only available in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock) and cannot be used on Minecraft clients.
+  > ⚠️ Some scripts might use API modules that are only enabled in specific environments, including:
+  > - `@minecraft/server-net` and `@minecraft/server-admin`: Modules that can only be used in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock).
+  > - `@minecraft/server-editor` and `@minecraft/server-editor-bindings`: Modules that can only be used on Editor projects in [Minecraft Editor](https://github.com/mojang/minecraft-editor).
 
 - ### [docs](./docs/)
   Contains technical documentation of Script API features.
-  > 🚫 Documentation are no longer being updated. Check out [Bedrock Wiki](https://wiki.bedrock.dev/) and [Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) for up-to-date infomation.
+  > 🚫 Documentation are no longer being updated. Check out [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts) and [Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) for up-to-date infomation.
 
 ## Contributing
 

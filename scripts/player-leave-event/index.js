@@ -213,11 +213,11 @@ export class PlayerLeaveEventSignal {
                 let executedPlayerIndex = executedPlayers.findIndex(executedPlayer => comparePlayer(executedPlayer, player));
                 if (!currentPlayers.find(pl => comparePlayer(pl, player)) && executedPlayerIndex < 0) {
                     executedPlayers.push(player);
-                    let onPlayerSpawn = world.events.playerSpawn.subscribe((playerJoinEvent) => {
+                    let onPlayerSpawn = world.afterEvents.playerSpawn.subscribe((playerJoinEvent) => {
                         let playerIndex = executedPlayers.findIndex(pl => comparePlayer(pl, playerJoinEvent.player));
                         if (playerIndex >= 0) {
                             executedPlayers.splice(playerIndex);
-                            world.events.playerSpawn.unsubscribe(onPlayerSpawn);
+                            world.afterEvents.playerSpawn.unsubscribe(onPlayerSpawn);
                         }
                         ;
                     });

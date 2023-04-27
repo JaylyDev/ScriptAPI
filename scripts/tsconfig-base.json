@@ -12,7 +12,8 @@
       "@minecraft/server-admin": [ "../node_modules/@minecraft/server-admin/index" ],
       "@minecraft/server-gametest": [ "../node_modules/@minecraft/server-gametest/index" ],
       "@minecraft/server-editor": [ "../lib/@minecraft/server-editor/index" ],
-      "@minecraft/server-editor-bindings": [ "../lib/@minecraft/server-editor-bindings/index" ]
+      "@minecraft/server-editor-bindings": [ "../lib/@minecraft/server-editor-bindings/index" ],
+      "@minecraft/vanilla-data": [ "../node_modules/@minecraft/vanilla-data/lib/index" ]
     },
     "types": [],
     "typeRoots": [],

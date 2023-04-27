@@ -13,7 +13,7 @@ const rest = new REST('demo'); // id is demo, lower case
     }
     ;
 })().catch(console.error);
-world.events.chatSend.subscribe((event) => {
+world.afterEvents.chatSend.subscribe((event) => {
     /**
      * Get player id from REST
      */

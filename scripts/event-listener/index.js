@@ -10,9 +10,9 @@ const removeSystemEventListener = (eventType, listener) => {
 };
 export { addSystemEventListener, removeSystemEventListener };
 const addEventListener = (eventType, listener) => {
-    return world.events[eventType].subscribe(listener);
+    return world.afterEvents[eventType].subscribe(listener);
 };
 const removeEventListener = (eventType, listener) => {
-    return world.events[eventType].unsubscribe(listener);
+    return world.afterEvents[eventType].unsubscribe(listener);
 };
 export { addEventListener, removeEventListener };

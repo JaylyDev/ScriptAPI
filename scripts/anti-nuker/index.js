@@ -8,7 +8,7 @@ import { TickEventSignal } from "tick-event/index"
 const log = new Map()
 const blockLog = new Map()
 
-world.events.blockBreak.subscribe(({ block, brokenBlockPermutation, dimension, player }) => {
+world.afterEvents.blockBreak.subscribe(({ block, brokenBlockPermutation, dimension, player }) => {
   const old = log.get(player.name)
   log.set(player.name, { time: Date.now(), amount: old?.amount ?? 0 })
   if (!old) return
@@ -37,7 +37,7 @@ system.runInterval(() => {
   })
 })
 
-world.events.playerLeave.subscribe((data) => (log.delete(data.playerName)) && (blockLog.delete(data.playerName)))
+world.afterEvents.playerLeave.subscribe((data) => (log.delete(data.playerName)) && (blockLog.delete(data.playerName)))
 
 /**
  * Delay executing a function

@@ -3,7 +3,7 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { Player, world, MinecraftEntityTypes } from "@minecraft/server";
 
-world.events.projectileHit.subscribe((arg) => {
+world.afterEvents.projectileHit.subscribe((arg) => {
   if (arg.getEntityHit()?.entity instanceof Player
       && arg.source instanceof Player
       && arg.projectile.typeId === MinecraftEntityTypes.arrow.id

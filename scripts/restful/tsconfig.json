@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "module": "es2020",
-    "target": "es2020",
     "esModuleInterop": true
   },
   "files": [ "index.ts", "encoding.ts", "tests.ts" ],

@@ -8,12 +8,12 @@
  * }
  * ```
  */
-import { Events, Player, System, Vector3 } from "@minecraft/server";
+import { AfterEvents, Player, System, Vector3 } from "@minecraft/server";
 import { Extension, ExtensionContext, Selection, ExtensionOptionalParameters } from "@minecraft/server-editor-bindings";
 export * from "@minecraft/server-editor-bindings";
 
-type BedrockEventType = keyof Events;
-type BedrockEventHandler = Events[BedrockEventType];
+type BedrockEventType = keyof AfterEvents;
+type BedrockEventHandler = AfterEvents[BedrockEventType];
 
 declare class BaseControl {
     private _visible: boolean;
@@ -75,7 +75,7 @@ declare class ClientEventDispatcher {
      * Dispatches and event of type T with the appropriate payload. See ServerEventPayloadMapping for the
      * correct mapping of payload to server event type
      */
-    dispatchEvent(type: any, payload: any, replacer: any): void;
+    dispatchEvent(type: EditorServerEventType, payload: any, replacer?: (this: any, key: string, value: any) => any | (number | string)[]): void;
     /**
      * Fires off all payloads in event queue and removes any tick registration
      */
@@ -418,7 +418,7 @@ export enum ActionTypes {
  * @beta
  */
 export class BedrockEventSubscriptionCache {
-    constructor(mEvents: Events);
+    constructor(mEvents: AfterEvents);
     /**
      * Subcribes to a bedrock event using the key of the desired event. When subscribed, the event handler
      * is both returned, but also cached internally for unsubscription. This means the caller of the subscription
@@ -428,9 +428,9 @@ export class BedrockEventSubscriptionCache {
      * @param event - The event on the bedrock APIs to which to subscribe
      * @param params - The parameters to the subscription method for the event. Auto complete will display this for you
      */
-    subscribeToBedrockEvent<T extends keyof Events>(event: T, ...params: Parameters<Events[T]["subscribe"]>): ReturnType<Events[T]["subscribe"]>;
+    subscribeToBedrockEvent<T extends keyof AfterEvents>(event: T, ...params: Parameters<AfterEvents[T]["subscribe"]>): ReturnType<AfterEvents[T]["subscribe"]>;
     teardown(): void;
-    private mEvents: Events;
+    private mEvents: AfterEvents;
     private subscribedEvents: object;
 }
 /**

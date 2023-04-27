@@ -101,7 +101,7 @@ export function removeEnchant(item, ench) {
 export function getEnchants(item) {
   return item.getLore().filter(lore => names[lore.split(" ")[0]]).map(lore => { return { name: names[lore.split(" ")[0]], level: romanToInt(lore.split(" ")[1]) }; });
 }
-world.events.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
+world.afterEvents.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
   if (entity instanceof Player) {
     /**
      * @type {Container}
@@ -119,7 +119,7 @@ world.events.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
       });
   }
 });
-world.events.entityHurt.subscribe(({ hurtEntity, damageSource, damage }) => {
+world.afterEvents.entityHurt.subscribe(({ hurtEntity, damageSource, damage }) => {
   if (!damageSource) return;
   if (damageSource.damagingEntity instanceof Player) {
     /**
@@ -157,7 +157,7 @@ world.beforeEvents.itemUseOn.subscribe((event) => {
       });
   }
 });
-world.events.blockBreak.subscribe(({ player, block, brokenBlockPermutation }) => {
+world.afterEvents.blockBreak.subscribe(({ player, block, brokenBlockPermutation }) => {
     
     /**
      * @type {Container}

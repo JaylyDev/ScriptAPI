@@ -15,7 +15,7 @@ import { EntityHealthComponent, EntityHurtAfterEvent, world } from "@minecraft/s
 const callbacks = [];
 
 // backend
-world.events.entityHurt.subscribe((event) => {
+world.afterEvents.entityHurt.subscribe((event) => {
   const { hurtEntity } = event;
 
   if (!hurtEntity) return;

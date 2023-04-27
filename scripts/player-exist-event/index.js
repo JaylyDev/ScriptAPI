@@ -49,14 +49,14 @@ export class PlayerExistEvent {
 };
 
 // backend
-world.events.playerJoin.subscribe((event) => {
+world.afterEvents.playerJoin.subscribe((event) => {
   const { playerId, playerName } = event;
 
-  const onPlayerSpawn = world.events.playerSpawn.subscribe((event) => {
+  const onPlayerSpawn = world.afterEvents.playerSpawn.subscribe((event) => {
     const { player, initialSpawn } = event;
 
     if (player.name === playerName && player.id === playerId && initialSpawn === true) {
-      world.events.playerSpawn.unsubscribe(onPlayerSpawn);
+      world.afterEvents.playerSpawn.unsubscribe(onPlayerSpawn);
 
       for (const callback of callbacks) {        
         callback(new PlayerExistEvent(initialSpawn, player, playerId, playerName));

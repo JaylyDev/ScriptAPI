@@ -23,7 +23,8 @@
     "@minecraft/server-admin": "1.0.0-beta.1.20.0-preview.22",
     "@minecraft/server-gametest": "1.0.0-beta.1.20.0-preview.22",
     "@minecraft/server-net": "1.0.0-beta.1.20.0-preview.22",
-    "@minecraft/server-ui": "1.1.0-beta.1.20.0-preview.22"
+    "@minecraft/server-ui": "1.1.0-beta.1.20.0-preview.22",
+    "@minecraft/vanilla-data": "1.20.0-preview.22"
   },
   "devDependencies": {
     "@npm/types": "^1.0.2",

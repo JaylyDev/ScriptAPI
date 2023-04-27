@@ -3,7 +3,7 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { world } from "@minecraft/server";
 
-world.events.playerSpawn.subscribe((eventData) => {
+world.afterEvents.playerSpawn.subscribe((eventData) => {
     let { player, initialSpawn } = eventData;
     if(!initialSpawn) return;
 
