@@ -1,5 +1,5 @@
 import { ModalFormData } from "@minecraft/server-ui";
-class ModalFormDropdown {
+export class ModalFormDropdown {
     constructor(label, options, defaultValueIndex) {
         this.label = label;
         this.options = options;
@@ -8,7 +8,7 @@ class ModalFormDropdown {
     ;
 }
 ;
-class ModalFormSlider {
+export class ModalFormSlider {
     constructor(label, minimumValue, maximumValue, valueStep, defaultValue) {
         this.label = label;
         this.minimumValue = minimumValue;
@@ -19,7 +19,7 @@ class ModalFormSlider {
     ;
 }
 ;
-class ModalFormTextField {
+export class ModalFormTextField {
     constructor(label, placeholderText, defaultValue) {
         this.label = label;
         this.placeholderText = placeholderText;
@@ -28,7 +28,7 @@ class ModalFormTextField {
     ;
 }
 ;
-class ModalFormToggle {
+export class ModalFormToggle {
     constructor(label, defaultValue) {
         this.label = label;
         this.defaultValue = defaultValue;
@@ -40,7 +40,7 @@ class ModalFormToggle {
  * Used to create a fully customizable pop-up form for a
  * player.
  */
-class ModalFormBuilder extends ModalFormData {
+export class ModalFormBuilder extends ModalFormData {
     constructor() {
         super(...arguments);
         /**
@@ -86,4 +86,3 @@ class ModalFormBuilder extends ModalFormData {
     }
 }
 ;
-export { ModalFormBuilder };
