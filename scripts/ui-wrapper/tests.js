@@ -15,6 +15,8 @@ form.title("My Modal Form");
 // Show the form to the player and wait for a response
 async function showModalForm(player) {
     const response = await form.show(player);
+    if (!response.formValues)
+        return;
     console.log(`Player ${player.name} selected option ${response.formValues[0]} and toggled option ${response.formValues[1]}`);
     console.log(`Player ${player.name} selected slider value ${response.formValues[2]} and entered text "${response.formValues[3]}"`);
     // Clear the form content
@@ -27,6 +29,8 @@ async function showModalForm(player) {
     form.title("My Second Modal Form");
     // Show the second form to the same player and wait for a response
     const response2 = await form.show(player);
+    if (!response2.formValues)
+        return;
     console.log(`Player ${player.name} selected option ${response2.formValues[0]} and toggled option ${response2.formValues[1]}`);
 }
 // Listen for chat messages and show the form to the player who sent a specific message

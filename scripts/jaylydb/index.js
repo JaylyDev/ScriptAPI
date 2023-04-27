@@ -2,6 +2,9 @@
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 var _a, _b, _c;
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { ScoreboardIdentityType, world } from "@minecraft/server";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
@@ -74,9 +77,8 @@ const DisplayName = new (_b = class DisplayName {
  */
 class JaylyDB {
     constructor(id) {
-        var _b;
         this[_c] = JaylyDB.name;
-        this.objective = (_b = world.scoreboard.getObjective(`jaylydb:` + id)) !== null && _b !== void 0 ? _b : world.scoreboard.addObjective(`jaylydb:` + id, uuid());
+        this.objective = world.scoreboard.getObjective(`jaylydb:` + id) ?? world.scoreboard.addObjective(`jaylydb:` + id, uuid());
     }
     ;
     getParticipant(key) {
