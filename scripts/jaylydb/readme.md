@@ -1,6 +1,6 @@
 # Jayly Database
 
-A Minecraft Database that uses scoreboard to save/load data. _Well if Mojang don't nerve it's scoreboard API._
+A Minecraft Database that uses scoreboard to save/load data. _Well if Mojang doesn't nerf their scoreboard API._
 
 Benefits:
 
