@@ -1,7 +1,7 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { EntityInventoryComponent, ItemTypes, MinecraftBlockTypes, MinecraftItemTypes, Player, world } from '@minecraft/server';
+import { EntityInventoryComponent, ItemTypes, MinecraftBlockTypes, MinecraftItemTypes, Player, system, world } from '@minecraft/server';
 
 const chestsType = [
   MinecraftBlockTypes.chest,
@@ -24,7 +24,7 @@ world.beforeEvents.itemUseOn.subscribe((event) => {
     }
     else {
       event.cancel = true;
-      player.onScreenDisplay.setActionBar('Chest is locked!');
+      system.run(() => player.onScreenDisplay.setActionBar('Chest is locked!'));
     };
   };
 });
