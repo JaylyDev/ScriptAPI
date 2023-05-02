@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { ScoreboardIdentity, ScoreboardIdentityType, ScoreboardObjective, world } from "@minecraft/server";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
