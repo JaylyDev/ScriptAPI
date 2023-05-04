@@ -22,7 +22,7 @@ import { JaylyDB } from "./index";
 const db = new JaylyDB("my_database");
 ```
 
-To disable encryption in database in favor of performance, set 2nd parameter to `false`:
+To enable encryption in database in favor of better performance, set 2nd parameter to `true`. By default encryption is disabled in databases:
 
 ```js
 import { JaylyDB } from "./index";
@@ -74,43 +74,23 @@ Compatible with 1.19.80+, unless `runCommand` is removed again.
 
 # Performance
 
-This database is benchmarked using [`tests.js`](./tests.js). The test file records the time taken to execute an operation over a number of times.s
+This database is benchmarked using [`tests.js`](./tests.js). The test file records the time taken to `set`, `get`, `has` and `delete` **100 elements** with different content length and difference between whether the data is encoded or not.
 
-Two tests are conducted in benchmarking:
+| Encryption | Content Length | `set` time | `get` time | `has` time | `delete` time |
+| ---------- | -------------- | ---------- | ---------- | ---------- | ------------- |
+| ❌         | 0 bytes        | 130 ms     | 12 ms      | 0 ms       | 31 ms         |
+| ❌         | 10,000 bytes   | 1,527 ms   | 145 ms     | 0 ms       | 217 ms        |
+| ❌         | 20,000 bytes   | 4,222 ms   | 205 ms     | 0 ms       | 262 ms        |
+| ❌         | 30,000 bytes   | 8,475 ms   | 279 ms     | 0 ms       | 399 ms        |
 
-- set, get, has, delete 1000 items, with 10 bytes of content each.
-- set, get, has, delete 10 items, with 1000 bytes of content each.
+| Encryption | Content Length | `set` time | `get` time | `has` time | `delete` time |
+| ---------- | -------------- | ---------- | ---------- | ---------- | ------------- |
+| ✔️         | 0 bytes        | 249 ms     | 62 ms      | 0 ms       | 88 ms         |
+| ✔️         | 10,000 bytes   | 23,213 ms  | 125 ms     | 0 ms       | 159 ms        |
+| ✔️         | 20,000 bytes   | 92,600 ms  | 5,851 ms   | 0 ms       | 6,186 ms      |
+| ✔️         | 30,000 bytes   | 215,828 ms | 15,135 ms  | 0 ms       | 14,834 ms     |
 
-Here are the results:
-
-Time taken to execute operations to assign 1000 bytes of content in 10 keys and values:
-
-| Operation | Encryption | Items | Content Length | Time   |
-| --------- | ---------- | ----- | -------------- | ------ |
-| `set`     | ❌         | 10    | 1000           | 31 ms  |
-| `get`     | ❌         | 10    | 1000           | 0 ms   |
-| `has`     | ❌         | 10    | 1000           | 0 ms   |
-| `delete`  | ❌         | 10    | 1000           | 0 ms   |
-| `set`     | ☑️         | 10    | 1000           | 110 ms |
-| `get`     | ☑️         | 10    | 1000           | 31 ms  |
-| `has`     | ☑️         | 10    | 1000           | 0 ms   |
-| `delete`  | ☑️         | 10    | 1000           | 0 ms   |
-
-
-Time taken to execute operations to assign 10 bytes of content in 1000 keys and values:
-
-| Operation | Encryption | Items | Content Length | Time     |
-| --------- | ---------- | ----- | -------------- | -------- |
-| `set`     | ❌         | 1000  | 10             | 6595 ms  |
-| `get`     | ❌         | 1000  | 10             | 1281 ms  |
-| `has`     | ❌         | 1000  | 10             | 0 ms     |
-| `delete`  | ❌         | 1000  | 10             | 1273 ms  |
-| `set`     | ☑️         | 1000  | 10             | 23124 ms |
-| `get`     | ☑️         | 1000  | 10             | 9752 ms  |
-| `has`     | ☑️         | 1000  | 10             | 16 ms    |
-| `delete`  | ☑️         | 1000  | 10             | 1576 ms  |
-
-Conclusion: Don't set too many items in a database, but rather store them in a item value.
+> Note: Encryption significantly decrease performance, meaning when dealing with large amounts of data, it's important to consider whether encryption is necessary or not.
 
 # Credits
 

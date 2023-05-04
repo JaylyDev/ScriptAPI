@@ -14,6 +14,8 @@ const uuid = () => {
   return `${a.slice(0, 8)}-${a.slice(8, 12)}-4${a.slice(13)}-a${b.slice(1, 4)}-${b.slice(4)}`;
 };
 
+const allowedTypes = ["string", "number", "boolean"];
+
 function encrypt(data: string, salt: string): string {
   const encryptedChars: number[] = [];
   for (let i = 0; i < data.length; i++) {
@@ -57,28 +59,46 @@ const DisplayName = {
 
 const overworld = world.getDimension("overworld");
 
+interface FindParticipantResult {
+  data: Record<string, string | number | boolean>;
+  participant: ScoreboardIdentity;
+};
+
 /**
  * Database using scoreboard
  * @beta
  */
 class JaylyDB implements Map<string, string | number | boolean> {
-  private objective: ScoreboardObjective;
+  private readonly objective: ScoreboardObjective;
   private encrypted: boolean;
   private participants: ScoreboardIdentity[];
   private displayNames: string[];
-  #displayKeys: string[];
+  private displayKeys: string[];
   private get salt(): string | undefined {
     return this.encrypted ? this.objective.displayName : undefined
   };
-  private findParticipant(displayName: string): ScoreboardIdentity | undefined {
-    return this.participants.find(participant => participant.displayName === displayName);
+  private findParticipant(key: string, getOptions: Record<keyof FindParticipantResult, boolean>): Partial<FindParticipantResult> | undefined {
+    let data: Record<string, string | number | boolean> | undefined;
+    let participant: ScoreboardIdentity | undefined;
+
+    this.displayNames.find(displayName => {
+      const displayData = DisplayName.parse(displayName, this.salt);
+      if (!(key in displayData)) return false;
+
+      if (getOptions.data) data = displayData;
+      if (getOptions.participant) participant = this.objective.getParticipants().find((participant) => participant.displayName === displayName);
+      return true;
+    });
+
+    if (!data) return;
+    return { data, participant };
   };
   private updateParticipants() {
     this.participants = this.objective.getParticipants().filter((participant) => participant.type === ScoreboardIdentityType.fakePlayer);
     this.displayNames = this.participants.map((participant) => participant.displayName);
-    this.#displayKeys = this.displayNames.map((displayName) => Object.keys(DisplayName.parse(displayName, this.salt))[0]);
+    this.displayKeys = this.displayNames.map((displayName) => Object.keys(DisplayName.parse(displayName, this.salt))[0]);
   }
-  constructor(id: string, encrypted: boolean = true) {
+  constructor(id: string, encrypted: boolean = false) {
     this.objective = world.scoreboard.getObjective(`jaylydb:` + id) ?? world.scoreboard.addObjective(`jaylydb:` + id, uuid());
     this.encrypted = encrypted;
     this.updateParticipants();
@@ -91,9 +111,13 @@ class JaylyDB implements Map<string, string | number | boolean> {
     this.updateParticipants();
   }
   delete(key: string): boolean {
-    const participant = this.findParticipant(key);
-    if (!participant) return false;
-    const success = this.objective.removeParticipant(participant);
+    const scoreboard = this.findParticipant(key, {
+      participant: true,
+      data: false
+    });
+    if (!scoreboard) return false;
+
+    const success = this.objective.removeParticipant(scoreboard.participant);
     this.updateParticipants();
     return success;
   }
@@ -101,27 +125,19 @@ class JaylyDB implements Map<string, string | number | boolean> {
     for (const [key, value] of this.entries()) callbackfn(value, key, this);
   }
   get(key: string): string | number | boolean | undefined {
-    let data: Record<string, string | number | boolean>;
-    this.displayNames.find(displayName => {
-      const displayData = DisplayName.parse(displayName, this.salt);
-      if (key in displayData) {
-        data = displayData;
-        return true;
-      }
-      else return false;
+    const scoreboard = this.findParticipant(key, {
+      participant: false,
+      data: true
     });
-    if (!data) return;
-    return data[key];
+    if (!scoreboard) return;
+    return scoreboard.data[key];
   }
   has(key: string): boolean {
-    return this.#displayKeys.includes(key);
+    return this.displayKeys.includes(key);
   }
   set(key: string, value: string | number | boolean): this {
-    const allowedTypes = ["string", "number", "boolean"];
-    if (!allowedTypes.includes(typeof (value))) throw TypeError("JaylyDB::set only accepts value of string, number, or boolean.");
-  
-    const existingValue = this.get(key);
-    if (existingValue === value) return this; // No need to update if value hasn't changed
+    if (!allowedTypes.includes(typeof(value))) throw TypeError("JaylyDB::set only accepts value of string, number, or boolean.");
+    if (this.get(key) === value) return this; // No need to update if value hasn't changed
   
     // throws error if string value is over 32767
     const str = DisplayName.stringify({ [key]: value }, this.salt);
