@@ -76,19 +76,23 @@ Compatible with 1.19.80+, unless `runCommand` is removed again.
 
 This database is benchmarked using [`tests.js`](./tests.js). The test file records the time taken to `set`, `get`, `has` and `delete` **100 elements** with different content length and difference between whether the data is encoded or not.
 
-| Encryption | Content Length | `set` time | `get` time | `has` time | `delete` time |
-| ---------- | -------------- | ---------- | ---------- | ---------- | ------------- |
-| ❌         | 0 bytes        | 130 ms     | 12 ms      | 0 ms       | 31 ms         |
-| ❌         | 10,000 bytes   | 1,527 ms   | 145 ms     | 0 ms       | 217 ms        |
-| ❌         | 20,000 bytes   | 4,222 ms   | 205 ms     | 0 ms       | 262 ms        |
-| ❌         | 30,000 bytes   | 8,475 ms   | 279 ms     | 0 ms       | 399 ms        |
+Here are the corrected tables with the values rounded to two decimal places:
 
-| Encryption | Content Length | `set` time | `get` time | `has` time | `delete` time |
-| ---------- | -------------- | ---------- | ---------- | ---------- | ------------- |
-| ✔️         | 0 bytes        | 249 ms     | 62 ms      | 0 ms       | 88 ms         |
-| ✔️         | 10,000 bytes   | 23,213 ms  | 125 ms     | 0 ms       | 159 ms        |
-| ✔️         | 20,000 bytes   | 92,600 ms  | 5,851 ms   | 0 ms       | 6,186 ms      |
-| ✔️         | 30,000 bytes   | 215,828 ms | 15,135 ms  | 0 ms       | 14,834 ms     |
+Unencrypted
+
+| Encryption | Content Length | `set` speed` (KB/s) | `get` speed (KB/s) | `delete` speed (KB/s) |
+| ---------- | -------------- | ------------------- | ------------------- | ---------------------- |
+| ❌         | 10,000 bytes   | 654.88              | 6896.55             | 4608.29                 |
+| ❌         | 20,000 bytes   | 473.71              | 9756.10             | 7633.59                 |
+| ❌         | 30,000 bytes   | 353.98              | 10752.69            | 7518.80                 |
+
+Encrypted
+
+| Encryption | Content Length | `set` speed` (KB/s) | `get` speed (KB/s) | `delete` speed (KB/s) |
+| ---------- | -------------- | ------------------- | ------------------- | ---------------------- |
+| ✔️         | 10,000 bytes   | 43.08               | 8000.00             | 6289.31                 |
+| ✔️         | 20,000 bytes   | 21.60               | 341.82              | 323.31                  |
+| ✔️         | 30,000 bytes   | 13.90               | 198.22              | 202.24                  |
 
 > Note: Encryption significantly decrease performance, meaning when dealing with large amounts of data, it's important to consider whether encryption is necessary or not.
 
