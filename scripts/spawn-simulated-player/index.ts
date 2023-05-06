@@ -9,6 +9,15 @@
 import * as MinecraftServer from "@minecraft/server";
 import * as GameTest from "@minecraft/server-gametest";
 
+declare module "@minecraft/server-gametest" {
+  interface SimulatedPlayer {
+    /**
+     * Despawn the simulated player
+     */
+    despawn(): void;
+  }
+};
+
 /**
  * Spawns a simulated player
  * @param target The player the simulated player is going to spawn at
@@ -22,6 +31,7 @@ export function SpawnSimulatedPlayer (target: MinecraftServer.Player, callback: 
 
   GameTest.registerAsync(testClassName, testName, async function (test) {
     let simulatedplayer = test.spawnSimulatedPlayer({ x: 0, y: 1, z: 0, });
+    simulatedplayer.despawn = () => test.removeSimulatedPlayer(simulatedplayer);
     callback(simulatedplayer);
   })
     .structureName("DebugTests:always_succeed")
