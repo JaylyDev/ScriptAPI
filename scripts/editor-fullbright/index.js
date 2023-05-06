@@ -13,7 +13,7 @@ export class FullbrightToggle {
         const enableAction = uiSession.actionManager.createAction({
             actionType: ActionTypes.NoArgsAction,
             onExecute: () => {
-                player.addEffect(MinecraftEffectTypes.nightVision, 0x7fffffff, 1, false);
+                player.addEffect(MinecraftEffectTypes.nightVision, 20000000, 1, false);
             },
         });
         const disableAction = uiSession.actionManager.createAction({
