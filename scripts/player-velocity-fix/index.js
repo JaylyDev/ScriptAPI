@@ -31,8 +31,8 @@ export function setVelocity(velocity, player) {
     let health = entity.getComponent('health');
     let movement = entity.getComponent('movement');
     let rideable = entity.getComponent('rideable');
-    entity.addEffect(MinecraftEffectTypes.invisibility, 0x7fff, 255, false); // makes the entity invisible
-    entity.addEffect(MinecraftEffectTypes.resistance, 0x7fff, 255, false); // makes the entity invisible
+    entity.addEffect(MinecraftEffectTypes.invisibility, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
+    entity.addEffect(MinecraftEffectTypes.resistance, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
     entity.applyImpulse(velocity);
     let onInterval = setInterval((isEntityMoving) => {
         try {
