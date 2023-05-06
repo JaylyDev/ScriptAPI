@@ -25,5 +25,5 @@ GameTest.register(testClassName, testName, testFunction)
 To make simulated player stays on world until server close or behavior pack reloads, call function `RegistrationBuilder.maxTicks` and set the parameter to a very high number so it wouldn't despawn.
 
 ```js
-GameTest.register(testClassName, testName, testFunction).maxTicks(0x7fffffff);
+GameTest.register(testClassName, testName, testFunction).maxTicks(20000000);
 ```

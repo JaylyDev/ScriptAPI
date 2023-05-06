@@ -18,97 +18,97 @@ export class SimulatedPlayer {
    * Dimension that the simulated player is currently within.
    * @throws This property can throw when used.
    */
-  public get 'dimension' (): Minecraft.Dimension { return this.__player.dimension };
+  public get 'dimension'(): Minecraft.Dimension { return this.__player.dimension };
   /**
    * Location of the center of the head component of the player.
    * @throws This property can throw when used.
    */
-  public get 'headLocation' (): Minecraft.Vector3 { return this.__player.getHeadLocation() };
+  public get 'headLocation'(): Minecraft.Vector3 { return this.__player.getHeadLocation() };
   /**
    * Rotation of the head across pitch and yaw angles.
    * @throws This property can throw when used.
    */
-  public get 'headRotation' (): Minecraft.Vector2 { return this.__player.headRotation };
+  public get 'headRotation'(): Minecraft.Vector2 { return this.__player.headRotation };
   /**
    * Identifier for the player.
    * @throws This property can throw when used.
    */
-  public get 'id' (): string { return this.__player.id };
+  public get 'id'(): string { return this.__player.id };
   /**
    * Unique identifier of the type of the entity - for example,
    * 'minecraft:player'.
    * @throws This property can throw when used.
    */
-  public get 'typeId' (): string { return this.__player.typeId };
+  public get 'typeId'(): string { return this.__player.typeId };
   /**
    * True if the player is currently using a sneaking movement.
   */
-  public get 'isSneaking' (): boolean {
+  public get 'isSneaking'(): boolean {
     return this.__player.isSneaking;
   }
-  public set 'isSneaking' (value: boolean) {
+  public set 'isSneaking'(value: boolean) {
     this.__player.isSneaking = value;
   }
   /**
    * Current location of the player.
    * @throws This property can throw when used.
    */
-  public get 'location' (): Minecraft.Vector3 { return this.__player.location };
+  public get 'location'(): Minecraft.Vector3 { return this.__player.location };
   /**
    * Name of the player.
    * @throws This property can throw when used.
    */
-  public get 'name' (): string { return this.__player.name };
+  public get 'name'(): string { return this.__player.name };
   /**
    * Optional name tag of the player.
    */
-  public get 'nameTag' (): string {
+  public get 'nameTag'(): string {
     return this.__player.nameTag;
   }
-  public set 'nameTag' (value: string) {
+  public set 'nameTag'(value: string) {
     this.__player.nameTag = value;
   }
   /**
    * Contains methods for manipulating the on-screen display of a
    * Player.
    */
-  public get 'onScreenDisplay' (): Minecraft.ScreenDisplay { return this.__player.onScreenDisplay };
+  public get 'onScreenDisplay'(): Minecraft.ScreenDisplay { return this.__player.onScreenDisplay };
   /**
    * Main rotation of the entity.
    * @throws This property can throw when used.
    */
-  public get 'rotation' (): Minecraft.Vector2 { return this.__player.getRotation() };
+  public get 'rotation'(): Minecraft.Vector2 { return this.__player.getRotation() };
   /**
    * Returns a scoreboard identity that represents this entity.
    * @throws This property can throw when used.
    */
-  public get 'scoreboard' (): Minecraft.ScoreboardIdentity { return this.__player.scoreboardIdentity };
+  public get 'scoreboard'(): Minecraft.ScoreboardIdentity { return this.__player.scoreboardIdentity };
   /**
    * Manages the selected slot in the player's hotbar.
    */
-  public get 'selectedSlot' (): number {
+  public get 'selectedSlot'(): number {
     return this.__player.selectedSlot;
   };
-  public set 'selectedSlot' (value: number) {
+  public set 'selectedSlot'(value: number) {
     this.__player.selectedSlot = value;
   }
   /**
    * Retrieves or sets an entity that is used as the target of
    * AI-related behaviors, like attacking.
    */
-  public get 'target' (): Minecraft.Entity {
+  public get 'target'(): Minecraft.Entity {
     return this.__player.target;
   };
   /**
    * Current speed of the player across X, Y, and Z dimensions.
    * @throws This property can throw when used.
    */
-  public get 'velocity' (): Minecraft.Vector { return new Minecraft.Vector(this.__player.getVelocity().x, this.__player.getVelocity().y, this.__player.getVelocity().z) };
+  public get 'velocity'(): Minecraft.Vector { return new Minecraft.Vector(this.__player.getVelocity().x, this.__player.getVelocity().y, this.__player.getVelocity().z) };
   /**
    * Vector of the current view of the player.
    * @throws This property can throw when used.
    */
-  public get 'viewDirection' (): Minecraft.Vector3 { return this.__player.getViewDirection() };
+  public get 'viewDirection'(): Minecraft.Vector3 { return this.__player.getViewDirection() };
   /**
    * @remarks
    * Adds an effect, like poison, to the entity.
@@ -121,7 +121,12 @@ export class SimulatedPlayer {
    * @param showParticles
    * @throws This function can throw errors.
    */
-  addEffect(effectType: Minecraft.EffectType, duration: number, amplifier?: number, showParticles?: boolean): void { return this.__player.addEffect(effectType, duration, amplifier, showParticles) };
+  addEffect(effectType: Minecraft.EffectType, duration: number, amplifier?: number, showParticles?: boolean): boolean {
+    return this.__player.addEffect(effectType, duration, {
+      amplifier,
+      showParticles
+    })
+  };
   /**
    * @remarks
    * Adds experience to a simulated player.
@@ -598,7 +603,7 @@ velocity   * @param itemCategory
    * @throws This function can throw errors.
    */
   stopUsingItem(): void { return this.__player.stopUsingItem() };
-  
+
   /**
    * @remarks
    * Teleports the selected player to a new location
@@ -612,7 +617,7 @@ velocity   * @param itemCategory
    * Y rotation of the player after teleportation.
    * @throws This function can throw errors.
    */
-  teleport(location: Minecraft.Vector3, dimension: Minecraft.Dimension, xRotation: number, yRotation: number): void { return this.__player.teleport(location, {dimension, rotation:{x:xRotation,y:yRotation}}) };
+  teleport(location: Minecraft.Vector3, dimension: Minecraft.Dimension, xRotation: number, yRotation: number): void { return this.__player.teleport(location, { dimension, rotation: { x: xRotation, y: yRotation } }) };
   /**
    * @remarks
    * Teleports the selected player to a new location, and will
@@ -625,7 +630,7 @@ velocity   * @param itemCategory
    * Location that this player will be facing.
    * @throws This function can throw errors.
    */
-  teleportFacing(location: Minecraft.Vector3, dimension: Minecraft.Dimension, facingLocation: Minecraft.Vector3): void { return this.__player.teleport(location, {dimension, facingLocation}) };
+  teleportFacing(location: Minecraft.Vector3, dimension: Minecraft.Dimension, facingLocation: Minecraft.Vector3): void { return this.__player.teleport(location, { dimension, facingLocation }) };
   /**
    * @remarks
    * Triggers an entity type event. For every entity, a number of
@@ -691,8 +696,8 @@ velocity   * @param itemCategory
    * Block-face-relative Y position where to place the item.
    * @throws This function can throw errors.
    */
-  useItemOnBlock(itemStack: Minecraft.ItemStack, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocation?:Minecraft.Vector3): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocation) };
-  public constructor (player: GameTest.SimulatedPlayer, test: GameTest.Test) {
+  useItemOnBlock(itemStack: Minecraft.ItemStack, blockLocation: Minecraft.Vector3, direction?: Minecraft.Direction, faceLocation?: Minecraft.Vector3): boolean { return this.__player.useItemOnBlock(itemStack, blockLocation, direction, faceLocation) };
+  public constructor(player: GameTest.SimulatedPlayer, test: GameTest.Test) {
     this.__player = player;
     this.__test = test;
   };
