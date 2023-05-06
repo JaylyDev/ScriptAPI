@@ -66,8 +66,14 @@ world.afterEvents.worldInitialize.subscribe(() => {
     console.log("Starting benchmark");
     const db = new JaylyDB(makeid(5), false);
     const db_encrypted = new JaylyDB(makeid(5), true);
-    console.log("Benchmarking unencrypted database...");
-    benchmark(db, 100, 1000);
-    console.log("Benchmarking encrypted database...");
-    benchmark(db_encrypted, 100, 1000);
+    for (let i = 0; i <= 3; i++) {
+        const bytes = 10000 * i;
+        console.log("Benchmarking unencrypted database...", bytes);
+        benchmark(db, 100, bytes);
+    }
+    for (let i = 0; i <= 3; i++) {
+        const bytes = 10000 * i;
+        console.log("Benchmarking encrypted database...", bytes);
+        benchmark(db_encrypted, 100, bytes);
+    }
 });
