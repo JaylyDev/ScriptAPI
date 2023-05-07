@@ -131,7 +131,12 @@ export class SimulatedPlayer {
      * @param showParticles
      * @throws This function can throw errors.
      */
-    addEffect(effectType, duration, amplifier, showParticles) { return this.__player.addEffect(effectType, duration, amplifier, showParticles); }
+    addEffect(effectType, duration, amplifier, showParticles) {
+        return this.__player.addEffect(effectType, duration, {
+            amplifier,
+            showParticles
+        });
+    }
     ;
     /**
      * @remarks

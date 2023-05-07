@@ -1,7 +1,7 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-var _a, _b, _c;
+var _a;
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
@@ -14,138 +14,156 @@ const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).to
  * @beta
  */
 const uuid = () => {
-    const a = str();
-    const b = str();
-    return a.slice(0, 8) + '-' + a.slice(8, 12) + '-4' + a.slice(13) + '-a' + b.slice(1, 4) + '-' + b.slice(4);
+    const [a, b] = [str(), str()];
+    return `${a.slice(0, 8)}-${a.slice(8, 12)}-4${a.slice(13)}-a${b.slice(1, 4)}-${b.slice(4)}`;
 };
-/**
- * an insecure but simple text cipher/decipher utility.
- */
-const cipher = {
-    cipher(salt) {
-        const textToChars = (text) => text.split('').map(c => c.charCodeAt(0));
-        const byteHex = (n) => ("0" + Number(n).toString(16)).substr(-2);
-        const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
-        return (text) => text.split('')
-            .map(textToChars)
-            .map(applySaltToChar)
-            .map(byteHex)
-            .join('');
-    },
-    decipher(salt) {
-        const textToChars = (text) => text.split('').map((c) => c.charCodeAt(0));
-        const applySaltToChar = (code) => textToChars(salt).reduce((a, b) => a ^ b, code);
-        return (encoded) => encoded.match(/.{1,2}/g)
-            .map(hex => parseInt(hex, 16))
-            .map(applySaltToChar)
-            .map(charCode => String.fromCharCode(charCode))
-            .join('');
+const allowedTypes = ["string", "number", "boolean"];
+function encrypt(data, salt) {
+    const encryptedChars = [];
+    for (let i = 0; i < data.length; i++) {
+        const charCode = data.charCodeAt(i) + salt.charCodeAt(i % salt.length);
+        encryptedChars.push(charCode);
     }
-};
+    return String.fromCharCode(...encryptedChars);
+}
+function decrypt(encrypted, salt) {
+    const decryptedChars = [];
+    for (let i = 0; i < encrypted.length; i++) {
+        const charCode = encrypted.charCodeAt(i) - salt.charCodeAt(i % salt.length);
+        decryptedChars.push(charCode);
+    }
+    return String.fromCharCode(...decryptedChars);
+}
 /**
  * Parse and stringify scoreboard display name
  * @beta
  */
-const DisplayName = new (_b = class DisplayName {
-        constructor() {
-            this[_a] = DisplayName.name;
+const DisplayName = {
+    parse(text, salt) {
+        try {
+            const a = JSON.parse(`"${salt ? decrypt(text, salt) : text}"`);
+            return JSON.parse(`{${a}}`);
         }
-        parse(text, salt) {
-            try {
-                const d = cipher.decipher(salt);
-                const c = d(text);
-                const a = JSON.parse(`"${c}"`); // "key":"value"
-                const b = JSON.parse(`{${a}}`); // {"key":"value"}
-                return b;
-            }
-            catch (error) {
-                console.error(error);
-                return {};
-            }
-        }
-        stringify(value, salt) {
-            const d = cipher.cipher(salt);
-            const rawtext = JSON.stringify(JSON.stringify(value).slice(1, -1)).slice(1, -1);
-            return d(rawtext);
+        catch (error) {
+            throw new Error(`Failed to parse JSON data: ${error.message}`);
         }
     },
-    _a = Symbol.toStringTag,
-    _b)();
+    stringify(value, salt) {
+        try {
+            const a = JSON.stringify(JSON.stringify(value).slice(1, -1)).slice(1, -1);
+            return salt ? encrypt(a, salt) : a;
+        }
+        catch (error) {
+            throw new Error(`Failed to stringify JSON data: ${error.message}`);
+        }
+    }
+};
+const overworld = world.getDimension("overworld");
+;
 /**
  * Database using scoreboard
  * @beta
  */
 class JaylyDB {
-    constructor(id) {
-        this[_c] = JaylyDB.name;
-        this.objective = world.scoreboard.getObjective(`jaylydb:` + id) ?? world.scoreboard.addObjective(`jaylydb:` + id, uuid());
+    get salt() {
+        return this.encrypted ? this.objective.displayName : undefined;
     }
     ;
-    getParticipant(key) {
-        return this.objective.getParticipants().find(participant => participant.type === ScoreboardIdentityType.fakePlayer
-            && key in DisplayName.parse(participant.displayName, this.objective.displayName));
-    }
-    ;
-    clear() {
-        this.objective.getParticipants().forEach(this.objective.removeParticipant);
-    }
-    delete(key) {
-        const participant = this.getParticipant(key);
-        if (!participant)
+    findParticipant(key, getOptions) {
+        let data;
+        let participant;
+        this.displayNames.find(displayName => {
+            const displayData = DisplayName.parse(displayName, this.salt);
+            if (!(key in displayData))
+                return false;
+            if (getOptions.data)
+                data = displayData;
+            if (getOptions.participant)
+                participant = this.objective.getParticipants().find((participant) => participant.displayName === displayName);
+            return true;
+        });
+        if (!data)
             return;
-        return this.objective.removeParticipant(participant);
+        return { data, participant };
     }
-    forEach(callbackfn) {
-        for (const [key, value] of this.entries()) {
-            callbackfn(value, key, this);
-        }
+    ;
+    updateParticipants() {
+        this.participants = this.objective.getParticipants().filter((participant) => participant.type === ScoreboardIdentityType.fakePlayer);
+        this.displayNames = this.participants.map((participant) => participant.displayName);
+        this.displayKeys = this.displayNames.map((displayName) => Object.keys(DisplayName.parse(displayName, this.salt))[0]);
     }
-    get(key) {
-        const participant = this.getParticipant(key);
-        return DisplayName.parse(participant.displayName, this.objective.displayName)[key];
-    }
-    has(key) {
-        const participant = this.getParticipant(key);
-        return !!participant;
-    }
-    set(key, value) {
-        const allowedTypes = ["string", "number", "boolean"];
-        if (!allowedTypes.includes(typeof (value)))
-            throw TypeError("JaylyDB::set only accepts value of string, number, or boolean.");
-        // throws error if string value is over 32767
-        if (typeof (value) === "string" && value.length > 32767)
-            throw RangeError("JaylyDB::set only accepts string value of length less than 32767.");
-        this.delete(key);
-        world.getDimension("overworld").runCommand(`scoreboard players set "${DisplayName.stringify({ [key]: value }, this.objective.displayName)}" ${this.objective.id} 0`);
-        return this;
+    constructor(id, encrypted = false) {
+        this[_a] = JaylyDB.name;
+        this.objective = world.scoreboard.getObjective(`jaylydb:` + id) ?? world.scoreboard.addObjective(`jaylydb:` + id, uuid());
+        this.encrypted = encrypted;
+        this.updateParticipants();
     }
     get size() {
-        return this.objective.getParticipants().length;
+        return this.participants.length;
     }
-    ;
+    clear() {
+        this.participants.forEach(this.objective.removeParticipant);
+        this.updateParticipants();
+    }
+    delete(key) {
+        const scoreboard = this.findParticipant(key, {
+            participant: true,
+            data: false
+        });
+        if (!scoreboard)
+            return false;
+        const success = this.objective.removeParticipant(scoreboard.participant);
+        this.updateParticipants();
+        return success;
+    }
+    forEach(callbackfn) {
+        for (const [key, value] of this.entries())
+            callbackfn(value, key, this);
+    }
+    get(key) {
+        const scoreboard = this.findParticipant(key, {
+            participant: false,
+            data: true
+        });
+        if (!scoreboard)
+            return;
+        return scoreboard.data[key];
+    }
+    has(key) {
+        return this.displayKeys.includes(key);
+    }
+    set(key, value) {
+        if (!allowedTypes.includes(typeof (value)))
+            throw TypeError("JaylyDB::set only accepts value of string, number, or boolean.");
+        if (this.get(key) === value)
+            return this; // No need to update if value hasn't changed
+        // throws error if string value is over 32767
+        const str = DisplayName.stringify({ [key]: value }, this.salt);
+        if (str.length > 32767)
+            throw RangeError("JaylyDB::set only accepts string value less than 32767 characters.");
+        this.delete(key);
+        overworld.runCommand(`scoreboard players set "${str}" ${this.objective.id} 0`);
+        this.updateParticipants();
+        return this;
+    }
     *entries() {
-        const values = this.objective.getParticipants();
-        for (const value of values) {
-            const valueObject = DisplayName.parse(value.displayName, this.objective.displayName);
-            const valueLength = DisplayName.stringify(valueObject, this.objective.displayName).length;
-            if (valueLength > 0)
-                yield [Object.keys(valueObject)[0], Object.values(valueObject)[0]];
+        for (const displayName of this.displayNames) {
+            const valueObject = DisplayName.parse(displayName, this.salt);
+            yield [Object.keys(valueObject)[0], Object.values(valueObject)[0]];
         }
     }
     *keys() {
-        for (const [key] of this.entries()) {
+        for (const [key] of this.entries())
             yield key;
-        }
     }
     *values() {
-        for (const [, value] of this.entries()) {
+        for (const [, value] of this.entries())
             yield value;
-        }
     }
     [Symbol.iterator]() {
         return this.entries();
     }
 }
-_c = Symbol.toStringTag;
+_a = Symbol.toStringTag;
 ;
 export { JaylyDB };
