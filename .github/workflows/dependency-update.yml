@@ -28,7 +28,7 @@ jobs:
 
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.JAYLYBOT_TOKEN }}
           push-to-fork: jayly-bot/ScriptAPI
@@ -43,8 +43,8 @@ jobs:
         if: ${{ steps.cpr.outputs.pull-request-number }}
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - $ISSUE"
-          gh pr edit $ISSUE --add-label "dependencies"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+          gh pr edit ${{ steps.cpr.outputs.pull-request-number }} --add-label "scripts"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PULL_REQUEST: ${{ steps.cpr.outputs.pull-request-url }}
