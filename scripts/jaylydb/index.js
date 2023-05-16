@@ -6,6 +6,7 @@ var _a;
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { ScoreboardIdentityType, world } from "@minecraft/server";
+const version = "1.0.4";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -34,6 +35,10 @@ function decrypt(encrypted, salt) {
     }
     return String.fromCharCode(...decryptedChars);
 }
+const CreateCrashReport = (action, data, error, salt) => {
+    console.log("[JaylyDB] Failed to " + action + " JSON data.", "\nVersion: " + version, "\nData: " + data, "\nSalt: " + salt, "\nError: " + error.message, "\n" + error.stack);
+    throw new Error(`Failed to ${action} data. Please check content log file for more info.\n`);
+};
 /**
  * Parse and stringify scoreboard display name
  * @beta
@@ -45,7 +50,7 @@ const DisplayName = {
             return JSON.parse(`{${a}}`);
         }
         catch (error) {
-            throw new Error(`Failed to parse JSON data: ${error.message}`);
+            CreateCrashReport("load", text, error, salt);
         }
     },
     stringify(value, salt) {
@@ -54,108 +59,135 @@ const DisplayName = {
             return salt ? encrypt(a, salt) : a;
         }
         catch (error) {
-            throw new Error(`Failed to stringify JSON data: ${error.message}`);
+            CreateCrashReport("save", JSON.stringify(value), error, salt);
         }
     }
 };
 const overworld = world.getDimension("overworld");
-;
 /**
- * Database using scoreboard
- * @beta
+ * A simple database for storing data in a Minecraft world, using scoreboard.
  */
 class JaylyDB {
+    /** @internal */
     get salt() {
         return this.encrypted ? this.objective.displayName : undefined;
     }
     ;
-    findParticipant(key, getOptions) {
-        let data;
-        let participant;
-        this.displayNames.find(displayName => {
-            const displayData = DisplayName.parse(displayName, this.salt);
-            if (!(key in displayData))
-                return false;
-            if (getOptions.data)
-                data = displayData;
-            if (getOptions.participant)
-                participant = this.objective.getParticipants().find((participant) => participant.displayName === displayName);
-            return true;
-        });
-        if (!data)
-            return;
-        return { data, participant };
-    }
-    ;
+    /** @internal */
     updateParticipants() {
-        this.participants = this.objective.getParticipants().filter((participant) => participant.type === ScoreboardIdentityType.fakePlayer);
-        this.displayNames = this.participants.map((participant) => participant.displayName);
-        this.displayKeys = this.displayNames.map((displayName) => Object.keys(DisplayName.parse(displayName, this.salt))[0]);
+        this.participants.clear();
+        for (const participant of this.objective.getParticipants()) {
+            if (participant.type !== ScoreboardIdentityType.fakePlayer)
+                continue;
+            this.participants.set(Object.keys(DisplayName.parse(participant.displayName, this.salt))[0], participant);
+        }
     }
+    /**
+     * @param id An identifier for the database
+     * @param encrypted whether this database is encrypted or not, note that encryption state cannot be changed after creation
+     */
     constructor(id, encrypted = false) {
+        /** @internal */
+        this.participants = new Map();
+        /** @internal */
+        this.displayDataCache = new Map();
         this[_a] = JaylyDB.name;
-        this.objective = world.scoreboard.getObjective(`jaylydb:` + id) ?? world.scoreboard.addObjective(`jaylydb:` + id, uuid());
+        this.objective = world.scoreboard.getObjective("jaylydb:" + id) ?? world.scoreboard.addObjective("jaylydb:" + id, uuid());
         this.encrypted = encrypted;
         this.updateParticipants();
     }
+    /**
+     * @returns the number of elements in the database.
+     */
     get size() {
-        return this.participants.length;
+        return this.participants.size;
     }
+    /**
+     * Clears every element in the database.
+     */
     clear() {
         this.participants.forEach(this.objective.removeParticipant);
         this.updateParticipants();
     }
+    /**
+     * @returns — true if an element in the database exists and has been removed, false otherwise.
+     */
     delete(key) {
-        const scoreboard = this.findParticipant(key, {
-            participant: true,
-            data: false
-        });
-        if (!scoreboard)
+        const participant = this.participants.get(key);
+        if (!participant)
             return false;
-        const success = this.objective.removeParticipant(scoreboard.participant);
-        this.updateParticipants();
+        const success = this.objective.removeParticipant(participant);
+        this.participants.delete(key);
         return success;
     }
+    /**
+     * Executes a provided function once per each key/value pair in the database, in insertion order.
+     */
     forEach(callbackfn) {
         for (const [key, value] of this.entries())
             callbackfn(value, key, this);
     }
-    get(key) {
-        const scoreboard = this.findParticipant(key, {
-            participant: false,
-            data: true
-        });
-        if (!scoreboard)
-            return;
-        return scoreboard.data[key];
+    /**
+     * Returns a specified element from the database.
+     * @param key The key of the element to return.
+     * @param reloadCache If set to true, the database object reloads cache before returning the element. This is made for when the database is modified from a external source.
+     * @returns Returns the element associated with the specified key. If no element is associated with the specified key, undefined is returned.
+     */
+    get(key, reloadCache = false) {
+        if (!reloadCache && this.displayDataCache.has(key)) {
+            const displayData = this.displayDataCache.get(key);
+            return displayData[key];
+        }
+        const participant = this.participants.get(key);
+        if (!participant) {
+            return undefined;
+        }
+        const displayName = participant.displayName;
+        const displayData = DisplayName.parse(displayName, this.salt);
+        this.displayDataCache.set(key, displayData[key]);
+        return displayData[key];
     }
     has(key) {
-        return this.displayKeys.includes(key);
+        return this.participants.has(key);
     }
+    /**
+     * Adds a new element with a specified key and value to the database. If an element with the same key already exists, the element will be updated.
+     */
     set(key, value) {
-        if (!allowedTypes.includes(typeof (value)))
-            throw TypeError("JaylyDB::set only accepts value of string, number, or boolean.");
-        if (this.get(key) === value)
-            return this; // No need to update if value hasn't changed
-        // throws error if string value is over 32767
+        if (!allowedTypes.includes(typeof value))
+            throw new TypeError("JaylyDB::set only accepts a value of string, number, or boolean.");
         const str = DisplayName.stringify({ [key]: value }, this.salt);
         if (str.length > 32767)
-            throw RangeError("JaylyDB::set only accepts string value less than 32767 characters.");
+            throw new RangeError("JaylyDB::set only accepts a string value less than 32767 characters.");
+        if (this.displayDataCache.has(key)) {
+            const displayData = this.displayDataCache.get(key);
+            if (displayData[key] === value)
+                return this;
+        }
+        ;
         this.delete(key);
         overworld.runCommand(`scoreboard players set "${str}" ${this.objective.id} 0`);
+        this.displayDataCache.set(key, value);
         this.updateParticipants();
         return this;
     }
     *entries() {
-        for (const displayName of this.displayNames) {
+        for (const [, { displayName }] of this.participants) {
             const valueObject = DisplayName.parse(displayName, this.salt);
-            yield [Object.keys(valueObject)[0], Object.values(valueObject)[0]];
+            const [entryKey, entryValue] = Object.entries(valueObject)[0];
+            yield [entryKey, entryValue];
         }
     }
+    /**
+     * Returns an iterable of keys in the database
+     */
     *keys() {
         for (const [key] of this.entries())
             yield key;
     }
+    /**
+     * Returns an iterable of values in the map
+     */
     *values() {
         for (const [, value] of this.entries())
             yield value;
