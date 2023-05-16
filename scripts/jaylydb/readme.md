@@ -74,27 +74,37 @@ Compatible with 1.19.80+, unless `runCommand` is removed again.
 
 # Performance
 
-This database is benchmarked using [`tests.js`](./tests.js). The test file records the time taken to `set`, `get`, `has` and `delete` **100 elements** with different content length and difference between whether the data is encoded or not.
+This database is benchmarked using [`tests.js`](./tests.js). The test file records the time taken to `get` and `set` **100 elements** with different content length and difference between whether the data is encoded or not.
 
-Here are the corrected tables with the values rounded to two decimal places:
+Using cache:
 
-Unencrypted
+| Content Length | `get` time | `set` time | `set` time (encrypted) |
+| -------------- | ---------- | ---------- | ---------------------- |
+| 0 bytes        | 0 ms       | 80 ms      | 100 ms                 |
+| 10,000 bytes   | 0 ms       | 1,232 ms   | 21,757 ms              |
+| 20,000 bytes   | 0 ms       | 2,673 ms   | 44,191 ms              |
+| 30,000 bytes   | 0 ms       | 4,881 ms   | 65,813 ms              |
 
-| Encryption | Content Length | `set` speed` (KB/s) | `get` speed (KB/s) | `delete` speed (KB/s) |
-| ---------- | -------------- | ------------------- | ------------------- | ---------------------- |
-| ❌         | 10,000 bytes   | 654.88              | 6896.55             | 4608.29                 |
-| ❌         | 20,000 bytes   | 473.71              | 9756.10             | 7633.59                 |
-| ❌         | 30,000 bytes   | 353.98              | 10752.69            | 7518.80                 |
+Cache reload (every get operation), encryption disabled:
 
-Encrypted
+| Content Length | `get` time | `set` time |
+| -------------- | ---------- | ---------- |
+| 0 bytes        | 1 ms       | 101 ms     |
+| 10,000 bytes   | 11 ms      | 1,225 ms   |
+| 20,000 bytes   | 20 ms      | 2,625 ms   |
+| 30,000 bytes   | 30 ms      | 4,830 ms   |
 
-| Encryption | Content Length | `set` speed` (KB/s) | `get` speed (KB/s) | `delete` speed (KB/s) |
-| ---------- | -------------- | ------------------- | ------------------- | ---------------------- |
-| ✔️         | 10,000 bytes   | 43.08               | 8000.00             | 6289.31                 |
-| ✔️         | 20,000 bytes   | 21.60               | 341.82              | 323.31                  |
-| ✔️         | 30,000 bytes   | 13.90               | 198.22              | 202.24                  |
+Cache reload (every get operation), encrypted:
 
-> Note: Encryption significantly decrease performance, meaning when dealing with large amounts of data, it's important to consider whether encryption is necessary or not.
+| Content Length | `get` time | `set` time |
+| -------------- | ---------- | ---------- |
+| 0 bytes        | 2 ms       | 106 ms     |
+| 10,000 bytes   | 413 ms     | 21,537 ms   |
+| 20,000 bytes   | 771 ms     | 41,996 ms   |
+| 30,000 bytes   | 1,181 ms   | 65,456 ms   |
+
+
+> Note: Encryption and cache reload significantly decrease performance, it's important to consider whether encryption or reload cache are necessary or not.
 
 # Credits
 
