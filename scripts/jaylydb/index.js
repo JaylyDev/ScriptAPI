@@ -1,12 +1,9 @@
-// Script example for ScriptAPI
-// Author: Jayly <https://github.com/JaylyDev>
-// Project: https://github.com/JaylyDev/ScriptAPI
 var _a;
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { ScoreboardIdentityType, world } from "@minecraft/server";
-const version = "1.0.4";
+const version = "1.0.5";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -19,22 +16,22 @@ const uuid = () => {
     return `${a.slice(0, 8)}-${a.slice(8, 12)}-4${a.slice(13)}-a${b.slice(1, 4)}-${b.slice(4)}`;
 };
 const allowedTypes = ["string", "number", "boolean"];
-function encrypt(data, salt) {
+const encrypt = (data, salt) => {
     const encryptedChars = [];
     for (let i = 0; i < data.length; i++) {
         const charCode = data.charCodeAt(i) + salt.charCodeAt(i % salt.length);
         encryptedChars.push(charCode);
     }
     return String.fromCharCode(...encryptedChars);
-}
-function decrypt(encrypted, salt) {
+};
+const decrypt = (encrypted, salt) => {
     const decryptedChars = [];
     for (let i = 0; i < encrypted.length; i++) {
         const charCode = encrypted.charCodeAt(i) - salt.charCodeAt(i % salt.length);
         decryptedChars.push(charCode);
     }
     return String.fromCharCode(...decryptedChars);
-}
+};
 const CreateCrashReport = (action, data, error, salt) => {
     console.log("[JaylyDB] Failed to " + action + " JSON data.", "\nVersion: " + version, "\nData: " + data, "\nSalt: " + salt, "\nError: " + error.message, "\n" + error.stack);
     throw new Error(`Failed to ${action} data. Please check content log file for more info.\n`);
@@ -134,14 +131,11 @@ class JaylyDB {
      * @returns Returns the element associated with the specified key. If no element is associated with the specified key, undefined is returned.
      */
     get(key, reloadCache = false) {
-        if (!reloadCache && this.displayDataCache.has(key)) {
-            const displayData = this.displayDataCache.get(key);
-            return displayData[key];
-        }
+        if (!reloadCache && this.displayDataCache.has(key))
+            return this.displayDataCache.get(key);
         const participant = this.participants.get(key);
-        if (!participant) {
+        if (!participant)
             return undefined;
-        }
         const displayName = participant.displayName;
         const displayData = DisplayName.parse(displayName, this.salt);
         this.displayDataCache.set(key, displayData[key]);

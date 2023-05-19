@@ -1,5 +1,6 @@
 import { world } from "@minecraft/server";
 import { JaylyDB } from "./index.js";
+import { AssertionError, assert } from "assert/index";
 /**
  * @param {number} length
  */
@@ -77,3 +78,18 @@ world.afterEvents.worldInitialize.subscribe(() => {
         benchmark(db_encrypted, 100, bytes);
     }
 });
+function generateRandomString(length) {
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+let result = '';
+
+for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(randomIndex);
+}
+
+return result;
+}
+const datab = new JaylyDB(generateRandomString(10));
+const expected = "test41";
+datab.set("test1", expected);
+assert(datab.get("test1") === expected, new AssertionError({ actual: datab.get("test1"), operator: "!=", expected }));
