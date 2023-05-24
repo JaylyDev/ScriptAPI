@@ -22,14 +22,13 @@ declare class JaylyDB implements Map<string, string | number | boolean> {
     /**
      * Executes a provided function once per each key/value pair in the database, in insertion order.
      */
-    forEach(callbackfn: (value: string | number | boolean, key: string, map: this) => void): void;
+    forEach(callbackfn: (value: string | number | boolean, key: string, jaylydb: this) => void): void;
     /**
      * Returns a specified element from the database.
      * @param key The key of the element to return.
-     * @param reloadCache If set to true, the database object reloads cache before returning the element. This is made for when the database is modified from a external source.
      * @returns Returns the element associated with the specified key. If no element is associated with the specified key, undefined is returned.
      */
-    get(key: string, reloadCache?: boolean): string | number | boolean | undefined;
+    get(key: string): string | number | boolean | undefined;
     has(key: string): boolean;
     /**
      * Adds a new element with a specified key and value to the database. If an element with the same key already exists, the element will be updated.

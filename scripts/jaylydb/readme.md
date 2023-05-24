@@ -36,6 +36,8 @@ db.set("foo", "bar");
 db.set("baz", 42);
 ```
 
+> Note: JaylyDB now writes data to the world asynchronously. Please check the Content Log to ensure that the data is successfully written to the scoreboard before exiting the world
+
 Get a value from the database
 
 ```js
@@ -70,41 +72,20 @@ Clear all entries from the database
 db.clear();
 ```
 
-Compatible with 1.19.80+, unless `runCommand` is removed again.
+This database is compatible with Minecraft 1.19.0 and above.
 
 # Performance
 
-This database is benchmarked using [`tests.js`](./tests.js). The test file records the time taken to `get` and `set` **100 elements** with different content length and difference between whether the data is encoded or not.
+This database is benchmarked using [`tests.js`](./tests.js). The test file records the time taken to execute `get`, `set`, `has` and `delete` operations with different content length and difference between whether the data is encoded or not.
 
-Using cache:
+| Content Length | `set` time | `set` time (encrypted) | `get` time | `has` time | `delete` time |
+| -------------- | ---------- | ---------------------- | ---------- | ---------- | ------------- |
+| 0 bytes        | 1 ms       | 2 ms                   | 0 ms       | 0 ms       | 0 ms          |
+| 10,000 bytes   | 616 ms     | 914 ms                 | 0 ms       | 0 ms       | 0 ms          |
+| 20,000 bytes   | 1502 ms    | 2144 ms                | 1 ms       | 0 ms       | 0 ms          |
+| 30,000 bytes   | 2645 ms    | 3750 ms                | 0 ms       | 0 ms       | 0 ms          |
 
-| Content Length | `get` time | `set` time | `set` time (encrypted) |
-| -------------- | ---------- | ---------- | ---------------------- |
-| 0 bytes        | 0 ms       | 80 ms      | 100 ms                 |
-| 10,000 bytes   | 0 ms       | 1,232 ms   | 21,757 ms              |
-| 20,000 bytes   | 0 ms       | 2,673 ms   | 44,191 ms              |
-| 30,000 bytes   | 0 ms       | 4,881 ms   | 65,813 ms              |
-
-Cache reload (every get operation), encryption disabled:
-
-| Content Length | `get` time | `set` time |
-| -------------- | ---------- | ---------- |
-| 0 bytes        | 1 ms       | 101 ms     |
-| 10,000 bytes   | 11 ms      | 1,225 ms   |
-| 20,000 bytes   | 20 ms      | 2,625 ms   |
-| 30,000 bytes   | 30 ms      | 4,830 ms   |
-
-Cache reload (every get operation), encrypted:
-
-| Content Length | `get` time | `set` time |
-| -------------- | ---------- | ---------- |
-| 0 bytes        | 2 ms       | 106 ms     |
-| 10,000 bytes   | 413 ms     | 21,537 ms   |
-| 20,000 bytes   | 771 ms     | 41,996 ms   |
-| 30,000 bytes   | 1,181 ms   | 65,456 ms   |
-
-
-> Note: Encryption and cache reload significantly decrease performance, it's important to consider whether encryption or reload cache are necessary or not.
+> Note: **100 elements** with different data length are inserted into individual database, and it doesn't record time taken to write data to world.
 
 # Credits
 
