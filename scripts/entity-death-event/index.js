@@ -24,7 +24,7 @@ world.afterEvents.entityHurt.subscribe((event) => {
   // @ts-expect-error
   const health = hurtEntity.getComponent(EntityHealthComponent.componentId);
 
-  if (health.current > 0) return;
+  if (health.currentValue > 0) return;
 
   for (const callback of callbacks) {
     const { entities, entityTypes } = callback.options;
