@@ -121,7 +121,7 @@ export class SimulatedPlayer {
    * @param showParticles
    * @throws This function can throw errors.
    */
-  addEffect(effectType: Minecraft.EffectType, duration: number, amplifier?: number, showParticles?: boolean): boolean {
+  addEffect(effectType: Minecraft.EffectType, duration: number, amplifier?: number, showParticles?: boolean): void {
     return this.__player.addEffect(effectType, duration, {
       amplifier,
       showParticles
