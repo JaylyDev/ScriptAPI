@@ -11,7 +11,7 @@ let callback = playerLeave.subscribe(({player}) => {
    */
   // @ts-ignore
   let health = player.getComponent("health");
-  player.dimension.runCommandAsync(`say ${player.name} left the server with ${health.current} HP`);
+  player.dimension.runCommandAsync(`say ${player.name} left the server with ${health.currentValue} HP`);
   player.dimension.runCommandAsync(`say ${player.name} Location: ${player.location.x} ${player.location.y} ${player.location.z}`);
 
   // unsubscribe
