@@ -45,13 +45,13 @@ export class PlayerDeathEventSignal {
          */
         // @ts-ignore
         let health = player.getComponent("health");
-        if (health.current === 0 && arg["playerDeath"] === true) {
+        if (health.currentValue === 0 && arg["playerDeath"] === true) {
           const playerIndex = deadPlayers.findIndex(pl => pl.name === player.name);
           if (playerIndex < 0) {
             arg(new PlayerDeathEvent(player));
             deadPlayers.push(player);
             let playerDeathCallback = system.runInterval(() => {
-              if (health.current > 0) {
+              if (health.currentValue > 0) {
                 deadPlayers.splice(playerIndex, 1);
                 system.clearRun(playerDeathCallback);
               };
