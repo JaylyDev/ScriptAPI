@@ -17,7 +17,7 @@ declare module "@minecraft/server-editor" {
     type BedrockEventType = keyof AfterEvents;
     type BedrockEventHandler = AfterEvents[BedrockEventType];
 
-    declare class BaseControl {
+    class BaseControl {
         private _visible: boolean;
         private _enabled: boolean;
         private _disposed: boolean;
@@ -39,7 +39,7 @@ declare module "@minecraft/server-editor" {
         tooltipLocId?: string;
     }
 
-    declare class EventToken {
+    class EventToken {
         constructor(_event: BedrockEventHandler);
         unsubscribe(): void;
     }
@@ -55,7 +55,7 @@ declare module "@minecraft/server-editor" {
      *
      * @internal
      */
-    declare class EventSinkImpl {
+    class EventSinkImpl {
         subscribe(handler: (eventArgs: EventSinkImplArgument) => void): EventToken;
         unsubscribe(token: EventToken): void;
         trigger(eventArgs: EventSinkImplArgument): void;
@@ -69,7 +69,7 @@ declare module "@minecraft/server-editor" {
      *
      * @internal
      */
-    declare class ClientEventDispatcher {
+    class ClientEventDispatcher {
         constructor(_system: System, _logger: Logger);
         private _system: System;
         private _logger: Logger;
@@ -84,7 +84,7 @@ declare module "@minecraft/server-editor" {
          */
         flush(): void;
     }
-    declare class ModalToolContainer extends BaseControl {
+    class ModalToolContainer extends BaseControl {
         private _eventDispatcher: ClientEventDispatcher;
         private _actionManager: ActionManagerImpl;
         private _currentTools: ModalTool[];
@@ -98,7 +98,7 @@ declare module "@minecraft/server-editor" {
         private _sendUpdateMessage(): void;
         private _sendDestroyMessage(): void;
     }
-    declare class ContextInputManager extends BaseInputManager {
+    class ContextInputManager extends BaseInputManager {
         constructor(
             eventDispatcher: ClientEventDispatcher,
             inputContext: EditorInputContext
@@ -126,7 +126,7 @@ declare module "@minecraft/server-editor" {
     /**
      * @beta
      */
-    declare class ModalTool extends BaseControl {
+    class ModalTool extends BaseControl {
         constructor(
             _eventDispatcher: ClientEventDispatcher,
             parent: ModalToolContainer,
@@ -158,7 +158,7 @@ declare module "@minecraft/server-editor" {
         name: string;
         displayStringLocId: string;
     }
-    declare class Menu extends BaseControl {
+    class Menu extends BaseControl {
         constructor(props: any, _dispatcher: any, _actionId: any, _parent: any);
         private _dispatcher: ClientEventDispatcher;
         private _actionId: string;
@@ -184,7 +184,7 @@ declare module "@minecraft/server-editor" {
         addSeparator(): void;
     }
 
-    declare class PropertyItem {
+    class PropertyItem {
         action: Action<ActionTypes>;
         private _id: string;
         private _paneId: string;
@@ -203,7 +203,7 @@ declare module "@minecraft/server-editor" {
     interface PropertyUXDispatcher {
         dispatchUXEvent(payload: any): void;
     }
-    declare class PropertyPane extends BaseControl {
+    class PropertyPane extends BaseControl {
         onPropertyPaneVisibilityUpdated: EventSinkImpl;
         setPropertyItemValue(propertyName: string, newValue: any): void;
         private _id: string;
@@ -258,7 +258,7 @@ declare module "@minecraft/server-editor" {
         ): PropertyItem;
     }
 
-    declare class StatusBarItem extends BaseControl {
+    class StatusBarItem extends BaseControl {
         private _id: string;
         private _text: string;
         set text(value: string);
@@ -294,11 +294,11 @@ declare module "@minecraft/server-editor" {
     /**
      * @internal
      */
-    declare class ClientEventListener { }
+    class ClientEventListener { }
     /**
      * Implementation of the ActionManager
      */
-    declare class ActionManagerImpl {
+    class ActionManagerImpl {
         eventDispatcher: ClientEventDispatcher;
         eventListener: ClientEventListener;
         player: Player;
@@ -310,7 +310,7 @@ declare module "@minecraft/server-editor" {
     /**
      * @beta
      */
-    declare class BaseInputManager {
+    class BaseInputManager {
         eventDispatcher: ClientEventDispatcher;
         unregisterAllBindings(): void;
     }
@@ -326,7 +326,7 @@ declare module "@minecraft/server-editor" {
         ): void;
     }
 
-    declare class BuiltInUIManagerImpl {
+    class BuiltInUIManagerImpl {
         /**
          * Updates the visibility of the log panel
          */
@@ -418,7 +418,7 @@ declare module "@minecraft/server-editor" {
      * Represents a UI session for a given player
      * @internal
      */
-    declare class PlayerUISession {
+    class PlayerUISession {
         private _builtInUIManager: BuiltInUIManagerImpl;
         private _actionManager: ActionManagerImpl;
         private _modalToolContainer: ModalToolContainer;
@@ -753,4 +753,4 @@ declare module "@minecraft/server-editor" {
      * Interface for internal Menu class
      */
     export interface IMenu extends Menu { }
-};
+}
