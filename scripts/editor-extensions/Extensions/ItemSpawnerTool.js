@@ -1,26 +1,24 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "../color/index";
-/**
- * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession
- */
+import { Color } from "../utils";
 export default (uiSession) => {
+    uiSession.log.debug(`Initializing ${uiSession.extensionContext.extensionName} extension`);
     const tool = uiSession.toolRail.addTool(
         {
-            displayString: "Entity Spawner (CTRL + E)",
+            displayString: "Item Spawner (CTRL + I)",
             tooltip: "Left mouse click or drag-to-spawn",
-            icon: "pack://textures/editor/entity.png?filtering=point",
+            icon: "pack://textures/editor/item.png?filtering=point",
         },
     );
 
     const previewSelection = uiSession.extensionContext.selectionManager.create();
     previewSelection.visible = true;
-    previewSelection.setOutlineColor(new Color(0, 1, 0, 0.2));
-    previewSelection.setFillColor(new Color(0, 1, 0, 0.1));
+    previewSelection.setOutlineColor( new Color( 0, 0.5, 0.5, 0.2 ) );
+    previewSelection.setFillColor( new Color( 0, 0, 0.5, 0.1 ) );
     
     uiSession.scratchStorage = {
         currentCursorState: {
-            outlineColor: new Color(0, 1, 0, 1),
+            outlineColor: new Color( 0, 0.5, 0.5, 1 ),
             controlMode: Editor.CursorControlMode.KeyboardAndMouse,
             targetMode: Editor.CursorTargetMode.Face,
             visible: true,
@@ -32,7 +30,7 @@ export default (uiSession) => {
     tool.onModalToolActivation.subscribe(
         eventData => {
             if (eventData.isActiveTool)
-                uiSession.extensionContext.cursor.setProperties(uiSession.scratchStorage.currentCursorState);
+                uiSession.extensionContext.cursor.setProperties( uiSession.scratchStorage.currentCursorState );
         },
     );
     
@@ -42,17 +40,17 @@ export default (uiSession) => {
             {
                 actionType: Editor.ActionTypes.NoArgsAction,
                 onExecute: () => {
-                    uiSession.toolRail.setSelectedOptionId(tool.id, true);
+                    uiSession.toolRail.setSelectedOptionId( tool.id, true );
                 },
             },
         ),
-        Editor.KeyboardKey.KEY_E,
+        Editor.KeyboardKey.KEY_I,
         Editor.InputModifier.Control,
     );
     
     const pane = uiSession.createPropertyPane(
         {
-            titleAltText: "Entity Spawner",
+            titleAltText: "Item Spawner",
             width: 40,
         },
     );
@@ -60,41 +58,69 @@ export default (uiSession) => {
     const settings = Editor.createPaneBindingObject(
         pane,
         {
-            nameTag: "",
-            entityType: Server.MinecraftEntityTypes.creeper.id,
+            itemType: Server.MinecraftItemTypes.diamondSword.id,
+            amount: 1,
         },
     );
 
-    pane.addString(
-        settings,
-        "nameTag",
-        {
-            titleAltText: "Name Tag",
-        },
+    const notAllowedItems = new Set(
+        [
+            ...Server.MinecraftBlockTypes.getAllBlockTypes()
+        ].map(
+            ({ id }) => id
+        ),
     );
-    
+    const items = [
+        ...Server.ItemTypes.getAll(),
+    ].map(
+        ({ id }) => id,
+    ).reduce(
+        ( e, id ) => {
+            return (
+                (
+                    notAllowedItems.has( id )
+                    || e.push( id )
+                ),
+                e
+            );
+        },
+        [],
+    ).sort(
+        (e, id) => e.localeCompare( id ),
+    );
+
     pane.addDropdown(
         settings,
-        "entityType",
+        "itemType",
         {
-            titleAltText: "Entity Type",
-            dropdownItems: [...Server.EntityTypes.getAll()].map(({ id }) => id).sort().map(
+            titleAltText: "Item Type",
+			dropdownItems: items.map(
                 (id) => (
                     {
                         value: id,
                         displayAltText: id,
-                        displayStringId: "entity." + id.replace("minecraft:", "") + ".name",
+                        displayStringId: "item." + id.replace("minecraft:", "") + ".name",
                     }
                 ),
             ),
         },
     );
+
+    pane.addNumber(
+        settings,
+        "amount",
+        {
+            titleAltText: "Amount",
+            min: 1,
+            max: 64,
+            showSlider: true,
+        }
+    );
     
     tool.bindPropertyPane(pane);
-    
     const onExecuteBrush = () => {
         if (!uiSession.scratchStorage?.previewSelection) {
-            console.error('Entity Spawner storage was not initialized.');
+            uiSession.log.error('Item Spawner storage was not initialized.');
             return;
         };
         
@@ -111,7 +137,7 @@ export default (uiSession) => {
         const to = { x: from.x, y: from.y, z: from.z };
         const blockVolume = { from, to };
         if (uiSession.scratchStorage.lastVolumePlaced && Server.BoundingBoxUtils.equals(uiSession.scratchStorage.lastVolumePlaced, Server.BlockVolumeUtils.getBoundingBox(blockVolume))) return;
-
+        
         previewSelection.pushVolume(
             {
                 action: Server.CompoundBlockVolumeAction.Add,
@@ -133,27 +159,29 @@ export default (uiSession) => {
                         } else if (mouseProps.inputType == Editor.MouseInputType.ButtonUp) {
                             await Editor.executeLargeOperation(uiSession.scratchStorage.previewSelection, blockLocation => {
                                 const player = uiSession.extensionContext.player;
-                                const targetBlock = player.dimension.getBlock(blockLocation);
+                                const targetBlock = player.dimension.getBlock( blockLocation );
                                 
-                                if(targetBlock) {
-                                    const entity = player.dimension.spawnEntity(
-                                        settings.entityType,
+                                if (targetBlock) {
+                                    const item = player.dimension.spawnItem(
+                                        new Server.ItemStack( settings.itemType, settings.amount ),
                                         {
                                             x: targetBlock.x + 0.5,
                                             y: targetBlock.y,
                                             z: targetBlock.z + 0.5,
                                         },
                                     );
-
-                                    entity.nameTag = settings.nameTag;
                                 };
-                            }).catch(() => {
-                                uiSession.extensionContext.transactionManager.commitOpenTransaction();
-                                uiSession.scratchStorage?.previewSelection.clear();
-                            }).then(() => {
-                                uiSession.extensionContext.transactionManager.commitOpenTransaction();
-                                uiSession.scratchStorage?.previewSelection.clear();
-                            });
+                            }).catch(
+                                () => {
+                                    uiSession.extensionContext.transactionManager.commitOpenTransaction();
+                                    uiSession.scratchStorage?.previewSelection.clear();
+                                },
+                            ).then(
+                                () => {
+                                    uiSession.extensionContext.transactionManager.commitOpenTransaction();
+                                    uiSession.scratchStorage?.previewSelection.clear();
+                                },
+                            );
                         };
                     };
                 },

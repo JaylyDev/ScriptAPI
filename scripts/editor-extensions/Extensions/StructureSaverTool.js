@@ -1,15 +1,13 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "../color/index";
-/**
- * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession
- */
+import { Color } from "../utils";
 export default (uiSession) => {
+    uiSession.log.debug(`Initializing ${uiSession.extensionContext.extensionName} extension`);
     const tool = uiSession.toolRail.addTool(
         {
-            displayString: "Block Replace (Ctrl + R)",
+            displayString: "Structure Saver (CTRL + SHIFT + P)",
             tooltip: "",
-            icon: "pack://textures/editor/replace.png?filtering=point",
+            icon: "pack://textures/editor/structure_saver.png?filtering=point",
         },
     );
 
@@ -22,12 +20,13 @@ export default (uiSession) => {
             fixedModeDistance: 5
         },
     };
-
+    
     let lastAnchorPosition = { x: 0, y: 0, z: 0 };
     
     const pane = uiSession.createPropertyPane(
         {
-            titleAltText: "Block Replace",
+            titleAltText: "Structure Saver",
+            width: 40,
         },
     );
 
@@ -44,8 +43,8 @@ export default (uiSession) => {
                 y: 0,
                 z: 0,
             },
-            blockType: Server.MinecraftBlockTypes.stone,
-            replaceWith: Server.MinecraftBlockTypes.stone,
+            structureName: "",
+            includeEntities: true,
         }
     );
 
@@ -110,8 +109,8 @@ export default (uiSession) => {
                 );
                 lastAnchorPosition = clickLoc;
             } else {
-                const currentVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume().volume;
-                const currentBounds = currentVolume.getBoundingBox();
+                const currentVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
+                const currentBounds = currentVolume.boundingBox;
                 const translatedRayLocation = Server.Vector.subtract(new Server.Vector(mouseRay.location.x, mouseRay.location.y, mouseRay.location.z), new Server.Vector(currentBounds.min.x, currentBounds.min.y, currentBounds.min.z));
                 const intersection = true;
                 if (intersection) {
@@ -200,7 +199,7 @@ export default (uiSession) => {
         if (_oldValue === _newValue) return;
         const selection = uiSession.extensionContext.selectionManager.selection;
         if (!selection.isEmpty) {
-            const lastVolume = selection.peekLastVolume().volume;
+            const lastVolume = Server.BlockVolumeUtils.selection.peekLastVolume().volume;
             if (lastVolume) {
                 const min = {
                     x: settings.origin.x,
@@ -249,9 +248,9 @@ export default (uiSession) => {
             minX: 1,
             minY: 1,
             minZ: 1,
-            maxX: 100,
-            maxY: 100,
-            maxZ: 100,
+            maxX: 64,
+            maxY: 384,
+            maxZ: 64,
             onChange: onOriginOrSizeChange,
         }
     );
@@ -261,7 +260,7 @@ export default (uiSession) => {
         let tickRefreshHandle = Server.system.run(() => {
             if (uiSession.extensionContext.selectionManager === undefined) return;
             if (!settings) {
-                console.error('Pane settings object not defined, unable to refresh values for selection.');
+                uiSession.log.error('Pane settings object not defined, unable to refresh values for selection.');
                 return;
             }
             if (ticks++ % 5 === 0) {
@@ -270,7 +269,7 @@ export default (uiSession) => {
                 let sx = 0, sy = 0, sz = 0;
                 const selection = uiSession.extensionContext.selectionManager.selection;
                 if (selection && !selection.isEmpty) {
-                    const bounds = selection.peekLastVolume().volume.getBoundingBox();
+                    const bounds = Server.BlockVolumeUtils.getBoundingBox(selection.peekLastVolume().volume);
                     x = bounds.min.x;
                     y = bounds.min.y;
                     z = bounds.min.z;
@@ -337,27 +336,26 @@ export default (uiSession) => {
                 },
             },
         ),
-        Editor.KeyboardKey.KEY_R,
-        Editor.InputModifier.Control,
+        Editor.KeyboardKey.KEY_P,
+        Editor.InputModifier.Control | Editor.InputModifier.Shift,
     );
     
-    pane.addBlockPicker(
+    pane.addString(
         settings,
-        "blockType",
+        "structureName",
         {
-            titleAltText: "Block Type",
-        },
-    );
-    
-    pane.addBlockPicker(
-        settings,
-        "replaceWith",
-        {
-            titleAltText: "Replace With",
+            titleAltText: "Structure Name",
         },
     );
 
-    pane.addButtonAndBindAction(
+    pane.addBool(
+        settings,
+        "includeEntities", {
+            titleAltText: "Include Entities",
+        }
+    );
+
+    pane.addButton(
         uiSession.actionManager.createAction(
             {
                 actionType: Editor.ActionTypes.NoArgsAction,
@@ -369,32 +367,42 @@ export default (uiSession) => {
                         return;
                     };
 
-                    uiSession.extensionContext.transactionManager.openTransaction("BlockReplacer");
-                    uiSession.extensionContext.transactionManager.trackBlockChangeSelection(uiSession.extensionContext.selectionManager.selection);
-                    await Editor.executeLargeOperation(uiSession.extensionContext.selectionManager.selection, (blockLocation) => {
-                        const block = dimension.getBlock(blockLocation);
-                        if (block) {
-                            block.isWaterlogged = false;
-                            if(block?.typeId == settings.blockType.id) block.setType(settings.replaceWith);
-                        };
-                    })
-                    .catch(e => {
-                        console.error(e);
-                        uiSession.extensionContext.transactionManager.discardOpenTransaction();
-                    })
-                    .then(() => {
-                        uiSession.extensionContext.transactionManager.commitOpenTransaction();
-                    });
+                    const { x: minX, y: minY, z: minZ } = uiSession.extensionContext.selectionManager.selection.getBoundingBox().min;
+                    const { x: maxX, y: maxY, z: maxZ } = uiSession.extensionContext.selectionManager.selection.getBoundingBox().max;
+                    if(settings.structureName.trim().length == 0) return;
+                    player.dimension.runCommandAsync(
+                        "structure save "
+                        + settings.structureName
+                        + " "
+                        + minX
+                        + " "
+                        + minY
+                        + " "
+                        + minZ
+                        + " "
+                        + maxX
+                        + " "
+                        + maxY
+                        + " "
+                        + maxZ
+                        + " "
+                        + settings.includeEntities
+                        + " disk"
+                    );
+
+                    player.sendMessage("Structure Saved.");
+
+                    uiSession.extensionContext.selectionManager.selection.clear();
                 },
             },
         ),
         {
-            titleAltText: "Replace",
+            titleAltText: "Save",
         },
     );
 
     pane.addDivider();
-    pane.addButtonAndBindAction(
+    pane.addButton(
         uiSession.actionManager.createAction(
             {
                 actionType: Editor.ActionTypes.NoArgsAction,

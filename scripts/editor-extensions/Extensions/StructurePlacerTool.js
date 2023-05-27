@@ -1,10 +1,8 @@
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "../color/index.js";
-import { Structures } from "structures/index";
-/**
- * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession
- */
+import { Color } from "../utils";
+import { Structures } from "../structures";
 export default (uiSession) => {
+    uiSession.log.debug(`Initializing ${uiSession.extensionContext.extensionName} extension`);
     const tool = uiSession.toolRail.addTool(
         {
             displayString: "Structure Placer (CTRL + P)",
@@ -80,7 +78,7 @@ export default (uiSession) => {
             titleAltText: "Face Mode",
             onChange: (_obj, _property, _oldValue, _newValue) => {
                 if (uiSession.scratchStorage === undefined) {
-                    console.error('Cube storage was not initialized.');
+                    uiSession.log.error('Cube storage was not initialized.');
                     return;
                 }
                 uiSession.scratchStorage.currentCursorState.targetMode = settings.face
@@ -96,7 +94,8 @@ export default (uiSession) => {
         "vanillaStructure",
         {
             titleAltText: "Vanilla Structure",
-            dropdownItems: Array.from(Structures.values(), (value) => (
+            dropdownItems: Structures.map(
+                (value) => (
                     {
                         displayAltText: value,
                         value,
@@ -220,7 +219,7 @@ export default (uiSession) => {
                             uiSession.extensionContext.selectionManager.selection.clear();
                         };
                     };
-                    } catch(e) { console.warn(e); };
+                    } catch(e) { uiSession.log.warn(e); };
                 },
             },
         ),
