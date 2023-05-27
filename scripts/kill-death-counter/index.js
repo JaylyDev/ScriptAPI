@@ -20,7 +20,7 @@ world.afterEvents.entityHurt.subscribe(
     /** @type {EntityHealthComponent} */
     // @ts-ignore
     const health = hurtEntity.getComponent("health");
-    if (health.current > 0) return;
+    if (health.currentValue > 0) return;
     hurtEntity.runCommandAsync("scoreboard players add @s deaths 1");
     if (!(damageSource.damagingEntity instanceof Player)) return;
     damageSource.damagingEntity.runCommandAsync("scoreboard players add @s kills 1");

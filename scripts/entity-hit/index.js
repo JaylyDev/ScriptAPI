@@ -15,5 +15,5 @@ world.afterEvents.entityHit.subscribe((evd) => {
     // @ts-ignore
     const h = ent.getComponent('health');
     if (!h) return;
-    h.setCurrent(h.current - 100);
+    h.setCurrentValue(h.currentValue - 100);
 });
