@@ -8,8 +8,6 @@
     "target": "esnext",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "outDir": "lib",
-    "skipLibCheck": true,
   },
   "files": ["index.d.ts", "@minecraft/server-editor.d.ts", "@minecraft/server-editor-bindings.d.ts"]
 }

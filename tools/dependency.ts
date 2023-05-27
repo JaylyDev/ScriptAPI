@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as fs from 'fs';
 import type * as npm from "@npm/types";
-import packageJson from "../../package.json";
+import packageJson from "../package.json";
 import { execSync } from "child_process";
 
 // packument stuff
@@ -28,9 +28,11 @@ export async function getVersion(module: string): Promise<string> {
     return new Date(time[a]).getTime() - new Date(time[b]).getTime();
   }).reverse();
 
-  const latestPreview = sorted.find((v) => module.startsWith("@minecraft/server")
-    ? v.includes(MinecraftChannel) && v.includes('-' + preReleaseChannel)
-    : v.includes('-' + MinecraftChannel));
+  const latestPreview = sorted.find((v) => {
+    if (module.startsWith("@minecraft/server")) return v.includes(MinecraftChannel) && v.includes('-' + preReleaseChannel);
+    else if (module.startsWith("@minecraft/vanilla")) return v.includes('-' + MinecraftChannel);
+    else return v;
+  });
 
   if (!latestPreview) throw "Cannot fetch latest preview version of " + module;
 
@@ -45,7 +47,7 @@ async function main() {
   for (const moduleName in packageJson.dependencies) {
     const latestPreview = await getVersion(moduleName);
     
-    packageJson.dependencies[moduleName as (keyof typeof import("../../package.json")["dependencies"])] = latestPreview;
+    packageJson.dependencies[moduleName as (keyof typeof import("../package.json")["dependencies"])] = latestPreview;
   }
 
   fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2));

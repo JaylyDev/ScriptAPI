@@ -1,6 +1,6 @@
 {
   "name": "@jayly/minecraft-editor",
-  "version": "0.3.6",
+  "version": "0.3.6-1",
   "description": "Unofficial Minecraft Bedrock Editor API modules type definitions.",
   "types": "index.d.ts",
   "main": "",
