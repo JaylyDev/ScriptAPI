@@ -1,14 +1,14 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import { Color, PriorityQueue } from "../utils";
-import { Mesh } from "../mesh";
-export default ( uiSession ) => {
+import { Color, PriorityQueue } from "../../../../utils";
+import { Mesh } from "../Mesh";
+export const Start = ( uiSession ) => {
     uiSession.log.debug( `Initializing ${uiSession.extensionContext.extensionName} extension` );
     const tool = uiSession.toolRail.addTool(
         {
-            displayString: "Sphere (CTRL + SHIFT + S)",
+            displayString: "Cylinder (CTRL + SHIFT + C)",
             tooltip: "Left mouse click or drag-to-paint",
-            icon: "pack://textures/editor/sphere.png?filtering=point",
+            icon: "pack://textures/editor/cylinder.png?filtering=point",
         },
     );
 
@@ -45,18 +45,19 @@ export default ( uiSession ) => {
                 },
             },
         ),
-        Editor.KeyboardKey.KEY_S,
+        Editor.KeyboardKey.KEY_C,
         Editor.InputModifier.Shift | Editor.InputModifier.Control,
     );
     
     const pane = uiSession.createPropertyPane(
-        { titleAltText: "Sphere" },
+        { titleAltText: "Cylinder" },
     );
     
     const settings = Editor.createPaneBindingObject(
         pane,
         {
             size: 3,
+            height: 6,
             hollow: false,
             face: false,
             blockType: Server.MinecraftBlockTypes.stone,
@@ -73,20 +74,31 @@ export default ( uiSession ) => {
             showSlider: true,
         }
     );
+
+    pane.addNumber(
+        settings,
+        "height",
+        {
+            titleAltText: "Height",
+            min: 1,
+            max: 16,
+            showSlider: true,
+        }
+    );
     
     pane.addBool(
         settings,
         "hollow",
         { titleAltText: "Hollow" }
     );
-
+    
     pane.addBool(
         settings,
         "face",
         {
             titleAltText: "Face Mode",
             onChange: ( _obj, _property, _oldValue, _newValue ) => {
-                if (uiSession.scratchStorage == undefined) return uiSession.log.error( "Sphere storage was not initialized." );
+                if (uiSession.scratchStorage === undefined) return uiSession.log.error( "Cylinder storage was not initialized." );
                 uiSession.scratchStorage.currentCursorState.targetMode = settings.face
                     ? Editor.CursorTargetMode.Face
                     : Editor.CursorTargetMode.Block;
@@ -101,10 +113,10 @@ export default ( uiSession ) => {
         { titleAltText: "Block Type" }
     );
     
-    tool.bindPropertyPane( pane );
+    tool.bindPropertyPane(pane);
     
     const onExecuteBrush = () => {
-        if (!uiSession.scratchStorage?.previewSelection) return uiSession.log.error( "Brush storage was not initialized." );
+        if (!uiSession.scratchStorage?.previewSelection) return uiSession.log.error( "Cylinder storage was not initialized." );
         
         const previewSelection = uiSession.scratchStorage.previewSelection;
         const player = uiSession.extensionContext.player;
@@ -116,9 +128,9 @@ export default ( uiSession ) => {
             && uiSession.scratchStorage.lastCursorPosition?.y == uiSession.extensionContext.cursor.getPosition().y
             && uiSession.scratchStorage.lastCursorPosition?.z == uiSession.extensionContext.cursor.getPosition().z
         ) return;
-        
-        const sphere = drawSphere( location.x, location.y, location.z, settings.size, settings.hollow );
-        for (const blockVolume of sphere.calculateVolumes()) {
+
+        const cylinder = drawCylinder( location.x, location.y, location.z, settings.size, settings.height, settings.hollow );
+        for (const blockVolume of cylinder.calculateVolumes()) {
             previewSelection.pushVolume(
                 {
                     action: Server.CompoundBlockVolumeAction.Add,
@@ -137,7 +149,7 @@ export default ( uiSession ) => {
                 onExecute: async ( mouseRay, mouseProps ) => {
                     if (mouseProps.mouseAction == Editor.MouseActionType.LeftButton) {
                         if (mouseProps.inputType == Editor.MouseInputType.ButtonDown) {
-                            uiSession.extensionContext.transactionManager.openTransaction( "sphereTool" );
+                            uiSession.extensionContext.transactionManager.openTransaction( "cylinderTool" );
                             uiSession.scratchStorage.previewSelection.clear();
                             onExecuteBrush();
                         } else if (mouseProps.inputType == Editor.MouseInputType.ButtonUp) {
@@ -184,7 +196,7 @@ export default ( uiSession ) => {
         uiSession.actionManager.createAction(
             {
                 actionType: Editor.ActionTypes.MouseRayCastAction,
-                onExecute: ( mouseRay, mouseProps ) => {
+                onExecute: (mouseRay, mouseProps) => {
                     if (mouseProps.inputType === Editor.MouseInputType.Drag) onExecuteBrush();
                 },
             },
@@ -192,31 +204,39 @@ export default ( uiSession ) => {
     );
 };
 
-const drawSphere = (
-    x,
-    y,
-    z,
-    radius,
-    hollow = false,
-) => {
+const drawCylinder = ( x, y, z, radius, height, hollow = false ) => {
 	const mesh = new Mesh();
-	for ( let xOffset = -radius; xOffset <= radius; xOffset++ ) {
-		for ( let yOffset = -radius; yOffset <= radius; yOffset++ ) {
-			for ( let zOffset = -radius; zOffset <= radius; zOffset++ ) {
-				let distance = Math.sqrt( xOffset * xOffset + yOffset * yOffset + zOffset * zOffset );
+	for (let i = 0; i < height; i++) {
+		let centerX = x;
+		let centerY = y + i;
+		let centerZ = z;
 
+		for (let j = -radius; j <= radius; j++) {
+			for (let k = -radius; k <= radius; k++) {
+				let distance = Math.sqrt(j * j + k * k);
 				if (
-                    distance <= radius
-                    && (
-                        !hollow
-                        || distance >= radius - 1
-                    )
-                ) {
+					(!hollow && distance <= radius)
+					|| (
+						hollow
+						&& (
+							(distance >= radius - 0.5 && distance <= radius + 0.5)
+							&& (
+								(i == 0 && distance < radius - 0.5)
+								|| (i == height - 1 && distance < radius - 0.5)
+							)
+							|| (i != 0 && i != height - 1 && distance < radius - 0.5)
+						)
+						&& (
+							distance >= radius - 1.5
+							|| (i == 0 || i == height - 1)
+						)
+					)
+				) {
 					mesh.add(
 						{
-							x: x + xOffset,
-							y: y + yOffset,
-							z: z + zOffset,
+							x: centerX + j,
+							y: centerY,
+							z: centerZ + k,
 						}
 					);
 				};

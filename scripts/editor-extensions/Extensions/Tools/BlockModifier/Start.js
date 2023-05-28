@@ -1,8 +1,8 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "../utils";
-export default ( uiSession ) => {
-    uiSession.log.debug(`Initializing ${uiSession.extensionContext.extensionName} extension`);
+import { Color } from "../../../utils";
+export const Start = ( uiSession ) => {
+    uiSession.log.debug( `Initializing ${uiSession.extensionContext.extensionName} extension` );
     const tool = uiSession.toolRail.addTool(
         {
             displayString: "Block Modifier",
@@ -153,7 +153,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
             "lever_direction",
             {
                 titleAltText: "Lever Direction",
-                dropdownItems: Server.BlockProperties.get( "lever_direction" ).validValues.map(
+                dropdownItems: Server.BlockStates.get( "lever_direction" ).validValues.map(
                     (value) => (
                         {
                             displayAltText: value,
@@ -335,7 +335,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
             "damage",
             {
                 titleAltText: "Damage",
-                dropdownItems: Server.BlockProperties.get( "damage" ).validValues.map(
+                dropdownItems: Server.BlockStates.get( "damage" ).validValues.map(
                     (value) => (
                         {
                             displayAltText: value,

@@ -7,7 +7,8 @@ const dimensions = {
     "minecraft:the_end": "The End",
 };
 
-export const Activate = (uiSession) => {
+const areLocationsEqual = (a, b) => a.x === b.x && a.y === b.y && a.z === b.z;
+export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
     console.log(`Initializing ${uiSession.extensionContext.extensionName} extension`);
     uiSession.scratchStorage = {
         isDisposed: false,
@@ -42,17 +43,3 @@ export const Activate = (uiSession) => {
     };
     uiSession.scratchStorage.latestRunId = Server.system.run(onTick);
 };
-
-export const Shutdown = (uiSession) => {
-    if (
-        uiSession.scratchStorage
-        && uiSession.scratchStorage.latestRunId !== -1
-    ) {
-        uiSession.scratchStorage.isDisposed = true;
-        Server.system.clearRun(uiSession.scratchStorage.latestRunId);
-    };
-    
-    console.log(`Shutting down ${uiSession.extensionContext.extensionName} extension`);
-};
-
-const areLocationsEqual = (a, b) => a.x === b.x && a.y === b.y && a.z === b.z;

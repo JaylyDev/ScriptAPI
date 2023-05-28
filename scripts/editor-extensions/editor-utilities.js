@@ -4,6 +4,7 @@ import * as _minecraft_server_wrapper__WEBPACK_IMPORTED_MODULE_0__ from '@minecr
  * Direction
  * @beta
  * @remarks
+ * @type any
  * Direction maps to C++ Direction::FacingID
  */
 var Direction;

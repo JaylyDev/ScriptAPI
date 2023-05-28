@@ -1,4 +1,10 @@
 export class Color {
+	/**
+	 * @param {number} red
+	 * @param {number} green
+	 * @param {number} blue
+	 * @param {number} alpha
+	 */
 	constructor( red, green, blue, alpha ) {
 		return {
 			red,
@@ -10,11 +16,17 @@ export class Color {
 };
 
 export class PriorityQueue {
+	/**
+	 * @param {{ (a: any, b: any): number; (a: any, b: any): number; (a: any, b: any): number; }} compareFn
+	 */
 	constructor( compareFn ) {
 		this.compareFn = compareFn;
 		this.heap = [];
 	};
 
+	/**
+	 * @param {import("@minecraft/server").Vector3} element
+	 */
 	enqueue( element ) {
 		this.heap.push( element );
 	  	this.siftUp( this.heap.length - 1 );
@@ -34,6 +46,9 @@ export class PriorityQueue {
 	  	return this.heap.length === 0;
 	};
   
+	/**
+	 * @param {number} index
+	 */
 	siftUp( index ) {
 	  	let parentIndex = this.getParentIndex( index );
 	  	while (index > 0 && this.compareFn( this.heap[parentIndex], this.heap[index] ) > 0) {
@@ -43,6 +58,9 @@ export class PriorityQueue {
 	  	};
 	};
   
+	/**
+	 * @param {number} index
+	 */
 	siftDown( index ) {
 	  	let i = index;
 	  	while (this.getLeftChildIndex( i ) < this.heap.length) {
@@ -64,17 +82,24 @@ export class PriorityQueue {
 	  	}
 	};
   
+	/**
+	 * @param {number} index
+	 */
 	getParentIndex( index ) {
 	  	return Math.floor( (index - 1) / 2 );
 	};
   
+	/**
+	 * @param {number} index
+	 */
 	getLeftChildIndex( index ) {
 	  	return index * 2 + 1;
 	};
   
+	/**
+	 * @param {number} index
+	 */
 	getRightChildIndex( index ) {
 	  	return index * 2 + 2;
 	};
 };
-
-export const Shutdown = (uiSession) => uiSession.log.info(`Shutting down ${uiSession.extensionContext.extensionName} extension`);

@@ -1,13 +1,13 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "../utils";
-export default (uiSession) => {
-    uiSession.log.debug(`Initializing ${uiSession.extensionContext.extensionName} extension`);
+import { Color } from "../../../utils";
+export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
+    uiSession.log.debug( `Initializing ${uiSession.extensionContext.extensionName} extension` );
     const tool = uiSession.toolRail.addTool(
         {
-            displayString: "Block Replace (Ctrl + R)",
+            displayString: "Blocks Counter",
             tooltip: "",
-            icon: "pack://textures/editor/replace.png?filtering=point",
+            icon: "pack://textures/editor/blocks_counter.png?filtering=point",
         },
     );
 
@@ -25,7 +25,7 @@ export default (uiSession) => {
     
     const pane = uiSession.createPropertyPane(
         {
-            titleAltText: "Block Replace",
+            titleAltText: "Blocks Counter",
         },
     );
 
@@ -42,9 +42,7 @@ export default (uiSession) => {
                 y: 0,
                 z: 0,
             },
-            blockType: Server.MinecraftBlockTypes.stone,
-            replaceWith: Server.MinecraftBlockTypes.stone,
-        }
+        },
     );
 
     const singleClick = (uiSession, mouseRay, shiftPressed, ctrlPressed, altPressed) => {
@@ -154,6 +152,7 @@ export default (uiSession) => {
                     cursorBlockLocation: blockLocation,
                     rayHit: false,
                 };
+
                 singleClick(uiSession, ray, false, true, false);
             },
         }
@@ -200,23 +199,22 @@ export default (uiSession) => {
         if (!selection.isEmpty) {
             const lastVolume = Server.BlockVolumeUtils.selection.peekLastVolume().volume;
             if (lastVolume) {
-                const min = {
-                    x: settings.origin.x,
-                    y: settings.origin.y,
-                    z: settings.origin.z,
-                };
+                const min = settings.origin;
                 const max = {
                     x: settings.origin.x + settings.size.x - 1,
                     y: settings.origin.y + settings.size.y - 1,
                     z: settings.origin.z + settings.size.z - 1,
                 };
-                const newVolume = { from: min, to: max };
+
                 selection.popVolume();
                 selection.pushVolume(
                     {
                         action: Server.CompoundBlockVolumeAction.Add,
-                        volume: newVolume
-                    }
+                        volume: {
+                            from: min,
+                            to: max,
+                        },
+                    },
                 );
             }
         }
@@ -269,12 +267,13 @@ export default (uiSession) => {
                 const selection = uiSession.extensionContext.selectionManager.selection;
                 if (selection && !selection.isEmpty) {
                     const bounds = Server.BlockVolumeUtils.getBoundingBox(selection.peekLastVolume().volume);
+                    const boundSize = Server.BoundingBoxUtils.getSpan(bounds);
                     x = bounds.min.x;
                     y = bounds.min.y;
                     z = bounds.min.z;
-                    sx = bounds.spanX;
-                    sy = bounds.spanY;
-                    sz = bounds.spanZ;
+                    sx = boundSize.x;
+                    sy = boundSize.y;
+                    sz = boundSize.z;
                     if (!originPropertyItem?.enable) {
                         if (originPropertyItem) {
                             originPropertyItem.enable = true;
@@ -303,7 +302,8 @@ export default (uiSession) => {
                     settings.origin.z !== z ||
                     settings.size.x !== sx ||
                     settings.size.y !== sy ||
-                    settings.size.z !== sz) {
+                    settings.size.z !== sz
+                ) {
                     settings.origin.x = Math.trunc(x);
                     settings.origin.y = Math.trunc(y);
                     settings.origin.z = Math.trunc(z);
@@ -325,70 +325,86 @@ export default (uiSession) => {
         },
     );
     
-    uiSession.inputManager.registerKeyBinding(
-        Editor.EditorInputContext.GlobalToolMode,
-        uiSession.actionManager.createAction(
-            {
-                actionType: Editor.ActionTypes.NoArgsAction,
-                onExecute: () => {
-                    uiSession.toolRail.setSelectedOptionId(tool.id, true);
-                },
-            },
-        ),
-        Editor.KeyboardKey.KEY_R,
-        Editor.InputModifier.Control,
-    );
-    
-    pane.addBlockPicker(
-        settings,
-        "blockType",
-        {
-            titleAltText: "Block Type",
-        },
-    );
-    
-    pane.addBlockPicker(
-        settings,
-        "replaceWith",
-        {
-            titleAltText: "Replace With",
-        },
-    );
-
-    pane.addButton(
+    const getBlocks = pane.addButton(
         uiSession.actionManager.createAction(
             {
                 actionType: Editor.ActionTypes.NoArgsAction,
                 onExecute: async () => {
                     const player = uiSession.extensionContext.player;
-                    const dimension = player.dimension;
-                    if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
-                        player.sendMessage("No selection available to fill");
-                        return;
-                    };
+                    if (uiSession.extensionContext.selectionManager.selection.isEmpty) return player.sendMessage( "No selection available to fill" );
 
-                    uiSession.extensionContext.transactionManager.openTransaction("BlockReplacer");
-                    uiSession.extensionContext.transactionManager.trackBlockChangeSelection(uiSession.extensionContext.selectionManager.selection);
-                    await Editor.executeLargeOperation(uiSession.extensionContext.selectionManager.selection, (blockLocation) => {
-                        const block = dimension.getBlock(blockLocation);
-                        if (block) {
-                            block.isWaterlogged = false;
-                            if(block?.typeId == settings.blockType.id) block.setType(settings.replaceWith);
-                        };
-                    })
-                    .catch(e => {
-                        uiSession.log.error(e);
-                        uiSession.extensionContext.transactionManager.discardOpenTransaction();
-                    })
-                    .then(() => {
-                        uiSession.extensionContext.transactionManager.commitOpenTransaction();
-                    });
+                    getBlocks.enable = false;
+                    player.sendMessage( "Getting Blocks!" );
+
+                    const blocks = [];
+                    await Editor.executeLargeOperation(
+                        uiSession.extensionContext.selectionManager.selection,
+                        (blockLocation) => {
+                            const block = player.dimension.getBlock( blockLocation );
+                            if (
+                                block
+                                && block.typeId != "minecraft:air"
+                            ) {
+                                const blockList = blocks.find((b) => b.typeId == block.typeId);
+                                if (!blockList) {
+                                    blocks.push(
+                                        {
+                                            typeId: block.typeId,
+                                            amount: 1,
+                                        },
+                                    );
+                                } else {
+                                    blockList.amount++;
+                                };
+                            };
+                        },
+                    ).catch(
+                        () => {
+                            uiSession.extensionContext.selectionManager.selection.clear();
+                        },
+                    ).then(
+                        () => {
+                            uiSession.extensionContext.selectionManager.selection.clear();
+                            const newPane = uiSession.createPropertyPane(
+                                { titleAltText: "Blocks" },
+                            );
+                        
+                            const newSettings = Editor.createPaneBindingObject(
+                                newPane,
+                                {},
+                            );
+
+                            for (const b of blocks.sort((a, b) => b.amount - a.amount)) {
+                                newSettings[b.typeId] = b.amount;
+
+                                const pPane = newPane.createPropertyPane(
+                                    {
+                                        titleAltText: b.typeId,
+                                        titleStringId: "tile." + b.typeId.split(":")[1] + ".name"
+                                    },
+                                );
+    
+                                pPane.addNumber(
+                                    newSettings,
+                                    b.typeId,
+                                    {
+                                        titleAltText: "Amount",
+                                        showSlider: false,
+                                        enable: false,
+                                    },
+                                );
+                            };
+
+                            newPane.update(true);
+                            getBlocks.enable = true;
+                        },
+                    );
                 },
-            },
+            }
         ),
         {
-            titleAltText: "Replace",
-        },
+            titleAltText: "Get Blocks",
+        }
     );
 
     pane.addDivider();

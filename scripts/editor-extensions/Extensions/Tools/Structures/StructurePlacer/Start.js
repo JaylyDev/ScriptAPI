@@ -1,7 +1,7 @@
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "../utils";
-import { Structures } from "../structures";
-export default (uiSession) => {
+import { Color } from "../../../../utils";
+import { Structures } from "../Structures";
+export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
     uiSession.log.debug(`Initializing ${uiSession.extensionContext.extensionName} extension`);
     const tool = uiSession.toolRail.addTool(
         {

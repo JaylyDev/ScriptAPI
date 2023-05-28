@@ -1,56 +1,62 @@
+// Script example for ScriptAPI
+// Author: xKingDark <https://github.com/DarkGamerYT>
+// Project: https://github.com/DarkGamerYT/Bedrock-Editor-Extension
 import * as Editor from "@minecraft/server-editor";
 import * as Server from "@minecraft/server";
-import { Shutdown } from "./utils";
+
+import Divider from "./Extensions/Divider";
 
 //Tools
-import CylinderTool from "./Extensions/CylinderTool";
-import SphereTool from "./Extensions/SphereTool";
-import CubeTool from "./Extensions/CubeTool";
+import * as CylinderBrush from "./Extensions/Tools/Brushes/Cylinder/index";
+import * as SphereBrush from "./Extensions/Tools/Brushes/Sphere/index";
+import * as CubeBrush from "./Extensions/Tools/Brushes/Cube/index";
 
-import StructurePlacerTool from "./Extensions/StructurePlacerTool";
-import StructureSaverTool from "./Extensions/StructureSaverTool";
+import * as StructurePlacer from "./Extensions/Tools/Structures/StructurePlacer/index";
+import * as StructureSaver from "./Extensions/Tools/Structures/StructureSaver/index";
 
-import BlockModifierTool from "./Extensions/BlockModifierTool";
-import EntitySpawnerTool from "./Extensions/EntitySpawnerTool";
-import ItemSpawnerTool from "./Extensions/ItemSpawnerTool";
-import ReplaceBlocksTool from "./Extensions/ReplaceBlocksTool";
-import BlocksCounterTool from "./Extensions/BlocksCounterTool";
-//import CoreEditor from "./Extensions/CoreEditor";
+import * as EntitySpawner from "./Extensions/Tools/Spawners/EntitySpawner/index";
+import * as ItemSpawner from "./Extensions/Tools/Spawners/ItemSpawner/index";
 
-Editor.registerEditorExtension( "cylinderTool", CylinderTool, Shutdown );
-Editor.registerEditorExtension( "sphereTool", SphereTool, Shutdown );
-Editor.registerEditorExtension( "cubeBrush", CubeTool, Shutdown );
+import * as BlocksCounter from "./Extensions/Tools/BlocksCounter/index";
+import * as BlockModifier from "./Extensions/Tools/BlockModifier/index";
+import * as BlocksReplacer from "./Extensions/Tools/BlocksReplacer/index";
 
-Editor.registerEditorExtension( "divider", ((uiSession) => uiSession.toolRail.addTool({ displayString: "Divider", icon: "pack://textures/editor/divider.png?filtering=point" })), Shutdown );
+//Brushes
+Editor.registerEditorExtension( "cylinderBrush", CylinderBrush.Start, CylinderBrush.Shutdown );
+Editor.registerEditorExtension( "sphereBrush", SphereBrush.Start, SphereBrush.Shutdown );
+Editor.registerEditorExtension( "cubeBrush", CubeBrush.Start, CubeBrush.Shutdown );
 
-Editor.registerEditorExtension( "blocksCounterTool", BlocksCounterTool, Shutdown );
+//Divider
+Editor.registerEditorExtension( "divider_", Divider, () => {} );
 
-Editor.registerEditorExtension( "divider_", ((uiSession) => uiSession.toolRail.addTool({ displayString: "Divider", icon: "pack://textures/editor/divider.png?filtering=point" })), Shutdown );
+//Structures
+Editor.registerEditorExtension( "structurePlacer", StructurePlacer.Start, StructurePlacer.Shutdown );
+Editor.registerEditorExtension( "structureSaver", StructureSaver.Start, StructureSaver.Shutdown );
 
-Editor.registerEditorExtension( "structurePlacerTool", StructurePlacerTool, Shutdown );
-Editor.registerEditorExtension( "structureSaverTool", StructureSaverTool, Shutdown );
+//Divider
+Editor.registerEditorExtension( "divider__", Divider, () => {} );
 
-Editor.registerEditorExtension( "divider__", ((uiSession) => uiSession.toolRail.addTool({ displayString: "Divider", icon: "pack://textures/editor/divider.png?filtering=point" })), Shutdown );
+//Spawners
+Editor.registerEditorExtension( "entitySpawner", EntitySpawner.Start, EntitySpawner.Shutdown );
+Editor.registerEditorExtension( "itemSpawner", ItemSpawner.Start, ItemSpawner.Shutdown );
 
-Editor.registerEditorExtension( "entitySpawnerTool", EntitySpawnerTool, Shutdown );
-Editor.registerEditorExtension( "itemSpawnerTool", ItemSpawnerTool, Shutdown );
+//Divider
+Editor.registerEditorExtension( "_divider_", Divider, () => {} );
 
-Editor.registerEditorExtension( "_divider_", ((uiSession) => uiSession.toolRail.addTool({ displayString: "Divider", icon: "pack://textures/editor/divider.png?filtering=point" })), Shutdown ) ;
-
-Editor.registerEditorExtension( "blockModifier", BlockModifierTool, Shutdown );
-Editor.registerEditorExtension( "replaceBlocksTool", ReplaceBlocksTool, Shutdown );
-//Editor.registerEditorExtension( "CoreEditor", CoreEditor, Shutdown );
+Editor.registerEditorExtension( "blocksCounter", BlocksCounter.Start, BlocksCounter.Shutdown );
+Editor.registerEditorExtension( "blockModifier", BlockModifier.Start, BlockModifier.Shutdown );
+Editor.registerEditorExtension( "blocksReplacer", BlocksReplacer.Start, BlocksReplacer.Shutdown );
 
 
 
 //Actions
-import NightVision from "./Extensions/Actions/NightVision";
+import * as NightVision from "./Extensions/Actions/NightVision/index";
 
-Editor.registerEditorExtension( "nightVision", NightVision, Shutdown );
+Editor.registerEditorExtension( "nightVision", NightVision.Start, NightVision.Shutdown );
 
 
 
 //StatusBars
-import * as PlayerPosition from "./Extensions/StatusBars/PlayerPosition";
+import * as PlayerPosition from "./Extensions/StatusBars/PlayerPosition/index";
 
-Editor.registerEditorExtension( "playerPosition", PlayerPosition.Activate, PlayerPosition.Shutdown );
+Editor.registerEditorExtension( "playerPosition", PlayerPosition.Start, PlayerPosition.Shutdown );

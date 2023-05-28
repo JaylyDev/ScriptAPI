@@ -1,13 +1,13 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import { Color } from "../utils";
-export default (uiSession) => {
+import { Color } from "../../../../utils";
+export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
     uiSession.log.debug(`Initializing ${uiSession.extensionContext.extensionName} extension`);
     const tool = uiSession.toolRail.addTool(
         {
-            displayString: "Blocks Counter",
+            displayString: "Structure Saver (CTRL + SHIFT + P)",
             tooltip: "",
-            icon: "pack://textures/editor/blocks_counter.png?filtering=point",
+            icon: "pack://textures/editor/structure_saver.png?filtering=point",
         },
     );
 
@@ -20,12 +20,13 @@ export default (uiSession) => {
             fixedModeDistance: 5
         },
     };
-
+    
     let lastAnchorPosition = { x: 0, y: 0, z: 0 };
     
     const pane = uiSession.createPropertyPane(
         {
-            titleAltText: "Blocks Counter",
+            titleAltText: "Structure Saver",
+            width: 40,
         },
     );
 
@@ -42,7 +43,9 @@ export default (uiSession) => {
                 y: 0,
                 z: 0,
             },
-        },
+            structureName: "",
+            includeEntities: true,
+        }
     );
 
     const singleClick = (uiSession, mouseRay, shiftPressed, ctrlPressed, altPressed) => {
@@ -106,8 +109,8 @@ export default (uiSession) => {
                 );
                 lastAnchorPosition = clickLoc;
             } else {
-                const currentVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume().volume;
-                const currentBounds = currentVolume.getBoundingBox();
+                const currentVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume;
+                const currentBounds = currentVolume.boundingBox;
                 const translatedRayLocation = Server.Vector.subtract(new Server.Vector(mouseRay.location.x, mouseRay.location.y, mouseRay.location.z), new Server.Vector(currentBounds.min.x, currentBounds.min.y, currentBounds.min.z));
                 const intersection = true;
                 if (intersection) {
@@ -152,7 +155,6 @@ export default (uiSession) => {
                     cursorBlockLocation: blockLocation,
                     rayHit: false,
                 };
-
                 singleClick(uiSession, ray, false, true, false);
             },
         }
@@ -197,25 +199,24 @@ export default (uiSession) => {
         if (_oldValue === _newValue) return;
         const selection = uiSession.extensionContext.selectionManager.selection;
         if (!selection.isEmpty) {
-            const lastVolume = Server.BlockVolumeUtils.selection.peekLastVolume().volume;
+            const lastVolume = uiSession.extensionContext.selectionManager.selection.peekLastVolume().volume;
             if (lastVolume) {
-                const min = {
-                    x: settings.origin.x,
-                    y: settings.origin.y,
-                    z: settings.origin.z,
-                };
+                const min = settings.origin;
                 const max = {
                     x: settings.origin.x + settings.size.x - 1,
                     y: settings.origin.y + settings.size.y - 1,
-                    z: settings.origin.z + settings.size.z - 1,
+                    z: settings.origin.z + settings.size.z - 1
                 };
-                const newVolume = { from: min, to: max };
+
                 selection.popVolume();
                 selection.pushVolume(
                     {
                         action: Server.CompoundBlockVolumeAction.Add,
-                        volume: newVolume
-                    }
+                        volume: {
+                            from: min,
+                            to: max,
+                        },
+                    },
                 );
             }
         }
@@ -246,9 +247,9 @@ export default (uiSession) => {
             minX: 1,
             minY: 1,
             minZ: 1,
-            maxX: 100,
-            maxY: 100,
-            maxZ: 100,
+            maxX: 64,
+            maxY: 384,
+            maxZ: 64,
             onChange: onOriginOrSizeChange,
         }
     );
@@ -268,12 +269,13 @@ export default (uiSession) => {
                 const selection = uiSession.extensionContext.selectionManager.selection;
                 if (selection && !selection.isEmpty) {
                     const bounds = Server.BlockVolumeUtils.getBoundingBox(selection.peekLastVolume().volume);
+                    const boundSize = Server.BoundingBoxUtils.getSpan(bounds);
                     x = bounds.min.x;
                     y = bounds.min.y;
                     z = bounds.min.z;
-                    sx = bounds.spanX;
-                    sy = bounds.spanY;
-                    sz = bounds.spanZ;
+                    sx = boundSize.x;
+                    sy = boundSize.y;
+                    sz = boundSize.z;
                     if (!originPropertyItem?.enable) {
                         if (originPropertyItem) {
                             originPropertyItem.enable = true;
@@ -302,7 +304,8 @@ export default (uiSession) => {
                     settings.origin.z !== z ||
                     settings.size.x !== sx ||
                     settings.size.y !== sy ||
-                    settings.size.z !== sz) {
+                    settings.size.z !== sz
+                ) {
                     settings.origin.x = Math.trunc(x);
                     settings.origin.y = Math.trunc(y);
                     settings.origin.z = Math.trunc(z);
@@ -324,86 +327,79 @@ export default (uiSession) => {
         },
     );
     
-    const getBlocks = pane.addButton(
+    uiSession.inputManager.registerKeyBinding(
+        Editor.EditorInputContext.GlobalToolMode,
+        uiSession.actionManager.createAction(
+            {
+                actionType: Editor.ActionTypes.NoArgsAction,
+                onExecute: () => {
+                    uiSession.toolRail.setSelectedOptionId(tool.id, true);
+                },
+            },
+        ),
+        Editor.KeyboardKey.KEY_P,
+        Editor.InputModifier.Control | Editor.InputModifier.Shift,
+    );
+    
+    pane.addString(
+        settings,
+        "structureName",
+        {
+            titleAltText: "Structure Name",
+        },
+    );
+
+    pane.addBool(
+        settings,
+        "includeEntities", {
+            titleAltText: "Include Entities",
+        }
+    );
+
+    pane.addButton(
         uiSession.actionManager.createAction(
             {
                 actionType: Editor.ActionTypes.NoArgsAction,
                 onExecute: async () => {
                     const player = uiSession.extensionContext.player;
-                    if (uiSession.extensionContext.selectionManager.selection.isEmpty) return player.sendMessage( "No selection available to fill" );
+                    const dimension = player.dimension;
+                    if (uiSession.extensionContext.selectionManager.selection.isEmpty) {
+                        player.sendMessage("No selection available to fill");
+                        return;
+                    };
 
-                    getBlocks.enable = false;
-                    player.sendMessage( "Getting Blocks!" );
-
-                    const blocks = [];
-                    await Editor.executeLargeOperation(
-                        uiSession.extensionContext.selectionManager.selection,
-                        (blockLocation) => {
-                            const block = player.dimension.getBlock( blockLocation );
-                            if (
-                                block
-                                && block.typeId != "minecraft:air"
-                            ) {
-                                const blockList = blocks.find((b) => b.typeId == block.typeId);
-                                if (!blockList) {
-                                    blocks.push(
-                                        {
-                                            typeId: block.typeId,
-                                            amount: 1,
-                                        },
-                                    );
-                                } else {
-                                    blockList.amount++;
-                                };
-                            };
-                        },
-                    ).catch(
-                        () => {
-                            uiSession.extensionContext.selectionManager.selection.clear();
-                        },
-                    ).then(
-                        () => {
-                            uiSession.extensionContext.selectionManager.selection.clear();
-                            const newPane = uiSession.createPropertyPane(
-                                { titleAltText: "Blocks" },
-                            );
-                        
-                            const newSettings = Editor.createPaneBindingObject(
-                                newPane,
-                                {},
-                            );
-
-                            for (const b of blocks.sort((a, b) => b.amount - a.amount)) {
-                                newSettings[b.typeId] = b.amount;
-
-                                const pPane = newPane.createPropertyPane(
-                                    {
-                                        titleAltText: b.typeId,
-                                        titleStringId: "tile." + b.typeId.split(":")[1] + ".name"
-                                    },
-                                );
-    
-                                pPane.addNumber(
-                                    newSettings,
-                                    b.typeId,
-                                    {
-                                        titleAltText: "Amount",
-                                        showSlider: false,
-                                        enable: false,
-                                    },
-                                );
-                            };
-
-                            newPane.update(true);
-                            getBlocks.enable = true;
-                        },
+                    const { x: minX, y: minY, z: minZ } = uiSession.extensionContext.selectionManager.selection.getBoundingBox().min;
+                    const { x: maxX, y: maxY, z: maxZ } = uiSession.extensionContext.selectionManager.selection.getBoundingBox().max;
+                    if(settings.structureName.trim().length == 0) return;
+                    player.dimension.runCommandAsync(
+                        "structure save "
+                        + settings.structureName
+                        + " "
+                        + minX
+                        + " "
+                        + minY
+                        + " "
+                        + minZ
+                        + " "
+                        + maxX
+                        + " "
+                        + maxY
+                        + " "
+                        + maxZ
+                        + " "
+                        + settings.includeEntities
+                        + " disk"
                     );
+
+                    player.sendMessage("Structure Saved.");
+
+                    uiSession.extensionContext.selectionManager.selection.clear();
                 },
-            }
+            },
         ),
         {
-            titleAltText: "Get Blocks",
-        }
+            titleAltText: "Save",
+        },
     );
 
     pane.addDivider();
