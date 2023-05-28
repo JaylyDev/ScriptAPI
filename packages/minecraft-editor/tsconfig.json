@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "ES2022",
+    "lib": ["es6"],
+    "declaration": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "target": "esnext",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+  },
+  "files": ["index.d.ts", "@minecraft/server-editor.d.ts", "@minecraft/server-editor-bindings.d.ts"]
+}
