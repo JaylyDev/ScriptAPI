@@ -736,7 +736,7 @@ export class SelectionBehavior {
                     subPaneFill.update(true);
                 },
             });
-            subPaneFill.addButtonAndBindAction(this.executeFillAction, {
+            subPaneFill.addButton(this.executeFillAction, {
                 titleStringId: getLocalizationId('selectionTool.fillPane.fillAction'),
                 titleAltText: 'Fill Selection',
             });
@@ -748,7 +748,7 @@ export class SelectionBehavior {
                     uiSession.extensionContext.selectionManager.selection.clear();
                 },
             });
-            this.pane.addButtonAndBindAction(actionClearSelection, {
+            this.pane.addButton(actionClearSelection, {
                 titleStringId: getLocalizationId('selectionTool.deselect'),
                 titleAltText: 'Deselect',
                 variant: 'secondary',

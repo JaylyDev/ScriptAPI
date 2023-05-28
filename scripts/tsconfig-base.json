@@ -11,7 +11,7 @@
       "@minecraft/server-net": [ "../node_modules/@minecraft/server-net/index" ],
       "@minecraft/server-admin": [ "../node_modules/@minecraft/server-admin/index" ],
       "@minecraft/server-gametest": [ "../node_modules/@minecraft/server-gametest/index" ],
-      "@minecraft/vanilla-data": [ "../node_modules/@minecraft/vanilla-data" ]
+      "@minecraft/vanilla-data": [ "../node_modules/@minecraft/vanilla-data/lib/index" ]
     },
     "types": ["@jayly/minecraft-editor"],
     "typeRoots": ["./node_modules/@jayly/minecraft-editor"],

@@ -1,8 +1,8 @@
-# Editor Typings
+# Minecraft Editor APIs
 
-Minecraft: Bedrock Editor API modules type definitions.
+Unofficial Minecraft: Bedrock Editor API modules type definitions.
 
-Those files are still in work in progress. Until v0.4 releases along with official type definitions, this module will be used for type checking scripts that uses editor APIs in the [ScriptAPI](https://github.com/JaylyDev/ScriptAPI) GitHub repository.
+The type definition files are still work in progress. Until v0.4 releases along with official type definitions, this module will be used for type checking scripts that uses editor APIs in the [ScriptAPI](https://github.com/JaylyDev/ScriptAPI) GitHub repository.
 
 ## Usage
 
@@ -12,7 +12,7 @@ Install `@jayly/minecraft-editor` package in NPM, this installs type definition 
 npm install @jayly/minecraft-editor
 ```
 
-Then you must include the following in TSConfig. This allows the editor API modules to be included without importing `@jayly/minecraft-editor` package which you should never do.
+Then you must include the following in TSConfig. This allows the editor API modules to be included without importing `@jayly/minecraft-editor` package.
 
 ```json
 {

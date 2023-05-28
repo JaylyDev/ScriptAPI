@@ -7,7 +7,7 @@ const dimensions = {
     "minecraft:the_end": "The End",
 };
 
-const areLocationsEqual = (a, b) => a.x === b.x && a.y === b.y && a.z === b.z;
+const areLocationsEqual = (/** @type {Server.Vector3} */ a, /** @type {Server.Vector3} */ b) => a.x === b.x && a.y === b.y && a.z === b.z;
 export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
     console.log(`Initializing ${uiSession.extensionContext.extensionName} extension`);
     uiSession.scratchStorage = {

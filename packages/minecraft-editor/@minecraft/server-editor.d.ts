@@ -1,6 +1,6 @@
 /**
  * Type definition for @minecraft/server-editor 0.3
- * 
+ *
  * Manifest details
  * ```json
  * {
@@ -13,10 +13,6 @@ declare module "@minecraft/server-editor" {
     import { AfterEvents, Player, System, Vector3 } from "@minecraft/server";
     import { Extension, ExtensionContext, Selection, ExtensionOptionalParameters, Logger } from "@minecraft/server-editor-bindings";
     export * from "@minecraft/server-editor-bindings";
-
-    type BedrockEventType = keyof AfterEvents;
-    type BedrockEventHandler = AfterEvents[BedrockEventType];
-
     class BaseControl {
         private _visible: boolean;
         private _enabled: boolean;
@@ -38,9 +34,8 @@ declare module "@minecraft/server-editor" {
         tooltip?: string;
         tooltipLocId?: string;
     }
-
-    class EventToken {
-        constructor(_event: BedrockEventHandler);
+    class EventToken<H extends keyof AfterEvents = keyof AfterEvents, K extends AfterEvents[H] = AfterEvents[H]> {
+        constructor(_event: K);
         unsubscribe(): void;
     }
     export interface EventSinkImplArgument {
@@ -99,39 +94,18 @@ declare module "@minecraft/server-editor" {
         private _sendDestroyMessage(): void;
     }
     class ContextInputManager extends BaseInputManager {
-        constructor(
-            eventDispatcher: ClientEventDispatcher,
-            inputContext: EditorInputContext
-        );
-        registerMouseWheelBinding(
-            action: EditorInputContext,
-            inputMappingId: InputModifier
-        ): void;
-        registerMouseButtonBinding(
-            action: EditorInputContext,
-            inputMappingId: InputModifier
-        ): void;
-        registerMouseDragBinding(
-            action: EditorInputContext,
-            inputMappingId: InputModifier
-        ): void;
-        registerKeyBinding(
-            action: EditorInputContext,
-            button: Action<ActionTypes>,
-            modifier: KeyboardKey,
-            inputMappingId: InputModifier
-        ): void;
+        constructor(eventDispatcher: ClientEventDispatcher, inputContext: EditorInputContext);
+        registerMouseWheelBinding(action: EditorInputContext, inputMappingId: InputModifier): void;
+        registerMouseButtonBinding(action: EditorInputContext, inputMappingId: InputModifier): void;
+        registerMouseDragBinding(action: EditorInputContext, inputMappingId: InputModifier): void;
+        registerKeyBinding(action: EditorInputContext, button: Action<ActionTypes>, modifier: KeyboardKey, inputMappingId: InputModifier): void;
         unregisterBindings(): void;
     }
     /**
      * @beta
      */
     class ModalTool extends BaseControl {
-        constructor(
-            _eventDispatcher: ClientEventDispatcher,
-            parent: ModalToolContainer,
-            params: Menu
-        );
+        constructor(_eventDispatcher: ClientEventDispatcher, parent: ModalToolContainer, params: Menu);
         private _eventDispatcher: ClientEventDispatcher;
         onModalToolActivation: EventSinkImpl;
         private _id: string;
@@ -147,16 +121,12 @@ declare module "@minecraft/server-editor" {
         registerMouseButtonBinding(action: Action<ActionTypes>): void;
         registerMouseWheelBinding(action: Action<ActionTypes>): void;
         registerMouseDragBinding(action: Action<ActionTypes>): void;
-        registerKeyBinding(
-            action: Action<ActionTypes>,
-            button: KeyboardKey,
-            modifier: InputModifier
-        ): void;
+        registerKeyBinding(action: Action<ActionTypes>, button: KeyboardKey, modifier: InputModifier): void;
         unregisterInputBindings(): void;
     }
     export interface MenuProps {
-        name: string;
-        displayStringLocId: string;
+        name?: string;
+        displayStringLocId?: string;
     }
     class Menu extends BaseControl {
         constructor(props: any, _dispatcher: any, _actionId: any, _parent: any);
@@ -181,14 +151,12 @@ declare module "@minecraft/server-editor" {
         private _sendUpdateMessage(): void;
         private _sendDestroyMessage(): void;
         private _removeChild(value: Menu): void;
-        addSeparator(): void;
     }
-
     class PropertyItem {
         action: Action<ActionTypes>;
         private _id: string;
         private _paneId: string;
-        private _obj: any;
+        private _obj: object;
         private _property: any;
         private _typeName: string;
         private _propertyItemOptions: any;
@@ -204,8 +172,8 @@ declare module "@minecraft/server-editor" {
         dispatchUXEvent(payload: any): void;
     }
     class PropertyPane extends BaseControl {
-        onPropertyPaneVisibilityUpdated: EventSinkImpl;
-        setPropertyItemValue(propertyName: string, newValue: any): void;
+        private onPropertyPaneVisibilityUpdated: EventSinkImpl;
+        private setPropertyItemValue(propertyName: string, newValue: any): void;
         private _id: string;
         private _parentPaneId: string;
         private _propertyItems: PropertyItem[];
@@ -221,43 +189,15 @@ declare module "@minecraft/server-editor" {
         removePropertyPane(paneToRemove: PropertyPane): boolean;
         hide(): void;
         show(): void;
-        addString(
-            obj: Record<string, any>,
-            property: string,
-            options: PaneOptions
-        ): PropertyItem;
-        addBool(
-            obj: Record<string, any>,
-            property: string,
-            options: BoolPaneOptions
-        ): PropertyItem;
-        addNumber(
-            obj: Record<string, any>,
-            property: string,
-            options: NumberPaneOptions
-        ): PropertyItem;
-        addBlockPicker(
-            obj: Record<string, any>,
-            property: string,
-            options: BlockPickerPaneOptions
-        ): PropertyItem;
-        addButton(
-            action: Record<string, any>,
-            options: ButtonPaneOptions
-        ): PropertyItem;
-        addDropdown<T>(
-            obj: Record<string, any>,
-            property: string,
-            options: DropdownPaneOptions<T>
-        ): PropertyItem;
+        addString(obj: Record<string, any>, property: string, options: PaneOptions): PropertyItem;
+        addBool(obj: Record<string, any>, property: string, options: BoolPaneOptions): PropertyItem;
+        addNumber(obj: Record<string, any>, property: string, options: NumberPaneOptions): PropertyItem;
+        addBlockPicker(obj: Record<string, any>, property: string, options: BlockPickerPaneOptions): PropertyItem;
+        addButton(action: Record<string, any>, options: ButtonPaneOptions): PropertyItem;
+        addDropdown<T>(obj: Record<string, any>, property: string, options: DropdownPaneOptions<T>): PropertyItem;
         addDivider(): PropertyItem;
-        addVec3(
-            obj: Record<string, any>,
-            property: string,
-            options: Vec3PaneOptions
-        ): PropertyItem;
+        addVec3(obj: Record<string, any>, property: string, options: Vec3PaneOptions): PropertyItem;
     }
-
     class StatusBarItem extends BaseControl {
         private _id: string;
         private _text: string;
@@ -271,21 +211,21 @@ declare module "@minecraft/server-editor" {
     }
     export interface MouseProps {
         mouseAction: MouseActionType;
-        modifiers: { shift: boolean; ctrl: boolean; alt: boolean };
+        modifiers: {
+            shift: boolean;
+            ctrl: boolean;
+            alt: boolean;
+        };
         inputType: MouseInputType;
     }
     export interface ActionPayload {
         [ActionTypes.NoArgsAction]: () => void;
-        [ActionTypes.MouseRayCastAction]: (
-            mouseRay: MouseRay,
-            mouseProps: MouseProps
-        ) => void;
+        [ActionTypes.MouseRayCastAction]: (mouseRay: MouseRay, mouseProps: MouseProps) => void;
     }
     export interface CreateActionOptions<T extends keyof ActionPayload> {
         actionType: T;
         onExecute: ActionPayload[T];
     }
-
     export interface Action<T extends keyof ActionPayload> {
         id: string;
         actionType: T;
@@ -294,7 +234,8 @@ declare module "@minecraft/server-editor" {
     /**
      * @internal
      */
-    class ClientEventListener { }
+    class ClientEventListener {
+    }
     /**
      * Implementation of the ActionManager
      */
@@ -302,9 +243,7 @@ declare module "@minecraft/server-editor" {
         eventDispatcher: ClientEventDispatcher;
         eventListener: ClientEventListener;
         player: Player;
-        createAction<T extends keyof ActionPayload>(
-            options: CreateActionOptions<T>
-        ): Action<T>;
+        createAction<T extends keyof ActionPayload>(options: CreateActionOptions<T>): Action<T>;
         teardown(): void;
     }
     /**
@@ -318,14 +257,8 @@ declare module "@minecraft/server-editor" {
      * @beta
      */
     export class GlobalInputManager extends BaseInputManager {
-        registerKeyBinding(
-            inputContextId: EditorInputContext,
-            action: Action<ActionTypes>,
-            button: KeyboardKey,
-            modifier: InputModifier
-        ): void;
+        registerKeyBinding(inputContextId: EditorInputContext, action: Action<ActionTypes>, button: KeyboardKey, modifier: InputModifier): void;
     }
-
     class BuiltInUIManagerImpl {
         /**
          * Updates the visibility of the log panel
@@ -359,43 +292,29 @@ declare module "@minecraft/server-editor" {
     }
     export interface PaneOptions {
         titleStringId?: string;
-        titleAltText: string;
+        titleAltText?: string;
+        enable?: boolean;
+        visible?: boolean;
         width?: number;
     }
-    export interface BoolPaneOptions extends PaneOptions{
-        onChange?: (
-            _obj: any,
-            _property: string,
-            _oldValue: boolean,
-            _newValue: boolean
-        ) => void;
+    export interface BoolPaneOptions extends PaneOptions {
+        onChange?: (_obj: object, _property: string, _oldValue: boolean, _newValue: boolean) => void;
     }
-    export interface BlockPickerPaneOptions extends PaneOptions{
+    export interface BlockPickerPaneOptions extends PaneOptions {
         allowedBlocks?: string[];
     }
-    export interface ButtonPaneOptions extends PaneOptions{
+    export interface ButtonPaneOptions extends PaneOptions {
         variant?: string;
     }
-    export interface DropdownPaneOptions<T> extends PaneOptions{
-        onChange?: (
-            _obj: any,
-            _property: string,
-            _oldValue: T,
-            _newValue: T
-        ) => void;
-        enable?: boolean;
+    export interface DropdownPaneOptions<T> extends PaneOptions {
+        onChange?: (_obj: object, _property: string, _oldValue: T, _newValue: T) => void;
         dropdownItems: DropdownItem<T>[];
     }
-    export interface NumberPaneOptions extends PaneOptions{
-        min: number;
-        max: number;
-        showSlider: boolean;
-        onChange?: (
-            _obj: any,
-            _property: string,
-            _oldValue: number,
-            _newValue: number
-        ) => void;
+    export interface NumberPaneOptions extends PaneOptions {
+        min?: number;
+        max?: number;
+        showSlider?: boolean;
+        onChange?: (_obj: object, _property: string, _oldValue: number, _newValue: number) => void;
     }
     export interface Vec3PaneOptions extends PaneOptions {
         minX: number;
@@ -404,16 +323,8 @@ declare module "@minecraft/server-editor" {
         maxX?: number;
         maxY?: number;
         maxZ?: number;
-        enable: boolean;
-        onChange?: (
-            _obj: any,
-            _property: string,
-            _oldValue: Vector3,
-            _newValue: Vector3
-        ) => void;
-    } 
-
-
+        onChange?: (_obj: object, _property: string, _oldValue: Vector3, _newValue: Vector3) => void;
+    }
     /**
      * Represents a UI session for a given player
      * @internal
@@ -422,18 +333,15 @@ declare module "@minecraft/server-editor" {
         private _builtInUIManager: BuiltInUIManagerImpl;
         private _actionManager: ActionManagerImpl;
         private _modalToolContainer: ModalToolContainer;
-        private _clientUXListenerUnregister: Function;
+        private _clientUXListenerUnregister(): void;
         private _extensionContext: ExtensionContext;
         private _clientEventDispatcher: ClientEventDispatcher;
         private _propertyPanes: Map<string, PropertyPane>;
         private _eventSubscriptionCache: BedrockEventSubscriptionCache;
         private _inputManager: GlobalInputManager;
         private _logger: Logger;
-        private createPropertyPaneInternal(
-            options: PaneOptions,
-            parentPaneId: string
-        ): PropertyPane;
-        scratchStorage: Record<string, any>;
+        private createPropertyPaneInternal(options: PaneOptions, parentPaneId: string): PropertyPane;
+        scratchStorage?: Record<string, any>;
         teardown(): void;
         get toolRail(): ModalToolContainer;
         createMenu(props: MenuProps): Menu;
@@ -453,7 +361,7 @@ declare module "@minecraft/server-editor" {
      */
     export enum ActionTypes {
         NoArgsAction = "NoArgsAction",
-        MouseRayCastAction = "MouseRayCastAction",
+        MouseRayCastAction = "MouseRayCastAction"
     }
     /**
      * A cache for bedrock event subscriptions. Stores off a subscription by event key, and upon
@@ -489,7 +397,7 @@ declare module "@minecraft/server-editor" {
         Divider = "editorUI:Divider",
         SubPane = "editorUI:SubPane",
         Action = "editorUI:Action",
-        Vec3 = "editorUI:Vec3",
+        Vec3 = "editorUI:Vec3"
     }
     /**
      * @beta Global editor input contexts
@@ -497,7 +405,7 @@ declare module "@minecraft/server-editor" {
     export enum EditorInputContext {
         GlobalEditor = "global.editor",
         GlobalToolMode = "global.toolMode",
-        Viewport = "local.toolMode.viewport",
+        Viewport = "local.toolMode.viewport"
     }
     /**
      * Types of events that may be sent by the server to the client side UX. These events each have their own
@@ -509,14 +417,14 @@ declare module "@minecraft/server-editor" {
     export enum EditorServerEventType {
         ServerActionEvents = "Editor::ServerActionEvents",
         ServerInputBindingEvents = "Editor::ServerInputBindingEvents",
-        ServerUXEvents = "Editor::ServerUXEvents",
+        ServerUXEvents = "Editor::ServerUXEvents"
     }
     /**
      * @beta
      */
     export enum EditorStatusBarAlignment {
         Right = 0,
-        Left = 1,
+        Left = 1
     }
     /**
      * Input modifier flags to create chorded bindings
@@ -528,7 +436,7 @@ declare module "@minecraft/server-editor" {
         Alt = 2,
         Control = 4,
         Shift = 8,
-        Any = 15,
+        Any = 15
     }
     /**
      * Keyboard Key Actions
@@ -536,7 +444,7 @@ declare module "@minecraft/server-editor" {
      */
     export enum KeyInputType {
         Press = 1,
-        Release = 2,
+        Release = 2
     }
     /**
      * Keyboard key - Reference: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode#constants_for_keycode_value
@@ -634,7 +542,7 @@ declare module "@minecraft/server-editor" {
         BRACKET_OPEN = 219,
         BACK_SLASH = 220,
         BRACKET_CLOSE = 221,
-        QUOTE = 222,
+        QUOTE = 222
     }
     /**
      * Mouse device action categories
@@ -643,7 +551,7 @@ declare module "@minecraft/server-editor" {
     export enum MouseActionCategory {
         Button = 1,
         Wheel = 2,
-        Drag = 3,
+        Drag = 3
     }
     /**
      * Detailed mouse device actions
@@ -653,7 +561,7 @@ declare module "@minecraft/server-editor" {
         LeftButton = 1,
         MiddleButton = 2,
         RightButton = 3,
-        Wheel = 4,
+        Wheel = 4
     }
     /**
      * Input event information about mouse actions
@@ -666,7 +574,7 @@ declare module "@minecraft/server-editor" {
         WheelOut = 4,
         DragStart = 5,
         Drag = 6,
-        DragEnd = 7,
+        DragEnd = 7
     }
     /**
      * The set of events that may be sent by the server side UI pertaining to actions
@@ -690,26 +598,20 @@ declare module "@minecraft/server-editor" {
         OnNavigateFromEditor = 15,
         UpdateControlDemoVisibility_deprecated = 16,
         UpdateWelcomePanelVisibility_deprecated = 17,
-        UpdateClientPanelVisibility = 18,
+        UpdateClientPanelVisibility = 18
     }
     /**
      * Takes the input object and bind it to the pane.
      * @beta
      */
-    export function createPaneBindingObject<T>(
-        propertyPane: PropertyPane,
-        target: T
-    ): T;
+    export function createPaneBindingObject<T>(propertyPane: PropertyPane, target: T): T;
     /**
      * Executes an operation over a selection via chunks to allow splitting operation over multiple game ticks
      * @param selection - the selection to iterator over
      * @param operation - the operation to apply over each block location
      * @beta
      */
-    export function executeLargeOperation(
-        selection: Selection,
-        operation: (blockLocation: Vector3) => void
-    ): Promise<void>;
+    export function executeLargeOperation(selection: Selection, operation: (blockLocation: Vector3) => void): Promise<void>;
     /**
      * Adds the resource pack editor prefix and returns the full localization ID
      * @beta
@@ -726,31 +628,30 @@ declare module "@minecraft/server-editor" {
      *
      * @beta
      */
-    export function registerEditorExtension(
-        extensionName: string,
-        activationFunction?: (uiSession: PlayerUISession) => void,
-        shutdownFunction?: (uiSession: PlayerUISession) => void,
-        optionalParameters?: ExtensionOptionalParameters
-    ): Extension;
-
+    export function registerEditorExtension(extensionName: string, activationFunction?: (uiSession: PlayerUISession) => void, shutdownFunction?: (uiSession: PlayerUISession) => void, optionalParameters?: ExtensionOptionalParameters): Extension;
     /**
      * Interface for internal PlayerUISession class
      */
-    export interface IPlayerUISession extends PlayerUISession { }
+    export interface IPlayerUISession extends PlayerUISession {
+    }
     /**
      * Interface for internal ModalTool class
      */
-    export interface IModalTool extends ModalTool { }
+    export interface IModalTool extends ModalTool {
+    }
     /**
      * Interface for internal PropertyPane class
      */
-    export interface IPropertyPane extends PropertyPane { }
+    export interface IPropertyPane extends PropertyPane {
+    }
     /**
      * Interface for internal PropertyItem class
      */
-    export interface IPropertyItem extends PropertyItem { }
+    export interface IPropertyItem extends PropertyItem {
+    }
     /**
      * Interface for internal Menu class
      */
-    export interface IMenu extends Menu { }
+    export interface IMenu extends Menu {
+    }
 }

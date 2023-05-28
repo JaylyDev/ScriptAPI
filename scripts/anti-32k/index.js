@@ -15,7 +15,7 @@
  * --------------------------------------------------------------------------
  */
 import { world, EntityInventoryComponent, system, ItemEnchantsComponent } from "@minecraft/server";
-import { MinecraftEnchantmentTypes } from "@minecraft/vanilla-data/lib/index.js";
+import { MinecraftEnchantmentTypes } from "@minecraft/vanilla-data";
 
 function onTick () {
   for (const player of world.getPlayers()) {

@@ -1,6 +1,6 @@
 /**
  * Type definition for @minecraft/server-editor-bindings 0.3
- * 
+ *
  * Manifest details
  * ```json
  * {
@@ -10,7 +10,7 @@
  * ```
  */
 declare module '@minecraft/server-editor-bindings' {
-    import { BlockLocationIterator, BlockVolume, BoundingBox, Color, CompoundBlockVolumeAction, Player, Vector3 } from "@minecraft/server";
+    import { BlockLocationIterator, BlockVolume, BoundingBox, Color, CompoundBlockVolumeAction, Player, Vector3, } from '@minecraft/server';
     export class ClipboardItem {
         protected constructor();
         readFromSelection(selection: Selection): void;
@@ -30,13 +30,13 @@ declare module '@minecraft/server-editor-bindings' {
         none = "none",
         X = "X",
         Z = "Z",
-        XZ = "XZ",
+        XZ = "XZ"
     }
     export enum ClipboardRotation {
         none = "none",
         Rotate90 = "Rotate90",
         Rotate180 = "Rotate180",
-        Rotate270 = "Rotate270",
+        Rotate270 = "Rotate270"
     }
     export class ClipboardWriteOptions {
         anchor: Vector3;
@@ -66,11 +66,11 @@ declare module '@minecraft/server-editor-bindings' {
         Keyboard = 0,
         Mouse = 1,
         KeyboardAndMouse = 2,
-        Fixed = 3,
+        Fixed = 3
     }
     export enum CursorTargetMode {
         Block = 0,
-        Face = 1,
+        Face = 1
     }
     export class Extension {
         protected constructor();
@@ -96,17 +96,12 @@ declare module '@minecraft/server-editor-bindings' {
     }
     export class MinecraftEditor {
         protected constructor();
-        registerExtension_Internal(
-            extensionName: string,
-            activationFunction: (context: ExtensionContext) => void,
-            shutdownFunction: (context: ExtensionContext) => void,
-            optionalParameters?: ExtensionOptionalParameters
-        ): Extension;
+        registerExtension_Internal(extensionName: string, activationFunction: (context: ExtensionContext) => void, shutdownFunction: (context: ExtensionContext) => void, optionalParameters?: ExtensionOptionalParameters): Extension;
         readonly log: Logger;
     }
     export interface PushVolumeOptions {
-        action: CompoundBlockVolumeAction,
-        volume: BlockVolume
+        action: CompoundBlockVolumeAction;
+        volume: BlockVolume;
     }
     export class Selection {
         protected constructor();

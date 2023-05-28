@@ -2,7 +2,7 @@ import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
 import { Color, PriorityQueue } from "../../../../utils";
 import { Mesh } from "../Mesh";
-export const Start = ( uiSession ) => {
+export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
     uiSession.log.debug( `Initializing ${uiSession.extensionContext.extensionName} extension` );
     const tool = uiSession.toolRail.addTool(
         {

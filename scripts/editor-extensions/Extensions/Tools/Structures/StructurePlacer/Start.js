@@ -219,7 +219,7 @@ export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISes
                             uiSession.extensionContext.selectionManager.selection.clear();
                         };
                     };
-                    } catch(e) { uiSession.log.warn(e); };
+                    } catch(e) { uiSession.log.warning(e); };
                 },
             },
         ),
