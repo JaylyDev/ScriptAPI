@@ -24,7 +24,7 @@ var _a;
  * IN THE SOFTWARE.
  */
 import { ScoreboardIdentityType, system, world } from "@minecraft/server";
-const version = "1.0.7";
+const version = "1.0.8";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -87,7 +87,7 @@ const overworld = world.getDimension("overworld");
  */
 class JaylyDB {
     /** @internal */
-    updateParticipants() {
+    updateParticipants(fetchCache = false) {
         const id = this.objective.id.substring(this.objective.id.indexOf(":") + 1);
         if (this.tempCache.size <= 0 && this.warningSent === true) {
             console.warn(`[JaylyDB] Database '${id}' has written data to world. It is now safe to exit the world.`);
@@ -111,10 +111,22 @@ class JaylyDB {
         }
         ;
         this.participants.clear();
+        if (fetchCache)
+            this.localCache.clear();
         for (const participant of this.objective.getParticipants()) {
             if (participant.type !== ScoreboardIdentityType.fakePlayer)
                 continue;
-            this.participants.set(Object.keys(DisplayName.parse(participant.displayName, this.salt))[0], participant);
+            const data = DisplayName.parse(participant.displayName, this.salt);
+            const key = Object.keys(data)[0];
+            const value = data[key];
+            this.participants.set(key, participant);
+            if (fetchCache)
+                this.localCache.set(key, value);
+        }
+        ;
+        if (this.SYNC_OK === false) {
+            console.warn(`[JaylyDB] Database '${id}' is now sync with disk.`);
+            this.SYNC_OK = true;
         }
         ;
     }
@@ -129,6 +141,8 @@ class JaylyDB {
         this.localCache = new Map();
         /** @internal */
         this.warningSent = false;
+        /** @internal */
+        this.SYNC_OK = true;
         /**
          * Internal cache object to allow data to write from memory to scoreboard every tick interval.
          * This is done to prevent multiple values written to a same key to scoreboard each operation.
@@ -140,9 +154,18 @@ class JaylyDB {
         this.encrypted = encrypted;
         this.salt = this.encrypted ? this.objective.displayName : undefined;
         // Fetch all data when database initialize
-        this.updateParticipants();
-        // This function queues the data to be written to the scoreboard every second interval.
-        system.runInterval(() => this.updateParticipants());
+        this.updateParticipants(true);
+        system.runInterval(() => {
+            if (!!world.scoreboard.getObjective("jaylydb:" + id))
+                return this.updateParticipants();
+            else if (this.SYNC_OK === true)
+                console.error(`[JaylyDB] There is a sync issue with database '${id}'.`);
+            this.localCache.forEach((value, key) => {
+                const encoded = DisplayName.stringify({ [key]: value }, this.salt);
+                this.tempCache.set(key, encoded);
+            });
+            this.SYNC_OK = false;
+        });
     }
     /**
      * @returns the number of elements in the database.
