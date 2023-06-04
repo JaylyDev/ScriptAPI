@@ -1,12 +1,15 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
 import { Color } from "../../../utils";
-export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
+ */
+export const Start = (uiSession) => {
     uiSession.log.debug( `Initializing ${uiSession.extensionContext.extensionName} extension` );
     const tool = uiSession.toolRail.addTool(
         {
-            displayString: "Block Modifier",
-            tooltip: "",
+            displayAltText: "Block Modifier",
+            tooltipAltText: "",
             icon: "pack://textures/editor/block_modifier.png?filtering=point",
         },
     );
@@ -28,24 +31,11 @@ export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISes
         },
     );
     
-    uiSession.inputManager.registerKeyBinding(
-        Editor.EditorInputContext.GlobalToolMode,
-        uiSession.actionManager.createAction(
-            {
-                actionType: Editor.ActionTypes.NoArgsAction,
-                onExecute: () => {
-                    uiSession.toolRail.setSelectedOptionId( tool.id, true );
-                },
-            },
-        ),
-        Editor.KeyboardKey.KEY_E,
-        Editor.InputModifier.Control,
-    );
-    
     tool.registerMouseButtonBinding(
         uiSession.actionManager.createAction(
             {
                 actionType: Editor.ActionTypes.MouseRayCastAction,
+                // @ts-ignore
                 onExecute: ( mouseRay, mouseProps ) => {
                     if (mouseProps.mouseAction == Editor.MouseActionType.LeftButton) {
                         if (mouseProps.inputType == Editor.MouseInputType.ButtonDown) {
@@ -59,7 +49,7 @@ export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISes
     );
 };
 
-const blockModifier = ( uiSession, tool, player, location ) => {
+const blockModifier = ( /** @type {Editor.IPlayerUISession} */ uiSession, /** @type {Editor.IModalTool} */ tool, /** @type {Server.Player} */ player, /** @type {Server.Vector3} */ location ) => {
     const targetBlock = player.dimension.getBlock( location );
     const pane = uiSession.createPropertyPane(
         {
@@ -68,7 +58,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
         },
     );
     
-    const settings = Editor.createPaneBindingObject(
+    const settings = Editor.bindDataSource(
         pane,
         {
             blockType: targetBlock.typeId,
@@ -96,7 +86,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
         },
     );
 
-    pane.addVec3(
+    pane.addVector3(
         settings,
         "location",
         {
@@ -153,6 +143,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
             "lever_direction",
             {
                 titleAltText: "Lever Direction",
+                // @ts-ignore
                 dropdownItems: Server.BlockStates.get( "lever_direction" ).validValues.map(
                     (value) => (
                         {
@@ -179,6 +170,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
     
     if (targetBlock.permutation.getState( "redstone_signal" ) != undefined) {
         pane.addNumber(
+            // @ts-ignore
             settings,
             "redstone_signal",
             {
@@ -204,6 +196,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
 
     if (targetBlock.permutation.getState( "repeater_delay" ) != undefined) {
         pane.addNumber(
+            // @ts-ignore
             settings,
             "repeater_delay",
             {
@@ -232,6 +225,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
         || targetBlock.permutation.getState( "direction" ) != undefined
     ) {
         pane.addNumber(
+            // @ts-ignore
             settings,
             targetBlock.permutation.getState( "weirdo_direction" ) != undefined ? "weirdo_direction" :"direction",
             {
@@ -256,6 +250,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
 
     if (targetBlock.permutation.getState( "brushed_progress" ) != undefined) {
         pane.addNumber(
+            // @ts-ignore
             settings,
             "brushed_progress",
             {
@@ -281,6 +276,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
 
     if (targetBlock.permutation.getState( "growth" ) != undefined) {
         pane.addNumber(
+            // @ts-ignore
             settings,
             "growth",
             {
@@ -306,6 +302,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
 
     if (targetBlock.permutation.getState( "rail_direction" ) != undefined) {
         pane.addNumber(
+            // @ts-ignore
             settings,
             "rail_direction",
             {
@@ -335,6 +332,7 @@ const blockModifier = ( uiSession, tool, player, location ) => {
             "damage",
             {
                 titleAltText: "Damage",
+                // @ts-ignore
                 dropdownItems: Server.BlockStates.get( "damage" ).validValues.map(
                     (value) => (
                         {

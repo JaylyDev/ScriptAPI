@@ -2,12 +2,15 @@ import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
 import { Color, PriorityQueue } from "../../../../utils";
 import { Mesh } from "../Mesh";
-export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
+ */
+export const Start = (uiSession) => {
     uiSession.log.debug( `Initializing ${uiSession.extensionContext.extensionName} extension` );
     const tool = uiSession.toolRail.addTool(
         {
-            displayString: "Sphere (CTRL + SHIFT + S)",
-            tooltip: "Left mouse click or drag-to-paint",
+            displayAltText: "Sphere (CTRL + SHIFT + S)",
+            tooltipAltText: "Left mouse click or drag-to-paint",
             icon: "pack://textures/editor/sphere.png?filtering=point",
         },
     );
@@ -53,7 +56,7 @@ export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISes
         { titleAltText: "Sphere" },
     );
     
-    const settings = Editor.createPaneBindingObject(
+    const settings = Editor.bindDataSource(
         pane,
         {
             size: 3,
@@ -165,7 +168,7 @@ export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISes
                                             && blockLocation.y <= 320
                                         ) {
                                             const block = player.dimension.getBlock( blockLocation );
-                                            block.setType(settings.blockType);
+                                            if (block) block.setType(settings.blockType);
                                         };
                                     };
 

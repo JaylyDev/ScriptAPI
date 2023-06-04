@@ -27,7 +27,7 @@ import {
   CursorTargetMode,
   EditorInputContext,
   executeLargeOperation,
-  createPaneBindingObject,
+  bindDataSource,
   registerEditorExtension,
   IPropertyPane,
   IPropertyItem,
@@ -69,6 +69,7 @@ interface SettingsObject {
   origin: Vector3;
   size: Vector3;
   block: BlockType;
+  selectionMode: SelectionCursorMode;
 }
 
 const TicksRefreshRate = 5;
@@ -748,7 +749,7 @@ export class SelectionBehavior {
         titleStringId: getLocalizationId('selectionTool.transformPane.title'),
         titleAltText: 'Transform',
       });
-      this.originPropertyItem = subPaneTransform.addVec3(this.settingsObject, 'origin', {
+      this.originPropertyItem = subPaneTransform.addVector3(this.settingsObject, 'origin', {
         titleStringId: getLocalizationId('selectionTool.transformPane.origin'),
         titleAltText: 'Origin',
         enable: true,
@@ -757,7 +758,7 @@ export class SelectionBehavior {
         minZ: -0x80000000,
         onChange: onOriginOrSizeChange,
       });
-      this.sizePropertyItem = subPaneTransform.addVec3(this.settingsObject, 'size', {
+      this.sizePropertyItem = subPaneTransform.addVector3(this.settingsObject, 'size', {
         titleStringId: getLocalizationId('selectionTool.transformPane.size'),
         titleAltText: 'Size',
         enable: true,
@@ -775,7 +776,7 @@ export class SelectionBehavior {
         titleAltText: 'Fill Selection',
       });
       const blockPickers: IPropertyItem[] = [];
-      subPaneFill.addNumber(createPaneBindingObject(subPaneFill, {
+      subPaneFill.addNumber(bindDataSource(subPaneFill, {
         size: 1,
       }), 'size', {
         titleStringId: getLocalizationId('toolRail.cubeBrushSettings.size'),
@@ -827,9 +828,9 @@ export class SelectionBehavior {
     // Add a modal tool to the tool rail and set up an activation subscription to set/unset the cursor states
     this.addTool = (uiSession: IPlayerUISession) => {
       const tool = uiSession.toolRail.addTool({
-        displayString: 'Random Fill (CTRL + S)',
+        displayStringId: 'Random Fill (CTRL + S)',
         icon: 'pack://textures/editor/Select-Fill.png?filtering=point',
-        tooltip: 'Random Fill Tool',
+        tooltipStringId: 'Random Fill Tool',
       });
       tool.onModalToolActivation.subscribe((eventData) => {
         if (eventData.isActiveTool) {
@@ -902,7 +903,7 @@ export class SelectionBehavior {
     const allowedBlocks = MinecraftBlockTypes.getAllBlockTypes().map<string>(blockType => blockType.id.replace('minecraft:', ''));
 
     // Here is the binding created.
-    this.settingsObject = createPaneBindingObject(this.pane, {
+    this.settingsObject = bindDataSource(this.pane, {
       selectionMode: SelectionCursorMode.Freeform,
       origin: { x: 0, y: 0, z: 0 },
       size: { x: 0, y: 0, z: 0 },

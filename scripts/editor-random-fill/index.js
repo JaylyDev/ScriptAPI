@@ -2,7 +2,7 @@
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { MinecraftBlockTypes, system, Vector, CompoundBlockVolumeAction, BlockVolumeUtils, BoundingBoxUtils } from "@minecraft/server";
-import { KeyboardKey, ActionTypes, MouseActionType, MouseInputType, CursorControlMode, InputModifier, getLocalizationId, CursorTargetMode, EditorInputContext, executeLargeOperation, createPaneBindingObject, registerEditorExtension } from "@minecraft/server-editor";
+import { KeyboardKey, ActionTypes, MouseActionType, MouseInputType, CursorControlMode, InputModifier, getLocalizationId, CursorTargetMode, EditorInputContext, executeLargeOperation, bindDataSource, registerEditorExtension } from "@minecraft/server-editor";
 import { getRotationCorrectedDirectionVector, Direction, } from "editor-utilities/index";
 import { getRelativeXYAxisAsNormal, growVolumeAlongViewAxis, intersectRayPlane, shrinkVolumeAlongViewAxis, } from "./functions";
 // ------------------------------------------------------------------------------------------------
@@ -681,7 +681,7 @@ export class SelectionBehavior {
                 titleStringId: getLocalizationId('selectionTool.transformPane.title'),
                 titleAltText: 'Transform',
             });
-            this.originPropertyItem = subPaneTransform.addVec3(this.settingsObject, 'origin', {
+            this.originPropertyItem = subPaneTransform.addVector3(this.settingsObject, 'origin', {
                 titleStringId: getLocalizationId('selectionTool.transformPane.origin'),
                 titleAltText: 'Origin',
                 enable: true,
@@ -690,7 +690,7 @@ export class SelectionBehavior {
                 minZ: -0x80000000,
                 onChange: onOriginOrSizeChange,
             });
-            this.sizePropertyItem = subPaneTransform.addVec3(this.settingsObject, 'size', {
+            this.sizePropertyItem = subPaneTransform.addVector3(this.settingsObject, 'size', {
                 titleStringId: getLocalizationId('selectionTool.transformPane.size'),
                 titleAltText: 'Size',
                 enable: true,
@@ -708,7 +708,7 @@ export class SelectionBehavior {
                 titleAltText: 'Fill Selection',
             });
             const blockPickers = [];
-            subPaneFill.addNumber(createPaneBindingObject(subPaneFill, {
+            subPaneFill.addNumber(bindDataSource(subPaneFill, {
                 size: 1,
             }), 'size', {
                 titleStringId: getLocalizationId('toolRail.cubeBrushSettings.size'),
@@ -758,7 +758,7 @@ export class SelectionBehavior {
         // Add a modal tool to the tool rail and set up an activation subscription to set/unset the cursor states
         this.addTool = (uiSession) => {
             const tool = uiSession.toolRail.addTool({
-                displayString: 'Random Fill (CTRL + S)',
+                displayStringId: 'Random Fill (CTRL + S)',
                 icon: 'pack://textures/editor/Select-Fill.png?filtering=point',
                 tooltip: 'Random Fill Tool',
             });
@@ -831,7 +831,7 @@ export class SelectionBehavior {
          */
         const allowedBlocks = MinecraftBlockTypes.getAllBlockTypes().map(blockType => blockType.id.replace('minecraft:', ''));
         // Here is the binding created.
-        this.settingsObject = createPaneBindingObject(this.pane, {
+        this.settingsObject = bindDataSource(this.pane, {
             selectionMode: SelectionCursorMode.Freeform,
             origin: { x: 0, y: 0, z: 0 },
             size: { x: 0, y: 0, z: 0 },

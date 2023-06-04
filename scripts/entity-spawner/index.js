@@ -11,7 +11,7 @@ editor.registerEditorExtension(
 	uiSession => {
 		const tool = uiSession.toolRail.addTool(
 			{
-				displayString: "Spawn Entity (Ctrl + E)",
+				displayStringId: "Spawn Entity (Ctrl + E)",
 				displayStringLocId: "editor.toolRail.entitySpawnerTool.title",
 				tooltip: "Spawns an entity at the selected position",
 				tooltipLocId: "editor.toolRail.entitySpawnerTool.description",
@@ -57,7 +57,7 @@ editor.registerEditorExtension(
 			}
 		)
 		
-		const binding = editor.createPaneBindingObject(
+		const binding = editor.bindDataSource(
 			pane,
 			settings
 		)

@@ -4,18 +4,17 @@ import * as _minecraft_server_wrapper__WEBPACK_IMPORTED_MODULE_0__ from '@minecr
  * Direction
  * @beta
  * @remarks
- * @type any
+ * @enum number
  * Direction maps to C++ Direction::FacingID
  */
-var Direction;
-(function (Direction) {
-    Direction[Direction["Forward"] = 0] = "Forward";
-    Direction[Direction["Right"] = 1] = "Right";
-    Direction[Direction["Back"] = 2] = "Back";
-    Direction[Direction["Left"] = 3] = "Left";
-    Direction[Direction["Up"] = 4] = "Up";
-    Direction[Direction["Down"] = 5] = "Down";
-})(Direction || (Direction = {}));
+var Direction = {
+ "Forward": 0,
+ "Right": 1,
+ "Back": 2,
+ "Left": 3,
+ "Up": 4,
+ "Down": 5,
+};
 /**
  * directionLookup
  * @private
@@ -35,9 +34,10 @@ const directionLookup = {
 /**
  * getRotationCorrectedDirection
  * @beta
- * @remarks
- * Convert a given absolute Direction enum to one which is relative to the specified Y rotation
- *  (Generally Player view vector Y component)
+ * @remarks Convert a given absolute Direction enum to one which is relative to the specified Y rotation
+ (Generally Player view vector Y component)
+ * @param {number} rotationY
+ * @param {Direction} realDirection
  */
 function getRotationCorrectedDirection(rotationY, realDirection) {
     if (realDirection === Direction.Up || realDirection === Direction.Down) {
@@ -53,9 +53,10 @@ function getRotationCorrectedDirection(rotationY, realDirection) {
 /**
  * getRotationCorrectedDirectionVector
  * @beta
- * @remarks
- * Convert a given absolute Direction enum to a direction vector which is relative to the Y rotation
- *  (Generally Player view vector Y component)
+ * @remarks Convert a given absolute Direction enum to a direction vector which is relative to the Y rotation
+ (Generally Player view vector Y component)
+ * @param {number} rotationY
+ * @param {Direction} realDirection
  */
 function getRotationCorrectedDirectionVector(rotationY, realDirection) {
     const relativeDirection = getRotationCorrectedDirection(rotationY, realDirection);
@@ -64,8 +65,8 @@ function getRotationCorrectedDirectionVector(rotationY, realDirection) {
 /**
  * getDirectionVector
  * @beta
- * @remarks
- * Return a unit vector for a given Direction
+ * @remarks Return a unit vector for a given Direction
+ * @param {string | number} direction
  */
 function getDirectionVector(direction) {
     return directionLookup[direction];
@@ -73,8 +74,9 @@ function getDirectionVector(direction) {
 /**
  * getScaledDirectionVector
  * @beta
- * @remarks
- * Return a scaled vector for a given Direction
+ * @remarks Return a scaled vector for a given Direction
+ * @param {Direction} direction
+ * @param {number} scale
  */
 function getScaledDirectionVector(direction, scale) {
     const vec = getDirectionVector(direction);

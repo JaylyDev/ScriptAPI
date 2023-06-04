@@ -1,5 +1,8 @@
 import * as Editor from "@minecraft/server-editor";
-export default (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
+ */
+export default (uiSession) => {
     uiSession.createStatusBarItem(Editor.EditorStatusBarAlignment.Left, 30).text = "Test L 0";
     uiSession.createStatusBarItem(Editor.EditorStatusBarAlignment.Left, 30).text = "Test L 1";
     uiSession.createStatusBarItem(Editor.EditorStatusBarAlignment.Left, 30).text = "Test L 2";
