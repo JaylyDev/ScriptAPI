@@ -4,8 +4,6 @@
     "noEmit": true,
     "allowJs": true,
     "checkJs": true,
-    "types": ["@jayly/minecraft-editor"],
-    "typeRoots": ["./node_modules/@jayly/minecraft-editor"],
   },
   "include": ["**/*.js", "**/*.ts"]
 }
