@@ -6,7 +6,7 @@ export function createMenu(uiSession) {
     }
     const edit = uiSession.createMenu({
         name: 'FullBright',
-        displayStringLocId: 'FullBright',
+        displayStringId: 'FullBright',
     });
     edit.show();
     return edit;

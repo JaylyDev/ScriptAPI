@@ -1,12 +1,15 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
 import { Color } from "../../../utils";
-export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
+ */
+export const Start = (uiSession) => {
     uiSession.log.debug( `Initializing ${uiSession.extensionContext.extensionName} extension` );
     const tool = uiSession.toolRail.addTool(
         {
-            displayString: "Block Replace (Ctrl + R)",
-            tooltip: "",
+            displayAltText: "Block Replace (Ctrl + R)",
+            tooltipAltText: "",
             icon: "pack://textures/editor/replace.png?filtering=point",
         },
     );
@@ -29,7 +32,7 @@ export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISes
         },
     );
 
-    const settings = Editor.createPaneBindingObject(
+    const settings = Editor.bindDataSource(
         pane,
         {
             origin: {
@@ -225,7 +228,7 @@ export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISes
             titleAltText: "Transform",
         }
     );
-    const originPropertyItem = subPaneTransform.addVec3(
+    const originPropertyItem = subPaneTransform.addVector3(
         settings,
         "origin",
         {
@@ -237,7 +240,7 @@ export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISes
             onChange: onOriginOrSizeChange,
         }
     );
-    const sizePropertyItem = subPaneTransform.addVec3(
+    const sizePropertyItem = subPaneTransform.addVector3(
         settings,
         "size",
         {

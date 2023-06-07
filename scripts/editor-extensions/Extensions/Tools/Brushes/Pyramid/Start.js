@@ -1,7 +1,7 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-import * as EditorUtilities from "../../../../editor-utilities";
 import { Color, PriorityQueue } from "../../../../utils";
+import { Mesh } from "../Mesh";
 /**
  * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
  */
@@ -9,12 +9,12 @@ export const Start = (uiSession) => {
     uiSession.log.debug( `Initializing ${uiSession.extensionContext.extensionName} extension` );
     const tool = uiSession.toolRail.addTool(
         {
-            displayAltText: "Cube (CTRL + B)",
+            displayAltText: "Pyramid",
             tooltipAltText: "Left mouse click or drag-to-paint",
-            icon: "pack://textures/editor/Cube.png?filtering=point",
+            icon: "pack://textures/editor/pyramid.png?filtering=point",
         },
     );
-    
+
     const previewSelection = uiSession.extensionContext.selectionManager.create();
     previewSelection.visible = true;
     previewSelection.setOutlineColor( new Color( 0, 0.5, 0.5, 0.2 ) );
@@ -38,32 +38,18 @@ export const Start = (uiSession) => {
         },
     );
     
-    uiSession.inputManager.registerKeyBinding(
-        Editor.EditorInputContext.GlobalToolMode,
-        uiSession.actionManager.createAction(
-            {
-                actionType: Editor.ActionTypes.NoArgsAction,
-                onExecute: () => {
-                    uiSession.toolRail.setSelectedOptionId( tool.id, true );
-                },
-            },
-        ),
-        Editor.KeyboardKey.KEY_B,
-        Editor.InputModifier.Control,
-    );
-    
     const pane = uiSession.createPropertyPane(
-        { titleAltText: "Cube" },
+        { titleAltText: "Pyramid" },
     );
     
     const settings = Editor.bindDataSource(
         pane,
         {
-            size: 3,
+            size: 6,
             hollow: false,
             face: false,
             blockType: Server.MinecraftBlockTypes.stone,
-        },
+        }
     );
 
     pane.addNumber(
@@ -74,21 +60,22 @@ export const Start = (uiSession) => {
             min: 1,
             max: 16,
             showSlider: true,
-        },
+        }
     );
-
+    
     pane.addBool(
         settings,
         "hollow",
-        { titleAltText: "Hollow" },
+        { titleAltText: "Hollow" }
     );
+    
     pane.addBool(
         settings,
         "face",
         {
             titleAltText: "Face Mode",
             onChange: ( _obj, _property, _oldValue, _newValue ) => {
-                if (uiSession.scratchStorage === undefined) return uiSession.log.error( "Cube storage was not initialized." );
+                if (uiSession.scratchStorage === undefined) return uiSession.log.error( "Cylinder storage was not initialized." );
                 uiSession.scratchStorage.currentCursorState.targetMode = settings.face
                     ? Editor.CursorTargetMode.Face
                     : Editor.CursorTargetMode.Block;
@@ -96,87 +83,40 @@ export const Start = (uiSession) => {
             },
         },
     );
+
     pane.addBlockPicker(
         settings,
         "blockType",
-        { titleAltText: "Block Type" },
+        { titleAltText: "Block Type" }
     );
     
-    tool.bindPropertyPane( pane );
+    tool.bindPropertyPane(pane);
     
     const onExecuteBrush = () => {
-        if (!uiSession.scratchStorage?.previewSelection) return uiSession.log.error( "Cube storage was not initialized." );
+        if (!uiSession.scratchStorage?.previewSelection) return uiSession.log.error( "Pyramid storage was not initialized." );
         
         const previewSelection = uiSession.scratchStorage.previewSelection;
         const player = uiSession.extensionContext.player;
         const targetBlock = player.dimension.getBlock( uiSession.extensionContext.cursor.getPosition() );
         if (!targetBlock) return;
-
-        const rotationY = uiSession.extensionContext.player.getRotation().y;
-
-        const directionRight = EditorUtilities.getRotationCorrectedDirectionVector( rotationY, EditorUtilities.Direction.Right );
-        const directionForward = EditorUtilities.getRotationCorrectedDirectionVector( rotationY, EditorUtilities.Direction.Back );
-        const relativeDirection = Server.Vector.add( Server.Vector.add( directionRight, directionForward ), Server.Vector.up );
-        const sizeHalf = Math.floor(settings.size / 2);
-        let fromOffset = Server.Vector.multiply( relativeDirection, -sizeHalf );
-        const toOffset = Server.Vector.multiply( relativeDirection, settings.size - 1 );
-        const isEven = settings.size % 2 === 0;
-        if (isEven) fromOffset = Server.Vector.add( fromOffset, Server.Vector.up );
         const location = targetBlock.location;
-        const from = {
-            x: location.x + fromOffset.x,
-            y: location.y + fromOffset.y,
-            z: location.z + fromOffset.z,
-        };
-
-        const to = {
-            x: from.x + toOffset.x,
-            y: from.y + toOffset.y,
-            z: from.z + toOffset.z
-        };
-        
-        const blockVolume = {
-            from,
-            to,
-        };
-
         if (
-            uiSession.scratchStorage.lastVolumePlaced
-            && Server.BoundingBoxUtils.equals( uiSession.scratchStorage.lastVolumePlaced, Server.BlockVolumeUtils.getBoundingBox( blockVolume ) )
+            uiSession.scratchStorage.lastCursorPosition?.x == uiSession.extensionContext.cursor.getPosition().x
+            && uiSession.scratchStorage.lastCursorPosition?.y == uiSession.extensionContext.cursor.getPosition().y
+            && uiSession.scratchStorage.lastCursorPosition?.z == uiSession.extensionContext.cursor.getPosition().z
         ) return;
-        
-        previewSelection.pushVolume(
-            {
-                action: Server.CompoundBlockVolumeAction.Add,
-                volume: blockVolume,
-            },
-        );
 
-        uiSession.scratchStorage.lastVolumePlaced = Server.BlockVolumeUtils.getBoundingBox( blockVolume );
-        if (settings.hollow &&
-            blockVolume.boundingBox.spanX > 2 &&
-            blockVolume.boundingBox.spanY > 2 &&
-            blockVolume.boundingBox.spanZ > 2) {
-            const subtractBlockVolume = {
-                from: {
-                    x: from.x,
-                    y: from.y + 1,
-                    z: from.z,
-                },
-                to: {
-                    x: to.x,
-                    y: to.y - 1,
-                    z: to.z,
-                },
-            };
-            
+        const pyramid = drawPyramid( location, settings.size, settings.hollow );
+        for (const blockVolume of pyramid.calculateVolumes()) {
             previewSelection.pushVolume(
                 {
-                    action: Server.CompoundBlockVolumeAction.Subtract,
-                    volume: subtractBlockVolume,
-                },
+                    action: Server.CompoundBlockVolumeAction.Add,
+                    volume: blockVolume
+                }
             );
         };
+
+        uiSession.scratchStorage.lastCursorPosition = uiSession.extensionContext.cursor.getPosition();
     };
     
     tool.registerMouseButtonBinding(
@@ -186,7 +126,7 @@ export const Start = (uiSession) => {
                 onExecute: async ( mouseRay, mouseProps ) => {
                     if (mouseProps.mouseAction == Editor.MouseActionType.LeftButton) {
                         if (mouseProps.inputType == Editor.MouseInputType.ButtonDown) {
-                            uiSession.extensionContext.transactionManager.openTransaction( "cubeTool" );
+                            uiSession.extensionContext.transactionManager.openTransaction( "cylinderTool" );
                             uiSession.scratchStorage.previewSelection.clear();
                             onExecuteBrush();
                         } else if (mouseProps.inputType == Editor.MouseInputType.ButtonUp) {
@@ -196,7 +136,7 @@ export const Start = (uiSession) => {
                             const pq = new PriorityQueue(
                                 (a, b) => a.x - b.x && a.y - b.y && a.z - b.z
                             );
-
+                            
                             await Editor.executeLargeOperation(
                                 uiSession.scratchStorage.previewSelection,
                                 (blockLocation) => pq.enqueue( blockLocation ),
@@ -233,10 +173,51 @@ export const Start = (uiSession) => {
         uiSession.actionManager.createAction(
             {
                 actionType: Editor.ActionTypes.MouseRayCastAction,
-                onExecute: ( mouseRay, mouseProps ) => {
+                onExecute: (mouseRay, mouseProps) => {
                     if (mouseProps.inputType === Editor.MouseInputType.Drag) onExecuteBrush();
                 },
             },
         ),
     );
+};
+
+const drawPyramid = ( location, size, hollow ) => {
+    const mesh = new Mesh();
+  
+    let startX = location.x - Math.floor((size) / 2);
+    let startY = location.y;
+    let startZ = location.z - Math.floor((size) / 2);
+  
+    for (var y = 0; y < size; y++) {
+        const layerSize = size - y;
+  
+        for (var x = 0; x < layerSize; x++) {
+            for (var z = 0; z < layerSize; z++) {
+                let blockX = startX + x;
+                let blockY = startY + y;
+                let blockZ = startZ + z;
+
+                if (
+                    hollow
+                    && x > 0
+                    && x < layerSize - 1
+                    && z > 0
+                    && z < layerSize - 1
+                ) continue;
+            
+                mesh.add({ x: blockX, y: blockY, z: blockZ });
+
+                blockX = startX - x;
+                mesh.add({ x: blockX, y: blockY, z: blockZ });
+
+                blockZ = startZ - z;
+                mesh.add({ x: blockX, y: blockY, z: blockZ });
+
+                blockX = startX + x;
+                mesh.add({ x: blockX, y: blockY, z: blockZ });
+            };
+        };
+    };
+    
+    return mesh;
 };

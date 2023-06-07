@@ -48,7 +48,7 @@ export function setVelocity(velocity, player) {
             else {
                 // Force the player to ride the entity until the entity lands
                 Commands.runAsync(`ride "${player.name}" start_riding @s teleport_rider`, entity);
-                movement?.setCurrent(0);
+                movement?.setCurrentValue(0);
                 health?.resetToMaxValue();
             }
             ;

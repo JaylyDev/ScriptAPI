@@ -10,7 +10,3 @@ let weatherChangeEvent = addEventListener('weatherChange', function (event) {
 });
 
 removeEventListener('weatherChange', weatherChangeEvent);
-
-addSystemEventListener('beforeWatchdogTerminate', (event) => {
-  event.cancel = true;
-});

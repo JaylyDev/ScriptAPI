@@ -1,6 +1,7 @@
 // Script example for ScriptAPI
 // Author: Smell of curry <https://github.com/smell-of-curry>
 //         JaylyMC <https://github.com/JaylyDev>
+//         Remember M9 <https://github.com/Remember-M9>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
 /**
@@ -14,44 +15,33 @@
  * items that have hacked enchants and clears the item from inventory
  * --------------------------------------------------------------------------
  */
-import { world, EntityInventoryComponent, system, ItemEnchantsComponent } from "@minecraft/server";
-import { MinecraftEnchantmentTypes } from "@minecraft/vanilla-data";
+import * as mc from "@minecraft/server";
 
-function onTick () {
+const { world, system } = mc;
+
+function onTick() {
   for (const player of world.getPlayers()) {
-    /** @type {EntityInventoryComponent} */
+    /** @type {mc.EntityInventoryComponent} */
     // @ts-ignore
     const inventory = player.getComponent("minecraft:inventory");
-    const container = inventory.container;
-    for (let i = 0; i < container.size; i++) {
-      const item = container.getItem(i);
+    const { container, inventorySize } = inventory;
+    if (container.emptySlotsCount == inventorySize) continue;
+    for (let slot = 0; slot < inventorySize; slot++) {
+      const item = container.getItem(slot);
       if (!item) continue;
-      /** @type {ItemEnchantsComponent} */
+      /** @type {mc.ItemEnchantsComponent} */
       // @ts-ignore
       const enchants = item.getComponent("enchantments");
       const enchantments = enchants.enchantments;
-      let change = false;
-      for (const Enchantment in MinecraftEnchantmentTypes) {
-        const ItemEnchantment = enchantments.getEnchantment(MinecraftEnchantmentTypes[Enchantment]);
-        if (!ItemEnchantment) continue;
-        const remove = () => {
-          enchantments.removeEnchantment(ItemEnchantment.type);
-          change = true;
-        };
-        const changeLevel = () => {
-          enchantments.removeEnchantment(ItemEnchantment.type);
-          ItemEnchantment.level = ItemEnchantment.type.maxLevel;
-          enchantments.addEnchantment(ItemEnchantment);
-          change = true;
-        };
-        if (enchantments.slot === 0 && !enchantments.canAddEnchantment(MinecraftEnchantmentTypes[Enchantment])) remove();
-        else if (ItemEnchantment.level > ItemEnchantment.type.maxLevel) changeLevel();
+      const newEnchants = new mc.EnchantmentList(enchantments.slot);
+      for (let enchant of enchantments) {
+        if (newEnchants.addEnchantment(enchant)) continue;
+        container.setItem(slot);
+        break;
       }
-      if (!change) continue;
-      enchants.enchantments = enchantments;
-      container.setItem(i, item);
     }
   }
 };
+
 
 system.runInterval(onTick);

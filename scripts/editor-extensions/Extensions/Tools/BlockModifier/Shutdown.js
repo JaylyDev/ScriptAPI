@@ -1,1 +1,4 @@
-export const Shutdown = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => uiSession.log.debug( `Shutting down ${uiSession.extensionContext.extensionName} extension` );
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
+ */
+export const Shutdown = (uiSession) => uiSession.log.debug( `Shutting down ${uiSession.extensionContext.extensionName} extension` );

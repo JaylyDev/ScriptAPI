@@ -1,6 +1,9 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
-export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
+ */
+export const Start = (uiSession) => {
     const menu = uiSession.createMenu(
         { name: "Night Vision" },
     );

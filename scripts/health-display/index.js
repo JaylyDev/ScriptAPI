@@ -5,6 +5,6 @@ import { EntityHealthComponent, system, world } from "@minecraft/server";
 system.runInterval(() => {
     for (const player of world.getPlayers()) {
         const health = player.getComponent(EntityHealthComponent.componentId);
-        player.nameTag = `${player.name}\n§c❤️ ${health.current.toFixed(1)}`;
+        player.nameTag = `${player.name}\n§c❤️ ${health.currentValue.toFixed(1)}`;
     }
 });
