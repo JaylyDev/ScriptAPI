@@ -33,7 +33,7 @@ function onTick() {
       // @ts-ignore
       const enchants = item.getComponent("enchantments");
       const enchantments = enchants.enchantments;
-      const newEnchants = new enchantments.constructor(enchantments.slot);
+      const newEnchants = new mc.EnchantmentList(enchantments.slot);
       for (let enchant of enchantments) {
         if (newEnchants.addEnchantment(enchant)) continue;
         container.setItem(slot);
