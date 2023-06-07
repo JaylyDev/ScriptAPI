@@ -111,7 +111,7 @@ const blockModifier = ( /** @type {Editor.IPlayerUISession} */ uiSession, /** @t
             {
                 actionType: Editor.ActionTypes.NoArgsAction,
                 onExecute: async () => {
-                    pane._sendDestroyMessage();
+                    pane.dispose();
                     targetBlock.setType( settings.newBlockType );
                     if (settings.newBlockType.id != "minecraft:air") blockModifier( uiSession, tool, player, location );
                 },
@@ -161,7 +161,7 @@ const blockModifier = ( /** @type {Editor.IPlayerUISession} */ uiSession, /** @t
 
                         targetBlock.setPermutation( blockPermutation );
                     } catch(e) {
-                        pane._sendDestroyMessage();
+                        pane.dispose();
                     };
                 },
             }
@@ -187,7 +187,7 @@ const blockModifier = ( /** @type {Editor.IPlayerUISession} */ uiSession, /** @t
 
                         targetBlock.setPermutation( blockPermutation );
                     } catch(e) {
-                        pane._sendDestroyMessage();
+                        pane.dispose();
                     };
                 },
             }
@@ -213,7 +213,7 @@ const blockModifier = ( /** @type {Editor.IPlayerUISession} */ uiSession, /** @t
 
                         targetBlock.setPermutation( blockPermutation );
                     } catch(e) {
-                        pane._sendDestroyMessage();
+                        pane.dispose();
                     };
                 },
             }
@@ -267,7 +267,7 @@ const blockModifier = ( /** @type {Editor.IPlayerUISession} */ uiSession, /** @t
 
                         targetBlock.setPermutation( blockPermutation );
                     } catch(e) {
-                        pane._sendDestroyMessage();
+                        pane.dispose();
                     };
                 },
             }
@@ -293,7 +293,7 @@ const blockModifier = ( /** @type {Editor.IPlayerUISession} */ uiSession, /** @t
 
                         targetBlock.setPermutation( blockPermutation );  
                     } catch(e) {
-                        pane._sendDestroyMessage();
+                        pane.dispose();
                     };
                 },
             }
@@ -319,7 +319,7 @@ const blockModifier = ( /** @type {Editor.IPlayerUISession} */ uiSession, /** @t
 
                         targetBlock.setPermutation( blockPermutation );
                     } catch(e) {
-                        pane._sendDestroyMessage();
+                        pane.dispose();
                     };
                 },
             }
@@ -350,7 +350,7 @@ const blockModifier = ( /** @type {Editor.IPlayerUISession} */ uiSession, /** @t
                             
                         targetBlock.setPermutation( blockPermutation );
                     } catch(e) {
-                        pane._sendDestroyMessage();
+                        pane.dispose();
                     };
                 },
             }

@@ -858,8 +858,8 @@ export class SelectionBehavior {
       uiSession.inputManager.registerKeyBinding(EditorInputContext.GlobalEditor, toggleAction, KeyboardKey.KEY_S, InputModifier.Control);
       uiSession.inputManager.registerKeyBinding(EditorInputContext.GlobalToolMode, this.executeFillAction, KeyboardKey.KEY_F, InputModifier.Control);
       uiSession.inputManager.registerKeyBinding(EditorInputContext.GlobalEditor, deselectAction, KeyboardKey.KEY_D, InputModifier.Control);
-      storage.coreMenuItems?.edit.addItem({ name: 'menuBar.edit.quickFill', displayStringLocId: getLocalizationId('menuBar.edit.quickFill') }, this.executeFillAction);
-      storage.coreMenuItems?.edit.addItem({ name: 'menuBar.edit.deselect', displayStringLocId: getLocalizationId('menuBar.edit.deselect') }, deselectAction);
+      storage.coreMenuItems?.edit.addItem({ name: 'menuBar.edit.quickFill', displayStringId: getLocalizationId('menuBar.edit.quickFill') }, this.executeFillAction);
+      storage.coreMenuItems?.edit.addItem({ name: 'menuBar.edit.deselect', displayStringId: getLocalizationId('menuBar.edit.deselect') }, deselectAction);
     };
     this.performFillOperation = async (context, fillType) => {
       const player = context.player;

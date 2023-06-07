@@ -3,10 +3,10 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { system, world } from "@minecraft/server";
 const addSystemEventListener = (eventType, listener) => {
-    return system.events[eventType].subscribe(listener);
+    return system.afterEvents[eventType].subscribe(listener);
 };
 const removeSystemEventListener = (eventType, listener) => {
-    return system.events[eventType].unsubscribe(listener);
+    return system.afterEvents[eventType].unsubscribe(listener);
 };
 export { addSystemEventListener, removeSystemEventListener };
 const addEventListener = (eventType, listener) => {

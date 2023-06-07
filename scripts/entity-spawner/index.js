@@ -6,15 +6,25 @@ import * as editor from "@minecraft/server-editor"
 
 const entityTypes = [...server.EntityTypes.getAll()].map(({id}) => id)
 
+/**
+ * @typedef ScratchStorage
+ * @property {editor.CursorProperties} spawnerCursorState
+ */
+
 editor.registerEditorExtension(
 	"entitySpawner",
+	/**
+	 * 
+	 * @param {import("@minecraft/server-editor").IPlayerUISession<ScratchStorage>} uiSession 
+	 * @returns 
+	 */
 	uiSession => {
 		const tool = uiSession.toolRail.addTool(
 			{
-				displayStringId: "Spawn Entity (Ctrl + E)",
-				displayStringLocId: "editor.toolRail.entitySpawnerTool.title",
-				tooltip: "Spawns an entity at the selected position",
-				tooltipLocId: "editor.toolRail.entitySpawnerTool.description",
+				displayAltText: "Spawn Entity (Ctrl + E)",
+				displayStringId: "editor.toolRail.entitySpawnerTool.title",
+				tooltipAltText: "Spawns an entity at the selected position",
+				tooltipStringId: "editor.toolRail.entitySpawnerTool.description",
 				icon: "pack://textures/editor/entity.png?filtering=point"
 			}
 		)
