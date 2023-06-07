@@ -1,12 +1,15 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
 import { Color } from "../../../../utils";
-export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
+ */
+export const Start = (uiSession) => {
     uiSession.log.debug( `Initializing ${uiSession.extensionContext.extensionName} extension` );
     const tool = uiSession.toolRail.addTool(
         {
-            displayString: "Item Spawner (CTRL + I)",
-            tooltip: "Left mouse click or drag-to-spawn",
+            displayAltText: "Item Spawner (CTRL + I)",
+            tooltipAltText: "Left mouse click or drag-to-spawn",
             icon: "pack://textures/editor/item.png?filtering=point",
         },
     );
@@ -55,7 +58,7 @@ export const Start = (/** @type {import("@minecraft/server-editor").IPlayerUISes
         },
     );
     
-    const settings = Editor.createPaneBindingObject(
+    const settings = Editor.bindDataSource(
         pane,
         {
             itemType: Server.MinecraftItemTypes.diamondSword.id,

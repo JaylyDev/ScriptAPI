@@ -1,7 +1,10 @@
-export default (/** @type {import("@minecraft/server-editor").IPlayerUISession} */ uiSession) => {
+/**
+ * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
+ */
+export default (uiSession) => {
     uiSession.toolRail.addTool(
         {
-            displayString: "Divider",
+            displayAltText: "Divider",
             icon: "pack://textures/editor/divider.png?filtering=point",
         },
     );

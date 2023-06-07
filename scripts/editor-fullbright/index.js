@@ -23,8 +23,8 @@ export class FullbrightToggle {
             },
         });
         // Add actions to menu
-        menu.addItem({ name: 'Enable', displayStringLocId: "Enable" }, enableAction);
-        menu.addItem({ name: 'Disable', displayStringLocId: "Disable" }, disableAction);
+        menu.addItem({ name: 'Enable', displayStringId: "Enable" }, enableAction);
+        menu.addItem({ name: 'Disable', displayStringId: "Disable" }, disableAction);
         // Create key bindings
         uiSession.inputManager.registerKeyBinding(EditorInputContext.GlobalEditor, enableAction, KeyboardKey.KEY_Z, InputModifier.Control);
         uiSession.inputManager.registerKeyBinding(EditorInputContext.GlobalEditor, disableAction, KeyboardKey.KEY_Y, InputModifier.Control);

@@ -7,7 +7,7 @@ export function createMenu(uiSession: IPlayerUISession) {
   }
   const edit = uiSession.createMenu({
       name: 'FullBright',
-      displayStringLocId: 'FullBright',
+      displayStringId: 'FullBright',
   });
   edit.show();
   return edit;

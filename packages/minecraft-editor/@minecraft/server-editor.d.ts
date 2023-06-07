@@ -10,7 +10,7 @@
  * ```
  */
 declare module "@minecraft/server-editor" {
-    import { AfterEvents, Player, System, Vector3 } from "@minecraft/server";
+    import { WorldAfterEvents, BlockType, Player, System, Vector3 } from "@minecraft/server";
     import { Extension, ExtensionContext, Selection, ExtensionOptionalParameters, Logger } from "@minecraft/server-editor-bindings";
     export * from "@minecraft/server-editor-bindings";
     class BaseControl {
@@ -28,13 +28,13 @@ declare module "@minecraft/server-editor" {
     }
     export interface ToolParams {
         name?: string;
-        displayString?: string;
-        displayStringLocId?: string;
+        displayAltText?: string;
+        displayStringId?: string;
         icon?: string;
-        tooltip?: string;
-        tooltipLocId?: string;
+        tooltipAltText?: string;
+        tooltipStringId?: string;
     }
-    class EventToken<H extends keyof AfterEvents = keyof AfterEvents, K extends AfterEvents[H] = AfterEvents[H]> {
+    class EventToken<H extends keyof WorldAfterEvents = keyof WorldAfterEvents, K extends WorldAfterEvents[H] = WorldAfterEvents[H]> {
         constructor(_event: K);
         unsubscribe(): void;
     }
@@ -126,7 +126,7 @@ declare module "@minecraft/server-editor" {
     }
     export interface MenuProps {
         name?: string;
-        displayStringLocId?: string;
+        displayStringId?: string;
     }
     class Menu extends BaseControl {
         constructor(props: any, _dispatcher: any, _actionId: any, _parent: any);
@@ -139,7 +139,7 @@ declare module "@minecraft/server-editor" {
         private _name: string;
         get id(): string;
         get submenu(): Menu[];
-        get displayStringLocId(): string;
+        get displayStringId(): string;
         get name(): string;
         set name(value: string);
         dispose(): void;
@@ -189,14 +189,14 @@ declare module "@minecraft/server-editor" {
         removePropertyPane(paneToRemove: PropertyPane): boolean;
         hide(): void;
         show(): void;
-        addString(obj: Record<string, any>, property: string, options: PaneOptions): PropertyItem;
-        addBool(obj: Record<string, any>, property: string, options: BoolPaneOptions): PropertyItem;
-        addNumber(obj: Record<string, any>, property: string, options: NumberPaneOptions): PropertyItem;
-        addBlockPicker(obj: Record<string, any>, property: string, options: BlockPickerPaneOptions): PropertyItem;
-        addButton(action: Record<string, any>, options: ButtonPaneOptions): PropertyItem;
-        addDropdown<T>(obj: Record<string, any>, property: string, options: DropdownPaneOptions<T>): PropertyItem;
+        addString<K extends string, T extends Record<K, string> & Record<string, any>>(obj: T, property: K, options: PaneOptions): PropertyItem;
+        addBool<K extends string, T extends Record<K, boolean> & Record<string, any>>(obj: T, property: K, options: BoolPaneOptions<T, K>): PropertyItem;
+        addNumber<K extends string, T extends Record<K, number> & Record<string, any>>(obj: T, property: K, options: NumberPaneOptions<T, K>): PropertyItem;
+        addBlockPicker<K extends string, T extends Record<K, BlockType> & Record<string, any>>(obj: T, property: K, options: BlockPickerPaneOptions): PropertyItem;
+        addButton(action: Action<ActionTypes>, options: ButtonPaneOptions): PropertyItem;
+        addDropdown<T, K extends string, H extends Record<K, T> & Record<string, any>>(obj: H, property: K, options: DropdownPaneOptions<T, H, K>): PropertyItem;
         addDivider(): PropertyItem;
-        addVec3(obj: Record<string, any>, property: string, options: Vec3PaneOptions): PropertyItem;
+        addVector3<K extends string, T extends Record<K, Vector3> & Record<string, any>>(obj: T, property: K, options: Vec3PaneOptions): PropertyItem;
     }
     class StatusBarItem extends BaseControl {
         private _id: string;
@@ -297,8 +297,8 @@ declare module "@minecraft/server-editor" {
         visible?: boolean;
         width?: number;
     }
-    export interface BoolPaneOptions extends PaneOptions {
-        onChange?: (_obj: object, _property: string, _oldValue: boolean, _newValue: boolean) => void;
+    export interface BoolPaneOptions<T, K> extends PaneOptions {
+        onChange?: (_obj: T, _property: K, _oldValue: boolean, _newValue: boolean) => void;
     }
     export interface BlockPickerPaneOptions extends PaneOptions {
         allowedBlocks?: string[];
@@ -306,15 +306,15 @@ declare module "@minecraft/server-editor" {
     export interface ButtonPaneOptions extends PaneOptions {
         variant?: string;
     }
-    export interface DropdownPaneOptions<T> extends PaneOptions {
-        onChange?: (_obj: object, _property: string, _oldValue: T, _newValue: T) => void;
+    export interface DropdownPaneOptions<T, H, K> extends PaneOptions {
+        onChange?: (_obj: H, _property: K, _oldValue: T, _newValue: T) => void;
         dropdownItems: DropdownItem<T>[];
     }
-    export interface NumberPaneOptions extends PaneOptions {
+    export interface NumberPaneOptions<T, K> extends PaneOptions {
         min?: number;
         max?: number;
         showSlider?: boolean;
-        onChange?: (_obj: object, _property: string, _oldValue: number, _newValue: number) => void;
+        onChange?: (_obj: T, _property: K, _oldValue: number, _newValue: number) => void;
     }
     export interface Vec3PaneOptions extends PaneOptions {
         minX: number;
@@ -329,7 +329,7 @@ declare module "@minecraft/server-editor" {
      * Represents a UI session for a given player
      * @internal
      */
-    class PlayerUISession {
+    class PlayerUISession<T = unknown>{
         private _builtInUIManager: BuiltInUIManagerImpl;
         private _actionManager: ActionManagerImpl;
         private _modalToolContainer: ModalToolContainer;
@@ -341,7 +341,7 @@ declare module "@minecraft/server-editor" {
         private _inputManager: GlobalInputManager;
         private _logger: Logger;
         private createPropertyPaneInternal(options: PaneOptions, parentPaneId: string): PropertyPane;
-        scratchStorage?: Record<string, any>;
+        scratchStorage?: T;
         teardown(): void;
         get toolRail(): ModalToolContainer;
         createMenu(props: MenuProps): Menu;
@@ -369,7 +369,7 @@ declare module "@minecraft/server-editor" {
      * @beta
      */
     export class BedrockEventSubscriptionCache {
-        constructor(mEvents: AfterEvents);
+        constructor(mEvents: WorldAfterEvents);
         /**
          * Subcribes to a bedrock event using the key of the desired event. When subscribed, the event handler
          * is both returned, but also cached internally for unsubscription. This means the caller of the subscription
@@ -379,9 +379,9 @@ declare module "@minecraft/server-editor" {
          * @param event - The event on the bedrock APIs to which to subscribe
          * @param params - The parameters to the subscription method for the event. Auto complete will display this for you
          */
-        subscribeToBedrockEvent<T extends keyof AfterEvents>(event: T, ...params: Parameters<AfterEvents[T]["subscribe"]>): ReturnType<AfterEvents[T]["subscribe"]>;
+        subscribeToBedrockEvent<T extends keyof WorldAfterEvents>(event: T, ...params: Parameters<WorldAfterEvents[T]["subscribe"]>): ReturnType<WorldAfterEvents[T]["subscribe"]>;
         teardown(): void;
-        private mEvents: AfterEvents;
+        private mEvents: WorldAfterEvents;
         private subscribedEvents: object;
     }
     /**
@@ -604,7 +604,7 @@ declare module "@minecraft/server-editor" {
      * Takes the input object and bind it to the pane.
      * @beta
      */
-    export function createPaneBindingObject<T>(propertyPane: PropertyPane, target: T): T;
+    export function bindDataSource<T>(propertyPane: PropertyPane, target: T): T;
     /**
      * Executes an operation over a selection via chunks to allow splitting operation over multiple game ticks
      * @param selection - the selection to iterator over
@@ -632,7 +632,7 @@ declare module "@minecraft/server-editor" {
     /**
      * Interface for internal PlayerUISession class
      */
-    export interface IPlayerUISession extends PlayerUISession {
+    export interface IPlayerUISession<T = unknown> extends PlayerUISession<T> {
     }
     /**
      * Interface for internal ModalTool class
