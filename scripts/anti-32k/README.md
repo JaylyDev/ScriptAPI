@@ -8,4 +8,4 @@ This is a anti hacked items, meaning it checks a players inventory every tick th
 
 ## Credits
 
-These scripts were written by [Smell of curry](https://github.com/smell-of-curry), [JaylyMC](https://github.com/JaylyDev)
+These scripts were written by [Smell of curry](https://github.com/smell-of-curry), [JaylyMC](https://github.com/JaylyDev), [Remember M9](https://github.com/Remember-M9)
