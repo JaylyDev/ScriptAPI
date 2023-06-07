@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: defowler2005 <https://github.com/defowler2005>
+// Project: https://github.com/JaylyDev/ScriptAPI
 /**
 
  * Minecraft Bedrock ScriptAPI Example
@@ -20,8 +23,15 @@
 
  */
 
-import { world, system } from '@minecraft/server';
+import { world, system, Entity } from '@minecraft/server';
 
+/**
+ * @param {Entity} target
+ * @param {number} x
+ * @param {number} y
+ * @param {number} z
+ * @param {(arg0: Entity) => void} callback
+ */
 export function waitMove(target, x, y, z, callback) {
 
   const t = new Map();
