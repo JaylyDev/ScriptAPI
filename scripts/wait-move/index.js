@@ -9,7 +9,7 @@
 
  * @author defowler2005#4812
 
- * @version 1.0.0
+ * @version 2.0.0
 
  * ---------------------------------------------------------------------------
 
@@ -34,26 +34,30 @@ import { world, system, Entity } from '@minecraft/server';
  */
 export function waitMove(target, x, y, z, callback) {
 
-  const t = new Map();
+    const t = new Map();
 
-  t.set(target, [x, y, z]);
+    t.set(target, [x, y, z]);
 
-  system.runInterval(() => {
+    system.runInterval(() => {
 
-    for (const [target, [xOld, yOld, zOld]] of t) {
+        for (const [target, [xOld, yOld, zOld]] of t) {
 
-      const { x: xc, y: yc, z: zc } = target.location;
+            const { x: xc, y: yc, z: zc } = target.location;
 
-      if (xOld !== xc || yOld !== yc || zOld !== zc) {
+            if (xOld !== xc || yOld !== yc || zOld !== zc) {
 
-        t.delete(target);
+                t.delete(target);
 
-        callback(target);
+                system.run(() => {
 
-      }
+                callback(target);
 
-    }
+               })
 
-  })
+            }
+
+        }
+
+    })
 
 };
