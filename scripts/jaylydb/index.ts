@@ -189,7 +189,7 @@ class JaylyDB implements Map<string, string | number | boolean> {
    * Clears every element in the database.
    */
   clear(): void {
-    this.participants.forEach(this.objective.removeParticipant);
+    this.participants.forEach(participant => this.objective.removeParticipant(participant));
     this.updateParticipants();
   }
   /**
