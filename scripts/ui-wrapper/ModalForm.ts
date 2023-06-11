@@ -53,7 +53,7 @@ export type ModalFormContent = ModalFormDropdown | ModalFormSlider | ModalFormTe
  * Used to create a fully customizable pop-up form for a
  * player.
  */
-export class ModalFormBuilder extends ModalFormData {
+export class ModalFormBuilder implements ModalFormData {
   /**
    * Title of the pop-up form.
    */
@@ -67,15 +67,17 @@ export class ModalFormBuilder extends ModalFormData {
     return this;
   }
   show(player: Player): Promise<ModalFormResponse> {
-    if (!!this.titleText) super.title(this.titleText);
+    const form = new ModalFormData();
+    
+    if (!!this.titleText) form.title(this.titleText);
     for (const item of this.content) {
-      if (item instanceof ModalFormDropdown)        super.dropdown(item.label, item.options, item.defaultValueIndex);
-      else if (item instanceof ModalFormSlider)     super.slider(item.label, item.minimumValue, item.maximumValue, item.valueStep, item.defaultValue);
-      else if (item instanceof ModalFormTextField)  super.textField(item.label, item.placeholderText, item.defaultValue);
-      else if (item instanceof ModalFormToggle)     super.toggle(item.label, item.defaultValue);
+      if (item instanceof ModalFormDropdown)        form.dropdown(item.label, item.options, item.defaultValueIndex);
+      else if (item instanceof ModalFormSlider)     form.slider(item.label, item.minimumValue, item.maximumValue, item.valueStep, item.defaultValue);
+      else if (item instanceof ModalFormTextField)  form.textField(item.label, item.placeholderText, item.defaultValue);
+      else if (item instanceof ModalFormToggle)     form.toggle(item.label, item.defaultValue);
     };
     
-    return super.show(player);
+    return form.show(player);
   }
   slider(label: string | RawMessage, minimumValue: number, maximumValue: number, valueStep: number = 1, defaultValue?: number | undefined): this {
     this.content.push(new ModalFormSlider(label, minimumValue, maximumValue, valueStep, defaultValue));

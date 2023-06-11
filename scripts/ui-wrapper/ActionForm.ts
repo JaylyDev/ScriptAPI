@@ -14,7 +14,7 @@ export class ActionFormButton {
  * Builds a simple player form with buttons that let the player
  * take action.
  */
-export class ActionFormBuilder extends ActionFormData {
+export class ActionFormBuilder implements ActionFormData {
   /**
    * Title of the the modal dialog.
    */
@@ -36,11 +36,12 @@ export class ActionFormBuilder extends ActionFormData {
     return this;
   }
   show(player: Player): Promise<ActionFormResponse> {
-    if (!!this.titleText) super.title(this.titleText);
-    if (!!this.bodyText) super.body(this.bodyText);
-    this.buttons.forEach(item => super.button(item.text, item.iconPath));
+    const form = new ActionFormData();
+    if (!!this.titleText) form.title(this.titleText);
+    if (!!this.bodyText) form.body(this.bodyText);
+    this.buttons.forEach(item => form.button(item.text, item.iconPath));
     
-    return super.show(player);
+    return form.show(player);
   }
   title(titleText: string | RawMessage): this {
     this.titleText = titleText;
