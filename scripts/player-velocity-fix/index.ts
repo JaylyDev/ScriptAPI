@@ -6,8 +6,9 @@
  * @author JaylyMC
  * @project https://github.com/JaylyDev/GametestDB/
  */
-import { Vector3, Player, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent, MinecraftEffectTypes } from "@minecraft/server";
-import { Commands } from "../commands/index.js";
+import { Vector3, Player, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent } from "@minecraft/server";
+import { MinecraftEffectTypes } from "@minecraft/vanilla-data";
+import { Commands } from "commands/index.js";
 import { clearInterval, setInterval } from "../timers/index.js";
 
 function trunc (x: number, decimal: number): number {
@@ -37,8 +38,8 @@ export function setVelocity (velocity: Vector3, player: Player) {
   let movement = entity.getComponent('movement') as EntityMovementComponent;
   let rideable = entity.getComponent('rideable') as EntityRideableComponent;
   
-  entity.addEffect(MinecraftEffectTypes.invisibility, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
-  entity.addEffect(MinecraftEffectTypes.resistance, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
+  entity.addEffect(MinecraftEffectTypes.Invisibility, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
+  entity.addEffect(MinecraftEffectTypes.Resistance, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
   entity.applyImpulse(velocity);
 
   let onInterval = setInterval((isEntityMoving: Entity) => {

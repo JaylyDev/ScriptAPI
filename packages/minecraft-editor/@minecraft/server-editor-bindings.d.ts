@@ -12,7 +12,7 @@
 declare module '@minecraft/server-editor-bindings' {
     import { BlockLocationIterator, BlockVolume, BoundingBox, Color, CompoundBlockVolumeAction, Player, Vector3, } from '@minecraft/server';
     export class ClipboardItem {
-        protected constructor();
+        private constructor();
         readFromSelection(selection: Selection): void;
         readFromWorld(a: Vector3, b: Vector3): any;
         writeToWorld(location: Vector3, options: ClipboardWriteOptions): void;
@@ -22,7 +22,7 @@ declare module '@minecraft/server-editor-bindings' {
         isEmpty: boolean;
     }
     export class ClipboardManager {
-        protected constructor();
+        private constructor();
         create(): ClipboardItem;
         clipboard: ClipboardItem;
     }
@@ -73,10 +73,10 @@ declare module '@minecraft/server-editor-bindings' {
         Face = 1
     }
     export class Extension {
-        protected constructor();
+        private constructor();
     }
     export class ExtensionContext {
-        protected constructor();
+        private constructor();
         extensionName: string;
         player: Player;
         selectionManager: SelectionManager;
@@ -95,7 +95,7 @@ declare module '@minecraft/server-editor-bindings' {
         debug(message: string, properties?: LogProperties): void;
     }
     export class MinecraftEditor {
-        protected constructor();
+        private constructor();
         registerExtension_Internal(extensionName: string, activationFunction: (context: ExtensionContext) => void, shutdownFunction: (context: ExtensionContext) => void, optionalParameters?: ExtensionOptionalParameters): Extension;
         readonly log: Logger;
     }
@@ -104,7 +104,7 @@ declare module '@minecraft/server-editor-bindings' {
         volume: BlockVolume;
     }
     export class Selection {
-        protected constructor();
+        private constructor();
         clear(): void;
         pushVolume(options: PushVolumeOptions): void;
         popVolume(): void;
@@ -122,12 +122,12 @@ declare module '@minecraft/server-editor-bindings' {
         visible: boolean;
     }
     export class SelectionManager {
-        protected constructor();
+        private constructor();
         create(): Selection;
         selection: Selection;
     }
     export class TransactionManager {
-        protected constructor();
+        private constructor();
         undo(): void;
         redo(): void;
         undoSize(): number;

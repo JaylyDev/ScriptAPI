@@ -4,7 +4,7 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 
 import { Player, system } from "@minecraft/server";
-import { ActionFormData, MessageFormData, ModalFormData } from "@minecraft/server-ui";
+import { ActionFormData, FormCancelationReason, MessageFormData, ModalFormData } from "@minecraft/server-ui";
 
 /**
  * @template {ActionFormData | MessageFormData | ModalFormData} Form
@@ -17,7 +17,7 @@ export async function forceShow(player, form, timeout = Infinity) {
     const startTick = system.currentTick;
     while ((system.currentTick - startTick) < timeout) {
         const response = await /** @type {ReturnType<Form["show"]>} */(form.show(player));
-        if (response.cancelationReason !== "userBusy") {
+        if (response.cancelationReason !== FormCancelationReason.UserBusy) {
             return response;
         }
     };

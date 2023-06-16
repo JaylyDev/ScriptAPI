@@ -77,7 +77,7 @@ const CreateCrashReport = (action: "save" | "load", data: string, error: Error, 
 const DisplayName = {
   parse(text: string, salt?: string): Record<string, string | number | boolean> {
     try {
-      const a = JSON.parse(`"${salt ? decrypt(text, salt) : text}"`);
+      const a = salt ? decrypt(text, salt) : text;
       return JSON.parse(`{${a}}`);
     } catch (error) {
       CreateCrashReport("load", text, error, salt);
@@ -85,15 +85,13 @@ const DisplayName = {
   },
   stringify(value: Record<string, string | number | boolean>, salt?: string): string {
     try {
-      const a = JSON.stringify(JSON.stringify(value).slice(1, -1)).slice(1, -1);
+      const a = JSON.stringify(value).slice(1, -1);
       return salt ? encrypt(a, salt) : a;
     } catch (error) {
       CreateCrashReport("save", JSON.stringify(value), error, salt);
     }
   }
 };
-
-const overworld = world.getDimension("overworld");
 
 /**
  * A simple database for storing data in a Minecraft world, using scoreboard.
@@ -110,50 +108,17 @@ class JaylyDB implements Map<string, string | number | boolean> {
   /** @internal */
   private readonly salt: string | undefined;
   /** @internal */
-  private warningSent = false;
-  /** @internal */  
-  private SYNC_OK: boolean = true;
-  /**
-   * Internal cache object to allow data to write from memory to scoreboard every tick interval.
-   * This is done to prevent multiple values written to a same key to scoreboard each operation.
-   * @internal
-   */
-  private readonly tempCache = new Map<string, string | number | boolean>();
-  /** @internal */
   private updateParticipants(fetchCache: boolean = false) {
-    const id = this.objective.id.substring(this.objective.id.indexOf(":") + 1);
-    if (this.tempCache.size <= 0 && this.warningSent === true) {
-      console.warn(`[JaylyDB] Database '${id}' has written data to world. It is now safe to exit the world.`);    
-      this.warningSent = false;
-    }
-    else if (this.tempCache.size > 0 && this.warningSent === false) {
-      console.warn(`[JaylyDB] Database '${id}' is writing data to world. Please wait until the process is completed before exiting the world.`);
-      this.warningSent = true;
-    };
-
-    try {
-      for (const [key, value] of this.tempCache.entries()) {
-        overworld.runCommandAsync(`scoreboard players set "${value}" ${this.objective.id} 0`);
-        this.tempCache.delete(key);
-      };
-    } catch (error) {
-      if (error.message !== "Runtime failure, command queue is full.") throw error;
-    };
-
     this.participants.clear();
     if (fetchCache) this.localCache.clear();
 
     for (const participant of this.objective.getParticipants()) {
-      if (participant.type !== ScoreboardIdentityType.fakePlayer) continue;
+      if (participant.type !== ScoreboardIdentityType.FakePlayer) continue;
       const data = DisplayName.parse(participant.displayName, this.salt);
       const key = Object.keys(data)[0];
       const value = data[key];
       this.participants.set(key, participant);
       if (fetchCache) this.localCache.set(key, value);
-    };
-    if (this.SYNC_OK === false) {
-      console.warn(`[JaylyDB] Database '${id}' is now sync with disk.`);
-      this.SYNC_OK = true;
     };
   }
   /**

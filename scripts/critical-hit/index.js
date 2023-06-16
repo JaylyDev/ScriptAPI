@@ -1,25 +1,23 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { Block, Entity, EntityHitAfterEvent, Player, world } from "@minecraft/server";
+import { Block, Entity, EntityHitEntityAfterEvent, Player, world } from "@minecraft/server";
 
 /**
- * @implements {Omit<EntityHitAfterEvent, "entity">}
+ * @implements {Omit<EntityHitEntityAfterEvent, "damagingEntity">}
  */
 export class EntityCriticalHitAfterEvent {
   /**
-   * @param {Entity} entity
-   * @param {Block} hitBlock
+   * @param {Entity} damagingEntity
    * @param {Entity} hitEntity
    */
-  constructor(entity, hitBlock, hitEntity) {
-    if (!(entity instanceof Player)) {
-      console.log("Failed to call function EntityCriticalHitAfterEvent, entity is not a player");
+  constructor(damagingEntity, hitEntity) {
+    if (!(damagingEntity instanceof Player)) {
+      console.log("Failed to call function EntityCriticalHitAfterEvent, damagingEntity is not a player");
       return;
     };
     
-    this.player = entity;
-    this.hitBlock = hitBlock;
+    this.player = damagingEntity;
     this.hitEntity = hitEntity;
   };
   /**
@@ -31,19 +29,9 @@ export class EntityCriticalHitAfterEvent {
   player;
   /**
    * @remarks
-   * Block that was hit by the attack, or undefined if the hit
-   * attack did not hit a block. If both hitEntity and hitBlock
-   * are undefined, then the entity basically swiped into the
-   * air.
-   * @readonly
-   * @type {Block | undefined}
-   */
-  hitBlock;
-  /**
-   * @remarks
    * Entity that was hit by the attack, or undefined if the hit
-   * attack did not hit an entity. If both hitEntity and hitBlock
-   * are undefined, then the entity basically swiped into the
+   * attack did not hit an damagingEntity. If both hitEntity and hitBlock
+   * are undefined, then the damagingEntity basically swiped into the
    * air.
    * @readonly
    * @type {Entity | undefined}
@@ -73,17 +61,17 @@ export class EntityCriticalHitAfterEventSignal {
   }
   /**
    * @private
-   * @param {EntityHitAfterEvent} event 
+   * @param {EntityHitEntityAfterEvent} event 
    */
   trigger(event) {
-    this.handlers.forEach((callback) => callback(new EntityCriticalHitAfterEvent(event.entity, event.hitBlock, event.hitEntity)));
+    this.handlers.forEach((callback) => callback(new EntityCriticalHitAfterEvent(event.damagingEntity, event.hitEntity)));
   }
   constructor() {
-    world.afterEvents.entityHit.subscribe((event) => {
-      // checks if entity has a critical hit and is a player
-      if (event.entity instanceof Player && !!event.hitEntity && event.entity.getVelocity().y !== 0) this.trigger(event);
+    world.afterEvents.entityHitEntity.subscribe((event) => {
+      // checks if damagingEntity has a critical hit and is a player
+      if (event.damagingEntity instanceof Player && !!event.hitEntity && event.damagingEntity.getVelocity().y !== 0) this.trigger(event);
     }); 
   }
 }
 
-export const entityCriticalHit = new EntityCriticalHitAfterEventSignal();
+export const damagingEntityCriticalHit = new EntityCriticalHitAfterEventSignal();
