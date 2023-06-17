@@ -80,10 +80,10 @@ This database is benchmarked using [`tests.js`](./tests.js). The test file recor
 
 | Content Length | `set` time | `set` time (encrypted) | `get` time | `has` time | `delete` time |
 | -------------- | ---------- | ---------------------- | ---------- | ---------- | ------------- |
-| 0 bytes        | 1 ms       | 2 ms                   | 0 ms       | 0 ms       | 0 ms          |
-| 10,000 bytes   | 616 ms     | 914 ms                 | 0 ms       | 0 ms       | 0 ms          |
-| 20,000 bytes   | 1502 ms    | 2144 ms                | 1 ms       | 0 ms       | 0 ms          |
-| 30,000 bytes   | 2645 ms    | 3750 ms                | 0 ms       | 0 ms       | 0 ms          |
+| 0 bytes        | 19 ms      | 20 ms                  | 1 ms       | 0 ms       | 1 ms          |
+| 10,000 bytes   | 48 ms      | 776 ms                 | 0 ms       | 0 ms       | 2 ms          |
+| 20,000 bytes   | 83 ms      | 1517 ms                | 1 ms       | 0 ms       | 4 ms          |
+| 30,000 bytes   | 139 ms     | 2325 ms                | 0 ms       | 0 ms       | 5 ms          |
 
 > Note: **100 elements** with different data length are inserted into individual database, and it doesn't record time taken to write data to world.
 
