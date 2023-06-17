@@ -1,7 +1,7 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world, Player as MinecraftPlayer, Dimension, Block, Entity, EntityComponent, ScoreboardIdentity, Vector, Vector2, Vector3, PlayerSpawnAfterEvent, system } from "@minecraft/server";
+import { world, Player as MinecraftPlayer, Dimension, Entity, EntityComponent, ScoreboardIdentity, Vector, Vector2, Vector3, PlayerSpawnAfterEvent, system, BlockRaycastHit, EntityRaycastHit } from "@minecraft/server";
 import "@minecraft/server-gametest"; // import "@minecraft/server-gametest" native module to support Simulated Players
 
 /**
@@ -46,9 +46,9 @@ function comparePlayer (playerA: Player | MinecraftPlayer, playerB: Player | Min
  * Player class from "@minecraft/server" module.
  */
 class Player {
-  private '__PlayerBlockFromViewDirection': Block;
+  private '__PlayerBlockFromViewDirection': BlockRaycastHit;
   private '__PlayerComponents': EntityComponent[];
-  private '__PlayerEntitiesFromViewDirection': Entity[];
+  private '__PlayerEntitiesFromViewDirection': EntityRaycastHit[];
   private '__PlayerTags': string[];
   /**
    * Dimension that the entity is currently within.
@@ -121,7 +121,7 @@ class Player {
    * view of this entity.
    * @throws This function can throw errors.
    */
-  public getBlockFromViewDirection(): Block {
+  public getBlockFromViewDirection(): BlockRaycastHit {
     return this.__PlayerBlockFromViewDirection;
   };
   /**
@@ -155,7 +155,7 @@ class Player {
    * Additional options for processing this raycast query.
    * @throws This function can throw errors.
    */
-  public getEntitiesFromViewDirection(): Entity[] {
+  public getEntitiesFromViewDirection(): EntityRaycastHit[] {
     return this.__PlayerEntitiesFromViewDirection;
   };
   /**

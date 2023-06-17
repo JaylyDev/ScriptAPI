@@ -1,6 +1,5 @@
-// @ts-check
 import { JaylyDB } from "../index";
-import { assert } from "../assert/index";
+import { assert } from "assert/index";
 import { world } from "@minecraft/server";
 
 export function Main () {

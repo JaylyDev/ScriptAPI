@@ -1,5 +1,4 @@
-// @ts-check
-import { assert } from "../assert/index.js";
+import { assert } from "assert/index.js";
 import { JaylyDB } from "../index.js";
 
 export function Main () {

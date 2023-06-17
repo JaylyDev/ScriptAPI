@@ -15,11 +15,11 @@ export const ScoreboardM = {
      */
     setObj: function(id, v) {
         if (this.getObj(id)) {
-            objOptions[0] = this.getDisplaySlot("sidebar") ? this.getDisplaySlot("sidebar") : undefined;
+            objOptions[0] = this.getDisplaySlot(mc.DisplaySlotId.Sidebar) ? this.getDisplaySlot(mc.DisplaySlotId.Sidebar) : undefined;
 
-            objOptions[1] = this.getDisplaySlot("list") ? this.getDisplaySlot("list") : undefined;
+            objOptions[1] = this.getDisplaySlot(mc.DisplaySlotId.List) ? this.getDisplaySlot(mc.DisplaySlotId.List) : undefined;
 
-            objOptions[2] = this.getDisplaySlot("belowName") ? this.getDisplaySlot("belowName") : undefined;
+            objOptions[2] = this.getDisplaySlot(mc.DisplaySlotId.BelowName) ? this.getDisplaySlot(mc.DisplaySlotId.BelowName) : undefined;
 
             list = this.getList(id)
             this.delObj(id);
@@ -35,13 +35,13 @@ export const ScoreboardM = {
                     })
                     switch (ind) {
                         case "0":
-                            this.setDisplaySlot("sidebar", opts);
+                            this.setDisplaySlot(mc.DisplaySlotId.Sidebar, opts);
                             break;
                         case "1":
-                            this.setDisplaySlot("list", opts);
+                            this.setDisplaySlot(mc.DisplaySlotId.List, opts);
                             break;
                         case "2":
-                            this.setDisplaySlot("belowName", opts);
+                            this.setDisplaySlot(mc.DisplaySlotId.BelowName, opts);
                             break;
                     }
                 } else {
@@ -234,10 +234,10 @@ export const ScoreboardM = {
     },
     /**
      * This Method Is To Getting Display Slot Options That Is Currently Displaying
-     * @param {'sidebar' | 'list' | 'belowName'} id - Id Of Slot To Get Options
+     * @param {mc.DisplaySlotId} id - Id Of Slot To Get Options
      * @returns {mc.ScoreboardObjectiveDisplayOptions} - This Returns Display Options
      * @example 
-     * ScoreboardM.getDisplaySlot("sidebar")
+     * ScoreboardM.getDisplaySlot(DisplaySlotId.Sidebar)
      */
     getDisplaySlot: function(id) {
 
@@ -245,10 +245,10 @@ export const ScoreboardM = {
     },
     /**
      * This Clears The Displaying Objective At Given Slot
-     * @param {'sidebar'| 'list' | 'belowName'} id - The Display Slot Id To Clear
+     * @param {mc.DisplaySlotId} id - The Display Slot Id To Clear
      * @returns {ScoreboardM} - The Main ScoreboardM Object
      * @example
-     * ScoreboardM.clearDisplaySlot("sidebar")
+     * ScoreboardM.clearDisplaySlot(DisplaySlotId.Sidebar)
      */
     clearDisplaySlot: function(id) {
 
@@ -257,11 +257,11 @@ export const ScoreboardM = {
     },
     /**
      * This Sets/Displays Objective At Given Slots
-     * @param {'sidebar'|'list'| 'belowName'} id - The Slot Id To Display Objective
+     * @param {mc.DisplaySlotId} id - The Slot Id To Display Objective
      * @param {mc.ScoreboardObjectiveDisplayOptions} opt - The scoreboard Options to display the Objective
      * @returns {ScoreboardM} - The Main ScoreboardM Object
      * @example
-     * ScoreboardM.setDisplaySlot("sidebar",{objective: ScoreboardM.getObj("money"),sortOrder: 0})
+     * ScoreboardM.setDisplaySlot(DisplaySlotId.Sidebar,{objective: ScoreboardM.getObj("money"),sortOrder: 0})
      */
     setDisplaySlot: function(id, opt) {
         mc.world.scoreboard.setObjectiveAtDisplaySlot(id, opt);

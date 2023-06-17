@@ -1,4 +1,3 @@
-// @ts-check
 import { world } from "@minecraft/server";
 import { JaylyDB } from "../index";
 import LZString from "./lz-string";
