@@ -11,21 +11,19 @@ interface ClickInfo {
 const clicks = new Map<Player, ClickInfo[]>();
 
 world.afterEvents.entityHitBlock.subscribe(function ({ damagingEntity }) {
-  if (damagingEntity instanceof Player) {
-    const clickInfo = { timestamp: Date.now() };
-    const playerClicks = clicks.get(damagingEntity) || [];
-    playerClicks.push(clickInfo);
-    clicks.set(damagingEntity, playerClicks);
-  }
+  if (!(damagingEntity instanceof Player)) return;
+  const clickInfo = { timestamp: Date.now() };
+  const playerClicks = clicks.get(damagingEntity) || [];
+  playerClicks.push(clickInfo);
+  clicks.set(damagingEntity, playerClicks);
 });
 
 world.afterEvents.entityHitEntity.subscribe(function ({ damagingEntity }) {
-  if (damagingEntity instanceof Player) {
-    const clickInfo = { timestamp: Date.now() };
-    const playerClicks = clicks.get(damagingEntity) || [];
-    playerClicks.push(clickInfo);
-    clicks.set(damagingEntity, playerClicks);
-  }
+  if (!(damagingEntity instanceof Player)) return;
+  const clickInfo = { timestamp: Date.now() };
+  const playerClicks = clicks.get(damagingEntity) || [];
+  playerClicks.push(clickInfo);
+  clicks.set(damagingEntity, playerClicks);
 });
 
 /**
@@ -40,4 +38,4 @@ export function getPlayerCPS(player: Player) {
   clicks.set(player, recentClicks);
 
   return recentClicks.length;
-}
+};
