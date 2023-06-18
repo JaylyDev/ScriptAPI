@@ -2,7 +2,7 @@
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { ActionTypes, EditorInputContext, IMenu, InputModifier, IPlayerUISession, KeyboardKey } from "@minecraft/server-editor";
-import { MinecraftEffectTypes } from "@minecraft/server";
+import { MinecraftEffectTypes } from "@minecraft/vanilla-data";
 
 /**
  * Class to enable toggles for full bright in menu in editor mode
@@ -14,13 +14,13 @@ export class FullbrightToggle {
     const enableAction = uiSession.actionManager.createAction({
         actionType: ActionTypes.NoArgsAction,
         onExecute: () => {
-            player.addEffect(MinecraftEffectTypes.nightVision, 20000000, { amplifier: 1, showParticles: false });
+            player.addEffect(MinecraftEffectTypes.NightVision, 20000000, { amplifier: 1, showParticles: false });
         },
     });
     const disableAction = uiSession.actionManager.createAction({
         actionType: ActionTypes.NoArgsAction,
         onExecute: () => {
-            player.runCommand("effect @s " + MinecraftEffectTypes.nightVision.getName() + " 0");
+          player.removeEffect(MinecraftEffectTypes.NightVision);
         },
     });
     // Add actions to menu

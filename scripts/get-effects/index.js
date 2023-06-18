@@ -3,13 +3,12 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 
 import {
-  world,
-  MinecraftEffectTypes,
   /* Typings only */
   Entity,
   Player,
   Effect,
-  EffectType
+  EffectType,
+  EffectTypes
 } from "@minecraft/server";
 
 /**
@@ -22,7 +21,7 @@ import {
  */
 export function getEffects(entity) {
   const effectList = [];
-  for (const eff of Object.values(MinecraftEffectTypes)) {
+  for (const eff of EffectTypes.getAll()) {
     const effect = entity.getEffect(eff);
     if (!effect) continue;
     effectList.push({

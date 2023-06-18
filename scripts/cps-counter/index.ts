@@ -3,24 +3,28 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { Player, world } from "@minecraft/server";
 
-declare module "@minecraft/server" {
-  interface ClickInfo { timestamp: number }
-  interface Player {
-    clicks?: ClickInfo[];
-  }
+interface ClickInfo {
+  readonly timestamp: number
 };
+
+// Using map because typescript doesn't support prototype property declaration properly
+const clicks = new Map<Player, ClickInfo[]>();
 
 world.afterEvents.entityHitBlock.subscribe(function ({ damagingEntity }) {
   if (damagingEntity instanceof Player) {
-    damagingEntity.clicks ||= [];
-    damagingEntity.clicks.push({ timestamp: Date.now() });
+    const clickInfo = { timestamp: Date.now() };
+    const playerClicks = clicks.get(damagingEntity) || [];
+    playerClicks.push(clickInfo);
+    clicks.set(damagingEntity, playerClicks);
   }
 });
 
 world.afterEvents.entityHitEntity.subscribe(function ({ damagingEntity }) {
   if (damagingEntity instanceof Player) {
-    damagingEntity.clicks ||= [];
-    damagingEntity.clicks.push({ timestamp: Date.now() });
+    const clickInfo = { timestamp: Date.now() };
+    const playerClicks = clicks.get(damagingEntity) || [];
+    playerClicks.push(clickInfo);
+    clicks.set(damagingEntity, playerClicks);
   }
 });
 
@@ -31,9 +35,9 @@ world.afterEvents.entityHitEntity.subscribe(function ({ damagingEntity }) {
  */
 export function getPlayerCPS(player: Player) {
   const currentTime = Date.now();
-  player.clicks ||= [];
-  const recentClicks = player.clicks.filter(({ timestamp }) => currentTime - 1000 < timestamp);
-  player.clicks = recentClicks;
+  const playerClicks = clicks.get(player) || [];
+  const recentClicks = playerClicks.filter(({ timestamp }) => currentTime - 1000 < timestamp);
+  clicks.set(player, recentClicks);
 
   return recentClicks.length;
 }

@@ -1,5 +1,6 @@
 import * as Server from "@minecraft/server";
 import * as Editor from "@minecraft/server-editor";
+import { MinecraftEffectTypes } from "@minecraft/vanilla-data";
 /**
  * @param {import("@minecraft/server-editor").IPlayerUISession} uiSession 
  */
@@ -13,7 +14,7 @@ export const Start = (uiSession) => {
         uiSession.actionManager.createAction(
             {
                 actionType: Editor.ActionTypes.NoArgsAction,
-                onExecute: () => uiSession.extensionContext.player.addEffect( Server.MinecraftEffectTypes.nightVision, 20000000, { amplifier: 1, showParticles: false } ),
+                onExecute: () => uiSession.extensionContext.player.addEffect( MinecraftEffectTypes.NightVision, 20000000, { amplifier: 1, showParticles: false } ),
             },
         ),
     );
@@ -23,7 +24,7 @@ export const Start = (uiSession) => {
         uiSession.actionManager.createAction(
             {
                 actionType: Editor.ActionTypes.NoArgsAction,
-                onExecute: () => uiSession.extensionContext.player.removeEffect( Server.MinecraftEffectTypes.nightVision ),
+                onExecute: () => uiSession.extensionContext.player.removeEffect( MinecraftEffectTypes.NightVision ),
             },
         ),
     );

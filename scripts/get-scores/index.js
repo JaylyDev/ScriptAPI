@@ -11,7 +11,7 @@ export function getScores (target) {
   let targetScoreboard = {};
 
   if (!(target.scoreboardIdentity instanceof ScoreboardIdentity)) return targetScoreboard;
-  for (const objective of objectives) targetScoreboard[objective.id] = objective.getScores().find((score) => score.participant.type !== ScoreboardIdentityType.fakePlayer ? score.participant.getEntity() === target : false)?.score;
+  for (const objective of objectives) targetScoreboard[objective.id] = objective.getScores().find((score) => score.participant.type !== ScoreboardIdentityType.FakePlayer ? score.participant.getEntity() === target : false)?.score;
   return targetScoreboard;
 };
 
