@@ -10,7 +10,7 @@ export function execute (): 0 {
   for (const scriptName of scripts) {
     const scriptPath = path.resolve(scriptsPath, scriptName);
     const files = readdirSync(scriptPath);
-    const testFiles = files.filter(x => testFilenames.includes(x));
+    const testFiles = files.filter(x => testFilenames.includes(x) && !statSync(path.resolve(scriptPath, x)).isDirectory());
 
     if (testFiles.length <= 0) noTestScripts.push(scriptPath);
     else {
