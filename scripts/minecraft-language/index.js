@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: bot174 <https://github.com/bot174>
+// Project: https://github.com/JaylyDev/ScriptAPI
 export const languageKeys = [
     "accessibility.disableTTS",
     "accessibility.enableTTS",
@@ -9470,7 +9473,7 @@ export const languageKeys = [
     "gathering.info.modal.body.connectFail",
     "gathering.connect.title",
 ];
-class MinecraftLanguageKeys {
+export class MinecraftLanguageKeys {
 }
 MinecraftLanguageKeys["accessibility.disableTTS"] = { rawtext: [{ translate: "accessibility.disableTTS", },], };
 MinecraftLanguageKeys["accessibility.enableTTS"] = { rawtext: [{ translate: "accessibility.enableTTS", },], };
@@ -18942,4 +18945,3 @@ MinecraftLanguageKeys["gathering.info.body.liveIsComing"] = { rawtext: [{ transl
 MinecraftLanguageKeys["gathering.info.modal.title.connectFail"] = { rawtext: [{ translate: "gathering.info.modal.title.connectFail", },], };
 MinecraftLanguageKeys["gathering.info.modal.body.connectFail"] = { rawtext: [{ translate: "gathering.info.modal.body.connectFail", },], };
 MinecraftLanguageKeys["gathering.connect.title"] = { rawtext: [{ translate: "gathering.connect.title", },], };
-export { MinecraftLanguageKeys };

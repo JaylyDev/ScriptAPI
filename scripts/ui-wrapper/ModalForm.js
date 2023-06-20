@@ -40,9 +40,8 @@ export class ModalFormToggle {
  * Used to create a fully customizable pop-up form for a
  * player.
  */
-export class ModalFormBuilder extends ModalFormData {
+export class ModalFormBuilder {
     constructor() {
-        super(...arguments);
         /**
          * Content of the pop-up form.
          */
@@ -53,20 +52,21 @@ export class ModalFormBuilder extends ModalFormData {
         return this;
     }
     show(player) {
+        const form = new ModalFormData();
         if (!!this.titleText)
-            super.title(this.titleText);
+            form.title(this.titleText);
         for (const item of this.content) {
             if (item instanceof ModalFormDropdown)
-                super.dropdown(item.label, item.options, item.defaultValueIndex);
+                form.dropdown(item.label, item.options, item.defaultValueIndex);
             else if (item instanceof ModalFormSlider)
-                super.slider(item.label, item.minimumValue, item.maximumValue, item.valueStep, item.defaultValue);
+                form.slider(item.label, item.minimumValue, item.maximumValue, item.valueStep, item.defaultValue);
             else if (item instanceof ModalFormTextField)
-                super.textField(item.label, item.placeholderText, item.defaultValue);
+                form.textField(item.label, item.placeholderText, item.defaultValue);
             else if (item instanceof ModalFormToggle)
-                super.toggle(item.label, item.defaultValue);
+                form.toggle(item.label, item.defaultValue);
         }
         ;
-        return super.show(player);
+        return form.show(player);
     }
     slider(label, minimumValue, maximumValue, valueStep = 1, defaultValue) {
         this.content.push(new ModalFormSlider(label, minimumValue, maximumValue, valueStep, defaultValue));

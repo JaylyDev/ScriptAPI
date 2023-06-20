@@ -101,7 +101,7 @@ export class REST {
                 table.data.splice(memberIndex, 1);
                 const encrypted = table.toRawtext();
                 // version increment
-                const version = participant.getScore(this.scoreboard);
+                const version = this.scoreboard.getScore(participant);
                 overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
             }
             ;
@@ -130,7 +130,7 @@ export class REST {
             member.value = parsedOption.value;
             const encrypted = table.toRawtext();
             // version increment
-            const version = participant.getScore(this.scoreboard);
+            const version = this.scoreboard.getScore(participant);
             overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
             return version + 1;
         }
