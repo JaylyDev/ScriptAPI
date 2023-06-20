@@ -66,7 +66,7 @@ export default function testScore(
     this.plr = player;
   }
 
-  this.scr = this.plr.getScore(this.obj);
+  this.scr = this.obj.getScore(this.plr);
 
   if (min < this.scr && this.scr > max) return true;
   else return false;

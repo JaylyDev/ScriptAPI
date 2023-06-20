@@ -15,7 +15,3 @@ export function SpawnSimulatedPlayer(
   callback: (player: SimulatedPlayer) => void
 ): void;
 ```
-
-# Dependency
-
-### [simulated-player](../simulated-player/)

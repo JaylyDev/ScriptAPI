@@ -1,6 +1,6 @@
 {
   "name": "@jayly/minecraft-editor",
-  "version": "0.3.6-4",
+  "version": "0.3.7-0",
   "description": "Unofficial Minecraft Bedrock Editor API modules type definitions.",
   "types": "index.d.ts",
   "main": "",
@@ -15,6 +15,6 @@
   },
   "homepage": "https://github.com/JaylyDev/ScriptAPI#readme",
   "dependencies": {
-    "@minecraft/server": "1.4.0-beta.1.20.10-preview.21"
+    "@minecraft/server": "1.4.0-beta.1.20.10-preview.23"
   }
 }

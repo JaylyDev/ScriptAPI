@@ -17,8 +17,8 @@ Then you must include the following in TSConfig. This allows the editor API modu
 ```json
 {
   "compilerOptions": {
-    "types": ["@jayly/minecraft-editor"],
-    "typeRoots": ["./node_modules/@jayly/minecraft-editor"],
+    "types": ["minecraft-editor"],
+    "typeRoots": ["./node_modules/@jayly"],
   },
 }
 ```

@@ -3,8 +3,8 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { EntityHealthComponent, world } from "@minecraft/server";
 
-world.afterEvents.entityHit.subscribe((evd) => {
-    if (evd.entity.typeId !== 'minecraft:player') return;
+world.afterEvents.entityHitEntity.subscribe((evd) => {
+    if (evd.damagingEntity.typeId !== 'minecraft:player') return;
 
     const ent = evd.hitEntity;
     if (!ent) return;

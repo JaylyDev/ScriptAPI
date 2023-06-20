@@ -1,7 +1,6 @@
 {
   "packages": [
     "chat-rank",
-    "dimension-entities",
     "dimensions",
     "get-scores",
     "is-host",

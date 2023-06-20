@@ -1,15 +1,15 @@
 import {
   world,
-  MinecraftEffectTypes,
   MinecraftItemTypes,
   ItemStack,
 } from "@minecraft/server";
+import { MinecraftEffectTypes } from "@minecraft/vanilla-data";
 import { SpawnSimulatedPlayer } from "./index.js";
 
 let host = [...world.getPlayers()][0];
 
 SpawnSimulatedPlayer(host, function (simulatedPlayer) {
-  simulatedPlayer.addEffect(MinecraftEffectTypes.absorption, 1);
+  simulatedPlayer.addEffect(MinecraftEffectTypes.Absorption, 1);
   simulatedPlayer.attack();
   simulatedPlayer.dimension.createExplosion(simulatedPlayer.location, 5);
   simulatedPlayer.giveItem(new ItemStack(MinecraftItemTypes.acaciaBoat));
