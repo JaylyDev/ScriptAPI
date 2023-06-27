@@ -10,9 +10,8 @@ export class MessageFormButton {
  * Builds a simple player form with buttons that let the player
  * take action.
  */
-export class MessageFormBuilder extends MessageFormData {
+export class MessageFormBuilder {
     constructor() {
-        super(...arguments);
         this.buttons = [];
     }
     body(bodyText) {
@@ -29,15 +28,16 @@ export class MessageFormBuilder extends MessageFormData {
     }
     show(player) {
         const [button1, button2] = this.buttons;
+        const form = new MessageFormData();
         if (!!this.titleText)
-            super.title(this.titleText);
+            form.title(this.titleText);
         if (!!this.bodyText)
-            super.body(this.bodyText);
+            form.body(this.bodyText);
         if (!!button1)
-            super.button1(button1.text);
+            form.button1(button1.text);
         if (!!button2)
-            super.button2(button2.text);
-        return super.show(player);
+            form.button2(button2.text);
+        return form.show(player);
     }
     title(titleText) {
         this.titleText = titleText;

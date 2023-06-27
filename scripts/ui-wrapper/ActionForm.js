@@ -11,9 +11,8 @@ export class ActionFormButton {
  * Builds a simple player form with buttons that let the player
  * take action.
  */
-export class ActionFormBuilder extends ActionFormData {
+export class ActionFormBuilder {
     constructor() {
-        super(...arguments);
         /**
          * Buttons of the the modal dialog.
          */
@@ -28,12 +27,13 @@ export class ActionFormBuilder extends ActionFormData {
         return this;
     }
     show(player) {
+        const form = new ActionFormData();
         if (!!this.titleText)
-            super.title(this.titleText);
+            form.title(this.titleText);
         if (!!this.bodyText)
-            super.body(this.bodyText);
-        this.buttons.forEach(item => super.button(item.text, item.iconPath));
-        return super.show(player);
+            form.body(this.bodyText);
+        this.buttons.forEach(item => form.button(item.text, item.iconPath));
+        return form.show(player);
     }
     title(titleText) {
         this.titleText = titleText;
