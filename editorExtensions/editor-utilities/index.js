@@ -1,7 +1,7 @@
 // Script example for ScriptAPI
-// Author: Mojang <https://github.com/Mojang>
+// Author: Mojang's Editor Team <https://github.com/Mojang>
 // Project: https://github.com/DarkGamerYT/Bedrock-Editor-Extension
-import * as _minecraft_server_wrapper__WEBPACK_IMPORTED_MODULE_0__ from '@minecraft/server'
+import { Vector } from '@minecraft/server';
 
 /**
  * Direction
@@ -26,12 +26,12 @@ var Direction = {
  * it down.  I blame Tom's dodgy code, tbh.
  */
 const directionLookup = {
-    [Direction.Forward]: _minecraft_server_wrapper__WEBPACK_IMPORTED_MODULE_0__.Vector.forward,
-    [Direction.Right]: _minecraft_server_wrapper__WEBPACK_IMPORTED_MODULE_0__.Vector.left,
-    [Direction.Back]: _minecraft_server_wrapper__WEBPACK_IMPORTED_MODULE_0__.Vector.back,
-    [Direction.Left]: _minecraft_server_wrapper__WEBPACK_IMPORTED_MODULE_0__.Vector.right,
-    [Direction.Up]: _minecraft_server_wrapper__WEBPACK_IMPORTED_MODULE_0__.Vector.up,
-    [Direction.Down]: _minecraft_server_wrapper__WEBPACK_IMPORTED_MODULE_0__.Vector.down,
+    [Direction.Forward]: Vector.forward,
+    [Direction.Right]: Vector.left,
+    [Direction.Back]: Vector.back,
+    [Direction.Left]: Vector.right,
+    [Direction.Up]: Vector.up,
+    [Direction.Down]: Vector.down,
 };
 /**
  * getRotationCorrectedDirection

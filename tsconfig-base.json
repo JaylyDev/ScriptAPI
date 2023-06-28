@@ -4,7 +4,6 @@
     "target": "es2021",
     "moduleResolution": "classic",
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./",
     "types": [
       "@minecraft/server-gametest",
       "@minecraft/server",
@@ -15,5 +14,5 @@
       "@minecraft/vanilla-data"
     ],
     "typeRoots": ["../node_modules/"],
-  },
+  }
 }
