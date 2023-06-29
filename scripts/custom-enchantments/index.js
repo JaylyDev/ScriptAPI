@@ -101,20 +101,38 @@ export function removeEnchant(item, ench) {
 export function getEnchants(item) {
   return item.getLore().filter(lore => names[lore.split(" ")[0]]).map(lore => { return { name: names[lore.split(" ")[0]], level: romanToInt(lore.split(" ")[1]) }; });
 }
-world.afterEvents.entityHit.subscribe(({ entity, hitBlock, hitEntity }) => {
-  if (entity instanceof Player) {
+world.afterEvents.entityHitBlock.subscribe(({ damagingEntity, hitBlock }) => {
+  if (damagingEntity instanceof Player) {
     /**
      * @type {Container}
      */
     //@ts-ignore
       const inv = entity.getComponent("inventory").container;
-      const item = inv.getItem(entity.selectedSlot);
+      const item = inv.getItem(damagingEntity.selectedSlot);
       if (!item)
           return;
       const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
       itemEnchants.forEach((e) => {
           if (e.data?.hit) {
-              e.data.hit({ player: entity, level: romanToInt(e.lore.slice(e.data.display.length + 1)), hitEntity, hitBlock, item });
+              e.data.hit({ player: damagingEntity, level: romanToInt(e.lore.slice(e.data.display.length + 1)), hitBlock, item });
+          }
+      });
+  }
+});
+world.afterEvents.entityHitEntity.subscribe(({ damagingEntity, hitEntity }) => {
+  if (damagingEntity instanceof Player) {
+    /**
+     * @type {Container}
+     */
+    //@ts-ignore
+      const inv = entity.getComponent("inventory").container;
+      const item = inv.getItem(damagingEntity.selectedSlot);
+      if (!item)
+          return;
+      const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
+      itemEnchants.forEach((e) => {
+          if (e.data?.hit) {
+              e.data.hit({ player: damagingEntity, level: romanToInt(e.lore.slice(e.data.display.length + 1)), hitEntity, item });
           }
       });
   }
@@ -138,12 +156,12 @@ world.afterEvents.entityHurt.subscribe(({ hurtEntity, damageSource, damage }) =>
       });
   }
 });
-world.beforeEvents.itemUse.subscribe(({ source, item }) => {
+world.beforeEvents.itemUse.subscribe(({ source, itemStack }) => {
   if (source instanceof Player) {
-      const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
+      const itemEnchants = itemStack.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
       itemEnchants.forEach((e) => {
           if (e.data?.rightClick) {
-              e.data.rightClick({ player: source, level: romanToInt(e.lore.slice(e.data.display.length + 1)), item });
+              e.data.rightClick({ player: source, level: romanToInt(e.lore.slice(e.data.display.length + 1)), itemStack });
           }
       });
   }

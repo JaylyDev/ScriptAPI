@@ -1,9 +1,9 @@
 {
+  "files": [],
   "exclude": [ "docs" ],
   "references": [
     { "path": "tools/tsconfig.json" },
     { "path": "scripts/tsconfig.json" },
-    { "path": "scripts/jsconfig.json" },
     { "path": "editorExtensions/tsconfig.json" }
   ]
 }

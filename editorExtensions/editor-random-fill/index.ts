@@ -15,7 +15,7 @@ import {
 import {
   KeyboardKey,
   IPlayerUISession,
-  MouseRay,
+  Ray,
   IModalTool,
   Action,
   ActionTypes,
@@ -78,7 +78,7 @@ export class SelectionBehavior {
   tool: IModalTool;
   uiSession: IPlayerUISession;
   fnUnregisterToolBindings: () => void;
-  singleClick: (uiSession: IPlayerUISession, mouseRay: MouseRay, shiftPressed: boolean, ctrlPressed: boolean, altPressed: boolean) => void;
+  singleClick: (uiSession: IPlayerUISession, mouseRay: Ray, shiftPressed: boolean, ctrlPressed: boolean, altPressed: boolean) => void;
   lastAnchorPosition: Vector3;
   moveTopSelection: (uiSession: IPlayerUISession, lastAnchor: Vector3, direction: Direction) => Vector3;
   moveBlockCursorManually: (uiSession: IPlayerUISession, direction: Direction) => void;
@@ -97,7 +97,7 @@ export class SelectionBehavior {
   addTool: (uiSession: IPlayerUISession) => IModalTool;
   bindGlobalActivationShortcut: (uiSession: IPlayerUISession, storage: Record<string, any>) => void;
   performFillOperation: (context: ExtensionContext, fillType: BlockType) => Promise<void>;
-  executeFillAction: Action<ActionTypes.NoArgsAction>;
+  executeFillAction: ActionTypes.NoArgsAction;
   get toolId() {
     return this.tool.id;
   }
@@ -106,7 +106,7 @@ export class SelectionBehavior {
     this.fnUnregisterToolBindings = () => {
       this.tool.unregisterInputBindings();
     };
-    this.singleClick = (uiSession: IPlayerUISession, mouseRay: MouseRay, shiftPressed: boolean, ctrlPressed: boolean, altPressed: boolean) => {
+    this.singleClick = (uiSession: IPlayerUISession, mouseRay: Ray, shiftPressed: boolean, ctrlPressed: boolean, altPressed: boolean) => {
       const clickLoc = mouseRay.cursorBlockLocation;
       // Nothing pressed, then clear the stack and create a single 1x1x1
       if (!shiftPressed && !ctrlPressed && !altPressed) {
