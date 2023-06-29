@@ -26,7 +26,7 @@ jobs:
       - name: Type Check
         run: | 
           tsc --build --verbose
-          cp -r dist .
+          cp -r dist/* .
 
       - name: Format Check
         run: node ./dist/tools/index.js
