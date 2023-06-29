@@ -24,10 +24,12 @@ jobs:
           find ./docs/* -maxdepth 5 -name package.json -execdir sh -c 'pwd && npm install' \;
 
       - name: Type Check
-        run: tsc --build --verbose
+        run: | 
+          tsc --build --verbose
+          cp dist .
 
       - name: Format Check
-        run: node ./tools/index.js
+        run: node ./dist/tools/index.js
         env:
           event_name: ${{ github.event_name }}
 

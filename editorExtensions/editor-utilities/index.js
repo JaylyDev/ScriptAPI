@@ -3,6 +3,7 @@
 // Project: https://github.com/DarkGamerYT/Bedrock-Editor-Extension
 import { Vector } from '@minecraft/server';
 
+
 /**
  * Direction
  * @beta

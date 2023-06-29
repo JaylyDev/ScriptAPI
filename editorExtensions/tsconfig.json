@@ -4,7 +4,7 @@
     "baseUrl": "./",
     "allowJs": true,
     "checkJs": true,
-    "outDir": "../.temp/editorExtensions",
+    "outDir": "../dist/editorExtensions"
   },
   "include": ["**/*.ts", "**/*.js"],
   "exclude": []

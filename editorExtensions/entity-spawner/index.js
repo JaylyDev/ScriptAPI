@@ -79,10 +79,9 @@ editor.registerEditorExtension(
 				titleStringId: "editor.toolRail.entitySpawnerTool.pane.controls.entityType",
 				titleAltText: "Entity Type",
 				dropdownItems: entityTypes.map(
-					entityType => (
+					(entityType, index) => (
 						{
-							value: entityType,
-							
+							value: index,
 							displayAltText: entityType,
 							displayStringId: `entity.${entityType.replace("minecraft:", "")}.name`
 						}

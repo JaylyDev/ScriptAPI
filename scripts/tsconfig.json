@@ -4,7 +4,7 @@
     "baseUrl": "./",
     "allowJs": true,
     "checkJs": true,
-    "outDir": "../.temp/scripts",
+    "outDir": "../dist/scripts",
   },
   "include": ["**/*.ts", "**/*.js"],
   "exclude": []

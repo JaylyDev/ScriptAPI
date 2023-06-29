@@ -19,4 +19,11 @@ registerEditorExtension('nightVision', (uiSession) => {
   uiSession.toolRail.show();
   // Add selection functionality
   new FullbrightToggle(uiSession, createMenu(uiSession));
-})
+  return [
+    {
+      teardown() {
+        this.uiSession.log.debug("Shutting down FullbrightToggle behavior\n");
+      }
+    }
+  ];
+}, () => {});
