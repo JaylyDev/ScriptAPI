@@ -4,20 +4,14 @@
 import * as server from "@minecraft/server"
 import * as editor from "@minecraft/server-editor"
 
-const entityTypes = [...server.EntityTypes.getAll()].map(({id}) => id)
+const entityTypes = [...server.EntityTypes.getAll()].map(({ id }) => id)
 
-/**
- * @typedef ScratchStorage
- * @property {editor.CursorProperties} spawnerCursorState
- */
+interface ScratchStorage {
+	spawnerCursorState: editor.CursorProperties
+}
 
-editor.registerEditorExtension(
+editor.registerEditorExtension<ScratchStorage>(
 	"entitySpawner",
-	/**
-	 * 
-	 * @param {import("@minecraft/server-editor").IPlayerUISession<ScratchStorage>} uiSession 
-	 * @returns 
-	 */
 	uiSession => {
 		const tool = uiSession.toolRail.addTool(
 			{
@@ -28,20 +22,20 @@ editor.registerEditorExtension(
 				icon: "pack://textures/editor/entity.png?filtering=point"
 			}
 		)
-		
+
 		const currentCursorState = uiSession.extensionContext.cursor.getProperties()
-		currentCursorState.outlineColor = {red: 1, green: 0, blue: 1, alpha: 1}
+		currentCursorState.outlineColor = { red: 1, green: 0, blue: 1, alpha: 1 }
 		currentCursorState.controlMode = editor.CursorControlMode.KeyboardAndMouse
 		currentCursorState.targetMode = editor.CursorTargetMode.Face
 		currentCursorState.visible = true
-		uiSession.scratchStorage = {spawnerCursorState: currentCursorState}
-		
+		uiSession.scratchStorage = { spawnerCursorState: currentCursorState }
+
 		tool.onModalToolActivation.subscribe(
 			eventData => {
 				if (eventData.isActiveTool) uiSession.extensionContext.cursor.setProperties(uiSession.scratchStorage.spawnerCursorState)
 			}
 		)
-		
+
 		uiSession.inputManager.registerKeyBinding(
 			editor.EditorInputContext.GlobalToolMode,
 			uiSession.actionManager.createAction(
@@ -55,23 +49,23 @@ editor.registerEditorExtension(
 			editor.KeyboardKey.KEY_E,
 			editor.InputModifier.Control
 		)
-		
+
 		const settings = {
 			entityType: "minecraft:creeper"
 		}
-		
+
 		const pane = uiSession.createPropertyPane(
 			{
 				titleStringId: "editor.toolRail.entitySpawnerTool.pane.title",
 				titleAltText: "Entity Spawner Settings",
 			}
 		)
-		
+
 		const binding = editor.bindDataSource(
 			pane,
 			settings
 		)
-		
+
 		pane.addDropdown(
 			binding,
 			"entityType",
@@ -90,7 +84,7 @@ editor.registerEditorExtension(
 			}
 		)
 		tool.bindPropertyPane(pane)
-		
+
 		tool.registerMouseButtonBinding(
 			uiSession.actionManager.createAction(
 				{
@@ -101,7 +95,7 @@ editor.registerEditorExtension(
 								if (mouseProps.inputType === editor.MouseInputType.ButtonDown) {
 									uiSession.extensionContext.transactionManager.openTransaction("tool.spawnEntity")
 									uiSession.extensionContext.selectionManager.selection.clear()
-									
+
 									const cursorPosition = mouseRay.cursorBlockLocation
 									server.world.getDimension("minecraft:overworld").spawnEntity(
 										settings.entityType,
@@ -121,8 +115,8 @@ editor.registerEditorExtension(
 				}
 			)
 		)
-		
+
 		return [] // Likely unneeded, but untested
 	},
-	() => {}
+	() => { }
 )
