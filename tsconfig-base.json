@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "es2020",
+    "target": "es2021",
+    "moduleResolution": "classic",
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "@minecraft/server-gametest",
+      "@minecraft/server",
+      "@minecraft/server-ui",
+      "@minecraft/server-admin",
+      "@minecraft/server-editor",
+      "@minecraft/server-net",
+      "@minecraft/vanilla-data"
+    ],
+    "typeRoots": ["./node_modules/"],
+  }
+}

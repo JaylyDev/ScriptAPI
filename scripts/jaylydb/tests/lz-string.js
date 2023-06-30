@@ -335,6 +335,7 @@ var LZString = (function() {
           enlargeIn = 4,
           dictSize = 4,
           numBits = 3,
+          /** @type {any} */
           entry = "",
           result = [],
           i,
