@@ -8,9 +8,9 @@ TypeScript adds static typing to JavaScript, because JavaScript alone does not d
 
 It's not neccessary, but if you have VS Code (Available on PC & Browser), it makes your life easier.
 
-![image](https://media.discordapp.net/attachments/571487722934370314/995584400483954718/unknown.png)
+![image](https://cdn.discordapp.com/attachments/1114987621467295824/1126546192579440802/unknown.png)
 
-![image](https://media.discordapp.net/attachments/571487722934370314/995584744945356810/unknown.png)
+![image](https://cdn.discordapp.com/attachments/1114987621467295824/1126548360678092920/unknown.png)
 
 ## Script API Modules type definitions
 
