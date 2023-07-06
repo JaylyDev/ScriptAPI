@@ -1,31 +1,22 @@
-# wait-move
+# waitMove
 
 ## Description
+This function is used to resume code execution after the player has moved.
 
-When a wait-move is set, it will run code once the player has moved.
-
-**Parameters:**
-
-- `player` (type: Player or entity): The player or entity for which the function will be executed on.
-
-- `x` (type: number): The X-coordinate of the destination of the player's current location.
-
-- `y` (type: number): The Y-coordinate of the destination of the player's current location.
-
-- `z` (type: number): The Z-coordinate of the destination of the player's current location.
-
-- `callback` (type: function): The callback function to be executed once the player has moved.
+## Parameters
+- `target`: The target object that is the subject.
+- `x`: The initial x-coordinate of the target.
+- `y`: The initial y-coordinate of the target.
+- `z`: The initial z-coordinate of the target.
+- `callback`: A callback function that will be called when the target's coordinates change.
 
 **Example:**
 
 ```js
 
-waitMove(player, x, y, z, (target) => {
-
-    target.sendMessage('You have moved!');
-
+waitMove(player, x, y, z, () => {
+    player.sendMessage('You have moved!');
 });
-
 ```
 
 ## Credits
