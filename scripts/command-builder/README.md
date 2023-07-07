@@ -2,10 +2,7 @@
 
 ## Description
 
-There is one class in this script:
-
-- function `commandBuilder`
-
+This is a command builder, It is used for creating and rgistering commands, It is simple and easy to use! First enter a name: `test` description: `My first test command` is_staff:  `false` object: `(args, sender) => {}` code will begin execution as expected.
 ## example
 
 `commandBuilder.js`
