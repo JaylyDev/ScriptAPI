@@ -20,10 +20,8 @@ When a wait-move is set, it will run code once the player has moved.
 
 ```js
 
-waitMove(player, x, y, z, (target) => {
-
-    target.sendMessage('You have moved!');
-
+waitMove(player, x, y, z, () => {
+    player.sendMessage('You have moved!');
 });
 
 ```
