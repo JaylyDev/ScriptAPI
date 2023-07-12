@@ -6,17 +6,8 @@ import { Entity, world, DisplaySlotId, ScoreboardObjective } from "@minecraft/se
  * Action to modify entity scoreboard
  */
 enum ScoreboardAction {
-  /**
-   * Action to add score to player
-   */
   add = "add",
-  /**
-   * Action to remove score from player
-   */
   remove = "remove",
-  /**
-   * Action to set score to player
-   */
   set = "set"
 };
 /**
@@ -44,7 +35,6 @@ const updateDisplay = (objective: ScoreboardObjective) => {
  * @param {string} objectiveId Objective to apply the score to.
  * @param {number} score Score value
  * @param {ScoreboardAction} action Decides whether to add, remove, or set score to entity (default = set)
- * @param {boolean} fetch Fetch scoreboard objective display (default = true)
  */
 function setScore (entity: Entity, objectiveId: string, score: number, action?: ScoreboardAction) {
   // Check if scoreboard object exist first
@@ -71,4 +61,4 @@ function setScore (entity: Entity, objectiveId: string, score: number, action?: 
   else objective.setScore(entity.scoreboardIdentity, score);
 };
 
-export { setScore };
+export { setScore, ScoreboardAction };

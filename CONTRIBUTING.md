@@ -2,56 +2,41 @@
 
 Contributing infomation. This info changes because Script API is currently in active development, and breaking changes are frequent.
 
-## Scripts
+## Creating a new script sample
 
-When submitting a new package. The scripts are assumed that they can be used with the latest beta module of script modules in latest version of Minecraft Preview, the following is a reference of a manifest dependencies and NPM packages for meeting the criteria of submitting or updating a script sample.
+- Create a new directory for your script sample in the [**scripts**](./scripts/) directory. The directory name is your sample name and should be is unique and infomative.
 
-**manifest.json**
+- Create a folder structure based on the following:
 
-This repository may have scripts that requires the following dependencies with their latest module version:
+| File                     | Purpose                            |
+| ------------------------ | ---------------------------------- |
+| `index.js` or `index.ts` | This is main file for the package. |
+| `README.md`              | Infomation for the package.        |
 
-```json
-"dependencies": [
-    {
-        "module_name": "@minecraft/server",
-        "version": "1.2.0-beta"
-    },
-    {
-        "module_name": "@minecraft/server-editor",
-        "version": "0.1.0-beta"
-    }
-    {
-        "module_name": "@minecraft/server-ui",
-        "version": "1.0.0-beta"
-    },
-    {
-        "module_name": "@minecraft/server-gametest",
-        "version": "1.0.0-beta"
-    },
-    {
-        "module_name": "@minecraft/server-admin",
-        "version": "1.0.0-beta"
-    },
-    {
-        "module_name": "@minecraft/server-net",
-        "version": "1.0.0-beta"
-    }
-]
+In the main file, you must input basic credentials for the scripts with the right format. For example, here are the first few lines of script example:
+
+```js
+// Script example for ScriptAPI
+// Author: Alice <https://github.com/alice>
+//         Bob <https://github.com/bob>
+//         Steve <https://steve.com/>
+// Project: https://github.com/JaylyDev/ScriptAPI
 ```
 
-This repository may have scripts that requires the following capabilities:
+In order for the pull request to be merged, the scripts must pass TypeScript Compiling process for all JavaScript/TypeScript files.
 
-```json
-"capabilities": [
-    "editorExtension",
-    "script_eval"
-]
-```
+![image](https://github.com/JaylyDev/ScriptAPI/assets/121162959/a0db5db6-864a-4f56-a8f5-01fc5c12167e)
 
-**NPM packages:**
+> Above image shows all checks have passed and the pull request should be able to be merged.
 
-- [`@minecraft/server@beta`](https://www.npmjs.com/package/@minecraft/server/v/beta)
-- [`@minecraft/server-ui@beta`](https://www.npmjs.com/package/@minecraft/server-ui/v/beta)
-- [`@minecraft/server-net@beta`](https://www.npmjs.com/package/@minecraft/server-net/v/beta)
-- [`@minecraft/server-gametest@beta`](https://www.npmjs.com/package/@minecraft/server-gametest/v/beta)
-- [`@minecraft/server-admin@beta`](https://www.npmjs.com/package/@minecraft/server-admin/v/beta)
+If the check did not pass, go to the 'details' section and see what section of the check went wrong, and attempt to fix the issue by pushing another commit to your branch.
+
+## Create an editor extension sample
+
+An editor extension sample should only be used in Minecraft Editor, otherwise the sample should be hosted in 'scripts' folder.
+
+- Create an editor extension sample in [editorExtensions](./editorExtensions/) directory.
+
+- Create the same folder structure as used in scripts folder and a header in main file like creating a new script sample.
+
+- We recommend using TypeScript for editor extension samples.

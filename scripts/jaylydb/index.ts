@@ -24,9 +24,9 @@
  * IN THE SOFTWARE.
  */
 
-import { ScoreboardIdentity, ScoreboardIdentityType, ScoreboardObjective, TicksPerSecond, system, world } from "@minecraft/server";
+import { ScoreboardIdentity, ScoreboardIdentityType, ScoreboardObjective, system, world } from "@minecraft/server";
 
-const version = "1.1.0";
+const version = "1.1.1";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -59,7 +59,7 @@ const decrypt = (encrypted: string, salt: string): string => {
   return String.fromCharCode(...decryptedChars);
 };
 
-const CreateCrashReport = (action: "save" | "load", data: string, error: Error, salt?: string): never => {
+const CreateCrashReport = (action: "save" | "load", data: string, error: Error, salt?: string) => {
   console.warn(
     "[JaylyDB] Failed to " + action + " JSON data.",
     "\nVersion: " + version,
@@ -67,7 +67,6 @@ const CreateCrashReport = (action: "save" | "load", data: string, error: Error, 
     "\nSalt: " + salt,
     "\nError: " + error.message, "\n" + error.stack
   );
-  throw new Error(`Failed to ${action} data. Please check content log file for more info.\n`);
 };
 
 /**
@@ -80,7 +79,9 @@ const DisplayName = {
       const a = salt ? decrypt(text, salt) : text;
       return JSON.parse(`{${a}}`);
     } catch (error) {
+      if (!(error instanceof Error)) throw error;
       CreateCrashReport("load", text, error, salt);
+      throw new Error(`Failed to load data. Please check content log file for more info.\n`);
     }
   },
   stringify(value: Record<string, string | number | boolean>, salt?: string): string {
@@ -88,7 +89,9 @@ const DisplayName = {
       const a = JSON.stringify(value).slice(1, -1);
       return salt ? encrypt(a, salt) : a;
     } catch (error) {
+      if (!(error instanceof Error)) throw error;
       CreateCrashReport("save", JSON.stringify(value), error, salt);
+      throw new Error(`Failed to save data. Please check content log file for more info.\n`);
     }
   }
 };
@@ -219,7 +222,7 @@ class JaylyDB implements Map<string, string | number | boolean> {
     const data = {
       encoded_value: encoded,
       decoded_value: value,
-      identity: this.objective.getParticipants().find(participant => participant.displayName === encoded),
+      identity: this.objective.getParticipants().find(participant => participant.displayName === encoded)!,
     };
     this.localState.set(key, data);
 
