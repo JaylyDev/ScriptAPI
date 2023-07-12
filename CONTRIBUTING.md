@@ -40,3 +40,9 @@ An editor extension sample should only be used in Minecraft Editor, otherwise th
 - Create the same folder structure as used in scripts folder and a header in main file like creating a new script sample.
 
 - We recommend using TypeScript for editor extension samples.
+
+## Don't edit docs folder
+
+Documentation are no longer being updated as mentioned in README.
+
+Please do not submit any pull requests that changes any content to the docs directory. Instead, please visit [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts) and perhaps contribute scripting documentation in Bedrock Wiki GitHub repository: https://github.com/Bedrock-OSS/bedrock-wiki/tree/wiki/docs/scripting

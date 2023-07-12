@@ -27,7 +27,7 @@ The `main` branch is used for script development for Minecraft Preview and may o
 
 - ### [docs](./docs/)
   Contains technical documentation of Script API features.
-  > 🚫 Documentation are no longer being updated. Check out [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts) and [Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) for up-to-date infomation.
+  > **🚫 Documentation are no longer being updated**. Check out [Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) and [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts) for up-to-date infomation.
 
 ## Contributing
 
@@ -36,5 +36,5 @@ Please contribute to this repository if you can. Check out [**Contributing Guide
 ## License
 This project is licensed under the MIT license.
 
-Copyrights on the definition files are each contributor listed at the beginning of each definition file.
+Copyrights on the script files are each contributor listed at the beginning of each script file.
 
