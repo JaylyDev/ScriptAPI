@@ -1,13 +1,8 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/GametestDB/
-/**
- * @license MIT
- * @author JaylyMC
- * @project https://github.com/JaylyDev/GametestDB/
- */
-import { Vector3, Player, MinecraftEntityTypes, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent } from "@minecraft/server";
-import { MinecraftEffectTypes } from "@minecraft/vanilla-data";
+import { Vector3, Player, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent } from "@minecraft/server";
+import { MinecraftEffectTypes, MinecraftEntityTypes } from "@minecraft/vanilla-data";
 import { Commands } from "commands/index.js";
 import { clearInterval, setInterval } from "../timers/index.js";
 
@@ -28,7 +23,7 @@ export function setVelocity (velocity: Vector3, player: Player) {
   if (!(player instanceof Player)) throw TypeError("Native type conversion failed.");
 
   const entity = player.dimension.spawnEntity(
-    MinecraftEntityTypes.minecart.id,
+    MinecraftEntityTypes.Minecart,
     player.location
   );
   entity.triggerEvent('minecraft:ageable_grow_up'); // Make them adult

@@ -1,10 +1,35 @@
 // Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { BlockFillOptions, BlockPermutation, BlockType, Dimension, Vector3, BlockVolumeUtils } from "@minecraft/server";
+import { BlockFillOptions, BlockPermutation, BlockType, Dimension, Vector3, BlockVolumeUtils, BlockVolume } from "@minecraft/server";
 
 const MAX_BLOCKS_SINGLE_FILL = 32768;
 
+/**
+ * Fetch a `Iterable<BlockVolume>` that represents all of
+ * 3D rectangle of a given size (in blocks) at a
+ * world block location within the specified volume
+ * @private
+ */
+function* getBlockVolumeIterator (volume: BlockVolume, delta: number): Iterable<BlockVolume> {
+  const box = BlockVolumeUtils.getBoundingBox(volume);
+  const blockVolume: BlockVolume = { from: box.min, to: box.max };
+  const span = BlockVolumeUtils.getSpan(blockVolume);
+
+  for (let x = 0; x < span.x; x += delta) {
+    for (let y = 0; y < span.y; y += delta) {
+      for (let z = 0; z < span.z; z += delta) {
+        const part = BlockVolumeUtils.translate({
+          from: { x, y, z },
+          to: { x: x + delta - 1, y: y + delta - 1, z: z + delta - 1 }
+        }, blockVolume.from);
+        part.to = BlockVolumeUtils.getMin({ from: part.to, to: blockVolume.to });
+
+        yield part;
+      }
+    }
+  };
+};
 /**
  * Fills an area between begin and end with block of type block, with no fill limit of 32768.
  * @param dimension Dimension to fill blocks in.
@@ -20,22 +45,22 @@ const MAX_BLOCKS_SINGLE_FILL = 32768;
  */
 export function fillBlocks(dimension: Dimension, begin: Vector3, end: Vector3, block: BlockPermutation | BlockType, options?: BlockFillOptions): number {
   // Check if block volume is greater than 32768, if not return native fillblocks
-  if (BlockVolumeUtils.getCapacity({ from: begin, to: end }) <= MAX_BLOCKS_SINGLE_FILL) {
+  const volume: BlockVolume = { from: begin, to: end };
+  if (BlockVolumeUtils.getCapacity(volume) <= MAX_BLOCKS_SINGLE_FILL) {
     return dimension.fillBlocks(begin, end, block, options);
   };
 
   let blocksFilled = 0;
-  for (const blockLocation of BlockVolumeUtils.getBlockLocationIterator({ from: begin, to: end })) {
-    const oldBlock = dimension.getBlock(blockLocation);
+  for (const { from, to } of getBlockVolumeIterator(volume, 32)) {
+    try {
+      blocksFilled += dimension.fillBlocks(from, to, block, options);
+    }
+    catch (error) {
+      // custom error message
+      if (!(error instanceof Error)) throw error;
+      console.error(`${error.message} between ${Object.values(from).join(', ')} and ${Object.values(to).join(', ')}`);
+    }
+  }
 
-    if (!oldBlock) throw new Error("Dimension.fillBlocks: Requested fill area wasn't fully loaded. Cannot fill");
-    if (!!options?.matchingBlock && options.matchingBlock !== oldBlock.permutation) continue;
-
-    if (block instanceof BlockPermutation) oldBlock.setPermutation(block);
-    else if (block instanceof BlockType) oldBlock.setType(block);
-    else throw new Error("Dimension.fillBlocks: Invalid block type");
-
-    blocksFilled++;
-  };
   return blocksFilled;
 };
