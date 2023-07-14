@@ -7,17 +7,8 @@ import { world, DisplaySlotId } from "@minecraft/server";
  */
 var ScoreboardAction;
 (function (ScoreboardAction) {
-    /**
-     * Action to add score to player
-     */
     ScoreboardAction["add"] = "add";
-    /**
-     * Action to remove score from player
-     */
     ScoreboardAction["remove"] = "remove";
-    /**
-     * Action to set score to player
-     */
     ScoreboardAction["set"] = "set";
 })(ScoreboardAction || (ScoreboardAction = {}));
 ;
@@ -45,7 +36,6 @@ const updateDisplay = (objective) => {
  * @param {string} objectiveId Objective to apply the score to.
  * @param {number} score Score value
  * @param {ScoreboardAction} action Decides whether to add, remove, or set score to entity (default = set)
- * @param {boolean} fetch Fetch scoreboard objective display (default = true)
  */
 function setScore(entity, objectiveId, score, action) {
     // Check if scoreboard object exist first
@@ -70,4 +60,4 @@ function setScore(entity, objectiveId, score, action) {
         objective.setScore(entity.scoreboardIdentity, score);
 }
 ;
-export { setScore };
+export { setScore, ScoreboardAction };

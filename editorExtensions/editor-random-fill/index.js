@@ -618,12 +618,10 @@ export class SelectionBehavior {
                     },
                 ],
                 onChange: (_obj, _property, _oldValue, _newValue) => {
-                    const oldVal = _oldValue;
-                    const newVal = _newValue;
                     let cursorControlMode = CursorControlMode.KeyboardAndMouse;
                     let cursorTargetMode = CursorTargetMode.Block;
-                    if (oldVal !== newVal) {
-                        switch (newVal) {
+                    if (_oldValue !== _newValue) {
+                        switch (_newValue) {
                             case SelectionCursorMode.Freeform:
                                 cursorControlMode = CursorControlMode.KeyboardAndMouse;
                                 cursorTargetMode = CursorTargetMode.Block;
@@ -716,24 +714,26 @@ export class SelectionBehavior {
                 min: 1,
                 max: 16,
                 showSlider: true,
-                onChange: async (_obj, _property, _oldValue, _newValue) => {
-                    console.warn(_property, _oldValue, _newValue, blockPickers.length);
-                    while (blockPickers.length < _newValue) {
-                        await null; // using await null in an async function to avoid making the server hangs
-                        blockPickers.push(subPaneFill.addBlockPicker(this.settingsObject, 'block', {
-                            titleAltText: 'Block Type',
-                            allowedBlocks
-                        }));
+                onChange: (_obj, _property, _oldValue, _newValue) => {
+                    function adjustBlockPickers() {
+                        if (blockPickers.length < _newValue) {
+                            blockPickers.push(subPaneFill.addBlockPicker(this.settingsObject, 'block', {
+                                titleAltText: 'Block Type',
+                                allowedBlocks
+                            }));
+                        }
+                        else if (blockPickers.length > _newValue) {
+                            const lastBlockPicker = blockPickers[blockPickers.length - 1];
+                            lastBlockPicker.visible = false;
+                            lastBlockPicker.enable = false;
+                            lastBlockPicker.dispose();
+                            blockPickers.pop();
+                        }
+                        if (blockPickers.length === _newValue) {
+                            system.clearRun(id);
+                        }
                     }
-                    while (blockPickers.length > _newValue) {
-                        await null; // using await null in an async function to avoid making the server hangs
-                        const lastBlockPicker = blockPickers[blockPickers.length - 1];
-                        lastBlockPicker.visible = false;
-                        lastBlockPicker.enable = false;
-                        lastBlockPicker.dispose();
-                        blockPickers.pop();
-                    }
-                    subPaneFill.update(true);
+                    const id = system.runInterval(adjustBlockPickers);
                 },
             });
             subPaneFill.addButton(this.executeFillAction, {
@@ -758,7 +758,7 @@ export class SelectionBehavior {
         // Add a modal tool to the tool rail and set up an activation subscription to set/unset the cursor states
         this.addTool = (uiSession) => {
             const tool = uiSession.toolRail.addTool({
-                displayStringId: 'Random Fill (CTRL + S)',
+                displayAltText: 'Random Fill (CTRL + S)',
                 icon: 'pack://textures/editor/Select-Fill.png?filtering=point',
                 tooltipStringId: 'Random Fill Tool',
             });
@@ -825,6 +825,7 @@ export class SelectionBehavior {
         // Create pane.
         this.pane = uiSession.createPropertyPane({
             titleAltText: 'Random Fill',
+            titleStringId: getLocalizationId('selectionTool.title'),
         });
         /**
          * Allowed blocks for the block picker
@@ -875,5 +876,13 @@ registerEditorExtension('randomFill', (uiSession) => {
     // Initialize tool rail.
     uiSession.toolRail.show();
     // Add selection functionality
-    new SelectionBehavior(uiSession);
+    return [
+        new SelectionBehavior(uiSession)
+    ];
+}, (uiSession) => {
+    uiSession.log.info('Shutting down minecraft::selection behavior');
+    // Shutdown
+    uiSession.scratchStorage = undefined;
+}, {
+    description: 'Randomly fills blocks in the selection',
 });

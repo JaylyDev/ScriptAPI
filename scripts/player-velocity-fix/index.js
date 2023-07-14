@@ -1,13 +1,8 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/GametestDB/
-/**
- * @license MIT
- * @author JaylyMC
- * @project https://github.com/JaylyDev/GametestDB/
- */
-import { Player, MinecraftEntityTypes } from "@minecraft/server";
-import { MinecraftEffectTypes } from "@minecraft/vanilla-data";
+import { Player } from "@minecraft/server";
+import { MinecraftEffectTypes, MinecraftEntityTypes } from "@minecraft/vanilla-data";
 import { Commands } from "commands/index.js";
 import { clearInterval, setInterval } from "../timers/index.js";
 function trunc(x, decimal) {
@@ -26,7 +21,7 @@ function trunc(x, decimal) {
 export function setVelocity(velocity, player) {
     if (!(player instanceof Player))
         throw TypeError("Native type conversion failed.");
-    const entity = player.dimension.spawnEntity(MinecraftEntityTypes.minecart.id, player.location);
+    const entity = player.dimension.spawnEntity(MinecraftEntityTypes.Minecart, player.location);
     entity.triggerEvent('minecraft:ageable_grow_up'); // Make them adult
     entity.triggerEvent('minecraft:on_saddled'); // Add saddle to pig
     let health = entity.getComponent('health');

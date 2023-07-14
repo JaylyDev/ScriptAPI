@@ -24,7 +24,7 @@ var _a;
  * IN THE SOFTWARE.
  */
 import { ScoreboardIdentityType, system, world } from "@minecraft/server";
-const version = "1.1.0";
+const version = "1.1.1";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -55,7 +55,6 @@ const decrypt = (encrypted, salt) => {
 };
 const CreateCrashReport = (action, data, error, salt) => {
     console.warn("[JaylyDB] Failed to " + action + " JSON data.", "\nVersion: " + version, "\nData: " + data, "\nSalt: " + salt, "\nError: " + error.message, "\n" + error.stack);
-    throw new Error(`Failed to ${action} data. Please check content log file for more info.\n`);
 };
 /**
  * Parse and stringify scoreboard display name
@@ -68,7 +67,10 @@ const DisplayName = {
             return JSON.parse(`{${a}}`);
         }
         catch (error) {
+            if (!(error instanceof Error))
+                throw error;
             CreateCrashReport("load", text, error, salt);
+            throw new Error(`Failed to load data. Please check content log file for more info.\n`);
         }
     },
     stringify(value, salt) {
@@ -77,7 +79,10 @@ const DisplayName = {
             return salt ? encrypt(a, salt) : a;
         }
         catch (error) {
+            if (!(error instanceof Error))
+                throw error;
             CreateCrashReport("save", JSON.stringify(value), error, salt);
+            throw new Error(`Failed to save data. Please check content log file for more info.\n`);
         }
     }
 };
