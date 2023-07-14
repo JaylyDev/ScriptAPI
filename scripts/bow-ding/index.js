@@ -1,12 +1,13 @@
 // Script example for ScriptAPI
 // Author: JaylyDev <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { Player, world, MinecraftEntityTypes } from "@minecraft/server";
+import { Player, world } from "@minecraft/server";
+import { MinecraftEntityTypes } from "@minecraft/vanilla-data";
 
 world.afterEvents.entitySpawn.subscribe(({ entity }) => {
   // Since you cannot retrive projectile infomation from projectileHit event, we have to
   // subscribe to entitySpawn event to compare with the projectile information fired by projectileHit event.
-  if (entity.typeId !== MinecraftEntityTypes.arrow.id) return;
+  if (entity.typeId !== MinecraftEntityTypes.Arrow) return;
 
   const callback = world.afterEvents.projectileHit.subscribe((arg) => {
     const { source, projectile } = arg;
