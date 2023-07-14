@@ -16,7 +16,7 @@
 ```json
 {
     "module_name": "@minecraft/server-ui",
-    "version": "1.0.0-beta"
+    "version": "2.0.0-beta"
 }
 ```
 - 0.1.0
