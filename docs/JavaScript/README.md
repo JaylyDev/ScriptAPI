@@ -36,7 +36,7 @@ These features exist in vanilla (most engine / frameworks) JavaScript global sco
 - [Infinity](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity)
 - [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON)
   - [JSON.parse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
-  - [JSON.stringify](./JSON/stringify.md) (Modified in Minecraft, click for more infomation.)
+  - [JSON.stringify](./JSON/stringify.md) (Why can't stringify native objects? `{}`, click for more infomation.)
 - [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 - [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 - [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
