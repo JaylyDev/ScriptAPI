@@ -26,7 +26,7 @@
 
 import { ScoreboardIdentity, ScoreboardIdentityType, ScoreboardObjective, system, world } from "@minecraft/server";
 
-const version = "1.1.1";
+const version = "1.1.2";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -74,14 +74,24 @@ const CreateCrashReport = (action: "save" | "load", data: string, error: Error, 
  * @beta
  */
 const DisplayName = {
-  parse(text: string, salt?: string): Record<string, string | number | boolean> {
+  parse(text: string, objective: ScoreboardObjective, salt?: string): Record<string, string | number | boolean> {
     try {
       const a = salt ? decrypt(text, salt) : text;
       return JSON.parse(`{${a}}`);
     } catch (error) {
       if (!(error instanceof Error)) throw error;
-      CreateCrashReport("load", text, error, salt);
-      throw new Error(`Failed to load data. Please check content log file for more info.\n`);
+      // fallback to 1.0
+      try {
+        const a = JSON.parse(`"${salt ? decrypt(text, salt) : text}"`);
+        const b = JSON.parse(`{${a}}`);
+        // upgrade format
+        objective.removeParticipant(text);
+        objective.setScore(DisplayName.stringify(b, salt), 0);
+        return b;
+      } catch {
+        CreateCrashReport("load", text, error, salt);
+        throw new Error(`Failed to load data. Please check content log file for more info.\n`);
+      }
     }
   },
   stringify(value: Record<string, string | number | boolean>, salt?: string): string {
@@ -124,7 +134,7 @@ class JaylyDB implements Map<string, string | number | boolean> {
     this.localState.clear();
     for (const participant of this.objective.getParticipants()) {
       if (participant.type !== ScoreboardIdentityType.FakePlayer) continue;
-      const data = DisplayName.parse(participant.displayName, this.salt);
+      const data = DisplayName.parse(participant.displayName, this.objective, this.salt);
       const key = Object.keys(data)[0];
       const value = data[key];
       this.localState.set(key, {
@@ -204,6 +214,9 @@ class JaylyDB implements Map<string, string | number | boolean> {
     if (!this.localState.has(key)) this.updateParticipants();
     return this.localState.get(key)?.decoded_value
   }
+  /**
+   * @returns boolean indicating whether an element with the specified key exists or not in jaylydb.
+   */
   has(key: string): boolean {
     return this.localState.has(key);
   }
@@ -228,6 +241,9 @@ class JaylyDB implements Map<string, string | number | boolean> {
 
     return this;
   }
+  /**
+   * Returns an iterable of key, value pairs for every entry in the database.
+   */
   *entries(): IterableIterator<[string, string | number | boolean]> {
     for (const [key, data] of this.localState.entries()) yield [key, data.decoded_value];
   }

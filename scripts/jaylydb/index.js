@@ -24,7 +24,7 @@ var _a;
  * IN THE SOFTWARE.
  */
 import { ScoreboardIdentityType, system, world } from "@minecraft/server";
-const version = "1.1.1";
+const version = "1.1.2";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -61,7 +61,7 @@ const CreateCrashReport = (action, data, error, salt) => {
  * @beta
  */
 const DisplayName = {
-    parse(text, salt) {
+    parse(text, objective, salt) {
         try {
             const a = salt ? decrypt(text, salt) : text;
             return JSON.parse(`{${a}}`);
@@ -69,8 +69,19 @@ const DisplayName = {
         catch (error) {
             if (!(error instanceof Error))
                 throw error;
-            CreateCrashReport("load", text, error, salt);
-            throw new Error(`Failed to load data. Please check content log file for more info.\n`);
+            // fallback to 1.0
+            try {
+                const a = JSON.parse(`"${salt ? decrypt(text, salt) : text}"`);
+                const b = JSON.parse(`{${a}}`);
+                // upgrade format
+                objective.removeParticipant(text);
+                objective.setScore(DisplayName.stringify(b, salt), 0);
+                return b;
+            }
+            catch {
+                CreateCrashReport("load", text, error, salt);
+                throw new Error(`Failed to load data. Please check content log file for more info.\n`);
+            }
         }
     },
     stringify(value, salt) {
@@ -100,7 +111,7 @@ class JaylyDB {
         for (const participant of this.objective.getParticipants()) {
             if (participant.type !== ScoreboardIdentityType.FakePlayer)
                 continue;
-            const data = DisplayName.parse(participant.displayName, this.salt);
+            const data = DisplayName.parse(participant.displayName, this.objective, this.salt);
             const key = Object.keys(data)[0];
             const value = data[key];
             this.localState.set(key, {
@@ -186,6 +197,9 @@ class JaylyDB {
             this.updateParticipants();
         return this.localState.get(key)?.decoded_value;
     }
+    /**
+     * @returns boolean indicating whether an element with the specified key exists or not in jaylydb.
+     */
     has(key) {
         return this.localState.has(key);
     }
@@ -210,6 +224,9 @@ class JaylyDB {
         this.localState.set(key, data);
         return this;
     }
+    /**
+     * Returns an iterable of key, value pairs for every entry in the database.
+     */
     *entries() {
         for (const [key, data] of this.localState.entries())
             yield [key, data.decoded_value];
