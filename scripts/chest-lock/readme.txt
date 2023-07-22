@@ -1,1 +1,0 @@
-This script locks every chest in a world

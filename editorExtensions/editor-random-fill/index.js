@@ -1,7 +1,7 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { MinecraftBlockTypes, system, Vector, CompoundBlockVolumeAction, BlockVolumeUtils, BoundingBoxUtils } from "@minecraft/server";
+import { system, Vector, CompoundBlockVolumeAction, BlockVolumeUtils, BoundingBoxUtils, BlockTypes } from "@minecraft/server";
 import { KeyboardKey, ActionTypes, MouseActionType, MouseInputType, CursorControlMode, InputModifier, getLocalizationId, CursorTargetMode, EditorInputContext, executeLargeOperation, bindDataSource, registerEditorExtension } from "@minecraft/server-editor";
 import { getRotationCorrectedDirectionVector, Direction, } from "editor-utilities/index";
 import { getRelativeXYAxisAsNormal, growVolumeAlongViewAxis, intersectRayPlane, shrinkVolumeAlongViewAxis, } from "./functions";
@@ -830,13 +830,13 @@ export class SelectionBehavior {
         /**
          * Allowed blocks for the block picker
          */
-        const allowedBlocks = MinecraftBlockTypes.getAllBlockTypes().map(blockType => blockType.id.replace('minecraft:', ''));
+        const allowedBlocks = BlockTypes.getAll().map(blockType => blockType.id.replace('minecraft:', ''));
         // Here is the binding created.
         this.settingsObject = bindDataSource(this.pane, {
             selectionMode: SelectionCursorMode.Freeform,
             origin: { x: 0, y: 0, z: 0 },
             size: { x: 0, y: 0, z: 0 },
-            block: MinecraftBlockTypes.bedrock,
+            block: "minecraft:bedrock",
         });
         // This is the initial cursor state for Selection
         this.toolCursorProperties = uiSession.extensionContext.cursor.getProperties();

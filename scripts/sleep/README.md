@@ -2,7 +2,7 @@
 
 ## Description
 
-Python's sleep function
+Python's sleep function in script api.
 
 ## Credits
 
