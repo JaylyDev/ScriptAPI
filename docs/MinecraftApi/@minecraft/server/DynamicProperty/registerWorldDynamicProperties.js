@@ -1,6 +1,6 @@
 import { DynamicPropertiesDefinition, world } from "@minecraft/server";
 
-world.events.worldInitialize.subscribe(({propertyRegistry}) => {
+world.afterEvents.worldInitialize.subscribe(({propertyRegistry}) => {
   // add boolean dynamic property
   const dynamicProperty = new DynamicPropertiesDefinition();
   dynamicProperty.defineBoolean("my_boolean");

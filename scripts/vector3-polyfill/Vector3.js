@@ -2,7 +2,7 @@ var _a;
 /**
  * Wrapper class of Vector3
  */
-class Vector3 {
+export class Vector3 {
     /**
      * @remarks
      * Creates a new instance of a vector.
@@ -345,4 +345,3 @@ Vector3.up = new _a(0, 1, 0);
  * @readonly
  */
 Vector3.zero = new _a(0, 0, 0);
-export { Vector3 };

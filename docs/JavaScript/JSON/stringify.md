@@ -16,9 +16,11 @@ A JSON string representing the given value, or undefined.
 
 #### Stringify native objects
 
-Minecraft has modified `JSON.stringify` function so that when stringify a native object, it always return `{}`.
+As you may have already noticed, when you `JSON.stringify()` native objects, the properties that this native object has are not displayed, this has the consequence that the `JSON.stringify()` function only returns an empty object `{}`.
+Why is it like this?
+The answer is quite obvious, native class instances have no properties, therefore they cannot be displayed, native classes have getters that are always called from the prototype of that instance, and J`JSON.stringify()` does not include prototypes, that's all, but this does not apply to interfaces, they do not have native prototypes therefore it is possible to display them as, for example, a `Vector3` interface.
 
-A workaround is to deep copy the JSON object. Highly recommend using this package to display native objects in string.
+A workaround is to deep copy the JSON object. Highly recommend using this package to display class insatnce properties.
 - https://github.com/zxdong262/deep-copy
 
 ## Learn more

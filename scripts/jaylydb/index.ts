@@ -24,9 +24,9 @@
  * IN THE SOFTWARE.
  */
 
-import { ScoreboardIdentity, ScoreboardIdentityType, ScoreboardObjective, TicksPerSecond, system, world } from "@minecraft/server";
+import { ScoreboardIdentity, ScoreboardIdentityType, ScoreboardObjective, system, world } from "@minecraft/server";
 
-const version = "1.1.0";
+const version = "1.1.2";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -59,7 +59,7 @@ const decrypt = (encrypted: string, salt: string): string => {
   return String.fromCharCode(...decryptedChars);
 };
 
-const CreateCrashReport = (action: "save" | "load", data: string, error: Error, salt?: string): never => {
+const CreateCrashReport = (action: "save" | "load", data: string, error: Error, salt?: string) => {
   console.warn(
     "[JaylyDB] Failed to " + action + " JSON data.",
     "\nVersion: " + version,
@@ -67,7 +67,6 @@ const CreateCrashReport = (action: "save" | "load", data: string, error: Error, 
     "\nSalt: " + salt,
     "\nError: " + error.message, "\n" + error.stack
   );
-  throw new Error(`Failed to ${action} data. Please check content log file for more info.\n`);
 };
 
 /**
@@ -75,12 +74,24 @@ const CreateCrashReport = (action: "save" | "load", data: string, error: Error, 
  * @beta
  */
 const DisplayName = {
-  parse(text: string, salt?: string): Record<string, string | number | boolean> {
+  parse(text: string, objective: ScoreboardObjective, salt?: string): Record<string, string | number | boolean> {
     try {
       const a = salt ? decrypt(text, salt) : text;
       return JSON.parse(`{${a}}`);
     } catch (error) {
-      CreateCrashReport("load", text, error, salt);
+      if (!(error instanceof Error)) throw error;
+      // fallback to 1.0
+      try {
+        const a = JSON.parse(`"${salt ? decrypt(text, salt) : text}"`);
+        const b = JSON.parse(`{${a}}`);
+        // upgrade format
+        objective.removeParticipant(text);
+        objective.setScore(DisplayName.stringify(b, salt), 0);
+        return b;
+      } catch {
+        CreateCrashReport("load", text, error, salt);
+        throw new Error(`Failed to load data. Please check content log file for more info.\n`);
+      }
     }
   },
   stringify(value: Record<string, string | number | boolean>, salt?: string): string {
@@ -88,7 +99,9 @@ const DisplayName = {
       const a = JSON.stringify(value).slice(1, -1);
       return salt ? encrypt(a, salt) : a;
     } catch (error) {
+      if (!(error instanceof Error)) throw error;
       CreateCrashReport("save", JSON.stringify(value), error, salt);
+      throw new Error(`Failed to save data. Please check content log file for more info.\n`);
     }
   }
 };
@@ -121,7 +134,7 @@ class JaylyDB implements Map<string, string | number | boolean> {
     this.localState.clear();
     for (const participant of this.objective.getParticipants()) {
       if (participant.type !== ScoreboardIdentityType.FakePlayer) continue;
-      const data = DisplayName.parse(participant.displayName, this.salt);
+      const data = DisplayName.parse(participant.displayName, this.objective, this.salt);
       const key = Object.keys(data)[0];
       const value = data[key];
       this.localState.set(key, {
@@ -201,6 +214,9 @@ class JaylyDB implements Map<string, string | number | boolean> {
     if (!this.localState.has(key)) this.updateParticipants();
     return this.localState.get(key)?.decoded_value
   }
+  /**
+   * @returns boolean indicating whether an element with the specified key exists or not in jaylydb.
+   */
   has(key: string): boolean {
     return this.localState.has(key);
   }
@@ -219,12 +235,15 @@ class JaylyDB implements Map<string, string | number | boolean> {
     const data = {
       encoded_value: encoded,
       decoded_value: value,
-      identity: this.objective.getParticipants().find(participant => participant.displayName === encoded),
+      identity: this.objective.getParticipants().find(participant => participant.displayName === encoded)!,
     };
     this.localState.set(key, data);
 
     return this;
   }
+  /**
+   * Returns an iterable of key, value pairs for every entry in the database.
+   */
   *entries(): IterableIterator<[string, string | number | boolean]> {
     for (const [key, data] of this.localState.entries()) yield [key, data.decoded_value];
   }

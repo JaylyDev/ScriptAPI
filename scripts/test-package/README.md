@@ -1,7 +1,0 @@
-# test-package
-
-## Description
-
-
-## Credits
-

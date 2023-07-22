@@ -29,11 +29,17 @@ declare class JaylyDB implements Map<string, string | number | boolean> {
      * @returns Returns the element associated with the specified key. If no element is associated with the specified key, undefined is returned.
      */
     get(key: string): string | number | boolean | undefined;
+    /**
+     * @returns boolean indicating whether an element with the specified key exists or not in jaylydb.
+     */
     has(key: string): boolean;
     /**
      * Adds a new element with a specified key and value to the database. If an element with the same key already exists, the element will be updated.
      */
     set(key: string, value: string | number | boolean): this;
+    /**
+     * Returns an iterable of key, value pairs for every entry in the database.
+     */
     entries(): IterableIterator<[string, string | number | boolean]>;
     /**
      * Returns an iterable of keys in the database

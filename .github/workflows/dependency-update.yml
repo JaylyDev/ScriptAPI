@@ -24,7 +24,7 @@ jobs:
 
       - name: Update dependency
         id: update
-        run: node ./tools/dependency.js
+        run: node ./dist/tools/dependency.js
 
       - name: Create Pull Request
         id: cpr

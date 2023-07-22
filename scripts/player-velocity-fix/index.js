@@ -1,13 +1,9 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/GametestDB/
-/**
- * @license MIT
- * @author JaylyMC
- * @project https://github.com/JaylyDev/GametestDB/
- */
-import { Player, MinecraftEntityTypes, MinecraftEffectTypes } from "@minecraft/server";
-import { Commands } from "../commands/index.js";
+import { Player } from "@minecraft/server";
+import { MinecraftEffectTypes, MinecraftEntityTypes } from "@minecraft/vanilla-data";
+import { Commands } from "commands/index.js";
 import { clearInterval, setInterval } from "../timers/index.js";
 function trunc(x, decimal) {
     let y = 10 ** decimal;
@@ -25,14 +21,14 @@ function trunc(x, decimal) {
 export function setVelocity(velocity, player) {
     if (!(player instanceof Player))
         throw TypeError("Native type conversion failed.");
-    const entity = player.dimension.spawnEntity(MinecraftEntityTypes.minecart.id, player.location);
+    const entity = player.dimension.spawnEntity(MinecraftEntityTypes.Minecart, player.location);
     entity.triggerEvent('minecraft:ageable_grow_up'); // Make them adult
     entity.triggerEvent('minecraft:on_saddled'); // Add saddle to pig
     let health = entity.getComponent('health');
     let movement = entity.getComponent('movement');
     let rideable = entity.getComponent('rideable');
-    entity.addEffect(MinecraftEffectTypes.invisibility, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
-    entity.addEffect(MinecraftEffectTypes.resistance, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
+    entity.addEffect(MinecraftEffectTypes.Invisibility, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
+    entity.addEffect(MinecraftEffectTypes.Resistance, 0x7fff, { amplifier: 255, showParticles: false }); // makes the entity invisible
     entity.applyImpulse(velocity);
     let onInterval = setInterval((isEntityMoving) => {
         try {

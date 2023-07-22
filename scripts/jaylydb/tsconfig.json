@@ -1,8 +1,31 @@
-{
-  "extends": "../tsconfig-base.json",
-  "compilerOptions": {
-    "declaration": true,
-    "stripInternal": true
-  },
-  "files": ["index.ts"]
-}
+{ 
+    "compilerOptions":{ 
+       "target":"es6",
+       "moduleResolution":"node",
+       "module":"es2020",
+       "declaration":true,
+       "noLib":false,
+       "emitDecoratorMetadata":true,
+       "experimentalDecorators":true,
+       "sourceMap":false,
+       "pretty":true,
+       "forceConsistentCasingInFileNames": true,
+       "strict": true,
+       "allowUnreachableCode":true,
+       "allowUnusedLabels":true,
+       "noImplicitAny":true,
+       "noImplicitReturns":false,
+       "noImplicitUseStrict":false,
+       "rootDir": ".",
+       "listFiles":false,
+       "stripInternal": true,
+       "noEmitHelpers":true
+    },
+    "include":[ 
+       "index.ts"
+    ],
+    "exclude":[ 
+       "node_modules"
+    ],
+    "compileOnSave":false
+ }

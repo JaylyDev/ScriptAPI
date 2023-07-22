@@ -1,8 +1,33 @@
 // Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
-
+import { BlockVolumeUtils } from "@minecraft/server";
 const MAX_BLOCKS_SINGLE_FILL = 32768;
+/**
+ * Fetch a `Iterable<BlockVolume>` that represents all of
+ * 3D rectangle of a given size (in blocks) at a
+ * world block location within the specified volume
+ * @private
+ */
+function* getBlockVolumeIterator(volume, delta) {
+    const box = BlockVolumeUtils.getBoundingBox(volume);
+    const blockVolume = { from: box.min, to: box.max };
+    const span = BlockVolumeUtils.getSpan(blockVolume);
+    for (let x = 0; x < span.x; x += delta) {
+        for (let y = 0; y < span.y; y += delta) {
+            for (let z = 0; z < span.z; z += delta) {
+                const part = BlockVolumeUtils.translate({
+                    from: { x, y, z },
+                    to: { x: x + delta - 1, y: y + delta - 1, z: z + delta - 1 }
+                }, blockVolume.from);
+                part.to = BlockVolumeUtils.getMin({ from: part.to, to: blockVolume.to });
+                yield part;
+            }
+        }
+    }
+    ;
+}
+;
 /**
  * Fills an area between begin and end with block of type block, with no fill limit of 32768.
  * @param dimension Dimension to fill blocks in.
@@ -17,54 +42,24 @@ const MAX_BLOCKS_SINGLE_FILL = 32768;
  * ```
  */
 export function fillBlocks(dimension, begin, end, block, options) {
-    begin = { x: Math.floor(begin.x), y: Math.floor(begin.y), z: Math.floor(begin.z) };
-    end = { x: Math.floor(end.x), y: Math.floor(end.y), z: Math.floor(end.z) };
-    const distance = {
-        x: end.x - begin.x,
-        y: end.y - begin.y,
-        z: end.z - begin.z
-    };
-    if (distance.x * distance.y * distance.z > MAX_BLOCKS_SINGLE_FILL) {
-        let blocksFilled = 0;
-        for (let x = 0; x < distance.x; x += 32) {
-            for (let y = 0; y < distance.y; y += 32) {
-                for (let z = 0; z < distance.z; z += 32) {
-                    const part_begin = {
-                        x: x + begin.x,
-                        y: y + begin.y,
-                        z: z + begin.z
-                    };
-                    const part_end = {
-                        x: x + 31 > distance.x ? end.x : x + 31 + begin.x,
-                        y: y + 31 > distance.y ? end.y : y + 31 + begin.y,
-                        z: z + 31 > distance.z ? end.z : z + 31 + begin.z,
-                    };
-                    // custom warning message
-                    try {
-                        blocksFilled += dimension.fillBlocks(part_begin, part_end, block, options);
-                    }
-                    catch (error) {
-                        const fillBlocksError = 'Dimension.fillBlocks: Requested fill area';
-                        if (typeof error !== 'string')
-                            throw error;
-                        if (!error.startsWith(fillBlocksError))
-                            throw error;
-                        // possible errors
-                        // Dimension.fillBlocks: Requested fill area wasn't fully loaded. Cannot fill
-                        // Dimension.fillBlocks: Requested fill area was outside the world bounds
-                        console.warn(`${fillBlocksError} between ${Object.values(part_begin).join(', ')} and ${Object.values(part_end).join(', ')}` + error.substr(fillBlocksError.length));
-                        ;
-                    }
-                }
-            }
-        }
-        ;
-        return blocksFilled;
-    }
-    else {
-        // uses default fill blocks
+    // Check if block volume is greater than 32768, if not return native fillblocks
+    const volume = { from: begin, to: end };
+    if (BlockVolumeUtils.getCapacity(volume) <= MAX_BLOCKS_SINGLE_FILL) {
         return dimension.fillBlocks(begin, end, block, options);
     }
     ;
+    let blocksFilled = 0;
+    for (const { from, to } of getBlockVolumeIterator(volume, 32)) {
+        try {
+            blocksFilled += dimension.fillBlocks(from, to, block, options);
+        }
+        catch (error) {
+            // custom error message
+            if (!(error instanceof Error))
+                throw error;
+            console.error(`${error.message} between ${Object.values(from).join(', ')} and ${Object.values(to).join(', ')}`);
+        }
+    }
+    return blocksFilled;
 }
 ;
