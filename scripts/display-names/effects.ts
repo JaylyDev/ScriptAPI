@@ -1,0 +1,36 @@
+/**
+ * All possible MinecraftEffects
+ */
+export enum MinecraftEffects {
+    Absorption = "%potion.absorption",
+    BadOmen = "%effect.badOmen",
+    Blindness = "%potion.blindness",
+    ConduitPower = "%potion.conduitPower",
+    Darkness = "%effect.darkness",
+    Empty = "%potion.empty",
+    FatalPoison = "%potion.poison",
+    FireResistance = "%potion.fireResistance",
+    Haste = "%potion.digSpeed",
+    HealthBoost = "%potion.healthBoost",
+    Hunger = "%potion.hunger",
+    InstantDamage = "%potion.harm",
+    InstantHealth = "%potion.heal",
+    Invisibility = "%potion.invisibility",
+    JumpBoost = "%potion.jump",
+    Levitation = "%potion.levitation",
+    MiningFatigue = "%potion.digSlowDown",
+    Nausea = "%potion.confusion",
+    NightVision = "%potion.nightVision",
+    Poison = "%potion.poison",
+    Regeneration = "%potion.regeneration",
+    Resistance = "%potion.resistance",
+    Saturation = "%potion.saturation",
+    SlowFalling = "%potion.slowFalling",
+    Slowness = "%potion.slowness",
+    Speed = "%potion.speed",
+    Strength = "%potion.damageBoost",
+    VillageHero = "%effect.villageHero",
+    WaterBreathing = "%potion.waterBreathing",
+    Weakness = "%potion.weakness",
+    Wither = "%potion.wither"
+}
