@@ -1,7 +1,7 @@
 /**
- * All possible MinecraftDimensionTypes
+ * All possible MinecraftDimensions
  */
-export enum MinecraftDimensionTypes {
+export enum MinecraftDimensions {
     Nether = "%dimension.dimensionName1",
     Overworld = "%dimension.dimensionName0",
     TheEnd = "%dimension.dimensionName2"
