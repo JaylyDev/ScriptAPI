@@ -7,6 +7,7 @@ import { system } from "@minecraft/server";
  * sleep
  * @param {number} ticks Amount of time, in ticks, before the timeouts will be
  * called.
+ * @returns {Promise<void>}
  */
 export function sleep(ticks) {
   return new Promise((resolve) => {
