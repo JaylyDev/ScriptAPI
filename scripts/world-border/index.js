@@ -3,7 +3,7 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 
 /**
- * Minecraft Bedrock ScriptAPI Example
+ * world border
  * @license Do whatever you want
  * @author defowler2005
  * @version 1.0.0
