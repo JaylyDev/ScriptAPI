@@ -2,7 +2,7 @@
 
 ## Description
 
-A simple to use command creator,
+A simple to use command creator.
 
 **Parameters:**
 
