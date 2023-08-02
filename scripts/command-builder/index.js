@@ -76,7 +76,7 @@ commandBuild.create(
     {
         name: 'test',
         description: 'Testing command',
-        is_staff: true,
+        is_staff: true
     },
     (player, args) => {
         console.warn(`${player.name} ${args}`)
