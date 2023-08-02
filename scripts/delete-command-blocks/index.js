@@ -1,18 +1,31 @@
 // Script example for ScriptAPI
 // Author: JaylyDev <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world, MinecraftBlockTypes, system } from "@minecraft/server";
+import { world, system, BlockPermutation } from "@minecraft/server";
+import { MinecraftBlockTypes } from "@minecraft/vanilla-data";
 
-async function DeleteCommandBlocks () {
-  let CommandBlocks = MinecraftBlockTypes.getAllBlockTypes().filter(blockType => blockType.id.endsWith("command_block"));
+const commandBlocks = [
+  MinecraftBlockTypes.CommandBlock,
+  MinecraftBlockTypes.ChainCommandBlock,
+  MinecraftBlockTypes.RepeatingCommandBlock
+];
 
+function DeleteCommandBlocks () {
   for (const player of world.getPlayers()) {
-    for (let CommandBlock of CommandBlocks) {
+    for (let commandBlock of commandBlocks) {
       for (let index = 0; index < (384 / 32); index++) {      
         const { x, z } = player.location;
         const y = index * 32 - 64;
         
-        player.runCommandAsync(`fill ${x - 15} ${y} ${z - 15} ${x + 16} ${y + 31} ${z + 16} air 0 replace ${CommandBlock.id}`);
+        player.dimension.fillBlocks({
+          x: x - 15,
+          y: y,
+          z: z - 15,
+        }, {
+          x: x + 16,
+          y: y + 31,
+          z: z + 16,
+        }, MinecraftBlockTypes.Air, { matchingBlock: BlockPermutation.resolve(commandBlock) });
       }
     };
   };

@@ -2,7 +2,6 @@
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import {
-  MinecraftBlockTypes,
   system,
   BlockType,
   Vector,
@@ -10,7 +9,8 @@ import {
   CompoundBlockVolumeAction,
   BlockVolume,
   BlockVolumeUtils,
-  BoundingBoxUtils
+  BoundingBoxUtils,
+  BlockTypes
 } from "@minecraft/server";
 import {
   KeyboardKey,
@@ -71,7 +71,7 @@ const Controls = {
 interface SettingsObject extends PropertyBag {
   origin: Vector3;
   size: Vector3;
-  block: BlockType;
+  block: BlockType | string;
   selectionMode: SelectionCursorMode;
 }
 
@@ -99,7 +99,7 @@ export class SelectionBehavior {
   pane: IPropertyPane;
   addTool: (uiSession: IPlayerUISession) => IModalTool;
   bindGlobalActivationShortcut: (uiSession: IPlayerUISession, storage: Record<string, any>) => void;
-  performFillOperation: (context: ExtensionContext, fillType: BlockType) => Promise<void>;
+  performFillOperation: (context: ExtensionContext, fillType: BlockType | string) => Promise<void>;
   executeFillAction: RegisteredAction<NoArgsAction>;
   get toolId() {
     return this.tool.id;
@@ -902,14 +902,14 @@ export class SelectionBehavior {
     /**
      * Allowed blocks for the block picker
      */
-    const allowedBlocks = MinecraftBlockTypes.getAllBlockTypes().map<string>(blockType => blockType.id.replace('minecraft:', ''));
+    const allowedBlocks = BlockTypes.getAll().map(blockType => blockType.id.replace('minecraft:', ''));
 
     // Here is the binding created.
     this.settingsObject = bindDataSource(this.pane, {
       selectionMode: SelectionCursorMode.Freeform,
       origin: { x: 0, y: 0, z: 0 },
       size: { x: 0, y: 0, z: 0 },
-      block: MinecraftBlockTypes.bedrock,
+      block: "minecraft:bedrock",
     });
     // This is the initial cursor state for Selection
     this.toolCursorProperties = uiSession.extensionContext.cursor.getProperties();

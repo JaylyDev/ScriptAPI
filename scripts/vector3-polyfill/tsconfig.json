@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "module": "es2020",
+    "target": "es2020",
     "allowJs": true,
     "checkJs": true,
     "allowSyntheticDefaultImports": false,
@@ -12,6 +14,5 @@
     "tests.ts",
     "Vector.ts",
     "Vector3.ts",
-  ],
-  "extends": "../tsconfig.json"
+  ]
 }

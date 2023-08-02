@@ -2,8 +2,8 @@
 
 ## Description
 
-A set of function that allows you to modify the score recorded for entity on objective
+Very simple `getScore`, `setScore` and `addScore` functions. Compatible with @minecraft/server v1.4.0 or above
 
 ## Credits
 
-These scripts were written by Jayly#1397 on Jayly Discord
+These scripts were written by [Jayly](https://github.com/JaylyDev)

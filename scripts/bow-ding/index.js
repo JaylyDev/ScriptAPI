@@ -8,21 +8,19 @@ world.afterEvents.entitySpawn.subscribe(({ entity }) => {
   // subscribe to entitySpawn event to compare with the projectile information fired by projectileHit event.
   if (entity.typeId !== "minecraft:arrow") return;
 
-  const callback = world.afterEvents.projectileHit.subscribe((arg) => {
+  const callback = world.afterEvents.projectileHitEntity.subscribe((arg) => {
     const { source, projectile } = arg;
     const hitInfo = arg.getEntityHit();
   
     if (hitInfo?.entity instanceof Player && source instanceof Player && projectile === entity) {
-      /**
-        * @type {import("@minecraft/server").PlayerSoundOptions}
-        */
+      /** @type {import("@minecraft/server").PlayerSoundOptions} */
       const soundOption = {
         volume: 0.4,
         pitch: 0.5,
       }
       
       source.playSound("random.orb", soundOption);
-      world.afterEvents.projectileHit.unsubscribe(callback);
+      world.afterEvents.projectileHitEntity.unsubscribe(callback);
     };
   });
 });

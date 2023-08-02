@@ -1,83 +1,53 @@
 // Script example for ScriptAPI
-// Author: Jayly#1397 <Jayly Discord>
+// Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world, Entity } from "@minecraft/server";
-
+import { world, Entity, ScoreboardIdentity } from "@minecraft/server";
 /**
- * Gets the score recorded for entity on objective
- * @param {Entity} entity
- * @param {string} objectiveId
+ * Gets the score recorded for a participant on objective
+ * @param participant
+ * @param objectiveId
  */
-export function getScore(entity, objectiveId) {
-  const objective = world.scoreboard.getObjective(objectiveId);
-  return objective.getScore(entity.scoreboardIdentity);
+export function getScore(participant, objectiveId) {
+    const objective = world.scoreboard.getObjective(objectiveId);
+    if (!objective)
+        throw new Error(`Objective ${objectiveId} not found`);
+    return objective.getScore(participant);
 }
 /**
- * Sets the score recorded for entity on objective
- * @param {Entity} entity
- * @param {string} objectiveId
- * @param {number} score
+ * Sets the score recorded for a participant on objective
+ * @param participant
+ * @param objectiveId
+ * @param score
+ * @returns {ScoreboardIdentity} participant that was changed in objective
  */
-export function setScore(entity, objectiveId, score) {
-  const objective = world.scoreboard.getObjective(objectiveId);
-  return objective.setScore(entity.scoreboardIdentity, score);
+export function setScore(participant, objectiveId, score) {
+    const objective = world.scoreboard.getObjective(objectiveId);
+    if (!objective)
+        throw new Error(`Objective ${objectiveId} not found`);
+    objective.setScore(participant, score);
+    if (participant instanceof Entity)
+        return participant.scoreboardIdentity;
+    else if (participant instanceof ScoreboardIdentity)
+        return participant;
+    else
+        return objective.getParticipants().find(p => p.displayName === participant);
 }
+;
 /**
  * Add the score recorded for entity on objective
- * @param {Entity} entity
- * @param {string} objectiveId
- * @param {number} score
+ * @param participant
+ * @param objectiveId
+ * @param score
  */
-export function addScore(entity, objectiveId, score) {
-  const previousScore = getScore(entity, objectiveId);
-  return setScore(entity, objectiveId, previousScore + score);
-}
-/**
- * Subtract the score recorded for entity on objective
- * @param {Entity} entity
- * @param {string} objectiveId
- * @param {number} score
- */
-export function subtractScore(entity, objectiveId, score) {
-  const previousScore = getScore(entity, objectiveId);
-  return setScore(entity, objectiveId, previousScore - score);
-}
-/**
- * Divide the score recorded for entity on objective
- * @param {Entity} entity
- * @param {string} objectiveId
- * @param {number} score
- */
-export function divideScore(entity, objectiveId, score) {
-  const previousScore = getScore(entity, objectiveId);
-  return setScore(entity, objectiveId, Math.floor(previousScore / score));
-}
-/**
- * Test if the score recorded for entity on objective in range.
- * @param {Entity} entity
- * @param {string} objectiveId
- * @param {number} min
- * @param {number} max
- */
-export function testScore(entity, objectiveId, min, max) {
-  const score = getScore(entity, objectiveId);
-  return score >= min && score <= max;
-}
-/**
- * Set a random score between a range for entity on objective.
- * @param {Entity} entity
- * @param {string} objectiveId
- * @param {number} min
- * @param {number} max
- */
-export function randomScore(entity, objectiveId, min, max) {
-  return setScore(entity, objectiveId, getRandomArbitrary(min, max));
-}
-/**
- * @param {number} min 
- * @param {number} max 
- * @returns {number}
- */
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
+export function addScore(participant, objectiveId, score) {
+    const objective = world.scoreboard.getObjective(objectiveId);
+    if (!objective)
+        throw new Error(`Objective ${objectiveId} not found`);
+    objective.addScore(participant, score);
+    if (participant instanceof Entity)
+        return participant.scoreboardIdentity;
+    else if (participant instanceof ScoreboardIdentity)
+        return participant;
+    else
+        return objective.getParticipants().find(p => p.displayName === participant);
 }

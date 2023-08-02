@@ -1,14 +1,16 @@
 // Script example for ScriptAPI
 // Author: stackoverflow <https://stackoverflow.com/a/41957152>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { setTimeout } from "timers/index";
+import { system } from "@minecraft/server";
 
 /**
  * sleep
- * @param {number} ms miliseconds
+ * @param {number} ticks Amount of time, in ticks, before the timeouts will be
+ * called.
+ * @returns {Promise<void>}
  */
-export function sleep(ms) {
+export function sleep(ticks) {
   return new Promise((resolve) => {
-    setTimeout(resolve, ms);
+    system.runTimeout(resolve, ticks);
   });
 };
