@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {world, ScoreboardObjective,ScoreboardIdentityType, ScoreboardIdentity,system, Entity} from "@minecraft/server";
 ///////////////////////////////////////////////////
 // Binary-Writter.JS
