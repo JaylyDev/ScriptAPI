@@ -14,8 +14,6 @@ A simple to use command creator,
 ## Example usage
 
 ```js
-const commandBuild = new commandBuilder();
-
 commandBuild.create(
     {
         name: 'test',
