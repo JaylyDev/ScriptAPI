@@ -14,7 +14,7 @@ class commandBuilder {
     }
 
     /**
-     * Creates a new command with the provided information and callbacks.
+     * Create the command with the provided info, callbacks.
      *
      * @param {Object} info - The information about the command.
      * @param {string} info.name - The name of the command.
