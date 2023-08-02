@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: ConMaster2112 <https://github.com/ConsoleTerm>
+// Project: https://github.com/Con-JS-Development/Con-Database
 //@ts-nocheck
 import {world, ScoreboardObjective,ScoreboardIdentityType, ScoreboardIdentity,system, Entity} from "@minecraft/server";
 ///////////////////////////////////////////////////
