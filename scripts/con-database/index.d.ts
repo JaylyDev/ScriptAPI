@@ -155,8 +155,8 @@ declare class ScoreboardDatabaseManager extends Map<string,any>{
     protected readonly _source_: Map<string,string|ScoreboardIdentity|Entity>;
     protected readonly _parser_: {stringify:(data: any)=>string,parse:(data: string)=>any};
     readonly savingMode: DatabaseSavingModes;
-    constructor(objective, saveMode: DatabaseSavingModes);
-    constructor(objective, saveMode: DatabaseSavingModes.EndTickSave, interval?: number);
+    constructor(objective: string | ScoreboardObjective, saveMode?: DatabaseSavingModes);
+    constructor(objective: string | ScoreboardObjective, saveMode: DatabaseSavingModes.EndTickSave, interval?: number);
     /**@inheritdoc */
     set(key: string, value: any): this
     /**@inheritdoc */
@@ -173,6 +173,6 @@ declare class ScoreboardDatabaseManager extends Map<string,any>{
 export class JsonDatabase extends ScoreboardDatabaseManager{}
 export class NBTDatabase extends ScoreboardDatabaseManager{}
 export class CustomDatabase extends ScoreboardDatabaseManager{
-    constructor(parser: {parse:(data:string)=>any,stringify:(data: any)=>string}, objective: string | ScoreboardObjective, saveMode: DatabaseSavingModes);
+    constructor(parser: {parse:(data:string)=>any,stringify:(data: any)=>string}, objective: string | ScoreboardObjective, saveMode?: DatabaseSavingModes);
     constructor(parser: {parse:(data:string)=>any,stringify:(data: any)=>string}, objective: string | ScoreboardObjective, saveMode: DatabaseSavingModes.EndTickSave, interval?: number);
 }
