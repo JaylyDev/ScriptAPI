@@ -1,6 +1,6 @@
 # Con-Databases
 This package contains three types of databases, JsonDatabase, NBTDatabase, CustomDatabase. 
-Each of these database types supports all possible Map class operations from ECMAScript, which means.
+Each of these database types supports all possible [Map class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) operations from ECMAScript, which means.
 ### Inherited from Map
  - size: number of properties
  - [Symbol.iterator]: is iterable [key, value]
@@ -59,3 +59,5 @@ myDB.forEach((value,key)=>{
     console.warn(key, value);
 });
 ```
+
+### [Latest version Here (ConMaster's Github)](https://github.com/Con-JS-Development/Con-Database)
