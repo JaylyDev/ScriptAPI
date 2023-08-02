@@ -482,7 +482,7 @@ class ScoreboardDatabaseManager extends Map{
     /**@private */
     hasChanges = false;
     /**@readonly */
-    get maxLength(){return 32e3;}
+    get maxLength(){return 30e3;}
     /**@private @type {ScoreboardObjective}*/
     _scoreboard_;
     /**@protected @type {Map<string,string|ScoreboardIdentity|Entity>} */
@@ -505,7 +505,7 @@ class ScoreboardDatabaseManager extends Map{
         this._changes_ = new Map();
         if(this._saveMode_ === DatabaseSavingModes.TickInterval){
             system.runInterval(()=>{
-                if(!this.hasChanges){
+                if(this.hasChanges){
                     endTickCall(()=>{
                         for (const [k,{action,value}] of this._changes_.entries()) run(this,k,value,action);
                         this._changes_.clear();
@@ -544,7 +544,7 @@ class ScoreboardDatabaseManager extends Map{
         if(!this._loaded_) throw new ReferenceError("Database is not loaded");
         const newValue = `${key}${split}${this._parser_.stringify(value)}`;
         if(newValue.length > this.maxLength) throw new RangeError("Value is too large for one property");
-        super.set(key,newValue);
+        super.set(key,value);
         this._onChange_(key,newValue,ChangeAction.Change);
         return this;
     }
