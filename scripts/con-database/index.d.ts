@@ -174,5 +174,5 @@ export class JsonDatabase extends ScoreboardDatabaseManager{}
 export class NBTDatabase extends ScoreboardDatabaseManager{}
 export class CustomDatabase extends ScoreboardDatabaseManager{
     constructor(parser: {parse:(data:string)=>any,stringify:(data: any)=>string}, objective: string | ScoreboardObjective, saveMode: DatabaseSavingModes);
-    constructor(objective: string | ScoreboardObjective, saveMode: DatabaseSavingModes.EndTickSave, interval?: number);
+    constructor(parser: {parse:(data:string)=>any,stringify:(data: any)=>string}, objective: string | ScoreboardObjective, saveMode: DatabaseSavingModes.EndTickSave, interval?: number);
 }
