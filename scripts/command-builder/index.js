@@ -1,3 +1,16 @@
+// Script example for ScriptAPI
+// Author: defowler2005 <https://github.com/defowler2005>
+// Project: https://github.com/JaylyDev/ScriptAPI
+
+/**
+ * Minecraft Bedrock ScriptAPI Example
+ * @author defowler2005#4812
+ * @version 1.0.0
+ * ---------------------------------------------------------------------------
+ * Add a commandBuilder to your world, Simple creating!
+ * ---------------------------------------------------------------------------
+ */
+
 import { world, system } from '@minecraft/server';
 
 /**
