@@ -24,7 +24,7 @@ var _a;
  * IN THE SOFTWARE.
  */
 import { ScoreboardIdentityType, system, world } from "@minecraft/server";
-const version = "1.1.2";
+const version = "1.1.3";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -215,6 +215,9 @@ class JaylyDB {
         if (encoded.length > 32767)
             throw new RangeError("JaylyDB::set only accepts a string value less than 32767 characters.");
         // push change to disk
+        const participant = this.localState.get(key);
+        if (participant)
+            this.objective.removeParticipant(participant.identity);
         this.objective.setScore(encoded, 0);
         const data = {
             encoded_value: encoded,
