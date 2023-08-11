@@ -24,7 +24,7 @@ var _a;
  * IN THE SOFTWARE.
  */
 import { ScoreboardIdentityType, system, world } from "@minecraft/server";
-const version = "1.1.2";
+const version = "1.1.3";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
