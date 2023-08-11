@@ -215,6 +215,9 @@ class JaylyDB {
         if (encoded.length > 32767)
             throw new RangeError("JaylyDB::set only accepts a string value less than 32767 characters.");
         // push change to disk
+        const participant = this.localState.get(key);
+        if (participant)
+            this.objective.removeParticipant(participant.identity);
         this.objective.setScore(encoded, 0);
         const data = {
             encoded_value: encoded,
