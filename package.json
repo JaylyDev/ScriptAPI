@@ -19,17 +19,17 @@
   },
   "homepage": "https://github.com/JaylyDev/ScriptAPI#readme",
   "dependencies": {
-    "@minecraft/server": "1.5.0-beta.1.20.20-preview.23",
-    "@minecraft/server-admin": "1.0.0-beta.1.20.20-preview.23",
-    "@minecraft/server-editor": "0.1.0-beta.1.20.20-preview.23",
-    "@minecraft/server-gametest": "1.0.0-beta.1.20.20-preview.23",
-    "@minecraft/server-net": "1.0.0-beta.1.20.20-preview.23",
-    "@minecraft/server-ui": "1.2.0-beta.1.20.20-preview.23",
-    "@minecraft/vanilla-data": "1.20.20-preview.22"
+    "@minecraft/server": "1.6.0-beta.1.20.30-preview.21",
+    "@minecraft/server-admin": "1.0.0-beta.1.20.30-preview.21",
+    "@minecraft/server-editor": "0.1.0-beta.1.20.30-preview.21",
+    "@minecraft/server-gametest": "1.0.0-beta.1.20.30-preview.21",
+    "@minecraft/server-net": "1.0.0-beta.1.20.30-preview.21",
+    "@minecraft/server-ui": "1.2.0-beta.1.20.30-preview.21",
+    "@minecraft/vanilla-data": "1.20.30-preview.21"
   },
   "devDependencies": {
     "@npm/types": "^1.0.2",
-    "@types/node": "^20.4.5",
+    "@types/node": "^20.4.10",
     "@types/parsimmon": "^1.10.6",
     "axios": "^1.4.0",
     "parsimmon": "^1.18.1",
