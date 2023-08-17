@@ -163,6 +163,12 @@ class JaylyDB {
         return this.localState.size;
     }
     /**
+     * @returns the id of scoreboard objective used in the database
+     */
+    get objectiveId() {
+        return this.objective.id;
+    }
+    /**
      * Clears every element in the database.
      */
     clear() {

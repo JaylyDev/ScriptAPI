@@ -181,6 +181,12 @@ class JaylyDB implements Map<string, string | number | boolean> {
     return this.localState.size;
   }
   /**
+   * @returns the id of scoreboard objective used in the database
+   */
+  get objectiveId(): string {
+    return this.objective.id;
+  }
+  /**
    * Clears every element in the database.
    */
   clear(): void {

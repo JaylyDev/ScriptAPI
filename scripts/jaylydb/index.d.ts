@@ -12,6 +12,10 @@ declare class JaylyDB implements Map<string, string | number | boolean> {
      */
     get size(): number;
     /**
+     * @returns the id of scoreboard objective used in the database
+     */
+    get objectiveId(): string;
+    /**
      * Clears every element in the database.
      */
     clear(): void;
