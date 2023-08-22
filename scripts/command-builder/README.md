@@ -16,15 +16,21 @@ A simple to use command creator.
 ```js
 commandBuild.create(
     {
-        name: 'test',
-        description: 'Testing command',
-        is_staff: false,
+        name: 'getCommands',
+        description: 'Get a list of all commands registered',
+        is_staff: false
     },
     (player, args) => {
-        console.warn(`${player.name} ${args}`);
+        const commands = commandBuild.getAllCommands(args[0]).map(cmd => cmd.name).join(', ');
+        if (args[0] === 'true') player.sendMessage(`Staff commands: ${commands}`);
+        else if (args[0] === 'false') player.sendMessage(`Non-staff commands: ${commands}`);
+        else player.sendMessage(`All commands: ${commands ? commands : 'None'}`);
     },
     (player, args) => {
-        console.warn(`${player.name} ${args}`);
+        const commands = commandBuild.getAllCommands(args[0]).map(cmd => cmd.name).join(', ');
+        if (args[0] === 'true') player.sendMessage(`Staff commands: ${commands}`);
+        else if (args[0] === 'false') player.sendMessage(`Non-staff commands: ${commands}`);
+        else player.sendMessage(`All commands: ${commands ? commands : 'None'}`);
     }
 );
 ```
