@@ -1,35 +1,40 @@
+import { world, system } from '@minecraft/server';
+
 // Script example for ScriptAPI
 // Author: defowler2005 <https://github.com/defowler2005>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
 /**
  * Minecraft Bedrock ScriptAPI Example
- * @author defowler2005#4812
+ * @author defowler2005
  * @version 1.0.0
  * ---------------------------------------------------------------------------
- * Add a commandBuilder to your world, Simple creating!
+ * Add a commandBuilder to your world, Simple creation!
  * ---------------------------------------------------------------------------
  */
 
 import { world, system } from '@minecraft/server';
 
 /**
- * Represents a command builder.
+ * A class for regestering commands.
  * @class
  */
 class commandBuilder {
-
     /**
-     * @constructor
+     * Create a new instance of the commandBuilder class.
      */
     constructor() {
+        /**
+         * Array to store all registered commands.
+         * @type {Array}
+         */
         this.commands = [];
     }
 
     /**
-     * Create the command with the provided info, callbacks.
+     * Create a new command with provided information and callbacks.
      *
-     * @param {Object} info - The information about the command.
+     * @param {Object} info - Information about the command.
      * @param {string} info.name - The name of the command.
      * @param {string} [info.description] - The description of the command.
      * @param {boolean} [info.is_staff=false] - Indicates if the command requires staff privileges.
@@ -45,6 +50,15 @@ class commandBuilder {
             callbackWM,
         };
         this.commands.push(command);
+    }
+
+    /**
+     * Get a list of all commands based on whether they require staff privileges or not.
+     * @param {boolean} staff - If true, Retrieves staff-only commands. If false, Retrieves non-staff commands. If undefined, retrieves all commands.
+     * @returns {Array} - An array of commands that match the staff requirement.
+     */
+    getAllCommands(staff = false) {
+        return this.commands.filter(cmd => cmd.is_staff === staff);
     }
 };
 
@@ -87,14 +101,20 @@ world.beforeEvents.chatSend.subscribe((data) => {
 
 commandBuild.create(
     {
-        name: 'test',
-        description: 'Testing command',
-        is_staff: true
+        name: 'getCommands',
+        description: 'Get a list of all commands registered',
+        is_staff: false
     },
     (player, args) => {
-        console.warn(`${player.name} ${args}`)
+        const commands = commandBuild.getAllCommands(args[0]).map(cmd => cmd.name).join(', ');
+        if (args[0] === 'true') player.sendMessage(`Staff commands: ${commands}`);
+        else if (args[0] === 'false') player.sendMessage(`Non-staff commands: ${commands}`);
+        else player.sendMessage(`All commands: ${commands ? commands : 'None'}`);
     },
     (player, args) => {
-        console.warn(`${player.name} ${args}`)
+        const commands = commandBuild.getAllCommands(args[0]).map(cmd => cmd.name).join(', ');
+        if (args[0] === 'true') player.sendMessage(`Staff commands: ${commands}`);
+        else if (args[0] === 'false') player.sendMessage(`Non-staff commands: ${commands}`);
+        else player.sendMessage(`All commands: ${commands ? commands : 'None'}`);
     }
 );
