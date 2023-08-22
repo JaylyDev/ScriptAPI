@@ -1,5 +1,3 @@
-import { world, system } from '@minecraft/server';
-
 // Script example for ScriptAPI
 // Author: defowler2005 <https://github.com/defowler2005>
 // Project: https://github.com/JaylyDev/ScriptAPI
