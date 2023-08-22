@@ -19,8 +19,10 @@ import { world, system } from '@minecraft/server';
  */
 class commandBuilder {
     /**
-     * Create a new instance of the commandBuilder class.
-     */
+ * Create a new instance of the commandBuilder class.
+ * @constructor
+ */
+
     constructor() {
         /**
          * Array to store all registered commands.
