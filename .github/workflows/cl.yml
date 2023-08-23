@@ -24,9 +24,7 @@ jobs:
           find ./docs/* -maxdepth 5 -name package.json -execdir sh -c 'pwd && npm install' \;
 
       - name: Type Check
-        run: | 
-          tsc --build --verbose
-          cp -r dist/* .
+        run: tsc --build
 
       - name: Format Check
         run: node ./dist/tools/index.js

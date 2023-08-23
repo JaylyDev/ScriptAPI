@@ -33,7 +33,7 @@ world.afterEvents.entityHealthChanged.subscribe(callback);
 world.afterEvents.entityHitBlock.subscribe(callback);
 world.afterEvents.entityHitEntity.subscribe(callback);
 world.afterEvents.entityHurt.subscribe(callback);
-world.afterEvents.entityRemoved.subscribe(callback)
+world.afterEvents.entityRemove.subscribe(callback)
 world.afterEvents.entitySpawn.subscribe(callback);
 world.afterEvents.explosion.subscribe(callback);
 world.afterEvents.itemCompleteUse.subscribe(callback);
