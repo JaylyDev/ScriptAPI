@@ -15,7 +15,10 @@ export class MinecraftDimensionTypes {
         return DimensionTypes.getAll().map(dimension => world.getDimension(dimension.typeId));
     }
     ;
+    static get Nether() { return world.getDimension("minecraft:nether"); }
+    ;
+    static get Overworld() { return world.getDimension("minecraft:overworld"); }
+    ;
+    static get TheEnd() { return world.getDimension("minecraft:the_end"); }
+    ;
 }
-MinecraftDimensionTypes.Nether = world.getDimension("minecraft:nether");
-MinecraftDimensionTypes.Overworld = world.getDimension("minecraft:overworld");
-MinecraftDimensionTypes.TheEnd = world.getDimension("minecraft:the_end");

@@ -15,35 +15,66 @@ export class MinecraftEffectTypes {
         return EffectTypes.getAll();
     }
     ;
+    static get Absorption() { return EffectTypes.get("absorption"); }
+    ;
+    static get BadOmen() { return EffectTypes.get("bad_omen"); }
+    ;
+    static get Blindness() { return EffectTypes.get("blindness"); }
+    ;
+    static get ConduitPower() { return EffectTypes.get("conduit_power"); }
+    ;
+    static get Darkness() { return EffectTypes.get("darkness"); }
+    ;
+    static get Empty() { return EffectTypes.get("empty"); }
+    ;
+    static get FatalPoison() { return EffectTypes.get("fatal_poison"); }
+    ;
+    static get FireResistance() { return EffectTypes.get("fire_resistance"); }
+    ;
+    static get Haste() { return EffectTypes.get("haste"); }
+    ;
+    static get HealthBoost() { return EffectTypes.get("health_boost"); }
+    ;
+    static get Hunger() { return EffectTypes.get("hunger"); }
+    ;
+    static get InstantDamage() { return EffectTypes.get("instant_damage"); }
+    ;
+    static get InstantHealth() { return EffectTypes.get("instant_health"); }
+    ;
+    static get Invisibility() { return EffectTypes.get("invisibility"); }
+    ;
+    static get JumpBoost() { return EffectTypes.get("jump_boost"); }
+    ;
+    static get Levitation() { return EffectTypes.get("levitation"); }
+    ;
+    static get MiningFatigue() { return EffectTypes.get("mining_fatigue"); }
+    ;
+    static get Nausea() { return EffectTypes.get("nausea"); }
+    ;
+    static get NightVision() { return EffectTypes.get("night_vision"); }
+    ;
+    static get Poison() { return EffectTypes.get("poison"); }
+    ;
+    static get Regeneration() { return EffectTypes.get("regeneration"); }
+    ;
+    static get Resistance() { return EffectTypes.get("resistance"); }
+    ;
+    static get Saturation() { return EffectTypes.get("saturation"); }
+    ;
+    static get SlowFalling() { return EffectTypes.get("slow_falling"); }
+    ;
+    static get Slowness() { return EffectTypes.get("slowness"); }
+    ;
+    static get Speed() { return EffectTypes.get("speed"); }
+    ;
+    static get Strength() { return EffectTypes.get("strength"); }
+    ;
+    static get VillageHero() { return EffectTypes.get("village_hero"); }
+    ;
+    static get WaterBreathing() { return EffectTypes.get("water_breathing"); }
+    ;
+    static get Weakness() { return EffectTypes.get("weakness"); }
+    ;
+    static get Wither() { return EffectTypes.get("wither"); }
+    ;
 }
-MinecraftEffectTypes.Absorption = EffectTypes.get("absorption");
-MinecraftEffectTypes.BadOmen = EffectTypes.get("bad_omen");
-MinecraftEffectTypes.Blindness = EffectTypes.get("blindness");
-MinecraftEffectTypes.ConduitPower = EffectTypes.get("conduit_power");
-MinecraftEffectTypes.Darkness = EffectTypes.get("darkness");
-MinecraftEffectTypes.Empty = EffectTypes.get("empty");
-MinecraftEffectTypes.FatalPoison = EffectTypes.get("fatal_poison");
-MinecraftEffectTypes.FireResistance = EffectTypes.get("fire_resistance");
-MinecraftEffectTypes.Haste = EffectTypes.get("haste");
-MinecraftEffectTypes.HealthBoost = EffectTypes.get("health_boost");
-MinecraftEffectTypes.Hunger = EffectTypes.get("hunger");
-MinecraftEffectTypes.InstantDamage = EffectTypes.get("instant_damage");
-MinecraftEffectTypes.InstantHealth = EffectTypes.get("instant_health");
-MinecraftEffectTypes.Invisibility = EffectTypes.get("invisibility");
-MinecraftEffectTypes.JumpBoost = EffectTypes.get("jump_boost");
-MinecraftEffectTypes.Levitation = EffectTypes.get("levitation");
-MinecraftEffectTypes.MiningFatigue = EffectTypes.get("mining_fatigue");
-MinecraftEffectTypes.Nausea = EffectTypes.get("nausea");
-MinecraftEffectTypes.NightVision = EffectTypes.get("night_vision");
-MinecraftEffectTypes.Poison = EffectTypes.get("poison");
-MinecraftEffectTypes.Regeneration = EffectTypes.get("regeneration");
-MinecraftEffectTypes.Resistance = EffectTypes.get("resistance");
-MinecraftEffectTypes.Saturation = EffectTypes.get("saturation");
-MinecraftEffectTypes.SlowFalling = EffectTypes.get("slow_falling");
-MinecraftEffectTypes.Slowness = EffectTypes.get("slowness");
-MinecraftEffectTypes.Speed = EffectTypes.get("speed");
-MinecraftEffectTypes.Strength = EffectTypes.get("strength");
-MinecraftEffectTypes.VillageHero = EffectTypes.get("village_hero");
-MinecraftEffectTypes.WaterBreathing = EffectTypes.get("water_breathing");
-MinecraftEffectTypes.Weakness = EffectTypes.get("weakness");
-MinecraftEffectTypes.Wither = EffectTypes.get("wither");

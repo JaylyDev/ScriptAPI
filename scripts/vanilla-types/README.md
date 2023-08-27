@@ -1,1 +1,1 @@
-@minecraft/vanilla-data npm package with fixes needed by our code not included in the npm package.
+Basically @minecraft/vanilla-data, unlike enums the static properties returns corresponding type classes

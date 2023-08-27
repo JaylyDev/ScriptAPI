@@ -15,933 +15,1862 @@ export class MinecraftBlockTypes {
         return BlockTypes.getAll();
     }
     ;
+    static get AcaciaButton() { return BlockTypes.get("minecraft:acacia_button"); }
+    ;
+    static get AcaciaDoor() { return BlockTypes.get("minecraft:acacia_door"); }
+    ;
+    static get AcaciaFence() { return BlockTypes.get("minecraft:acacia_fence"); }
+    ;
+    static get AcaciaFenceGate() { return BlockTypes.get("minecraft:acacia_fence_gate"); }
+    ;
+    static get AcaciaHangingSign() { return BlockTypes.get("minecraft:acacia_hanging_sign"); }
+    ;
+    static get AcaciaLog() { return BlockTypes.get("minecraft:acacia_log"); }
+    ;
+    static get AcaciaPressurePlate() { return BlockTypes.get("minecraft:acacia_pressure_plate"); }
+    ;
+    static get AcaciaStairs() { return BlockTypes.get("minecraft:acacia_stairs"); }
+    ;
+    static get AcaciaStandingSign() { return BlockTypes.get("minecraft:acacia_standing_sign"); }
+    ;
+    static get AcaciaTrapdoor() { return BlockTypes.get("minecraft:acacia_trapdoor"); }
+    ;
+    static get AcaciaWallSign() { return BlockTypes.get("minecraft:acacia_wall_sign"); }
+    ;
+    static get ActivatorRail() { return BlockTypes.get("minecraft:activator_rail"); }
+    ;
+    static get Air() { return BlockTypes.get("minecraft:air"); }
+    ;
+    static get Allow() { return BlockTypes.get("minecraft:allow"); }
+    ;
+    static get AmethystBlock() { return BlockTypes.get("minecraft:amethyst_block"); }
+    ;
+    static get AmethystCluster() { return BlockTypes.get("minecraft:amethyst_cluster"); }
+    ;
+    static get AncientDebris() { return BlockTypes.get("minecraft:ancient_debris"); }
+    ;
+    static get AndesiteStairs() { return BlockTypes.get("minecraft:andesite_stairs"); }
+    ;
+    static get Anvil() { return BlockTypes.get("minecraft:anvil"); }
+    ;
+    static get Azalea() { return BlockTypes.get("minecraft:azalea"); }
+    ;
+    static get AzaleaLeaves() { return BlockTypes.get("minecraft:azalea_leaves"); }
+    ;
+    static get AzaleaLeavesFlowered() { return BlockTypes.get("minecraft:azalea_leaves_flowered"); }
+    ;
+    static get Bamboo() { return BlockTypes.get("minecraft:bamboo"); }
+    ;
+    static get BambooBlock() { return BlockTypes.get("minecraft:bamboo_block"); }
+    ;
+    static get BambooButton() { return BlockTypes.get("minecraft:bamboo_button"); }
+    ;
+    static get BambooDoor() { return BlockTypes.get("minecraft:bamboo_door"); }
+    ;
+    static get BambooDoubleSlab() { return BlockTypes.get("minecraft:bamboo_double_slab"); }
+    ;
+    static get BambooFence() { return BlockTypes.get("minecraft:bamboo_fence"); }
+    ;
+    static get BambooFenceGate() { return BlockTypes.get("minecraft:bamboo_fence_gate"); }
+    ;
+    static get BambooHangingSign() { return BlockTypes.get("minecraft:bamboo_hanging_sign"); }
+    ;
+    static get BambooMosaic() { return BlockTypes.get("minecraft:bamboo_mosaic"); }
+    ;
+    static get BambooMosaicDoubleSlab() { return BlockTypes.get("minecraft:bamboo_mosaic_double_slab"); }
+    ;
+    static get BambooMosaicSlab() { return BlockTypes.get("minecraft:bamboo_mosaic_slab"); }
+    ;
+    static get BambooMosaicStairs() { return BlockTypes.get("minecraft:bamboo_mosaic_stairs"); }
+    ;
+    static get BambooPlanks() { return BlockTypes.get("minecraft:bamboo_planks"); }
+    ;
+    static get BambooPressurePlate() { return BlockTypes.get("minecraft:bamboo_pressure_plate"); }
+    ;
+    static get BambooSapling() { return BlockTypes.get("minecraft:bamboo_sapling"); }
+    ;
+    static get BambooSlab() { return BlockTypes.get("minecraft:bamboo_slab"); }
+    ;
+    static get BambooStairs() { return BlockTypes.get("minecraft:bamboo_stairs"); }
+    ;
+    static get BambooStandingSign() { return BlockTypes.get("minecraft:bamboo_standing_sign"); }
+    ;
+    static get BambooTrapdoor() { return BlockTypes.get("minecraft:bamboo_trapdoor"); }
+    ;
+    static get BambooWallSign() { return BlockTypes.get("minecraft:bamboo_wall_sign"); }
+    ;
+    static get Barrel() { return BlockTypes.get("minecraft:barrel"); }
+    ;
+    static get Barrier() { return BlockTypes.get("minecraft:barrier"); }
+    ;
+    static get Basalt() { return BlockTypes.get("minecraft:basalt"); }
+    ;
+    static get Beacon() { return BlockTypes.get("minecraft:beacon"); }
+    ;
+    static get Bed() { return BlockTypes.get("minecraft:bed"); }
+    ;
+    static get Bedrock() { return BlockTypes.get("minecraft:bedrock"); }
+    ;
+    static get BeeNest() { return BlockTypes.get("minecraft:bee_nest"); }
+    ;
+    static get Beehive() { return BlockTypes.get("minecraft:beehive"); }
+    ;
+    static get Beetroot() { return BlockTypes.get("minecraft:beetroot"); }
+    ;
+    static get Bell() { return BlockTypes.get("minecraft:bell"); }
+    ;
+    static get BigDripleaf() { return BlockTypes.get("minecraft:big_dripleaf"); }
+    ;
+    static get BirchButton() { return BlockTypes.get("minecraft:birch_button"); }
+    ;
+    static get BirchDoor() { return BlockTypes.get("minecraft:birch_door"); }
+    ;
+    static get BirchFence() { return BlockTypes.get("minecraft:birch_fence"); }
+    ;
+    static get BirchFenceGate() { return BlockTypes.get("minecraft:birch_fence_gate"); }
+    ;
+    static get BirchHangingSign() { return BlockTypes.get("minecraft:birch_hanging_sign"); }
+    ;
+    static get BirchLog() { return BlockTypes.get("minecraft:birch_log"); }
+    ;
+    static get BirchPressurePlate() { return BlockTypes.get("minecraft:birch_pressure_plate"); }
+    ;
+    static get BirchStairs() { return BlockTypes.get("minecraft:birch_stairs"); }
+    ;
+    static get BirchStandingSign() { return BlockTypes.get("minecraft:birch_standing_sign"); }
+    ;
+    static get BirchTrapdoor() { return BlockTypes.get("minecraft:birch_trapdoor"); }
+    ;
+    static get BirchWallSign() { return BlockTypes.get("minecraft:birch_wall_sign"); }
+    ;
+    static get BlackCandle() { return BlockTypes.get("minecraft:black_candle"); }
+    ;
+    static get BlackCandleCake() { return BlockTypes.get("minecraft:black_candle_cake"); }
+    ;
+    static get BlackCarpet() { return BlockTypes.get("minecraft:black_carpet"); }
+    ;
+    static get BlackConcrete() { return BlockTypes.get("minecraft:black_concrete"); }
+    ;
+    static get BlackConcretePowder() { return BlockTypes.get("minecraft:black_concrete_powder"); }
+    ;
+    static get BlackGlazedTerracotta() { return BlockTypes.get("minecraft:black_glazed_terracotta"); }
+    ;
+    static get BlackShulkerBox() { return BlockTypes.get("minecraft:black_shulker_box"); }
+    ;
+    static get BlackStainedGlass() { return BlockTypes.get("minecraft:black_stained_glass"); }
+    ;
+    static get BlackStainedGlassPane() { return BlockTypes.get("minecraft:black_stained_glass_pane"); }
+    ;
+    static get BlackTerracotta() { return BlockTypes.get("minecraft:black_terracotta"); }
+    ;
+    static get BlackWool() { return BlockTypes.get("minecraft:black_wool"); }
+    ;
+    static get Blackstone() { return BlockTypes.get("minecraft:blackstone"); }
+    ;
+    static get BlackstoneDoubleSlab() { return BlockTypes.get("minecraft:blackstone_double_slab"); }
+    ;
+    static get BlackstoneSlab() { return BlockTypes.get("minecraft:blackstone_slab"); }
+    ;
+    static get BlackstoneStairs() { return BlockTypes.get("minecraft:blackstone_stairs"); }
+    ;
+    static get BlackstoneWall() { return BlockTypes.get("minecraft:blackstone_wall"); }
+    ;
+    static get BlastFurnace() { return BlockTypes.get("minecraft:blast_furnace"); }
+    ;
+    static get BlueCandle() { return BlockTypes.get("minecraft:blue_candle"); }
+    ;
+    static get BlueCandleCake() { return BlockTypes.get("minecraft:blue_candle_cake"); }
+    ;
+    static get BlueCarpet() { return BlockTypes.get("minecraft:blue_carpet"); }
+    ;
+    static get BlueConcrete() { return BlockTypes.get("minecraft:blue_concrete"); }
+    ;
+    static get BlueConcretePowder() { return BlockTypes.get("minecraft:blue_concrete_powder"); }
+    ;
+    static get BlueGlazedTerracotta() { return BlockTypes.get("minecraft:blue_glazed_terracotta"); }
+    ;
+    static get BlueIce() { return BlockTypes.get("minecraft:blue_ice"); }
+    ;
+    static get BlueShulkerBox() { return BlockTypes.get("minecraft:blue_shulker_box"); }
+    ;
+    static get BlueStainedGlass() { return BlockTypes.get("minecraft:blue_stained_glass"); }
+    ;
+    static get BlueStainedGlassPane() { return BlockTypes.get("minecraft:blue_stained_glass_pane"); }
+    ;
+    static get BlueTerracotta() { return BlockTypes.get("minecraft:blue_terracotta"); }
+    ;
+    static get BlueWool() { return BlockTypes.get("minecraft:blue_wool"); }
+    ;
+    static get BoneBlock() { return BlockTypes.get("minecraft:bone_block"); }
+    ;
+    static get Bookshelf() { return BlockTypes.get("minecraft:bookshelf"); }
+    ;
+    static get BorderBlock() { return BlockTypes.get("minecraft:border_block"); }
+    ;
+    static get BrainCoral() { return BlockTypes.get("minecraft:brain_coral"); }
+    ;
+    static get BrewingStand() { return BlockTypes.get("minecraft:brewing_stand"); }
+    ;
+    static get BrickBlock() { return BlockTypes.get("minecraft:brick_block"); }
+    ;
+    static get BrickStairs() { return BlockTypes.get("minecraft:brick_stairs"); }
+    ;
+    static get BrownCandle() { return BlockTypes.get("minecraft:brown_candle"); }
+    ;
+    static get BrownCandleCake() { return BlockTypes.get("minecraft:brown_candle_cake"); }
+    ;
+    static get BrownCarpet() { return BlockTypes.get("minecraft:brown_carpet"); }
+    ;
+    static get BrownConcrete() { return BlockTypes.get("minecraft:brown_concrete"); }
+    ;
+    static get BrownConcretePowder() { return BlockTypes.get("minecraft:brown_concrete_powder"); }
+    ;
+    static get BrownGlazedTerracotta() { return BlockTypes.get("minecraft:brown_glazed_terracotta"); }
+    ;
+    static get BrownMushroom() { return BlockTypes.get("minecraft:brown_mushroom"); }
+    ;
+    static get BrownMushroomBlock() { return BlockTypes.get("minecraft:brown_mushroom_block"); }
+    ;
+    static get BrownShulkerBox() { return BlockTypes.get("minecraft:brown_shulker_box"); }
+    ;
+    static get BrownStainedGlass() { return BlockTypes.get("minecraft:brown_stained_glass"); }
+    ;
+    static get BrownStainedGlassPane() { return BlockTypes.get("minecraft:brown_stained_glass_pane"); }
+    ;
+    static get BrownTerracotta() { return BlockTypes.get("minecraft:brown_terracotta"); }
+    ;
+    static get BrownWool() { return BlockTypes.get("minecraft:brown_wool"); }
+    ;
+    static get BubbleColumn() { return BlockTypes.get("minecraft:bubble_column"); }
+    ;
+    static get BubbleCoral() { return BlockTypes.get("minecraft:bubble_coral"); }
+    ;
+    static get BuddingAmethyst() { return BlockTypes.get("minecraft:budding_amethyst"); }
+    ;
+    static get Cactus() { return BlockTypes.get("minecraft:cactus"); }
+    ;
+    static get Cake() { return BlockTypes.get("minecraft:cake"); }
+    ;
+    static get Calcite() { return BlockTypes.get("minecraft:calcite"); }
+    ;
+    static get CalibratedSculkSensor() { return BlockTypes.get("minecraft:calibrated_sculk_sensor"); }
+    ;
+    static get Camera() { return BlockTypes.get("minecraft:camera"); }
+    ;
+    static get Campfire() { return BlockTypes.get("minecraft:campfire"); }
+    ;
+    static get Candle() { return BlockTypes.get("minecraft:candle"); }
+    ;
+    static get CandleCake() { return BlockTypes.get("minecraft:candle_cake"); }
+    ;
+    static get Carrots() { return BlockTypes.get("minecraft:carrots"); }
+    ;
+    static get CartographyTable() { return BlockTypes.get("minecraft:cartography_table"); }
+    ;
+    static get CarvedPumpkin() { return BlockTypes.get("minecraft:carved_pumpkin"); }
+    ;
+    static get Cauldron() { return BlockTypes.get("minecraft:cauldron"); }
+    ;
+    static get CaveVines() { return BlockTypes.get("minecraft:cave_vines"); }
+    ;
+    static get CaveVinesBodyWithBerries() { return BlockTypes.get("minecraft:cave_vines_body_with_berries"); }
+    ;
+    static get CaveVinesHeadWithBerries() { return BlockTypes.get("minecraft:cave_vines_head_with_berries"); }
+    ;
+    static get Chain() { return BlockTypes.get("minecraft:chain"); }
+    ;
+    static get ChainCommandBlock() { return BlockTypes.get("minecraft:chain_command_block"); }
+    ;
+    static get ChemicalHeat() { return BlockTypes.get("minecraft:chemical_heat"); }
+    ;
+    static get ChemistryTable() { return BlockTypes.get("minecraft:chemistry_table"); }
+    ;
+    static get CherryButton() { return BlockTypes.get("minecraft:cherry_button"); }
+    ;
+    static get CherryDoor() { return BlockTypes.get("minecraft:cherry_door"); }
+    ;
+    static get CherryDoubleSlab() { return BlockTypes.get("minecraft:cherry_double_slab"); }
+    ;
+    static get CherryFence() { return BlockTypes.get("minecraft:cherry_fence"); }
+    ;
+    static get CherryFenceGate() { return BlockTypes.get("minecraft:cherry_fence_gate"); }
+    ;
+    static get CherryHangingSign() { return BlockTypes.get("minecraft:cherry_hanging_sign"); }
+    ;
+    static get CherryLeaves() { return BlockTypes.get("minecraft:cherry_leaves"); }
+    ;
+    static get CherryLog() { return BlockTypes.get("minecraft:cherry_log"); }
+    ;
+    static get CherryPlanks() { return BlockTypes.get("minecraft:cherry_planks"); }
+    ;
+    static get CherryPressurePlate() { return BlockTypes.get("minecraft:cherry_pressure_plate"); }
+    ;
+    static get CherrySapling() { return BlockTypes.get("minecraft:cherry_sapling"); }
+    ;
+    static get CherrySlab() { return BlockTypes.get("minecraft:cherry_slab"); }
+    ;
+    static get CherryStairs() { return BlockTypes.get("minecraft:cherry_stairs"); }
+    ;
+    static get CherryStandingSign() { return BlockTypes.get("minecraft:cherry_standing_sign"); }
+    ;
+    static get CherryTrapdoor() { return BlockTypes.get("minecraft:cherry_trapdoor"); }
+    ;
+    static get CherryWallSign() { return BlockTypes.get("minecraft:cherry_wall_sign"); }
+    ;
+    static get CherryWood() { return BlockTypes.get("minecraft:cherry_wood"); }
+    ;
+    static get Chest() { return BlockTypes.get("minecraft:chest"); }
+    ;
+    static get ChiseledBookshelf() { return BlockTypes.get("minecraft:chiseled_bookshelf"); }
+    ;
+    static get ChiseledDeepslate() { return BlockTypes.get("minecraft:chiseled_deepslate"); }
+    ;
+    static get ChiseledNetherBricks() { return BlockTypes.get("minecraft:chiseled_nether_bricks"); }
+    ;
+    static get ChiseledPolishedBlackstone() { return BlockTypes.get("minecraft:chiseled_polished_blackstone"); }
+    ;
+    static get ChorusFlower() { return BlockTypes.get("minecraft:chorus_flower"); }
+    ;
+    static get ChorusPlant() { return BlockTypes.get("minecraft:chorus_plant"); }
+    ;
+    static get Clay() { return BlockTypes.get("minecraft:clay"); }
+    ;
+    static get ClientRequestPlaceholderBlock() { return BlockTypes.get("minecraft:client_request_placeholder_block"); }
+    ;
+    static get CoalBlock() { return BlockTypes.get("minecraft:coal_block"); }
+    ;
+    static get CoalOre() { return BlockTypes.get("minecraft:coal_ore"); }
+    ;
+    static get CobbledDeepslate() { return BlockTypes.get("minecraft:cobbled_deepslate"); }
+    ;
+    static get CobbledDeepslateDoubleSlab() { return BlockTypes.get("minecraft:cobbled_deepslate_double_slab"); }
+    ;
+    static get CobbledDeepslateSlab() { return BlockTypes.get("minecraft:cobbled_deepslate_slab"); }
+    ;
+    static get CobbledDeepslateStairs() { return BlockTypes.get("minecraft:cobbled_deepslate_stairs"); }
+    ;
+    static get CobbledDeepslateWall() { return BlockTypes.get("minecraft:cobbled_deepslate_wall"); }
+    ;
+    static get Cobblestone() { return BlockTypes.get("minecraft:cobblestone"); }
+    ;
+    static get CobblestoneWall() { return BlockTypes.get("minecraft:cobblestone_wall"); }
+    ;
+    static get Cocoa() { return BlockTypes.get("minecraft:cocoa"); }
+    ;
+    static get ColoredTorchBp() { return BlockTypes.get("minecraft:colored_torch_bp"); }
+    ;
+    static get ColoredTorchRg() { return BlockTypes.get("minecraft:colored_torch_rg"); }
+    ;
+    static get CommandBlock() { return BlockTypes.get("minecraft:command_block"); }
+    ;
+    static get Composter() { return BlockTypes.get("minecraft:composter"); }
+    ;
+    static get Conduit() { return BlockTypes.get("minecraft:conduit"); }
+    ;
+    static get CopperBlock() { return BlockTypes.get("minecraft:copper_block"); }
+    ;
+    static get CopperOre() { return BlockTypes.get("minecraft:copper_ore"); }
+    ;
+    static get CoralBlock() { return BlockTypes.get("minecraft:coral_block"); }
+    ;
+    static get CoralFan() { return BlockTypes.get("minecraft:coral_fan"); }
+    ;
+    static get CoralFanDead() { return BlockTypes.get("minecraft:coral_fan_dead"); }
+    ;
+    static get CoralFanHang() { return BlockTypes.get("minecraft:coral_fan_hang"); }
+    ;
+    static get CoralFanHang2() { return BlockTypes.get("minecraft:coral_fan_hang2"); }
+    ;
+    static get CoralFanHang3() { return BlockTypes.get("minecraft:coral_fan_hang3"); }
+    ;
+    static get CrackedDeepslateBricks() { return BlockTypes.get("minecraft:cracked_deepslate_bricks"); }
+    ;
+    static get CrackedDeepslateTiles() { return BlockTypes.get("minecraft:cracked_deepslate_tiles"); }
+    ;
+    static get CrackedNetherBricks() { return BlockTypes.get("minecraft:cracked_nether_bricks"); }
+    ;
+    static get CrackedPolishedBlackstoneBricks() { return BlockTypes.get("minecraft:cracked_polished_blackstone_bricks"); }
+    ;
+    static get CraftingTable() { return BlockTypes.get("minecraft:crafting_table"); }
+    ;
+    static get CrimsonButton() { return BlockTypes.get("minecraft:crimson_button"); }
+    ;
+    static get CrimsonDoor() { return BlockTypes.get("minecraft:crimson_door"); }
+    ;
+    static get CrimsonDoubleSlab() { return BlockTypes.get("minecraft:crimson_double_slab"); }
+    ;
+    static get CrimsonFence() { return BlockTypes.get("minecraft:crimson_fence"); }
+    ;
+    static get CrimsonFenceGate() { return BlockTypes.get("minecraft:crimson_fence_gate"); }
+    ;
+    static get CrimsonFungus() { return BlockTypes.get("minecraft:crimson_fungus"); }
+    ;
+    static get CrimsonHangingSign() { return BlockTypes.get("minecraft:crimson_hanging_sign"); }
+    ;
+    static get CrimsonHyphae() { return BlockTypes.get("minecraft:crimson_hyphae"); }
+    ;
+    static get CrimsonNylium() { return BlockTypes.get("minecraft:crimson_nylium"); }
+    ;
+    static get CrimsonPlanks() { return BlockTypes.get("minecraft:crimson_planks"); }
+    ;
+    static get CrimsonPressurePlate() { return BlockTypes.get("minecraft:crimson_pressure_plate"); }
+    ;
+    static get CrimsonRoots() { return BlockTypes.get("minecraft:crimson_roots"); }
+    ;
+    static get CrimsonSlab() { return BlockTypes.get("minecraft:crimson_slab"); }
+    ;
+    static get CrimsonStairs() { return BlockTypes.get("minecraft:crimson_stairs"); }
+    ;
+    static get CrimsonStandingSign() { return BlockTypes.get("minecraft:crimson_standing_sign"); }
+    ;
+    static get CrimsonStem() { return BlockTypes.get("minecraft:crimson_stem"); }
+    ;
+    static get CrimsonTrapdoor() { return BlockTypes.get("minecraft:crimson_trapdoor"); }
+    ;
+    static get CrimsonWallSign() { return BlockTypes.get("minecraft:crimson_wall_sign"); }
+    ;
+    static get CryingObsidian() { return BlockTypes.get("minecraft:crying_obsidian"); }
+    ;
+    static get CutCopper() { return BlockTypes.get("minecraft:cut_copper"); }
+    ;
+    static get CutCopperSlab() { return BlockTypes.get("minecraft:cut_copper_slab"); }
+    ;
+    static get CutCopperStairs() { return BlockTypes.get("minecraft:cut_copper_stairs"); }
+    ;
+    static get CyanCandle() { return BlockTypes.get("minecraft:cyan_candle"); }
+    ;
+    static get CyanCandleCake() { return BlockTypes.get("minecraft:cyan_candle_cake"); }
+    ;
+    static get CyanCarpet() { return BlockTypes.get("minecraft:cyan_carpet"); }
+    ;
+    static get CyanConcrete() { return BlockTypes.get("minecraft:cyan_concrete"); }
+    ;
+    static get CyanConcretePowder() { return BlockTypes.get("minecraft:cyan_concrete_powder"); }
+    ;
+    static get CyanGlazedTerracotta() { return BlockTypes.get("minecraft:cyan_glazed_terracotta"); }
+    ;
+    static get CyanShulkerBox() { return BlockTypes.get("minecraft:cyan_shulker_box"); }
+    ;
+    static get CyanStainedGlass() { return BlockTypes.get("minecraft:cyan_stained_glass"); }
+    ;
+    static get CyanStainedGlassPane() { return BlockTypes.get("minecraft:cyan_stained_glass_pane"); }
+    ;
+    static get CyanTerracotta() { return BlockTypes.get("minecraft:cyan_terracotta"); }
+    ;
+    static get CyanWool() { return BlockTypes.get("minecraft:cyan_wool"); }
+    ;
+    static get DarkOakButton() { return BlockTypes.get("minecraft:dark_oak_button"); }
+    ;
+    static get DarkOakDoor() { return BlockTypes.get("minecraft:dark_oak_door"); }
+    ;
+    static get DarkOakFence() { return BlockTypes.get("minecraft:dark_oak_fence"); }
+    ;
+    static get DarkOakFenceGate() { return BlockTypes.get("minecraft:dark_oak_fence_gate"); }
+    ;
+    static get DarkOakHangingSign() { return BlockTypes.get("minecraft:dark_oak_hanging_sign"); }
+    ;
+    static get DarkOakLog() { return BlockTypes.get("minecraft:dark_oak_log"); }
+    ;
+    static get DarkOakPressurePlate() { return BlockTypes.get("minecraft:dark_oak_pressure_plate"); }
+    ;
+    static get DarkOakStairs() { return BlockTypes.get("minecraft:dark_oak_stairs"); }
+    ;
+    static get DarkOakTrapdoor() { return BlockTypes.get("minecraft:dark_oak_trapdoor"); }
+    ;
+    static get DarkPrismarineStairs() { return BlockTypes.get("minecraft:dark_prismarine_stairs"); }
+    ;
+    static get DarkoakStandingSign() { return BlockTypes.get("minecraft:darkoak_standing_sign"); }
+    ;
+    static get DarkoakWallSign() { return BlockTypes.get("minecraft:darkoak_wall_sign"); }
+    ;
+    static get DaylightDetector() { return BlockTypes.get("minecraft:daylight_detector"); }
+    ;
+    static get DaylightDetectorInverted() { return BlockTypes.get("minecraft:daylight_detector_inverted"); }
+    ;
+    static get DeadBrainCoral() { return BlockTypes.get("minecraft:dead_brain_coral"); }
+    ;
+    static get DeadBubbleCoral() { return BlockTypes.get("minecraft:dead_bubble_coral"); }
+    ;
+    static get DeadFireCoral() { return BlockTypes.get("minecraft:dead_fire_coral"); }
+    ;
+    static get DeadHornCoral() { return BlockTypes.get("minecraft:dead_horn_coral"); }
+    ;
+    static get DeadTubeCoral() { return BlockTypes.get("minecraft:dead_tube_coral"); }
+    ;
+    static get Deadbush() { return BlockTypes.get("minecraft:deadbush"); }
+    ;
+    static get DecoratedPot() { return BlockTypes.get("minecraft:decorated_pot"); }
+    ;
+    static get Deepslate() { return BlockTypes.get("minecraft:deepslate"); }
+    ;
+    static get DeepslateBrickDoubleSlab() { return BlockTypes.get("minecraft:deepslate_brick_double_slab"); }
+    ;
+    static get DeepslateBrickSlab() { return BlockTypes.get("minecraft:deepslate_brick_slab"); }
+    ;
+    static get DeepslateBrickStairs() { return BlockTypes.get("minecraft:deepslate_brick_stairs"); }
+    ;
+    static get DeepslateBrickWall() { return BlockTypes.get("minecraft:deepslate_brick_wall"); }
+    ;
+    static get DeepslateBricks() { return BlockTypes.get("minecraft:deepslate_bricks"); }
+    ;
+    static get DeepslateCoalOre() { return BlockTypes.get("minecraft:deepslate_coal_ore"); }
+    ;
+    static get DeepslateCopperOre() { return BlockTypes.get("minecraft:deepslate_copper_ore"); }
+    ;
+    static get DeepslateDiamondOre() { return BlockTypes.get("minecraft:deepslate_diamond_ore"); }
+    ;
+    static get DeepslateEmeraldOre() { return BlockTypes.get("minecraft:deepslate_emerald_ore"); }
+    ;
+    static get DeepslateGoldOre() { return BlockTypes.get("minecraft:deepslate_gold_ore"); }
+    ;
+    static get DeepslateIronOre() { return BlockTypes.get("minecraft:deepslate_iron_ore"); }
+    ;
+    static get DeepslateLapisOre() { return BlockTypes.get("minecraft:deepslate_lapis_ore"); }
+    ;
+    static get DeepslateRedstoneOre() { return BlockTypes.get("minecraft:deepslate_redstone_ore"); }
+    ;
+    static get DeepslateTileDoubleSlab() { return BlockTypes.get("minecraft:deepslate_tile_double_slab"); }
+    ;
+    static get DeepslateTileSlab() { return BlockTypes.get("minecraft:deepslate_tile_slab"); }
+    ;
+    static get DeepslateTileStairs() { return BlockTypes.get("minecraft:deepslate_tile_stairs"); }
+    ;
+    static get DeepslateTileWall() { return BlockTypes.get("minecraft:deepslate_tile_wall"); }
+    ;
+    static get DeepslateTiles() { return BlockTypes.get("minecraft:deepslate_tiles"); }
+    ;
+    static get Deny() { return BlockTypes.get("minecraft:deny"); }
+    ;
+    static get DetectorRail() { return BlockTypes.get("minecraft:detector_rail"); }
+    ;
+    static get DiamondBlock() { return BlockTypes.get("minecraft:diamond_block"); }
+    ;
+    static get DiamondOre() { return BlockTypes.get("minecraft:diamond_ore"); }
+    ;
+    static get DioriteStairs() { return BlockTypes.get("minecraft:diorite_stairs"); }
+    ;
+    static get Dirt() { return BlockTypes.get("minecraft:dirt"); }
+    ;
+    static get DirtWithRoots() { return BlockTypes.get("minecraft:dirt_with_roots"); }
+    ;
+    static get Dispenser() { return BlockTypes.get("minecraft:dispenser"); }
+    ;
+    static get DoubleCutCopperSlab() { return BlockTypes.get("minecraft:double_cut_copper_slab"); }
+    ;
+    static get DoublePlant() { return BlockTypes.get("minecraft:double_plant"); }
+    ;
+    static get DoubleStoneBlockSlab() { return BlockTypes.get("minecraft:double_stone_block_slab"); }
+    ;
+    static get DoubleStoneBlockSlab2() { return BlockTypes.get("minecraft:double_stone_block_slab2"); }
+    ;
+    static get DoubleStoneBlockSlab3() { return BlockTypes.get("minecraft:double_stone_block_slab3"); }
+    ;
+    static get DoubleStoneBlockSlab4() { return BlockTypes.get("minecraft:double_stone_block_slab4"); }
+    ;
+    static get DoubleWoodenSlab() { return BlockTypes.get("minecraft:double_wooden_slab"); }
+    ;
+    static get DragonEgg() { return BlockTypes.get("minecraft:dragon_egg"); }
+    ;
+    static get DriedKelpBlock() { return BlockTypes.get("minecraft:dried_kelp_block"); }
+    ;
+    static get DripstoneBlock() { return BlockTypes.get("minecraft:dripstone_block"); }
+    ;
+    static get Dropper() { return BlockTypes.get("minecraft:dropper"); }
+    ;
+    static get Element0() { return BlockTypes.get("minecraft:element_0"); }
+    ;
+    static get Element1() { return BlockTypes.get("minecraft:element_1"); }
+    ;
+    static get Element10() { return BlockTypes.get("minecraft:element_10"); }
+    ;
+    static get Element100() { return BlockTypes.get("minecraft:element_100"); }
+    ;
+    static get Element101() { return BlockTypes.get("minecraft:element_101"); }
+    ;
+    static get Element102() { return BlockTypes.get("minecraft:element_102"); }
+    ;
+    static get Element103() { return BlockTypes.get("minecraft:element_103"); }
+    ;
+    static get Element104() { return BlockTypes.get("minecraft:element_104"); }
+    ;
+    static get Element105() { return BlockTypes.get("minecraft:element_105"); }
+    ;
+    static get Element106() { return BlockTypes.get("minecraft:element_106"); }
+    ;
+    static get Element107() { return BlockTypes.get("minecraft:element_107"); }
+    ;
+    static get Element108() { return BlockTypes.get("minecraft:element_108"); }
+    ;
+    static get Element109() { return BlockTypes.get("minecraft:element_109"); }
+    ;
+    static get Element11() { return BlockTypes.get("minecraft:element_11"); }
+    ;
+    static get Element110() { return BlockTypes.get("minecraft:element_110"); }
+    ;
+    static get Element111() { return BlockTypes.get("minecraft:element_111"); }
+    ;
+    static get Element112() { return BlockTypes.get("minecraft:element_112"); }
+    ;
+    static get Element113() { return BlockTypes.get("minecraft:element_113"); }
+    ;
+    static get Element114() { return BlockTypes.get("minecraft:element_114"); }
+    ;
+    static get Element115() { return BlockTypes.get("minecraft:element_115"); }
+    ;
+    static get Element116() { return BlockTypes.get("minecraft:element_116"); }
+    ;
+    static get Element117() { return BlockTypes.get("minecraft:element_117"); }
+    ;
+    static get Element118() { return BlockTypes.get("minecraft:element_118"); }
+    ;
+    static get Element12() { return BlockTypes.get("minecraft:element_12"); }
+    ;
+    static get Element13() { return BlockTypes.get("minecraft:element_13"); }
+    ;
+    static get Element14() { return BlockTypes.get("minecraft:element_14"); }
+    ;
+    static get Element15() { return BlockTypes.get("minecraft:element_15"); }
+    ;
+    static get Element16() { return BlockTypes.get("minecraft:element_16"); }
+    ;
+    static get Element17() { return BlockTypes.get("minecraft:element_17"); }
+    ;
+    static get Element18() { return BlockTypes.get("minecraft:element_18"); }
+    ;
+    static get Element19() { return BlockTypes.get("minecraft:element_19"); }
+    ;
+    static get Element2() { return BlockTypes.get("minecraft:element_2"); }
+    ;
+    static get Element20() { return BlockTypes.get("minecraft:element_20"); }
+    ;
+    static get Element21() { return BlockTypes.get("minecraft:element_21"); }
+    ;
+    static get Element22() { return BlockTypes.get("minecraft:element_22"); }
+    ;
+    static get Element23() { return BlockTypes.get("minecraft:element_23"); }
+    ;
+    static get Element24() { return BlockTypes.get("minecraft:element_24"); }
+    ;
+    static get Element25() { return BlockTypes.get("minecraft:element_25"); }
+    ;
+    static get Element26() { return BlockTypes.get("minecraft:element_26"); }
+    ;
+    static get Element27() { return BlockTypes.get("minecraft:element_27"); }
+    ;
+    static get Element28() { return BlockTypes.get("minecraft:element_28"); }
+    ;
+    static get Element29() { return BlockTypes.get("minecraft:element_29"); }
+    ;
+    static get Element3() { return BlockTypes.get("minecraft:element_3"); }
+    ;
+    static get Element30() { return BlockTypes.get("minecraft:element_30"); }
+    ;
+    static get Element31() { return BlockTypes.get("minecraft:element_31"); }
+    ;
+    static get Element32() { return BlockTypes.get("minecraft:element_32"); }
+    ;
+    static get Element33() { return BlockTypes.get("minecraft:element_33"); }
+    ;
+    static get Element34() { return BlockTypes.get("minecraft:element_34"); }
+    ;
+    static get Element35() { return BlockTypes.get("minecraft:element_35"); }
+    ;
+    static get Element36() { return BlockTypes.get("minecraft:element_36"); }
+    ;
+    static get Element37() { return BlockTypes.get("minecraft:element_37"); }
+    ;
+    static get Element38() { return BlockTypes.get("minecraft:element_38"); }
+    ;
+    static get Element39() { return BlockTypes.get("minecraft:element_39"); }
+    ;
+    static get Element4() { return BlockTypes.get("minecraft:element_4"); }
+    ;
+    static get Element40() { return BlockTypes.get("minecraft:element_40"); }
+    ;
+    static get Element41() { return BlockTypes.get("minecraft:element_41"); }
+    ;
+    static get Element42() { return BlockTypes.get("minecraft:element_42"); }
+    ;
+    static get Element43() { return BlockTypes.get("minecraft:element_43"); }
+    ;
+    static get Element44() { return BlockTypes.get("minecraft:element_44"); }
+    ;
+    static get Element45() { return BlockTypes.get("minecraft:element_45"); }
+    ;
+    static get Element46() { return BlockTypes.get("minecraft:element_46"); }
+    ;
+    static get Element47() { return BlockTypes.get("minecraft:element_47"); }
+    ;
+    static get Element48() { return BlockTypes.get("minecraft:element_48"); }
+    ;
+    static get Element49() { return BlockTypes.get("minecraft:element_49"); }
+    ;
+    static get Element5() { return BlockTypes.get("minecraft:element_5"); }
+    ;
+    static get Element50() { return BlockTypes.get("minecraft:element_50"); }
+    ;
+    static get Element51() { return BlockTypes.get("minecraft:element_51"); }
+    ;
+    static get Element52() { return BlockTypes.get("minecraft:element_52"); }
+    ;
+    static get Element53() { return BlockTypes.get("minecraft:element_53"); }
+    ;
+    static get Element54() { return BlockTypes.get("minecraft:element_54"); }
+    ;
+    static get Element55() { return BlockTypes.get("minecraft:element_55"); }
+    ;
+    static get Element56() { return BlockTypes.get("minecraft:element_56"); }
+    ;
+    static get Element57() { return BlockTypes.get("minecraft:element_57"); }
+    ;
+    static get Element58() { return BlockTypes.get("minecraft:element_58"); }
+    ;
+    static get Element59() { return BlockTypes.get("minecraft:element_59"); }
+    ;
+    static get Element6() { return BlockTypes.get("minecraft:element_6"); }
+    ;
+    static get Element60() { return BlockTypes.get("minecraft:element_60"); }
+    ;
+    static get Element61() { return BlockTypes.get("minecraft:element_61"); }
+    ;
+    static get Element62() { return BlockTypes.get("minecraft:element_62"); }
+    ;
+    static get Element63() { return BlockTypes.get("minecraft:element_63"); }
+    ;
+    static get Element64() { return BlockTypes.get("minecraft:element_64"); }
+    ;
+    static get Element65() { return BlockTypes.get("minecraft:element_65"); }
+    ;
+    static get Element66() { return BlockTypes.get("minecraft:element_66"); }
+    ;
+    static get Element67() { return BlockTypes.get("minecraft:element_67"); }
+    ;
+    static get Element68() { return BlockTypes.get("minecraft:element_68"); }
+    ;
+    static get Element69() { return BlockTypes.get("minecraft:element_69"); }
+    ;
+    static get Element7() { return BlockTypes.get("minecraft:element_7"); }
+    ;
+    static get Element70() { return BlockTypes.get("minecraft:element_70"); }
+    ;
+    static get Element71() { return BlockTypes.get("minecraft:element_71"); }
+    ;
+    static get Element72() { return BlockTypes.get("minecraft:element_72"); }
+    ;
+    static get Element73() { return BlockTypes.get("minecraft:element_73"); }
+    ;
+    static get Element74() { return BlockTypes.get("minecraft:element_74"); }
+    ;
+    static get Element75() { return BlockTypes.get("minecraft:element_75"); }
+    ;
+    static get Element76() { return BlockTypes.get("minecraft:element_76"); }
+    ;
+    static get Element77() { return BlockTypes.get("minecraft:element_77"); }
+    ;
+    static get Element78() { return BlockTypes.get("minecraft:element_78"); }
+    ;
+    static get Element79() { return BlockTypes.get("minecraft:element_79"); }
+    ;
+    static get Element8() { return BlockTypes.get("minecraft:element_8"); }
+    ;
+    static get Element80() { return BlockTypes.get("minecraft:element_80"); }
+    ;
+    static get Element81() { return BlockTypes.get("minecraft:element_81"); }
+    ;
+    static get Element82() { return BlockTypes.get("minecraft:element_82"); }
+    ;
+    static get Element83() { return BlockTypes.get("minecraft:element_83"); }
+    ;
+    static get Element84() { return BlockTypes.get("minecraft:element_84"); }
+    ;
+    static get Element85() { return BlockTypes.get("minecraft:element_85"); }
+    ;
+    static get Element86() { return BlockTypes.get("minecraft:element_86"); }
+    ;
+    static get Element87() { return BlockTypes.get("minecraft:element_87"); }
+    ;
+    static get Element88() { return BlockTypes.get("minecraft:element_88"); }
+    ;
+    static get Element89() { return BlockTypes.get("minecraft:element_89"); }
+    ;
+    static get Element9() { return BlockTypes.get("minecraft:element_9"); }
+    ;
+    static get Element90() { return BlockTypes.get("minecraft:element_90"); }
+    ;
+    static get Element91() { return BlockTypes.get("minecraft:element_91"); }
+    ;
+    static get Element92() { return BlockTypes.get("minecraft:element_92"); }
+    ;
+    static get Element93() { return BlockTypes.get("minecraft:element_93"); }
+    ;
+    static get Element94() { return BlockTypes.get("minecraft:element_94"); }
+    ;
+    static get Element95() { return BlockTypes.get("minecraft:element_95"); }
+    ;
+    static get Element96() { return BlockTypes.get("minecraft:element_96"); }
+    ;
+    static get Element97() { return BlockTypes.get("minecraft:element_97"); }
+    ;
+    static get Element98() { return BlockTypes.get("minecraft:element_98"); }
+    ;
+    static get Element99() { return BlockTypes.get("minecraft:element_99"); }
+    ;
+    static get EmeraldBlock() { return BlockTypes.get("minecraft:emerald_block"); }
+    ;
+    static get EmeraldOre() { return BlockTypes.get("minecraft:emerald_ore"); }
+    ;
+    static get EnchantingTable() { return BlockTypes.get("minecraft:enchanting_table"); }
+    ;
+    static get EndBrickStairs() { return BlockTypes.get("minecraft:end_brick_stairs"); }
+    ;
+    static get EndBricks() { return BlockTypes.get("minecraft:end_bricks"); }
+    ;
+    static get EndGateway() { return BlockTypes.get("minecraft:end_gateway"); }
+    ;
+    static get EndPortal() { return BlockTypes.get("minecraft:end_portal"); }
+    ;
+    static get EndPortalFrame() { return BlockTypes.get("minecraft:end_portal_frame"); }
+    ;
+    static get EndRod() { return BlockTypes.get("minecraft:end_rod"); }
+    ;
+    static get EndStone() { return BlockTypes.get("minecraft:end_stone"); }
+    ;
+    static get EnderChest() { return BlockTypes.get("minecraft:ender_chest"); }
+    ;
+    static get ExposedCopper() { return BlockTypes.get("minecraft:exposed_copper"); }
+    ;
+    static get ExposedCutCopper() { return BlockTypes.get("minecraft:exposed_cut_copper"); }
+    ;
+    static get ExposedCutCopperSlab() { return BlockTypes.get("minecraft:exposed_cut_copper_slab"); }
+    ;
+    static get ExposedCutCopperStairs() { return BlockTypes.get("minecraft:exposed_cut_copper_stairs"); }
+    ;
+    static get ExposedDoubleCutCopperSlab() { return BlockTypes.get("minecraft:exposed_double_cut_copper_slab"); }
+    ;
+    static get Farmland() { return BlockTypes.get("minecraft:farmland"); }
+    ;
+    static get FenceGate() { return BlockTypes.get("minecraft:fence_gate"); }
+    ;
+    static get Fire() { return BlockTypes.get("minecraft:fire"); }
+    ;
+    static get FireCoral() { return BlockTypes.get("minecraft:fire_coral"); }
+    ;
+    static get FletchingTable() { return BlockTypes.get("minecraft:fletching_table"); }
+    ;
+    static get FlowerPot() { return BlockTypes.get("minecraft:flower_pot"); }
+    ;
+    static get FloweringAzalea() { return BlockTypes.get("minecraft:flowering_azalea"); }
+    ;
+    static get FlowingLava() { return BlockTypes.get("minecraft:flowing_lava"); }
+    ;
+    static get FlowingWater() { return BlockTypes.get("minecraft:flowing_water"); }
+    ;
+    static get Frame() { return BlockTypes.get("minecraft:frame"); }
+    ;
+    static get FrogSpawn() { return BlockTypes.get("minecraft:frog_spawn"); }
+    ;
+    static get FrostedIce() { return BlockTypes.get("minecraft:frosted_ice"); }
+    ;
+    static get Furnace() { return BlockTypes.get("minecraft:furnace"); }
+    ;
+    static get GildedBlackstone() { return BlockTypes.get("minecraft:gilded_blackstone"); }
+    ;
+    static get Glass() { return BlockTypes.get("minecraft:glass"); }
+    ;
+    static get GlassPane() { return BlockTypes.get("minecraft:glass_pane"); }
+    ;
+    static get GlowFrame() { return BlockTypes.get("minecraft:glow_frame"); }
+    ;
+    static get GlowLichen() { return BlockTypes.get("minecraft:glow_lichen"); }
+    ;
+    static get Glowingobsidian() { return BlockTypes.get("minecraft:glowingobsidian"); }
+    ;
+    static get Glowstone() { return BlockTypes.get("minecraft:glowstone"); }
+    ;
+    static get GoldBlock() { return BlockTypes.get("minecraft:gold_block"); }
+    ;
+    static get GoldOre() { return BlockTypes.get("minecraft:gold_ore"); }
+    ;
+    static get GoldenRail() { return BlockTypes.get("minecraft:golden_rail"); }
+    ;
+    static get GraniteStairs() { return BlockTypes.get("minecraft:granite_stairs"); }
+    ;
+    static get Grass() { return BlockTypes.get("minecraft:grass"); }
+    ;
+    static get GrassPath() { return BlockTypes.get("minecraft:grass_path"); }
+    ;
+    static get Gravel() { return BlockTypes.get("minecraft:gravel"); }
+    ;
+    static get GrayCandle() { return BlockTypes.get("minecraft:gray_candle"); }
+    ;
+    static get GrayCandleCake() { return BlockTypes.get("minecraft:gray_candle_cake"); }
+    ;
+    static get GrayCarpet() { return BlockTypes.get("minecraft:gray_carpet"); }
+    ;
+    static get GrayConcrete() { return BlockTypes.get("minecraft:gray_concrete"); }
+    ;
+    static get GrayConcretePowder() { return BlockTypes.get("minecraft:gray_concrete_powder"); }
+    ;
+    static get GrayGlazedTerracotta() { return BlockTypes.get("minecraft:gray_glazed_terracotta"); }
+    ;
+    static get GrayShulkerBox() { return BlockTypes.get("minecraft:gray_shulker_box"); }
+    ;
+    static get GrayStainedGlass() { return BlockTypes.get("minecraft:gray_stained_glass"); }
+    ;
+    static get GrayStainedGlassPane() { return BlockTypes.get("minecraft:gray_stained_glass_pane"); }
+    ;
+    static get GrayTerracotta() { return BlockTypes.get("minecraft:gray_terracotta"); }
+    ;
+    static get GrayWool() { return BlockTypes.get("minecraft:gray_wool"); }
+    ;
+    static get GreenCandle() { return BlockTypes.get("minecraft:green_candle"); }
+    ;
+    static get GreenCandleCake() { return BlockTypes.get("minecraft:green_candle_cake"); }
+    ;
+    static get GreenCarpet() { return BlockTypes.get("minecraft:green_carpet"); }
+    ;
+    static get GreenConcrete() { return BlockTypes.get("minecraft:green_concrete"); }
+    ;
+    static get GreenConcretePowder() { return BlockTypes.get("minecraft:green_concrete_powder"); }
+    ;
+    static get GreenGlazedTerracotta() { return BlockTypes.get("minecraft:green_glazed_terracotta"); }
+    ;
+    static get GreenShulkerBox() { return BlockTypes.get("minecraft:green_shulker_box"); }
+    ;
+    static get GreenStainedGlass() { return BlockTypes.get("minecraft:green_stained_glass"); }
+    ;
+    static get GreenStainedGlassPane() { return BlockTypes.get("minecraft:green_stained_glass_pane"); }
+    ;
+    static get GreenTerracotta() { return BlockTypes.get("minecraft:green_terracotta"); }
+    ;
+    static get GreenWool() { return BlockTypes.get("minecraft:green_wool"); }
+    ;
+    static get Grindstone() { return BlockTypes.get("minecraft:grindstone"); }
+    ;
+    static get HangingRoots() { return BlockTypes.get("minecraft:hanging_roots"); }
+    ;
+    static get HardGlass() { return BlockTypes.get("minecraft:hard_glass"); }
+    ;
+    static get HardGlassPane() { return BlockTypes.get("minecraft:hard_glass_pane"); }
+    ;
+    static get HardStainedGlass() { return BlockTypes.get("minecraft:hard_stained_glass"); }
+    ;
+    static get HardStainedGlassPane() { return BlockTypes.get("minecraft:hard_stained_glass_pane"); }
+    ;
+    static get HardenedClay() { return BlockTypes.get("minecraft:hardened_clay"); }
+    ;
+    static get HayBlock() { return BlockTypes.get("minecraft:hay_block"); }
+    ;
+    static get HeavyWeightedPressurePlate() { return BlockTypes.get("minecraft:heavy_weighted_pressure_plate"); }
+    ;
+    static get HoneyBlock() { return BlockTypes.get("minecraft:honey_block"); }
+    ;
+    static get HoneycombBlock() { return BlockTypes.get("minecraft:honeycomb_block"); }
+    ;
+    static get Hopper() { return BlockTypes.get("minecraft:hopper"); }
+    ;
+    static get HornCoral() { return BlockTypes.get("minecraft:horn_coral"); }
+    ;
+    static get Ice() { return BlockTypes.get("minecraft:ice"); }
+    ;
+    static get InfestedDeepslate() { return BlockTypes.get("minecraft:infested_deepslate"); }
+    ;
+    static get InfoUpdate() { return BlockTypes.get("minecraft:info_update"); }
+    ;
+    static get InfoUpdate2() { return BlockTypes.get("minecraft:info_update2"); }
+    ;
+    static get InvisibleBedrock() { return BlockTypes.get("minecraft:invisible_bedrock"); }
+    ;
+    static get IronBars() { return BlockTypes.get("minecraft:iron_bars"); }
+    ;
+    static get IronBlock() { return BlockTypes.get("minecraft:iron_block"); }
+    ;
+    static get IronDoor() { return BlockTypes.get("minecraft:iron_door"); }
+    ;
+    static get IronOre() { return BlockTypes.get("minecraft:iron_ore"); }
+    ;
+    static get IronTrapdoor() { return BlockTypes.get("minecraft:iron_trapdoor"); }
+    ;
+    static get Jigsaw() { return BlockTypes.get("minecraft:jigsaw"); }
+    ;
+    static get Jukebox() { return BlockTypes.get("minecraft:jukebox"); }
+    ;
+    static get JungleButton() { return BlockTypes.get("minecraft:jungle_button"); }
+    ;
+    static get JungleDoor() { return BlockTypes.get("minecraft:jungle_door"); }
+    ;
+    static get JungleFence() { return BlockTypes.get("minecraft:jungle_fence"); }
+    ;
+    static get JungleFenceGate() { return BlockTypes.get("minecraft:jungle_fence_gate"); }
+    ;
+    static get JungleHangingSign() { return BlockTypes.get("minecraft:jungle_hanging_sign"); }
+    ;
+    static get JungleLog() { return BlockTypes.get("minecraft:jungle_log"); }
+    ;
+    static get JunglePressurePlate() { return BlockTypes.get("minecraft:jungle_pressure_plate"); }
+    ;
+    static get JungleStairs() { return BlockTypes.get("minecraft:jungle_stairs"); }
+    ;
+    static get JungleStandingSign() { return BlockTypes.get("minecraft:jungle_standing_sign"); }
+    ;
+    static get JungleTrapdoor() { return BlockTypes.get("minecraft:jungle_trapdoor"); }
+    ;
+    static get JungleWallSign() { return BlockTypes.get("minecraft:jungle_wall_sign"); }
+    ;
+    static get Kelp() { return BlockTypes.get("minecraft:kelp"); }
+    ;
+    static get Ladder() { return BlockTypes.get("minecraft:ladder"); }
+    ;
+    static get Lantern() { return BlockTypes.get("minecraft:lantern"); }
+    ;
+    static get LapisBlock() { return BlockTypes.get("minecraft:lapis_block"); }
+    ;
+    static get LapisOre() { return BlockTypes.get("minecraft:lapis_ore"); }
+    ;
+    static get LargeAmethystBud() { return BlockTypes.get("minecraft:large_amethyst_bud"); }
+    ;
+    static get Lava() { return BlockTypes.get("minecraft:lava"); }
+    ;
+    static get Leaves() { return BlockTypes.get("minecraft:leaves"); }
+    ;
+    static get Leaves2() { return BlockTypes.get("minecraft:leaves2"); }
+    ;
+    static get Lectern() { return BlockTypes.get("minecraft:lectern"); }
+    ;
+    static get Lever() { return BlockTypes.get("minecraft:lever"); }
+    ;
+    static get LightBlock() { return BlockTypes.get("minecraft:light_block"); }
+    ;
+    static get LightBlueCandle() { return BlockTypes.get("minecraft:light_blue_candle"); }
+    ;
+    static get LightBlueCandleCake() { return BlockTypes.get("minecraft:light_blue_candle_cake"); }
+    ;
+    static get LightBlueCarpet() { return BlockTypes.get("minecraft:light_blue_carpet"); }
+    ;
+    static get LightBlueConcrete() { return BlockTypes.get("minecraft:light_blue_concrete"); }
+    ;
+    static get LightBlueConcretePowder() { return BlockTypes.get("minecraft:light_blue_concrete_powder"); }
+    ;
+    static get LightBlueGlazedTerracotta() { return BlockTypes.get("minecraft:light_blue_glazed_terracotta"); }
+    ;
+    static get LightBlueShulkerBox() { return BlockTypes.get("minecraft:light_blue_shulker_box"); }
+    ;
+    static get LightBlueStainedGlass() { return BlockTypes.get("minecraft:light_blue_stained_glass"); }
+    ;
+    static get LightBlueStainedGlassPane() { return BlockTypes.get("minecraft:light_blue_stained_glass_pane"); }
+    ;
+    static get LightBlueTerracotta() { return BlockTypes.get("minecraft:light_blue_terracotta"); }
+    ;
+    static get LightBlueWool() { return BlockTypes.get("minecraft:light_blue_wool"); }
+    ;
+    static get LightGrayCandle() { return BlockTypes.get("minecraft:light_gray_candle"); }
+    ;
+    static get LightGrayCandleCake() { return BlockTypes.get("minecraft:light_gray_candle_cake"); }
+    ;
+    static get LightGrayCarpet() { return BlockTypes.get("minecraft:light_gray_carpet"); }
+    ;
+    static get LightGrayConcrete() { return BlockTypes.get("minecraft:light_gray_concrete"); }
+    ;
+    static get LightGrayConcretePowder() { return BlockTypes.get("minecraft:light_gray_concrete_powder"); }
+    ;
+    static get LightGrayShulkerBox() { return BlockTypes.get("minecraft:light_gray_shulker_box"); }
+    ;
+    static get LightGrayStainedGlass() { return BlockTypes.get("minecraft:light_gray_stained_glass"); }
+    ;
+    static get LightGrayStainedGlassPane() { return BlockTypes.get("minecraft:light_gray_stained_glass_pane"); }
+    ;
+    static get LightGrayTerracotta() { return BlockTypes.get("minecraft:light_gray_terracotta"); }
+    ;
+    static get LightGrayWool() { return BlockTypes.get("minecraft:light_gray_wool"); }
+    ;
+    static get LightWeightedPressurePlate() { return BlockTypes.get("minecraft:light_weighted_pressure_plate"); }
+    ;
+    static get LightningRod() { return BlockTypes.get("minecraft:lightning_rod"); }
+    ;
+    static get LimeCandle() { return BlockTypes.get("minecraft:lime_candle"); }
+    ;
+    static get LimeCandleCake() { return BlockTypes.get("minecraft:lime_candle_cake"); }
+    ;
+    static get LimeCarpet() { return BlockTypes.get("minecraft:lime_carpet"); }
+    ;
+    static get LimeConcrete() { return BlockTypes.get("minecraft:lime_concrete"); }
+    ;
+    static get LimeConcretePowder() { return BlockTypes.get("minecraft:lime_concrete_powder"); }
+    ;
+    static get LimeGlazedTerracotta() { return BlockTypes.get("minecraft:lime_glazed_terracotta"); }
+    ;
+    static get LimeShulkerBox() { return BlockTypes.get("minecraft:lime_shulker_box"); }
+    ;
+    static get LimeStainedGlass() { return BlockTypes.get("minecraft:lime_stained_glass"); }
+    ;
+    static get LimeStainedGlassPane() { return BlockTypes.get("minecraft:lime_stained_glass_pane"); }
+    ;
+    static get LimeTerracotta() { return BlockTypes.get("minecraft:lime_terracotta"); }
+    ;
+    static get LimeWool() { return BlockTypes.get("minecraft:lime_wool"); }
+    ;
+    static get LitBlastFurnace() { return BlockTypes.get("minecraft:lit_blast_furnace"); }
+    ;
+    static get LitDeepslateRedstoneOre() { return BlockTypes.get("minecraft:lit_deepslate_redstone_ore"); }
+    ;
+    static get LitFurnace() { return BlockTypes.get("minecraft:lit_furnace"); }
+    ;
+    static get LitPumpkin() { return BlockTypes.get("minecraft:lit_pumpkin"); }
+    ;
+    static get LitRedstoneLamp() { return BlockTypes.get("minecraft:lit_redstone_lamp"); }
+    ;
+    static get LitRedstoneOre() { return BlockTypes.get("minecraft:lit_redstone_ore"); }
+    ;
+    static get LitSmoker() { return BlockTypes.get("minecraft:lit_smoker"); }
+    ;
+    static get Lodestone() { return BlockTypes.get("minecraft:lodestone"); }
+    ;
+    static get Loom() { return BlockTypes.get("minecraft:loom"); }
+    ;
+    static get MagentaCandle() { return BlockTypes.get("minecraft:magenta_candle"); }
+    ;
+    static get MagentaCandleCake() { return BlockTypes.get("minecraft:magenta_candle_cake"); }
+    ;
+    static get MagentaCarpet() { return BlockTypes.get("minecraft:magenta_carpet"); }
+    ;
+    static get MagentaConcrete() { return BlockTypes.get("minecraft:magenta_concrete"); }
+    ;
+    static get MagentaConcretePowder() { return BlockTypes.get("minecraft:magenta_concrete_powder"); }
+    ;
+    static get MagentaGlazedTerracotta() { return BlockTypes.get("minecraft:magenta_glazed_terracotta"); }
+    ;
+    static get MagentaShulkerBox() { return BlockTypes.get("minecraft:magenta_shulker_box"); }
+    ;
+    static get MagentaStainedGlass() { return BlockTypes.get("minecraft:magenta_stained_glass"); }
+    ;
+    static get MagentaStainedGlassPane() { return BlockTypes.get("minecraft:magenta_stained_glass_pane"); }
+    ;
+    static get MagentaTerracotta() { return BlockTypes.get("minecraft:magenta_terracotta"); }
+    ;
+    static get MagentaWool() { return BlockTypes.get("minecraft:magenta_wool"); }
+    ;
+    static get Magma() { return BlockTypes.get("minecraft:magma"); }
+    ;
+    static get MangroveButton() { return BlockTypes.get("minecraft:mangrove_button"); }
+    ;
+    static get MangroveDoor() { return BlockTypes.get("minecraft:mangrove_door"); }
+    ;
+    static get MangroveDoubleSlab() { return BlockTypes.get("minecraft:mangrove_double_slab"); }
+    ;
+    static get MangroveFence() { return BlockTypes.get("minecraft:mangrove_fence"); }
+    ;
+    static get MangroveFenceGate() { return BlockTypes.get("minecraft:mangrove_fence_gate"); }
+    ;
+    static get MangroveHangingSign() { return BlockTypes.get("minecraft:mangrove_hanging_sign"); }
+    ;
+    static get MangroveLeaves() { return BlockTypes.get("minecraft:mangrove_leaves"); }
+    ;
+    static get MangroveLog() { return BlockTypes.get("minecraft:mangrove_log"); }
+    ;
+    static get MangrovePlanks() { return BlockTypes.get("minecraft:mangrove_planks"); }
+    ;
+    static get MangrovePressurePlate() { return BlockTypes.get("minecraft:mangrove_pressure_plate"); }
+    ;
+    static get MangrovePropagule() { return BlockTypes.get("minecraft:mangrove_propagule"); }
+    ;
+    static get MangroveRoots() { return BlockTypes.get("minecraft:mangrove_roots"); }
+    ;
+    static get MangroveSlab() { return BlockTypes.get("minecraft:mangrove_slab"); }
+    ;
+    static get MangroveStairs() { return BlockTypes.get("minecraft:mangrove_stairs"); }
+    ;
+    static get MangroveStandingSign() { return BlockTypes.get("minecraft:mangrove_standing_sign"); }
+    ;
+    static get MangroveTrapdoor() { return BlockTypes.get("minecraft:mangrove_trapdoor"); }
+    ;
+    static get MangroveWallSign() { return BlockTypes.get("minecraft:mangrove_wall_sign"); }
+    ;
+    static get MangroveWood() { return BlockTypes.get("minecraft:mangrove_wood"); }
+    ;
+    static get MediumAmethystBud() { return BlockTypes.get("minecraft:medium_amethyst_bud"); }
+    ;
+    static get MelonBlock() { return BlockTypes.get("minecraft:melon_block"); }
+    ;
+    static get MelonStem() { return BlockTypes.get("minecraft:melon_stem"); }
+    ;
+    static get MobSpawner() { return BlockTypes.get("minecraft:mob_spawner"); }
+    ;
+    static get MonsterEgg() { return BlockTypes.get("minecraft:monster_egg"); }
+    ;
+    static get MossBlock() { return BlockTypes.get("minecraft:moss_block"); }
+    ;
+    static get MossCarpet() { return BlockTypes.get("minecraft:moss_carpet"); }
+    ;
+    static get MossyCobblestone() { return BlockTypes.get("minecraft:mossy_cobblestone"); }
+    ;
+    static get MossyCobblestoneStairs() { return BlockTypes.get("minecraft:mossy_cobblestone_stairs"); }
+    ;
+    static get MossyStoneBrickStairs() { return BlockTypes.get("minecraft:mossy_stone_brick_stairs"); }
+    ;
+    static get MovingBlock() { return BlockTypes.get("minecraft:moving_block"); }
+    ;
+    static get Mud() { return BlockTypes.get("minecraft:mud"); }
+    ;
+    static get MudBrickDoubleSlab() { return BlockTypes.get("minecraft:mud_brick_double_slab"); }
+    ;
+    static get MudBrickSlab() { return BlockTypes.get("minecraft:mud_brick_slab"); }
+    ;
+    static get MudBrickStairs() { return BlockTypes.get("minecraft:mud_brick_stairs"); }
+    ;
+    static get MudBrickWall() { return BlockTypes.get("minecraft:mud_brick_wall"); }
+    ;
+    static get MudBricks() { return BlockTypes.get("minecraft:mud_bricks"); }
+    ;
+    static get MuddyMangroveRoots() { return BlockTypes.get("minecraft:muddy_mangrove_roots"); }
+    ;
+    static get Mycelium() { return BlockTypes.get("minecraft:mycelium"); }
+    ;
+    static get NetherBrick() { return BlockTypes.get("minecraft:nether_brick"); }
+    ;
+    static get NetherBrickFence() { return BlockTypes.get("minecraft:nether_brick_fence"); }
+    ;
+    static get NetherBrickStairs() { return BlockTypes.get("minecraft:nether_brick_stairs"); }
+    ;
+    static get NetherGoldOre() { return BlockTypes.get("minecraft:nether_gold_ore"); }
+    ;
+    static get NetherSprouts() { return BlockTypes.get("minecraft:nether_sprouts"); }
+    ;
+    static get NetherWart() { return BlockTypes.get("minecraft:nether_wart"); }
+    ;
+    static get NetherWartBlock() { return BlockTypes.get("minecraft:nether_wart_block"); }
+    ;
+    static get NetheriteBlock() { return BlockTypes.get("minecraft:netherite_block"); }
+    ;
+    static get Netherrack() { return BlockTypes.get("minecraft:netherrack"); }
+    ;
+    static get Netherreactor() { return BlockTypes.get("minecraft:netherreactor"); }
+    ;
+    static get NormalStoneStairs() { return BlockTypes.get("minecraft:normal_stone_stairs"); }
+    ;
+    static get Noteblock() { return BlockTypes.get("minecraft:noteblock"); }
+    ;
+    static get OakFence() { return BlockTypes.get("minecraft:oak_fence"); }
+    ;
+    static get OakHangingSign() { return BlockTypes.get("minecraft:oak_hanging_sign"); }
+    ;
+    static get OakLog() { return BlockTypes.get("minecraft:oak_log"); }
+    ;
+    static get OakStairs() { return BlockTypes.get("minecraft:oak_stairs"); }
+    ;
+    static get Observer() { return BlockTypes.get("minecraft:observer"); }
+    ;
+    static get Obsidian() { return BlockTypes.get("minecraft:obsidian"); }
+    ;
+    static get OchreFroglight() { return BlockTypes.get("minecraft:ochre_froglight"); }
+    ;
+    static get OrangeCandle() { return BlockTypes.get("minecraft:orange_candle"); }
+    ;
+    static get OrangeCandleCake() { return BlockTypes.get("minecraft:orange_candle_cake"); }
+    ;
+    static get OrangeCarpet() { return BlockTypes.get("minecraft:orange_carpet"); }
+    ;
+    static get OrangeConcrete() { return BlockTypes.get("minecraft:orange_concrete"); }
+    ;
+    static get OrangeConcretePowder() { return BlockTypes.get("minecraft:orange_concrete_powder"); }
+    ;
+    static get OrangeGlazedTerracotta() { return BlockTypes.get("minecraft:orange_glazed_terracotta"); }
+    ;
+    static get OrangeShulkerBox() { return BlockTypes.get("minecraft:orange_shulker_box"); }
+    ;
+    static get OrangeStainedGlass() { return BlockTypes.get("minecraft:orange_stained_glass"); }
+    ;
+    static get OrangeStainedGlassPane() { return BlockTypes.get("minecraft:orange_stained_glass_pane"); }
+    ;
+    static get OrangeTerracotta() { return BlockTypes.get("minecraft:orange_terracotta"); }
+    ;
+    static get OrangeWool() { return BlockTypes.get("minecraft:orange_wool"); }
+    ;
+    static get OxidizedCopper() { return BlockTypes.get("minecraft:oxidized_copper"); }
+    ;
+    static get OxidizedCutCopper() { return BlockTypes.get("minecraft:oxidized_cut_copper"); }
+    ;
+    static get OxidizedCutCopperSlab() { return BlockTypes.get("minecraft:oxidized_cut_copper_slab"); }
+    ;
+    static get OxidizedCutCopperStairs() { return BlockTypes.get("minecraft:oxidized_cut_copper_stairs"); }
+    ;
+    static get OxidizedDoubleCutCopperSlab() { return BlockTypes.get("minecraft:oxidized_double_cut_copper_slab"); }
+    ;
+    static get PackedIce() { return BlockTypes.get("minecraft:packed_ice"); }
+    ;
+    static get PackedMud() { return BlockTypes.get("minecraft:packed_mud"); }
+    ;
+    static get PearlescentFroglight() { return BlockTypes.get("minecraft:pearlescent_froglight"); }
+    ;
+    static get PinkCandle() { return BlockTypes.get("minecraft:pink_candle"); }
+    ;
+    static get PinkCandleCake() { return BlockTypes.get("minecraft:pink_candle_cake"); }
+    ;
+    static get PinkCarpet() { return BlockTypes.get("minecraft:pink_carpet"); }
+    ;
+    static get PinkConcrete() { return BlockTypes.get("minecraft:pink_concrete"); }
+    ;
+    static get PinkConcretePowder() { return BlockTypes.get("minecraft:pink_concrete_powder"); }
+    ;
+    static get PinkGlazedTerracotta() { return BlockTypes.get("minecraft:pink_glazed_terracotta"); }
+    ;
+    static get PinkPetals() { return BlockTypes.get("minecraft:pink_petals"); }
+    ;
+    static get PinkShulkerBox() { return BlockTypes.get("minecraft:pink_shulker_box"); }
+    ;
+    static get PinkStainedGlass() { return BlockTypes.get("minecraft:pink_stained_glass"); }
+    ;
+    static get PinkStainedGlassPane() { return BlockTypes.get("minecraft:pink_stained_glass_pane"); }
+    ;
+    static get PinkTerracotta() { return BlockTypes.get("minecraft:pink_terracotta"); }
+    ;
+    static get PinkWool() { return BlockTypes.get("minecraft:pink_wool"); }
+    ;
+    static get Piston() { return BlockTypes.get("minecraft:piston"); }
+    ;
+    static get PistonArmCollision() { return BlockTypes.get("minecraft:piston_arm_collision"); }
+    ;
+    static get PitcherCrop() { return BlockTypes.get("minecraft:pitcher_crop"); }
+    ;
+    static get PitcherPlant() { return BlockTypes.get("minecraft:pitcher_plant"); }
+    ;
+    static get Planks() { return BlockTypes.get("minecraft:planks"); }
+    ;
+    static get Podzol() { return BlockTypes.get("minecraft:podzol"); }
+    ;
+    static get PointedDripstone() { return BlockTypes.get("minecraft:pointed_dripstone"); }
+    ;
+    static get PolishedAndesiteStairs() { return BlockTypes.get("minecraft:polished_andesite_stairs"); }
+    ;
+    static get PolishedBasalt() { return BlockTypes.get("minecraft:polished_basalt"); }
+    ;
+    static get PolishedBlackstone() { return BlockTypes.get("minecraft:polished_blackstone"); }
+    ;
+    static get PolishedBlackstoneBrickDoubleSlab() { return BlockTypes.get("minecraft:polished_blackstone_brick_double_slab"); }
+    ;
+    static get PolishedBlackstoneBrickSlab() { return BlockTypes.get("minecraft:polished_blackstone_brick_slab"); }
+    ;
+    static get PolishedBlackstoneBrickStairs() { return BlockTypes.get("minecraft:polished_blackstone_brick_stairs"); }
+    ;
+    static get PolishedBlackstoneBrickWall() { return BlockTypes.get("minecraft:polished_blackstone_brick_wall"); }
+    ;
+    static get PolishedBlackstoneBricks() { return BlockTypes.get("minecraft:polished_blackstone_bricks"); }
+    ;
+    static get PolishedBlackstoneButton() { return BlockTypes.get("minecraft:polished_blackstone_button"); }
+    ;
+    static get PolishedBlackstoneDoubleSlab() { return BlockTypes.get("minecraft:polished_blackstone_double_slab"); }
+    ;
+    static get PolishedBlackstonePressurePlate() { return BlockTypes.get("minecraft:polished_blackstone_pressure_plate"); }
+    ;
+    static get PolishedBlackstoneSlab() { return BlockTypes.get("minecraft:polished_blackstone_slab"); }
+    ;
+    static get PolishedBlackstoneStairs() { return BlockTypes.get("minecraft:polished_blackstone_stairs"); }
+    ;
+    static get PolishedBlackstoneWall() { return BlockTypes.get("minecraft:polished_blackstone_wall"); }
+    ;
+    static get PolishedDeepslate() { return BlockTypes.get("minecraft:polished_deepslate"); }
+    ;
+    static get PolishedDeepslateDoubleSlab() { return BlockTypes.get("minecraft:polished_deepslate_double_slab"); }
+    ;
+    static get PolishedDeepslateSlab() { return BlockTypes.get("minecraft:polished_deepslate_slab"); }
+    ;
+    static get PolishedDeepslateStairs() { return BlockTypes.get("minecraft:polished_deepslate_stairs"); }
+    ;
+    static get PolishedDeepslateWall() { return BlockTypes.get("minecraft:polished_deepslate_wall"); }
+    ;
+    static get PolishedDioriteStairs() { return BlockTypes.get("minecraft:polished_diorite_stairs"); }
+    ;
+    static get PolishedGraniteStairs() { return BlockTypes.get("minecraft:polished_granite_stairs"); }
+    ;
+    static get Portal() { return BlockTypes.get("minecraft:portal"); }
+    ;
+    static get Potatoes() { return BlockTypes.get("minecraft:potatoes"); }
+    ;
+    static get PowderSnow() { return BlockTypes.get("minecraft:powder_snow"); }
+    ;
+    static get PoweredComparator() { return BlockTypes.get("minecraft:powered_comparator"); }
+    ;
+    static get PoweredRepeater() { return BlockTypes.get("minecraft:powered_repeater"); }
+    ;
+    static get Prismarine() { return BlockTypes.get("minecraft:prismarine"); }
+    ;
+    static get PrismarineBricksStairs() { return BlockTypes.get("minecraft:prismarine_bricks_stairs"); }
+    ;
+    static get PrismarineStairs() { return BlockTypes.get("minecraft:prismarine_stairs"); }
+    ;
+    static get Pumpkin() { return BlockTypes.get("minecraft:pumpkin"); }
+    ;
+    static get PumpkinStem() { return BlockTypes.get("minecraft:pumpkin_stem"); }
+    ;
+    static get PurpleCandle() { return BlockTypes.get("minecraft:purple_candle"); }
+    ;
+    static get PurpleCandleCake() { return BlockTypes.get("minecraft:purple_candle_cake"); }
+    ;
+    static get PurpleCarpet() { return BlockTypes.get("minecraft:purple_carpet"); }
+    ;
+    static get PurpleConcrete() { return BlockTypes.get("minecraft:purple_concrete"); }
+    ;
+    static get PurpleConcretePowder() { return BlockTypes.get("minecraft:purple_concrete_powder"); }
+    ;
+    static get PurpleGlazedTerracotta() { return BlockTypes.get("minecraft:purple_glazed_terracotta"); }
+    ;
+    static get PurpleShulkerBox() { return BlockTypes.get("minecraft:purple_shulker_box"); }
+    ;
+    static get PurpleStainedGlass() { return BlockTypes.get("minecraft:purple_stained_glass"); }
+    ;
+    static get PurpleStainedGlassPane() { return BlockTypes.get("minecraft:purple_stained_glass_pane"); }
+    ;
+    static get PurpleTerracotta() { return BlockTypes.get("minecraft:purple_terracotta"); }
+    ;
+    static get PurpleWool() { return BlockTypes.get("minecraft:purple_wool"); }
+    ;
+    static get PurpurBlock() { return BlockTypes.get("minecraft:purpur_block"); }
+    ;
+    static get PurpurStairs() { return BlockTypes.get("minecraft:purpur_stairs"); }
+    ;
+    static get QuartzBlock() { return BlockTypes.get("minecraft:quartz_block"); }
+    ;
+    static get QuartzBricks() { return BlockTypes.get("minecraft:quartz_bricks"); }
+    ;
+    static get QuartzOre() { return BlockTypes.get("minecraft:quartz_ore"); }
+    ;
+    static get QuartzStairs() { return BlockTypes.get("minecraft:quartz_stairs"); }
+    ;
+    static get Rail() { return BlockTypes.get("minecraft:rail"); }
+    ;
+    static get RawCopperBlock() { return BlockTypes.get("minecraft:raw_copper_block"); }
+    ;
+    static get RawGoldBlock() { return BlockTypes.get("minecraft:raw_gold_block"); }
+    ;
+    static get RawIronBlock() { return BlockTypes.get("minecraft:raw_iron_block"); }
+    ;
+    static get RedCandle() { return BlockTypes.get("minecraft:red_candle"); }
+    ;
+    static get RedCandleCake() { return BlockTypes.get("minecraft:red_candle_cake"); }
+    ;
+    static get RedCarpet() { return BlockTypes.get("minecraft:red_carpet"); }
+    ;
+    static get RedConcrete() { return BlockTypes.get("minecraft:red_concrete"); }
+    ;
+    static get RedConcretePowder() { return BlockTypes.get("minecraft:red_concrete_powder"); }
+    ;
+    static get RedFlower() { return BlockTypes.get("minecraft:red_flower"); }
+    ;
+    static get RedGlazedTerracotta() { return BlockTypes.get("minecraft:red_glazed_terracotta"); }
+    ;
+    static get RedMushroom() { return BlockTypes.get("minecraft:red_mushroom"); }
+    ;
+    static get RedMushroomBlock() { return BlockTypes.get("minecraft:red_mushroom_block"); }
+    ;
+    static get RedNetherBrick() { return BlockTypes.get("minecraft:red_nether_brick"); }
+    ;
+    static get RedNetherBrickStairs() { return BlockTypes.get("minecraft:red_nether_brick_stairs"); }
+    ;
+    static get RedSandstone() { return BlockTypes.get("minecraft:red_sandstone"); }
+    ;
+    static get RedSandstoneStairs() { return BlockTypes.get("minecraft:red_sandstone_stairs"); }
+    ;
+    static get RedShulkerBox() { return BlockTypes.get("minecraft:red_shulker_box"); }
+    ;
+    static get RedStainedGlass() { return BlockTypes.get("minecraft:red_stained_glass"); }
+    ;
+    static get RedStainedGlassPane() { return BlockTypes.get("minecraft:red_stained_glass_pane"); }
+    ;
+    static get RedTerracotta() { return BlockTypes.get("minecraft:red_terracotta"); }
+    ;
+    static get RedWool() { return BlockTypes.get("minecraft:red_wool"); }
+    ;
+    static get RedstoneBlock() { return BlockTypes.get("minecraft:redstone_block"); }
+    ;
+    static get RedstoneLamp() { return BlockTypes.get("minecraft:redstone_lamp"); }
+    ;
+    static get RedstoneOre() { return BlockTypes.get("minecraft:redstone_ore"); }
+    ;
+    static get RedstoneTorch() { return BlockTypes.get("minecraft:redstone_torch"); }
+    ;
+    static get RedstoneWire() { return BlockTypes.get("minecraft:redstone_wire"); }
+    ;
+    static get Reeds() { return BlockTypes.get("minecraft:reeds"); }
+    ;
+    static get ReinforcedDeepslate() { return BlockTypes.get("minecraft:reinforced_deepslate"); }
+    ;
+    static get RepeatingCommandBlock() { return BlockTypes.get("minecraft:repeating_command_block"); }
+    ;
+    static get Reserved6() { return BlockTypes.get("minecraft:reserved6"); }
+    ;
+    static get RespawnAnchor() { return BlockTypes.get("minecraft:respawn_anchor"); }
+    ;
+    static get Sand() { return BlockTypes.get("minecraft:sand"); }
+    ;
+    static get Sandstone() { return BlockTypes.get("minecraft:sandstone"); }
+    ;
+    static get SandstoneStairs() { return BlockTypes.get("minecraft:sandstone_stairs"); }
+    ;
+    static get Sapling() { return BlockTypes.get("minecraft:sapling"); }
+    ;
+    static get Scaffolding() { return BlockTypes.get("minecraft:scaffolding"); }
+    ;
+    static get Sculk() { return BlockTypes.get("minecraft:sculk"); }
+    ;
+    static get SculkCatalyst() { return BlockTypes.get("minecraft:sculk_catalyst"); }
+    ;
+    static get SculkSensor() { return BlockTypes.get("minecraft:sculk_sensor"); }
+    ;
+    static get SculkShrieker() { return BlockTypes.get("minecraft:sculk_shrieker"); }
+    ;
+    static get SculkVein() { return BlockTypes.get("minecraft:sculk_vein"); }
+    ;
+    static get SeaLantern() { return BlockTypes.get("minecraft:sea_lantern"); }
+    ;
+    static get SeaPickle() { return BlockTypes.get("minecraft:sea_pickle"); }
+    ;
+    static get Seagrass() { return BlockTypes.get("minecraft:seagrass"); }
+    ;
+    static get Shroomlight() { return BlockTypes.get("minecraft:shroomlight"); }
+    ;
+    static get SilverGlazedTerracotta() { return BlockTypes.get("minecraft:silver_glazed_terracotta"); }
+    ;
+    static get Skull() { return BlockTypes.get("minecraft:skull"); }
+    ;
+    static get Slime() { return BlockTypes.get("minecraft:slime"); }
+    ;
+    static get SmallAmethystBud() { return BlockTypes.get("minecraft:small_amethyst_bud"); }
+    ;
+    static get SmallDripleafBlock() { return BlockTypes.get("minecraft:small_dripleaf_block"); }
+    ;
+    static get SmithingTable() { return BlockTypes.get("minecraft:smithing_table"); }
+    ;
+    static get Smoker() { return BlockTypes.get("minecraft:smoker"); }
+    ;
+    static get SmoothBasalt() { return BlockTypes.get("minecraft:smooth_basalt"); }
+    ;
+    static get SmoothQuartzStairs() { return BlockTypes.get("minecraft:smooth_quartz_stairs"); }
+    ;
+    static get SmoothRedSandstoneStairs() { return BlockTypes.get("minecraft:smooth_red_sandstone_stairs"); }
+    ;
+    static get SmoothSandstoneStairs() { return BlockTypes.get("minecraft:smooth_sandstone_stairs"); }
+    ;
+    static get SmoothStone() { return BlockTypes.get("minecraft:smooth_stone"); }
+    ;
+    static get SnifferEgg() { return BlockTypes.get("minecraft:sniffer_egg"); }
+    ;
+    static get Snow() { return BlockTypes.get("minecraft:snow"); }
+    ;
+    static get SnowLayer() { return BlockTypes.get("minecraft:snow_layer"); }
+    ;
+    static get SoulCampfire() { return BlockTypes.get("minecraft:soul_campfire"); }
+    ;
+    static get SoulFire() { return BlockTypes.get("minecraft:soul_fire"); }
+    ;
+    static get SoulLantern() { return BlockTypes.get("minecraft:soul_lantern"); }
+    ;
+    static get SoulSand() { return BlockTypes.get("minecraft:soul_sand"); }
+    ;
+    static get SoulSoil() { return BlockTypes.get("minecraft:soul_soil"); }
+    ;
+    static get SoulTorch() { return BlockTypes.get("minecraft:soul_torch"); }
+    ;
+    static get Sponge() { return BlockTypes.get("minecraft:sponge"); }
+    ;
+    static get SporeBlossom() { return BlockTypes.get("minecraft:spore_blossom"); }
+    ;
+    static get SpruceButton() { return BlockTypes.get("minecraft:spruce_button"); }
+    ;
+    static get SpruceDoor() { return BlockTypes.get("minecraft:spruce_door"); }
+    ;
+    static get SpruceFence() { return BlockTypes.get("minecraft:spruce_fence"); }
+    ;
+    static get SpruceFenceGate() { return BlockTypes.get("minecraft:spruce_fence_gate"); }
+    ;
+    static get SpruceHangingSign() { return BlockTypes.get("minecraft:spruce_hanging_sign"); }
+    ;
+    static get SpruceLog() { return BlockTypes.get("minecraft:spruce_log"); }
+    ;
+    static get SprucePressurePlate() { return BlockTypes.get("minecraft:spruce_pressure_plate"); }
+    ;
+    static get SpruceStairs() { return BlockTypes.get("minecraft:spruce_stairs"); }
+    ;
+    static get SpruceStandingSign() { return BlockTypes.get("minecraft:spruce_standing_sign"); }
+    ;
+    static get SpruceTrapdoor() { return BlockTypes.get("minecraft:spruce_trapdoor"); }
+    ;
+    static get SpruceWallSign() { return BlockTypes.get("minecraft:spruce_wall_sign"); }
+    ;
+    static get StandingBanner() { return BlockTypes.get("minecraft:standing_banner"); }
+    ;
+    static get StandingSign() { return BlockTypes.get("minecraft:standing_sign"); }
+    ;
+    static get StickyPiston() { return BlockTypes.get("minecraft:sticky_piston"); }
+    ;
+    static get StickyPistonArmCollision() { return BlockTypes.get("minecraft:sticky_piston_arm_collision"); }
+    ;
+    static get Stone() { return BlockTypes.get("minecraft:stone"); }
+    ;
+    static get StoneBlockSlab() { return BlockTypes.get("minecraft:stone_block_slab"); }
+    ;
+    static get StoneBlockSlab2() { return BlockTypes.get("minecraft:stone_block_slab2"); }
+    ;
+    static get StoneBlockSlab3() { return BlockTypes.get("minecraft:stone_block_slab3"); }
+    ;
+    static get StoneBlockSlab4() { return BlockTypes.get("minecraft:stone_block_slab4"); }
+    ;
+    static get StoneBrickStairs() { return BlockTypes.get("minecraft:stone_brick_stairs"); }
+    ;
+    static get StoneButton() { return BlockTypes.get("minecraft:stone_button"); }
+    ;
+    static get StonePressurePlate() { return BlockTypes.get("minecraft:stone_pressure_plate"); }
+    ;
+    static get StoneStairs() { return BlockTypes.get("minecraft:stone_stairs"); }
+    ;
+    static get Stonebrick() { return BlockTypes.get("minecraft:stonebrick"); }
+    ;
+    static get Stonecutter() { return BlockTypes.get("minecraft:stonecutter"); }
+    ;
+    static get StonecutterBlock() { return BlockTypes.get("minecraft:stonecutter_block"); }
+    ;
+    static get StrippedAcaciaLog() { return BlockTypes.get("minecraft:stripped_acacia_log"); }
+    ;
+    static get StrippedBambooBlock() { return BlockTypes.get("minecraft:stripped_bamboo_block"); }
+    ;
+    static get StrippedBirchLog() { return BlockTypes.get("minecraft:stripped_birch_log"); }
+    ;
+    static get StrippedCherryLog() { return BlockTypes.get("minecraft:stripped_cherry_log"); }
+    ;
+    static get StrippedCherryWood() { return BlockTypes.get("minecraft:stripped_cherry_wood"); }
+    ;
+    static get StrippedCrimsonHyphae() { return BlockTypes.get("minecraft:stripped_crimson_hyphae"); }
+    ;
+    static get StrippedCrimsonStem() { return BlockTypes.get("minecraft:stripped_crimson_stem"); }
+    ;
+    static get StrippedDarkOakLog() { return BlockTypes.get("minecraft:stripped_dark_oak_log"); }
+    ;
+    static get StrippedJungleLog() { return BlockTypes.get("minecraft:stripped_jungle_log"); }
+    ;
+    static get StrippedMangroveLog() { return BlockTypes.get("minecraft:stripped_mangrove_log"); }
+    ;
+    static get StrippedMangroveWood() { return BlockTypes.get("minecraft:stripped_mangrove_wood"); }
+    ;
+    static get StrippedOakLog() { return BlockTypes.get("minecraft:stripped_oak_log"); }
+    ;
+    static get StrippedSpruceLog() { return BlockTypes.get("minecraft:stripped_spruce_log"); }
+    ;
+    static get StrippedWarpedHyphae() { return BlockTypes.get("minecraft:stripped_warped_hyphae"); }
+    ;
+    static get StrippedWarpedStem() { return BlockTypes.get("minecraft:stripped_warped_stem"); }
+    ;
+    static get StructureBlock() { return BlockTypes.get("minecraft:structure_block"); }
+    ;
+    static get StructureVoid() { return BlockTypes.get("minecraft:structure_void"); }
+    ;
+    static get SuspiciousGravel() { return BlockTypes.get("minecraft:suspicious_gravel"); }
+    ;
+    static get SuspiciousSand() { return BlockTypes.get("minecraft:suspicious_sand"); }
+    ;
+    static get SweetBerryBush() { return BlockTypes.get("minecraft:sweet_berry_bush"); }
+    ;
+    static get Tallgrass() { return BlockTypes.get("minecraft:tallgrass"); }
+    ;
+    static get Target() { return BlockTypes.get("minecraft:target"); }
+    ;
+    static get TintedGlass() { return BlockTypes.get("minecraft:tinted_glass"); }
+    ;
+    static get Tnt() { return BlockTypes.get("minecraft:tnt"); }
+    ;
+    static get Torch() { return BlockTypes.get("minecraft:torch"); }
+    ;
+    static get Torchflower() { return BlockTypes.get("minecraft:torchflower"); }
+    ;
+    static get TorchflowerCrop() { return BlockTypes.get("minecraft:torchflower_crop"); }
+    ;
+    static get Trapdoor() { return BlockTypes.get("minecraft:trapdoor"); }
+    ;
+    static get TrappedChest() { return BlockTypes.get("minecraft:trapped_chest"); }
+    ;
+    static get TripWire() { return BlockTypes.get("minecraft:trip_wire"); }
+    ;
+    static get TripwireHook() { return BlockTypes.get("minecraft:tripwire_hook"); }
+    ;
+    static get TubeCoral() { return BlockTypes.get("minecraft:tube_coral"); }
+    ;
+    static get Tuff() { return BlockTypes.get("minecraft:tuff"); }
+    ;
+    static get TurtleEgg() { return BlockTypes.get("minecraft:turtle_egg"); }
+    ;
+    static get TwistingVines() { return BlockTypes.get("minecraft:twisting_vines"); }
+    ;
+    static get UnderwaterTorch() { return BlockTypes.get("minecraft:underwater_torch"); }
+    ;
+    static get UndyedShulkerBox() { return BlockTypes.get("minecraft:undyed_shulker_box"); }
+    ;
+    static get Unknown() { return BlockTypes.get("minecraft:unknown"); }
+    ;
+    static get UnlitRedstoneTorch() { return BlockTypes.get("minecraft:unlit_redstone_torch"); }
+    ;
+    static get UnpoweredComparator() { return BlockTypes.get("minecraft:unpowered_comparator"); }
+    ;
+    static get UnpoweredRepeater() { return BlockTypes.get("minecraft:unpowered_repeater"); }
+    ;
+    static get VerdantFroglight() { return BlockTypes.get("minecraft:verdant_froglight"); }
+    ;
+    static get Vine() { return BlockTypes.get("minecraft:vine"); }
+    ;
+    static get WallBanner() { return BlockTypes.get("minecraft:wall_banner"); }
+    ;
+    static get WallSign() { return BlockTypes.get("minecraft:wall_sign"); }
+    ;
+    static get WarpedButton() { return BlockTypes.get("minecraft:warped_button"); }
+    ;
+    static get WarpedDoor() { return BlockTypes.get("minecraft:warped_door"); }
+    ;
+    static get WarpedDoubleSlab() { return BlockTypes.get("minecraft:warped_double_slab"); }
+    ;
+    static get WarpedFence() { return BlockTypes.get("minecraft:warped_fence"); }
+    ;
+    static get WarpedFenceGate() { return BlockTypes.get("minecraft:warped_fence_gate"); }
+    ;
+    static get WarpedFungus() { return BlockTypes.get("minecraft:warped_fungus"); }
+    ;
+    static get WarpedHangingSign() { return BlockTypes.get("minecraft:warped_hanging_sign"); }
+    ;
+    static get WarpedHyphae() { return BlockTypes.get("minecraft:warped_hyphae"); }
+    ;
+    static get WarpedNylium() { return BlockTypes.get("minecraft:warped_nylium"); }
+    ;
+    static get WarpedPlanks() { return BlockTypes.get("minecraft:warped_planks"); }
+    ;
+    static get WarpedPressurePlate() { return BlockTypes.get("minecraft:warped_pressure_plate"); }
+    ;
+    static get WarpedRoots() { return BlockTypes.get("minecraft:warped_roots"); }
+    ;
+    static get WarpedSlab() { return BlockTypes.get("minecraft:warped_slab"); }
+    ;
+    static get WarpedStairs() { return BlockTypes.get("minecraft:warped_stairs"); }
+    ;
+    static get WarpedStandingSign() { return BlockTypes.get("minecraft:warped_standing_sign"); }
+    ;
+    static get WarpedStem() { return BlockTypes.get("minecraft:warped_stem"); }
+    ;
+    static get WarpedTrapdoor() { return BlockTypes.get("minecraft:warped_trapdoor"); }
+    ;
+    static get WarpedWallSign() { return BlockTypes.get("minecraft:warped_wall_sign"); }
+    ;
+    static get WarpedWartBlock() { return BlockTypes.get("minecraft:warped_wart_block"); }
+    ;
+    static get Water() { return BlockTypes.get("minecraft:water"); }
+    ;
+    static get Waterlily() { return BlockTypes.get("minecraft:waterlily"); }
+    ;
+    static get WaxedCopper() { return BlockTypes.get("minecraft:waxed_copper"); }
+    ;
+    static get WaxedCutCopper() { return BlockTypes.get("minecraft:waxed_cut_copper"); }
+    ;
+    static get WaxedCutCopperSlab() { return BlockTypes.get("minecraft:waxed_cut_copper_slab"); }
+    ;
+    static get WaxedCutCopperStairs() { return BlockTypes.get("minecraft:waxed_cut_copper_stairs"); }
+    ;
+    static get WaxedDoubleCutCopperSlab() { return BlockTypes.get("minecraft:waxed_double_cut_copper_slab"); }
+    ;
+    static get WaxedExposedCopper() { return BlockTypes.get("minecraft:waxed_exposed_copper"); }
+    ;
+    static get WaxedExposedCutCopper() { return BlockTypes.get("minecraft:waxed_exposed_cut_copper"); }
+    ;
+    static get WaxedExposedCutCopperSlab() { return BlockTypes.get("minecraft:waxed_exposed_cut_copper_slab"); }
+    ;
+    static get WaxedExposedCutCopperStairs() { return BlockTypes.get("minecraft:waxed_exposed_cut_copper_stairs"); }
+    ;
+    static get WaxedExposedDoubleCutCopperSlab() { return BlockTypes.get("minecraft:waxed_exposed_double_cut_copper_slab"); }
+    ;
+    static get WaxedOxidizedCopper() { return BlockTypes.get("minecraft:waxed_oxidized_copper"); }
+    ;
+    static get WaxedOxidizedCutCopper() { return BlockTypes.get("minecraft:waxed_oxidized_cut_copper"); }
+    ;
+    static get WaxedOxidizedCutCopperSlab() { return BlockTypes.get("minecraft:waxed_oxidized_cut_copper_slab"); }
+    ;
+    static get WaxedOxidizedCutCopperStairs() { return BlockTypes.get("minecraft:waxed_oxidized_cut_copper_stairs"); }
+    ;
+    static get WaxedOxidizedDoubleCutCopperSlab() { return BlockTypes.get("minecraft:waxed_oxidized_double_cut_copper_slab"); }
+    ;
+    static get WaxedWeatheredCopper() { return BlockTypes.get("minecraft:waxed_weathered_copper"); }
+    ;
+    static get WaxedWeatheredCutCopper() { return BlockTypes.get("minecraft:waxed_weathered_cut_copper"); }
+    ;
+    static get WaxedWeatheredCutCopperSlab() { return BlockTypes.get("minecraft:waxed_weathered_cut_copper_slab"); }
+    ;
+    static get WaxedWeatheredCutCopperStairs() { return BlockTypes.get("minecraft:waxed_weathered_cut_copper_stairs"); }
+    ;
+    static get WaxedWeatheredDoubleCutCopperSlab() { return BlockTypes.get("minecraft:waxed_weathered_double_cut_copper_slab"); }
+    ;
+    static get WeatheredCopper() { return BlockTypes.get("minecraft:weathered_copper"); }
+    ;
+    static get WeatheredCutCopper() { return BlockTypes.get("minecraft:weathered_cut_copper"); }
+    ;
+    static get WeatheredCutCopperSlab() { return BlockTypes.get("minecraft:weathered_cut_copper_slab"); }
+    ;
+    static get WeatheredCutCopperStairs() { return BlockTypes.get("minecraft:weathered_cut_copper_stairs"); }
+    ;
+    static get WeatheredDoubleCutCopperSlab() { return BlockTypes.get("minecraft:weathered_double_cut_copper_slab"); }
+    ;
+    static get Web() { return BlockTypes.get("minecraft:web"); }
+    ;
+    static get WeepingVines() { return BlockTypes.get("minecraft:weeping_vines"); }
+    ;
+    static get Wheat() { return BlockTypes.get("minecraft:wheat"); }
+    ;
+    static get WhiteCandle() { return BlockTypes.get("minecraft:white_candle"); }
+    ;
+    static get WhiteCandleCake() { return BlockTypes.get("minecraft:white_candle_cake"); }
+    ;
+    static get WhiteCarpet() { return BlockTypes.get("minecraft:white_carpet"); }
+    ;
+    static get WhiteConcrete() { return BlockTypes.get("minecraft:white_concrete"); }
+    ;
+    static get WhiteConcretePowder() { return BlockTypes.get("minecraft:white_concrete_powder"); }
+    ;
+    static get WhiteGlazedTerracotta() { return BlockTypes.get("minecraft:white_glazed_terracotta"); }
+    ;
+    static get WhiteShulkerBox() { return BlockTypes.get("minecraft:white_shulker_box"); }
+    ;
+    static get WhiteStainedGlass() { return BlockTypes.get("minecraft:white_stained_glass"); }
+    ;
+    static get WhiteStainedGlassPane() { return BlockTypes.get("minecraft:white_stained_glass_pane"); }
+    ;
+    static get WhiteTerracotta() { return BlockTypes.get("minecraft:white_terracotta"); }
+    ;
+    static get WhiteWool() { return BlockTypes.get("minecraft:white_wool"); }
+    ;
+    static get WitherRose() { return BlockTypes.get("minecraft:wither_rose"); }
+    ;
+    static get Wood() { return BlockTypes.get("minecraft:wood"); }
+    ;
+    static get WoodenButton() { return BlockTypes.get("minecraft:wooden_button"); }
+    ;
+    static get WoodenDoor() { return BlockTypes.get("minecraft:wooden_door"); }
+    ;
+    static get WoodenPressurePlate() { return BlockTypes.get("minecraft:wooden_pressure_plate"); }
+    ;
+    static get WoodenSlab() { return BlockTypes.get("minecraft:wooden_slab"); }
+    ;
+    static get YellowCandle() { return BlockTypes.get("minecraft:yellow_candle"); }
+    ;
+    static get YellowCandleCake() { return BlockTypes.get("minecraft:yellow_candle_cake"); }
+    ;
+    static get YellowCarpet() { return BlockTypes.get("minecraft:yellow_carpet"); }
+    ;
+    static get YellowConcrete() { return BlockTypes.get("minecraft:yellow_concrete"); }
+    ;
+    static get YellowConcretePowder() { return BlockTypes.get("minecraft:yellow_concrete_powder"); }
+    ;
+    static get YellowFlower() { return BlockTypes.get("minecraft:yellow_flower"); }
+    ;
+    static get YellowGlazedTerracotta() { return BlockTypes.get("minecraft:yellow_glazed_terracotta"); }
+    ;
+    static get YellowShulkerBox() { return BlockTypes.get("minecraft:yellow_shulker_box"); }
+    ;
+    static get YellowStainedGlass() { return BlockTypes.get("minecraft:yellow_stained_glass"); }
+    ;
+    static get YellowStainedGlassPane() { return BlockTypes.get("minecraft:yellow_stained_glass_pane"); }
+    ;
+    static get YellowTerracotta() { return BlockTypes.get("minecraft:yellow_terracotta"); }
+    ;
+    static get YellowWool() { return BlockTypes.get("minecraft:yellow_wool"); }
+    ;
 }
-MinecraftBlockTypes.AcaciaButton = BlockTypes.get("minecraft:acacia_button");
-MinecraftBlockTypes.AcaciaDoor = BlockTypes.get("minecraft:acacia_door");
-MinecraftBlockTypes.AcaciaFence = BlockTypes.get("minecraft:acacia_fence");
-MinecraftBlockTypes.AcaciaFenceGate = BlockTypes.get("minecraft:acacia_fence_gate");
-MinecraftBlockTypes.AcaciaHangingSign = BlockTypes.get("minecraft:acacia_hanging_sign");
-MinecraftBlockTypes.AcaciaLog = BlockTypes.get("minecraft:acacia_log");
-MinecraftBlockTypes.AcaciaPressurePlate = BlockTypes.get("minecraft:acacia_pressure_plate");
-MinecraftBlockTypes.AcaciaStairs = BlockTypes.get("minecraft:acacia_stairs");
-MinecraftBlockTypes.AcaciaStandingSign = BlockTypes.get("minecraft:acacia_standing_sign");
-MinecraftBlockTypes.AcaciaTrapdoor = BlockTypes.get("minecraft:acacia_trapdoor");
-MinecraftBlockTypes.AcaciaWallSign = BlockTypes.get("minecraft:acacia_wall_sign");
-MinecraftBlockTypes.ActivatorRail = BlockTypes.get("minecraft:activator_rail");
-MinecraftBlockTypes.Air = BlockTypes.get("minecraft:air");
-MinecraftBlockTypes.Allow = BlockTypes.get("minecraft:allow");
-MinecraftBlockTypes.AmethystBlock = BlockTypes.get("minecraft:amethyst_block");
-MinecraftBlockTypes.AmethystCluster = BlockTypes.get("minecraft:amethyst_cluster");
-MinecraftBlockTypes.AncientDebris = BlockTypes.get("minecraft:ancient_debris");
-MinecraftBlockTypes.AndesiteStairs = BlockTypes.get("minecraft:andesite_stairs");
-MinecraftBlockTypes.Anvil = BlockTypes.get("minecraft:anvil");
-MinecraftBlockTypes.Azalea = BlockTypes.get("minecraft:azalea");
-MinecraftBlockTypes.AzaleaLeaves = BlockTypes.get("minecraft:azalea_leaves");
-MinecraftBlockTypes.AzaleaLeavesFlowered = BlockTypes.get("minecraft:azalea_leaves_flowered");
-MinecraftBlockTypes.Bamboo = BlockTypes.get("minecraft:bamboo");
-MinecraftBlockTypes.BambooBlock = BlockTypes.get("minecraft:bamboo_block");
-MinecraftBlockTypes.BambooButton = BlockTypes.get("minecraft:bamboo_button");
-MinecraftBlockTypes.BambooDoor = BlockTypes.get("minecraft:bamboo_door");
-MinecraftBlockTypes.BambooDoubleSlab = BlockTypes.get("minecraft:bamboo_double_slab");
-MinecraftBlockTypes.BambooFence = BlockTypes.get("minecraft:bamboo_fence");
-MinecraftBlockTypes.BambooFenceGate = BlockTypes.get("minecraft:bamboo_fence_gate");
-MinecraftBlockTypes.BambooHangingSign = BlockTypes.get("minecraft:bamboo_hanging_sign");
-MinecraftBlockTypes.BambooMosaic = BlockTypes.get("minecraft:bamboo_mosaic");
-MinecraftBlockTypes.BambooMosaicDoubleSlab = BlockTypes.get("minecraft:bamboo_mosaic_double_slab");
-MinecraftBlockTypes.BambooMosaicSlab = BlockTypes.get("minecraft:bamboo_mosaic_slab");
-MinecraftBlockTypes.BambooMosaicStairs = BlockTypes.get("minecraft:bamboo_mosaic_stairs");
-MinecraftBlockTypes.BambooPlanks = BlockTypes.get("minecraft:bamboo_planks");
-MinecraftBlockTypes.BambooPressurePlate = BlockTypes.get("minecraft:bamboo_pressure_plate");
-MinecraftBlockTypes.BambooSapling = BlockTypes.get("minecraft:bamboo_sapling");
-MinecraftBlockTypes.BambooSlab = BlockTypes.get("minecraft:bamboo_slab");
-MinecraftBlockTypes.BambooStairs = BlockTypes.get("minecraft:bamboo_stairs");
-MinecraftBlockTypes.BambooStandingSign = BlockTypes.get("minecraft:bamboo_standing_sign");
-MinecraftBlockTypes.BambooTrapdoor = BlockTypes.get("minecraft:bamboo_trapdoor");
-MinecraftBlockTypes.BambooWallSign = BlockTypes.get("minecraft:bamboo_wall_sign");
-MinecraftBlockTypes.Barrel = BlockTypes.get("minecraft:barrel");
-MinecraftBlockTypes.Barrier = BlockTypes.get("minecraft:barrier");
-MinecraftBlockTypes.Basalt = BlockTypes.get("minecraft:basalt");
-MinecraftBlockTypes.Beacon = BlockTypes.get("minecraft:beacon");
-MinecraftBlockTypes.Bed = BlockTypes.get("minecraft:bed");
-MinecraftBlockTypes.Bedrock = BlockTypes.get("minecraft:bedrock");
-MinecraftBlockTypes.BeeNest = BlockTypes.get("minecraft:bee_nest");
-MinecraftBlockTypes.Beehive = BlockTypes.get("minecraft:beehive");
-MinecraftBlockTypes.Beetroot = BlockTypes.get("minecraft:beetroot");
-MinecraftBlockTypes.Bell = BlockTypes.get("minecraft:bell");
-MinecraftBlockTypes.BigDripleaf = BlockTypes.get("minecraft:big_dripleaf");
-MinecraftBlockTypes.BirchButton = BlockTypes.get("minecraft:birch_button");
-MinecraftBlockTypes.BirchDoor = BlockTypes.get("minecraft:birch_door");
-MinecraftBlockTypes.BirchFence = BlockTypes.get("minecraft:birch_fence");
-MinecraftBlockTypes.BirchFenceGate = BlockTypes.get("minecraft:birch_fence_gate");
-MinecraftBlockTypes.BirchHangingSign = BlockTypes.get("minecraft:birch_hanging_sign");
-MinecraftBlockTypes.BirchLog = BlockTypes.get("minecraft:birch_log");
-MinecraftBlockTypes.BirchPressurePlate = BlockTypes.get("minecraft:birch_pressure_plate");
-MinecraftBlockTypes.BirchStairs = BlockTypes.get("minecraft:birch_stairs");
-MinecraftBlockTypes.BirchStandingSign = BlockTypes.get("minecraft:birch_standing_sign");
-MinecraftBlockTypes.BirchTrapdoor = BlockTypes.get("minecraft:birch_trapdoor");
-MinecraftBlockTypes.BirchWallSign = BlockTypes.get("minecraft:birch_wall_sign");
-MinecraftBlockTypes.BlackCandle = BlockTypes.get("minecraft:black_candle");
-MinecraftBlockTypes.BlackCandleCake = BlockTypes.get("minecraft:black_candle_cake");
-MinecraftBlockTypes.BlackCarpet = BlockTypes.get("minecraft:black_carpet");
-MinecraftBlockTypes.BlackConcrete = BlockTypes.get("minecraft:black_concrete");
-MinecraftBlockTypes.BlackConcretePowder = BlockTypes.get("minecraft:black_concrete_powder");
-MinecraftBlockTypes.BlackGlazedTerracotta = BlockTypes.get("minecraft:black_glazed_terracotta");
-MinecraftBlockTypes.BlackShulkerBox = BlockTypes.get("minecraft:black_shulker_box");
-MinecraftBlockTypes.BlackStainedGlass = BlockTypes.get("minecraft:black_stained_glass");
-MinecraftBlockTypes.BlackStainedGlassPane = BlockTypes.get("minecraft:black_stained_glass_pane");
-MinecraftBlockTypes.BlackTerracotta = BlockTypes.get("minecraft:black_terracotta");
-MinecraftBlockTypes.BlackWool = BlockTypes.get("minecraft:black_wool");
-MinecraftBlockTypes.Blackstone = BlockTypes.get("minecraft:blackstone");
-MinecraftBlockTypes.BlackstoneDoubleSlab = BlockTypes.get("minecraft:blackstone_double_slab");
-MinecraftBlockTypes.BlackstoneSlab = BlockTypes.get("minecraft:blackstone_slab");
-MinecraftBlockTypes.BlackstoneStairs = BlockTypes.get("minecraft:blackstone_stairs");
-MinecraftBlockTypes.BlackstoneWall = BlockTypes.get("minecraft:blackstone_wall");
-MinecraftBlockTypes.BlastFurnace = BlockTypes.get("minecraft:blast_furnace");
-MinecraftBlockTypes.BlueCandle = BlockTypes.get("minecraft:blue_candle");
-MinecraftBlockTypes.BlueCandleCake = BlockTypes.get("minecraft:blue_candle_cake");
-MinecraftBlockTypes.BlueCarpet = BlockTypes.get("minecraft:blue_carpet");
-MinecraftBlockTypes.BlueConcrete = BlockTypes.get("minecraft:blue_concrete");
-MinecraftBlockTypes.BlueConcretePowder = BlockTypes.get("minecraft:blue_concrete_powder");
-MinecraftBlockTypes.BlueGlazedTerracotta = BlockTypes.get("minecraft:blue_glazed_terracotta");
-MinecraftBlockTypes.BlueIce = BlockTypes.get("minecraft:blue_ice");
-MinecraftBlockTypes.BlueShulkerBox = BlockTypes.get("minecraft:blue_shulker_box");
-MinecraftBlockTypes.BlueStainedGlass = BlockTypes.get("minecraft:blue_stained_glass");
-MinecraftBlockTypes.BlueStainedGlassPane = BlockTypes.get("minecraft:blue_stained_glass_pane");
-MinecraftBlockTypes.BlueTerracotta = BlockTypes.get("minecraft:blue_terracotta");
-MinecraftBlockTypes.BlueWool = BlockTypes.get("minecraft:blue_wool");
-MinecraftBlockTypes.BoneBlock = BlockTypes.get("minecraft:bone_block");
-MinecraftBlockTypes.Bookshelf = BlockTypes.get("minecraft:bookshelf");
-MinecraftBlockTypes.BorderBlock = BlockTypes.get("minecraft:border_block");
-MinecraftBlockTypes.BrainCoral = BlockTypes.get("minecraft:brain_coral");
-MinecraftBlockTypes.BrewingStand = BlockTypes.get("minecraft:brewing_stand");
-MinecraftBlockTypes.BrickBlock = BlockTypes.get("minecraft:brick_block");
-MinecraftBlockTypes.BrickStairs = BlockTypes.get("minecraft:brick_stairs");
-MinecraftBlockTypes.BrownCandle = BlockTypes.get("minecraft:brown_candle");
-MinecraftBlockTypes.BrownCandleCake = BlockTypes.get("minecraft:brown_candle_cake");
-MinecraftBlockTypes.BrownCarpet = BlockTypes.get("minecraft:brown_carpet");
-MinecraftBlockTypes.BrownConcrete = BlockTypes.get("minecraft:brown_concrete");
-MinecraftBlockTypes.BrownConcretePowder = BlockTypes.get("minecraft:brown_concrete_powder");
-MinecraftBlockTypes.BrownGlazedTerracotta = BlockTypes.get("minecraft:brown_glazed_terracotta");
-MinecraftBlockTypes.BrownMushroom = BlockTypes.get("minecraft:brown_mushroom");
-MinecraftBlockTypes.BrownMushroomBlock = BlockTypes.get("minecraft:brown_mushroom_block");
-MinecraftBlockTypes.BrownShulkerBox = BlockTypes.get("minecraft:brown_shulker_box");
-MinecraftBlockTypes.BrownStainedGlass = BlockTypes.get("minecraft:brown_stained_glass");
-MinecraftBlockTypes.BrownStainedGlassPane = BlockTypes.get("minecraft:brown_stained_glass_pane");
-MinecraftBlockTypes.BrownTerracotta = BlockTypes.get("minecraft:brown_terracotta");
-MinecraftBlockTypes.BrownWool = BlockTypes.get("minecraft:brown_wool");
-MinecraftBlockTypes.BubbleColumn = BlockTypes.get("minecraft:bubble_column");
-MinecraftBlockTypes.BubbleCoral = BlockTypes.get("minecraft:bubble_coral");
-MinecraftBlockTypes.BuddingAmethyst = BlockTypes.get("minecraft:budding_amethyst");
-MinecraftBlockTypes.Cactus = BlockTypes.get("minecraft:cactus");
-MinecraftBlockTypes.Cake = BlockTypes.get("minecraft:cake");
-MinecraftBlockTypes.Calcite = BlockTypes.get("minecraft:calcite");
-MinecraftBlockTypes.CalibratedSculkSensor = BlockTypes.get("minecraft:calibrated_sculk_sensor");
-MinecraftBlockTypes.Camera = BlockTypes.get("minecraft:camera");
-MinecraftBlockTypes.Campfire = BlockTypes.get("minecraft:campfire");
-MinecraftBlockTypes.Candle = BlockTypes.get("minecraft:candle");
-MinecraftBlockTypes.CandleCake = BlockTypes.get("minecraft:candle_cake");
-MinecraftBlockTypes.Carrots = BlockTypes.get("minecraft:carrots");
-MinecraftBlockTypes.CartographyTable = BlockTypes.get("minecraft:cartography_table");
-MinecraftBlockTypes.CarvedPumpkin = BlockTypes.get("minecraft:carved_pumpkin");
-MinecraftBlockTypes.Cauldron = BlockTypes.get("minecraft:cauldron");
-MinecraftBlockTypes.CaveVines = BlockTypes.get("minecraft:cave_vines");
-MinecraftBlockTypes.CaveVinesBodyWithBerries = BlockTypes.get("minecraft:cave_vines_body_with_berries");
-MinecraftBlockTypes.CaveVinesHeadWithBerries = BlockTypes.get("minecraft:cave_vines_head_with_berries");
-MinecraftBlockTypes.Chain = BlockTypes.get("minecraft:chain");
-MinecraftBlockTypes.ChainCommandBlock = BlockTypes.get("minecraft:chain_command_block");
-MinecraftBlockTypes.ChemicalHeat = BlockTypes.get("minecraft:chemical_heat");
-MinecraftBlockTypes.ChemistryTable = BlockTypes.get("minecraft:chemistry_table");
-MinecraftBlockTypes.CherryButton = BlockTypes.get("minecraft:cherry_button");
-MinecraftBlockTypes.CherryDoor = BlockTypes.get("minecraft:cherry_door");
-MinecraftBlockTypes.CherryDoubleSlab = BlockTypes.get("minecraft:cherry_double_slab");
-MinecraftBlockTypes.CherryFence = BlockTypes.get("minecraft:cherry_fence");
-MinecraftBlockTypes.CherryFenceGate = BlockTypes.get("minecraft:cherry_fence_gate");
-MinecraftBlockTypes.CherryHangingSign = BlockTypes.get("minecraft:cherry_hanging_sign");
-MinecraftBlockTypes.CherryLeaves = BlockTypes.get("minecraft:cherry_leaves");
-MinecraftBlockTypes.CherryLog = BlockTypes.get("minecraft:cherry_log");
-MinecraftBlockTypes.CherryPlanks = BlockTypes.get("minecraft:cherry_planks");
-MinecraftBlockTypes.CherryPressurePlate = BlockTypes.get("minecraft:cherry_pressure_plate");
-MinecraftBlockTypes.CherrySapling = BlockTypes.get("minecraft:cherry_sapling");
-MinecraftBlockTypes.CherrySlab = BlockTypes.get("minecraft:cherry_slab");
-MinecraftBlockTypes.CherryStairs = BlockTypes.get("minecraft:cherry_stairs");
-MinecraftBlockTypes.CherryStandingSign = BlockTypes.get("minecraft:cherry_standing_sign");
-MinecraftBlockTypes.CherryTrapdoor = BlockTypes.get("minecraft:cherry_trapdoor");
-MinecraftBlockTypes.CherryWallSign = BlockTypes.get("minecraft:cherry_wall_sign");
-MinecraftBlockTypes.CherryWood = BlockTypes.get("minecraft:cherry_wood");
-MinecraftBlockTypes.Chest = BlockTypes.get("minecraft:chest");
-MinecraftBlockTypes.ChiseledBookshelf = BlockTypes.get("minecraft:chiseled_bookshelf");
-MinecraftBlockTypes.ChiseledDeepslate = BlockTypes.get("minecraft:chiseled_deepslate");
-MinecraftBlockTypes.ChiseledNetherBricks = BlockTypes.get("minecraft:chiseled_nether_bricks");
-MinecraftBlockTypes.ChiseledPolishedBlackstone = BlockTypes.get("minecraft:chiseled_polished_blackstone");
-MinecraftBlockTypes.ChorusFlower = BlockTypes.get("minecraft:chorus_flower");
-MinecraftBlockTypes.ChorusPlant = BlockTypes.get("minecraft:chorus_plant");
-MinecraftBlockTypes.Clay = BlockTypes.get("minecraft:clay");
-MinecraftBlockTypes.ClientRequestPlaceholderBlock = BlockTypes.get("minecraft:client_request_placeholder_block");
-MinecraftBlockTypes.CoalBlock = BlockTypes.get("minecraft:coal_block");
-MinecraftBlockTypes.CoalOre = BlockTypes.get("minecraft:coal_ore");
-MinecraftBlockTypes.CobbledDeepslate = BlockTypes.get("minecraft:cobbled_deepslate");
-MinecraftBlockTypes.CobbledDeepslateDoubleSlab = BlockTypes.get("minecraft:cobbled_deepslate_double_slab");
-MinecraftBlockTypes.CobbledDeepslateSlab = BlockTypes.get("minecraft:cobbled_deepslate_slab");
-MinecraftBlockTypes.CobbledDeepslateStairs = BlockTypes.get("minecraft:cobbled_deepslate_stairs");
-MinecraftBlockTypes.CobbledDeepslateWall = BlockTypes.get("minecraft:cobbled_deepslate_wall");
-MinecraftBlockTypes.Cobblestone = BlockTypes.get("minecraft:cobblestone");
-MinecraftBlockTypes.CobblestoneWall = BlockTypes.get("minecraft:cobblestone_wall");
-MinecraftBlockTypes.Cocoa = BlockTypes.get("minecraft:cocoa");
-MinecraftBlockTypes.ColoredTorchBp = BlockTypes.get("minecraft:colored_torch_bp");
-MinecraftBlockTypes.ColoredTorchRg = BlockTypes.get("minecraft:colored_torch_rg");
-MinecraftBlockTypes.CommandBlock = BlockTypes.get("minecraft:command_block");
-MinecraftBlockTypes.Composter = BlockTypes.get("minecraft:composter");
-MinecraftBlockTypes.Conduit = BlockTypes.get("minecraft:conduit");
-MinecraftBlockTypes.CopperBlock = BlockTypes.get("minecraft:copper_block");
-MinecraftBlockTypes.CopperOre = BlockTypes.get("minecraft:copper_ore");
-MinecraftBlockTypes.CoralBlock = BlockTypes.get("minecraft:coral_block");
-MinecraftBlockTypes.CoralFan = BlockTypes.get("minecraft:coral_fan");
-MinecraftBlockTypes.CoralFanDead = BlockTypes.get("minecraft:coral_fan_dead");
-MinecraftBlockTypes.CoralFanHang = BlockTypes.get("minecraft:coral_fan_hang");
-MinecraftBlockTypes.CoralFanHang2 = BlockTypes.get("minecraft:coral_fan_hang2");
-MinecraftBlockTypes.CoralFanHang3 = BlockTypes.get("minecraft:coral_fan_hang3");
-MinecraftBlockTypes.CrackedDeepslateBricks = BlockTypes.get("minecraft:cracked_deepslate_bricks");
-MinecraftBlockTypes.CrackedDeepslateTiles = BlockTypes.get("minecraft:cracked_deepslate_tiles");
-MinecraftBlockTypes.CrackedNetherBricks = BlockTypes.get("minecraft:cracked_nether_bricks");
-MinecraftBlockTypes.CrackedPolishedBlackstoneBricks = BlockTypes.get("minecraft:cracked_polished_blackstone_bricks");
-MinecraftBlockTypes.CraftingTable = BlockTypes.get("minecraft:crafting_table");
-MinecraftBlockTypes.CrimsonButton = BlockTypes.get("minecraft:crimson_button");
-MinecraftBlockTypes.CrimsonDoor = BlockTypes.get("minecraft:crimson_door");
-MinecraftBlockTypes.CrimsonDoubleSlab = BlockTypes.get("minecraft:crimson_double_slab");
-MinecraftBlockTypes.CrimsonFence = BlockTypes.get("minecraft:crimson_fence");
-MinecraftBlockTypes.CrimsonFenceGate = BlockTypes.get("minecraft:crimson_fence_gate");
-MinecraftBlockTypes.CrimsonFungus = BlockTypes.get("minecraft:crimson_fungus");
-MinecraftBlockTypes.CrimsonHangingSign = BlockTypes.get("minecraft:crimson_hanging_sign");
-MinecraftBlockTypes.CrimsonHyphae = BlockTypes.get("minecraft:crimson_hyphae");
-MinecraftBlockTypes.CrimsonNylium = BlockTypes.get("minecraft:crimson_nylium");
-MinecraftBlockTypes.CrimsonPlanks = BlockTypes.get("minecraft:crimson_planks");
-MinecraftBlockTypes.CrimsonPressurePlate = BlockTypes.get("minecraft:crimson_pressure_plate");
-MinecraftBlockTypes.CrimsonRoots = BlockTypes.get("minecraft:crimson_roots");
-MinecraftBlockTypes.CrimsonSlab = BlockTypes.get("minecraft:crimson_slab");
-MinecraftBlockTypes.CrimsonStairs = BlockTypes.get("minecraft:crimson_stairs");
-MinecraftBlockTypes.CrimsonStandingSign = BlockTypes.get("minecraft:crimson_standing_sign");
-MinecraftBlockTypes.CrimsonStem = BlockTypes.get("minecraft:crimson_stem");
-MinecraftBlockTypes.CrimsonTrapdoor = BlockTypes.get("minecraft:crimson_trapdoor");
-MinecraftBlockTypes.CrimsonWallSign = BlockTypes.get("minecraft:crimson_wall_sign");
-MinecraftBlockTypes.CryingObsidian = BlockTypes.get("minecraft:crying_obsidian");
-MinecraftBlockTypes.CutCopper = BlockTypes.get("minecraft:cut_copper");
-MinecraftBlockTypes.CutCopperSlab = BlockTypes.get("minecraft:cut_copper_slab");
-MinecraftBlockTypes.CutCopperStairs = BlockTypes.get("minecraft:cut_copper_stairs");
-MinecraftBlockTypes.CyanCandle = BlockTypes.get("minecraft:cyan_candle");
-MinecraftBlockTypes.CyanCandleCake = BlockTypes.get("minecraft:cyan_candle_cake");
-MinecraftBlockTypes.CyanCarpet = BlockTypes.get("minecraft:cyan_carpet");
-MinecraftBlockTypes.CyanConcrete = BlockTypes.get("minecraft:cyan_concrete");
-MinecraftBlockTypes.CyanConcretePowder = BlockTypes.get("minecraft:cyan_concrete_powder");
-MinecraftBlockTypes.CyanGlazedTerracotta = BlockTypes.get("minecraft:cyan_glazed_terracotta");
-MinecraftBlockTypes.CyanShulkerBox = BlockTypes.get("minecraft:cyan_shulker_box");
-MinecraftBlockTypes.CyanStainedGlass = BlockTypes.get("minecraft:cyan_stained_glass");
-MinecraftBlockTypes.CyanStainedGlassPane = BlockTypes.get("minecraft:cyan_stained_glass_pane");
-MinecraftBlockTypes.CyanTerracotta = BlockTypes.get("minecraft:cyan_terracotta");
-MinecraftBlockTypes.CyanWool = BlockTypes.get("minecraft:cyan_wool");
-MinecraftBlockTypes.DarkOakButton = BlockTypes.get("minecraft:dark_oak_button");
-MinecraftBlockTypes.DarkOakDoor = BlockTypes.get("minecraft:dark_oak_door");
-MinecraftBlockTypes.DarkOakFence = BlockTypes.get("minecraft:dark_oak_fence");
-MinecraftBlockTypes.DarkOakFenceGate = BlockTypes.get("minecraft:dark_oak_fence_gate");
-MinecraftBlockTypes.DarkOakHangingSign = BlockTypes.get("minecraft:dark_oak_hanging_sign");
-MinecraftBlockTypes.DarkOakLog = BlockTypes.get("minecraft:dark_oak_log");
-MinecraftBlockTypes.DarkOakPressurePlate = BlockTypes.get("minecraft:dark_oak_pressure_plate");
-MinecraftBlockTypes.DarkOakStairs = BlockTypes.get("minecraft:dark_oak_stairs");
-MinecraftBlockTypes.DarkOakTrapdoor = BlockTypes.get("minecraft:dark_oak_trapdoor");
-MinecraftBlockTypes.DarkPrismarineStairs = BlockTypes.get("minecraft:dark_prismarine_stairs");
-MinecraftBlockTypes.DarkoakStandingSign = BlockTypes.get("minecraft:darkoak_standing_sign");
-MinecraftBlockTypes.DarkoakWallSign = BlockTypes.get("minecraft:darkoak_wall_sign");
-MinecraftBlockTypes.DaylightDetector = BlockTypes.get("minecraft:daylight_detector");
-MinecraftBlockTypes.DaylightDetectorInverted = BlockTypes.get("minecraft:daylight_detector_inverted");
-MinecraftBlockTypes.DeadBrainCoral = BlockTypes.get("minecraft:dead_brain_coral");
-MinecraftBlockTypes.DeadBubbleCoral = BlockTypes.get("minecraft:dead_bubble_coral");
-MinecraftBlockTypes.DeadFireCoral = BlockTypes.get("minecraft:dead_fire_coral");
-MinecraftBlockTypes.DeadHornCoral = BlockTypes.get("minecraft:dead_horn_coral");
-MinecraftBlockTypes.DeadTubeCoral = BlockTypes.get("minecraft:dead_tube_coral");
-MinecraftBlockTypes.Deadbush = BlockTypes.get("minecraft:deadbush");
-MinecraftBlockTypes.DecoratedPot = BlockTypes.get("minecraft:decorated_pot");
-MinecraftBlockTypes.Deepslate = BlockTypes.get("minecraft:deepslate");
-MinecraftBlockTypes.DeepslateBrickDoubleSlab = BlockTypes.get("minecraft:deepslate_brick_double_slab");
-MinecraftBlockTypes.DeepslateBrickSlab = BlockTypes.get("minecraft:deepslate_brick_slab");
-MinecraftBlockTypes.DeepslateBrickStairs = BlockTypes.get("minecraft:deepslate_brick_stairs");
-MinecraftBlockTypes.DeepslateBrickWall = BlockTypes.get("minecraft:deepslate_brick_wall");
-MinecraftBlockTypes.DeepslateBricks = BlockTypes.get("minecraft:deepslate_bricks");
-MinecraftBlockTypes.DeepslateCoalOre = BlockTypes.get("minecraft:deepslate_coal_ore");
-MinecraftBlockTypes.DeepslateCopperOre = BlockTypes.get("minecraft:deepslate_copper_ore");
-MinecraftBlockTypes.DeepslateDiamondOre = BlockTypes.get("minecraft:deepslate_diamond_ore");
-MinecraftBlockTypes.DeepslateEmeraldOre = BlockTypes.get("minecraft:deepslate_emerald_ore");
-MinecraftBlockTypes.DeepslateGoldOre = BlockTypes.get("minecraft:deepslate_gold_ore");
-MinecraftBlockTypes.DeepslateIronOre = BlockTypes.get("minecraft:deepslate_iron_ore");
-MinecraftBlockTypes.DeepslateLapisOre = BlockTypes.get("minecraft:deepslate_lapis_ore");
-MinecraftBlockTypes.DeepslateRedstoneOre = BlockTypes.get("minecraft:deepslate_redstone_ore");
-MinecraftBlockTypes.DeepslateTileDoubleSlab = BlockTypes.get("minecraft:deepslate_tile_double_slab");
-MinecraftBlockTypes.DeepslateTileSlab = BlockTypes.get("minecraft:deepslate_tile_slab");
-MinecraftBlockTypes.DeepslateTileStairs = BlockTypes.get("minecraft:deepslate_tile_stairs");
-MinecraftBlockTypes.DeepslateTileWall = BlockTypes.get("minecraft:deepslate_tile_wall");
-MinecraftBlockTypes.DeepslateTiles = BlockTypes.get("minecraft:deepslate_tiles");
-MinecraftBlockTypes.Deny = BlockTypes.get("minecraft:deny");
-MinecraftBlockTypes.DetectorRail = BlockTypes.get("minecraft:detector_rail");
-MinecraftBlockTypes.DiamondBlock = BlockTypes.get("minecraft:diamond_block");
-MinecraftBlockTypes.DiamondOre = BlockTypes.get("minecraft:diamond_ore");
-MinecraftBlockTypes.DioriteStairs = BlockTypes.get("minecraft:diorite_stairs");
-MinecraftBlockTypes.Dirt = BlockTypes.get("minecraft:dirt");
-MinecraftBlockTypes.DirtWithRoots = BlockTypes.get("minecraft:dirt_with_roots");
-MinecraftBlockTypes.Dispenser = BlockTypes.get("minecraft:dispenser");
-MinecraftBlockTypes.DoubleCutCopperSlab = BlockTypes.get("minecraft:double_cut_copper_slab");
-MinecraftBlockTypes.DoublePlant = BlockTypes.get("minecraft:double_plant");
-MinecraftBlockTypes.DoubleStoneBlockSlab = BlockTypes.get("minecraft:double_stone_block_slab");
-MinecraftBlockTypes.DoubleStoneBlockSlab2 = BlockTypes.get("minecraft:double_stone_block_slab2");
-MinecraftBlockTypes.DoubleStoneBlockSlab3 = BlockTypes.get("minecraft:double_stone_block_slab3");
-MinecraftBlockTypes.DoubleStoneBlockSlab4 = BlockTypes.get("minecraft:double_stone_block_slab4");
-MinecraftBlockTypes.DoubleWoodenSlab = BlockTypes.get("minecraft:double_wooden_slab");
-MinecraftBlockTypes.DragonEgg = BlockTypes.get("minecraft:dragon_egg");
-MinecraftBlockTypes.DriedKelpBlock = BlockTypes.get("minecraft:dried_kelp_block");
-MinecraftBlockTypes.DripstoneBlock = BlockTypes.get("minecraft:dripstone_block");
-MinecraftBlockTypes.Dropper = BlockTypes.get("minecraft:dropper");
-MinecraftBlockTypes.Element0 = BlockTypes.get("minecraft:element_0");
-MinecraftBlockTypes.Element1 = BlockTypes.get("minecraft:element_1");
-MinecraftBlockTypes.Element10 = BlockTypes.get("minecraft:element_10");
-MinecraftBlockTypes.Element100 = BlockTypes.get("minecraft:element_100");
-MinecraftBlockTypes.Element101 = BlockTypes.get("minecraft:element_101");
-MinecraftBlockTypes.Element102 = BlockTypes.get("minecraft:element_102");
-MinecraftBlockTypes.Element103 = BlockTypes.get("minecraft:element_103");
-MinecraftBlockTypes.Element104 = BlockTypes.get("minecraft:element_104");
-MinecraftBlockTypes.Element105 = BlockTypes.get("minecraft:element_105");
-MinecraftBlockTypes.Element106 = BlockTypes.get("minecraft:element_106");
-MinecraftBlockTypes.Element107 = BlockTypes.get("minecraft:element_107");
-MinecraftBlockTypes.Element108 = BlockTypes.get("minecraft:element_108");
-MinecraftBlockTypes.Element109 = BlockTypes.get("minecraft:element_109");
-MinecraftBlockTypes.Element11 = BlockTypes.get("minecraft:element_11");
-MinecraftBlockTypes.Element110 = BlockTypes.get("minecraft:element_110");
-MinecraftBlockTypes.Element111 = BlockTypes.get("minecraft:element_111");
-MinecraftBlockTypes.Element112 = BlockTypes.get("minecraft:element_112");
-MinecraftBlockTypes.Element113 = BlockTypes.get("minecraft:element_113");
-MinecraftBlockTypes.Element114 = BlockTypes.get("minecraft:element_114");
-MinecraftBlockTypes.Element115 = BlockTypes.get("minecraft:element_115");
-MinecraftBlockTypes.Element116 = BlockTypes.get("minecraft:element_116");
-MinecraftBlockTypes.Element117 = BlockTypes.get("minecraft:element_117");
-MinecraftBlockTypes.Element118 = BlockTypes.get("minecraft:element_118");
-MinecraftBlockTypes.Element12 = BlockTypes.get("minecraft:element_12");
-MinecraftBlockTypes.Element13 = BlockTypes.get("minecraft:element_13");
-MinecraftBlockTypes.Element14 = BlockTypes.get("minecraft:element_14");
-MinecraftBlockTypes.Element15 = BlockTypes.get("minecraft:element_15");
-MinecraftBlockTypes.Element16 = BlockTypes.get("minecraft:element_16");
-MinecraftBlockTypes.Element17 = BlockTypes.get("minecraft:element_17");
-MinecraftBlockTypes.Element18 = BlockTypes.get("minecraft:element_18");
-MinecraftBlockTypes.Element19 = BlockTypes.get("minecraft:element_19");
-MinecraftBlockTypes.Element2 = BlockTypes.get("minecraft:element_2");
-MinecraftBlockTypes.Element20 = BlockTypes.get("minecraft:element_20");
-MinecraftBlockTypes.Element21 = BlockTypes.get("minecraft:element_21");
-MinecraftBlockTypes.Element22 = BlockTypes.get("minecraft:element_22");
-MinecraftBlockTypes.Element23 = BlockTypes.get("minecraft:element_23");
-MinecraftBlockTypes.Element24 = BlockTypes.get("minecraft:element_24");
-MinecraftBlockTypes.Element25 = BlockTypes.get("minecraft:element_25");
-MinecraftBlockTypes.Element26 = BlockTypes.get("minecraft:element_26");
-MinecraftBlockTypes.Element27 = BlockTypes.get("minecraft:element_27");
-MinecraftBlockTypes.Element28 = BlockTypes.get("minecraft:element_28");
-MinecraftBlockTypes.Element29 = BlockTypes.get("minecraft:element_29");
-MinecraftBlockTypes.Element3 = BlockTypes.get("minecraft:element_3");
-MinecraftBlockTypes.Element30 = BlockTypes.get("minecraft:element_30");
-MinecraftBlockTypes.Element31 = BlockTypes.get("minecraft:element_31");
-MinecraftBlockTypes.Element32 = BlockTypes.get("minecraft:element_32");
-MinecraftBlockTypes.Element33 = BlockTypes.get("minecraft:element_33");
-MinecraftBlockTypes.Element34 = BlockTypes.get("minecraft:element_34");
-MinecraftBlockTypes.Element35 = BlockTypes.get("minecraft:element_35");
-MinecraftBlockTypes.Element36 = BlockTypes.get("minecraft:element_36");
-MinecraftBlockTypes.Element37 = BlockTypes.get("minecraft:element_37");
-MinecraftBlockTypes.Element38 = BlockTypes.get("minecraft:element_38");
-MinecraftBlockTypes.Element39 = BlockTypes.get("minecraft:element_39");
-MinecraftBlockTypes.Element4 = BlockTypes.get("minecraft:element_4");
-MinecraftBlockTypes.Element40 = BlockTypes.get("minecraft:element_40");
-MinecraftBlockTypes.Element41 = BlockTypes.get("minecraft:element_41");
-MinecraftBlockTypes.Element42 = BlockTypes.get("minecraft:element_42");
-MinecraftBlockTypes.Element43 = BlockTypes.get("minecraft:element_43");
-MinecraftBlockTypes.Element44 = BlockTypes.get("minecraft:element_44");
-MinecraftBlockTypes.Element45 = BlockTypes.get("minecraft:element_45");
-MinecraftBlockTypes.Element46 = BlockTypes.get("minecraft:element_46");
-MinecraftBlockTypes.Element47 = BlockTypes.get("minecraft:element_47");
-MinecraftBlockTypes.Element48 = BlockTypes.get("minecraft:element_48");
-MinecraftBlockTypes.Element49 = BlockTypes.get("minecraft:element_49");
-MinecraftBlockTypes.Element5 = BlockTypes.get("minecraft:element_5");
-MinecraftBlockTypes.Element50 = BlockTypes.get("minecraft:element_50");
-MinecraftBlockTypes.Element51 = BlockTypes.get("minecraft:element_51");
-MinecraftBlockTypes.Element52 = BlockTypes.get("minecraft:element_52");
-MinecraftBlockTypes.Element53 = BlockTypes.get("minecraft:element_53");
-MinecraftBlockTypes.Element54 = BlockTypes.get("minecraft:element_54");
-MinecraftBlockTypes.Element55 = BlockTypes.get("minecraft:element_55");
-MinecraftBlockTypes.Element56 = BlockTypes.get("minecraft:element_56");
-MinecraftBlockTypes.Element57 = BlockTypes.get("minecraft:element_57");
-MinecraftBlockTypes.Element58 = BlockTypes.get("minecraft:element_58");
-MinecraftBlockTypes.Element59 = BlockTypes.get("minecraft:element_59");
-MinecraftBlockTypes.Element6 = BlockTypes.get("minecraft:element_6");
-MinecraftBlockTypes.Element60 = BlockTypes.get("minecraft:element_60");
-MinecraftBlockTypes.Element61 = BlockTypes.get("minecraft:element_61");
-MinecraftBlockTypes.Element62 = BlockTypes.get("minecraft:element_62");
-MinecraftBlockTypes.Element63 = BlockTypes.get("minecraft:element_63");
-MinecraftBlockTypes.Element64 = BlockTypes.get("minecraft:element_64");
-MinecraftBlockTypes.Element65 = BlockTypes.get("minecraft:element_65");
-MinecraftBlockTypes.Element66 = BlockTypes.get("minecraft:element_66");
-MinecraftBlockTypes.Element67 = BlockTypes.get("minecraft:element_67");
-MinecraftBlockTypes.Element68 = BlockTypes.get("minecraft:element_68");
-MinecraftBlockTypes.Element69 = BlockTypes.get("minecraft:element_69");
-MinecraftBlockTypes.Element7 = BlockTypes.get("minecraft:element_7");
-MinecraftBlockTypes.Element70 = BlockTypes.get("minecraft:element_70");
-MinecraftBlockTypes.Element71 = BlockTypes.get("minecraft:element_71");
-MinecraftBlockTypes.Element72 = BlockTypes.get("minecraft:element_72");
-MinecraftBlockTypes.Element73 = BlockTypes.get("minecraft:element_73");
-MinecraftBlockTypes.Element74 = BlockTypes.get("minecraft:element_74");
-MinecraftBlockTypes.Element75 = BlockTypes.get("minecraft:element_75");
-MinecraftBlockTypes.Element76 = BlockTypes.get("minecraft:element_76");
-MinecraftBlockTypes.Element77 = BlockTypes.get("minecraft:element_77");
-MinecraftBlockTypes.Element78 = BlockTypes.get("minecraft:element_78");
-MinecraftBlockTypes.Element79 = BlockTypes.get("minecraft:element_79");
-MinecraftBlockTypes.Element8 = BlockTypes.get("minecraft:element_8");
-MinecraftBlockTypes.Element80 = BlockTypes.get("minecraft:element_80");
-MinecraftBlockTypes.Element81 = BlockTypes.get("minecraft:element_81");
-MinecraftBlockTypes.Element82 = BlockTypes.get("minecraft:element_82");
-MinecraftBlockTypes.Element83 = BlockTypes.get("minecraft:element_83");
-MinecraftBlockTypes.Element84 = BlockTypes.get("minecraft:element_84");
-MinecraftBlockTypes.Element85 = BlockTypes.get("minecraft:element_85");
-MinecraftBlockTypes.Element86 = BlockTypes.get("minecraft:element_86");
-MinecraftBlockTypes.Element87 = BlockTypes.get("minecraft:element_87");
-MinecraftBlockTypes.Element88 = BlockTypes.get("minecraft:element_88");
-MinecraftBlockTypes.Element89 = BlockTypes.get("minecraft:element_89");
-MinecraftBlockTypes.Element9 = BlockTypes.get("minecraft:element_9");
-MinecraftBlockTypes.Element90 = BlockTypes.get("minecraft:element_90");
-MinecraftBlockTypes.Element91 = BlockTypes.get("minecraft:element_91");
-MinecraftBlockTypes.Element92 = BlockTypes.get("minecraft:element_92");
-MinecraftBlockTypes.Element93 = BlockTypes.get("minecraft:element_93");
-MinecraftBlockTypes.Element94 = BlockTypes.get("minecraft:element_94");
-MinecraftBlockTypes.Element95 = BlockTypes.get("minecraft:element_95");
-MinecraftBlockTypes.Element96 = BlockTypes.get("minecraft:element_96");
-MinecraftBlockTypes.Element97 = BlockTypes.get("minecraft:element_97");
-MinecraftBlockTypes.Element98 = BlockTypes.get("minecraft:element_98");
-MinecraftBlockTypes.Element99 = BlockTypes.get("minecraft:element_99");
-MinecraftBlockTypes.EmeraldBlock = BlockTypes.get("minecraft:emerald_block");
-MinecraftBlockTypes.EmeraldOre = BlockTypes.get("minecraft:emerald_ore");
-MinecraftBlockTypes.EnchantingTable = BlockTypes.get("minecraft:enchanting_table");
-MinecraftBlockTypes.EndBrickStairs = BlockTypes.get("minecraft:end_brick_stairs");
-MinecraftBlockTypes.EndBricks = BlockTypes.get("minecraft:end_bricks");
-MinecraftBlockTypes.EndGateway = BlockTypes.get("minecraft:end_gateway");
-MinecraftBlockTypes.EndPortal = BlockTypes.get("minecraft:end_portal");
-MinecraftBlockTypes.EndPortalFrame = BlockTypes.get("minecraft:end_portal_frame");
-MinecraftBlockTypes.EndRod = BlockTypes.get("minecraft:end_rod");
-MinecraftBlockTypes.EndStone = BlockTypes.get("minecraft:end_stone");
-MinecraftBlockTypes.EnderChest = BlockTypes.get("minecraft:ender_chest");
-MinecraftBlockTypes.ExposedCopper = BlockTypes.get("minecraft:exposed_copper");
-MinecraftBlockTypes.ExposedCutCopper = BlockTypes.get("minecraft:exposed_cut_copper");
-MinecraftBlockTypes.ExposedCutCopperSlab = BlockTypes.get("minecraft:exposed_cut_copper_slab");
-MinecraftBlockTypes.ExposedCutCopperStairs = BlockTypes.get("minecraft:exposed_cut_copper_stairs");
-MinecraftBlockTypes.ExposedDoubleCutCopperSlab = BlockTypes.get("minecraft:exposed_double_cut_copper_slab");
-MinecraftBlockTypes.Farmland = BlockTypes.get("minecraft:farmland");
-MinecraftBlockTypes.FenceGate = BlockTypes.get("minecraft:fence_gate");
-MinecraftBlockTypes.Fire = BlockTypes.get("minecraft:fire");
-MinecraftBlockTypes.FireCoral = BlockTypes.get("minecraft:fire_coral");
-MinecraftBlockTypes.FletchingTable = BlockTypes.get("minecraft:fletching_table");
-MinecraftBlockTypes.FlowerPot = BlockTypes.get("minecraft:flower_pot");
-MinecraftBlockTypes.FloweringAzalea = BlockTypes.get("minecraft:flowering_azalea");
-MinecraftBlockTypes.FlowingLava = BlockTypes.get("minecraft:flowing_lava");
-MinecraftBlockTypes.FlowingWater = BlockTypes.get("minecraft:flowing_water");
-MinecraftBlockTypes.Frame = BlockTypes.get("minecraft:frame");
-MinecraftBlockTypes.FrogSpawn = BlockTypes.get("minecraft:frog_spawn");
-MinecraftBlockTypes.FrostedIce = BlockTypes.get("minecraft:frosted_ice");
-MinecraftBlockTypes.Furnace = BlockTypes.get("minecraft:furnace");
-MinecraftBlockTypes.GildedBlackstone = BlockTypes.get("minecraft:gilded_blackstone");
-MinecraftBlockTypes.Glass = BlockTypes.get("minecraft:glass");
-MinecraftBlockTypes.GlassPane = BlockTypes.get("minecraft:glass_pane");
-MinecraftBlockTypes.GlowFrame = BlockTypes.get("minecraft:glow_frame");
-MinecraftBlockTypes.GlowLichen = BlockTypes.get("minecraft:glow_lichen");
-MinecraftBlockTypes.Glowingobsidian = BlockTypes.get("minecraft:glowingobsidian");
-MinecraftBlockTypes.Glowstone = BlockTypes.get("minecraft:glowstone");
-MinecraftBlockTypes.GoldBlock = BlockTypes.get("minecraft:gold_block");
-MinecraftBlockTypes.GoldOre = BlockTypes.get("minecraft:gold_ore");
-MinecraftBlockTypes.GoldenRail = BlockTypes.get("minecraft:golden_rail");
-MinecraftBlockTypes.GraniteStairs = BlockTypes.get("minecraft:granite_stairs");
-MinecraftBlockTypes.Grass = BlockTypes.get("minecraft:grass");
-MinecraftBlockTypes.GrassPath = BlockTypes.get("minecraft:grass_path");
-MinecraftBlockTypes.Gravel = BlockTypes.get("minecraft:gravel");
-MinecraftBlockTypes.GrayCandle = BlockTypes.get("minecraft:gray_candle");
-MinecraftBlockTypes.GrayCandleCake = BlockTypes.get("minecraft:gray_candle_cake");
-MinecraftBlockTypes.GrayCarpet = BlockTypes.get("minecraft:gray_carpet");
-MinecraftBlockTypes.GrayConcrete = BlockTypes.get("minecraft:gray_concrete");
-MinecraftBlockTypes.GrayConcretePowder = BlockTypes.get("minecraft:gray_concrete_powder");
-MinecraftBlockTypes.GrayGlazedTerracotta = BlockTypes.get("minecraft:gray_glazed_terracotta");
-MinecraftBlockTypes.GrayShulkerBox = BlockTypes.get("minecraft:gray_shulker_box");
-MinecraftBlockTypes.GrayStainedGlass = BlockTypes.get("minecraft:gray_stained_glass");
-MinecraftBlockTypes.GrayStainedGlassPane = BlockTypes.get("minecraft:gray_stained_glass_pane");
-MinecraftBlockTypes.GrayTerracotta = BlockTypes.get("minecraft:gray_terracotta");
-MinecraftBlockTypes.GrayWool = BlockTypes.get("minecraft:gray_wool");
-MinecraftBlockTypes.GreenCandle = BlockTypes.get("minecraft:green_candle");
-MinecraftBlockTypes.GreenCandleCake = BlockTypes.get("minecraft:green_candle_cake");
-MinecraftBlockTypes.GreenCarpet = BlockTypes.get("minecraft:green_carpet");
-MinecraftBlockTypes.GreenConcrete = BlockTypes.get("minecraft:green_concrete");
-MinecraftBlockTypes.GreenConcretePowder = BlockTypes.get("minecraft:green_concrete_powder");
-MinecraftBlockTypes.GreenGlazedTerracotta = BlockTypes.get("minecraft:green_glazed_terracotta");
-MinecraftBlockTypes.GreenShulkerBox = BlockTypes.get("minecraft:green_shulker_box");
-MinecraftBlockTypes.GreenStainedGlass = BlockTypes.get("minecraft:green_stained_glass");
-MinecraftBlockTypes.GreenStainedGlassPane = BlockTypes.get("minecraft:green_stained_glass_pane");
-MinecraftBlockTypes.GreenTerracotta = BlockTypes.get("minecraft:green_terracotta");
-MinecraftBlockTypes.GreenWool = BlockTypes.get("minecraft:green_wool");
-MinecraftBlockTypes.Grindstone = BlockTypes.get("minecraft:grindstone");
-MinecraftBlockTypes.HangingRoots = BlockTypes.get("minecraft:hanging_roots");
-MinecraftBlockTypes.HardGlass = BlockTypes.get("minecraft:hard_glass");
-MinecraftBlockTypes.HardGlassPane = BlockTypes.get("minecraft:hard_glass_pane");
-MinecraftBlockTypes.HardStainedGlass = BlockTypes.get("minecraft:hard_stained_glass");
-MinecraftBlockTypes.HardStainedGlassPane = BlockTypes.get("minecraft:hard_stained_glass_pane");
-MinecraftBlockTypes.HardenedClay = BlockTypes.get("minecraft:hardened_clay");
-MinecraftBlockTypes.HayBlock = BlockTypes.get("minecraft:hay_block");
-MinecraftBlockTypes.HeavyWeightedPressurePlate = BlockTypes.get("minecraft:heavy_weighted_pressure_plate");
-MinecraftBlockTypes.HoneyBlock = BlockTypes.get("minecraft:honey_block");
-MinecraftBlockTypes.HoneycombBlock = BlockTypes.get("minecraft:honeycomb_block");
-MinecraftBlockTypes.Hopper = BlockTypes.get("minecraft:hopper");
-MinecraftBlockTypes.HornCoral = BlockTypes.get("minecraft:horn_coral");
-MinecraftBlockTypes.Ice = BlockTypes.get("minecraft:ice");
-MinecraftBlockTypes.InfestedDeepslate = BlockTypes.get("minecraft:infested_deepslate");
-MinecraftBlockTypes.InfoUpdate = BlockTypes.get("minecraft:info_update");
-MinecraftBlockTypes.InfoUpdate2 = BlockTypes.get("minecraft:info_update2");
-MinecraftBlockTypes.InvisibleBedrock = BlockTypes.get("minecraft:invisible_bedrock");
-MinecraftBlockTypes.IronBars = BlockTypes.get("minecraft:iron_bars");
-MinecraftBlockTypes.IronBlock = BlockTypes.get("minecraft:iron_block");
-MinecraftBlockTypes.IronDoor = BlockTypes.get("minecraft:iron_door");
-MinecraftBlockTypes.IronOre = BlockTypes.get("minecraft:iron_ore");
-MinecraftBlockTypes.IronTrapdoor = BlockTypes.get("minecraft:iron_trapdoor");
-MinecraftBlockTypes.Jigsaw = BlockTypes.get("minecraft:jigsaw");
-MinecraftBlockTypes.Jukebox = BlockTypes.get("minecraft:jukebox");
-MinecraftBlockTypes.JungleButton = BlockTypes.get("minecraft:jungle_button");
-MinecraftBlockTypes.JungleDoor = BlockTypes.get("minecraft:jungle_door");
-MinecraftBlockTypes.JungleFence = BlockTypes.get("minecraft:jungle_fence");
-MinecraftBlockTypes.JungleFenceGate = BlockTypes.get("minecraft:jungle_fence_gate");
-MinecraftBlockTypes.JungleHangingSign = BlockTypes.get("minecraft:jungle_hanging_sign");
-MinecraftBlockTypes.JungleLog = BlockTypes.get("minecraft:jungle_log");
-MinecraftBlockTypes.JunglePressurePlate = BlockTypes.get("minecraft:jungle_pressure_plate");
-MinecraftBlockTypes.JungleStairs = BlockTypes.get("minecraft:jungle_stairs");
-MinecraftBlockTypes.JungleStandingSign = BlockTypes.get("minecraft:jungle_standing_sign");
-MinecraftBlockTypes.JungleTrapdoor = BlockTypes.get("minecraft:jungle_trapdoor");
-MinecraftBlockTypes.JungleWallSign = BlockTypes.get("minecraft:jungle_wall_sign");
-MinecraftBlockTypes.Kelp = BlockTypes.get("minecraft:kelp");
-MinecraftBlockTypes.Ladder = BlockTypes.get("minecraft:ladder");
-MinecraftBlockTypes.Lantern = BlockTypes.get("minecraft:lantern");
-MinecraftBlockTypes.LapisBlock = BlockTypes.get("minecraft:lapis_block");
-MinecraftBlockTypes.LapisOre = BlockTypes.get("minecraft:lapis_ore");
-MinecraftBlockTypes.LargeAmethystBud = BlockTypes.get("minecraft:large_amethyst_bud");
-MinecraftBlockTypes.Lava = BlockTypes.get("minecraft:lava");
-MinecraftBlockTypes.Leaves = BlockTypes.get("minecraft:leaves");
-MinecraftBlockTypes.Leaves2 = BlockTypes.get("minecraft:leaves2");
-MinecraftBlockTypes.Lectern = BlockTypes.get("minecraft:lectern");
-MinecraftBlockTypes.Lever = BlockTypes.get("minecraft:lever");
-MinecraftBlockTypes.LightBlock = BlockTypes.get("minecraft:light_block");
-MinecraftBlockTypes.LightBlueCandle = BlockTypes.get("minecraft:light_blue_candle");
-MinecraftBlockTypes.LightBlueCandleCake = BlockTypes.get("minecraft:light_blue_candle_cake");
-MinecraftBlockTypes.LightBlueCarpet = BlockTypes.get("minecraft:light_blue_carpet");
-MinecraftBlockTypes.LightBlueConcrete = BlockTypes.get("minecraft:light_blue_concrete");
-MinecraftBlockTypes.LightBlueConcretePowder = BlockTypes.get("minecraft:light_blue_concrete_powder");
-MinecraftBlockTypes.LightBlueGlazedTerracotta = BlockTypes.get("minecraft:light_blue_glazed_terracotta");
-MinecraftBlockTypes.LightBlueShulkerBox = BlockTypes.get("minecraft:light_blue_shulker_box");
-MinecraftBlockTypes.LightBlueStainedGlass = BlockTypes.get("minecraft:light_blue_stained_glass");
-MinecraftBlockTypes.LightBlueStainedGlassPane = BlockTypes.get("minecraft:light_blue_stained_glass_pane");
-MinecraftBlockTypes.LightBlueTerracotta = BlockTypes.get("minecraft:light_blue_terracotta");
-MinecraftBlockTypes.LightBlueWool = BlockTypes.get("minecraft:light_blue_wool");
-MinecraftBlockTypes.LightGrayCandle = BlockTypes.get("minecraft:light_gray_candle");
-MinecraftBlockTypes.LightGrayCandleCake = BlockTypes.get("minecraft:light_gray_candle_cake");
-MinecraftBlockTypes.LightGrayCarpet = BlockTypes.get("minecraft:light_gray_carpet");
-MinecraftBlockTypes.LightGrayConcrete = BlockTypes.get("minecraft:light_gray_concrete");
-MinecraftBlockTypes.LightGrayConcretePowder = BlockTypes.get("minecraft:light_gray_concrete_powder");
-MinecraftBlockTypes.LightGrayShulkerBox = BlockTypes.get("minecraft:light_gray_shulker_box");
-MinecraftBlockTypes.LightGrayStainedGlass = BlockTypes.get("minecraft:light_gray_stained_glass");
-MinecraftBlockTypes.LightGrayStainedGlassPane = BlockTypes.get("minecraft:light_gray_stained_glass_pane");
-MinecraftBlockTypes.LightGrayTerracotta = BlockTypes.get("minecraft:light_gray_terracotta");
-MinecraftBlockTypes.LightGrayWool = BlockTypes.get("minecraft:light_gray_wool");
-MinecraftBlockTypes.LightWeightedPressurePlate = BlockTypes.get("minecraft:light_weighted_pressure_plate");
-MinecraftBlockTypes.LightningRod = BlockTypes.get("minecraft:lightning_rod");
-MinecraftBlockTypes.LimeCandle = BlockTypes.get("minecraft:lime_candle");
-MinecraftBlockTypes.LimeCandleCake = BlockTypes.get("minecraft:lime_candle_cake");
-MinecraftBlockTypes.LimeCarpet = BlockTypes.get("minecraft:lime_carpet");
-MinecraftBlockTypes.LimeConcrete = BlockTypes.get("minecraft:lime_concrete");
-MinecraftBlockTypes.LimeConcretePowder = BlockTypes.get("minecraft:lime_concrete_powder");
-MinecraftBlockTypes.LimeGlazedTerracotta = BlockTypes.get("minecraft:lime_glazed_terracotta");
-MinecraftBlockTypes.LimeShulkerBox = BlockTypes.get("minecraft:lime_shulker_box");
-MinecraftBlockTypes.LimeStainedGlass = BlockTypes.get("minecraft:lime_stained_glass");
-MinecraftBlockTypes.LimeStainedGlassPane = BlockTypes.get("minecraft:lime_stained_glass_pane");
-MinecraftBlockTypes.LimeTerracotta = BlockTypes.get("minecraft:lime_terracotta");
-MinecraftBlockTypes.LimeWool = BlockTypes.get("minecraft:lime_wool");
-MinecraftBlockTypes.LitBlastFurnace = BlockTypes.get("minecraft:lit_blast_furnace");
-MinecraftBlockTypes.LitDeepslateRedstoneOre = BlockTypes.get("minecraft:lit_deepslate_redstone_ore");
-MinecraftBlockTypes.LitFurnace = BlockTypes.get("minecraft:lit_furnace");
-MinecraftBlockTypes.LitPumpkin = BlockTypes.get("minecraft:lit_pumpkin");
-MinecraftBlockTypes.LitRedstoneLamp = BlockTypes.get("minecraft:lit_redstone_lamp");
-MinecraftBlockTypes.LitRedstoneOre = BlockTypes.get("minecraft:lit_redstone_ore");
-MinecraftBlockTypes.LitSmoker = BlockTypes.get("minecraft:lit_smoker");
-MinecraftBlockTypes.Lodestone = BlockTypes.get("minecraft:lodestone");
-MinecraftBlockTypes.Loom = BlockTypes.get("minecraft:loom");
-MinecraftBlockTypes.MagentaCandle = BlockTypes.get("minecraft:magenta_candle");
-MinecraftBlockTypes.MagentaCandleCake = BlockTypes.get("minecraft:magenta_candle_cake");
-MinecraftBlockTypes.MagentaCarpet = BlockTypes.get("minecraft:magenta_carpet");
-MinecraftBlockTypes.MagentaConcrete = BlockTypes.get("minecraft:magenta_concrete");
-MinecraftBlockTypes.MagentaConcretePowder = BlockTypes.get("minecraft:magenta_concrete_powder");
-MinecraftBlockTypes.MagentaGlazedTerracotta = BlockTypes.get("minecraft:magenta_glazed_terracotta");
-MinecraftBlockTypes.MagentaShulkerBox = BlockTypes.get("minecraft:magenta_shulker_box");
-MinecraftBlockTypes.MagentaStainedGlass = BlockTypes.get("minecraft:magenta_stained_glass");
-MinecraftBlockTypes.MagentaStainedGlassPane = BlockTypes.get("minecraft:magenta_stained_glass_pane");
-MinecraftBlockTypes.MagentaTerracotta = BlockTypes.get("minecraft:magenta_terracotta");
-MinecraftBlockTypes.MagentaWool = BlockTypes.get("minecraft:magenta_wool");
-MinecraftBlockTypes.Magma = BlockTypes.get("minecraft:magma");
-MinecraftBlockTypes.MangroveButton = BlockTypes.get("minecraft:mangrove_button");
-MinecraftBlockTypes.MangroveDoor = BlockTypes.get("minecraft:mangrove_door");
-MinecraftBlockTypes.MangroveDoubleSlab = BlockTypes.get("minecraft:mangrove_double_slab");
-MinecraftBlockTypes.MangroveFence = BlockTypes.get("minecraft:mangrove_fence");
-MinecraftBlockTypes.MangroveFenceGate = BlockTypes.get("minecraft:mangrove_fence_gate");
-MinecraftBlockTypes.MangroveHangingSign = BlockTypes.get("minecraft:mangrove_hanging_sign");
-MinecraftBlockTypes.MangroveLeaves = BlockTypes.get("minecraft:mangrove_leaves");
-MinecraftBlockTypes.MangroveLog = BlockTypes.get("minecraft:mangrove_log");
-MinecraftBlockTypes.MangrovePlanks = BlockTypes.get("minecraft:mangrove_planks");
-MinecraftBlockTypes.MangrovePressurePlate = BlockTypes.get("minecraft:mangrove_pressure_plate");
-MinecraftBlockTypes.MangrovePropagule = BlockTypes.get("minecraft:mangrove_propagule");
-MinecraftBlockTypes.MangroveRoots = BlockTypes.get("minecraft:mangrove_roots");
-MinecraftBlockTypes.MangroveSlab = BlockTypes.get("minecraft:mangrove_slab");
-MinecraftBlockTypes.MangroveStairs = BlockTypes.get("minecraft:mangrove_stairs");
-MinecraftBlockTypes.MangroveStandingSign = BlockTypes.get("minecraft:mangrove_standing_sign");
-MinecraftBlockTypes.MangroveTrapdoor = BlockTypes.get("minecraft:mangrove_trapdoor");
-MinecraftBlockTypes.MangroveWallSign = BlockTypes.get("minecraft:mangrove_wall_sign");
-MinecraftBlockTypes.MangroveWood = BlockTypes.get("minecraft:mangrove_wood");
-MinecraftBlockTypes.MediumAmethystBud = BlockTypes.get("minecraft:medium_amethyst_bud");
-MinecraftBlockTypes.MelonBlock = BlockTypes.get("minecraft:melon_block");
-MinecraftBlockTypes.MelonStem = BlockTypes.get("minecraft:melon_stem");
-MinecraftBlockTypes.MobSpawner = BlockTypes.get("minecraft:mob_spawner");
-MinecraftBlockTypes.MonsterEgg = BlockTypes.get("minecraft:monster_egg");
-MinecraftBlockTypes.MossBlock = BlockTypes.get("minecraft:moss_block");
-MinecraftBlockTypes.MossCarpet = BlockTypes.get("minecraft:moss_carpet");
-MinecraftBlockTypes.MossyCobblestone = BlockTypes.get("minecraft:mossy_cobblestone");
-MinecraftBlockTypes.MossyCobblestoneStairs = BlockTypes.get("minecraft:mossy_cobblestone_stairs");
-MinecraftBlockTypes.MossyStoneBrickStairs = BlockTypes.get("minecraft:mossy_stone_brick_stairs");
-MinecraftBlockTypes.MovingBlock = BlockTypes.get("minecraft:moving_block");
-MinecraftBlockTypes.Mud = BlockTypes.get("minecraft:mud");
-MinecraftBlockTypes.MudBrickDoubleSlab = BlockTypes.get("minecraft:mud_brick_double_slab");
-MinecraftBlockTypes.MudBrickSlab = BlockTypes.get("minecraft:mud_brick_slab");
-MinecraftBlockTypes.MudBrickStairs = BlockTypes.get("minecraft:mud_brick_stairs");
-MinecraftBlockTypes.MudBrickWall = BlockTypes.get("minecraft:mud_brick_wall");
-MinecraftBlockTypes.MudBricks = BlockTypes.get("minecraft:mud_bricks");
-MinecraftBlockTypes.MuddyMangroveRoots = BlockTypes.get("minecraft:muddy_mangrove_roots");
-MinecraftBlockTypes.Mycelium = BlockTypes.get("minecraft:mycelium");
-MinecraftBlockTypes.NetherBrick = BlockTypes.get("minecraft:nether_brick");
-MinecraftBlockTypes.NetherBrickFence = BlockTypes.get("minecraft:nether_brick_fence");
-MinecraftBlockTypes.NetherBrickStairs = BlockTypes.get("minecraft:nether_brick_stairs");
-MinecraftBlockTypes.NetherGoldOre = BlockTypes.get("minecraft:nether_gold_ore");
-MinecraftBlockTypes.NetherSprouts = BlockTypes.get("minecraft:nether_sprouts");
-MinecraftBlockTypes.NetherWart = BlockTypes.get("minecraft:nether_wart");
-MinecraftBlockTypes.NetherWartBlock = BlockTypes.get("minecraft:nether_wart_block");
-MinecraftBlockTypes.NetheriteBlock = BlockTypes.get("minecraft:netherite_block");
-MinecraftBlockTypes.Netherrack = BlockTypes.get("minecraft:netherrack");
-MinecraftBlockTypes.Netherreactor = BlockTypes.get("minecraft:netherreactor");
-MinecraftBlockTypes.NormalStoneStairs = BlockTypes.get("minecraft:normal_stone_stairs");
-MinecraftBlockTypes.Noteblock = BlockTypes.get("minecraft:noteblock");
-MinecraftBlockTypes.OakFence = BlockTypes.get("minecraft:oak_fence");
-MinecraftBlockTypes.OakHangingSign = BlockTypes.get("minecraft:oak_hanging_sign");
-MinecraftBlockTypes.OakLog = BlockTypes.get("minecraft:oak_log");
-MinecraftBlockTypes.OakStairs = BlockTypes.get("minecraft:oak_stairs");
-MinecraftBlockTypes.Observer = BlockTypes.get("minecraft:observer");
-MinecraftBlockTypes.Obsidian = BlockTypes.get("minecraft:obsidian");
-MinecraftBlockTypes.OchreFroglight = BlockTypes.get("minecraft:ochre_froglight");
-MinecraftBlockTypes.OrangeCandle = BlockTypes.get("minecraft:orange_candle");
-MinecraftBlockTypes.OrangeCandleCake = BlockTypes.get("minecraft:orange_candle_cake");
-MinecraftBlockTypes.OrangeCarpet = BlockTypes.get("minecraft:orange_carpet");
-MinecraftBlockTypes.OrangeConcrete = BlockTypes.get("minecraft:orange_concrete");
-MinecraftBlockTypes.OrangeConcretePowder = BlockTypes.get("minecraft:orange_concrete_powder");
-MinecraftBlockTypes.OrangeGlazedTerracotta = BlockTypes.get("minecraft:orange_glazed_terracotta");
-MinecraftBlockTypes.OrangeShulkerBox = BlockTypes.get("minecraft:orange_shulker_box");
-MinecraftBlockTypes.OrangeStainedGlass = BlockTypes.get("minecraft:orange_stained_glass");
-MinecraftBlockTypes.OrangeStainedGlassPane = BlockTypes.get("minecraft:orange_stained_glass_pane");
-MinecraftBlockTypes.OrangeTerracotta = BlockTypes.get("minecraft:orange_terracotta");
-MinecraftBlockTypes.OrangeWool = BlockTypes.get("minecraft:orange_wool");
-MinecraftBlockTypes.OxidizedCopper = BlockTypes.get("minecraft:oxidized_copper");
-MinecraftBlockTypes.OxidizedCutCopper = BlockTypes.get("minecraft:oxidized_cut_copper");
-MinecraftBlockTypes.OxidizedCutCopperSlab = BlockTypes.get("minecraft:oxidized_cut_copper_slab");
-MinecraftBlockTypes.OxidizedCutCopperStairs = BlockTypes.get("minecraft:oxidized_cut_copper_stairs");
-MinecraftBlockTypes.OxidizedDoubleCutCopperSlab = BlockTypes.get("minecraft:oxidized_double_cut_copper_slab");
-MinecraftBlockTypes.PackedIce = BlockTypes.get("minecraft:packed_ice");
-MinecraftBlockTypes.PackedMud = BlockTypes.get("minecraft:packed_mud");
-MinecraftBlockTypes.PearlescentFroglight = BlockTypes.get("minecraft:pearlescent_froglight");
-MinecraftBlockTypes.PinkCandle = BlockTypes.get("minecraft:pink_candle");
-MinecraftBlockTypes.PinkCandleCake = BlockTypes.get("minecraft:pink_candle_cake");
-MinecraftBlockTypes.PinkCarpet = BlockTypes.get("minecraft:pink_carpet");
-MinecraftBlockTypes.PinkConcrete = BlockTypes.get("minecraft:pink_concrete");
-MinecraftBlockTypes.PinkConcretePowder = BlockTypes.get("minecraft:pink_concrete_powder");
-MinecraftBlockTypes.PinkGlazedTerracotta = BlockTypes.get("minecraft:pink_glazed_terracotta");
-MinecraftBlockTypes.PinkPetals = BlockTypes.get("minecraft:pink_petals");
-MinecraftBlockTypes.PinkShulkerBox = BlockTypes.get("minecraft:pink_shulker_box");
-MinecraftBlockTypes.PinkStainedGlass = BlockTypes.get("minecraft:pink_stained_glass");
-MinecraftBlockTypes.PinkStainedGlassPane = BlockTypes.get("minecraft:pink_stained_glass_pane");
-MinecraftBlockTypes.PinkTerracotta = BlockTypes.get("minecraft:pink_terracotta");
-MinecraftBlockTypes.PinkWool = BlockTypes.get("minecraft:pink_wool");
-MinecraftBlockTypes.Piston = BlockTypes.get("minecraft:piston");
-MinecraftBlockTypes.PistonArmCollision = BlockTypes.get("minecraft:piston_arm_collision");
-MinecraftBlockTypes.PitcherCrop = BlockTypes.get("minecraft:pitcher_crop");
-MinecraftBlockTypes.PitcherPlant = BlockTypes.get("minecraft:pitcher_plant");
-MinecraftBlockTypes.Planks = BlockTypes.get("minecraft:planks");
-MinecraftBlockTypes.Podzol = BlockTypes.get("minecraft:podzol");
-MinecraftBlockTypes.PointedDripstone = BlockTypes.get("minecraft:pointed_dripstone");
-MinecraftBlockTypes.PolishedAndesiteStairs = BlockTypes.get("minecraft:polished_andesite_stairs");
-MinecraftBlockTypes.PolishedBasalt = BlockTypes.get("minecraft:polished_basalt");
-MinecraftBlockTypes.PolishedBlackstone = BlockTypes.get("minecraft:polished_blackstone");
-MinecraftBlockTypes.PolishedBlackstoneBrickDoubleSlab = BlockTypes.get("minecraft:polished_blackstone_brick_double_slab");
-MinecraftBlockTypes.PolishedBlackstoneBrickSlab = BlockTypes.get("minecraft:polished_blackstone_brick_slab");
-MinecraftBlockTypes.PolishedBlackstoneBrickStairs = BlockTypes.get("minecraft:polished_blackstone_brick_stairs");
-MinecraftBlockTypes.PolishedBlackstoneBrickWall = BlockTypes.get("minecraft:polished_blackstone_brick_wall");
-MinecraftBlockTypes.PolishedBlackstoneBricks = BlockTypes.get("minecraft:polished_blackstone_bricks");
-MinecraftBlockTypes.PolishedBlackstoneButton = BlockTypes.get("minecraft:polished_blackstone_button");
-MinecraftBlockTypes.PolishedBlackstoneDoubleSlab = BlockTypes.get("minecraft:polished_blackstone_double_slab");
-MinecraftBlockTypes.PolishedBlackstonePressurePlate = BlockTypes.get("minecraft:polished_blackstone_pressure_plate");
-MinecraftBlockTypes.PolishedBlackstoneSlab = BlockTypes.get("minecraft:polished_blackstone_slab");
-MinecraftBlockTypes.PolishedBlackstoneStairs = BlockTypes.get("minecraft:polished_blackstone_stairs");
-MinecraftBlockTypes.PolishedBlackstoneWall = BlockTypes.get("minecraft:polished_blackstone_wall");
-MinecraftBlockTypes.PolishedDeepslate = BlockTypes.get("minecraft:polished_deepslate");
-MinecraftBlockTypes.PolishedDeepslateDoubleSlab = BlockTypes.get("minecraft:polished_deepslate_double_slab");
-MinecraftBlockTypes.PolishedDeepslateSlab = BlockTypes.get("minecraft:polished_deepslate_slab");
-MinecraftBlockTypes.PolishedDeepslateStairs = BlockTypes.get("minecraft:polished_deepslate_stairs");
-MinecraftBlockTypes.PolishedDeepslateWall = BlockTypes.get("minecraft:polished_deepslate_wall");
-MinecraftBlockTypes.PolishedDioriteStairs = BlockTypes.get("minecraft:polished_diorite_stairs");
-MinecraftBlockTypes.PolishedGraniteStairs = BlockTypes.get("minecraft:polished_granite_stairs");
-MinecraftBlockTypes.Portal = BlockTypes.get("minecraft:portal");
-MinecraftBlockTypes.Potatoes = BlockTypes.get("minecraft:potatoes");
-MinecraftBlockTypes.PowderSnow = BlockTypes.get("minecraft:powder_snow");
-MinecraftBlockTypes.PoweredComparator = BlockTypes.get("minecraft:powered_comparator");
-MinecraftBlockTypes.PoweredRepeater = BlockTypes.get("minecraft:powered_repeater");
-MinecraftBlockTypes.Prismarine = BlockTypes.get("minecraft:prismarine");
-MinecraftBlockTypes.PrismarineBricksStairs = BlockTypes.get("minecraft:prismarine_bricks_stairs");
-MinecraftBlockTypes.PrismarineStairs = BlockTypes.get("minecraft:prismarine_stairs");
-MinecraftBlockTypes.Pumpkin = BlockTypes.get("minecraft:pumpkin");
-MinecraftBlockTypes.PumpkinStem = BlockTypes.get("minecraft:pumpkin_stem");
-MinecraftBlockTypes.PurpleCandle = BlockTypes.get("minecraft:purple_candle");
-MinecraftBlockTypes.PurpleCandleCake = BlockTypes.get("minecraft:purple_candle_cake");
-MinecraftBlockTypes.PurpleCarpet = BlockTypes.get("minecraft:purple_carpet");
-MinecraftBlockTypes.PurpleConcrete = BlockTypes.get("minecraft:purple_concrete");
-MinecraftBlockTypes.PurpleConcretePowder = BlockTypes.get("minecraft:purple_concrete_powder");
-MinecraftBlockTypes.PurpleGlazedTerracotta = BlockTypes.get("minecraft:purple_glazed_terracotta");
-MinecraftBlockTypes.PurpleShulkerBox = BlockTypes.get("minecraft:purple_shulker_box");
-MinecraftBlockTypes.PurpleStainedGlass = BlockTypes.get("minecraft:purple_stained_glass");
-MinecraftBlockTypes.PurpleStainedGlassPane = BlockTypes.get("minecraft:purple_stained_glass_pane");
-MinecraftBlockTypes.PurpleTerracotta = BlockTypes.get("minecraft:purple_terracotta");
-MinecraftBlockTypes.PurpleWool = BlockTypes.get("minecraft:purple_wool");
-MinecraftBlockTypes.PurpurBlock = BlockTypes.get("minecraft:purpur_block");
-MinecraftBlockTypes.PurpurStairs = BlockTypes.get("minecraft:purpur_stairs");
-MinecraftBlockTypes.QuartzBlock = BlockTypes.get("minecraft:quartz_block");
-MinecraftBlockTypes.QuartzBricks = BlockTypes.get("minecraft:quartz_bricks");
-MinecraftBlockTypes.QuartzOre = BlockTypes.get("minecraft:quartz_ore");
-MinecraftBlockTypes.QuartzStairs = BlockTypes.get("minecraft:quartz_stairs");
-MinecraftBlockTypes.Rail = BlockTypes.get("minecraft:rail");
-MinecraftBlockTypes.RawCopperBlock = BlockTypes.get("minecraft:raw_copper_block");
-MinecraftBlockTypes.RawGoldBlock = BlockTypes.get("minecraft:raw_gold_block");
-MinecraftBlockTypes.RawIronBlock = BlockTypes.get("minecraft:raw_iron_block");
-MinecraftBlockTypes.RedCandle = BlockTypes.get("minecraft:red_candle");
-MinecraftBlockTypes.RedCandleCake = BlockTypes.get("minecraft:red_candle_cake");
-MinecraftBlockTypes.RedCarpet = BlockTypes.get("minecraft:red_carpet");
-MinecraftBlockTypes.RedConcrete = BlockTypes.get("minecraft:red_concrete");
-MinecraftBlockTypes.RedConcretePowder = BlockTypes.get("minecraft:red_concrete_powder");
-MinecraftBlockTypes.RedFlower = BlockTypes.get("minecraft:red_flower");
-MinecraftBlockTypes.RedGlazedTerracotta = BlockTypes.get("minecraft:red_glazed_terracotta");
-MinecraftBlockTypes.RedMushroom = BlockTypes.get("minecraft:red_mushroom");
-MinecraftBlockTypes.RedMushroomBlock = BlockTypes.get("minecraft:red_mushroom_block");
-MinecraftBlockTypes.RedNetherBrick = BlockTypes.get("minecraft:red_nether_brick");
-MinecraftBlockTypes.RedNetherBrickStairs = BlockTypes.get("minecraft:red_nether_brick_stairs");
-MinecraftBlockTypes.RedSandstone = BlockTypes.get("minecraft:red_sandstone");
-MinecraftBlockTypes.RedSandstoneStairs = BlockTypes.get("minecraft:red_sandstone_stairs");
-MinecraftBlockTypes.RedShulkerBox = BlockTypes.get("minecraft:red_shulker_box");
-MinecraftBlockTypes.RedStainedGlass = BlockTypes.get("minecraft:red_stained_glass");
-MinecraftBlockTypes.RedStainedGlassPane = BlockTypes.get("minecraft:red_stained_glass_pane");
-MinecraftBlockTypes.RedTerracotta = BlockTypes.get("minecraft:red_terracotta");
-MinecraftBlockTypes.RedWool = BlockTypes.get("minecraft:red_wool");
-MinecraftBlockTypes.RedstoneBlock = BlockTypes.get("minecraft:redstone_block");
-MinecraftBlockTypes.RedstoneLamp = BlockTypes.get("minecraft:redstone_lamp");
-MinecraftBlockTypes.RedstoneOre = BlockTypes.get("minecraft:redstone_ore");
-MinecraftBlockTypes.RedstoneTorch = BlockTypes.get("minecraft:redstone_torch");
-MinecraftBlockTypes.RedstoneWire = BlockTypes.get("minecraft:redstone_wire");
-MinecraftBlockTypes.Reeds = BlockTypes.get("minecraft:reeds");
-MinecraftBlockTypes.ReinforcedDeepslate = BlockTypes.get("minecraft:reinforced_deepslate");
-MinecraftBlockTypes.RepeatingCommandBlock = BlockTypes.get("minecraft:repeating_command_block");
-MinecraftBlockTypes.Reserved6 = BlockTypes.get("minecraft:reserved6");
-MinecraftBlockTypes.RespawnAnchor = BlockTypes.get("minecraft:respawn_anchor");
-MinecraftBlockTypes.Sand = BlockTypes.get("minecraft:sand");
-MinecraftBlockTypes.Sandstone = BlockTypes.get("minecraft:sandstone");
-MinecraftBlockTypes.SandstoneStairs = BlockTypes.get("minecraft:sandstone_stairs");
-MinecraftBlockTypes.Sapling = BlockTypes.get("minecraft:sapling");
-MinecraftBlockTypes.Scaffolding = BlockTypes.get("minecraft:scaffolding");
-MinecraftBlockTypes.Sculk = BlockTypes.get("minecraft:sculk");
-MinecraftBlockTypes.SculkCatalyst = BlockTypes.get("minecraft:sculk_catalyst");
-MinecraftBlockTypes.SculkSensor = BlockTypes.get("minecraft:sculk_sensor");
-MinecraftBlockTypes.SculkShrieker = BlockTypes.get("minecraft:sculk_shrieker");
-MinecraftBlockTypes.SculkVein = BlockTypes.get("minecraft:sculk_vein");
-MinecraftBlockTypes.SeaLantern = BlockTypes.get("minecraft:sea_lantern");
-MinecraftBlockTypes.SeaPickle = BlockTypes.get("minecraft:sea_pickle");
-MinecraftBlockTypes.Seagrass = BlockTypes.get("minecraft:seagrass");
-MinecraftBlockTypes.Shroomlight = BlockTypes.get("minecraft:shroomlight");
-MinecraftBlockTypes.SilverGlazedTerracotta = BlockTypes.get("minecraft:silver_glazed_terracotta");
-MinecraftBlockTypes.Skull = BlockTypes.get("minecraft:skull");
-MinecraftBlockTypes.Slime = BlockTypes.get("minecraft:slime");
-MinecraftBlockTypes.SmallAmethystBud = BlockTypes.get("minecraft:small_amethyst_bud");
-MinecraftBlockTypes.SmallDripleafBlock = BlockTypes.get("minecraft:small_dripleaf_block");
-MinecraftBlockTypes.SmithingTable = BlockTypes.get("minecraft:smithing_table");
-MinecraftBlockTypes.Smoker = BlockTypes.get("minecraft:smoker");
-MinecraftBlockTypes.SmoothBasalt = BlockTypes.get("minecraft:smooth_basalt");
-MinecraftBlockTypes.SmoothQuartzStairs = BlockTypes.get("minecraft:smooth_quartz_stairs");
-MinecraftBlockTypes.SmoothRedSandstoneStairs = BlockTypes.get("minecraft:smooth_red_sandstone_stairs");
-MinecraftBlockTypes.SmoothSandstoneStairs = BlockTypes.get("minecraft:smooth_sandstone_stairs");
-MinecraftBlockTypes.SmoothStone = BlockTypes.get("minecraft:smooth_stone");
-MinecraftBlockTypes.SnifferEgg = BlockTypes.get("minecraft:sniffer_egg");
-MinecraftBlockTypes.Snow = BlockTypes.get("minecraft:snow");
-MinecraftBlockTypes.SnowLayer = BlockTypes.get("minecraft:snow_layer");
-MinecraftBlockTypes.SoulCampfire = BlockTypes.get("minecraft:soul_campfire");
-MinecraftBlockTypes.SoulFire = BlockTypes.get("minecraft:soul_fire");
-MinecraftBlockTypes.SoulLantern = BlockTypes.get("minecraft:soul_lantern");
-MinecraftBlockTypes.SoulSand = BlockTypes.get("minecraft:soul_sand");
-MinecraftBlockTypes.SoulSoil = BlockTypes.get("minecraft:soul_soil");
-MinecraftBlockTypes.SoulTorch = BlockTypes.get("minecraft:soul_torch");
-MinecraftBlockTypes.Sponge = BlockTypes.get("minecraft:sponge");
-MinecraftBlockTypes.SporeBlossom = BlockTypes.get("minecraft:spore_blossom");
-MinecraftBlockTypes.SpruceButton = BlockTypes.get("minecraft:spruce_button");
-MinecraftBlockTypes.SpruceDoor = BlockTypes.get("minecraft:spruce_door");
-MinecraftBlockTypes.SpruceFence = BlockTypes.get("minecraft:spruce_fence");
-MinecraftBlockTypes.SpruceFenceGate = BlockTypes.get("minecraft:spruce_fence_gate");
-MinecraftBlockTypes.SpruceHangingSign = BlockTypes.get("minecraft:spruce_hanging_sign");
-MinecraftBlockTypes.SpruceLog = BlockTypes.get("minecraft:spruce_log");
-MinecraftBlockTypes.SprucePressurePlate = BlockTypes.get("minecraft:spruce_pressure_plate");
-MinecraftBlockTypes.SpruceStairs = BlockTypes.get("minecraft:spruce_stairs");
-MinecraftBlockTypes.SpruceStandingSign = BlockTypes.get("minecraft:spruce_standing_sign");
-MinecraftBlockTypes.SpruceTrapdoor = BlockTypes.get("minecraft:spruce_trapdoor");
-MinecraftBlockTypes.SpruceWallSign = BlockTypes.get("minecraft:spruce_wall_sign");
-MinecraftBlockTypes.StandingBanner = BlockTypes.get("minecraft:standing_banner");
-MinecraftBlockTypes.StandingSign = BlockTypes.get("minecraft:standing_sign");
-MinecraftBlockTypes.StickyPiston = BlockTypes.get("minecraft:sticky_piston");
-MinecraftBlockTypes.StickyPistonArmCollision = BlockTypes.get("minecraft:sticky_piston_arm_collision");
-MinecraftBlockTypes.Stone = BlockTypes.get("minecraft:stone");
-MinecraftBlockTypes.StoneBlockSlab = BlockTypes.get("minecraft:stone_block_slab");
-MinecraftBlockTypes.StoneBlockSlab2 = BlockTypes.get("minecraft:stone_block_slab2");
-MinecraftBlockTypes.StoneBlockSlab3 = BlockTypes.get("minecraft:stone_block_slab3");
-MinecraftBlockTypes.StoneBlockSlab4 = BlockTypes.get("minecraft:stone_block_slab4");
-MinecraftBlockTypes.StoneBrickStairs = BlockTypes.get("minecraft:stone_brick_stairs");
-MinecraftBlockTypes.StoneButton = BlockTypes.get("minecraft:stone_button");
-MinecraftBlockTypes.StonePressurePlate = BlockTypes.get("minecraft:stone_pressure_plate");
-MinecraftBlockTypes.StoneStairs = BlockTypes.get("minecraft:stone_stairs");
-MinecraftBlockTypes.Stonebrick = BlockTypes.get("minecraft:stonebrick");
-MinecraftBlockTypes.Stonecutter = BlockTypes.get("minecraft:stonecutter");
-MinecraftBlockTypes.StonecutterBlock = BlockTypes.get("minecraft:stonecutter_block");
-MinecraftBlockTypes.StrippedAcaciaLog = BlockTypes.get("minecraft:stripped_acacia_log");
-MinecraftBlockTypes.StrippedBambooBlock = BlockTypes.get("minecraft:stripped_bamboo_block");
-MinecraftBlockTypes.StrippedBirchLog = BlockTypes.get("minecraft:stripped_birch_log");
-MinecraftBlockTypes.StrippedCherryLog = BlockTypes.get("minecraft:stripped_cherry_log");
-MinecraftBlockTypes.StrippedCherryWood = BlockTypes.get("minecraft:stripped_cherry_wood");
-MinecraftBlockTypes.StrippedCrimsonHyphae = BlockTypes.get("minecraft:stripped_crimson_hyphae");
-MinecraftBlockTypes.StrippedCrimsonStem = BlockTypes.get("minecraft:stripped_crimson_stem");
-MinecraftBlockTypes.StrippedDarkOakLog = BlockTypes.get("minecraft:stripped_dark_oak_log");
-MinecraftBlockTypes.StrippedJungleLog = BlockTypes.get("minecraft:stripped_jungle_log");
-MinecraftBlockTypes.StrippedMangroveLog = BlockTypes.get("minecraft:stripped_mangrove_log");
-MinecraftBlockTypes.StrippedMangroveWood = BlockTypes.get("minecraft:stripped_mangrove_wood");
-MinecraftBlockTypes.StrippedOakLog = BlockTypes.get("minecraft:stripped_oak_log");
-MinecraftBlockTypes.StrippedSpruceLog = BlockTypes.get("minecraft:stripped_spruce_log");
-MinecraftBlockTypes.StrippedWarpedHyphae = BlockTypes.get("minecraft:stripped_warped_hyphae");
-MinecraftBlockTypes.StrippedWarpedStem = BlockTypes.get("minecraft:stripped_warped_stem");
-MinecraftBlockTypes.StructureBlock = BlockTypes.get("minecraft:structure_block");
-MinecraftBlockTypes.StructureVoid = BlockTypes.get("minecraft:structure_void");
-MinecraftBlockTypes.SuspiciousGravel = BlockTypes.get("minecraft:suspicious_gravel");
-MinecraftBlockTypes.SuspiciousSand = BlockTypes.get("minecraft:suspicious_sand");
-MinecraftBlockTypes.SweetBerryBush = BlockTypes.get("minecraft:sweet_berry_bush");
-MinecraftBlockTypes.Tallgrass = BlockTypes.get("minecraft:tallgrass");
-MinecraftBlockTypes.Target = BlockTypes.get("minecraft:target");
-MinecraftBlockTypes.TintedGlass = BlockTypes.get("minecraft:tinted_glass");
-MinecraftBlockTypes.Tnt = BlockTypes.get("minecraft:tnt");
-MinecraftBlockTypes.Torch = BlockTypes.get("minecraft:torch");
-MinecraftBlockTypes.Torchflower = BlockTypes.get("minecraft:torchflower");
-MinecraftBlockTypes.TorchflowerCrop = BlockTypes.get("minecraft:torchflower_crop");
-MinecraftBlockTypes.Trapdoor = BlockTypes.get("minecraft:trapdoor");
-MinecraftBlockTypes.TrappedChest = BlockTypes.get("minecraft:trapped_chest");
-MinecraftBlockTypes.TripWire = BlockTypes.get("minecraft:trip_wire");
-MinecraftBlockTypes.TripwireHook = BlockTypes.get("minecraft:tripwire_hook");
-MinecraftBlockTypes.TubeCoral = BlockTypes.get("minecraft:tube_coral");
-MinecraftBlockTypes.Tuff = BlockTypes.get("minecraft:tuff");
-MinecraftBlockTypes.TurtleEgg = BlockTypes.get("minecraft:turtle_egg");
-MinecraftBlockTypes.TwistingVines = BlockTypes.get("minecraft:twisting_vines");
-MinecraftBlockTypes.UnderwaterTorch = BlockTypes.get("minecraft:underwater_torch");
-MinecraftBlockTypes.UndyedShulkerBox = BlockTypes.get("minecraft:undyed_shulker_box");
-MinecraftBlockTypes.Unknown = BlockTypes.get("minecraft:unknown");
-MinecraftBlockTypes.UnlitRedstoneTorch = BlockTypes.get("minecraft:unlit_redstone_torch");
-MinecraftBlockTypes.UnpoweredComparator = BlockTypes.get("minecraft:unpowered_comparator");
-MinecraftBlockTypes.UnpoweredRepeater = BlockTypes.get("minecraft:unpowered_repeater");
-MinecraftBlockTypes.VerdantFroglight = BlockTypes.get("minecraft:verdant_froglight");
-MinecraftBlockTypes.Vine = BlockTypes.get("minecraft:vine");
-MinecraftBlockTypes.WallBanner = BlockTypes.get("minecraft:wall_banner");
-MinecraftBlockTypes.WallSign = BlockTypes.get("minecraft:wall_sign");
-MinecraftBlockTypes.WarpedButton = BlockTypes.get("minecraft:warped_button");
-MinecraftBlockTypes.WarpedDoor = BlockTypes.get("minecraft:warped_door");
-MinecraftBlockTypes.WarpedDoubleSlab = BlockTypes.get("minecraft:warped_double_slab");
-MinecraftBlockTypes.WarpedFence = BlockTypes.get("minecraft:warped_fence");
-MinecraftBlockTypes.WarpedFenceGate = BlockTypes.get("minecraft:warped_fence_gate");
-MinecraftBlockTypes.WarpedFungus = BlockTypes.get("minecraft:warped_fungus");
-MinecraftBlockTypes.WarpedHangingSign = BlockTypes.get("minecraft:warped_hanging_sign");
-MinecraftBlockTypes.WarpedHyphae = BlockTypes.get("minecraft:warped_hyphae");
-MinecraftBlockTypes.WarpedNylium = BlockTypes.get("minecraft:warped_nylium");
-MinecraftBlockTypes.WarpedPlanks = BlockTypes.get("minecraft:warped_planks");
-MinecraftBlockTypes.WarpedPressurePlate = BlockTypes.get("minecraft:warped_pressure_plate");
-MinecraftBlockTypes.WarpedRoots = BlockTypes.get("minecraft:warped_roots");
-MinecraftBlockTypes.WarpedSlab = BlockTypes.get("minecraft:warped_slab");
-MinecraftBlockTypes.WarpedStairs = BlockTypes.get("minecraft:warped_stairs");
-MinecraftBlockTypes.WarpedStandingSign = BlockTypes.get("minecraft:warped_standing_sign");
-MinecraftBlockTypes.WarpedStem = BlockTypes.get("minecraft:warped_stem");
-MinecraftBlockTypes.WarpedTrapdoor = BlockTypes.get("minecraft:warped_trapdoor");
-MinecraftBlockTypes.WarpedWallSign = BlockTypes.get("minecraft:warped_wall_sign");
-MinecraftBlockTypes.WarpedWartBlock = BlockTypes.get("minecraft:warped_wart_block");
-MinecraftBlockTypes.Water = BlockTypes.get("minecraft:water");
-MinecraftBlockTypes.Waterlily = BlockTypes.get("minecraft:waterlily");
-MinecraftBlockTypes.WaxedCopper = BlockTypes.get("minecraft:waxed_copper");
-MinecraftBlockTypes.WaxedCutCopper = BlockTypes.get("minecraft:waxed_cut_copper");
-MinecraftBlockTypes.WaxedCutCopperSlab = BlockTypes.get("minecraft:waxed_cut_copper_slab");
-MinecraftBlockTypes.WaxedCutCopperStairs = BlockTypes.get("minecraft:waxed_cut_copper_stairs");
-MinecraftBlockTypes.WaxedDoubleCutCopperSlab = BlockTypes.get("minecraft:waxed_double_cut_copper_slab");
-MinecraftBlockTypes.WaxedExposedCopper = BlockTypes.get("minecraft:waxed_exposed_copper");
-MinecraftBlockTypes.WaxedExposedCutCopper = BlockTypes.get("minecraft:waxed_exposed_cut_copper");
-MinecraftBlockTypes.WaxedExposedCutCopperSlab = BlockTypes.get("minecraft:waxed_exposed_cut_copper_slab");
-MinecraftBlockTypes.WaxedExposedCutCopperStairs = BlockTypes.get("minecraft:waxed_exposed_cut_copper_stairs");
-MinecraftBlockTypes.WaxedExposedDoubleCutCopperSlab = BlockTypes.get("minecraft:waxed_exposed_double_cut_copper_slab");
-MinecraftBlockTypes.WaxedOxidizedCopper = BlockTypes.get("minecraft:waxed_oxidized_copper");
-MinecraftBlockTypes.WaxedOxidizedCutCopper = BlockTypes.get("minecraft:waxed_oxidized_cut_copper");
-MinecraftBlockTypes.WaxedOxidizedCutCopperSlab = BlockTypes.get("minecraft:waxed_oxidized_cut_copper_slab");
-MinecraftBlockTypes.WaxedOxidizedCutCopperStairs = BlockTypes.get("minecraft:waxed_oxidized_cut_copper_stairs");
-MinecraftBlockTypes.WaxedOxidizedDoubleCutCopperSlab = BlockTypes.get("minecraft:waxed_oxidized_double_cut_copper_slab");
-MinecraftBlockTypes.WaxedWeatheredCopper = BlockTypes.get("minecraft:waxed_weathered_copper");
-MinecraftBlockTypes.WaxedWeatheredCutCopper = BlockTypes.get("minecraft:waxed_weathered_cut_copper");
-MinecraftBlockTypes.WaxedWeatheredCutCopperSlab = BlockTypes.get("minecraft:waxed_weathered_cut_copper_slab");
-MinecraftBlockTypes.WaxedWeatheredCutCopperStairs = BlockTypes.get("minecraft:waxed_weathered_cut_copper_stairs");
-MinecraftBlockTypes.WaxedWeatheredDoubleCutCopperSlab = BlockTypes.get("minecraft:waxed_weathered_double_cut_copper_slab");
-MinecraftBlockTypes.WeatheredCopper = BlockTypes.get("minecraft:weathered_copper");
-MinecraftBlockTypes.WeatheredCutCopper = BlockTypes.get("minecraft:weathered_cut_copper");
-MinecraftBlockTypes.WeatheredCutCopperSlab = BlockTypes.get("minecraft:weathered_cut_copper_slab");
-MinecraftBlockTypes.WeatheredCutCopperStairs = BlockTypes.get("minecraft:weathered_cut_copper_stairs");
-MinecraftBlockTypes.WeatheredDoubleCutCopperSlab = BlockTypes.get("minecraft:weathered_double_cut_copper_slab");
-MinecraftBlockTypes.Web = BlockTypes.get("minecraft:web");
-MinecraftBlockTypes.WeepingVines = BlockTypes.get("minecraft:weeping_vines");
-MinecraftBlockTypes.Wheat = BlockTypes.get("minecraft:wheat");
-MinecraftBlockTypes.WhiteCandle = BlockTypes.get("minecraft:white_candle");
-MinecraftBlockTypes.WhiteCandleCake = BlockTypes.get("minecraft:white_candle_cake");
-MinecraftBlockTypes.WhiteCarpet = BlockTypes.get("minecraft:white_carpet");
-MinecraftBlockTypes.WhiteConcrete = BlockTypes.get("minecraft:white_concrete");
-MinecraftBlockTypes.WhiteConcretePowder = BlockTypes.get("minecraft:white_concrete_powder");
-MinecraftBlockTypes.WhiteGlazedTerracotta = BlockTypes.get("minecraft:white_glazed_terracotta");
-MinecraftBlockTypes.WhiteShulkerBox = BlockTypes.get("minecraft:white_shulker_box");
-MinecraftBlockTypes.WhiteStainedGlass = BlockTypes.get("minecraft:white_stained_glass");
-MinecraftBlockTypes.WhiteStainedGlassPane = BlockTypes.get("minecraft:white_stained_glass_pane");
-MinecraftBlockTypes.WhiteTerracotta = BlockTypes.get("minecraft:white_terracotta");
-MinecraftBlockTypes.WhiteWool = BlockTypes.get("minecraft:white_wool");
-MinecraftBlockTypes.WitherRose = BlockTypes.get("minecraft:wither_rose");
-MinecraftBlockTypes.Wood = BlockTypes.get("minecraft:wood");
-MinecraftBlockTypes.WoodenButton = BlockTypes.get("minecraft:wooden_button");
-MinecraftBlockTypes.WoodenDoor = BlockTypes.get("minecraft:wooden_door");
-MinecraftBlockTypes.WoodenPressurePlate = BlockTypes.get("minecraft:wooden_pressure_plate");
-MinecraftBlockTypes.WoodenSlab = BlockTypes.get("minecraft:wooden_slab");
-MinecraftBlockTypes.YellowCandle = BlockTypes.get("minecraft:yellow_candle");
-MinecraftBlockTypes.YellowCandleCake = BlockTypes.get("minecraft:yellow_candle_cake");
-MinecraftBlockTypes.YellowCarpet = BlockTypes.get("minecraft:yellow_carpet");
-MinecraftBlockTypes.YellowConcrete = BlockTypes.get("minecraft:yellow_concrete");
-MinecraftBlockTypes.YellowConcretePowder = BlockTypes.get("minecraft:yellow_concrete_powder");
-MinecraftBlockTypes.YellowFlower = BlockTypes.get("minecraft:yellow_flower");
-MinecraftBlockTypes.YellowGlazedTerracotta = BlockTypes.get("minecraft:yellow_glazed_terracotta");
-MinecraftBlockTypes.YellowShulkerBox = BlockTypes.get("minecraft:yellow_shulker_box");
-MinecraftBlockTypes.YellowStainedGlass = BlockTypes.get("minecraft:yellow_stained_glass");
-MinecraftBlockTypes.YellowStainedGlassPane = BlockTypes.get("minecraft:yellow_stained_glass_pane");
-MinecraftBlockTypes.YellowTerracotta = BlockTypes.get("minecraft:yellow_terracotta");
-MinecraftBlockTypes.YellowWool = BlockTypes.get("minecraft:yellow_wool");

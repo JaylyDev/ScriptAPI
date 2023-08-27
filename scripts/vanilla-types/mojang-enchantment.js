@@ -1,4 +1,4 @@
-import { EnchantmentTypes } from "@minecraft/server";
+import { EnchantmentType, EnchantmentTypes } from "@minecraft/server";
 /**
  * All possible MinecraftEnchantmentTypes
  */
@@ -13,84 +13,90 @@ export class MinecraftEnchantmentTypes {
     ;
     // why don't they have a getAll
     static getAll() {
-        return [
-            MinecraftEnchantmentTypes.AquaAffinity,
-            MinecraftEnchantmentTypes.BaneOfArthropods,
-            MinecraftEnchantmentTypes.Binding,
-            MinecraftEnchantmentTypes.BlastProtection,
-            MinecraftEnchantmentTypes.Channeling,
-            MinecraftEnchantmentTypes.DepthStrider,
-            MinecraftEnchantmentTypes.Efficiency,
-            MinecraftEnchantmentTypes.FeatherFalling,
-            MinecraftEnchantmentTypes.FireAspect,
-            MinecraftEnchantmentTypes.FireProtection,
-            MinecraftEnchantmentTypes.Flame,
-            MinecraftEnchantmentTypes.Fortune,
-            MinecraftEnchantmentTypes.FrostWalker,
-            MinecraftEnchantmentTypes.Impaling,
-            MinecraftEnchantmentTypes.Infinity,
-            MinecraftEnchantmentTypes.Knockback,
-            MinecraftEnchantmentTypes.Looting,
-            MinecraftEnchantmentTypes.Loyalty,
-            MinecraftEnchantmentTypes.LuckOfTheSea,
-            MinecraftEnchantmentTypes.Lure,
-            MinecraftEnchantmentTypes.Mending,
-            MinecraftEnchantmentTypes.Multishot,
-            MinecraftEnchantmentTypes.Piercing,
-            MinecraftEnchantmentTypes.Power,
-            MinecraftEnchantmentTypes.ProjectileProtection,
-            MinecraftEnchantmentTypes.Protection,
-            MinecraftEnchantmentTypes.Punch,
-            MinecraftEnchantmentTypes.QuickCharge,
-            MinecraftEnchantmentTypes.Respiration,
-            MinecraftEnchantmentTypes.Riptide,
-            MinecraftEnchantmentTypes.Sharpness,
-            MinecraftEnchantmentTypes.SilkTouch,
-            MinecraftEnchantmentTypes.Smite,
-            MinecraftEnchantmentTypes.SoulSpeed,
-            MinecraftEnchantmentTypes.SwiftSneak,
-            MinecraftEnchantmentTypes.Thorns,
-            MinecraftEnchantmentTypes.Unbreaking,
-            MinecraftEnchantmentTypes.Vanishing,
-        ];
+        const enchantments = [];
+        for (const key in this) {
+            const element = this[key];
+            if (element instanceof EnchantmentType)
+                enchantments.push(element);
+        }
+        ;
+        return enchantments;
     }
     ;
+    static get AquaAffinity() { return EnchantmentTypes.get("aqua_affinity"); }
+    ;
+    static get BaneOfArthropods() { return EnchantmentTypes.get("bane_of_arthropods"); }
+    ;
+    static get Binding() { return EnchantmentTypes.get("binding"); }
+    ;
+    static get BlastProtection() { return EnchantmentTypes.get("blast_protection"); }
+    ;
+    static get Channeling() { return EnchantmentTypes.get("channeling"); }
+    ;
+    static get DepthStrider() { return EnchantmentTypes.get("depth_strider"); }
+    ;
+    static get Efficiency() { return EnchantmentTypes.get("efficiency"); }
+    ;
+    static get FeatherFalling() { return EnchantmentTypes.get("feather_falling"); }
+    ;
+    static get FireAspect() { return EnchantmentTypes.get("fire_aspect"); }
+    ;
+    static get FireProtection() { return EnchantmentTypes.get("fire_protection"); }
+    ;
+    static get Flame() { return EnchantmentTypes.get("flame"); }
+    ;
+    static get Fortune() { return EnchantmentTypes.get("fortune"); }
+    ;
+    static get FrostWalker() { return EnchantmentTypes.get("frost_walker"); }
+    ;
+    static get Impaling() { return EnchantmentTypes.get("impaling"); }
+    ;
+    static get Infinity() { return EnchantmentTypes.get("infinity"); }
+    ;
+    static get Knockback() { return EnchantmentTypes.get("knockback"); }
+    ;
+    static get Looting() { return EnchantmentTypes.get("looting"); }
+    ;
+    static get Loyalty() { return EnchantmentTypes.get("loyalty"); }
+    ;
+    static get LuckOfTheSea() { return EnchantmentTypes.get("luck_of_the_sea"); }
+    ;
+    static get Lure() { return EnchantmentTypes.get("lure"); }
+    ;
+    static get Mending() { return EnchantmentTypes.get("mending"); }
+    ;
+    static get Multishot() { return EnchantmentTypes.get("multishot"); }
+    ;
+    static get Piercing() { return EnchantmentTypes.get("piercing"); }
+    ;
+    static get Power() { return EnchantmentTypes.get("power"); }
+    ;
+    static get ProjectileProtection() { return EnchantmentTypes.get("projectile_protection"); }
+    ;
+    static get Protection() { return EnchantmentTypes.get("protection"); }
+    ;
+    static get Punch() { return EnchantmentTypes.get("punch"); }
+    ;
+    static get QuickCharge() { return EnchantmentTypes.get("quick_charge"); }
+    ;
+    static get Respiration() { return EnchantmentTypes.get("respiration"); }
+    ;
+    static get Riptide() { return EnchantmentTypes.get("riptide"); }
+    ;
+    static get Sharpness() { return EnchantmentTypes.get("sharpness"); }
+    ;
+    static get SilkTouch() { return EnchantmentTypes.get("silk_touch"); }
+    ;
+    static get Smite() { return EnchantmentTypes.get("smite"); }
+    ;
+    static get SoulSpeed() { return EnchantmentTypes.get("soul_speed"); }
+    ;
+    static get SwiftSneak() { return EnchantmentTypes.get("swift_sneak"); }
+    ;
+    static get Thorns() { return EnchantmentTypes.get("thorns"); }
+    ;
+    static get Unbreaking() { return EnchantmentTypes.get("unbreaking"); }
+    ;
+    static get Vanishing() { return EnchantmentTypes.get("vanishing"); }
+    ;
 }
-MinecraftEnchantmentTypes.AquaAffinity = EnchantmentTypes.get("aqua_affinity");
-MinecraftEnchantmentTypes.BaneOfArthropods = EnchantmentTypes.get("bane_of_arthropods");
-MinecraftEnchantmentTypes.Binding = EnchantmentTypes.get("binding");
-MinecraftEnchantmentTypes.BlastProtection = EnchantmentTypes.get("blast_protection");
-MinecraftEnchantmentTypes.Channeling = EnchantmentTypes.get("channeling");
-MinecraftEnchantmentTypes.DepthStrider = EnchantmentTypes.get("depth_strider");
-MinecraftEnchantmentTypes.Efficiency = EnchantmentTypes.get("efficiency");
-MinecraftEnchantmentTypes.FeatherFalling = EnchantmentTypes.get("feather_falling");
-MinecraftEnchantmentTypes.FireAspect = EnchantmentTypes.get("fire_aspect");
-MinecraftEnchantmentTypes.FireProtection = EnchantmentTypes.get("fire_protection");
-MinecraftEnchantmentTypes.Flame = EnchantmentTypes.get("flame");
-MinecraftEnchantmentTypes.Fortune = EnchantmentTypes.get("fortune");
-MinecraftEnchantmentTypes.FrostWalker = EnchantmentTypes.get("frost_walker");
-MinecraftEnchantmentTypes.Impaling = EnchantmentTypes.get("impaling");
-MinecraftEnchantmentTypes.Infinity = EnchantmentTypes.get("infinity");
-MinecraftEnchantmentTypes.Knockback = EnchantmentTypes.get("knockback");
-MinecraftEnchantmentTypes.Looting = EnchantmentTypes.get("looting");
-MinecraftEnchantmentTypes.Loyalty = EnchantmentTypes.get("loyalty");
-MinecraftEnchantmentTypes.LuckOfTheSea = EnchantmentTypes.get("luck_of_the_sea");
-MinecraftEnchantmentTypes.Lure = EnchantmentTypes.get("lure");
-MinecraftEnchantmentTypes.Mending = EnchantmentTypes.get("mending");
-MinecraftEnchantmentTypes.Multishot = EnchantmentTypes.get("multishot");
-MinecraftEnchantmentTypes.Piercing = EnchantmentTypes.get("piercing");
-MinecraftEnchantmentTypes.Power = EnchantmentTypes.get("power");
-MinecraftEnchantmentTypes.ProjectileProtection = EnchantmentTypes.get("projectile_protection");
-MinecraftEnchantmentTypes.Protection = EnchantmentTypes.get("protection");
-MinecraftEnchantmentTypes.Punch = EnchantmentTypes.get("punch");
-MinecraftEnchantmentTypes.QuickCharge = EnchantmentTypes.get("quick_charge");
-MinecraftEnchantmentTypes.Respiration = EnchantmentTypes.get("respiration");
-MinecraftEnchantmentTypes.Riptide = EnchantmentTypes.get("riptide");
-MinecraftEnchantmentTypes.Sharpness = EnchantmentTypes.get("sharpness");
-MinecraftEnchantmentTypes.SilkTouch = EnchantmentTypes.get("silk_touch");
-MinecraftEnchantmentTypes.Smite = EnchantmentTypes.get("smite");
-MinecraftEnchantmentTypes.SoulSpeed = EnchantmentTypes.get("soul_speed");
-MinecraftEnchantmentTypes.SwiftSneak = EnchantmentTypes.get("swift_sneak");
-MinecraftEnchantmentTypes.Thorns = EnchantmentTypes.get("thorns");
-MinecraftEnchantmentTypes.Unbreaking = EnchantmentTypes.get("unbreaking");
-MinecraftEnchantmentTypes.Vanishing = EnchantmentTypes.get("vanishing");

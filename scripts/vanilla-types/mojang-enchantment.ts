@@ -12,83 +12,49 @@ export class MinecraftEnchantmentTypes implements EnchantmentTypes {
     };
     // why don't they have a getAll
     static getAll(): EnchantmentType[] {
-        return [
-            MinecraftEnchantmentTypes.AquaAffinity!,
-            MinecraftEnchantmentTypes.BaneOfArthropods!,
-            MinecraftEnchantmentTypes.Binding!,
-            MinecraftEnchantmentTypes.BlastProtection!,
-            MinecraftEnchantmentTypes.Channeling!,
-            MinecraftEnchantmentTypes.DepthStrider!,
-            MinecraftEnchantmentTypes.Efficiency!,
-            MinecraftEnchantmentTypes.FeatherFalling!,
-            MinecraftEnchantmentTypes.FireAspect!,
-            MinecraftEnchantmentTypes.FireProtection!,
-            MinecraftEnchantmentTypes.Flame!,
-            MinecraftEnchantmentTypes.Fortune!,
-            MinecraftEnchantmentTypes.FrostWalker!,
-            MinecraftEnchantmentTypes.Impaling!,
-            MinecraftEnchantmentTypes.Infinity!,
-            MinecraftEnchantmentTypes.Knockback!,
-            MinecraftEnchantmentTypes.Looting!,
-            MinecraftEnchantmentTypes.Loyalty!,
-            MinecraftEnchantmentTypes.LuckOfTheSea!,
-            MinecraftEnchantmentTypes.Lure!,
-            MinecraftEnchantmentTypes.Mending!,
-            MinecraftEnchantmentTypes.Multishot!,
-            MinecraftEnchantmentTypes.Piercing!,
-            MinecraftEnchantmentTypes.Power!,
-            MinecraftEnchantmentTypes.ProjectileProtection!,
-            MinecraftEnchantmentTypes.Protection!,
-            MinecraftEnchantmentTypes.Punch!,
-            MinecraftEnchantmentTypes.QuickCharge!,
-            MinecraftEnchantmentTypes.Respiration!,
-            MinecraftEnchantmentTypes.Riptide!,
-            MinecraftEnchantmentTypes.Sharpness!,
-            MinecraftEnchantmentTypes.SilkTouch!,
-            MinecraftEnchantmentTypes.Smite!,
-            MinecraftEnchantmentTypes.SoulSpeed!,
-            MinecraftEnchantmentTypes.SwiftSneak!,
-            MinecraftEnchantmentTypes.Thorns!,
-            MinecraftEnchantmentTypes.Unbreaking!,
-            MinecraftEnchantmentTypes.Vanishing!,
-        ];
+        const enchantments: EnchantmentType[] = [];
+        for (const key in this) {
+            const element = this[key];
+            if (element instanceof EnchantmentType) enchantments.push(element);
+        };
+        return enchantments;
     };
-    static readonly AquaAffinity = EnchantmentTypes.get("aqua_affinity");
-    static readonly BaneOfArthropods = EnchantmentTypes.get("bane_of_arthropods");
-    static readonly Binding = EnchantmentTypes.get("binding");
-    static readonly BlastProtection = EnchantmentTypes.get("blast_protection");
-    static readonly Channeling = EnchantmentTypes.get("channeling");
-    static readonly DepthStrider = EnchantmentTypes.get("depth_strider");
-    static readonly Efficiency = EnchantmentTypes.get("efficiency");
-    static readonly FeatherFalling = EnchantmentTypes.get("feather_falling");
-    static readonly FireAspect = EnchantmentTypes.get("fire_aspect");
-    static readonly FireProtection = EnchantmentTypes.get("fire_protection");
-    static readonly Flame = EnchantmentTypes.get("flame");
-    static readonly Fortune = EnchantmentTypes.get("fortune");
-    static readonly FrostWalker = EnchantmentTypes.get("frost_walker");
-    static readonly Impaling = EnchantmentTypes.get("impaling");
-    static readonly Infinity = EnchantmentTypes.get("infinity");
-    static readonly Knockback = EnchantmentTypes.get("knockback");
-    static readonly Looting = EnchantmentTypes.get("looting");
-    static readonly Loyalty = EnchantmentTypes.get("loyalty");
-    static readonly LuckOfTheSea = EnchantmentTypes.get("luck_of_the_sea");
-    static readonly Lure = EnchantmentTypes.get("lure");
-    static readonly Mending = EnchantmentTypes.get("mending");
-    static readonly Multishot = EnchantmentTypes.get("multishot");
-    static readonly Piercing = EnchantmentTypes.get("piercing");
-    static readonly Power = EnchantmentTypes.get("power");
-    static readonly ProjectileProtection = EnchantmentTypes.get("projectile_protection");
-    static readonly Protection = EnchantmentTypes.get("protection");
-    static readonly Punch = EnchantmentTypes.get("punch");
-    static readonly QuickCharge = EnchantmentTypes.get("quick_charge");
-    static readonly Respiration = EnchantmentTypes.get("respiration");
-    static readonly Riptide = EnchantmentTypes.get("riptide");
-    static readonly Sharpness = EnchantmentTypes.get("sharpness");
-    static readonly SilkTouch = EnchantmentTypes.get("silk_touch");
-    static readonly Smite = EnchantmentTypes.get("smite");
-    static readonly SoulSpeed = EnchantmentTypes.get("soul_speed");
-    static readonly SwiftSneak = EnchantmentTypes.get("swift_sneak");
-    static readonly Thorns = EnchantmentTypes.get("thorns");
-    static readonly Unbreaking = EnchantmentTypes.get("unbreaking");
-    static readonly Vanishing = EnchantmentTypes.get("vanishing");
+    static get AquaAffinity() { return EnchantmentTypes.get("aqua_affinity"); };
+    static get BaneOfArthropods() { return EnchantmentTypes.get("bane_of_arthropods"); };
+    static get Binding() { return EnchantmentTypes.get("binding"); };
+    static get BlastProtection() { return EnchantmentTypes.get("blast_protection"); };
+    static get Channeling() { return EnchantmentTypes.get("channeling"); };
+    static get DepthStrider() { return EnchantmentTypes.get("depth_strider"); };
+    static get Efficiency() { return EnchantmentTypes.get("efficiency"); };
+    static get FeatherFalling() { return EnchantmentTypes.get("feather_falling"); };
+    static get FireAspect() { return EnchantmentTypes.get("fire_aspect"); };
+    static get FireProtection() { return EnchantmentTypes.get("fire_protection"); };
+    static get Flame() { return EnchantmentTypes.get("flame"); };
+    static get Fortune() { return EnchantmentTypes.get("fortune"); };
+    static get FrostWalker() { return EnchantmentTypes.get("frost_walker"); };
+    static get Impaling() { return EnchantmentTypes.get("impaling"); };
+    static get Infinity() { return EnchantmentTypes.get("infinity"); };
+    static get Knockback() { return EnchantmentTypes.get("knockback"); };
+    static get Looting() { return EnchantmentTypes.get("looting"); };
+    static get Loyalty() { return EnchantmentTypes.get("loyalty"); };
+    static get LuckOfTheSea() { return EnchantmentTypes.get("luck_of_the_sea"); };
+    static get Lure() { return EnchantmentTypes.get("lure"); };
+    static get Mending() { return EnchantmentTypes.get("mending"); };
+    static get Multishot() { return EnchantmentTypes.get("multishot"); };
+    static get Piercing() { return EnchantmentTypes.get("piercing"); };
+    static get Power() { return EnchantmentTypes.get("power"); };
+    static get ProjectileProtection() { return EnchantmentTypes.get("projectile_protection"); };
+    static get Protection() { return EnchantmentTypes.get("protection"); };
+    static get Punch() { return EnchantmentTypes.get("punch"); };
+    static get QuickCharge() { return EnchantmentTypes.get("quick_charge"); };
+    static get Respiration() { return EnchantmentTypes.get("respiration"); };
+    static get Riptide() { return EnchantmentTypes.get("riptide"); };
+    static get Sharpness() { return EnchantmentTypes.get("sharpness"); };
+    static get SilkTouch() { return EnchantmentTypes.get("silk_touch"); };
+    static get Smite() { return EnchantmentTypes.get("smite"); };
+    static get SoulSpeed() { return EnchantmentTypes.get("soul_speed"); };
+    static get SwiftSneak() { return EnchantmentTypes.get("swift_sneak"); };
+    static get Thorns() { return EnchantmentTypes.get("thorns"); };
+    static get Unbreaking() { return EnchantmentTypes.get("unbreaking"); };
+    static get Vanishing() { return EnchantmentTypes.get("vanishing"); };
 }
