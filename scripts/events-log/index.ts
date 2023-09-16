@@ -21,9 +21,9 @@ world.beforeEvents.itemUse.subscribe(callback);
 world.beforeEvents.itemUseOn.subscribe(callback);
 world.beforeEvents.pistonActivate.subscribe(callback);
 
-world.afterEvents.blockBreak.subscribe(callback);
+world.afterEvents.playerBlockBreak.subscribe(callback);
 world.afterEvents.blockExplode.subscribe(callback);
-world.afterEvents.blockPlace.subscribe(callback);
+world.afterEvents.playerBlockPlace.subscribe(callback);
 world.afterEvents.buttonPush.subscribe(callback);
 world.afterEvents.chatSend.subscribe(callback);
 world.afterEvents.dataDrivenEntityTriggerEvent.subscribe(callback);
