@@ -26,7 +26,7 @@
 
 import { ScoreboardIdentity, ScoreboardIdentityType, ScoreboardObjective, system, world } from "@minecraft/server";
 
-const version = "1.1.2";
+const version = "1.1.3";
 const str = () => ('00000000000000000' + (Math.random() * 0xffffffffffffffff).toString(16)).slice(-16);
 /**
  * A rough mechanism for create a random uuid. Not as secure as uuid without as much of a guarantee of uniqueness,
@@ -181,6 +181,12 @@ class JaylyDB implements Map<string, string | number | boolean> {
     return this.localState.size;
   }
   /**
+   * @returns the id of scoreboard objective used in the database
+   */
+  get objectiveId(): string {
+    return this.objective.id;
+  }
+  /**
    * Clears every element in the database.
    */
   clear(): void {
@@ -231,6 +237,8 @@ class JaylyDB implements Map<string, string | number | boolean> {
     if (encoded.length > 32767) throw new RangeError("JaylyDB::set only accepts a string value less than 32767 characters.");
 
     // push change to disk
+    const participant = this.localState.get(key);
+    if (participant) this.objective.removeParticipant(participant.identity);
     this.objective.setScore(encoded, 0);
     const data = {
       encoded_value: encoded,
