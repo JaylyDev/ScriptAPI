@@ -175,7 +175,7 @@ world.beforeEvents.itemUseOn.subscribe((event) => {
       });
   }
 });
-world.afterEvents.blockBreak.subscribe(({ player, block, brokenBlockPermutation }) => {
+world.afterEvents.playerBreakBlock.subscribe(({ player, block, brokenBlockPermutation }) => {
     
     /**
      * @type {Container}
