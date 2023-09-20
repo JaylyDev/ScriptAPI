@@ -1,4 +1,4 @@
-import { Dimension, DimensionTypes, world } from "@minecraft/server";
+import { Dimension, world, DimensionTypes } from "@minecraft/server";
 
 /**
  * All possible MinecraftDimensionTypes
@@ -17,3 +17,7 @@ export class MinecraftDimensionTypes {
     static get Overworld() { return world.getDimension("minecraft:overworld"); };
     static get TheEnd() { return world.getDimension("minecraft:the_end"); };
 }
+/**
+ * Union type equivalent of the MinecraftDimensionTypes enum.
+ */
+export type MinecraftDimensionTypesUnion = keyof typeof MinecraftDimensionTypes;

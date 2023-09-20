@@ -3,18 +3,6 @@ import { ItemTypes } from "@minecraft/server";
  * All possible MinecraftItemTypes
  */
 export class MinecraftItemTypes {
-    constructor() {
-        throw new TypeError("Illegal constructor");
-    }
-    ;
-    static get(typeName) {
-        return ItemTypes.get(typeName);
-    }
-    ;
-    static getAll() {
-        return Array.from(ItemTypes.getAll());
-    }
-    ;
     static get AcaciaBoat() { return ItemTypes.get("minecraft:acacia_boat"); }
     ;
     static get AcaciaButton() { return ItemTypes.get("minecraft:acacia_button"); }

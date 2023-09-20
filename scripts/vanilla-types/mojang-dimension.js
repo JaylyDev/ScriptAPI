@@ -1,4 +1,4 @@
-import { DimensionTypes, world } from "@minecraft/server";
+import { world, DimensionTypes } from "@minecraft/server";
 /**
  * All possible MinecraftDimensionTypes
  */
