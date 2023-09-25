@@ -1,4 +1,5 @@
-import { EffectType, EffectTypes } from "@minecraft/server";
+import { EffectTypes, EffectType } from "@minecraft/server";
+
 /**
  * All possible MinecraftEffectTypes
  */
@@ -44,3 +45,7 @@ export class MinecraftEffectTypes implements EffectTypes {
     static get Weakness() { return EffectTypes.get("weakness"); };
     static get Wither() { return EffectTypes.get("wither"); };
 }
+/**
+ * Union type equivalent of the MinecraftEffectTypes enum.
+ */
+export type MinecraftEffectTypesUnion = keyof typeof MinecraftEffectTypes;

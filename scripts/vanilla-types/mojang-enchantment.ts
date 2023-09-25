@@ -1,5 +1,4 @@
 import { EnchantmentType, EnchantmentTypes } from "@minecraft/server";
-
 /**
  * All possible MinecraftEnchantmentTypes
  */
@@ -58,3 +57,7 @@ export class MinecraftEnchantmentTypes implements EnchantmentTypes {
     static get Unbreaking() { return EnchantmentTypes.get("unbreaking"); };
     static get Vanishing() { return EnchantmentTypes.get("vanishing"); };
 }
+/**
+ * Union type equivalent of the MinecraftEnchantmentTypes enum.
+ */
+export type MinecraftEnchantmentTypesUnion = keyof typeof MinecraftEnchantmentTypes;
