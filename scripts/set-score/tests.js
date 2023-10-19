@@ -1,13 +1,13 @@
 // Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world } from "@minecraft/server";
+import { Player, system } from "@minecraft/server";
 import { setScore } from "./index";
 import { getScore } from "./getScore";
 
-world.afterEvents.chatSend.subscribe((event) => {
-  if (!event.sender.scoreboardIdentity) return;
+system.afterEvents.scriptEventReceive.subscribe((event) => {
+  if (!(event.initiator instanceof Player) || !event.initiator.scoreboardIdentity) return;
 
-  const score = getScore(event.sender, 'messages');
-  setScore(event.sender, 'messages', score + 1);
+  const score = getScore(event.initiator, 'messages');
+  setScore(event.initiator, 'messages', score + 1);
 })
