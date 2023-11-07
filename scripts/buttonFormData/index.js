@@ -1,3 +1,16 @@
+// Script example for ScriptAPI
+// Author: defowler2005 <https://github.com/defowler2005>
+// Project: https://github.com/JaylyDev/ScriptAPI
+
+/**
+ * Minecraft Bedrock ScriptAPI Example
+ * @author defowler2005
+ * @version 1.0.0
+ * ---------------------------------------------------------------------------
+ * Add a buttonFormData to your world, Simple creation!
+ * ---------------------------------------------------------------------------
+ */
+
 import { Player } from '@minecraft/server';
 import { ActionFormData } from '@minecraft/server-ui';
 
