@@ -31,7 +31,7 @@
     "@npm/types": "^1.0.2",
     "@types/node": "^20.8.2",
     "@types/parsimmon": "^1.10.7",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "parsimmon": "^1.18.1",
     "typescript": "^5.2.2"
   }
