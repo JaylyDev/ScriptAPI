@@ -12,10 +12,6 @@ import { EntityInventoryComponent, Player } from "@minecraft/server";
  * @returns {number} item amount
  */
 export function checkItemAmount(player, itemId, clearItems = false) {
-    /**
-     * @type {EntityInventoryComponent}
-     */
-    // @ts-expect-error
     const component = player.getComponent("minecraft:inventory");
     const inventory = component.container;
     let itemAmount = 0;

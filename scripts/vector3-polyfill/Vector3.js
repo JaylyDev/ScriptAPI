@@ -1,4 +1,3 @@
-var _a;
 /**
  * Wrapper class of Vector3
  */
@@ -18,6 +17,74 @@ export class Vector3 {
         this.y = y;
         this.z = z;
     }
+    /**
+     * A constant vector that represents (0, 0, -1).
+     * @readonly
+     */
+    static get back() {
+        return new this(0, 0, -1);
+    }
+    ;
+    /**
+     * A constant vector that represents (0, -1, 0).
+     * @readonly
+     */
+    static get down() {
+        return new this(0, -1, 0);
+    }
+    ;
+    /**
+     * A constant vector that represents (0, 0, 1).
+     * @readonly
+     */
+    static get forward() {
+        return new this(0, 0, 1);
+    }
+    ;
+    /**
+     * A constant vector that represents (-1, 0, 0).
+     * @readonly
+     */
+    static get left() {
+        return new this(-1, 0, 0);
+    }
+    ;
+    /**
+     * A constant vector that represents (1, 1, 1).
+     * @readonly
+     */
+    static get one() {
+        return new this(1, 1, 1);
+    }
+    ;
+    /**
+     * A constant vector that represents (1, 0, 0).
+     * @readonly
+     */
+    static get right() {
+        return new this(1, 0, 0);
+    }
+    ;
+    /**
+     * A constant vector that represents (0, 1, 0).
+     * @readonly
+     */
+    static get up() {
+        return new this(0, 1, 0);
+    }
+    ;
+    /**
+     * A constant vector that represents (0, 0, 0).
+     * @readonly
+     */
+    static get zero() {
+        return new this(0, 0, 0);
+    }
+    ;
+    static from(vec3) {
+        return new Vector3(vec3.x, vec3.y, vec3.z);
+    }
+    ;
     /**
      * @remarks
      * Retur
@@ -44,7 +111,7 @@ export class Vector3 {
         const DirectionX = this.x / magnitude;
         const DirectionY = this.y / magnitude;
         const DirectionZ = this.z / magnitude;
-        return new _a(DirectionX, DirectionY, DirectionZ);
+        return new Vector3(DirectionX, DirectionY, DirectionZ);
     }
     /**
      * @remarks
@@ -54,7 +121,7 @@ export class Vector3 {
      * @returns {Vector3}
      */
     static add(a, b) {
-        const vector = new _a(a.x, a.y, a.z);
+        const vector = new Vector3(a.x, a.y, a.z);
         vector.x += b.x;
         vector.y += b.y;
         vector.z += b.z;
@@ -68,7 +135,7 @@ export class Vector3 {
      * @returns {Vector3}
      */
     static cross(a, b) {
-        return new _a(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
+        return new Vector3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
     }
     /**
      * @remarks
@@ -92,7 +159,7 @@ export class Vector3 {
      * @returns {Vector3}
      */
     static divide(a, b) {
-        const vector = new _a(a.x, a.y, a.z);
+        const vector = new Vector3(a.x, a.y, a.z);
         if (typeof b === "number") {
             vector.x /= b;
             vector.y /= b;
@@ -115,7 +182,7 @@ export class Vector3 {
      * @returns {Vector3}
      */
     static lerp(a, b, t) {
-        const dest = new _a(a.x, a.y, a.z);
+        const dest = new Vector3(a.x, a.y, a.z);
         dest.x += (b.x - a.x) * t;
         dest.y += (b.y - a.y) * t;
         dest.z += (b.z - a.z) * t;
@@ -131,11 +198,11 @@ export class Vector3 {
      */
     static max(a, b) {
         const vectors = [a, b];
-        const arr = vectors.map(({ x, y, z }) => new _a(x, y, z).length());
+        const arr = vectors.map(({ x, y, z }) => new Vector3(x, y, z).length());
         const max = Math.max(...arr);
         const index = arr.indexOf(max);
         const vector3 = vectors[index];
-        return new _a(vector3.x, vector3.y, vector3.z);
+        return new Vector3(vector3.x, vector3.y, vector3.z);
     }
     /**
      * @remarks
@@ -147,11 +214,11 @@ export class Vector3 {
      */
     static min(a, b) {
         const vectors = [a, b];
-        const arr = vectors.map(({ x, y, z }) => new _a(x, y, z).length());
+        const arr = vectors.map(({ x, y, z }) => new Vector3(x, y, z).length());
         const min = Math.min(...arr);
         const index = arr.indexOf(min);
         const vector3 = vectors[index];
-        return new _a(vector3.x, vector3.y, vector3.z);
+        return new Vector3(vector3.x, vector3.y, vector3.z);
     }
     /**
      * @remarks
@@ -161,7 +228,7 @@ export class Vector3 {
      * @returns {Vector3}
      */
     static multiply(a, b) {
-        const vector = new _a(a.x, a.y, a.z);
+        const vector = new Vector3(a.x, a.y, a.z);
         if (typeof b === "number") {
             vector.x *= b;
             vector.y *= b;
@@ -195,7 +262,7 @@ export class Vector3 {
         const θ = Math.acos(MathDot([a.x, a.y, a.z], [b.x, b.y, b.z]));
         const factor1 = Math.sin(θ * (1 - s)) / Math.sin(θ);
         const factor2 = Math.sin(θ * s) / Math.sin(θ);
-        return new _a(a.x * factor1 + b.x * factor2, a.y * factor1 + b.y * factor2, a.z * factor1 + b.z * factor2);
+        return new Vector3(a.x * factor1 + b.x * factor2, a.y * factor1 + b.y * factor2, a.z * factor1 + b.z * factor2);
     }
     /**
      * @remarks
@@ -205,7 +272,7 @@ export class Vector3 {
      * @returns {Vector3}
      */
     static subtract(a, b) {
-        const vector = new _a(a.x, a.y, a.z);
+        const vector = new Vector3(a.x, a.y, a.z);
         vector.x -= b.x;
         vector.y -= b.y;
         vector.z -= b.z;
@@ -215,7 +282,7 @@ export class Vector3 {
      * Returns a Vector3 with its coordinate floored
      */
     floor() {
-        return new _a(Math.floor(this.x), Math.floor(this.y), Math.floor(this.z));
+        return new Vector3(Math.floor(this.x), Math.floor(this.y), Math.floor(this.z));
     }
     /**
      * @remarks
@@ -223,7 +290,7 @@ export class Vector3 {
      * (that is, y + 1).
      */
     above() {
-        return new _a(this.x, this.y + 1, this.z);
+        return new Vector3(this.x, this.y + 1, this.z);
     }
     /**
      * @remarks
@@ -249,7 +316,7 @@ export class Vector3 {
                 const coordY = y + this.y;
                 for (let z = 0; z <= distanceZ; z++) {
                     const coordZ = z + this.z;
-                    Vector3s.push(new _a(coordX, coordY, coordZ));
+                    Vector3s.push(new Vector3(coordX, coordY, coordZ));
                 }
             }
         }
@@ -285,7 +352,7 @@ export class Vector3 {
      * Vector3.
      */
     offset(x, y, z) {
-        return new _a(x + this.x, y + this.y, z + this.z);
+        return new Vector3(x + this.x, y + this.y, z + this.z);
     }
     /**
      * @remarks
@@ -301,47 +368,6 @@ export class Vector3 {
      * each other.
      */
     isNear(other, epsilon) {
-        return _a.distance(this, other) <= epsilon;
+        return Vector3.distance(this, other) <= epsilon;
     }
 }
-_a = Vector3;
-/**
- * A constant vector that represents (0, 0, -1).
- * @readonly
- */
-Vector3.back = new _a(0, 0, -1);
-/**
- * A constant vector that represents (0, -1, 0).
- * @readonly
- */
-Vector3.down = new _a(0, -1, 0);
-/**
- * A constant vector that represents (0, 0, 1).
- * @readonly
- */
-Vector3.forward = new _a(0, 0, 1);
-/**
- * A constant vector that represents (-1, 0, 0).
- * @readonly
- */
-Vector3.left = new _a(-1, 0, 0);
-/**
- * A constant vector that represents (1, 1, 1).
- * @readonly
- */
-Vector3.one = new _a(1, 1, 1);
-/**
- * A constant vector that represents (1, 0, 0).
- * @readonly
- */
-Vector3.right = new _a(1, 0, 0);
-/**
- * A constant vector that represents (0, 1, 0).
- * @readonly
- */
-Vector3.up = new _a(0, 1, 0);
-/**
- * A constant vector that represents (0, 0, 0).
- * @readonly
- */
-Vector3.zero = new _a(0, 0, 0);
