@@ -61,7 +61,7 @@ class OfflinePlayer {
      * @description
      * Gets the player by the given ID, regardless if they are offline or online.
      * This will return an object even if the player does not exist. To this method, all players will exist.
-     * @param id the UUID of the player to retrieve
+     * @param id the ID of the player to retrieve
      * @returns an offline player.
      */
     static get(id: `${number}`): OfflinePlayer;
