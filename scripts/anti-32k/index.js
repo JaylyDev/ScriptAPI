@@ -3,7 +3,6 @@
 //         JaylyMC <https://github.com/JaylyDev>
 //         Remember M9 <https://github.com/Remember-M9>
 // Project: https://github.com/JaylyDev/ScriptAPI
-
 /**
  * Minecraft Bedrock Anti Hacked Items
  * @license MIT
@@ -16,32 +15,29 @@
  * --------------------------------------------------------------------------
  */
 import * as mc from "@minecraft/server";
-
 const { world, system } = mc;
-
 function onTick() {
-  for (const player of world.getPlayers()) {
-    /** @type {mc.EntityInventoryComponent} */
-    // @ts-ignore
-    const inventory = player.getComponent("minecraft:inventory");
-    const { container, inventorySize } = inventory;
-    if (container.emptySlotsCount == inventorySize) continue;
-    for (let slot = 0; slot < inventorySize; slot++) {
-      const item = container.getItem(slot);
-      if (!item) continue;
-      /** @type {mc.ItemEnchantsComponent} */
-      // @ts-ignore
-      const enchants = item.getComponent("enchantments");
-      const enchantments = enchants.enchantments;
-      const newEnchants = new mc.EnchantmentList(enchantments.slot);
-      for (let enchant of enchantments) {
-        if (newEnchants.addEnchantment(enchant)) continue;
-        container.setItem(slot);
-        break;
-      }
+    for (const player of world.getPlayers()) {
+        /** @type {mc.EntityInventoryComponent} */
+        // @ts-ignore
+        const inventory = player.getComponent("minecraft:inventory");
+        const { container, inventorySize } = inventory;
+        if (container.emptySlotsCount == inventorySize)
+            continue;
+        for (let slot = 0; slot < inventorySize; slot++) {
+            const item = container.getItem(slot);
+            if (!item)
+                continue;
+            const enchantable = item.getComponent("minecraft:enchantable");
+            if (!enchantable)
+                continue;
+            for (const enchantment of enchantable.getEnchantments()) {
+                if (enchantable.canAddEnchantment(enchantment))
+                    continue;
+                enchantable.removeEnchantment(enchantment.type);
+            }
+        }
     }
-  }
-};
-
-
+}
+;
 system.runInterval(onTick);

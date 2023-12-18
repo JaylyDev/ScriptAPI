@@ -3,7 +3,7 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { world, system, Player } from "@minecraft/server";
 import { ModalFormData, ActionFormData, MessageFormData } from "@minecraft/server-ui";
-import { forceShow } from "force-show/index";
+import { forceShow } from "./index";
 
 world.beforeEvents.chatSend.subscribe(async (event) => {
   event.cancel = true;
