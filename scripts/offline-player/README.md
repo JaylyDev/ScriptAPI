@@ -66,10 +66,42 @@ Gets the last date and time that this player was witnessed on this server. It wi
 Type: *number*
 
 ## Methods
+- [get](#get)
+- [getSpawnPoint](#getspawnpoint)
 - [getSpawnPoint](#getspawnpoint)
 - [getTotalXp](#gettotalxp)
 - [isOp](#isop)
 - [getPlayer](#getplayer)
+
+### **get**
+`
+static get(id: string): OfflinePlayer;
+`
+
+Gets the player by the given ID, regardless if they are offline or online. This will return an object even if the player does not exist. To this method, all players will exist.
+
+#### **Parameters**
+- **id**: *string*
+  
+  the ID of the player to retrieve.
+  
+#### **Returns** *OfflinePlayer*
+
+`
+static get(name: string): OfflinePlayer;
+`
+
+Gets the player by the given name, regardless if they are offline or online. This will return an object even if the player does not exist. To this method, all players will exist.
+
+#### **Deprecated**
+Persistent storage of users should be by ID as names are no longer unique past a single session.
+
+#### **Parameters**
+- **name**: *string*
+  
+  the name of the player to retrieve.
+  
+#### **Returns** *OfflinePlayer*
 
 ### **getSpawnPoint**
 `
