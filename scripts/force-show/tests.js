@@ -1,5 +1,5 @@
 // Script example for ScriptAPI
-// Author: Jayly#1397 <Jayly Discord>
+// Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { world, system, Player } from "@minecraft/server";
 import { ModalFormData, ActionFormData, MessageFormData } from "@minecraft/server-ui";

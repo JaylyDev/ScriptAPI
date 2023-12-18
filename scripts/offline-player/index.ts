@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { Dimension, DimensionLocation, GameMode, Player, Vector3, world } from "@minecraft/server";
 
 /**
@@ -76,14 +79,14 @@ class OfflinePlayer {
         // check if string is an integer
         const isId = /^\d+$/.test(idOrName);
         if (isId) {
-            const value = world.getDynamicProperty(`player_${idOrName}`) as string | undefined;
+            const value = world.getDynamicProperty(`jayly:player_${idOrName}`) as string | undefined;
             if (!value) throw new Error(`Player with id ${idOrName} does not exist`);
             const data = JSON.parse(value) as IOfflinePlayer;
             return new OfflinePlayer(data);
         }
         else if (typeof idOrName === "string") {
             // try to find the dynamic property by name in every object
-            const ids = world.getDynamicPropertyIds().filter(id => id.startsWith('player_'));
+            const ids = world.getDynamicPropertyIds().filter(id => id.startsWith('jayly:player_'));
             const value = ids.find(id => {
                 const data = world.getDynamicProperty(id) as string;
                 const parsed = JSON.parse(data) as IOfflinePlayer;
@@ -115,7 +118,7 @@ class OfflinePlayer {
             gameMode: additionalProperties.gameMode,
             lastPlayed: Date.now()
         };
-        world.setDynamicProperty(`player_${player.id}`, JSON.stringify(data));
+        world.setDynamicProperty(`jayly:player_${player.id}`, JSON.stringify(data));
     };
     /**
      * @remarks

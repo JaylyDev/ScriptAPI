@@ -1,6 +1,7 @@
-// Script examples for ScriptAPI
-// Author: Jayly#1397 <Jayly Discord>
+// Script example for ScriptAPI
+// Author: Jayly <https://github.com/JaylyDev>
 //         Worldwidebrine#9037 <Bedrock Add-Ons>
+// Project: https://github.com/JaylyDev/ScriptAPI
 
 import { Player, system } from "@minecraft/server";
 import { ActionFormData, FormCancelationReason, MessageFormData, ModalFormData } from "@minecraft/server-ui";
