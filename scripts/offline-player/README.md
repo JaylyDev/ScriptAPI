@@ -18,8 +18,8 @@ const player = OfflinePlayer.get('JaylyPlays');
 ## Properties
 - [level](#level)
 - [name](#name)
-- [totalXpNeededForNextLevel](#totalXpNeededForNextLevel)
-- [xpEarnedAtCurrentLevel](#xpEarnedAtCurrentLevel)
+- [totalXpNeededForNextLevel](#totalxpneededfornextlevel)
+- [xpEarnedAtCurrentLevel](#xpearnedatcurrentlevel)
 - [gameMode](#gamemode)
 - [lastPlayed](#lastplayed)
 
@@ -67,7 +67,7 @@ Type: *number*
 
 ## Methods
 - [get](#get)
-- [getSpawnPoint](#getspawnpoint)
+- [get](#get-1)
 - [getSpawnPoint](#getspawnpoint)
 - [getTotalXp](#gettotalxp)
 - [isOp](#isop)
@@ -87,14 +87,16 @@ Gets the player by the given ID, regardless if they are offline or online. This 
   
 #### **Returns** *OfflinePlayer*
 
+### **get**
+
 `
 static get(name: string): OfflinePlayer;
 `
 
 Gets the player by the given name, regardless if they are offline or online. This will return an object even if the player does not exist. To this method, all players will exist.
 
-#### **Deprecated**
-Persistent storage of users should be by ID as names are no longer unique past a single session.
+> [!CAUTION]
+> Persistent storage of users should be by ID as names are no longer unique past a single session.
 
 #### **Parameters**
 - **name**: *string*
@@ -130,8 +132,8 @@ Returns true if this player has operator-level permissions.
 
 #### **Returns** *boolean*
 
-> [!CAUTION]
-> This function is still in pre-release.  Its signature may change or it may be removed in future releases.
+> [!IMPORTANT]
+> This function can only be used within Beta APIs.
 
 ### **getPlayer**
 `
