@@ -109,3 +109,29 @@ getPlayer(): Player | undefined
 If the player is online, this will return that player corresponds to.
 
 #### **Returns** *Player | undefined*
+
+## Schema
+
+```ts
+import { Dimension, DimensionLocation, GameMode, Player, Vector3 } from "@minecraft/server";
+export class OfflinePlayer {
+    private constructor();
+    static get(id: `${number}`): OfflinePlayer;
+    static get(name: string): OfflinePlayer;
+    readonly dimension: Dimension;
+    readonly id: string;
+    readonly isSneaking: boolean;
+    readonly location: Vector3;
+    readonly typeId = "minecraft:player";
+    readonly level: number;
+    readonly name: string;
+    readonly totalXpNeededForNextLevel: number;
+    readonly xpEarnedAtCurrentLevel: number;
+    readonly gameMode: GameMode;
+    readonly lastPlayed: number;
+    getSpawnPoint(): DimensionLocation | undefined;
+    getTotalXp(): number;
+    isOp(): boolean;
+    getPlayer(): Player | undefined;
+}
+```
