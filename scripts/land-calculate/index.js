@@ -15,28 +15,7 @@ export class MATH {
          */
         this.value = value;
     }
-
-    /**
-     * Generate a random value within a specified percentage range.
-     * @param {number} [percent=1] - The percentage range for random value generation.
-     * @param {number} [radiusPercent=0] - The radius percentage for additional randomness.
-     * @returns {number} - The randomly generated value.
-     */
-    randomly(percent = 1, radiusPercent = 0) {
-        const minValue = Math.max(0.01 * percent * this.value, 100);
-        const maxValue = this.value;
-        const randomValue =
-            Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
-
-        const withRP = Math.floor(
-            randomValue * Math.min(radiusPercent * 0.01, 1)
-        );
-
-        const ResultValue = radiusPercent > 0 ? withRP : randomValue;
-
-        return ResultValue;
-    }
-
+    
     /**
      * Check if the point is within a specified box.
      * @param {Object} box - The box object with start and end points defining the region.
