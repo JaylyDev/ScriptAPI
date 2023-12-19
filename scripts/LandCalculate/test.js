@@ -13,7 +13,7 @@ mc.system.runInterval(async () => {
       };
     }
 
-    const playerLocation = new MATH([ply.location.x, ply.location.z]); // Fixed the extra parenthesis
+    const playerLocation = new MATH([ply.location.x, ply.location.z]);
 
     if (playerLocation.testInbox(AreaLobby) && playerLog[ply.name].status === "out land") {
       ply.sendMessage("§7You are inside this Area Lobby");
