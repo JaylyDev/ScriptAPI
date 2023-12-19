@@ -13,4 +13,4 @@ for everything in a class use `Vector3.ts`
 
 ## Credits
 
-These scripts were written by [bot174](https://github.com/bot174)
+These scripts were written by [JaylyDev](https://github.com/JaylyDev)
