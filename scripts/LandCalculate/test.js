@@ -9,7 +9,7 @@ mc.system.runInterval(async () => {
   mc.world.getPlayers().forEach(ply => {
     if (!playerLog[ply.name]) {
       playerLog[ply.name] = {
-        status: "out land",
+        status: "out land"
       };
     }
     const playerLocation = new MATH([ply.location.x, ply.location.z]));
