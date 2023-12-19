@@ -5,7 +5,7 @@ This Class to Calculate Land [X,Z]
 - testInBox({ start: [x,z], end: [x,z] })
 - getTile({ start: [x,z], end: [x,z] })
 
-check `test.js`
+check `tests.js`
 
 # Credits
 @Nperma
