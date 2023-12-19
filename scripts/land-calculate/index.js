@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Nperma <https://github.com/nperma>
+// Project: https://github.com/JaylyDev/ScriptAPI
 /**
  * Class for mathematical and spatial operations related to land usage.
  * @param {number[]} value - The initial coordinates [x, z] representing a point in space.
