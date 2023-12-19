@@ -1,5 +1,5 @@
 import * as mc from "@minecraft/server";
-import { MATH } from "./math.js";
+import { MATH } from "./index.js";
 
 const AreaLobby = { start: [200, -200], end: [-200, 200] }; // Center 0,0
 
