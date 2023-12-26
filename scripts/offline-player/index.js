@@ -1,8 +1,50 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { GameMode, world } from "@minecraft/server";
+import { GameMode, ScoreboardIdentityType, world } from "@minecraft/server";
 ;
+;
+/**
+ * @beta
+ * Contains an identity of the scoreboard item.
+ */
+class ScoreboardOfflineIdentity {
+    constructor(data, player) {
+        /**
+         * @remarks
+         * Type of the scoreboard identity.
+         *
+         */
+        this.type = ScoreboardIdentityType.Player;
+        this.displayName = player.name;
+        this.id = data.id;
+    }
+    ;
+    /**
+     * @internal
+     */
+    static createIdentity(data, player) {
+        if (!data)
+            return;
+        return new ScoreboardOfflineIdentity(data, player);
+    }
+    ;
+    /**
+     * @remarks
+     * Gets the current score for this participant based on an
+     * objective.
+     *
+     * @param objective
+     * The objective to retrieve the score for.
+     * @returns
+     * Score value.
+     * @throws This function can throw errors.
+     */
+    getScore(objectiveId) {
+        return world.getDynamicProperty('jayly:scoreboard_' + objectiveId + '_' + this.id);
+    }
+    ;
+}
 /**
  * @description
  * Represents a reference to a player identity and the data
@@ -28,6 +70,9 @@ class OfflinePlayer {
         this.name = data.name;
         this.totalXpNeededForNextLevel = data.totalXpNeededForNextLevel;
         this.xpEarnedAtCurrentLevel = data.xpEarnedAtCurrentLevel;
+        this.gameMode = data.gameMode;
+        this.lastPlayed = data.lastPlayed;
+        this.scoreboardIdentity = ScoreboardOfflineIdentity.createIdentity(data.scoreboard, data);
         this.getSpawnPoint = () => data.spawnPoint;
         this.getTotalXp = () => data.totalXp;
         this.isOp = () => data.isOp;
@@ -35,7 +80,7 @@ class OfflinePlayer {
     }
     static get(idOrName) {
         // check if string is an integer
-        const isId = /^\d+$/.test(idOrName);
+        const isId = idOrName.length > 0 && Number.isInteger(Number(idOrName));
         if (isId) {
             const value = world.getDynamicProperty(`jayly:player_${idOrName}`);
             if (!value)
@@ -73,12 +118,23 @@ class OfflinePlayer {
             name: player.name,
             totalXpNeededForNextLevel: player.totalXpNeededForNextLevel,
             xpEarnedAtCurrentLevel: player.xpEarnedAtCurrentLevel,
+            gameMode: additionalProperties.gameMode,
+            lastPlayed: Date.now(),
             spawnPoint: player.getSpawnPoint(),
             totalXp: player.getTotalXp(),
             isOp: player.isOp(),
-            gameMode: additionalProperties.gameMode,
-            lastPlayed: Date.now()
         };
+        const playerScoreboard = player.scoreboardIdentity;
+        if (playerScoreboard) {
+            const scoreboardId = playerScoreboard.id;
+            data.scoreboard = { id: scoreboardId };
+            for (const objective of world.scoreboard.getObjectives()) {
+                const score = objective.getScore(playerScoreboard);
+                if (!score)
+                    continue;
+                world.setDynamicProperty('jayly:scoreboard_' + objective.id + '_' + scoreboardId, score);
+            }
+        }
         world.setDynamicProperty(`jayly:player_${player.id}`, JSON.stringify(data));
     }
     ;
@@ -116,6 +172,7 @@ class OfflinePlayer {
         throw new TypeError("Illegal invocation");
     }
 }
+const gamemodes = [GameMode.survival, GameMode.creative, GameMode.adventure, GameMode.spectator];
 world.beforeEvents.playerLeave.subscribe(({ player }) => {
     let playerGameMode;
     let playerLocation = {
@@ -123,9 +180,8 @@ world.beforeEvents.playerLeave.subscribe(({ player }) => {
         y: player.location.y > 1e6 ? Math.round(player.location.y) : parseFloat(player.location.y.toPrecision(7)),
         z: player.location.z > 1e6 ? Math.round(player.location.z) : parseFloat(player.location.z.toPrecision(7))
     };
-    for (const key in GameMode) {
-        const gameMode = GameMode[key];
-        if (player.matches({ gameMode: gameMode }))
+    for (const gameMode of gamemodes) {
+        if (player.matches({ gameMode }))
             playerGameMode = gameMode;
     }
     if (!playerGameMode)
@@ -135,4 +191,4 @@ world.beforeEvents.playerLeave.subscribe(({ player }) => {
         location: playerLocation
     });
 });
-export { OfflinePlayer };
+export { OfflinePlayer, ScoreboardOfflineIdentity };
