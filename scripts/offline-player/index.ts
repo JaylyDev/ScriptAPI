@@ -1,30 +1,31 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { Dimension, DimensionLocation, GameMode, Player, Vector3, world } from "@minecraft/server";
+import { Dimension, DimensionLocation, GameMode, Player, ScoreboardIdentityType, Vector3, world } from "@minecraft/server";
 
 /**
  * @internal
  * Offline player data object stored in dynamic property
  */
 interface IOfflinePlayer {
-    readonly format_version: number;
+    format_version: number;
     // Entity
-    readonly dimension: string;
-    readonly id: string;
-    readonly isSneaking: boolean;
-    readonly location: Vector3;
-    readonly typeId: "minecraft:player";
+    dimension: string;
+    id: string;
+    isSneaking: boolean;
+    location: Vector3;
+    typeId: "minecraft:player";
+    scoreboard?: IScoreboardOfflineIdentity;
     // Player
-    readonly level: number;
-    readonly name: string;
-    readonly totalXpNeededForNextLevel: number;
-    readonly xpEarnedAtCurrentLevel: number;
-    readonly spawnPoint: DimensionLocation | undefined;
-    readonly totalXp: number;
-    readonly isOp: boolean;
-    readonly gameMode: GameMode;
-    readonly lastPlayed: number;
+    level: number;
+    name: string;
+    totalXpNeededForNextLevel: number;
+    xpEarnedAtCurrentLevel: number;
+    spawnPoint: DimensionLocation | undefined;
+    totalXp: number;
+    isOp: boolean;
+    gameMode: GameMode;
+    lastPlayed: number;
 }
 
 /**
@@ -34,6 +35,63 @@ interface PlayerAdditionalProperties {
     location: Vector3;
     gameMode: GameMode;
 };
+
+/**
+ * @internal
+ */
+interface IScoreboardOfflineIdentity {
+    id: number;
+};
+
+/**
+ * @beta
+ * Contains an identity of the scoreboard item.
+ */
+class ScoreboardOfflineIdentity {
+    private constructor(data: IScoreboardOfflineIdentity, player: IOfflinePlayer) {
+        this.displayName = player.name;
+        this.id = data.id;
+    };
+    /**
+     * @internal
+     */
+    static createIdentity(data: IScoreboardOfflineIdentity | undefined, player: IOfflinePlayer): ScoreboardOfflineIdentity | undefined {
+        if (!data) return;
+        return new ScoreboardOfflineIdentity(data, player);
+    };
+    /**
+     * @remarks
+     * Returns the player-visible name of this identity.
+     *
+     */
+    readonly displayName: string;
+    /**
+     * @remarks
+     * Identifier of the scoreboard identity.
+     *
+     */
+    readonly id: number;
+    /**
+     * @remarks
+     * Type of the scoreboard identity.
+     *
+     */
+    readonly type = ScoreboardIdentityType.Player;
+    /**
+     * @remarks
+     * Gets the current score for this participant based on an
+     * objective.
+     *
+     * @param objective
+     * The objective to retrieve the score for.
+     * @returns
+     * Score value.
+     * @throws This function can throw errors.
+     */
+    getScore(objectiveId: string): number | undefined {
+        return world.getDynamicProperty('jayly:scoreboard_' + objectiveId + '_' + this.id) as number | undefined;
+    };
+}
 
 /**
  * @description
@@ -52,6 +110,9 @@ class OfflinePlayer {
         this.name = data.name;
         this.totalXpNeededForNextLevel = data.totalXpNeededForNextLevel;
         this.xpEarnedAtCurrentLevel = data.xpEarnedAtCurrentLevel;
+        this.gameMode = data.gameMode;
+        this.lastPlayed = data.lastPlayed;
+        this.scoreboardIdentity = ScoreboardOfflineIdentity.createIdentity(data.scoreboard, data);
         this.getSpawnPoint = () => data.spawnPoint;
         this.getTotalXp = () => data.totalXp;
         this.isOp = () => data.isOp;
@@ -77,7 +138,7 @@ class OfflinePlayer {
     static get(name: string): OfflinePlayer;
     static get(idOrName: `${number}` | string): OfflinePlayer {
         // check if string is an integer
-        const isId = /^\d+$/.test(idOrName);
+        const isId = idOrName.length > 0 && Number.isInteger(Number(idOrName));
         if (isId) {
             const value = world.getDynamicProperty(`jayly:player_${idOrName}`) as string | undefined;
             if (!value) throw new Error(`Player with id ${idOrName} does not exist`);
@@ -112,12 +173,24 @@ class OfflinePlayer {
             name: player.name,
             totalXpNeededForNextLevel: player.totalXpNeededForNextLevel,
             xpEarnedAtCurrentLevel: player.xpEarnedAtCurrentLevel,
+            gameMode: additionalProperties.gameMode,
+            lastPlayed: Date.now(),
             spawnPoint: player.getSpawnPoint(),
             totalXp: player.getTotalXp(),
             isOp: player.isOp(),
-            gameMode: additionalProperties.gameMode,
-            lastPlayed: Date.now()
         };
+        
+        const playerScoreboard = player.scoreboardIdentity;
+        if (playerScoreboard) {
+            const scoreboardId = playerScoreboard.id;
+            data.scoreboard = { id: scoreboardId };
+            for (const objective of world.scoreboard.getObjectives()) {
+                const score = objective.getScore(playerScoreboard);
+                if (!score) continue;
+                world.setDynamicProperty('jayly:scoreboard_' + objective.id + '_' + scoreboardId, score);
+            }
+        }
+
         world.setDynamicProperty(`jayly:player_${player.id}`, JSON.stringify(data));
     };
     /**
@@ -202,6 +275,13 @@ class OfflinePlayer {
     readonly lastPlayed: number;
     /**
      * @remarks
+     * Returns a scoreboard identity that represents this entity.
+     * Will remain valid when the entity is killed.
+     *
+     */
+    readonly scoreboardIdentity?: ScoreboardOfflineIdentity;
+    /**
+     * @remarks
      * Gets the current spawn point of the player.
      *
      */
@@ -235,6 +315,8 @@ class OfflinePlayer {
     }
 }
 
+const gamemodes: GameMode[] = [GameMode.survival, GameMode.creative, GameMode.adventure, GameMode.spectator];
+
 world.beforeEvents.playerLeave.subscribe(({ player }) => {
     let playerGameMode: GameMode | undefined;
     let playerLocation: Vector3 = {
@@ -243,9 +325,8 @@ world.beforeEvents.playerLeave.subscribe(({ player }) => {
         z: player.location.z > 1e6 ? Math.round(player.location.z) : parseFloat(player.location.z.toPrecision(7))
     };
 
-    for (const key in GameMode) {
-        const gameMode = GameMode[key];
-        if (player.matches({ gameMode: gameMode })) playerGameMode = gameMode;
+    for (const gameMode of gamemodes) {
+        if (player.matches({ gameMode })) playerGameMode = gameMode;
     }
 
     if (!playerGameMode) throw new Error("Player gamemode not found");
@@ -256,4 +337,4 @@ world.beforeEvents.playerLeave.subscribe(({ player }) => {
     });
 });
 
-export { OfflinePlayer };
+export { OfflinePlayer, ScoreboardOfflineIdentity };
