@@ -1,4 +1,4 @@
-# Offline Player
+# Offline Player v0.2.0
 
 Represents a reference to a player identity and the data belonging to a player that is stored on the disk and can, thus, be retrieved without the player needing to be online.
 
