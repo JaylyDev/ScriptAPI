@@ -3,7 +3,7 @@ import { ActionFormData, ModalFormData, MessageFormData} from "@minecraft/server
 /**
  * Represents a form object.
  */
-export default class ProtoForm {
+export class ProtoForm {
   /**
    * Initializes a new instance of the ProtoForm class.
    * @param {Object} options The options for the form.
