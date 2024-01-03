@@ -1,7 +1,7 @@
 import {
     world,Player
 } from "@minecraft/server";
-import ProtoForm from "index.js";
+import { ProtoForm } from "index.js";
 const actionform = new ProtoForm({
     title: "Test ActionForm",
     body: "Body...",
