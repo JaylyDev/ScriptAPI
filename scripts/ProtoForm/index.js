@@ -1,4 +1,4 @@
-import { ActionFormData, ModalFormData, MessageFormData, FormResponse} from "@minecraft/server-ui";
+import { ActionFormData, ModalFormData, MessageFormData} from "@minecraft/server-ui";
 
 /**
  * Represents a form object.
@@ -125,11 +125,7 @@ export default class ProtoForm {
    * @returns {Promise} A Promise that resolves when the form is submitted.
    */
   show(player) {
-    return this.form?.show(player).then((response) => {
-        if (response instanceof FormResponse) {
-        this.response(response) 
-        }
-    });
+    return this.form?.show(player).then((response) => this.response(response));
   }
 }
 
