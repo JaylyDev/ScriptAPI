@@ -68,11 +68,8 @@ export class ProtoForm {
         if (!body) throw new Error("Body is essential in ActionFormData.");
         this.form.title(title);
         this.form.body(body);
-        btns.forEach(([text, texture]) => {
-          this.form?.button(
-            text,
-            texture ?? undefined
-          );
+        btns.forEach((btn) => {
+          typeof btn == "string"? this.form?.button(btn): this.form?.button(btn[0],btn[1] ?? undefined)
         });
       }
     } else if (fields) {
@@ -83,7 +80,7 @@ export class ProtoForm {
       if (this.form instanceof ModalFormData) {
         this.form.title(title);
 
-        fields.forEach(([type, details]) => {
+        fields.forEach(([type, ...details]) => {
           switch (type) {
             case "text":
               this.form?.textField(
