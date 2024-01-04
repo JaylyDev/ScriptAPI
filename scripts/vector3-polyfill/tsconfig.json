@@ -4,6 +4,7 @@
     "target": "es2020",
     "allowJs": true,
     "checkJs": true,
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": false,
   },
   "files": [

@@ -35,42 +35,61 @@ export class Vector3 implements IVec3 {
    * A constant vector that represents (0, 0, -1).
    * @readonly
    */
-  static back = new this(0, 0, -1);
+  static get back() {
+    return new this(0, 0, -1);
+  };
   /**
    * A constant vector that represents (0, -1, 0).
    * @readonly
    */
-  static down = new this(0, -1, 0);
+  static get down() {
+    return new this(0, -1, 0);
+  };
   /**
    * A constant vector that represents (0, 0, 1).
    * @readonly
    */
-  static forward = new this(0, 0, 1);
+  static get forward() {
+    return new this(0, 0, 1);
+  };
   /**
    * A constant vector that represents (-1, 0, 0).
    * @readonly
    */
-  static left = new this(-1, 0, 0);
+  static get left() {
+    return new this(-1, 0, 0);
+  };
   /**
    * A constant vector that represents (1, 1, 1).
    * @readonly
    */
-  static one = new this(1, 1, 1);
+  static get one() {
+    return new this(1, 1, 1);
+  };
   /**
    * A constant vector that represents (1, 0, 0).
    * @readonly
    */
-  static right = new this(1, 0, 0);
+  static get right() {
+    return new this(1, 0, 0);
+  };
   /**
    * A constant vector that represents (0, 1, 0).
    * @readonly
    */
-  static up = new this(0, 1, 0);
+  static get up() {
+    return new this(0, 1, 0);
+  };
   /**
    * A constant vector that represents (0, 0, 0).
    * @readonly
    */
-  static zero = new this(0, 0, 0);
+  static get zero() {
+    return new this(0, 0, 0);
+  };
+  static from(vec3: IVec3) {
+    return new Vector3(vec3.x, vec3.y, vec3.z);
+  };
   /**
    * @remarks
    * Retur

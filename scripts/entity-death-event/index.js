@@ -17,13 +17,9 @@ const callbacks = [];
 // backend
 world.afterEvents.entityHurt.subscribe((event) => {
   const { hurtEntity } = event;
-
   if (!hurtEntity) return;
 
-  /** @type {EntityHealthComponent} */
-  // @ts-expect-error
   const health = hurtEntity.getComponent(EntityHealthComponent.componentId);
-
   if (health.currentValue > 0) return;
 
   for (const callback of callbacks) {
