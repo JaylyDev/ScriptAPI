@@ -1,123 +1,114 @@
 // Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iBlqzed>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world } from "@minecraft/server";
-const names = [];
-/**
- * Database
- */
+
+import { world, system } from "@minecraft/server";
 export class Database {
-    /**
-     * Create a new database!
-     */
-    constructor(name) {
-        this.data = new Map();
-        this.name = JSON.stringify(name).slice(1, -1).replaceAll(/"/g, '\\"');
-        if (names.includes(this.name))
-            throw new Error(`You can't have 2 of the same databases`);
-        if (this.name.includes('"'))
-            throw new TypeError(`Database names can't include "!`);
-        if (this.name.length > 13 || this.name.length === 0)
-            throw new Error(`Database names can't be more than 13 characters long, and it can't be nothing!`);
-        names.push(this.name);
-        runCommand(`scoreboard objectives add "DB_${this.name}" dummy`);
-        world.scoreboard.getObjective(`DB_${this.name}`).getParticipants().forEach(e => this.data.set(e.displayName.split("_")[0].replaceAll(/\\"/g, '"'), JSON.parse(e.displayName.split("_").filter((v, i) => i > 0).join("_").replaceAll(/\\"/g, '"'))));
-    }
-    /**
-     * The length of the database
-     */
-    get length() {
-        return this.data.size;
+    constructor(name, defaultValue = "{}") {
+        this.name = name;
+        this.defaultValue = defaultValue;
+        this.cache = Database.getAll(this.name, this.defaultValue);
+        Database.databases.push(this);
     }
     /**
      * Set a value from a key
-     * @param {string} key Key to set
-     * @param {any} value The value
+     * @remarks Doesn't save instantly, call .save() or wait 1 minute to save automatically
+     * @param {string} property Key to set
+     * @param {V} value The value
      */
-    set(key, value) {
-        if (key.includes('_'))
-            throw new TypeError(`Database keys can't include "_"`);
-        if ((JSON.stringify(value).replaceAll(/"/g, '\\"').length + key.replaceAll(/"/g, '\\"').length + 1) > 32000)
-            throw new Error(`Database setter to long... somehow`);
-        if (this.data.has(key))
-            runCommand(`scoreboard players reset "${key.replaceAll(/"/g, '\\"')}_${JSON.stringify(this.data.get(key)).replaceAll(/"/g, '\\"')}" "DB_${this.name}"`);
-        runCommand(`scoreboard players set "${key.replaceAll(/"/g, '\\"')}_${JSON.stringify(value).replaceAll(/"/g, '\\"')}" "DB_${this.name}" 0`);
-        this.data.set(key, value);
+    set(property, value) {
+        this.cache[property] = value;
     }
     /**
      * Get a value from a key
-     * @param {string} key Key to get
-     * @returns {any} The value that was set for the key (or undefined)
+     * @param {string} property Key to get
+     * @returns {V} The value that was set for the key (or undefined)
      */
-    get(key) {
-        if (this.data.has(key))
-            return this.data.get(key);
-        return undefined;
+    get(property) {
+        return this.cache[property];
     }
     /**
      * Test for whether or not the database has the key
-     * @param {string} key Key to test for
+     * @param {string} property Key to test for
      * @returns {boolean} Whether or not the database has the key
      */
-    has(key) {
-        if (!this.data.has(key))
-            return false;
-        return true;
+    has(property) {
+        return (property in this.cache);
     }
     /**
      * Delete a key from the database
-     * @param {string} key Key to delete from the database
+     * @remarks Doesn't save instantly, call .save() or wait 1 minute to save automatically
+     * @param {string} property Key to delete from the database
+     * @returns {boolean} Whether the database had the key to begin with
      */
-    delete(key) {
-        if (!this.data.has(key))
-            return;
-        runCommand(`scoreboard players reset "${key.replaceAll(/"/g, '\\"')}_${JSON.stringify(this.data.get(key)).replaceAll(/"/g, '\\"')}" "DB_${this.name}"`);
-        this.data.delete(key);
+    delete(property) {
+        return delete this.cache[property];
     }
     /**
      * Get an array of all keys in the database
      * @returns {string[]} An array of all keys in the database
      */
     keys() {
-        return [...this.data.keys()];
+        return Object.keys(this.cache);
     }
     /**
      * Get an array of all values in the database
-     * @returns {any[]} An array of all values in the database
+     * @returns {V[]} An array of all values in the database
      */
     values() {
-        return [...this.data.values()];
+        return Object.values(this.cache);
     }
     /**
      * Clears all values in the database
+     * @remarks Saves instantly
      */
     clear() {
-        runCommand(`scoreboard objectives remove "DB_${this.name}"`);
-        runCommand(`scoreboard objectives add "DB_${this.name}" dummy`);
-        this.data.clear();
+        this.cache = {};
+        this.save();
     }
     /**
-     * Loop through all keys and values of the database
-     * @param {(key: string, value: any) => void} callback Code to run per loop
+     * Get an object with all keys and values
+     * @remarks All changes will save
+     * @returns {Record<string, V>} An object of all keys and values
      */
-    forEach(callback) {
-        this.data.forEach((v, k) => callback(k, v));
+    getAll() {
+        return this.cache ?? (this.cache = Database.getAll(this.name, this.defaultValue));
     }
-    *[Symbol.iterator]() {
-        yield* this.data.entries();
+    /**
+     * Save the database instantly
+     */
+    save() {
+        const stringified = JSON.stringify(this.cache);
+        const index = Math.ceil(stringified.length / 32000);
+        world.setDynamicProperty(`${this.name}Index`);
+        for (let i = 0; i < index; i++) {
+            world.setDynamicProperty(`${this.name}:${i}`, stringified.slice(i * 32000, (i + 1) * 32000));
+        }
+    }
+    static save() {
+        this.databases.forEach((database) => {
+            database.save();
+        });
+    }
+    static getAll(name, defaultValue) {
+        let stringified = "";
+        const index = world.getDynamicProperty(`${name}Index`);
+        if (!index) {
+            world.setDynamicProperty(`${name}Index`, 1);
+            world.setDynamicProperty(`${name}:0`, defaultValue);
+            stringified = defaultValue;
+        }
+        else {
+            for (let i = 0; i < index; i++) {
+                const value = world.getDynamicProperty(`${this.name}:${i}`);
+                stringified += value;
+            }
+        }
+        return JSON.parse(stringified);
     }
 }
-/**
- * Run a command!
- * @param {string} cmd Command to run
- * @returns {{ error: boolean, data: any }} Whether or not the command errors, and command data
- * @example runCommand(`give @a diamond`)
- */
-function runCommand(cmd) {
-    try {
-        return { error: false, data: world.getDimension('overworld').runCommand(cmd) };
-    }
-    catch {
-        return { error: true, data: undefined };
-    }
-}
+Database.databases = new Array();
+system.runInterval(() => {
+    //@ts-ignore
+    Database.save();
+}, 1200);
