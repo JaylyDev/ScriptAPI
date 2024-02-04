@@ -11,7 +11,7 @@ declare class ProtoForm {
     body?: string;
     btn1?: string;
     btn2?: string;
-    btns?: [string, string | undefined][];
+    btns?: (string | [string] | [string, string | undefined])[];
     response?: (result: FormResponse) => void;
   });
 

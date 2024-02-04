@@ -1,43 +1,39 @@
-/**
- * Database
- */
-export declare class Database {
-    protected readonly data: Map<string, any>;
-    /**
-     * The name of the database
-     */
+// Script example for ScriptAPI
+// Author: iBlqzed <https://github.com/iBlqzed>
+// Project: https://github.com/JaylyDev/ScriptAPI
+
+export declare class Database<V = any> {
     readonly name: string;
-    /**
-     * Create a new database!
-     */
-    constructor(name: string);
-    /**
-     * The length of the database
-     */
-    get length(): number;
+    private readonly defaultValue;
+    static readonly databases: Database<any>[];
+    private cache;
+    constructor(name: string, defaultValue?: string);
     /**
      * Set a value from a key
-     * @param {string} key Key to set
-     * @param {any} value The value
+     * @remarks Doesn't save instantly, call .save() or wait 1 minute to save automatically
+     * @param {string} property Key to set
+     * @param {V} value The value
      */
-    set(key: string, value: any): void;
+    set(property: string, value: V): void;
     /**
      * Get a value from a key
-     * @param {string} key Key to get
-     * @returns {any} The value that was set for the key (or undefined)
+     * @param {string} property Key to get
+     * @returns {V} The value that was set for the key (or undefined)
      */
-    get(key: string): any;
+    get(property: string): V;
     /**
      * Test for whether or not the database has the key
-     * @param {string} key Key to test for
+     * @param {string} property Key to test for
      * @returns {boolean} Whether or not the database has the key
      */
-    has(key: string): boolean;
+    has(property: string): boolean;
     /**
      * Delete a key from the database
-     * @param {string} key Key to delete from the database
+     * @remarks Doesn't save instantly, call .save() or wait 1 minute to save automatically
+     * @param {string} property Key to delete from the database
+     * @returns {boolean} Whether the database had the key to begin with
      */
-    delete(key: string): void;
+    delete(property: string): boolean;
     /**
      * Get an array of all keys in the database
      * @returns {string[]} An array of all keys in the database
@@ -45,17 +41,24 @@ export declare class Database {
     keys(): string[];
     /**
      * Get an array of all values in the database
-     * @returns {any[]} An array of all values in the database
+     * @returns {V[]} An array of all values in the database
      */
-    values(): any[];
+    values(): V[];
     /**
      * Clears all values in the database
+     * @remarks Saves instantly
      */
     clear(): void;
     /**
-     * Loop through all keys and values of the database
-     * @param {(key: string, value: any) => void} callback Code to run per loop
+     * Get an object with all keys and values
+     * @remarks All changes will save
+     * @returns {Record<string, V>} An object of all keys and values
      */
-    forEach(callback: (key: string, value: any) => void): void;
-    [Symbol.iterator](): IterableIterator<[string, any]>;
+    getAll(): Record<string, V>;
+    /**
+     * Save the database instantly
+     */
+    save(): void;
+    protected static save(): void;
+    protected static getAll(name: string, defaultValue: string): Record<string, any>;
 }
