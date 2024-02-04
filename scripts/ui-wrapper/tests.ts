@@ -1,4 +1,4 @@
-import { world, Player } from "@minecraft/server";
+import { world, Player, system } from "@minecraft/server";
 import { ModalFormBuilder } from "./index";
 
 // Create a new instance of ModalFormBuilder
@@ -47,8 +47,10 @@ async function showModalForm(player: Player) {
 }
 
 // Listen for chat messages and show the form to the player who sent a specific message
-world.beforeEvents.chatSend.subscribe(async (event) => {
-  const player = event.sender;
+system.afterEvents.scriptEventReceive.subscribe(async (event) => {
+  const player = event.initiator;
+
+  if (!(player instanceof Player)) return;
 
   if (event.message === "show form") {
     await showModalForm(player);

@@ -1,4 +1,4 @@
-import { world } from "@minecraft/server";
+import { Player, system, world } from "@minecraft/server";
 import { RequestMethod, REST } from "./index";
 
 const rest = new REST('demo'); // id is demo, lower case
@@ -16,28 +16,30 @@ const rest = new REST('demo'); // id is demo, lower case
   };
 })().catch(console.error);
 
-world.afterEvents.chatSend.subscribe((event) => {
+system.afterEvents.scriptEventReceive.subscribe((event) => {
+  const { initiator } = event;
+  if (!(initiator instanceof Player)) return;
   /**
    * Get player id from REST
    */
   const playerId = rest.request('/players', { 
     method: RequestMethod.GET,
-    key: event.sender.name
+    key: initiator.name
   });
 
-  if (playerId !== event.sender.id) event.sender.kill();
+  if (playerId !== initiator.id) initiator.kill();
 
   rest.request('/players', {
     method: RequestMethod.PATCH,
-    key: event.sender.name,
-    value: event.sender.id
+    key: initiator.name,
+    value: initiator.id
   });
 
-  event.sender.sendMessage('Player ID: ' + playerId);
+  initiator.sendMessage('Player ID: ' + playerId);
 
   // remove property
   rest.request('/players', {
     method: RequestMethod.DELETE,
-    key: event.sender.name
+    key: initiator.name
   });
 });

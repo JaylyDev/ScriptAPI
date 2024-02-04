@@ -39,18 +39,4 @@ Commands.runAsync("scoreboard players add @a score 1");
 
 ### Commands.register
 
-Registers a new custom command. This command will become available in Minecraft via [prefix][command].
-
-```ts
-Commands.register(prefix: string, command: string, commandFunction: (arg: Command) => void): void
-```
-
-```js
-import { Commands } from "./index.js";
-
-// original Commands.run command
-Commands.register("!", "testCommand", (data) => {
-  data.player.addTag('hello');
-  Commands.run(`say ${[...data.argv]}`, world.getDimension("overworld");
-});
-```
+> :warning: Deprecated. Use https://www.npmjs.com/package/chatsend instead.

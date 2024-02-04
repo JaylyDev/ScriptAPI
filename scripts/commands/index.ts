@@ -65,40 +65,4 @@ export class Commands {
     if (target instanceof Dimension || Entity) return await target.runCommandAsync(commandString);
     else throw TypeError("Native type conversion failed");
   };
-
-  /**
-   * @remarks
-   * Registers a new custom command. This command will become
-   * available in Minecraft via [prefix][command].
-   * @param prefix
-   * The prefix of this specific command. (Case sensitive)
-   * @param command
-   * Name of this specific command. (Case sensitive)
-   * @param commandFunction
-   * Implementation of the command function.
-   * @throws
-   * This function can throw error: You are not allow to register a new slash command.
-   * @example example1.js
-   * ```typescript
-   *          Commands.register("!", "test", function (arg) {
-   *              arg.player.runCommandAsync(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
-   *          });
-   * ```
-   */
-  public static register (prefix: string, command: string, commandFunction: (arg: Command) => void): void {
-    if (prefix.startsWith("/")) throw Error ("Unable to register slash commands.");
-    world.beforeEvents.chatSend.subscribe((arg) => {
-      var argv = arg.message.split(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g).filter( e => e.trim().length > 0);
-      if (argv[0] === `${prefix}${command}`) {
-        arg.cancel = true;
-        try {
-          commandFunction(new Command(argv, arg.sender));
-        } catch (err) {
-          let { statusMessage } = JSON.parse(err);
-          console.error(err);
-          arg.sender.sendMessage(`§c${statusMessage}`);
-        };
-      };
-    });
-  };
 };

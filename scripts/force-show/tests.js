@@ -12,7 +12,7 @@ world.beforeEvents.chatSend.subscribe(async (event) => {
   modalForm.title('Title');
   modalForm.dropdown('Dropdown', ['0','1']);
   
-  const response = await forceShow(event.sender, modalForm);
+  const response = await forceShow(event.initiator, modalForm);
   
   // response should be ModalFormResponse
   for (const value of response.formValues) {
@@ -53,10 +53,12 @@ system.run(async function () {
 });
 
 // test timeout feature
-world.afterEvents.chatSend.subscribe((event) => {
-  const { sender, message } = event;
+system.afterEvents.scriptEventReceive.subscribe((event) => {
+  const { initiator, message } = event;
 
-  forceShow(sender, new MessageFormData().title('Title').body(message), 10).then((res) => {
+  if (!(initiator instanceof Player)) return;
+
+  forceShow(initiator, new MessageFormData().title('Title').body(message), 10).then((res) => {
     console.log('Success');
-  }).catch(console.error);
+  });
 });

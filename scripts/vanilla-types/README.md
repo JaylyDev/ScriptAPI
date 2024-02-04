@@ -1,1 +1,0 @@
-Basically @minecraft/vanilla-data, unlike enums the static properties returns corresponding type classes
