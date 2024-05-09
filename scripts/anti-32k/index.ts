@@ -27,7 +27,7 @@ function onTick() {
     for (let slot = 0; slot < inventorySize; slot++) {
       const item = container.getItem(slot);
       if (!item) continue;
-      const enchantable = item.getComponent("minecraft:enchantable");
+      const enchantable = item.getComponent("minecraft:enchantable") as mc.ItemEnchantableComponent;
       if (!enchantable) continue;
       for (const enchantment of enchantable.getEnchantments()) {
         if (enchantable.canAddEnchantment(enchantment)) continue;

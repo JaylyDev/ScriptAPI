@@ -18,9 +18,11 @@
     "url": "https://github.com/JaylyDev/ScriptAPI/issues"
   },
   "homepage": "https://github.com/JaylyDev/ScriptAPI#readme",
+  "overrides": {
+    "@minecraft/server": "^1.11.0-rc.1.21.0-preview.25"
+  },
   "dependencies": {
     "@minecraft/math": "^1.3.5",
-    "@minecraft/server": "^1.10.0",
     "@minecraft/server-ui": "^1.1.0",
     "@minecraft/vanilla-data": "^1.20.50"
   },
