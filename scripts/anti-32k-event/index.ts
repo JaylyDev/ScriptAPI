@@ -2,7 +2,7 @@
 // Author: JaylyMC <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
-import { Enchantment, Entity, EntityInventoryComponent, ItemEnchantableComponent, ItemStack, system, TicksPerSecond, world } from '@minecraft/server';
+import { Entity, EntityInventoryComponent, ItemStack, system, TicksPerSecond, world } from '@minecraft/server';
 
 /**
  * Represents an event indicating incompatible enchantments on an item.

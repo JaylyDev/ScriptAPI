@@ -21,9 +21,7 @@ const { world, system } = mc;
 
 function onTick() {
   for (const player of world.getPlayers()) {
-    /** @type {mc.EntityInventoryComponent} */
-    // @ts-ignore
-    const inventory = player.getComponent("minecraft:inventory");
+    const inventory = player.getComponent("minecraft:inventory") as mc.EntityInventoryComponent;
     const { container, inventorySize } = inventory;
     if (container.emptySlotsCount == inventorySize) continue;
     for (let slot = 0; slot < inventorySize; slot++) {
