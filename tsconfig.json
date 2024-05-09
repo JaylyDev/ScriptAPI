@@ -1,11 +1,20 @@
 {
-  "files": [],
-  "exclude": [ "docs" ],
-  "references": [
-    { "path": "tools/tsconfig.json" },
-    { "path": "scripts/tsconfig.json" },
-    { "path": "scripts/jsconfig.json" },
-    { "path": "editorExtensions/tsconfig.json" },
-    { "path": "editorExtensions/jsconfig.json" }
-  ]
+  "compilerOptions": {
+    "module": "es2020",
+    "target": "es2021",
+    "moduleResolution": "classic",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "baseUrl": "scripts",
+    "types": [
+      "@minecraft/server",
+      "@minecraft/server-ui",
+      "@minecraft/vanilla-data"
+    ],
+    "typeRoots": ["./node_modules/"],
+  },
+  "exclude": ["docs"],
+  "include": ["scripts/**/*.js", "scripts/**/*.ts"]
 }

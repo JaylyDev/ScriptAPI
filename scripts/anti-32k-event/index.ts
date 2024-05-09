@@ -43,12 +43,13 @@ class IncompatibleEnchantmentAlertEventSignal {
     subscribe(callback: (arg0: IncompatibleEnchantmentAlertEvent) => void): number {
         return system.runInterval(function () {
             for (const player of world.getAllPlayers()) {
-                const inventory = player.getComponent(EntityInventoryComponent.componentId);
+                const inventory = player.getComponent(EntityInventoryComponent.componentId) as EntityInventoryComponent;
                 for (let index = 0; index < inventory.container.size; index++) {
                     const item = inventory.container.getItem(index);
                     if (!item) continue;
 
-                    const enchantable = item.getComponent(ItemEnchantableComponent.componentId);
+                    const enchantable = item.getComponent(ItemEnchantableComponent.componentId) as ItemEnchantableComponent;
+                    if (!enchantable) continue;
 
                     for (const enchantment of enchantable.getEnchantments()) {
                         const enchantmentIsIncompatible = enchantable.canAddEnchantment(enchantment) === false;
