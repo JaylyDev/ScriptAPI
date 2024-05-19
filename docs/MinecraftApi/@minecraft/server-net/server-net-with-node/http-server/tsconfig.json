@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": false,
-    "alwaysStrict": true,
-    "sourceMap": true,
-    "module": "CommonJS",
-    "isolatedModules": true
-  }
-}
