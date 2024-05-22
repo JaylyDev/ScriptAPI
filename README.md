@@ -25,16 +25,21 @@ The `main` branch is used for script development for Minecraft Preview and may o
 
   Highly recommend checking out Mojang's [editor extension starter kit](https://github.com/Mojang/minecraft-editor-extension-starter-kit) if you're experimenting with editor API for the first time!
 
-- ### [docs](./docs/)
-  Contains technical documentation of Script API features.
-  > **🚫 Documentation are no longer being updated**. Check out [Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) and [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts) for up-to-date infomation.
+- ### Documentation
+
+  Check out the following links for Script API documentation:
+
+  - [Official Script API Documentation](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) - Microsoft's official documentation of high-level introduction of experimental Script API
+  - [Jayly's Script API Documentation](https://jaylydev.github.io/scriptapi-docs/) - Jayly's Script API documentation with guides and easy to use and understand API references for programming beginners.
+  - [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts.html) - Learn the basics of the Script API on Bedrock Wiki.
+  - [Bundle Minecraft Scripts with ESBuild](https://jaylydev.github.io/posts/bundle-minecraft-scripts-esbuild/) - Merge Minecraft script files through bundling with esbuild.
 
 ## Contributing
 
 Please contribute to this repository if you can. Check out [**Contributing Guidelines**](./CONTRIBUTING.md) for more infomation.
 
 ## License
+
 This project is licensed under the MIT license.
 
 Copyrights on the script files are each contributor listed at the beginning of each script file.
-
