@@ -46,8 +46,11 @@ async function main() {
   // for other node modules, please save them as development.
   for (const moduleName in packageJson.dependencies) {
     const latestPreview = await getVersion(moduleName);
-    
     packageJson.dependencies[moduleName as (keyof typeof import("../package.json")["dependencies"])] = latestPreview;
+  }
+  for (const moduleName in packageJson.overrides) {
+    const latestPreview = await getVersion(moduleName);
+    packageJson.overrides[moduleName as (keyof typeof import("../package.json")["overrides"])] = latestPreview;
   }
 
   fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2));
