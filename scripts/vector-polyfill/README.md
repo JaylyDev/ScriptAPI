@@ -115,8 +115,8 @@ static add(a: Vector3, b: Vector3): Vector
 Returns the addition of these vectors.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: [*Vector3*](#vector-polyfill)
 
 #### **Returns** [*Vector*](#vector-polyfill)
 
@@ -128,8 +128,8 @@ static cross(a: Vector3, b: Vector3): Vector
 Returns the cross product of these two vectors.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: [*Vector3*](#vector-polyfill)
 
 #### **Returns** [*Vector*](#vector-polyfill)
 
@@ -141,8 +141,8 @@ static distance(a: Vector3, b: Vector3): number
 Returns the distance between two vectors.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: [*Vector3*](#vector-polyfill)
 
 #### **Returns** *number*
 
@@ -154,8 +154,8 @@ static divide(a: Vector3, b: number | Vector3): Vector
 Returns the component-wise division of these vectors.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: *number* | [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: *number* | [*Vector3*](#vector-polyfill)
 
 #### **Returns** [*Vector*](#vector-polyfill)
 
@@ -170,8 +170,8 @@ static lerp(a: Vector3, b: Vector3, t: number): Vector
 Returns the linear interpolation between a and b using t as the control.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: [*Vector3*](#vector-polyfill)
 - **t**: *number*
 
 #### **Returns** [*Vector*](#vector-polyfill)
@@ -184,8 +184,8 @@ static max(a: Vector3, b: Vector3): Vector
 Returns a vector that is made from the largest components of two vectors.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: [*Vector3*](#vector-polyfill)
 
 #### **Returns** [*Vector*](#vector-polyfill)
 
@@ -197,8 +197,8 @@ static min(a: Vector3, b: Vector3): Vector
 Returns a vector that is made from the smallest components of two vectors.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: [*Vector3*](#vector-polyfill)
 
 #### **Returns** [*Vector*](#vector-polyfill)
 
@@ -210,8 +210,8 @@ static multiply(a: Vector3, b: number | Vector3): Vector
 Returns the component-wise product of these vectors.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: *number* | [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: *number* | [*Vector3*](#vector-polyfill)
 
 #### **Returns** [*Vector*](#vector-polyfill)
 
@@ -223,8 +223,8 @@ static slerp(a: Vector3, b: Vector3, s: number): Vector
 Returns the spherical linear interpolation between a and b using s as the control.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: [*Vector3*](#vector-polyfill)
 - **s**: *number*
 
 #### **Returns** [*Vector*](#vector-polyfill)
@@ -237,8 +237,8 @@ static subtract(a: Vector3, b: Vector3): Vector
 Returns the subtraction of these vectors.
 
 #### **Parameters**
-- **a**: [*Vector3*](Vector3.md)
-- **b**: [*Vector3*](Vector3.md)
+- **a**: [*Vector3*](#vector-polyfill)
+- **b**: [*Vector3*](#vector-polyfill)
 
 #### **Returns** [*Vector*](#vector-polyfill)
 
