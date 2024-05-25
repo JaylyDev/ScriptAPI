@@ -1,7 +1,7 @@
 # Minecraft Editor APIs
 
-> ![CAUTION]
-> This package is no longer maintained. Please install the official `@minecraft/server-editor` module on [NPM](https://www.npmjs.com/package/@minecraft/server-editor):
+> [!CAUTION] 
+> This package is no longer maintained. Please install the official `@minecraft/server-editor` module on [npmjs.com](https://www.npmjs.com/package/@minecraft/server-editor):
 > 
 > ```bash
 > npm i @minecraft/server-editor
