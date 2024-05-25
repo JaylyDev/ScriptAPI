@@ -51,7 +51,7 @@ editor.registerEditorExtension<ScratchStorage>(
 		)
 
 		const settings = {
-			entityType: "minecraft:creeper"
+			entityType: entityTypes.indexOf("minecraft:creeper")
 		}
 
 		const pane = uiSession.createPropertyPane(
@@ -98,7 +98,7 @@ editor.registerEditorExtension<ScratchStorage>(
 
 									const cursorPosition = mouseRay.cursorBlockLocation
 									server.world.getDimension("minecraft:overworld").spawnEntity(
-										settings.entityType,
+										entityTypes[settings.entityType],
 										{
 											x: cursorPosition.x + 0.5,
 											y: cursorPosition.y,

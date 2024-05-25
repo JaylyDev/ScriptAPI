@@ -36,7 +36,11 @@ function DeleteCommandBlocks() {
             }
           ),
           MinecraftBlockTypes.Air,
-          { matchingBlock: BlockPermutation.resolve(commandBlock) }
+          {
+            blockFilter: {
+              includePermutations: [BlockPermutation.resolve(commandBlock)],
+            },
+          }
         );
       }
     }
