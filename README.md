@@ -13,7 +13,7 @@ The `main` branch is used for script development for Minecraft Preview and may o
 
 ## [Scripts](./scripts/)
 
-  Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
+Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
 
 > [!IMPORTANT]
 > Some scripts might use API modules that are only enabled in specific runtime environments, including:
@@ -26,14 +26,19 @@ There are two ways to use external Minecraft libraries:
 
 1. **Standalone file**
 
-    Download a standalone file available to download from https://jaylydev.github.io/scriptapi-docs/meta/useful-links.html for quick, small-scale projects.
+   Download a standalone file available to download from https://jaylydev.github.io/scriptapi-docs/meta/useful-links.html for quick, small-scale projects.
 
 2. **Bundling**
 
-    Installing it through npm, with advanced build configurations and bundling with esbuild:
+   Installing it through npm, with advanced build configurations and bundling with esbuild:
 
-    - `@minecraft/math` package link: https://npmjs.com/package/@minecraft/math
-    - `@minecraft/vanilla-data` package link: https://npmjs.com/package/@minecraft/vanilla-data
+    ```bash
+    npm i @minecraft/math
+    npm i @minecraft/vanilla-data
+    ```
+
+- `@minecraft/math` package link: https://npmjs.com/package/@minecraft/math
+- `@minecraft/vanilla-data` package link: https://npmjs.com/package/@minecraft/vanilla-data
 
 Guide on bundle Minecraft Scripts with the following bundlers:
 
@@ -48,12 +53,11 @@ Highly recommend checking out Mojang's [editor extension starter kit](https://gi
 
 ## Documentation
 
-  Check out the following links for Script API documentation:
+Check out the following links for Script API documentation:
 
-  - [Official Script API Documentation](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) - Microsoft's official documentation of high-level introduction of experimental Script API
-  - [Jayly's Script API Documentation](https://jaylydev.github.io/scriptapi-docs/) - Jayly's Script API documentation with guides and easy to use and understand API references for programming beginners.
-  - [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts.html) - Learn the basics of the Script API on Bedrock Wiki.
-  - [Bundle Minecraft Scripts with ESBuild](https://jaylydev.github.io/posts/bundle-minecraft-scripts-esbuild/) - Merge Minecraft script files through bundling with esbuild.
+- [**Official Script API Documentation**](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) - Microsoft's official documentation of high-level introduction of experimental Script API
+- [**Jayly's Script API References**](https://jaylydev.github.io/scriptapi-docs/) - Jayly's Script API documentation with guides and easy to use and understand API references for programming beginners.
+- [**Bedrock Wiki**](https://wiki.bedrock.dev/scripting/starting-scripts.html) - Learn the basics of the Script API on Bedrock Wiki.
 
 ## Contributing
 
