@@ -20,7 +20,7 @@ Community driven scripts that use Script API to do all kinds of crazy stuff in M
 >
 > `@minecraft/server-net` and `@minecraft/server-admin`: Modules that can only be used in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock).
 >
-> `@minecraft/vanilla-data` and `@minecraft/math`: These are external Minecraft libraries published to NPM. It is not part of Minecraft's native modules.
+> `@minecraft/vanilla-data` and `@minecraft/math`: These are external Minecraft libraries published to NPM. They are not part of Minecraft's native modules.
 
 There are two ways to use external Minecraft libraries:
 
