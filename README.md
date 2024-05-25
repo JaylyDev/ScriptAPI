@@ -15,9 +15,30 @@ The `main` branch is used for script development for Minecraft Preview and may o
 
   Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
 
-  > ⚠️ Some scripts might use API modules that are only enabled in specific runtime environments, including:
+  > [!IMPORTANT]
+  > Some scripts might use API modules that are only enabled in specific runtime environments, including:
   >
-  > - `@minecraft/server-net` and `@minecraft/server-admin`: Modules that can only be used in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock).
+  > `@minecraft/server-net` and `@minecraft/server-admin`: Modules that can only be used in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock).
+  >
+  > `@minecraft/vanilla-data` and `@minecraft/math`: These are external Minecraft libraries published to NPM. It is not part of Minecraft's native modules.
+  >
+  > There are two ways to use this library:
+  >
+  > **Standalone file**
+  >
+  > Download a standalone file available to download from https://jaylydev.github.io/scriptapi-docs/meta/useful-links.html for quick, small-scale projects.
+  >
+  > **Bundling**
+  > 
+  > Installing it through npm, with advanced build configurations and bundling with esbuild:
+  >
+  > - `@minecraft/math` package link: https://npmjs.com/package/@minecraft/math
+  > - `@minecraft/vanilla-data` package link: https://npmjs.com/package/@minecraft/vanilla-data
+  >
+  > Guide on bundle Minecraft Scripts with the following bundlers:
+  >
+  > - ESBuild (Recommended): [Bundle Minecraft Scripts with ESBuild](https://jaylydev.github.io/posts/bundle-minecraft-scripts-esbuild/)
+  > - Webpack: [Bundle Minecraft Scripts with Webpack](https://jaylydev.github.io/posts/scripts-bundle-minecraft/)
 
 - ### [Editor Extensions](./editorExtensions/)
 
