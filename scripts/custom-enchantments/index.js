@@ -108,7 +108,7 @@ world.afterEvents.entityHitBlock.subscribe(({ damagingEntity, hitBlock }) => {
      */
     //@ts-ignore
       const inv = entity.getComponent("inventory").container;
-      const item = inv.getItem(damagingEntity.selectedSlot);
+      const item = inv.getItem(damagingEntity.selectedSlotIndex);
       if (!item)
           return;
       const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
@@ -126,7 +126,7 @@ world.afterEvents.entityHitEntity.subscribe(({ damagingEntity, hitEntity }) => {
      */
     //@ts-ignore
       const inv = entity.getComponent("inventory").container;
-      const item = inv.getItem(damagingEntity.selectedSlot);
+      const item = inv.getItem(damagingEntity.selectedSlotIndex);
       if (!item)
           return;
       const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
@@ -145,7 +145,7 @@ world.afterEvents.entityHurt.subscribe(({ hurtEntity, damageSource, damage }) =>
      */
     //@ts-ignore
       const inv = damagingEntity.getComponent("inventory").container;
-      const item = inv.getItem(damageSource.damagingEntity.selectedSlot);
+      const item = inv.getItem(damageSource.damagingEntity.selectedSlotIndex);
       if (!item)
           return;
       const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });
@@ -182,7 +182,7 @@ world.afterEvents.playerBreakBlock.subscribe(({ player, block, brokenBlockPermut
      */
     //@ts-ignore
   const inv = player.getComponent("inventory").container;
-  const item = inv.getItem(player.selectedSlot);
+  const item = inv.getItem(player.selectedSlotIndex);
   if (!item)
       return;
   const itemEnchants = item.getLore().map(lore => { return { data: enchants[names[lore.split(" ")[0]]], lore }; });

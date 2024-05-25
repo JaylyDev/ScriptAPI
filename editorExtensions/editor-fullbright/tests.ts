@@ -5,7 +5,7 @@ export function createMenu(uiSession: IPlayerUISession) {
   if (!uiSession.scratchStorage) {
       throw new Error('Core UI initialization order incorrect');
   }
-  const edit = uiSession.createMenu({
+  const edit = uiSession.menuBar.createMenu({
       name: 'FullBright',
       displayStringId: 'FullBright',
   });
