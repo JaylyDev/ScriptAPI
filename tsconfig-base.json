@@ -12,6 +12,7 @@
       "@minecraft/server-editor",
       "@minecraft/server-net",
       "@minecraft/vanilla-data",
+      "@minecraft/common",
       "@minecraft/math"
     ],
     "typeRoots": ["./node_modules/"],

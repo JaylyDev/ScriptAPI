@@ -1,4 +1,4 @@
-import { Vector } from "@minecraft/server";
+import { Vector3 } from "@minecraft/server";
 
 /**
  * Direction
@@ -20,14 +20,14 @@ declare enum Direction {
  * @remarks
  * Return a unit vector for a given Direction
  */
-declare function getDirectionVector(direction: Direction): Vector
+declare function getDirectionVector(direction: Direction): Vector3
 /**
  * getScaledDirectionVector
  * @beta
  * @remarks
  * Return a scaled vector for a given Direction
  */
-declare function getScaledDirectionVector(direction: Direction, scale: number): Vector
+declare function getScaledDirectionVector(direction: Direction, scale: number): Vector3
 /**
  * getRotationCorrectedDirection
  * @beta
@@ -43,7 +43,7 @@ declare function getRotationCorrectedDirection(rotationY: number, realDirection:
  * Convert a given absolute Direction enum to a direction vector which is relative to the Y rotation
  *  (Generally Player view vector Y component)
  */
-declare function getRotationCorrectedDirectionVector(rotationY: number, realDirection: Direction): Vector
+declare function getRotationCorrectedDirectionVector(rotationY: number, realDirection: Direction): Vector3
 
 export {
   Direction,
