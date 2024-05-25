@@ -22,11 +22,11 @@ Community driven scripts that use Script API to do all kinds of crazy stuff in M
 >
 > `@minecraft/vanilla-data` and `@minecraft/math`: These are external Minecraft libraries published to NPM. They are not part of Minecraft's native modules.
 
-There are two ways to use external Minecraft libraries:
+There are two ways to use external Minecraft libraries in behavior pack scripts:
 
 1. **Standalone file**
 
-   Download standalone files available from https://jaylydev.github.io/scriptapi-docs/meta/useful-link.html for quick, small-scale projects.
+   Download standalone files available from https://jaylydev.github.io/scriptapi-docs/meta/useful-links.html for quick, small-scale projects.
 
 2. **Bundling**
 
