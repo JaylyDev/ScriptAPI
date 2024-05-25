@@ -26,7 +26,7 @@ There are two ways to use external Minecraft libraries:
 
 1. **Standalone file**
 
-   Download a standalone file available to download from https://jaylydev.github.io/scriptapi-docs/meta/useful-links.html for quick, small-scale projects.
+   Download standalone files available from https://jaylydev.github.io/scriptapi-docs/meta/useful-link.html for quick, small-scale projects.
 
 2. **Bundling**
 
@@ -36,9 +36,6 @@ There are two ways to use external Minecraft libraries:
     npm i @minecraft/math
     npm i @minecraft/vanilla-data
     ```
-
-- `@minecraft/math` package link: https://npmjs.com/package/@minecraft/math
-- `@minecraft/vanilla-data` package link: https://npmjs.com/package/@minecraft/vanilla-data
 
 Guide on bundle Minecraft Scripts with the following bundlers:
 
@@ -55,13 +52,13 @@ Highly recommend checking out Mojang's [editor extension starter kit](https://gi
 
 Check out the following links for Script API documentation:
 
-- [**Official Script API Documentation**](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) - Microsoft's official documentation of high-level introduction of experimental Script API
-- [**Jayly's Script API References**](https://jaylydev.github.io/scriptapi-docs/) - Jayly's Script API documentation with guides and easy to use and understand API references for programming beginners.
-- [**Bedrock Wiki**](https://wiki.bedrock.dev/scripting/starting-scripts.html) - Learn the basics of the Script API on Bedrock Wiki.
+- [Official Script API Documentation](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) - Microsoft's official documentation of high-level introduction of experimental Script API
+- [Jayly's Script API References](https://jaylydev.github.io/scriptapi-docs/) - Jayly's Script API documentation with guides and easy to use and understand API references for programming beginners.
+- [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts.html) - Learn the basics of the Script API on Bedrock Wiki.
 
 ## Contributing
 
-Please contribute to this repository if you can. Check out [**Contributing Guidelines**](./CONTRIBUTING.md) for more infomation.
+Please contribute to this repository if you can. Check out [Contributing Guidelines](./CONTRIBUTING.md) for more infomation.
 
 ## License
 
