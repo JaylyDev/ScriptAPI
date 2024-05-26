@@ -1,5 +1,7 @@
 # vector3-polyfill
 
+**Caution**: This package is no longer maintained. Please use the [@minecraft/math](https://jaylydev.github.io/scriptapi-docs/latest/modules/_minecraft_math.html) module.
+
 ## Description
 
 Polyfill for `Vector3` native classes before 1.19.70:

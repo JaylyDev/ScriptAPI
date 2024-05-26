@@ -10,7 +10,7 @@ interface PlayerExtra extends mc.Player {
   /**
    * Get player GameMode
    */
-  getGameMode(): string;
+  getGameMode(): mc.GameMode;
   /**
    * Kick the player from the server
    */

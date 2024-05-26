@@ -1,4 +1,4 @@
-import { EntityHealthComponent } from "@minecraft/server";
+import { EntityHealthComponent, world } from "@minecraft/server";
 import { PlayerLeaveEventSignal } from "./index";
 
 let playerLeave = new PlayerLeaveEventSignal();
@@ -16,4 +16,9 @@ let callback = playerLeave.subscribe(({player}) => {
 
   // unsubscribe
   playerLeave.unsubscribe(callback);
+});
+
+
+world.beforeEvents.playerLeave.subscribe(({ player }) => {
+  world.sendMessage(`[${new Date().toISOString()}]` + player.name + "left the server");
 });

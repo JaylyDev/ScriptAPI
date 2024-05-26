@@ -62,6 +62,11 @@ export class ModalFormBuilder implements ModalFormData {
    * Content of the pop-up form.
    */
   content: ModalFormContent[] = [];
+  submitButtonText: RawMessage | string | undefined;
+  submitButton(submitButtonText: RawMessage | string): this {
+    this.submitButtonText = submitButtonText;
+    return this;
+  };
   dropdown(label: string | RawMessage, options: (string | RawMessage)[], defaultValueIndex?: number | undefined): this {
     this.content.push(new ModalFormDropdown(label, options, defaultValueIndex));
     return this;
@@ -76,6 +81,8 @@ export class ModalFormBuilder implements ModalFormData {
       else if (item instanceof ModalFormTextField)  form.textField(item.label, item.placeholderText, item.defaultValue);
       else if (item instanceof ModalFormToggle)     form.toggle(item.label, item.defaultValue);
     };
+
+    if (!!this.submitButtonText) form.submitButton(this.submitButtonText);
     
     return form.show(player);
   }

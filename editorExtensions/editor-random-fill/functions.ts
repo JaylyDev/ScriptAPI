@@ -1,4 +1,5 @@
-import { BlockVolume, BlockVolumeUtils, BoundingBoxUtils, Vector, Vector3 } from "@minecraft/server";
+import { BlockVolume, BoundingBoxUtils, Vector3 } from "@minecraft/server";
+import { VECTOR3_FORWARD, VECTOR3_LEFT, VECTOR3_UP, Vector3Builder, Vector3Utils } from "@minecraft/math";
 import { Direction, getRotationCorrectedDirection } from "editor-utilities/index";
 
 /**
@@ -14,9 +15,9 @@ enum AxisPlanes {
  * @beta
  */
 const axisNormalLookup = {
-    [AxisPlanes.XZ]: Vector.up,
-    [AxisPlanes.XY]: Vector.forward,
-    [AxisPlanes.YZ]: Vector.left,
+    [AxisPlanes.XZ]: VECTOR3_UP,
+    [AxisPlanes.XY]: VECTOR3_FORWARD,
+    [AxisPlanes.YZ]: VECTOR3_LEFT,
 };
 /**
  * @beta
@@ -44,7 +45,7 @@ function VectorDot(a: Vector3, b: Vector3) {
  * @beta
  */
 function VectorScale(a: Vector3, s: number) {
-    const v = new Vector(a.x, a.y, a.z);
+    const v = new Vector3Builder(a);
     v.x *= s;
     v.y *= s;
     v.z *= s;
@@ -61,7 +62,7 @@ export function intersectRayPlane(rayLocation: Vector3, rayDirection: Vector3, p
             return undefined;
         }
         const scaledDirection = VectorScale(rayDirection, t);
-        const result = Vector.add(rayLocation, scaledDirection);
+        const result = Vector3Utils.add(rayLocation, scaledDirection);
         return result;
     }
     else if (VectorDot(planeNormal, rayLocation) + planeDistance === 0) {
@@ -88,7 +89,7 @@ function growVolumeAlongAbsoluteAxis(volume: BlockVolume, direction: number | Di
     if (amount > maxAxialLength) {
         amount = maxAxialLength;
     }
-    const bounds = BlockVolumeUtils.getBoundingBox(volume);
+    const bounds = volume.getBoundingBox();
     const boundSize = BoundingBoxUtils.getSpan(bounds);
     const min = bounds.min;
     const max = bounds.max;
@@ -138,14 +139,11 @@ function growVolumeAlongAbsoluteAxis(volume: BlockVolume, direction: number | Di
             min.x -= amount;
             break;
     }
-    return {
-        from: min,
-        to: max
-    };
+    return new BlockVolume(min, max);
 }
 
 function shrinkVolumeAlongAbsoluteAxis(volume: BlockVolume, direction: Direction | number, amount: number): BlockVolume {
-    const bounds = BlockVolumeUtils.getBoundingBox(volume);
+    const bounds = volume.getBoundingBox();
     const boundSize = BoundingBoxUtils.getSpan(bounds);
     const min = bounds.min;
     const max = bounds.max;
@@ -189,8 +187,5 @@ function shrinkVolumeAlongAbsoluteAxis(volume: BlockVolume, direction: Direction
             }
             break;
     }
-    return {
-        from: min,
-        to: max
-    };
+    return new BlockVolume(min, max);
 }

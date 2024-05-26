@@ -11,30 +11,57 @@ The `main` branch is used for script development for Minecraft Preview and may o
 
 <hr/>
 
-- ### [Scripts](./scripts/)
+## [Scripts](./scripts/)
 
-  Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
+Community driven scripts that use Script API to do all kinds of crazy stuff in Minecraft.
 
-  > ⚠️ Some scripts might use API modules that are only enabled in specific runtime environments, including:
-  >
-  > - `@minecraft/server-net` and `@minecraft/server-admin`: Modules that can only be used in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock).
+> [!IMPORTANT]
+> Some scripts might use API modules that are only enabled in specific runtime environments, including:
+>
+> `@minecraft/server-net` and `@minecraft/server-admin`: Modules that can only be used in [Bedrock Dedicated Servers](https://www.minecraft.net/en-us/download/server/bedrock).
+>
+> `@minecraft/vanilla-data` and `@minecraft/math`: These are external Minecraft libraries published to NPM. They are not part of Minecraft's native modules.
 
-- ### [Editor Extensions](./editorExtensions/)
+There are two ways to use external Minecraft libraries in behavior pack scripts:
 
-  Community driven editor extensions samples for editing Minecraft worlds. Only available on Editor projects in [Minecraft Editor](https://github.com/mojang/minecraft-editor).
+1. **Standalone file**
 
-  Highly recommend checking out Mojang's [editor extension starter kit](https://github.com/Mojang/minecraft-editor-extension-starter-kit) if you're experimenting with editor API for the first time!
+   Download standalone files available from https://jaylydev.github.io/scriptapi-docs/meta/useful-links.html for quick, small-scale projects.
 
-- ### [docs](./docs/)
-  Contains technical documentation of Script API features.
-  > **🚫 Documentation are no longer being updated**. Check out [Microsoft Learn](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) and [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts) for up-to-date infomation.
+2. **Bundling**
+
+   Installing it through npm, with advanced build configurations and bundling with esbuild:
+
+    ```bash
+    npm i @minecraft/math
+    npm i @minecraft/vanilla-data
+    ```
+
+Guide on bundle Minecraft Scripts with the following bundlers:
+
+- ESBuild (Recommended): [Bundle Minecraft Scripts with ESBuild](https://jaylydev.github.io/posts/bundle-minecraft-scripts-esbuild/)
+- Webpack: [Bundle Minecraft Scripts with Webpack](https://jaylydev.github.io/posts/scripts-bundle-minecraft/)
+
+## [Editor Extensions](./editorExtensions/)
+
+Community driven editor extensions samples for editing Minecraft worlds. Only available on Editor projects in [Minecraft Editor](https://github.com/mojang/minecraft-editor).
+
+Highly recommend checking out Mojang's [editor extension starter kit](https://github.com/Mojang/minecraft-editor-extension-starter-kit) if you're experimenting with editor API for the first time!
+
+## Documentation
+
+Check out the following links for Script API documentation:
+
+- [Official Script API Documentation](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) - Microsoft's official documentation of high-level introduction of experimental Script API
+- [Jayly's Script API References](https://jaylydev.github.io/scriptapi-docs/) - Jayly's Script API documentation with guides and easy to use and understand API references for programming beginners.
+- [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts.html) - Learn the basics of the Script API on Bedrock Wiki.
 
 ## Contributing
 
-Please contribute to this repository if you can. Check out [**Contributing Guidelines**](./CONTRIBUTING.md) for more infomation.
+Please contribute to this repository if you can. Check out [Contributing Guidelines](./CONTRIBUTING.md) for more infomation.
 
 ## License
+
 This project is licensed under the MIT license.
 
 Copyrights on the script files are each contributor listed at the beginning of each script file.
-

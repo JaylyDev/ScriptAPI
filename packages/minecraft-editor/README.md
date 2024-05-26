@@ -1,5 +1,12 @@
 # Minecraft Editor APIs
 
+> [!CAUTION] 
+> This package is no longer maintained. Please install the official `@minecraft/server-editor` module on [npmjs.com](https://www.npmjs.com/package/@minecraft/server-editor):
+> 
+> ```bash
+> npm i @minecraft/server-editor
+> ```
+
 Unofficial Minecraft: Bedrock Editor API modules type definitions.
 
 The type definition files are still work in progress. Until v0.4 releases along with official type definitions, this module will be used for type checking scripts that uses editor APIs in the [ScriptAPI](https://github.com/JaylyDev/ScriptAPI) GitHub repository.
@@ -27,11 +34,11 @@ To test if this works, you can go on VSCode and type some variable names to see 
 
 - `@minecraft/server-editor`
 
-![server_editor](https://media.discordapp.net/attachments/867015810312962063/1089631037010739220/image.png)
+![server_editor](./_media/server-editor-vscode.png)
 
 - `@minecraft/server-editor-bindings`
 
-![server_editor_bindings](https://media.discordapp.net/attachments/867015810312962063/1089631135623028798/image.png)
+![server_editor_bindings](./_media/server-editor-bindings-vscode.png)
 
 ## Versioning
 

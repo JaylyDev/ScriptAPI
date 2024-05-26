@@ -16,7 +16,7 @@ world.beforeEvents.chatSend.subscribe(data => {
      */
     //@ts-ignore
     const inv = data.sender.getComponent("inventory").container
-    const item = inv.getItem(data.sender.selectedSlot)
+    const item = inv.getItem(data.sender.selectedSlotIndex)
     addEnchant(item, 'bleed', 5)
-    inv.setItem(data.sender.selectedSlot, item)
+    inv.setItem(data.sender.selectedSlotIndex, item)
 })

@@ -169,7 +169,7 @@ class Player {
         this.nameTag = player.nameTag;
         this.rotation = player.getRotation();
         this.scoreboard = player.scoreboardIdentity;
-        this.selectedSlot = player.selectedSlot;
+        this.selectedSlotIndex = player.selectedSlotIndex;
         this.target = player.target;
         this.velocity = new Vector(velocity.x, velocity.y, velocity.z);
         this.viewDirection = new Vector(player.getViewDirection().x, player.getViewDirection().y, player.getViewDirection().z);

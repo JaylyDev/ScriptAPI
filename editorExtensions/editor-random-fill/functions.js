@@ -1,4 +1,4 @@
-import { BlockVolumeUtils, BoundingBoxUtils, Vector } from "@minecraft/server";
+import { Block, BlockVolume, BoundingBoxUtils, Vector } from "@minecraft/server";
 import { Direction, getRotationCorrectedDirection } from "editor-utilities/index";
 /**
  * @beta
@@ -85,7 +85,7 @@ function growVolumeAlongAbsoluteAxis(volume, direction, amount) {
     if (amount > maxAxialLength) {
         amount = maxAxialLength;
     }
-    const bounds = BlockVolumeUtils.getBoundingBox(volume);
+    const bounds = new BlockVolume(volume);
     const boundSize = BoundingBoxUtils.getSpan(bounds);
     const min = bounds.min;
     const max = bounds.max;

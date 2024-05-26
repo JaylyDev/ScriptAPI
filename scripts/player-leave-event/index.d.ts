@@ -57,7 +57,7 @@ declare class Player {
     /**
      * Manages the selected slot in the player's hotbar.
      */
-    readonly 'selectedSlot': number;
+    readonly 'selectedSlotIndex': number;
     /**
      * Retrieves or sets an entity that is used as the target of
      * AI-related behaviors, like attacking. For players, which

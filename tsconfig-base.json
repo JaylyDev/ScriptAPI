@@ -11,7 +11,9 @@
       "@minecraft/server-admin",
       "@minecraft/server-editor",
       "@minecraft/server-net",
-      "@minecraft/vanilla-data"
+      "@minecraft/vanilla-data",
+      "@minecraft/common",
+      "@minecraft/math"
     ],
     "typeRoots": ["./node_modules/"],
   }

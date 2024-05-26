@@ -17,11 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: npm install
-        run: |
-          pwd && npm install
-          find ./scripts/* -maxdepth 2 -name package.json -execdir sh -c 'pwd && npm install' \;
-          find ./docs/* -maxdepth 5 -name package.json -execdir sh -c 'pwd && npm install' \;
+      - run: npm install
 
       - name: Type Check
         run: tsc --build

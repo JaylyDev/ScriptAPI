@@ -1,8 +1,9 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world, Player as MinecraftPlayer, Dimension, Entity, EntityComponent, ScoreboardIdentity, Vector, Vector2, Vector3, PlayerSpawnAfterEvent, system, BlockRaycastHit, EntityRaycastHit } from "@minecraft/server";
+import { world, Player as MinecraftPlayer, Dimension, Entity, EntityComponent, ScoreboardIdentity, Vector2, Vector3, PlayerSpawnAfterEvent, system, BlockRaycastHit, EntityRaycastHit } from "@minecraft/server";
 import "@minecraft/server-gametest"; // import "@minecraft/server-gametest" native module to support Simulated Players
+import { Vector3Builder } from "@minecraft/math";
 
 /**
  * @license MIT
@@ -96,7 +97,7 @@ class Player {
   /**
    * Manages the selected slot in the player's hotbar.
    */
-  public readonly 'selectedSlot': number;
+  public readonly 'selectedSlotIndex': number;
   /**
    * Retrieves or sets an entity that is used as the target of
    * AI-related behaviors, like attacking. For players, which
@@ -108,12 +109,12 @@ class Player {
    * Current speed of the player across X, Y, and Z dimensions.
    * @throws This property can throw when used.
    */
-  public readonly 'velocity': Vector;
+  public readonly 'velocity': Vector3Builder;
   /**
    * Vector of the current view of the player.
    * @throws This property can throw when used.
    */
-  public readonly 'viewDirection': Vector;
+  public readonly 'viewDirection': Vector3Builder;
   readonly typeId: string;
   /**
    * @remarks
@@ -221,10 +222,10 @@ class Player {
     this.nameTag = player.nameTag;
     this.rotation = player.getRotation();
     this.scoreboard = player.scoreboardIdentity;
-    this.selectedSlot = player.selectedSlot;
+    this.selectedSlotIndex = player.selectedSlotIndex;
     this.target = player.target;
-    this.velocity = new Vector(velocity.x, velocity.y, velocity.z);
-    this.viewDirection = new Vector(player.getViewDirection().x, player.getViewDirection().y, player.getViewDirection().z);
+    this.velocity = new Vector3Builder(velocity);
+    this.viewDirection = new Vector3Builder(player.getViewDirection());
   };
 };
 
