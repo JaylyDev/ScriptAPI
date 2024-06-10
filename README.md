@@ -26,7 +26,7 @@ There are two ways to use external Minecraft libraries in behavior pack scripts:
 
 1. **Standalone file**
 
-   Download standalone files available from https://jaylydev.github.io/scriptapi-docs/meta/useful-links.html for quick, small-scale projects.
+   Download standalone files available from [jaylydev.github.io](https://jaylydev.github.io/scriptapi-docs/meta/cdn-links.html) for quick, small-scale projects.
 
 2. **Bundling**
 
