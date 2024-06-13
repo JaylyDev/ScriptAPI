@@ -29,7 +29,7 @@ editor.registerEditorExtension("entitySpawner", uiSession => {
         },
     }), editor.KeyboardKey.KEY_E, editor.InputModifier.Control);
     const settings = {
-        entityType: "minecraft:creeper"
+        entityType: entityTypes.indexOf("minecraft:creeper")
     };
     const pane = uiSession.createPropertyPane({
         titleStringId: "editor.toolRail.entitySpawnerTool.pane.title",
@@ -54,7 +54,7 @@ editor.registerEditorExtension("entitySpawner", uiSession => {
                     uiSession.extensionContext.transactionManager.openTransaction("tool.spawnEntity");
                     uiSession.extensionContext.selectionManager.selection.clear();
                     const cursorPosition = mouseRay.cursorBlockLocation;
-                    server.world.getDimension("minecraft:overworld").spawnEntity(settings.entityType, {
+                    server.world.getDimension("minecraft:overworld").spawnEntity(entityTypes[settings.entityType], {
                         x: cursorPosition.x + 0.5,
                         y: cursorPosition.y,
                         z: cursorPosition.z + 0.5

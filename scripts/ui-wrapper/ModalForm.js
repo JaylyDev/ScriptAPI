@@ -47,6 +47,11 @@ export class ModalFormBuilder {
          */
         this.content = [];
     }
+    submitButton(submitButtonText) {
+        this.submitButtonText = submitButtonText;
+        return this;
+    }
+    ;
     dropdown(label, options, defaultValueIndex) {
         this.content.push(new ModalFormDropdown(label, options, defaultValueIndex));
         return this;
@@ -66,6 +71,8 @@ export class ModalFormBuilder {
                 form.toggle(item.label, item.defaultValue);
         }
         ;
+        if (!!this.submitButtonText)
+            form.submitButton(this.submitButtonText);
         return form.show(player);
     }
     slider(label, minimumValue, maximumValue, valueStep = 1, defaultValue) {
