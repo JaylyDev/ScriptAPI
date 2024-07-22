@@ -1,0 +1,8 @@
+{
+  "reserved_files": [
+    "nestedTranslation.ts",
+    "scoreWildcard.ts",
+    "simpleString.ts",
+    "translation.ts"
+  ]
+}

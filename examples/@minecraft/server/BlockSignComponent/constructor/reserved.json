@@ -1,0 +1,7 @@
+{
+  "reserved_files": [
+    "addTwoSidedSign.ts",
+    "setSignText.ts",
+    "createTranslatedSign.ts"
+  ]
+}

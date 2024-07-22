@@ -1,0 +1,6 @@
+{
+  "reserved_files": [
+    "incrementDynamicProperty.ts",
+    "incrementDynamicPropertyInJsonBlob.ts"
+  ]
+}

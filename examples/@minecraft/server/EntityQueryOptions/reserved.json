@@ -1,0 +1,6 @@
+{
+  "reserved_files": [
+    "testPropertyOptionsWithGreaterThanComparison.ts",
+    "testPropertyOptionsWithLessThanComparison.ts"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "reserved_files": [
+    "setTitle.ts",
+    "setTitleAndSubtitle.ts",
+    "titleCountdown.ts"
+  ]
+}

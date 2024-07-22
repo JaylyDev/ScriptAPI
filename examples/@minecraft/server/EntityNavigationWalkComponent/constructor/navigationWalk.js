@@ -1,0 +1,24 @@
+import { world } from "@minecraft/server";
+
+const blaze = world.getDimension("overworld").spawnEntity("minecraft:blaze", { x: 0, y: 0, z: 0 });
+const navigationGeneric = blaze.getComponent("minecraft:navigation.walk");
+console.warn('blaze - avoidDamageBlocks: ' + navigationGeneric.avoidDamageBlocks);
+console.warn('blaze - avoidPortals: ' + navigationGeneric.avoidPortals);
+console.warn('blaze - avoidSun: ' + navigationGeneric.avoidSun);
+console.warn('blaze - avoidWater: ' + navigationGeneric.avoidWater);
+console.warn('blaze - canBreach: ' + navigationGeneric.canBreach);
+console.warn('blaze - canBreakDoors: ' + navigationGeneric.canBreakDoors);
+console.warn('blaze - canFloat: ' + navigationGeneric.canFloat);
+console.warn('blaze - canJump: ' + navigationGeneric.canJump);
+console.warn('blaze - canOpenDoors: ' + navigationGeneric.canOpenDoors);
+console.warn('blaze - canOpenIronDoors: ' + navigationGeneric.canOpenIronDoors);
+console.warn('blaze - canPassDoors: ' + navigationGeneric.canPassDoors);
+console.warn('blaze - canPathFromAir: ' + navigationGeneric.canPathFromAir);
+console.warn('blaze - canPathOverLava: ' + navigationGeneric.canPathOverLava);
+console.warn('blaze - canPathOverWater: ' + navigationGeneric.canPathOverWater);
+console.warn('blaze - canSink: ' + navigationGeneric.canSink);
+console.warn('blaze - canSwim: ' + navigationGeneric.canSwim);
+console.warn('blaze - canWalk: ' + navigationGeneric.canWalk);
+console.warn('blaze - canWalkInLava: ' + navigationGeneric.canWalkInLava);
+console.warn('blaze - isAmphibious: ' + navigationGeneric.isAmphibious);
+console.warn('blaze - isValid: ' + navigationGeneric.isValid());

@@ -1,0 +1,7 @@
+{
+  "reserved_files": [
+    "givePlayerIronFireSword.ts",
+    "givePlayerEquipment.ts",
+    "spawnFeatherItem.ts"
+  ]
+}

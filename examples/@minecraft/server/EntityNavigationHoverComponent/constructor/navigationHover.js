@@ -1,0 +1,24 @@
+import { world } from "@minecraft/server";
+
+const bee = world.getDimension("overworld").spawnEntity("minecraft:bee", { x: 0, y: 0, z: 0 });
+const navigationGeneric = bee.getComponent("minecraft:navigation.hover");
+console.warn('bee - avoidDamageBlocks: ' + navigationGeneric.avoidDamageBlocks);
+console.warn('bee - avoidPortals: ' + navigationGeneric.avoidPortals);
+console.warn('bee - avoidSun: ' + navigationGeneric.avoidSun);
+console.warn('bee - avoidWater: ' + navigationGeneric.avoidWater);
+console.warn('bee - canBreach: ' + navigationGeneric.canBreach);
+console.warn('bee - canBreakDoors: ' + navigationGeneric.canBreakDoors);
+console.warn('bee - canFloat: ' + navigationGeneric.canFloat);
+console.warn('bee - canJump: ' + navigationGeneric.canJump);
+console.warn('bee - canOpenDoors: ' + navigationGeneric.canOpenDoors);
+console.warn('bee - canOpenIronDoors: ' + navigationGeneric.canOpenIronDoors);
+console.warn('bee - canPassDoors: ' + navigationGeneric.canPassDoors);
+console.warn('bee - canPathFromAir: ' + navigationGeneric.canPathFromAir);
+console.warn('bee - canPathOverLava: ' + navigationGeneric.canPathOverLava);
+console.warn('bee - canPathOverWater: ' + navigationGeneric.canPathOverWater);
+console.warn('bee - canSink: ' + navigationGeneric.canSink);
+console.warn('bee - canSwim: ' + navigationGeneric.canSwim);
+console.warn('bee - canWalk: ' + navigationGeneric.canWalk);
+console.warn('bee - canWalkInLava: ' + navigationGeneric.canWalkInLava);
+console.warn('bee - isAmphibious: ' + navigationGeneric.isAmphibious);
+console.warn('bee - isValid: ' + navigationGeneric.isValid());

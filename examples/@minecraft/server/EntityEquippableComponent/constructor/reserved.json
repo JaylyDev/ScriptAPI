@@ -1,0 +1,6 @@
+{
+  "reserved_files": [
+    "givePlayerElytra.ts",
+    "givePlayerEquipment.ts"
+  ]
+}
