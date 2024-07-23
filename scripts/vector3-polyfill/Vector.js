@@ -59,7 +59,7 @@ export class Vector {
         const DirectionX = this.x / magnitude;
         const DirectionY = this.y / magnitude;
         const DirectionZ = this.z / magnitude;
-        return new Vector(DirectionX, DirectionY, DirectionZ);
+        return new _a(DirectionX, DirectionY, DirectionZ);
     }
     /**
      * @remarks
@@ -69,7 +69,7 @@ export class Vector {
      * @returns {Vector}
      */
     static add(a, b) {
-        const vector = new Vector(a.x, a.y, a.z);
+        const vector = new _a(a.x, a.y, a.z);
         vector.x += b.x;
         vector.y += b.y;
         vector.z += b.z;
@@ -83,7 +83,7 @@ export class Vector {
      * @returns {Vector}
      */
     static cross(a, b) {
-        return new Vector(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
+        return new _a(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
     }
     /**
      * @remarks
@@ -107,7 +107,7 @@ export class Vector {
      * @returns {Vector}
      */
     static divide(a, b) {
-        const vector = new Vector(a.x, a.y, a.z);
+        const vector = new _a(a.x, a.y, a.z);
         if (typeof b === "number") {
             vector.x /= b;
             vector.y /= b;
@@ -130,7 +130,7 @@ export class Vector {
      * @returns {Vector}
      */
     static lerp(a, b, t) {
-        const dest = new Vector(a.x, a.y, a.z);
+        const dest = new _a(a.x, a.y, a.z);
         dest.x += (b.x - a.x) * t;
         dest.y += (b.y - a.y) * t;
         dest.z += (b.z - a.z) * t;
@@ -146,11 +146,11 @@ export class Vector {
      */
     static max(a, b) {
         const vectors = [a, b];
-        const arr = vectors.map(({ x, y, z }) => new Vector(x, y, z).length());
+        const arr = vectors.map(({ x, y, z }) => new _a(x, y, z).length());
         const max = Math.max(...arr);
         const index = arr.indexOf(max);
         const vector3 = vectors[index];
-        return new Vector(vector3.x, vector3.y, vector3.z);
+        return new _a(vector3.x, vector3.y, vector3.z);
     }
     /**
      * @remarks
@@ -162,11 +162,11 @@ export class Vector {
      */
     static min(a, b) {
         const vectors = [a, b];
-        const arr = vectors.map(({ x, y, z }) => new Vector(x, y, z).length());
+        const arr = vectors.map(({ x, y, z }) => new _a(x, y, z).length());
         const min = Math.min(...arr);
         const index = arr.indexOf(min);
         const vector3 = vectors[index];
-        return new Vector(vector3.x, vector3.y, vector3.z);
+        return new _a(vector3.x, vector3.y, vector3.z);
     }
     /**
      * @remarks
@@ -176,7 +176,7 @@ export class Vector {
      * @returns {Vector}
      */
     static multiply(a, b) {
-        const vector = new Vector(a.x, a.y, a.z);
+        const vector = new _a(a.x, a.y, a.z);
         if (typeof b === "number") {
             vector.x *= b;
             vector.y *= b;
@@ -210,7 +210,7 @@ export class Vector {
         const θ = Math.acos(MathDot([a.x, a.y, a.z], [b.x, b.y, b.z]));
         const factor1 = Math.sin(θ * (1 - s)) / Math.sin(θ);
         const factor2 = Math.sin(θ * s) / Math.sin(θ);
-        return new Vector(a.x * factor1 + b.x * factor2, a.y * factor1 + b.y * factor2, a.z * factor1 + b.z * factor2);
+        return new _a(a.x * factor1 + b.x * factor2, a.y * factor1 + b.y * factor2, a.z * factor1 + b.z * factor2);
     }
     /**
      * @remarks
@@ -220,7 +220,7 @@ export class Vector {
      * @returns {Vector}
      */
     static subtract(a, b) {
-        const vector = new Vector(a.x, a.y, a.z);
+        const vector = new _a(a.x, a.y, a.z);
         vector.x -= b.x;
         vector.y -= b.y;
         vector.z -= b.z;

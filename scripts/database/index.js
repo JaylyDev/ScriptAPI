@@ -1,7 +1,6 @@
 // Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iBlqzed>
 // Project: https://github.com/JaylyDev/ScriptAPI
-
 import { world, system } from "@minecraft/server";
 export class Database {
     constructor(name, defaultValue = "{}") {
@@ -72,7 +71,7 @@ export class Database {
      * @returns {Record<string, V>} An object of all keys and values
      */
     getAll() {
-        return this.cache ?? (this.cache = Database.getAll(this.name, this.defaultValue));
+        return this.cache ??= Database.getAll(this.name, this.defaultValue);
     }
     /**
      * Save the database instantly
