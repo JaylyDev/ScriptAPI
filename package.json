@@ -19,22 +19,22 @@
   },
   "homepage": "https://github.com/JaylyDev/ScriptAPI#readme",
   "overrides": {
-    "@minecraft/server": "1.15.0-beta.1.21.30-preview.21"
+    "@minecraft/server": "1.15.0-beta.1.21.30-preview.25"
   },
   "dependencies": {
-    "@minecraft/server-admin": "1.0.0-beta.1.21.30-preview.21",
-    "@minecraft/server-editor": "0.1.0-beta.1.21.30-preview.21",
-    "@minecraft/server-gametest": "1.0.0-beta.1.21.30-preview.21",
-    "@minecraft/server-net": "1.0.0-beta.1.21.30-preview.21",
-    "@minecraft/server-ui": "1.4.0-beta.1.21.30-preview.21",
-    "@minecraft/vanilla-data": "1.21.30-preview.21"
+    "@minecraft/server-admin": "1.0.0-beta.1.21.30-preview.25",
+    "@minecraft/server-editor": "0.1.0-beta.1.21.30-preview.25",
+    "@minecraft/server-gametest": "1.0.0-beta.1.21.30-preview.25",
+    "@minecraft/server-net": "1.0.0-beta.1.21.30-preview.25",
+    "@minecraft/server-ui": "1.4.0-beta.1.21.30-preview.25",
+    "@minecraft/vanilla-data": "1.21.30-preview.25"
   },
   "devDependencies": {
     "@minecraft/math": "^1.4.0",
-    "@npm/types": "^1.0.2",
-    "@types/node": "^22.1.0",
+    "@npm/types": "^2.0.0",
+    "@types/node": "^22.5.1",
     "@types/parsimmon": "^1.10.9",
-    "axios": "^1.7.3",
+    "axios": "^1.7.5",
     "parsimmon": "^1.18.1",
     "typescript": "^5.5.4"
   }
