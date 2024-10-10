@@ -19,15 +19,15 @@
   },
   "homepage": "https://github.com/JaylyDev/ScriptAPI#readme",
   "overrides": {
-    "@minecraft/server": "1.15.0-beta.1.21.30-preview.25"
+    "@minecraft/server": "1.17.0-beta.1.21.50-preview.20"
   },
   "dependencies": {
-    "@minecraft/server-admin": "1.0.0-beta.1.21.30-preview.25",
-    "@minecraft/server-editor": "0.1.0-beta.1.21.30-preview.25",
-    "@minecraft/server-gametest": "1.0.0-beta.1.21.30-preview.25",
-    "@minecraft/server-net": "1.0.0-beta.1.21.30-preview.25",
-    "@minecraft/server-ui": "1.4.0-beta.1.21.30-preview.25",
-    "@minecraft/vanilla-data": "1.21.30-preview.25"
+    "@minecraft/server-admin": "1.0.0-beta.1.21.50-preview.20",
+    "@minecraft/server-editor": "0.1.0-beta.1.21.50-preview.20",
+    "@minecraft/server-gametest": "1.0.0-beta.1.21.50-preview.20",
+    "@minecraft/server-net": "1.0.0-beta.1.21.50-preview.20",
+    "@minecraft/server-ui": "1.4.0-beta.1.21.50-preview.20",
+    "@minecraft/vanilla-data": "1.21.50-preview.20"
   },
   "devDependencies": {
     "@minecraft/math": "^1.4.0",
