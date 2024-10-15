@@ -42,12 +42,6 @@ Guide on bundle Minecraft Scripts with the following bundlers:
 - ESBuild (Recommended): [Bundle Minecraft Scripts with ESBuild](https://jaylydev.github.io/posts/bundle-minecraft-scripts-esbuild/)
 - Webpack: [Bundle Minecraft Scripts with Webpack](https://jaylydev.github.io/posts/scripts-bundle-minecraft/)
 
-## [Editor Extensions](./editorExtensions/)
-
-Community driven editor extensions samples for editing Minecraft worlds. Only available on Editor projects in [Minecraft Editor](https://github.com/mojang/minecraft-editor).
-
-Highly recommend checking out Mojang's [editor extension starter kit](https://github.com/Mojang/minecraft-editor-extension-starter-kit) if you're experimenting with editor API for the first time!
-
 ## Documentation
 
 Check out the following links for Script API documentation:
