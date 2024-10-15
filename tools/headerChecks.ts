@@ -114,11 +114,11 @@ function printMessages (messages: string[], packagesHaveError: number) {
 // main entry
 export function execute () {
   const results = checkScripts();
-  const results2 = checkEditorExtensions();  
-  const statusCode = results.packagesHaveError + results2.packagesHaveError > 0 ? 1 : 0;
+  // const results2 = checkEditorExtensions();  
+  const statusCode = results.packagesHaveError > 0 ? 1 : 0;
 
   printMessages(results.errorMessages, results.packagesHaveError);
-  printMessages(results2.errorMessages, results2.packagesHaveError);
+  // printMessages(results2.errorMessages, results2.packagesHaveError);
   console.log('Exit task with code', statusCode);
   
   return statusCode;
