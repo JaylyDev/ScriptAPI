@@ -4,8 +4,6 @@
   "references": [
     { "path": "tools/tsconfig.json" },
     { "path": "scripts/tsconfig.json" },
-    { "path": "scripts/jsconfig.json" },
-    { "path": "editorExtensions/tsconfig.json" },
-    { "path": "editorExtensions/jsconfig.json" }
+    { "path": "scripts/jsconfig.json" }
   ]
 }
