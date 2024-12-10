@@ -5,6 +5,7 @@ import {ScoreboardObjective, ScoreboardIdentity, Entity} from "@minecraft/server
 
 type StringBase = 16|8|32;
 type IStreamType = number | number | {buffer: ArrayBuffer};
+// @ts-ignore
 declare class Stream extends DataView{
     constructor(buffer: ArrayBuffer | number, offset?: number)
     protected __offset__: number
