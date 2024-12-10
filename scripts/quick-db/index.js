@@ -1,6 +1,12 @@
-import { world } from "@minecraft/server";
+import { world, World } from "@minecraft/server";
 
 const DATABASE_PREFIX = "\u0235\u0235";
+
+const {
+    getDynamicProperty: GET,
+    setDynamicProperty: SET,
+    getDynamicPropertyIds: IDS
+} = World.prototype;
 
 //adapt code to JalyDev/scriptAPI
 class QuickDB {
@@ -10,33 +16,29 @@ class QuickDB {
     }
 
     get size() {
-        return world
-            .getDynamicPropertyIds()
-            .filter((id) => id.startsWith(this.#identifier)).length;
+        return IDS.call(world).filter((id) => id.startsWith(this.#identifier))
+            .length;
     }
 
     has(key) {
-        const dynamicKey = `${this.#identifier}${key}`;
-        return !!world.getDynamicProperty(dynamicKey);
+        return !!GET.call(world, `${this.#identifier}${key}`);
     }
 
     get(key) {
-        const dynamicKey = `${this.#identifier}${key}`;
-        const value = world.getDynamicProperty(dynamicKey);
-        return this.has(key) ? JSON.parse(value) : undefined;
+        return this.has(key)
+            ? JSON.parse(GET.call(world, `${this.#identifier}${key}`))
+            : undefined;
     }
 
     set(key, value) {
         if (typeof key !== "string") return false;
-        const dynamicKey = `${this.#identifier}${key}`;
-        world.setDynamicProperty(dynamicKey, JSON.stringify(value));
+        SET.call(world, `${this.#identifier}${key}`, JSON.stringify(value));
         return true;
     }
 
     delete(key) {
-        const dynamicKey = `${this.#identifier}${key}`;
         if (!this.has(key)) return false;
-        world.setDynamicProperty(dynamicKey, undefined);
+        SET.call(world, `${this.#identifier}${key}`, undefined);
         return true;
     }
 
@@ -53,7 +55,7 @@ class QuickDB {
     }
 
     #UIDX(type) {
-        const ids = world.getDynamicPropertyIds();
+        const ids = IDS.call(world);
         const result = [];
 
         for (const id of ids) {
@@ -63,12 +65,10 @@ class QuickDB {
             if (type === "keys") {
                 result.push(key);
             } else if (type === "values") {
-                const val = world.getDynamicProperty(id);
-                const value = JSON.parse(val);
+                const value = JSON.parse(this.get(key));
                 result.push(value);
             } else if (type === "entries") {
-                const val = world.getDynamicProperty(id);
-                const value = JSON.parse(val);
+                const value = JSON.parse(this.get(key));
                 result.push([key, value]);
             }
         }
