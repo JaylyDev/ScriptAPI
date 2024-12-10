@@ -162,4 +162,10 @@ console.log(db.entries()); // [["User1", { score: 100 }], ["User2", { score: 150
 
 ---
 
+## License
+
+MIT License
+
+---
+
 Developed by [Nperma](https://github.com/nperma)
