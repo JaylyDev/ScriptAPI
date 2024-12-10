@@ -16,7 +16,7 @@ db.delete("anjay");
 
 world.afterEvents.playerSpawn.subscribe((event)=>{
   if(event.initialSpawn) {
-    if(!db.has(player.id){
+    if(!db.has(player.id)){
 
       db.set(player.id,{
         name: player.name,
