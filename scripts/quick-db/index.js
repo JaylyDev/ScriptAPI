@@ -1,3 +1,6 @@
+// Script example for ScriptAPI
+// Author: Nperma <https://github.com/nperma>
+// Project: https://github.com/JaylyDev/ScriptAPI
 import { world, World } from "@minecraft/server";
 
 const DATABASE_PREFIX = "\u0235\u0235";
