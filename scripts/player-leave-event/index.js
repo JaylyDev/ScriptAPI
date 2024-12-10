@@ -1,8 +1,9 @@
 // Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world, Vector, system } from "@minecraft/server";
+import { world, system } from "@minecraft/server";
 import "@minecraft/server-gametest"; // import "@minecraft/server-gametest" native module to support Simulated Players
+import { Vector3Builder } from "@minecraft/math";
 /**
  * @license MIT
  * @author JaylyMC
@@ -171,8 +172,8 @@ class Player {
         this.scoreboard = player.scoreboardIdentity;
         this.selectedSlotIndex = player.selectedSlotIndex;
         this.target = player.target;
-        this.velocity = new Vector(velocity.x, velocity.y, velocity.z);
-        this.viewDirection = new Vector(player.getViewDirection().x, player.getViewDirection().y, player.getViewDirection().z);
+        this.velocity = new Vector3Builder(velocity);
+        this.viewDirection = new Vector3Builder(player.getViewDirection());
     }
     ;
 }

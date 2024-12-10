@@ -35,11 +35,7 @@ If the check did not pass, go to the 'details' section and see what section of t
 
 An editor extension sample should only be used in Minecraft Editor, otherwise the sample should be hosted in 'scripts' folder.
 
-- Create an editor extension sample in [editorExtensions](./editorExtensions/) directory.
-
-- Create the same folder structure as used in scripts folder and a header in main file like creating a new script sample.
-
-- We recommend using TypeScript for editor extension samples.
+Currently, we do not provide support uploading and maintaince for editor extension samples in this repository. Please check out [Mojang's Bedrock Editor Samples](https://github.com/Mojang/minecraft-editor-extension-samples/) instead.
 
 ## Don't edit docs folder
 

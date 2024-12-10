@@ -1,7 +1,8 @@
 // Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { BlockVolumeUtils } from "@minecraft/server";
+import { BlockVolume, ListBlockVolume } from "@minecraft/server";
+import { Vector3Builder } from "@minecraft/math";
 const MAX_BLOCKS_SINGLE_FILL = 32768;
 /**
  * Fetch a `Iterable<BlockVolume>` that represents all of
@@ -10,17 +11,15 @@ const MAX_BLOCKS_SINGLE_FILL = 32768;
  * @private
  */
 function* getBlockVolumeIterator(volume, delta) {
-    const box = BlockVolumeUtils.getBoundingBox(volume);
-    const blockVolume = { from: box.min, to: box.max };
-    const span = BlockVolumeUtils.getSpan(blockVolume);
+    const box = volume.getBoundingBox();
+    const blockVolume = new BlockVolume(box.min, box.max);
+    const span = blockVolume.getSpan();
     for (let x = 0; x < span.x; x += delta) {
         for (let y = 0; y < span.y; y += delta) {
             for (let z = 0; z < span.z; z += delta) {
-                const part = BlockVolumeUtils.translate({
-                    from: { x, y, z },
-                    to: { x: x + delta - 1, y: y + delta - 1, z: z + delta - 1 }
-                }, blockVolume.from);
-                part.to = BlockVolumeUtils.getMin({ from: part.to, to: blockVolume.to });
+                const part = new BlockVolume({ x, y, z }, { x: x + delta - 1, y: y + delta - 1, z: z + delta - 1 });
+                part.translate(blockVolume.from);
+                part.to = new BlockVolume(part.to, blockVolume.to).getMin();
                 yield part;
             }
         }
@@ -43,23 +42,24 @@ function* getBlockVolumeIterator(volume, delta) {
  */
 export function fillBlocks(dimension, begin, end, block, options) {
     // Check if block volume is greater than 32768, if not return native fillblocks
-    const volume = { from: begin, to: end };
-    if (BlockVolumeUtils.getCapacity(volume) <= MAX_BLOCKS_SINGLE_FILL) {
-        return dimension.fillBlocks(begin, end, block, options);
+    const volume = new BlockVolume(begin, end);
+    if (volume.getCapacity() <= MAX_BLOCKS_SINGLE_FILL) {
+        return dimension.fillBlocks(volume, block, options);
     }
     ;
-    let blocksFilled = 0;
-    for (const { from, to } of getBlockVolumeIterator(volume, 32)) {
+    let blockList = new ListBlockVolume([]);
+    for (const blockVolume of getBlockVolumeIterator(volume, 32)) {
         try {
-            blocksFilled += dimension.fillBlocks(from, to, block, options);
+            const blocksFilled = dimension.fillBlocks(blockVolume, block, options);
+            blockList.add(Array.from(blocksFilled.getBlockLocationIterator()));
         }
         catch (error) {
             // custom error message
             if (!(error instanceof Error))
                 throw error;
-            console.error(`${error.message} between ${Object.values(from).join(', ')} and ${Object.values(to).join(', ')}`);
+            console.error(`${error.message} between ${new Vector3Builder(begin).toString()} and ${new Vector3Builder(end).toString()}`);
         }
     }
-    return blocksFilled;
+    return blockList;
 }
 ;

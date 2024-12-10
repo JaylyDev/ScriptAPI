@@ -90,7 +90,7 @@ export class Database<V = any> {
     public save(): void {
         const stringified = JSON.stringify(this.cache)
         const index = Math.ceil(stringified.length / 32000)
-        world.setDynamicProperty(`${this.name}Index`)
+        world.setDynamicProperty(`${this.name}Index`, index)
         for (let i = 0; i < index; i++) {
             world.setDynamicProperty(`${this.name}:${i}`, stringified.slice(i * 32000, (i + 1) * 32000))
         }

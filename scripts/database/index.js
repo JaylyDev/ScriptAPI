@@ -1,7 +1,6 @@
 // Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iBlqzed>
 // Project: https://github.com/JaylyDev/ScriptAPI
-
 import { world, system } from "@minecraft/server";
 export class Database {
     constructor(name, defaultValue = "{}") {
@@ -72,7 +71,7 @@ export class Database {
      * @returns {Record<string, V>} An object of all keys and values
      */
     getAll() {
-        return this.cache ?? (this.cache = Database.getAll(this.name, this.defaultValue));
+        return this.cache ??= Database.getAll(this.name, this.defaultValue);
     }
     /**
      * Save the database instantly
@@ -80,7 +79,7 @@ export class Database {
     save() {
         const stringified = JSON.stringify(this.cache);
         const index = Math.ceil(stringified.length / 32000);
-        world.setDynamicProperty(`${this.name}Index`);
+        world.setDynamicProperty(`${this.name}Index`, index);
         for (let i = 0; i < index; i++) {
             world.setDynamicProperty(`${this.name}:${i}`, stringified.slice(i * 32000, (i + 1) * 32000));
         }
