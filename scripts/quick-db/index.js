@@ -20,16 +20,21 @@ class QuickDB {
 
     get(key) {
         const dynamicKey = `${this.#identifier}${key}`;
-        return this.has(key) 
-            ? JSON.parse(world.getDynamicProperty(dynamicKey)) 
-            : undefined;
+        const value = world.getDynamicProperty(dynamicKey);
+        
+        return value ? JSON.parse(value) : undefined;
     }
 
     set(key, value) {
         if (typeof key !== "string") return false;
         const dynamicKey = `${this.#identifier}${key}`;
-        world.setDynamicProperty(dynamicKey, JSON.stringify(value));
-        return true;
+
+ 
+        if (value !== null && value !== undefined) {
+            world.setDynamicProperty(dynamicKey, JSON.stringify(value));
+            return true;
+        }
+        return false;
     }
 
     delete(key) {
@@ -62,11 +67,11 @@ class QuickDB {
             if (type === "keys") {
                 result.push(key);
             } else if (type === "values") {
-                const value = JSON.parse(world.getDynamicProperty(id));
-                result.push(value);
+                const value = world.getDynamicProperty(id);
+                result.push(value ? JSON.parse(value) : undefined);
             } else if (type === "entries") {
-                const value = JSON.parse(world.getDynamicProperty(id));
-                result.push([key, value]);
+                const value = world.getDynamicProperty(id);
+                result.push([key, value ? JSON.parse(value) : undefined]);
             }
         }
 
