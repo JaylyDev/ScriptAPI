@@ -2,6 +2,7 @@ import { world } from "@minecraft/server";
 
 const DATABASE_PREFIX = "\u0235\u0235";
 
+//adapt code to JalyDev/scriptAPI
 class QuickDB {
     #identifier;
     constructor(id) {
@@ -9,7 +10,8 @@ class QuickDB {
     }
 
     get size() {
-        return world.getDynamicPropertyIds()
+        return world
+            .getDynamicPropertyIds()
             .filter((id) => id.startsWith(this.#identifier)).length;
     }
 
@@ -21,20 +23,14 @@ class QuickDB {
     get(key) {
         const dynamicKey = `${this.#identifier}${key}`;
         const value = world.getDynamicProperty(dynamicKey);
-        
-        return value ? JSON.parse(value) : undefined;
+        return this.has(key) ? JSON.parse(value) : undefined;
     }
 
     set(key, value) {
         if (typeof key !== "string") return false;
         const dynamicKey = `${this.#identifier}${key}`;
-
- 
-        if (value !== null && value !== undefined) {
-            world.setDynamicProperty(dynamicKey, JSON.stringify(value));
-            return true;
-        }
-        return false;
+        world.setDynamicProperty(dynamicKey, JSON.stringify(value));
+        return true;
     }
 
     delete(key) {
@@ -67,11 +63,13 @@ class QuickDB {
             if (type === "keys") {
                 result.push(key);
             } else if (type === "values") {
-                const value = world.getDynamicProperty(id);
-                result.push(value ? JSON.parse(value) : undefined);
+                const val = world.getDynamicProperty(id);
+                const value = JSON.parse(val);
+                result.push(value);
             } else if (type === "entries") {
-                const value = world.getDynamicProperty(id);
-                result.push([key, value ? JSON.parse(value) : undefined]);
+                const val = world.getDynamicProperty(id);
+                const value = JSON.parse(val);
+                result.push([key, value]);
             }
         }
 
