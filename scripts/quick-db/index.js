@@ -1,13 +1,6 @@
-import { world, World } from "@minecraft/server";
+import { world } from "@minecraft/server";
 
 const DATABASE_PREFIX = "\u0235\u0235";
-
-const {
-    getDynamicProperty: GET,
-    setDynamicProperty: SET,
-    getDynamicPropertyIds: IDS,
-    getDynamicPropertyTotalByteCount: BYTES
-} = World.prototype;
 
 class QuickDB {
     #identifier;
@@ -20,22 +13,27 @@ class QuickDB {
     }
 
     has(key) {
-        return !!GET.call(world, key);
+        return !!world.getDynamicProperty(`${this.#identifier}${key}`);
     }
 
     get(key) {
-        return this.has(key) ? JSON.parse(GET.call(world, key)) : undefined;
+        return this.has(key)
+            ? JSON.parse(world.getDynamicProperty(`${this.#identifier}${key}`))
+            : undefined;
     }
 
     set(key, value) {
         if (!(key instanceof String) || typeof key !== "string") return false;
-        SET.call(world, key, JSON.stringify(value));
+        world.setDynamicProperty(
+            `${this.#identifier}${key}`,
+            JSON.stringify(value)
+        );
         return true;
     }
 
     delete(key) {
         if (!this.has(key)) return false;
-        SET.call(world, key, undefined);
+        world.setDynamicProperty(`${this.#identifier}${key}`, undefined);
         return true;
     }
 
@@ -62,10 +60,14 @@ class QuickDB {
             if (type === "keys") {
                 result.push(key);
             } else if (type === "values") {
-                const value = JSON.parse(GET.call(world, id));
+                const value = JSON.parse(
+                    world.getDynamicProperty(`${this.#identifier}${key}`)
+                );
                 result.push(value);
             } else if (type === "entries") {
-                const value = JSON.parse(GET.call(world, id));
+                const value = JSON.parse(
+                    world.getDynamicProperty(`${this.#identifier}${key}`)
+                );
                 result.push([key, value]);
             }
         }
