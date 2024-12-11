@@ -32,7 +32,7 @@
   "devDependencies": {
     "@minecraft/math": "^1.5.1",
     "@npm/types": "^2.0.0",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "@types/parsimmon": "^1.10.9",
     "axios": "^1.7.9",
     "parsimmon": "^1.18.1",
