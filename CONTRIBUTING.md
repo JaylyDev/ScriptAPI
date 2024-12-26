@@ -41,4 +41,4 @@ Currently, we do not provide support uploading and maintaince for editor extensi
 
 Documentation are no longer being updated as mentioned in README.
 
-Please do not submit any pull requests that changes any content to the docs directory. Instead, please visit [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts) and perhaps contribute scripting documentation in Bedrock Wiki GitHub repository: https://github.com/Bedrock-OSS/bedrock-wiki/tree/wiki/docs/scripting
+Please do not submit any pull requests that changes any content to the docs directory. Instead, please visit [Bedrock Wiki](https://wiki.bedrock.dev/scripting/scripting-intro.html) and perhaps contribute scripting documentation in Bedrock Wiki GitHub repository: https://github.com/Bedrock-OSS/bedrock-wiki/tree/wiki/docs/scripting
