@@ -24,7 +24,10 @@ class QuickDB {
     }
 
     has(key) {
-        return !!GET.call(world, `${this.#identifier}${key}`);
+        return !!(
+            GET.call(world, `${this.#identifier}${key}`) &&
+            GET.call(world, `${this.#identifier}${key}`) !== undefined
+        );
     }
 
     get(key) {
@@ -46,38 +49,55 @@ class QuickDB {
     }
 
     keys() {
-        return this.#UIDX("keys");
+        return Array.from(this.#UIDX("keys"));
     }
 
     values() {
-        return this.#UIDX("values");
+        return Array.from(this.#UIDX("values"));
     }
 
     entries() {
-        return this.#UIDX("entries");
+        return Array.from(this.#UIDX("entries"));
     }
 
     #UIDX(type) {
-        const ids = IDS.call(world);
-        const result = [];
+        const ids = this.getIds();
+        let u_idx = 0;
+        const len = ids.length;
 
-        for (const id of ids) {
-            if (!id.startsWith(this.#identifier)) continue;
-
-            const key = id.replace(this.#identifier, "");
-            if (type === "keys") {
-                result.push(key);
-            } else if (type === "values") {
-                const value = JSON.parse(this.get(key));
-                result.push(value);
-            } else if (type === "entries") {
-                const value = JSON.parse(this.get(key));
-                result.push([key, value]);
+        return function* () {
+            while (u_idx < len) {
+                const id = ids[u_idx];
+                const key = id.split(this.#identifier)[1];
+                const value = this.get(key);
+                switch (type) {
+                    case "key":
+                        yield key;
+                        break;
+                    case "value":
+                        yield this.has(key) ? JSON.parse(value) : undefined;
+                        break;
+                    case "entries":
+                        yield [key, JSON.parse(value)];
+                        break;
+                }
+                u_idx++;
             }
-        }
+        }.bind(this)();
+    }
 
-        return result;
+    getIds() {
+        return world
+            .getDynamicPropertyIds()
+            .filter((id) => id.startsWith(this.#identifier));
+    }
+
+    clear() {
+        for (const id of this.getIds()) {
+            this.delete(id.replace(this.#identifier,""));
+        }
     }
 }
 
 export default QuickDB;
+export { QuickDB };
