@@ -48,7 +48,7 @@ Check out the following links for Script API documentation:
 
 - [Official Script API Documentation](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/) - Microsoft's official documentation of high-level introduction of experimental Script API
 - [Jayly's Script API References](https://jaylydev.github.io/scriptapi-docs/) - Jayly's Script API documentation with guides and easy to use and understand API references for programming beginners.
-- [Bedrock Wiki](https://wiki.bedrock.dev/scripting/starting-scripts.html) - Learn the basics of the Script API on Bedrock Wiki.
+- [Bedrock Wiki](https://wiki.bedrock.dev/scripting/scripting-intro.html) - Learn the basics of the Script API on Bedrock Wiki.
 
 ## Contributing
 
