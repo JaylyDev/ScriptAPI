@@ -77,7 +77,7 @@ class QuickDB {
                     case "value":
                         yield this.has(key) ? JSON.parse(value) : undefined;
                         break;
-                    case "entry":
+                    case "entries":
                         yield [key, JSON.parse(value)];
                         break;
                 }
