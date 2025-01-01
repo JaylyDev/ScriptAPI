@@ -69,7 +69,7 @@ class QuickDB {
             while (u_idx < len) {
                 const id = ids[u_idx];
                 const key = id.split(this.#identifier)[1];
-                const value = this.get(id);
+                const value = this.get(key);
                 switch (type) {
                     case "key":
                         yield key;
