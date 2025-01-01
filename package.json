@@ -30,7 +30,7 @@
     "@minecraft/server-ui": "1.4.0-beta.1.21.60-preview.24"
   },
   "devDependencies": {
-    "@minecraft/math": "^1.5.1",
+    "@minecraft/math": "^1.5.2",
     "@npm/types": "^2.0.0",
     "@types/node": "^22.10.2",
     "@types/parsimmon": "^1.10.9",
