@@ -49,11 +49,11 @@ class QuickDB {
     }
 
     keys() {
-        return Array.from(this.#UIDX("keys"));
+        return Array.from(this.#UIDX("key"));
     }
 
     values() {
-        return Array.from(this.#UIDX("values"));
+        return Array.from(this.#UIDX("value"));
     }
 
     entries() {
