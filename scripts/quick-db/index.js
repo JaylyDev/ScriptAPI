@@ -100,4 +100,3 @@ class QuickDB {
 }
 
 export default QuickDB;
-export { QuickDB };
