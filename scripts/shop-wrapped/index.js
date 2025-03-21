@@ -1,4 +1,8 @@
-import { world, system, World, Player, Scoreboard, ItemTypes, ItemStack } from '@minecraft/server';
+// Script example for ScriptAPI
+// Author: Nperma <https://github.com/nperma>
+// Project: https://github.com/JaylyDev/ScriptAPI
+
+import { world, system, World, Player, ItemStack } from '@minecraft/server';
 import { ActionFormData, ModalFormData, MessageFormData, FormCancelationReason } from '@minecraft/server-ui';
 
 const { setDynamicProperty: SDP, getDynamicProperty: GDP, getDynamicPropertyIds: IDS } = World.prototype,
