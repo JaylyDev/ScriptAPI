@@ -4,7 +4,7 @@ import { ActionFormData, ModalFormData, MessageFormData, FormCancelationReason }
 const { setDynamicProperty: SDP, getDynamicProperty: GDP, getDynamicPropertyIds: IDS } = World.prototype,
   scb = world.scoreboard;
 
-/** @param {Player} player @param {ActionFormData | ModalFormData} form */
+/** @param {Player} player @param {ActionFormData} form */
 async function FORCE_OPEN(player, form) {
   while (true) {
     let v = await form.show(player);
@@ -41,7 +41,6 @@ export class ShopUI {
     this.#defined();
   }
 
-  /** @private */
   #defined() {
     if (!this.SENDERS) return;
 
@@ -52,7 +51,11 @@ export class ShopUI {
     }
   }
 
-  /** @private */
+  /**
+   * @param {Player} player
+   * @param {any[]} categories
+   * @param {string | import("@minecraft/server").RawMessage} path
+   */
   async #showCategoryForm(player, categories, path) {
     const FORM = new ActionFormData().title(path);
     for (const [CATEGORY_NAME, _, CATEGORY_TEXTURE = ''] of categories) FORM.button(CATEGORY_NAME, CATEGORY_TEXTURE);
@@ -70,13 +73,18 @@ export class ShopUI {
     else this.#showItemForm(player, ITEMS, PATH, CATEGORY_NAME);
   }
 
-  /** @private */
+  /**
+   * @param {Player} player
+   * @param {any} items
+   * @param {string} categoryPath
+   * @param {string | import("@minecraft/server").RawMessage} categoryName
+   */
   async #showItemForm(player, items, categoryPath, categoryName) {
     player.sendMessage(JSON.stringify({ ...arguments }, null, 4));
     const item_data = items;
     if (typeof item_data === 'object' && !Array.isArray(item_data)) {
       const STOCKED_ID = `${categoryPath}::${categoryName}`;
-      if (!IDS.call(world).find((id) => id === STOCKED_ID)) SDP.call(world, STOCKED_ID, item_data?.stock || 64);
+      if (!IDS.call(world).find((/** @type {string} */ id) => id === STOCKED_ID)) SDP.call(world, STOCKED_ID, item_data?.stock || 64);
 
       const currentStock = GDP.call(world, STOCKED_ID);
       if (currentStock <= 0) return new MessageFormData().title(categoryName).body(`§cStock is empty, please wait for restock.`).button2('Close').show(player);
@@ -85,9 +93,12 @@ export class ShopUI {
         .slider(`§7${categoryPath.replace(/::/g, '/')}\n§e» Money: §a$${gM(player)}\n§e» Item ID: ${item_data?.item}\n§e» Price per item: §2$${item_data?.price}\n§e» §7Stock: (${currentStock})`, 1, Math.min(item_data?.max, currentStock) || 1, 1)
         .show(player)
         .then((p) => {
-          h;
           if (p.canceled) return;
 
+          /**
+           * @type {number}
+           */
+          // @ts-ignore
           const amount = p.formValues[0];
           const totalCost = amount * item_data?.price;
 
