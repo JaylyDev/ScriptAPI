@@ -2,7 +2,7 @@
 // Author: Nperma <https://github.com/nperma>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
-import { world, World } from '@minecraft/server';
+import { world,system, World } from '@minecraft/server';
 
 const DATABASE_PREFIX = '\u0235\u0235';
 
@@ -27,36 +27,9 @@ class QuickDB {
 
 		for (const keyFull of this.getIds()) {
 			const key = keyFull.replace(this.#identifier, '');
-			const rawValue = GET.call(world, keyFull);
-			this.__cache[key] = this.#parseValue(rawValue);
+			let value;system.run(()=>{value=GET.call(world, keyFull);})
+			this.__cache[key] = JSON.parse(value);
 		}
-	}
-
-	/**
-	 * Parses stored string values into their appropriate types.
-	 * @param {any} value
-	 * @returns {any}
-	 */
-	#parseValue(value) {
-		if (typeof value === 'string') {
-			if (value.startsWith('obj')) return JSON.parse(value.slice(3));
-			if (value === 'null') return null;
-			if (value === 'true' || value === 'false') return value === 'true';
-			const num = Number(value);
-			if (!isNaN(num)) return num;
-		}
-		return value;
-	}
-
-	/**
-	 * Converts values into a storable format.
-	 * @param {any} value
-	 * @returns {string}
-	 */
-	#stringifyValue(value) {
-		if (typeof value === 'object' && value !== null) return 'obj' + JSON.stringify(value);
-		if (typeof value === 'boolean' || value === null) return String(value);
-		return String(value);
 	}
 
 	/** @returns {number} */
@@ -83,14 +56,12 @@ class QuickDB {
 	 * Stores a key-value pair.
 	 * @param {string} key
 	 * @param {any} value
-	 * @returns {boolean}
+	 * @returns {void}
 	 */
 	set(key, value) {
 		if (typeof key !== 'string' || !key.trim()) throw new Error('Key must be a non-empty string');
-		const finalValue = this.#stringifyValue(value);
-		SET.call(world, this.#identifier + key, finalValue);
+		system.run(()=>SET.call(world, this.#identifier + key, JSON.stringify(value)));
 		this.__cache[key] = value;
-		return true;
 	}
 
 	/**
@@ -100,7 +71,7 @@ class QuickDB {
 	 */
 	delete(key) {
 		if (!this.has(key)) return false;
-		SET.call(world, this.#identifier + key, undefined);
+		system.run(()=>SET.call(world, this.#identifier + key));
 		delete this.__cache[key];
 		return true;
 	}
@@ -126,16 +97,21 @@ class QuickDB {
 
 	/** @returns {string[]} */
 	static get ids() {
-		return [...new Set(
-			IDS.call(world)
+	  let keys;
+	  system.run(() =>{
+	    keys=IDS.call(world)
 				.filter((id) => id.startsWith(DATABASE_PREFIX))
-				.map((k) => k.slice(DATABASE_PREFIX.length).split(DATABASE_PREFIX)[0])
+				.map((k) => k.slice(DATABASE_PREFIX.length).split(DATABASE_PREFIX)[0]);
+	  });
+		return [...new Set(
+			keys
 		)];
 	}
 
 	/** @returns {string[]} */
 	getIds() {
-		return IDS.call(world).filter((id) => id.startsWith(this.#identifier));
+	  let result;system.run(()=>{result=IDS.call(world).filter((id) => id.startsWith(this.#identifier));});
+		return result;
 	}
 
 	/** Clears the database. */
@@ -148,8 +124,9 @@ class QuickDB {
 
 	/** Clears all databases globally. */
 	static clearAll() {
-		for (const real_id of IDS.call(world).filter((id) => id.startsWith(DATABASE_PREFIX))) {
-			SET.call(world, real_id, undefined);
+	  let keys;system.run(()=>{keys=IDS.call(world).filter((id) => id.startsWith(DATABASE_PREFIX))});
+		for (const real_id of keys) {
+			system.run(()=>SET.call(world, real_id));
 		}
 	}
 }
