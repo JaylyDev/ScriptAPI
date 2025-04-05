@@ -8,4 +8,4 @@ This package is a fork and a modified version of the original 'lz-string' librar
 - [Repository](https://github.com/pieroxy/lz-string)
 - [Homepage](https://github.com/pieroxy/lz-string)
 
-lz-string@1.4.4 is created by Pieroxy, and is licensed under WTFPL and MIT.
+lz-string - v1.4.4 is created by Pieroxy, and is licensed under WTFPL and MIT.
