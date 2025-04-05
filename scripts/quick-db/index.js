@@ -5,10 +5,6 @@
 
 import { world, system, World } from "@minecraft/server";
 
-
-
-import { world,system, World } from '@minecraft/server';
-
 const DATABASE_PREFIX = '\u0235\u0235';
 
 const {
