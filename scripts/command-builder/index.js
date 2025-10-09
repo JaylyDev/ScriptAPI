@@ -75,7 +75,7 @@ class commandBuilder {
                 aliases: info.aliases || [],
                 examples: info.examples || [],
                 for_staff: info.for_staff || false,
-                callback: callback || (() => { /* console.warn(`Command ${info.name} is missing it's callback function!`); */ serverBuild.msgDevs(`Command ${info.name} is missing it's callback function!`) }),
+                callback: callback || (() => { console.warn(`Command ${info.name} is missing it's callback function!`); }),
                 callbackWM: callbackWM || (() => { })
             }
         );
@@ -101,13 +101,6 @@ class commandBuilder {
      * @param {String} cmdName - Name of the command
      */
     getCommand(cmdName) {
-        if (!cmdName) {
-            // console.warn('getCommand() parameter cmdName was not parsed');
-            serverBuild.msgDevs('getCommand() parameter cmdName was not parsed');
-
-            return;
-        };
-
         const cmds = this.commands.find((cmd) => (cmd.name === cmdName || cmd.aliases.some((aliase) => cmdName === aliase)));
 
         return cmds;
@@ -132,4 +125,24 @@ class commandBuilder {
     (data, args) => { }
 );
  */
+
 export const commandBuild = new commandBuilder();
+
+world.beforeEvents.chatSend.subscribe((data) => {
+    if (!data.message.startsWith('!') || data.message === '!') return; data.cancel = true;
+
+    const args = data.message.slice('!'.length).trim().split(new RegExp(/\s+/g));
+    const sender = data.sender;
+    const cmd = args.shift();
+    const command = commandBuild.getCommand(cmd);
+
+    if (!command)
+        return sender.sendMessage(`§cThe command §f${cmd}§c was not found`);
+
+    if (command.for_staff === true && sender.hasTag('someTag') === false)
+        return sender.sendMessage(`§cThe command §f${cmd}§c is for staff only`);
+
+    system.run(() => {
+        command.callback(data, args);
+    });
+});
