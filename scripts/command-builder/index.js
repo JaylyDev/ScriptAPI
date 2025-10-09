@@ -1,126 +1,148 @@
 // Script example for ScriptAPI
-// Author: defowler2005 <https://github.com/defowler2005>
+// Author: undefined <https://github.com/undefined>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
 /**
  * Minecraft Bedrock ScriptAPI Example
- * @author defowler2005
+ * @license undefined
+ * @author undefined
  * @version 1.0.0
  * ---------------------------------------------------------------------------
- * Add a commandBuilder to your world, Simple creation!
+ * Easy use command system.
+ *
+ * commandBuild.register(
+     {
+         name: '',
+         description: '',
+         for_staff: false,
+         usage: [
+             '',
+         ],
+         aliases: [
+            ''
+         ],
+         examples: [
+             ''
+         ]
+     },
+     (data, args) => { },
+     (data, args) => { }
+ *
  * ---------------------------------------------------------------------------
  */
 
-import { world, system } from '@minecraft/server';
-
 /**
- * A class for regestering commands.
- * @class
+ * A class to manage server commands
+ * 
+ * Created on Saturday, 21 June 2025, 5:04 PM
+ * Edited on Thursday, 2 October, 8:17 PM
  */
 class commandBuilder {
-    /**
- * Create a new instance of the commandBuilder class.
- * @constructor
- */
-
     constructor() {
         /**
-         * Array to store all registered commands.
-         * @type {Array}
+         * @type {command[]}
+         * @typedef {Object} command - The commands info
+         * @property {string} name - Name of the command
+         * @property {string} description - Description of the command
+         * @property {string} usage - Usage template of the command
+         * @property {Array<string>} aliases - Like 2nd names of the command
+         * @property {Array<string>} examples - Examples on how to use the command
+         * @property {boolean} for_staff - Indicates weather the command is designed for staff only
+         * @property {(data: import('@minecraft/server').ChatSendBeforeEvent, args: string[]) => void} callback - Function to be executed upon being called
+         * @property {(data: import('@minecraft/server').ChatSendBeforeEvent, args: string[]) => void} callbackWM - Function to be executed after player movement
          */
         this.commands = [];
-    }
+    };
 
     /**
-     * Create a new command with provided information and callbacks.
-     *
-     * @param {Object} info - Information about the command.
-     * @param {string} info.name - The name of the command.
-     * @param {string} [info.description] - The description of the command.
-     * @param {boolean} [info.is_staff=false] - Indicates if the command requires staff privileges.
-     * @param {Function} callback - The callback function for the command.
-     * @param {Function} callbackWM - The callback function for delayed code execution until the player moves after using the command.
+     * register a new command to be registered
+     * @param {Object} info - The commands info
+     * @param {string} [info.name] - Name of the command
+     * @param {string} [info.description] - Description of the command
+     * @param {Array<string>} [info.usage] - Usage template of the command
+     * @param {Array<string>} [info.aliases] - Like 2nd names of the command
+     * @param {Array<string>} [info.examples] - Examples on how to use the command
+     * @param {boolean} [info.for_staff=false] - Indicates if the command is designed for staff only
+     * @param {(data: import('@minecraft/server').ChatSendBeforeEvent, args: string[]) => void} callback - The code that will be run immediately
+     * @param {(data: import('@minecraft/server').ChatSendBeforeEvent, args: string[]) => void} callbackWM - The code that will be run after player movement
      */
-    create(info, callback, callbackWM) {
-        const command = {
-            name: info.name.split(' ')[0],
-            description: info.description || '',
-            is_staff: info.is_staff || false,
-            callback,
-            callbackWM,
+    register(info, callback, callbackWM) {
+        this.commands.push(
+            {
+                name: info.name.split(' ')[0],
+                description: info.description || '',
+                usage: info.usage || [],
+                aliases: info.aliases || [],
+                examples: info.examples || [],
+                for_staff: info.for_staff || false,
+                callback: callback || (() => { console.warn(`Command ${info.name} is missing it's callback function!`); }),
+                callbackWM: callbackWM || (() => { })
+            }
+        );
+    };
+
+    /**
+     * Get a list of commands registered
+     * @param {Boolean} getStaff - Get staff or nonstaff commands, otherwise all commands
+     */
+    getAllCommands(getStaff) {
+        if (getStaff === true) {
+            return this.commands.filter((cmd) => cmd.for_staff === true);
+        } else if (getStaff === false) {
+            return this.commands.filter((cmd) => cmd.for_staff === false);
+        } else {
+            return this.commands;
         };
-        this.commands.push(command);
-    }
+    };
+
 
     /**
-     * Get a list of all commands based on whether they require staff privileges or not.
-     * @param {boolean} staff - If true, Retrieves staff-only commands. If false, Retrieves non-staff commands. If undefined, retrieves all commands.
-     * @returns {Array} - An array of commands that match the staff requirement.
+     * Get a specific command object
+     * @param {String} cmdName - Name of the command
      */
-    getAllCommands(staff = false) {
-        return this.commands.filter(cmd => cmd.is_staff === staff);
-    }
-};
+    getCommand(cmdName) {
+        const cmds = this.commands.find((cmd) => (cmd.name === cmdName || cmd.aliases.some((aliase) => cmdName === aliase)));
 
-const commandBuild = new commandBuilder();
+        return cmds;
+    };
+};
 
 /**
- * Waits for the player to move and then executes a callback function.
- * @param {Object} target - The target player to monitor for movement.
- * @param {number} x - The initial X-coordinate of the target player.
- * @param {number} y - The initial Y-coordinate of the target player.
- * @param {number} z - The initial Z-coordinate of the target player.
- * @param {Function} callback - The callback function to execute after the player moves.
+ * @example
+ * commandBuild.register(
+    {
+        name: 'test',
+        description: 'Example command',
+        for_staff: false,
+        usage: [
+            'test',
+        ],
+        examples: [
+            'test',
+        ]
+    },
+    (data, args) => { },
+    (data, args) => { }
+);
  */
 
-function waitMove(target, x, y, z, callback) {
-    const t = new Map();
-    t.set(target, [x, y, z]);
-    system.runInterval(() => {
-        for (const [target, [xOld, yOld, zOld]] of t) {
-            const { x: xc, y: yc, z: zc } = target.location;
-            if (xOld !== xc || yOld !== yc || zOld !== zc) system.run(() => t.delete(target) || callback());
-        }
-    })
-};
+export const commandBuild = new commandBuilder();
 
 world.beforeEvents.chatSend.subscribe((data) => {
-    const prefix = 'DF.'; //Replace this prefix to what you want!
-    const player = data.sender;
-    const message = data.message;
-    const { x, y, z } = player.location;
-    if (!message.startsWith(prefix)) return;
-    data.cancel = true;
-    const args = message.slice(prefix.length).split(/\s+/g);
+    if (!data.message.startsWith('!') || data.message === '!') return; data.cancel = true;
+
+    const args = data.message.slice('!'.length).trim().split(new RegExp(/\s+/g));
+    const sender = data.sender;
     const cmd = args.shift();
-    const command = commandBuild.commands.find((cmdName) => cmdName.name === cmd);
-    if (!command) return player.sendMessage('Invalid command!');
-    if (command.is_staff && !player.hasTag('hosen24576jg')) return player.sendMessage('Invalid permission!')
-    system.run(() => command.callback(player, args) || waitMove(player, x, y, z, () => command.callbackWM(player, args)));
+    const command = commandBuild.getCommand(cmd);
+
+    if (!command)
+        return sender.sendMessage(`§cThe command §f${cmd}§c was not found`);
+
+    if (command.for_staff === true && sender.hasTag('someTag') === false)
+        return sender.sendMessage(`§cThe command §f${cmd}§c is for staff only`);
+
+    system.run(() => {
+        command.callback(data, args);
+    });
 });
-
-commandBuild.create(
-    {
-        name: 'h',
-        description: 'ggggggggg',
-        is_staff: true
-    }, () => { }, () => { }
-);
-
-commandBuild.create(
-    {
-        name: 'getCommands',
-        description: 'Get a list of all commands registered',
-        is_staff: false
-    },
-    (player, args) => {
-        if (args[0] === 'true') player.sendMessage(`Staff commands: ${commandBuild.getAllCommands(true).map(cmd => cmd.name).join(', ')}`);
-        else if (args[0] === 'false') player.sendMessage(`Non-staff commands: ${commandBuild.getAllCommands(false).map(cmd => cmd.name).join(', ')}`);
-        else player.sendMessage(`All commands: ${commandBuild.getAllCommands().map(cmd => cmd.name).join(', ')}`);
-    },
-    (player, args) => {
-        if (args[0] === 'true') player.sendMessage(`Staff commands: ${commandBuild.getAllCommands(true).map(cmd => cmd.name).join(', ')}`);
-        else if (args[0] === 'false') player.sendMessage(`Non-staff commands: ${commandBuild.getAllCommands(false).map(cmd => cmd.name).join(', ')}`);
-        else player.sendMessage(`All commands: ${commandBuild.getAllCommands().map(cmd => cmd.name).join(', ')}`);
-    }
-);
