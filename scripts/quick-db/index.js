@@ -1,135 +1,200 @@
-// Script example for ScriptAPI
-// Author: Nperma <https://github.com/nperma>
-// Project: https://github.com/JaylyDev/ScriptAPI
+import { world, Scoreboard, ScoreboardObjective, ScoreboardIdentity } from "@minecraft/server";
 
-import { world,system, World } from '@minecraft/server';
+const KEY_4NO = "⧉⧉";
 
-const DATABASE_PREFIX = '\u0235\u0235';
 
-const {
-	getDynamicProperty: GET,
-	setDynamicProperty: SET,
-	getDynamicPropertyIds: IDS
-} = World.prototype;
 
-class QuickDB {
-	#identifier;
-	__cache = {};
+interface DBAdapter<T> {
 
-	/**
-	 * @param {string} id - Unique database identifier.
-	 */
-	constructor(id) {
-		if (typeof id !== 'string' || !id.trim()) {
-			throw new Error('Invalid database ID');
-		}
-		this.#identifier = `${DATABASE_PREFIX}${id}${DATABASE_PREFIX}`;
+  set(key: string, value: T): void
 
-		for (const keyFull of this.getIds()) {
-			const key = keyFull.replace(this.#identifier, '');
-			let value;system.run(()=>{value=GET.call(world, keyFull);})
-			this.__cache[key] = JSON.parse(value);
-		}
-	}
+  get(key: string): T | undefined
 
-	/** @returns {number} */
-	get size() {
-		return this.keys().length;
-	}
+  has(key: string): boolean
 
-	/** @returns {string[]} */
-	keys() {
-		return Object.keys(this.__cache);
-	}
+  delete(key: string): boolean
 
-	/** @returns {any[]} */
-	values() {
-		return Object.values(this.__cache);
-	}
+  keys(): string[]
 
-	/** @returns {[string, any][]} */
-	entries() {
-		return Object.entries(this.__cache);
-	}
+  values(): T[]
 
-	/**
-	 * Stores a key-value pair.
-	 * @param {string} key
-	 * @param {any} value
-	 * @returns {void}
-	 */
-	set(key, value) {
-		if (typeof key !== 'string' || !key.trim()) throw new Error('Key must be a non-empty string');
-		system.run(()=>SET.call(world, this.#identifier + key, JSON.stringify(value)));
-		this.__cache[key] = value;
-	}
-
-	/**
-	 * Deletes a key.
-	 * @param {string} key
-	 * @returns {boolean}
-	 */
-	delete(key) {
-		if (!this.has(key)) return false;
-		system.run(()=>SET.call(world, this.#identifier + key));
-		delete this.__cache[key];
-		return true;
-	}
-
-	/**
-	 * Retrieves a value.
-	 * @param {string} key
-	 * @returns {any}
-	 */
-	get(key) {
-		if (typeof key !== 'string' || !key.trim()) throw new Error('Key must be a non-empty string');
-		return this.__cache[key];
-	}
-
-	/**
-	 * Checks if a key exists.
-	 * @param {string} key
-	 * @returns {boolean}
-	 */
-	has(key) {
-		return key in this.__cache;
-	}
-
-	/** @returns {string[]} */
-	static get ids() {
-	  let keys;
-	  system.run(() =>{
-	    keys=IDS.call(world)
-				.filter((id) => id.startsWith(DATABASE_PREFIX))
-				.map((k) => k.slice(DATABASE_PREFIX.length).split(DATABASE_PREFIX)[0]);
-	  });
-		return [...new Set(
-			keys
-		)];
-	}
-
-	/** @returns {string[]} */
-	getIds() {
-	  let result;system.run(()=>{result=IDS.call(world).filter((id) => id.startsWith(this.#identifier));});
-		return result;
-	}
-
-	/** Clears the database. */
-	clear() {
-		for (const key of this.keys()) {
-			this.delete(key);
-		}
-		this.__cache = {};
-	}
-
-	/** Clears all databases globally. */
-	static clearAll() {
-	  let keys;system.run(()=>{keys=IDS.call(world).filter((id) => id.startsWith(DATABASE_PREFIX))});
-		for (const real_id of keys) {
-			system.run(()=>SET.call(world, real_id));
-		}
-	}
+  entries(): [string, T][]
 }
 
-export default QuickDB;
-export { QuickDB };
+export class ScoreboardDB<T = unknown> implements DBAdapter<T> {
+  #identifier: string;
+  readonly #keyacc: string = '⟡⟡';
+  readonly #obj;
+  #participantNames: Record<string, string>;
+  #participants: ScoreboardIdentity[];
+  #cache: Record<string, T> = {}
+
+  constructor(name: string) {
+    this.#identifier = `${KEY_4NO
+      }${name}${KEY_4NO}`
+    this.#obj = world.scoreboard.getObjective(this.#identifier) ??
+      world.scoreboard.addObjective(this.#identifier)
+    this.#participantNames = {}
+    this.#participants = (this.#obj as ScoreboardObjective).getParticipants()
+    let iteration = this.#participants.length;
+    while (iteration--) {
+      const participantName = this.#participants[iteration]?.displayName
+      const [key, rawValue] = participantName.split(this.#keyacc)
+      const value = rawValue.startsWith('num:') ? Number(rawValue.slice('num:'.length)) : rawValue.startsWith('bool:') ? Boolean(rawValue.slice('bool:'.length)) : JSON.parse(rawValue)
+      this.#participantNames[key] = participantName
+      this.#cache[key] = value
+    }
+  }
+
+  set(key: string, value?: T) {
+    if (key in this.#cache && value == null) this.delete(key)
+    const valueFormatting = typeof value == 'number' ? `num:${value}` : typeof value == 'boolean' ? `bool:${value}` : value;
+    const participantName = `${key}${this.#keyacc}${JSON.stringify(valueFormatting)}`;
+    (this.#obj as ScoreboardObjective).setScore(participantName, 1)
+    this.#participantNames[key] = participantName;
+    this.#cache[key] = value
+  }
+
+  get(key: string) {
+    return this.#cache[key]
+  }
+
+  has(key: string) {
+    return !!this.#cache
+  }
+
+  delete(key: string) {
+    if (!(key in this.#cache)) return false;
+    (this.#obj as ScoreboardObjective).removeParticipant(this.#participantNames[key])
+    delete this.#participantNames[key]
+    delete this.#cache[key]
+    return true
+  }
+
+  keys() {
+    return Object.keys(this.#cache)
+  }
+
+  values() {
+    return Object.values(this.#cache)
+  }
+
+  entries() {
+    return Object.entries(this.#cache)
+  }
+
+}
+
+export class DynamicDB<T = unknown> implements DBAdapter<T> {
+  #identifier: string;
+  #cache: Record<string, T> = {};
+  static size: number = world.getDynamicPropertyTotalByteCount()
+
+
+  constructor(name: string) {
+    this.#identifier = `${KEY_4NO
+      }${name}${KEY_4NO}`
+
+    const ids = world.getDynamicPropertyIds()
+    let i = ids.length
+
+    while (i--) {
+      const id = ids[i]
+      if (!id.startsWith(this.#identifier)) continue
+
+      const raw = world.getDynamicProperty(id)
+      const key = id.slice(this.#identifier.length)
+
+      const value =
+        typeof raw === "string"
+          ? JSON.parse(raw)
+          : (raw as T)
+
+      this.#cache[key] = value
+    }
+  }
+
+  set(key: string, value?: T): void {
+    const id = this.#identifier + key
+    if (key in this.#cache && value == null) { this.delete(key); return; }
+
+    const data =
+      typeof value === "string" ||
+        typeof value === "number" ||
+        typeof value === "boolean"
+        ? value
+        : JSON.stringify(value)
+
+    world.setDynamicProperty(id, data)
+    this.#cache[key] = value
+  }
+
+  get(key: string): T | undefined {
+    return this.#cache[key]
+  }
+
+  has(key: string): boolean {
+    return key in this.#cache
+  }
+
+  delete(key: string): boolean {
+    if (!(key in this.#cache)) return false;
+
+    world.setDynamicProperty(this.#identifier + key, undefined)
+    delete this.#cache[key]
+    return true
+  }
+
+  keys(): string[] {
+    return Object.keys(this.#cache)
+  }
+
+  values(): T[] {
+    return Object.values(this.#cache)
+  }
+
+  entries(): [string, T][] {
+    return Object.entries(this.#cache) as [string, T][]
+  }
+}
+
+export default class QuickDB<T = unknown> implements DBAdapter<T> {
+  #db;
+  constructor(
+    name: string,
+    storage: "local" | "dynamic" | "global" | "scoreboard" = "local"
+  ) {
+    this.#db =
+      storage === "scoreboard" || storage === "global"
+        ? new ScoreboardDB<T>(name)
+        : new DynamicDB<T>(name)
+  }
+
+  set(key: string, value?: T): void {
+    this.#db.set(key, value)
+  }
+
+  get(key: string): T | undefined {
+    return this.#db.get(key)
+  }
+
+  has(key: string): boolean {
+    return this.#db.has(key)
+  }
+
+  delete(key: string): boolean {
+    return this.#db.delete(key)
+  }
+
+  keys(): string[] {
+    return this.#db.keys()
+  }
+
+  values(): T[] {
+    return this.#db.values()
+  }
+
+  entries(): [string, T][] {
+    return this.#db.entries()
+  }
+}
