@@ -1,135 +1,138 @@
-// Script example for ScriptAPI
-// Author: Nperma <https://github.com/nperma>
-// Project: https://github.com/JaylyDev/ScriptAPI
-
-import { world,system, World } from '@minecraft/server';
-
-const DATABASE_PREFIX = '\u0235\u0235';
-
-const {
-	getDynamicProperty: GET,
-	setDynamicProperty: SET,
-	getDynamicPropertyIds: IDS
-} = World.prototype;
-
-class QuickDB {
-	#identifier;
-	__cache = {};
-
-	/**
-	 * @param {string} id - Unique database identifier.
-	 */
-	constructor(id) {
-		if (typeof id !== 'string' || !id.trim()) {
-			throw new Error('Invalid database ID');
-		}
-		this.#identifier = `${DATABASE_PREFIX}${id}${DATABASE_PREFIX}`;
-
-		for (const keyFull of this.getIds()) {
-			const key = keyFull.replace(this.#identifier, '');
-			let value;system.run(()=>{value=GET.call(world, keyFull);})
-			this.__cache[key] = JSON.parse(value);
-		}
-	}
-
-	/** @returns {number} */
-	get size() {
-		return this.keys().length;
-	}
-
-	/** @returns {string[]} */
-	keys() {
-		return Object.keys(this.__cache);
-	}
-
-	/** @returns {any[]} */
-	values() {
-		return Object.values(this.__cache);
-	}
-
-	/** @returns {[string, any][]} */
-	entries() {
-		return Object.entries(this.__cache);
-	}
-
-	/**
-	 * Stores a key-value pair.
-	 * @param {string} key
-	 * @param {any} value
-	 * @returns {void}
-	 */
-	set(key, value) {
-		if (typeof key !== 'string' || !key.trim()) throw new Error('Key must be a non-empty string');
-		system.run(()=>SET.call(world, this.#identifier + key, JSON.stringify(value)));
-		this.__cache[key] = value;
-	}
-
-	/**
-	 * Deletes a key.
-	 * @param {string} key
-	 * @returns {boolean}
-	 */
-	delete(key) {
-		if (!this.has(key)) return false;
-		system.run(()=>SET.call(world, this.#identifier + key));
-		delete this.__cache[key];
-		return true;
-	}
-
-	/**
-	 * Retrieves a value.
-	 * @param {string} key
-	 * @returns {any}
-	 */
-	get(key) {
-		if (typeof key !== 'string' || !key.trim()) throw new Error('Key must be a non-empty string');
-		return this.__cache[key];
-	}
-
-	/**
-	 * Checks if a key exists.
-	 * @param {string} key
-	 * @returns {boolean}
-	 */
-	has(key) {
-		return key in this.__cache;
-	}
-
-	/** @returns {string[]} */
-	static get ids() {
-	  let keys;
-	  system.run(() =>{
-	    keys=IDS.call(world)
-				.filter((id) => id.startsWith(DATABASE_PREFIX))
-				.map((k) => k.slice(DATABASE_PREFIX.length).split(DATABASE_PREFIX)[0]);
-	  });
-		return [...new Set(
-			keys
-		)];
-	}
-
-	/** @returns {string[]} */
-	getIds() {
-	  let result;system.run(()=>{result=IDS.call(world).filter((id) => id.startsWith(this.#identifier));});
-		return result;
-	}
-
-	/** Clears the database. */
-	clear() {
-		for (const key of this.keys()) {
-			this.delete(key);
-		}
-		this.__cache = {};
-	}
-
-	/** Clears all databases globally. */
-	static clearAll() {
-	  let keys;system.run(()=>{keys=IDS.call(world).filter((id) => id.startsWith(DATABASE_PREFIX))});
-		for (const real_id of keys) {
-			system.run(()=>SET.call(world, real_id));
-		}
-	}
+import { world } from "@minecraft/server";
+const KEY_4NO = "⧉⧉";
+export class ScoreboardDB {
+    constructor(name) {
+        this.keyacc = '⟡⟡';
+        this.cache = {};
+        this.identifier = `${KEY_4NO}${name}${KEY_4NO}`;
+        this.obj = world.scoreboard.getObjective(this.identifier) ??
+            world.scoreboard.addObjective(this.identifier);
+        this.participantNames = {};
+        this.participants = this.obj.getParticipants();
+        let iteration = this.participants.length;
+        while (iteration--) {
+            const participantName = this.participants[iteration]?.displayName;
+            const [key, rawValue] = participantName.split(this.keyacc);
+            const value = rawValue.startsWith('num:') ? Number(rawValue.slice('num:'.length)) : rawValue.startsWith('bool:') ? Boolean(rawValue.slice('bool:'.length)) : JSON.parse(rawValue);
+            this.participantNames[key] = participantName;
+            this.cache[key] = value;
+        }
+    }
+    set(key, value) {
+        if (key in this.cache && value == null)
+            this.delete(key);
+        const valueFormatting = typeof value == 'number' ? `num:${value}` : typeof value == 'boolean' ? `bool:${value}` : value;
+        const participantName = `${key}${this.keyacc}${JSON.stringify(valueFormatting)}`;
+        this.obj.setScore(participantName, 1);
+        this.participantNames[key] = participantName;
+        this.cache[key] = value;
+    }
+    get(key) {
+        return this.cache[key];
+    }
+    has(key) {
+        return !!this.cache;
+    }
+    delete(key) {
+        if (!(key in this.cache))
+            return false;
+        this.obj.removeParticipant(this.participantNames[key]);
+        delete this.participantNames[key];
+        delete this.cache[key];
+        return true;
+    }
+    keys() {
+        return Object.keys(this.cache);
+    }
+    values() {
+        return Object.values(this.cache);
+    }
+    entries() {
+        return Object.entries(this.cache);
+    }
 }
-
-export default QuickDB;
-export { QuickDB };
+export class DynamicDB {
+    constructor(name) {
+        this.cache = {};
+        this.identifier = `${KEY_4NO}${name}${KEY_4NO}`;
+        const ids = world.getDynamicPropertyIds();
+        let i = ids.length;
+        while (i--) {
+            const id = ids[i];
+            if (!id.startsWith(this.identifier))
+                continue;
+            const raw = world.getDynamicProperty(id);
+            const key = id.slice(this.identifier.length);
+            const value = typeof raw === "string"
+                ? JSON.parse(raw)
+                : raw;
+            this.cache[key] = value;
+        }
+    }
+    set(key, value) {
+        const id = this.identifier + key;
+        if (key in this.cache && value == null) {
+            this.delete(key);
+            return;
+        }
+        const data = typeof value === "string" ||
+            typeof value === "number" ||
+            typeof value === "boolean"
+            ? value
+            : JSON.stringify(value);
+        world.setDynamicProperty(id, data);
+        this.cache[key] = value;
+    }
+    get(key) {
+        return this.cache[key];
+    }
+    has(key) {
+        return key in this.cache;
+    }
+    delete(key) {
+        if (!(key in this.cache))
+            return false;
+        world.setDynamicProperty(this.identifier + key, undefined);
+        delete this.cache[key];
+        return true;
+    }
+    keys() {
+        return Object.keys(this.cache);
+    }
+    values() {
+        return Object.values(this.cache);
+    }
+    entries() {
+        return Object.entries(this.cache);
+    }
+}
+DynamicDB.size = world.getDynamicPropertyTotalByteCount();
+export default class QuickDB {
+    constructor(name, storage = "local") {
+        this.db =
+            storage === "scoreboard" || storage === "global"
+                ? new ScoreboardDB(name)
+                : new DynamicDB(name);
+    }
+    set(key, value) {
+        this.db.set(key, value);
+    }
+    get(key) {
+        return this.db.get(key);
+    }
+    has(key) {
+        return this.db.has(key);
+    }
+    delete(key) {
+        return this.db.delete(key);
+    }
+    keys() {
+        return this.db.keys();
+    }
+    values() {
+        return this.db.values();
+    }
+    entries() {
+        return this.db.entries();
+    }
+}

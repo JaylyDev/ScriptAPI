@@ -1,171 +1,93 @@
-# QuickDB - A Lightweight Database for Minecraft Bedrock ScriptAPI
+# QuickDB
 
-**QuickDB** is a simple and efficient database system designed for Minecraft Bedrock Edition ScriptAPI. It utilizes dynamic properties from the `@minecraft/server` module, allowing developers to store and manage key-value pairs in a way similar to JavaScript's `Map` object.  
+QuickDB is a lightweight key-value database designed for Minecraft Bedrock Script API.  
+It supports two storage backends:
 
----
+- **Dynamic Properties**
+- **Scoreboard**
 
-## Features
-
-- **CRUD Operations**: 
-  - `set(key, value)` - Save a value to the database.
-  - `get(key)` - Retrieve a value by its key.
-  - `delete(key)` - Remove a key-value pair from the database.
-  - `has(key)` - Check if a key exists in the database.
-
-- **Iteration**:
-  - `keys()` - Get all keys in the database.
-  - `values()` - Retrieve all values stored in the database.
-  - `entries()` - Retrieve all key-value pairs as an array of entries.
-
-- **Database Size**:
-  - `size` - Get the total byte count used by the dynamic properties.
+Both storages share the same API, so you can switch storage types without changing your code.
 
 ---
 
-## Installation
+# How Caching Works
 
-Import `QuickDB` into your ScriptAPI project. Ensure `QuickDB` is included in your `index.js` file for easy integration.
+When a database is created, it **loads all existing data into memory** (RAM).
 
-```javascript
-import QuickDB from "./index.js";
+Example process:
+
+1. The database scans the storage (Scoreboard or Dynamic Property).
+2. All matching keys are loaded into an internal cache.
+3. Future operations read from this cache instead of scanning storage again.
+
+Because of this:
+
+- `get()` is **very fast**
+- `has()` is **very fast**
+- `keys()`, `values()`, `entries()` do not need to scan storage again
+
+When data changes:
+
+- `set()` updates **storage + cache**
+- `delete()` removes **storage + cache**
+
+This keeps both storage and cache synchronized.
+
+---
+
+# Storage Types
+
+| Storage Type | Backend Used | Description                          |
+| ------------ | ------------ | ------------------------------------ |
+| `local`      | DynamicDB    | Stores data using dynamic properties |
+| `dynamic`    | DynamicDB    | Same as local                        |
+| `global`     | ScoreboardDB | Stores data using scoreboard         |
+| `scoreboard` | ScoreboardDB | Same as global                       |
+
+Example:
+
+```ts
+const db = new QuickDB("playerData"); // default using local or dynamic
+const globalDB = new QuickDB("playerData", "global"); // global database, different cache with local or dynamic database, use this to sync database with other addons you wanna make like plugin structures
 ```
 
 ---
 
-## Documentation
+# Methods
 
-### **Constructor**
-
-```javascript
-const db = new QuickDB("user");
-```
-
-- **Parameters**:
-  - `id` *(string)*: A unique identifier for your database instance.
-
----
-
-### **Methods**
-
-#### `set(key, value)`
-- **Description**: Stores a value associated with a key.
-- **Parameters**:
-  - `key` *(string)*: The key to store the value.
-  - `value` *(any)*: The value to be stored.
-- **Returns**: `boolean` - `true` if successful.
-
-```javascript
-db.set("FomoKiwor", { money: 20000 });
-```
+| Method            | Description              | Example                |
+| ----------------- | ------------------------ | ---------------------- |
+| `set(key, value)` | Save or update a value   | `db.set("coins", 100)` |
+| `get(key)`        | Get value from cache     | `db.get("coins")`      |
+| `has(key)`        | Check if key exists      | `db.has("coins")`      |
+| `delete(key)`     | Remove key from database | `db.delete("coins")`   |
+| `keys()`          | Get all keys             | `db.keys()`            |
+| `values()`        | Get all values           | `db.values()`          |
+| `entries()`       | Get key-value pairs      | `db.entries()`         |
 
 ---
 
-#### `get(key)`
-- **Description**: Retrieves the value associated with a key.
-- **Parameters**:
-  - `key` *(string)*: The key to retrieve the value.
-- **Returns**: `any` - The value associated with the key.
+# Example Usage
 
-```javascript
-const userData = db.get("FomoKiwor"); // { money: 20000 }
+```ts
+const db = new QuickDB("coins");
+
+db.set("player1", 100);
+
+const coins = db.get("player1");
+
+console.log(coins);
 ```
 
 ---
 
-#### `has(key)`
-- **Description**: Checks if a key exists in the database.
-- **Parameters**:
-  - `key` *(string)*: The key to check.
-- **Returns**: `boolean` - `true` if the key exists.
+# Summary
 
-```javascript
-const exists = db.has("FomoKiwor"); // true
-```
+QuickDB works by:
 
----
+1. Loading data from storage
+2. Storing it in an internal cache
+3. Using the cache for fast access
+4. Keeping storage and cache synchronized
 
-#### `delete(key)`
-- **Description**: Removes a key-value pair from the database.
-- **Parameters**:
-  - `key` *(string)*: The key to remove.
-- **Returns**: `boolean` - `true` if successful.
-
-```javascript
-db.delete("FomoKiwor");
-```
-
----
-
-#### `keys()`
-- **Description**: Retrieves all keys in the database.
-- **Returns**: `string[]` - An array of all keys.
-
-```javascript
-const allKeys = db.keys(); // ["key1", "key2"]
-```
-
----
-
-#### `values()`
-- **Description**: Retrieves all values in the database.
-- **Returns**: `any[]` - An array of all values.
-
-```javascript
-const allValues = db.values(); // [{ money: 20000 }, { items: [] }]
-```
-
----
-
-#### `entries()`
-- **Description**: Retrieves all key-value pairs in the database.
-- **Returns**: `Array<[string, any]>` - An array of key-value entries.
-
-```javascript
-const allEntries = db.entries(); // [["key1", { money: 20000 }], ["key2", { items: [] }]]
-```
-
----
-
-### **Property**
-
-#### `size`
-- **Description**: Gets the total byte count used by dynamic properties.
-- **Returns**: `number` - The total byte count.
-
-```javascript
-console.log(db.size); // e.g., 512
-```
-
----
-
-## Example Usage
-
-```javascript
-import QuickDB from "./index.js";
-
-const db = new QuickDB("user");
-
-db.set("FomoKiwor", { money: 20000 });
-console.log(db.get("FomoKiwor")); // { money: 20000 }
-
-console.log(db.has("FomoKiwor")); // true
-db.delete("FomoKiwor");
-console.log(db.has("FomoKiwor")); // false
-
-db.set("User1", { score: 100 });
-db.set("User2", { score: 150 });
-
-console.log(db.keys()); // ["User1", "User2"]
-console.log(db.values()); // [{ score: 100 }, { score: 150 }]
-console.log(db.entries()); // [["User1", { score: 100 }], ["User2", { score: 150 }]]
-```
-
----
-
-## License
-
-MIT License
-
----
-
-Developed by [Nperma](https://github.com/nperma)
+This makes database operations **fast and efficient** for Minecraft Script API projects.
