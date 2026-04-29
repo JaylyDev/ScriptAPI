@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Smell of Curry <https://github.com/smell-of-curry>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { Player, world } from "@minecraft/server";
@@ -16,19 +15,19 @@ const COMMAND_PREFIX = "!";
 function customCommand(command, args, msg, player) {
   switch (command) {
     case "spawn":
-      player.runCommandAsync(`execute "${player.nameTag}" ~~~ tp @s 0 100 0`);
+      player.runCommand(`execute "${player.nameTag}" ~~~ tp @s 0 100 0`);
       break;
     case "test":
-      player.runCommandAsync(`execute "${player.nameTag}" ~~~ say test`);
+      player.runCommand(`execute "${player.nameTag}" ~~~ say test`);
       break;
     case "gmc":
-      player.runCommandAsync(`gamemode 1 "${player.nameTag}"`);
+      player.runCommand(`gamemode 1 "${player.nameTag}"`);
       break;
     case "gms":
-      player.runCommandAsync(`gamemode 0 "${player.nameTag}"`);
+      player.runCommand(`gamemode 0 "${player.nameTag}"`);
       break;
     default:
-      player.runCommandAsync(`say error! ${command} is not a valid command!`);
+      player.runCommand(`say error! ${command} is not a valid command!`);
   }
 }
 

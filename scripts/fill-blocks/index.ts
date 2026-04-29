@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { BlockFillOptions, BlockPermutation, BlockType, Dimension, Vector3, BlockVolume, ListBlockVolume } from "@minecraft/server";

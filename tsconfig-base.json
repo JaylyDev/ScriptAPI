@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "module": "es2020",
-    "target": "es2021",
-    "moduleResolution": "classic",
+    "module": "es2022",
+    "target": "es2024",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "types": [
       "@minecraft/server-gametest",
+      "@minecraft/server-graphics",
+      "@minecraft/debug-utilities",
       "@minecraft/server",
       "@minecraft/server-ui",
       "@minecraft/server-admin",

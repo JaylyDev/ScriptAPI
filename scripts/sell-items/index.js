@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: iBlqzed#3612 <Bedrock Add-Ons>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { Player, Container } from "@minecraft/server";

@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Usernam#2058 <Jayly Discord>
 //         Remember M9#8416 <Bedrock Add-Ons>
 //         SI Silicon <https://github.com/SIsilicon>
@@ -15,5 +14,5 @@ export function applyImpulse(player: Player, vector: Vector3) {
   const { x, y, z } = vector;
   const horizontal = Math.sqrt(x * x + z * z) * 2.0;
   const vertical = y < 0.0 ? 0.5 * y : y;
-  player.applyKnockback(x, z, horizontal, vertical);
+  player.applyKnockback({ x: horizontal, z: horizontal }, vertical);
 }

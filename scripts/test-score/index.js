@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: FrankyRayMS#7172 <Bedrock Add-Ons>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import {

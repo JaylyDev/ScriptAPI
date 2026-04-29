@@ -1,9 +1,8 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/GametestDB/
 import { Vector3, Player, Entity, EntityRideableComponent, EntityMovementComponent, EntityHealthComponent } from "@minecraft/server";
 import { MinecraftEffectTypes, MinecraftEntityTypes } from "@minecraft/vanilla-data";
-import { Commands } from "commands/index.js";
+import { Commands } from "../commands/index.js";
 import { clearInterval, setInterval } from "../timers/index.js";
 
 function trunc (x: number, decimal: number): number {

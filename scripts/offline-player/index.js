@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { GameMode, ScoreboardIdentityType, world } from "@minecraft/server";
@@ -10,12 +9,6 @@ import { GameMode, ScoreboardIdentityType, world } from "@minecraft/server";
  */
 class ScoreboardOfflineIdentity {
     constructor(data, player) {
-        /**
-         * @remarks
-         * Type of the scoreboard identity.
-         *
-         */
-        this.type = ScoreboardIdentityType.Player;
         this.displayName = player.name;
         this.id = data.id;
     }
@@ -29,6 +22,24 @@ class ScoreboardOfflineIdentity {
         return new ScoreboardOfflineIdentity(data, player);
     }
     ;
+    /**
+     * @remarks
+     * Returns the player-visible name of this identity.
+     *
+     */
+    displayName;
+    /**
+     * @remarks
+     * Identifier of the scoreboard identity.
+     *
+     */
+    id;
+    /**
+     * @remarks
+     * Type of the scoreboard identity.
+     *
+     */
+    type = ScoreboardIdentityType.Player;
     /**
      * @remarks
      * Gets the current score for this participant based on an
@@ -53,14 +64,6 @@ class ScoreboardOfflineIdentity {
  */
 class OfflinePlayer {
     constructor(data) {
-        /**
-         * @remarks
-         * Identifier of the type of the entity - for example,
-         * 'minecraft:skeleton'. This property is accessible even if
-         * {@link Entity.isValid} is false.
-         *
-         */
-        this.typeId = "minecraft:player";
         this.dimension = world.getDimension(data.dimension);
         this.id = data.id;
         this.isSneaking = data.isSneaking;
@@ -73,9 +76,9 @@ class OfflinePlayer {
         this.gameMode = data.gameMode;
         this.lastPlayed = data.lastPlayed;
         this.scoreboardIdentity = ScoreboardOfflineIdentity.createIdentity(data.scoreboard, data);
+        this.commandPermissionLevel = data.commandPermissionLevel;
         this.getSpawnPoint = () => data.spawnPoint;
         this.getTotalXp = () => data.totalXp;
-        this.isOp = () => data.isOp;
         this.getPlayer = () => world.getAllPlayers().find((player) => player.id === this.id);
     }
     static get(idOrName) {
@@ -122,7 +125,7 @@ class OfflinePlayer {
             lastPlayed: Date.now(),
             spawnPoint: player.getSpawnPoint(),
             totalXp: player.getTotalXp(),
-            isOp: player.isOp(),
+            commandPermissionLevel: player.commandPermissionLevel,
         };
         const playerScoreboard = player.scoreboardIdentity;
         if (playerScoreboard) {
@@ -140,6 +143,94 @@ class OfflinePlayer {
     ;
     /**
      * @remarks
+     * Dimension that the entity is currently within.
+     *
+     */
+    dimension;
+    /**
+     * @remarks
+     * Unique identifier of the entity. This identifier is intended
+     * to be consistent across loads of a world instance. No
+     * meaning should be inferred from the value and structure of
+     * this unique identifier - do not parse or interpret it. This
+     * property is accessible even if {@link Entity.isValid} is
+     * false.
+     *
+     */
+    id;
+    /**
+     * @remarks
+     * Whether the entity is sneaking - that is, moving more slowly
+     * and more quietly.
+     *
+     */
+    isSneaking;
+    /**
+     * @remarks
+     * Current location of the entity.
+     *
+     */
+    location;
+    /**
+     * @remarks
+     * Identifier of the type of the entity - for example,
+     * 'minecraft:skeleton'. This property is accessible even if
+     * {@link Entity.isValid} is false.
+     *
+     */
+    typeId = "minecraft:player";
+    // Player
+    /**
+     * @remarks
+     * The current overall level for the player, based on their
+     * experience.
+     *
+     */
+    level;
+    /**
+     * @remarks
+     * Name of the player.
+     *
+     */
+    name;
+    /**
+     * @remarks
+     * The overall total set of experience needed to achieve the
+     * next level for a player.
+     *
+     */
+    totalXpNeededForNextLevel;
+    /**
+     * @remarks
+     * The current set of experience achieved for the player.
+     *
+     */
+    xpEarnedAtCurrentLevel;
+    /**
+     * @remarks
+     * The current gamemode for the player.
+     *
+     */
+    gameMode;
+    /**
+     * @remarks
+     * Gets the last date and time that this player was witnessed
+     * on this server.
+     * It will return Date of last log-in for this player in the
+     * amount of milliseconds since midnight, January 1, 1970 UTC.
+     *
+     */
+    lastPlayed;
+    /**
+     * @remarks
+     * Returns a scoreboard identity that represents this entity.
+     * Will remain valid when the entity is killed.
+     *
+     */
+    scoreboardIdentity;
+    commandPermissionLevel;
+    /**
+     * @remarks
      * Gets the current spawn point of the player.
      *
      */
@@ -155,15 +246,6 @@ class OfflinePlayer {
         throw new TypeError("Illegal invocation");
     }
     /**
-     * @beta
-     * @remarks
-     * Returns true if this player has operator-level permissions.
-     *
-     */
-    isOp() {
-        throw new TypeError("Illegal invocation");
-    }
-    /**
      * @remarks
      * If the player is online, this will return that player corresponds to.
      *
@@ -172,7 +254,7 @@ class OfflinePlayer {
         throw new TypeError("Illegal invocation");
     }
 }
-const gamemodes = [GameMode.survival, GameMode.creative, GameMode.adventure, GameMode.spectator];
+const gamemodes = [GameMode.Survival, GameMode.Creative, GameMode.Adventure, GameMode.Spectator];
 world.beforeEvents.playerLeave.subscribe(({ player }) => {
     let playerGameMode;
     let playerLocation = {

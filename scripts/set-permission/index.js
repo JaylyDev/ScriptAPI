@@ -1,9 +1,9 @@
-import { Player } from "@minecraft/server";
+import { CommandPermissionLevel, Player } from "@minecraft/server";
 
 /**
  * player becomes op
  * @param {Player} player 
  */
 export function setPermission (player) {
-  player.setOp(true);
+  player.commandPermissionLevel = CommandPermissionLevel.GameDirectors;
 };

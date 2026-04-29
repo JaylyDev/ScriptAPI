@@ -1,5 +1,5 @@
 import { JaylyDB } from "../index";
-import { assert } from "assert/index";
+import { assert } from "../../assert/index.js";
 import { world } from "@minecraft/server";
 
 export function Main () {

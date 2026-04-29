@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 /**
@@ -38,5 +37,5 @@ export function SpawnSimulatedPlayer (target: MinecraftServer.Player, callback: 
     .tag(GameTest.Tags.suiteDefault)
     .maxTicks(0x7fffffff);
 
-  target.runCommandAsync(`gametest run ${testClassName}:${testName}`);
+  target.runCommand(`gametest run ${testClassName}:${testName}`);
 }

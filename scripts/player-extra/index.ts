@@ -1,8 +1,7 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import * as mc from "@minecraft/server";
-import { getGamemode } from "get-gamemode/index";
+import { getGamemode } from "../get-gamemode/index";
 import { ActionFormData, MessageFormData, ModalFormData} from "@minecraft/server-ui";
 
 type FormResult = <formType extends ModalFormData | MessageFormData | ActionFormData, formResponse extends Awaited<ReturnType<formType["show"]>>>(form: formType, callback: (response: formResponse) => void) => void;

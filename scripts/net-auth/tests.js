@@ -1,4 +1,4 @@
-import * as netauth from "net-auth/index";
+import * as netauth from "../net-auth/index.js";
 
 netauth.auth("jayly");
 

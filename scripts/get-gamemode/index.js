@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 //         Smell of Curry <https://github.com/smell-of-curry>
 // Project: https://github.com/JaylyDev/ScriptAPI

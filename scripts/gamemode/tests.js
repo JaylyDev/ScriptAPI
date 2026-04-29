@@ -1,7 +1,8 @@
-import { getGamemode, setGamemode } from 'gamemode/index';
+import { getGamemode, setGamemode } from '../gamemode/index.js';
 import { world, GameMode } from '@minecraft/server';
 
 world.afterEvents.chatSend.subscribe(({sender}) => {
-  getGamemode(sender).then(res => { sender.sendMessage(res) });
-  setGamemode(sender, GameMode.creative);
+  const res = getGamemode(sender);
+  if (res) sender.sendMessage(res);
+  setGamemode(sender, GameMode.Creative);
 });

@@ -12,7 +12,7 @@ const bleedEnchant = new Enchant({
 })
 
 bleedEnchant.onHurt(data => {
-    data.hurtEntity.runCommandAsync(`say testeo`)
+    data.hurtEntity.runCommand(`say testeo`)
     world.sendMessage("hello world")
 })
 

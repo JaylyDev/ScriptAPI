@@ -1,11 +1,11 @@
 import { setTimeout, setImmediate, setInterval, clearImmediate, clearInterval, clearTimeout } from "./index.js";
 import { world } from "@minecraft/server";
 function stdout(...data) {
-    return world.getDimension("overworld").runCommandAsync(`say §r` + data.join(" "));
+    return world.getDimension("overworld").runCommand(`say §r` + data.join(" "));
 }
 ;
 function stderr(...data) {
-    return world.getDimension("overworld").runCommandAsync(`say §c` + data.join(" "));
+    return world.getDimension("overworld").runCommand(`say §c` + data.join(" "));
 }
 ;
 // timeout test

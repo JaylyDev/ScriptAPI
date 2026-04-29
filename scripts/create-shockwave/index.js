@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: GlitchyTurtle32 <https://github.com/GlitchyTurtle>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
@@ -76,7 +75,7 @@ export function createShockwave(player, spawnPos, strength, range, damageFactor 
         // Apply damage and knockback
         entity.applyDamage(damageFactor * Math.min(kbIntensity/2, 4));
         try {
-            entity.applyKnockback(kbVector.x, kbVector.z, kbIntensity/4, kbIntensity/20);
+            entity.applyKnockback(kbVector, kbIntensity/20);
         } catch (error) {
             entity.applyImpulse(calculateKnockbackVector(entity.location, spawnPos, 2));
         }

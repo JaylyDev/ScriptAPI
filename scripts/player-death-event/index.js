@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
 /**
@@ -6,7 +5,7 @@
  * @author JaylyMC
  */
 import { EntityHealthComponent, world, Player, system } from "@minecraft/server";
-import { deprecate } from "deprecate/index";
+import { deprecate } from "../deprecate/index.js";
 
 /**
  * Contains information related to an player death.

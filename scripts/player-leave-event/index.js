@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { world, system } from "@minecraft/server";
@@ -46,6 +45,75 @@ function comparePlayer(playerA, playerB) {
  * Player class from "@minecraft/server" module.
  */
 class Player {
+    '__PlayerBlockFromViewDirection';
+    '__PlayerComponents';
+    '__PlayerEntitiesFromViewDirection';
+    '__PlayerTags';
+    /**
+     * Dimension that the entity is currently within.
+     * @throws This property can throw when used.
+     */
+    'dimension';
+    /**
+     * Location of the center of the head component of the player.
+     * @throws This property can throw when used.
+     */
+    'headLocation';
+    /**
+     * Identifier for the player.
+     * @throws This property can throw when used.
+     */
+    'id';
+    /**
+     * True if the player is currently using a sneaking movement.
+     */
+    'isSneaking';
+    /**
+     * Current location of the player.
+     * @throws This property can throw when used.
+     */
+    'location';
+    /**
+     * Name of the player.
+     * @throws This property can throw when used.
+     */
+    'name';
+    /**
+     * Optional name tag of the player.
+     */
+    'nameTag';
+    /**
+     * Main rotation of the entity.
+     * @throws This property can throw when used.
+     */
+    'rotation';
+    /**
+     * Returns a scoreboard identity that represents this entity.
+     * @throws This property can throw when used.
+     */
+    'scoreboard';
+    /**
+     * Manages the selected slot in the player's hotbar.
+     */
+    'selectedSlotIndex';
+    /**
+     * Retrieves or sets an entity that is used as the target of
+     * AI-related behaviors, like attacking. For players, which
+     * don't use any AI semantics, this property does not do
+     * anything.
+     */
+    'target';
+    /**
+     * Current speed of the player across X, Y, and Z dimensions.
+     * @throws This property can throw when used.
+     */
+    'velocity';
+    /**
+     * Vector of the current view of the player.
+     * @throws This property can throw when used.
+     */
+    'viewDirection';
+    typeId;
     /**
      * @remarks
      * Gets the first block that intersects with the vector of the
@@ -183,6 +251,7 @@ class Player {
  * world.
  */
 export class PlayerLeaveEvent {
+    player;
     constructor(player) {
         this.player = player;
     }

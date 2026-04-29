@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: JaylyMC <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { http as __http, HttpHeader, HttpRequest, HttpRequestMethod, HttpResponse, HttpClient as __HttpClient } from "@minecraft/server-net";

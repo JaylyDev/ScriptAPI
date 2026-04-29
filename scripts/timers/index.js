@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/GametestDB/
 /**
@@ -19,37 +18,45 @@
  * the set Timeout or Interval object.
  */
 class Timer {
+    _idleTimeout;
+    _idleStart;
+    _onTimeout;
+    _repeat;
+    _destroyed;
+    #args;
+    async #run() {
+        if (this._repeat === true) {
+            while (true) {
+                if (await this._destroyed === true)
+                    return;
+                const executionTime = this._idleStart + this._idleTimeout;
+                if (new Date().getTime() >= executionTime) {
+                    this._onTimeout(...this.#args);
+                    this._idleStart = this._idleStart = new Date().getTime();
+                }
+                ;
+            }
+            ;
+        }
+        else {
+            const executionTime = this._idleStart + this._idleTimeout;
+            while (new Date().getTime() < executionTime) {
+                if (await this._destroyed === true)
+                    return;
+            }
+            ;
+            this._onTimeout(...this.#args);
+        }
+        ;
+    }
     constructor(idleTimeout, idleStart, onTimeout, repeat, destroyed, ...args) {
         this._idleTimeout = idleTimeout;
         this._idleStart = idleStart;
         this._onTimeout = onTimeout;
         this._repeat = repeat;
         this._destroyed = destroyed;
-        (async () => {
-            if (repeat === true) {
-                while (true) {
-                    if (await this._destroyed === true)
-                        return;
-                    const executionTime = idleStart + idleTimeout;
-                    if (new Date().getTime() >= executionTime) {
-                        this._onTimeout(...args);
-                        this._idleStart = idleStart = new Date().getTime();
-                    }
-                    ;
-                }
-                ;
-            }
-            else {
-                const executionTime = idleStart + idleTimeout;
-                while (new Date().getTime() < executionTime) {
-                    if (await this._destroyed === true)
-                        return;
-                }
-                ;
-                this._onTimeout(...args);
-            }
-            ;
-        })();
+        this.#args = args;
+        this.#run();
     }
     ;
 }
@@ -57,11 +64,6 @@ class Timer {
 class Timeout extends Timer {
     constructor(idleTimeout, idleStart, onTimeout, repeat, destroyed, ...args) {
         super(idleTimeout, idleStart, onTimeout, repeat, destroyed, ...args);
-        this._idleTimeout = idleTimeout;
-        this._idleStart = idleStart;
-        this._onTimeout = onTimeout;
-        this._repeat = repeat;
-        this._destroyed = destroyed;
     }
     ;
 }
@@ -71,15 +73,18 @@ class Timeout extends Timer {
  * the set Immediate object.
  */
 class Immediate {
+    _onImmediate;
+    _argv;
+    _destroyed = false;
+    async #run() {
+        if (await this._destroyed === true)
+            return;
+        await this._onImmediate(...this._argv);
+    }
     constructor(onImmediate, ...args) {
-        this._destroyed = false;
         this._onImmediate = onImmediate;
         this._argv = args;
-        (async () => {
-            if (await this._destroyed === true)
-                return;
-            await this._onImmediate(...args);
-        })();
+        this.#run();
     }
     ;
 }

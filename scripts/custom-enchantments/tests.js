@@ -7,7 +7,7 @@ const bleedEnchant = new Enchant({
 })
 
 bleedEnchant.onHurt(data => {
-    data.hurtEntity.runCommandAsync(`damage @s 2`)
+    data.hurtEntity.runCommand(`damage @s 2`)
 })
 
 world.beforeEvents.chatSend.subscribe(data => {

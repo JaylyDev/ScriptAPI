@@ -1,9 +1,8 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { Player } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
-import { forceShow } from "force-show/index";
+import { forceShow } from "../force-show/index.js";
 
 
 /**

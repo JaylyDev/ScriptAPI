@@ -1,7 +1,6 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { Dimension, DimensionLocation, GameMode, Player, ScoreboardIdentityType, Vector3, world } from "@minecraft/server";
+import { CommandPermissionLevel, Dimension, DimensionLocation, GameMode, Player, ScoreboardIdentityType, Vector3, world } from "@minecraft/server";
 
 /**
  * @internal
@@ -23,7 +22,7 @@ interface IOfflinePlayer {
     xpEarnedAtCurrentLevel: number;
     spawnPoint: DimensionLocation | undefined;
     totalXp: number;
-    isOp: boolean;
+    commandPermissionLevel: CommandPermissionLevel;
     gameMode: GameMode;
     lastPlayed: number;
 }
@@ -113,9 +112,9 @@ class OfflinePlayer {
         this.gameMode = data.gameMode;
         this.lastPlayed = data.lastPlayed;
         this.scoreboardIdentity = ScoreboardOfflineIdentity.createIdentity(data.scoreboard, data);
+        this.commandPermissionLevel = data.commandPermissionLevel;
         this.getSpawnPoint = () => data.spawnPoint;
         this.getTotalXp = () => data.totalXp;
-        this.isOp = () => data.isOp;
         this.getPlayer = () => world.getAllPlayers().find((player) => player.id === this.id);
     }
     /**
@@ -177,7 +176,7 @@ class OfflinePlayer {
             lastPlayed: Date.now(),
             spawnPoint: player.getSpawnPoint(),
             totalXp: player.getTotalXp(),
-            isOp: player.isOp(),
+            commandPermissionLevel: player.commandPermissionLevel,
         };
         
         const playerScoreboard = player.scoreboardIdentity;
@@ -280,6 +279,7 @@ class OfflinePlayer {
      *
      */
     readonly scoreboardIdentity?: ScoreboardOfflineIdentity;
+    commandPermissionLevel: CommandPermissionLevel;
     /**
      * @remarks
      * Gets the current spawn point of the player.
@@ -297,15 +297,6 @@ class OfflinePlayer {
         throw new TypeError("Illegal invocation");
     }
     /**
-     * @beta
-     * @remarks
-     * Returns true if this player has operator-level permissions.
-     *
-     */
-    isOp(): boolean {
-        throw new TypeError("Illegal invocation");
-    }
-    /**
      * @remarks
      * If the player is online, this will return that player corresponds to.
      * 
@@ -315,7 +306,7 @@ class OfflinePlayer {
     }
 }
 
-const gamemodes: GameMode[] = [GameMode.survival, GameMode.creative, GameMode.adventure, GameMode.spectator];
+const gamemodes: GameMode[] = [GameMode.Survival, GameMode.Creative, GameMode.Adventure, GameMode.Spectator];
 
 world.beforeEvents.playerLeave.subscribe(({ player }) => {
     let playerGameMode: GameMode | undefined;

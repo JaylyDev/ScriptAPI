@@ -1,12 +1,15 @@
-// Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iBlqzed>
 // Project: https://github.com/JaylyDev/ScriptAPI
+// @ts-nocheck
 import { world, system } from "@minecraft/server";
 export class Database {
+    name;
+    defaultValue;
+    static databases = new Array();
+    cache = Database.getAll(this.name, this.defaultValue);
     constructor(name, defaultValue = "{}") {
         this.name = name;
         this.defaultValue = defaultValue;
-        this.cache = Database.getAll(this.name, this.defaultValue);
         Database.databases.push(this);
     }
     /**
@@ -106,7 +109,6 @@ export class Database {
         return JSON.parse(stringified);
     }
 }
-Database.databases = new Array();
 system.runInterval(() => {
     //@ts-ignore
     Database.save();

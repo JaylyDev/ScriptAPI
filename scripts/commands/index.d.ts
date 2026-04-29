@@ -64,7 +64,7 @@ export declare class Commands {
      * @example example1.js
      * ```typescript
      *          Commands.register("!", "test", function (arg) {
-     *              arg.player.runCommandAsync(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
+     *              arg.player.runCommand(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
      *          });
      * ```
      */

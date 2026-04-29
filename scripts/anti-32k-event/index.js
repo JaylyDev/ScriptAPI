@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: JaylyMC <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { EntityInventoryComponent, ItemEnchantableComponent, system, TicksPerSecond, world } from '@minecraft/server';
@@ -6,6 +5,11 @@ import { EntityInventoryComponent, ItemEnchantableComponent, system, TicksPerSec
  * Represents an event indicating incompatible enchantments on an item.
  */
 class IncompatibleEnchantmentAlertEvent {
+    exceedMaxLevel;
+    incompatibleEnchantmentType;
+    enchantment;
+    item;
+    source;
     /**
      * Creates a new instance of IncompatibleEnchantmentAlertEvent.
      * @param {boolean} exceedMaxLevel - Indicates whether the enchantment exceeds its maximum level.

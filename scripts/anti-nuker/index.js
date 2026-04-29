@@ -1,9 +1,8 @@
-// Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iBlqzed>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
 import { system, world } from "@minecraft/server"
-import { TickEventSignal } from "tick-event/index"
+import { TickEventSignal } from "../tick-event/index.js";
 
 const log = new Map()
 const blockLog = new Map()
@@ -31,7 +30,7 @@ system.runInterval(() => {
   [...log.keys()]?.forEach(pN => {
     if (log.get(pN).amount > 5) {
       const player = [...world.getPlayers()].find(pL => pL.name === pN)
-      player.runCommandAsync(`say NUKER`)
+      player.runCommand(`say NUKER`)
     }
     log.set(pN, Object.assign(log.get(pN), { amount: 0 }))
   })

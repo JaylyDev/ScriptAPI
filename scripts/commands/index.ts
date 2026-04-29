@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
@@ -62,7 +61,7 @@ export class Commands {
    * @throws This function can throw errors.
    */
   static async runAsync(commandString: string, target: Dimension | Entity = world.getDimension("overworld")): Promise<CommandResult> {
-    if (target instanceof Dimension || Entity) return await target.runCommandAsync(commandString);
+    if (target instanceof Dimension || Entity) return await target.runCommand(commandString);
     else throw TypeError("Native type conversion failed");
   };
 
@@ -81,7 +80,7 @@ export class Commands {
    * @example example1.js
    * ```typescript
    *          Commands.register("!", "test", function (arg) {
-   *              arg.player.runCommandAsync(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
+   *              arg.player.runCommand(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
    *          });
    * ```
    */

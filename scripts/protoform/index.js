@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: GamerFile <https://github.com/GamerFile>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { ActionFormData, ModalFormData, MessageFormData} from "@minecraft/server-ui";

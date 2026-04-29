@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iblqzed>
 // Project: https://github.com/JaylyDev/ScriptAPI
 

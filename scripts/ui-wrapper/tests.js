@@ -3,13 +3,13 @@ import { ModalFormBuilder } from "./index";
 // Create a new instance of ModalFormBuilder
 let form = new ModalFormBuilder();
 // Add a dropdown menu to the form
-form.dropdown("Choose an option", ["Option 1", "Option 2", "Option 3"], 0);
+form.dropdown("Choose an option", ["Option 1", "Option 2", "Option 3"], { defaultValueIndex: 0 });
 // Add a toggle switch to the form
-form.toggle("Toggle option", true);
+form.toggle("Toggle option", { defaultValue: true });
 // Add a slider to the form
-form.slider("Slider option", 0, 10, 1, 5);
+form.slider("Slider option", 0, 10, { defaultValue: 5 });
 // Add a text field to the form
-form.textField("Text field option", "Type something here...", "Default value");
+form.textField("Text field option", "Type something here...", { defaultValue: "Default value" });
 // Set the title of the form using a string
 form.title("My Modal Form");
 // Show the form to the player and wait for a response
@@ -22,9 +22,9 @@ async function showModalForm(player) {
     // Clear the form content
     form.content = [];
     // Add a dropdown menu to the form
-    form.dropdown("Choose a different option", ["Option 4", "Option 5", "Option 6"], 1);
+    form.dropdown("Choose a different option", ["Option 4", "Option 5", "Option 6"], { defaultValueIndex: 1 });
     // Add a toggle switch to the form
-    form.toggle("Another toggle option", false);
+    form.toggle("Another toggle option", { defaultValue: false });
     // Set the title of the form using a RawMessage
     form.title("My Second Modal Form");
     // Show the second form to the same player and wait for a response

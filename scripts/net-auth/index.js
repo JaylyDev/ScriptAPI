@@ -1,12 +1,11 @@
-// Script example for ScriptAPI
 // Author: JaylyMC <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { http as __http, HttpHeader, HttpRequest, HttpRequestMethod } from "@minecraft/server-net";
 class authoration {
+    static authorized = false;
+    static url = "http://localhost:14589";
+    static PERMISSION_DENIED = "Permission Denied: This request is not authorized.";
 }
-authoration.authorized = false;
-authoration.url = "http://localhost:14589";
-authoration.PERMISSION_DENIED = "Permission Denied: This request is not authorized.";
 ;
 export class HttpClient {
     /**

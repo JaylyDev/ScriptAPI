@@ -1,5 +1,5 @@
 import { GameMode, world } from "@minecraft/server";
-import { getEntities, getPlayers } from "dimension-entities/index";
+import { getEntities, getPlayers } from "../dimension-entities/index.js";
 import { MinecraftEffectTypes } from "@minecraft/vanilla-data";
 
 const overworldEntities = getEntities(world.getDimension('overworld'));
@@ -9,7 +9,7 @@ for (const entity of overworldEntities) {
 };
 
 const netherCreativePlayers = getPlayers(world.getDimension('nether'), {
-  'gameMode': GameMode.creative
+  'gameMode': GameMode.Creative
 });
 
 for (const player of netherCreativePlayers) {

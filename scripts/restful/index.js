@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { world } from '@minecraft/server';
@@ -11,6 +10,8 @@ export class RESTError extends Error {
 ;
 globalThis.KEY = 'jayly-restful';
 export class Table {
+    route;
+    data;
     /**
      * @internal
      */
@@ -35,6 +36,8 @@ export class Table {
 }
 ;
 export class Member {
+    key;
+    value;
     constructor(key, value) {
         this.key = key;
         this.value = value;
@@ -75,6 +78,7 @@ export var RequestMethod;
 })(RequestMethod || (RequestMethod = {}));
 ;
 export class REST {
+    scoreboard;
     constructor(id) {
         const regex = /^[a-z]+$/;
         if (!regex.test(id))

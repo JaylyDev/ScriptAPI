@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 //         Usernam#2058 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI

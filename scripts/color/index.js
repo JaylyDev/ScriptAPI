@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: xKingDark <https://github.com/DarkGamerYT>
 // Project: https://github.com/DarkGamerYT/Bedrock-Editor-Extension
 export class Color {

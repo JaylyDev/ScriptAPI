@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jacob Rus <https://github.com/jrus>
 // Project: https://github.com/JaylyDev/ScriptAPI
 //          https://github.com/jrus/random-js

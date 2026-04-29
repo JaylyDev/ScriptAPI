@@ -1,7 +1,7 @@
-// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { MinecraftDimensionTypes, system, world } from "@minecraft/server";
+import { system, world } from "@minecraft/server";
+import { MinecraftDimensionTypes } from "@minecraft/vanilla-data";
 
 /**
  * @param {string} taskName
@@ -19,7 +19,7 @@ export function task (taskName, commands, loop = false) {
     try {
       for (const command of commands) {
         line++;
-        world.getDimension(MinecraftDimensionTypes.overworld).runCommand(command);
+        world.getDimension(MinecraftDimensionTypes.Overworld).runCommand(command);
       };
       if (loop) id = system.runInterval(runCommands);
     } catch (reason) {

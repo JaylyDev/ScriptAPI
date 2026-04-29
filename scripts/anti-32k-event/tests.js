@@ -1,4 +1,4 @@
-import { incompatibleEnchantment } from "anti-32k-event/index";
+import { incompatibleEnchantment } from "../anti-32k-event/index.js";
 
 incompatibleEnchantment.subscribe((event) => {
   event.enchantment;

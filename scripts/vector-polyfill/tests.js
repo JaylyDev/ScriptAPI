@@ -1,6 +1,6 @@
 'use strict';
-import { Vector } from "vector-polyfill/index";
-import 'json-stringify/index';
+import { Vector } from "../vector-polyfill/index.js";
+import '../json-stringify/index';
 
 function polyfill() {
   const startTime = Date.now();

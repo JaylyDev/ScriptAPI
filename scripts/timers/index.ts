@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/GametestDB/
 /**
@@ -24,6 +23,28 @@ class Timer {
     _onTimeout: (...args: any) => void;
     _repeat: boolean;
     _destroyed: boolean;
+    #args: any[];
+
+    async #run(): Promise<void> {
+        if (this._repeat === true) {
+            while (true) {
+                if (await this._destroyed === true) return;
+
+                const executionTime = this._idleStart + this._idleTimeout;
+                if (new Date().getTime() >= executionTime) {
+                    this._onTimeout(...this.#args);
+                    this._idleStart = this._idleStart = new Date().getTime();
+                };
+            };
+        } else {
+            const executionTime = this._idleStart + this._idleTimeout;
+            while (new Date().getTime() < executionTime) {
+                if (await this._destroyed === true) return;
+            };
+
+            this._onTimeout(...this.#args);
+        };
+    }
 
     constructor(idleTimeout: number, idleStart: number, onTimeout: (...args: any) => void, repeat: boolean, destroyed: boolean, ...args: any) {
         this._idleTimeout = idleTimeout;
@@ -31,45 +52,15 @@ class Timer {
         this._onTimeout = onTimeout;
         this._repeat = repeat;
         this._destroyed = destroyed;
+        this.#args = args;
 
-        (async (): Promise<void> => {
-            if (repeat === true) {     
-                while (true) {
-                    if (await this._destroyed === true) return;
-    
-                    const executionTime = idleStart + idleTimeout;
-                    if (new Date().getTime() >= executionTime) {
-                        this._onTimeout(...args);
-                        this._idleStart = idleStart = new Date().getTime();
-                    };
-                };
-            } else {
-                const executionTime = idleStart + idleTimeout;
-                while (new Date().getTime() < executionTime) {
-                    if (await this._destroyed === true) return;
-                };
-                
-                this._onTimeout(...args);
-            };
-        })();
+        this.#run();
     };
 };
 
 class Timeout extends Timer {
-    _idleTimeout: number;
-    _idleStart: number;
-    _onTimeout: (...args: any) => void;
-    _repeat: boolean;
-    _destroyed: boolean;
-
     constructor(idleTimeout: number, idleStart: number, onTimeout: (...args: any) => void, repeat: boolean, destroyed: boolean, ...args: any) {
         super(idleTimeout, idleStart, onTimeout, repeat, destroyed, ...args);
-        
-        this._idleTimeout = idleTimeout;
-        this._idleStart = idleStart;
-        this._onTimeout = onTimeout;
-        this._repeat = repeat;
-        this._destroyed = destroyed;
     };
 };
 
@@ -81,19 +72,20 @@ class Immediate {
     _onImmediate: (...args: any) => void;
     _argv: any[];
     _destroyed: boolean = false;
+    async #run(): Promise<void> {
+        if (await this._destroyed === true) return;
+        await this._onImmediate(...this._argv);
+    }
 
     constructor(onImmediate: (...args: any) => void, ...args: any) {
         this._onImmediate = onImmediate;
         this._argv = args;
 
-        (async (): Promise<void> => {
-            if (await this._destroyed === true) return;
-            await this._onImmediate(...args);
-        })();
+        this.#run();
     };
 };
 
-function Validation (parameter: any, instance: any) {
+function Validation(parameter: any, instance: any) {
     if (parameter instanceof instance) return;
     throw TypeError("Native type conversion failed");
 };
@@ -113,7 +105,7 @@ function Validation (parameter: any, instance: any) {
  * ```
  */
 // @ts-ignore
-function setTimeout (callback: (...args: any) => void, ms?: number, ...args: any): Timeout {
+function setTimeout(callback: (...args: any) => void, ms?: number, ...args: any): Timeout {
     Validation(callback, Function);
     const idleTime: number = typeof ms === "number" ? ms : 1;
     const startTime: number = new Date().getTime();
@@ -128,10 +120,10 @@ function setTimeout (callback: (...args: any) => void, ms?: number, ...args: any
  * @param timeoutId Timeout object returned by `setTimeout()`
  */
 // @ts-ignore
-function clearTimeout (timeoutId: Timeout | undefined): void {
+function clearTimeout(timeoutId: Timeout | undefined): void {
     if (!(timeoutId instanceof Timeout)) return;
     timeoutId._destroyed = true;
-    timeoutId._onTimeout = () => {};
+    timeoutId._onTimeout = () => { };
 };
 
 /**
@@ -149,7 +141,7 @@ function clearTimeout (timeoutId: Timeout | undefined): void {
  * ```
  */
 // @ts-ignore
-function setInterval (callback: (...args: any) => void, ms?: number, ...args: any): Timer {
+function setInterval(callback: (...args: any) => void, ms?: number, ...args: any): Timer {
     Validation(callback, Function);
     const idleTime: number = typeof ms === "number" ? ms : 1;
     const startTime: number = new Date().getTime();
@@ -164,10 +156,10 @@ function setInterval (callback: (...args: any) => void, ms?: number, ...args: an
  * @param intervalId Interval object returned by `setInterval()`
  */
 // @ts-ignore
-function clearInterval (intervalId: Timer | undefined): void {
+function clearInterval(intervalId: Timer | undefined): void {
     if (!(intervalId instanceof Timer)) return;
     intervalId._destroyed = true;
-    intervalId._onTimeout = () => {};
+    intervalId._onTimeout = () => { };
 };
 
 /** 
@@ -186,7 +178,7 @@ function clearInterval (intervalId: Timer | undefined): void {
  * ```
  */
 // @ts-ignore
-function setImmediate (callback: (args: void) => void, ...args: any): Immediate {
+function setImmediate(callback: (args: void) => void, ...args: any): Immediate {
     Validation(callback, Function);
     // @ts-ignore
     return new Immediate(callback, ...args);
@@ -198,10 +190,10 @@ function setImmediate (callback: (args: void) => void, ...args: any): Immediate 
  * @param immediateId Immediate object returned by `setImmediate()`
  */
 // @ts-ignore
-function clearImmediate (immediateId: Immediate | undefined): void {
+function clearImmediate(immediateId: Immediate | undefined): void {
     if (!(immediateId instanceof Immediate)) return;
     immediateId._destroyed = true;
-    immediateId._onImmediate = () => {};
+    immediateId._onImmediate = () => { };
 };
 
 /**

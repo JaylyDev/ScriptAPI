@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Muhammad Ragib Hasin <https://github.com/RagibHasin>
 // Project: https://github.com/andyearnshaw/Intl.js
 

@@ -16,11 +16,9 @@ Contributing infomation. This info changes because Script API is currently in ac
 In the main file, you must input basic credentials for the scripts with the right format. For example, here are the first few lines of script example:
 
 ```js
-// Script example for ScriptAPI
 // Author: Alice <https://github.com/alice>
 //         Bob <https://github.com/bob>
 //         Steve <https://steve.com/>
-// Project: https://github.com/JaylyDev/ScriptAPI
 ```
 
 In order for the pull request to be merged, the scripts must pass TypeScript Compiling process for all JavaScript/TypeScript files.

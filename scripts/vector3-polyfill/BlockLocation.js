@@ -6,6 +6,18 @@
  */
 export class BlockLocation {
     /**
+     * The X coordinate.
+     */
+    x;
+    /**
+     * The integer-based Y position.
+     */
+    y;
+    /**
+     * The integer-based Z position.
+     */
+    z;
+    /**
      * @remarks
      * Creates a new instance of an abstract block location.
      * @param x

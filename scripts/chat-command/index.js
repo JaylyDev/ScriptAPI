@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: 𝖘𝖆𝖓 𝕵𝖚𝖌𝖘#9251 <Bedrock Add-Ons>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
@@ -9,6 +8,6 @@ let prefix = "!";
 Minecraft.world.beforeEvents.chatSend.subscribe((data) => {
   if (data.message.toLowerCase().startsWith(`${prefix}help`)) {
     data.cancel = true;
-    data.sender.runCommandAsync(`tellraw @s {"rawtext":[{"text":"hello"}]}`);
+    data.sender.runCommand(`tellraw @s {"rawtext":[{"text":"hello"}]}`);
   }
 });

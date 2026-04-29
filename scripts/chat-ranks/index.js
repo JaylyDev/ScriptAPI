@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Smell of curry <https://github.com/smell-of-curry>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { world } from "@minecraft/server";

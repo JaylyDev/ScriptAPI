@@ -1,7 +1,5 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-var _a;
 /*!
  * Copyright (c) Jayly. All rights reserved.
  *
@@ -102,6 +100,16 @@ const DisplayName = {
  * A simple database for storing data in a Minecraft world, using scoreboard.
  */
 class JaylyDB {
+    /** @internal */
+    objective;
+    /** @internal */
+    encrypted;
+    /** @internal */
+    localState = new Map();
+    /** @internal */
+    salt;
+    /** @internal */
+    SYNC_OK = true;
     /**
      * Sync between objective and local state
      * @internal
@@ -127,11 +135,6 @@ class JaylyDB {
      * @param encrypted whether this database is encrypted or not, note that encryption state cannot be changed after creation
      */
     constructor(id, encrypted = false) {
-        /** @internal */
-        this.localState = new Map();
-        /** @internal */
-        this.SYNC_OK = true;
-        this[_a] = JaylyDB.name;
         this.objective = world.scoreboard.getObjective("jaylydb:" + id) ?? world.scoreboard.addObjective("jaylydb:" + id, uuid());
         this.encrypted = encrypted;
         this.salt = this.encrypted ? this.objective.displayName : undefined;
@@ -257,7 +260,7 @@ class JaylyDB {
     [Symbol.iterator]() {
         return this.entries();
     }
+    [Symbol.toStringTag] = JaylyDB.name;
 }
-_a = Symbol.toStringTag;
 ;
 export { JaylyDB };

@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Nperma <https://github.com/nperma>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
@@ -18,6 +17,7 @@ async function FORCE_OPEN(player, form) {
 /** @param {Player} player @returns {number} */
 function gM(player) {
   const ob = scb.getObjective('money') ? scb.getObjective('money') : scb.addObjective('money');
+  // @ts-ignore
   return ob.getScore(player) || 0;
 }
 
@@ -25,6 +25,7 @@ function gM(player) {
 function aM(player, amount) {
   system.run(() => {
     const ob = scb.getObjective('money') ? scb.getObjective('money') : scb.addObjective('money');
+    // @ts-ignore
     ob.setScore(player, gM(player) + amount);
   });
 }
@@ -35,7 +36,7 @@ export class ShopUI {
   SENDERS;
   STRUCTURE;
 
-  /** @param {string} title - shop title @param {Array} structure - the shop structure @param {Player | Player[]} ShowFormTo - player's will show this shop form */
+  /** @param {string} title - shop title @param {Array<any>} structure - the shop structure @param {Player | Player[] | undefined} ShowFormTo - player's will show this shop form */
   constructor(title = 'Shop - UI', structure = [], ShowFormTo = undefined) {
     if (!Array.isArray(structure)) throw new TypeError('Structure must be an array!');
     this.SENDERS = ShowFormTo;
@@ -67,6 +68,7 @@ export class ShopUI {
     const FORM_SELECTION = await FORCE_OPEN(player, FORM);
     if (FORM_SELECTION.canceled) return;
 
+    // @ts-ignore
     const selected = categories[FORM_SELECTION.selection];
     if (!Array.isArray(selected)) return;
 
@@ -91,9 +93,11 @@ export class ShopUI {
       if (!IDS.call(world).find((/** @type {string} */ id) => id === STOCKED_ID)) SDP.call(world, STOCKED_ID, item_data?.stock || 64);
 
       const currentStock = GDP.call(world, STOCKED_ID);
+      // @ts-ignore
       if (currentStock <= 0) return new MessageFormData().title(categoryName).body(`§cStock is empty, please wait for restock.`).button2('Close').show(player);
       new ModalFormData()
         .title(categoryName)
+        // @ts-ignore
         .slider(`§7${categoryPath.replace(/::/g, '/')}\n§e» Money: §a$${gM(player)}\n§e» Item ID: ${item_data?.item}\n§e» Price per item: §2$${item_data?.price}\n§e» §7Stock: (${currentStock})`, 1, Math.min(item_data?.max, currentStock) || 1, 1)
         .show(player)
         .then((p) => {
@@ -114,7 +118,9 @@ export class ShopUI {
               .show(player);
 
           aM(player, -totalCost);
+          // @ts-ignore
           SDP.call(world, STOCKED_ID, currentStock - amount);
+          // @ts-ignore
           player.getComponent('inventory').container.addItem(new ItemStack(item_data?.item, amount));
           player.sendMessage(`§aSuccessfully bought ${amount}x ${item_data?.item}`);
         });

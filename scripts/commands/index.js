@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { Dimension, Entity, world } from "@minecraft/server";
@@ -8,6 +7,8 @@ import { Dimension, Entity, world } from "@minecraft/server";
  * string array.
  */
 export class Command {
+    __player;
+    argv;
     get player() { return this.__player; }
     get argv0() { return this.argv.next().value; }
     ;
@@ -65,7 +66,7 @@ export class Commands {
      */
     static async runAsync(commandString, target = world.getDimension("overworld")) {
         if (target instanceof Dimension || Entity)
-            return await target.runCommandAsync(commandString);
+            return await target.runCommand(commandString);
         else
             throw TypeError("Native type conversion failed");
     }
@@ -85,7 +86,7 @@ export class Commands {
      * @example example1.js
      * ```typescript
      *          Commands.register("!", "test", function (arg) {
-     *              arg.player.runCommandAsync(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
+     *              arg.player.runCommand(`say ${arg.argv0} ${JSON.stringify([...arg.argv])}`);
      *          });
      * ```
      */

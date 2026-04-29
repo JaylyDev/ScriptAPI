@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { world, Player as MinecraftPlayer, Dimension, Entity, EntityComponent, ScoreboardIdentity, Vector2, Vector3, PlayerSpawnAfterEvent, system, BlockRaycastHit, EntityRaycastHit } from "@minecraft/server";

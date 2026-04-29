@@ -1,7 +1,6 @@
-// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 import { world } from "@minecraft/server";
-import { getGamemode } from "get-gamemode/index";
+import { getGamemode } from "../get-gamemode/index.js";
 
 world.beforeEvents.chatSend.subscribe((event) => {
   if (event.message !== 'gamemode') return;
