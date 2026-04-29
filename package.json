@@ -25,7 +25,7 @@
   "dependencies": {
     "@minecraft/server-admin": "1.0.0-beta.1.21.80-preview.22",
     "@minecraft/server-editor": "0.1.0-beta.1.21.80-preview.22",
-    "@minecraft/server-gametest": "1.0.0-beta.1.21.80-preview.22",
+    "@minecraft/server-gametest": "1.0.0-beta.11940b23",
     "@minecraft/server-net": "1.0.0-beta.1.21.80-preview.22",
     "@minecraft/server-ui": "2.0.0-beta.1.21.80-preview.22"
   },
