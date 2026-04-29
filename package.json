@@ -34,7 +34,7 @@
     "@npm/types": "^2.0.0",
     "@types/node": "^22.14.0",
     "@types/parsimmon": "^1.10.9",
-    "axios": "^1.8.4",
+    "axios": "^1.15.0",
     "parsimmon": "^1.18.1",
     "typescript": "^6.0.3"
   }
