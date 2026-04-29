@@ -36,6 +36,6 @@
     "@types/parsimmon": "^1.10.9",
     "axios": "^1.8.4",
     "parsimmon": "^1.18.1",
-    "typescript": "^5.8.2"
+    "typescript": "^6.0.3"
   }
 }
