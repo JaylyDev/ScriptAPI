@@ -27,7 +27,7 @@
     "@minecraft/server-editor": "0.1.0-beta.1.21.80-preview.22",
     "@minecraft/server-gametest": "1.0.0-beta.1.21.80-preview.22",
     "@minecraft/server-net": "1.0.0-beta.1.21.80-preview.22",
-    "@minecraft/server-ui": "2.0.0-beta.1.21.80-preview.22"
+    "@minecraft/server-ui": "2.0.0"
   },
   "devDependencies": {
     "@minecraft/math": "^2.2.1",
