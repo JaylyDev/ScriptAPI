@@ -10,3 +10,8 @@ updates:
     target-branch: "main"
     schedule:
       interval: monthly
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "main"
+    schedule:
+      interval: weekly
