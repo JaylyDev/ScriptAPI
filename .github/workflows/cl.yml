@@ -23,7 +23,7 @@ jobs:
         run: tsc --build
 
       - name: Format Check
-        run: node ./dist/tools/index.js
+        run: node ./dist/index.js
         env:
           event_name: ${{ github.event_name }}
 
