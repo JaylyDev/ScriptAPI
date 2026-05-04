@@ -1,3 +1,4 @@
+// Author: unknown <https://github.com/unknown>
 // @ts-nocheck
 import { world } from "@minecraft/server";
 const KEY_4NO = "⧉⧉";
