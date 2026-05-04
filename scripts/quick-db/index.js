@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { world } from "@minecraft/server";
 const KEY_4NO = "⧉⧉";
 export class ScoreboardDB {

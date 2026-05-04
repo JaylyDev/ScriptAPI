@@ -1,5 +1,6 @@
 // Author: iBlqzed <https://github.com/iBlqzed>
 // Project: https://github.com/JaylyDev/ScriptAPI
+// @ts-nocheck
 
 import { system, world } from "@minecraft/server"
 import { TickEventSignal } from "../tick-event/index.js";

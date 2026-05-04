@@ -20,6 +20,8 @@ function onTick() {
         /** @type {mc.EntityInventoryComponent} */
         // @ts-ignore
         const inventory = player.getComponent("minecraft:inventory");
+        if (!inventory?.container)
+            continue;
         const { container, inventorySize } = inventory;
         if (container.emptySlotsCount == inventorySize)
             continue;

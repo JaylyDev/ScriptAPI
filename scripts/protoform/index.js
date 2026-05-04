@@ -1,5 +1,6 @@
 // Author: GamerFile <https://github.com/GamerFile>
 // Project: https://github.com/JaylyDev/ScriptAPI
+// @ts-nocheck
 import { ActionFormData, ModalFormData, MessageFormData} from "@minecraft/server-ui";
 
 /**

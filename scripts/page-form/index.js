@@ -21,7 +21,7 @@ import { forceShow } from "../force-show/index.js";
  * @param {number} pageLimit limit the number of buttons can exist in 1 form
  * @param {formData} formData Action form data in JSON form
  * @param {Player} showPlayer Show player with generated form by the function
- * @returns {Promise<number>}
+ * @returns {Promise<number | undefined>} Return the button index that player clicked, if player closed the form it returns undefined
  */
 function FormatActionFormButtons (formData, pageLimit, showPlayer) {
   /**
@@ -75,7 +75,7 @@ function FormatActionFormButtons (formData, pageLimit, showPlayer) {
  * @param {Player} player 
  * @param {number} formIndex
  * @param {number[]} buttonsInForms
- * @returns {Promise<number>}
+ * @returns {Promise<number| undefined>}
  */
 async function ShowPlayerActionForm (formDatas, player, formIndex, buttonsInForms) {
   const response = await forceShow(player, formDatas[formIndex]);
@@ -95,6 +95,7 @@ async function ShowPlayerActionForm (formDatas, player, formIndex, buttonsInForm
   }
   else {
     let { selection } = response;
+    if (!selection) return;
 
     for (let index = 0; index <= (formIndex - 1); index++) {
       selection += buttonsInForms[index];

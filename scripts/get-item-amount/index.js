@@ -12,6 +12,10 @@ import { EntityInventoryComponent, Player } from "@minecraft/server";
  */
 export function checkItemAmount(player, itemId, clearItems = false) {
     const component = player.getComponent("minecraft:inventory");
+    if (!(component instanceof EntityInventoryComponent)) {
+        console.log("Failed to call function checkItemAmount, player inventory component is not instance of EntityInventoryComponent");
+        return 0;
+    }
     const inventory = component.container;
     let itemAmount = 0;
     for (let i = 0; i < 36; i++) {

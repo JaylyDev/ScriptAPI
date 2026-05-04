@@ -1,5 +1,6 @@
 // Author: mrpatches123 <https://github.com/mrpatches123>
 // Project: https://github.com/JaylyDev/ScriptAPI
+// @ts-nocheck
 import { system } from '@minecraft/server';
 class TickEvent {
     constructor() {

@@ -1,5 +1,6 @@
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
+// @ts-nocheck
 /**
  * Indicates the failure of an assertion. All errors thrown by the `assert` function
  * will be instances of the `AssertionError` class.

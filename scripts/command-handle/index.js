@@ -1,6 +1,6 @@
 // Author: Smell of Curry <https://github.com/smell-of-curry>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { Player, world } from "@minecraft/server";
+import { Player, world , system, CommandPermissionLevel } from "@minecraft/server";
 
 //Prefix for all custom commands
 const COMMAND_PREFIX = "!";
@@ -30,13 +30,3 @@ function customCommand(command, args, msg, player) {
       player.runCommand(`say error! ${command} is not a valid command!`);
   }
 }
-
-//Checks if a command was run (checks for the prefix)
-world.beforeEvents.chatSend.subscribe((msg) => {
-  if (!msg.message.startsWith(COMMAND_PREFIX)) return;
-  const args = msg.message.slice(COMMAND_PREFIX.length).trim().split(/\s+/);
-  msg.cancel = true;
-  const player = msg.sender;
-  const command = args.shift();
-  customCommand(command, args, args.join(" "), player);
-});

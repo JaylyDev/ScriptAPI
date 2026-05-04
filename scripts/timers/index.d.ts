@@ -18,28 +18,28 @@
 declare class Timer {
     _idleTimeout: number;
     _idleStart: number;
-    _onTimeout: (...args: any) => void;
+    _onTimeout: (...args: unknown) => void;
     _repeat: boolean;
     _destroyed: boolean;
-    constructor(idleTimeout: number, idleStart: number, onTimeout: (...args: any) => void, repeat: boolean, destroyed: boolean, ...args: any);
+    constructor(idleTimeout: number, idleStart: number, onTimeout: (...args: unknown) => void, repeat: boolean, destroyed: boolean, ...args: unknown);
 }
 declare class Timeout extends Timer {
     _idleTimeout: number;
     _idleStart: number;
-    _onTimeout: (...args: any) => void;
+    _onTimeout: (...args: unknown) => void;
     _repeat: boolean;
     _destroyed: boolean;
-    constructor(idleTimeout: number, idleStart: number, onTimeout: (...args: any) => void, repeat: boolean, destroyed: boolean, ...args: any);
+    constructor(idleTimeout: number, idleStart: number, onTimeout: (...args: unknown) => void, repeat: boolean, destroyed: boolean, ...args: unknown);
 }
 /**
  * Internal timer class that can be used to reference
  * the set Immediate object.
  */
 declare class Immediate {
-    _onImmediate: (...args: any) => void;
-    _argv: any[];
+    _onImmediate: (...args: unknown) => void;
+    _argv: unknown[];
     _destroyed: boolean;
-    constructor(onImmediate: (...args: any) => void, ...args: any);
+    constructor(onImmediate: (...args: unknown) => void, ...args: unknown);
 }
 /**
  * @param callback a function to execute as its first argument
@@ -55,7 +55,7 @@ declare class Immediate {
  * setTimeout(myFunc, 1500, 'funky');
  * ```
  */
-declare function setTimeout(callback: (...args: any) => void, ms?: number, ...args: any): Timeout;
+declare function setTimeout(callback: (...args: unknown) => void, ms?: number, ...args: unknown): Timeout;
 /**
  * By passing said object into the respective clear function,
  * execution of that object will be halted completely.
@@ -76,7 +76,7 @@ declare function clearTimeout(timeoutId: Timeout | undefined): void;
  * setInterval(intervalFunc, 1500);
  * ```
  */
-declare function setInterval(callback: (...args: any) => void, ms?: number, ...args: any): Timer;
+declare function setInterval(callback: (...args: unknown) => void, ms?: number, ...args: unknown): Timer;
 /**
  * By passing said object into the respective clear function,
  * execution of that object will be halted completely.
@@ -98,7 +98,7 @@ declare function clearInterval(intervalId: Timer | undefined): void;
  * console.log('after immediate');
  * ```
  */
-declare function setImmediate(callback: (args: void) => void, ...args: any): Immediate;
+declare function setImmediate(callback: (args: void) => void, ...args: unknown): Immediate;
 /**
  * By passing said object into the respective clear function,
  * execution of that object will be halted completely.

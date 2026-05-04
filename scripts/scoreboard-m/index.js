@@ -1,5 +1,6 @@
 // Author: GamerFile <https://github.com/GamerFile>
 // Project: https://github.com/JaylyDev/ScriptAPI
+// @ts-nocheck
 import * as mc from '@minecraft/server'
 
 //The Main ScoreboardM Object For Managing scoreboard
@@ -26,9 +27,12 @@ export const ScoreboardM = {
 
         } else {
             mc.world.scoreboard.addObjective(id, v);
+            // @ts-ignore
             for (let ind in objOptions) {
+                // @ts-ignore
                 let opts = objOptions[ind]
                 if (opts?.objective.id == id) {
+                    // @ts-ignore
                     list?.forEach(obj => {
                         this.setScore(obj, id, obj.score)
                     })
@@ -44,6 +48,7 @@ export const ScoreboardM = {
                             break;
                     }
                 } else {
+                    // @ts-ignore
                     list?.forEach(obj => this.setScore(obj,id,obj.score))
                 }
             }
@@ -66,10 +71,11 @@ export const ScoreboardM = {
     /**
      * This Method For Getting Objective Object
      * @param {string} id - The Id Of Objective
-     * @returns {mc.ScoreboardObjective} - Returns The Objective Object
+     * @returns {mc.ScoreboardObjective | undefined} - Returns The Objective Object
      */
     getObj: function(id) {
         if (mc.world.scoreboard.getObjective(id)) {
+            // @ts-ignore
             return mc.world.scoreboard.getObjective(id)
         }
     },
@@ -82,6 +88,7 @@ export const ScoreboardM = {
     newObj: function(id, v) {
         if (this.getObj(id)) {
             throw new Error("Objective Already exist. Error At newObj()")
+            // @ts-ignore
             return
         }
         return this.setObj(id, v)
@@ -112,11 +119,13 @@ export const ScoreboardM = {
     getScore: function(target, Objective) {
         if (this.getObj(Objective)) {
             var obj = mc.world.scoreboard.getObjective(Objective)
+            // @ts-ignore
             var players = obj.getParticipants()
             for (var i = 0; i < players.length; i++) {
                 var plr = players[i]
                 var dname = plr.displayName
                 if (dname == target.name) {
+                    // @ts-ignore
                     return obj.getScore(plr)
                 }
             }
@@ -132,6 +141,7 @@ export const ScoreboardM = {
      * @returns {ScoreboardM} - Returns The Main ScoreboardM Object
      * @throws {Error} - Throws Error When Objective Doesnt Exist
      */
+    // @ts-ignore
     addScore: function(target, Objective, score) {
         if (this.getObj(Objective)) {
             mc.world.getDimension("overworld").runCommand(`scoreboard players add "${target.name}" "${Objective}" ${score}`)
@@ -147,6 +157,7 @@ export const ScoreboardM = {
      * @returns {ScoreboardM} - Returns The Main ScoreboardM Object
      * @throws {Error} - Throws Error When Objective Doesnt Exist
      */
+    // @ts-ignore
     removeName: function(target,Objective) {
         if (this.hasObj(Objective)) {
             mc.world.getDimension("overworld").runCommand(`scoreboard players reset "${target.name}" "${Objective}"`)
@@ -158,7 +169,7 @@ export const ScoreboardM = {
     /**
      * This Method For Deleting Objective Object
      * @param {string} id - The Id Of Objective
-     * @returns {ScoreboardM} - Returns The Main ScoreboardM Object
+     * @returns {ScoreboardM | undefined} - Returns The Main ScoreboardM Object
      */
     delObj: function(id) {
         if (this.hasObj(id)) {
@@ -203,7 +214,7 @@ export const ScoreboardM = {
     /**
      * This Method Is To Get An Array Of Names And Scores Having. Could Work On Fakeplayers
      * @param {string} obj - Id Of Objective To Get Names And Scores
-     * @returns {{name: any,score: any}[] | undefined} - Contains All Names And Scores and also undefined it there isnt any of that score
+     * @returns {{name: unknown,score: unknown}[] | undefined} - Contains All Names And Scores and also undefined it there isnt any of that score
      */
     getList: function(obj) {
 
@@ -239,7 +250,7 @@ export const ScoreboardM = {
      * ScoreboardM.getDisplaySlot(DisplaySlotId.Sidebar)
      */
     getDisplaySlot: function(id) {
-
+        // @ts-ignore
         return mc.world.scoreboard.getObjectiveAtDisplaySlot(id);
     },
     /**

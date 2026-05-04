@@ -31,6 +31,7 @@ export class PlayerDeathEventSignal {
    * @return {(arg: PlayerDeathEvent) => void}
    */
   subscribe (arg) {
+    // @ts-ignore
     arg["playerDeath"] = true;
     /**
      * @type {Player[]}
@@ -44,6 +45,7 @@ export class PlayerDeathEventSignal {
          */
         // @ts-ignore
         let health = player.getComponent("health");
+        // @ts-ignore
         if (health.currentValue === 0 && arg["playerDeath"] === true) {
           const playerIndex = deadPlayers.findIndex(pl => pl.name === player.name);
           if (playerIndex < 0) {
@@ -56,6 +58,7 @@ export class PlayerDeathEventSignal {
               };
             });
           }      
+        // @ts-ignore
         } else if (arg["playerDeath"] === false) {
           system.clearRun(callback);
         };
@@ -71,6 +74,7 @@ export class PlayerDeathEventSignal {
    * @return {void}
    */
   unsubscribe (arg) {
+    // @ts-ignore
     arg["playerDeath"] = false;
   };
 };

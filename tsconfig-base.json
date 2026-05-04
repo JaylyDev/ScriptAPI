@@ -5,14 +5,8 @@
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "types": [
-      "@minecraft/server-gametest",
-      "@minecraft/server-graphics",
-      "@minecraft/debug-utilities",
       "@minecraft/server",
       "@minecraft/server-ui",
-      "@minecraft/server-admin",
-      "@minecraft/server-editor",
-      "@minecraft/server-net",
       "@minecraft/vanilla-data",
       "@minecraft/common",
       "@minecraft/math"

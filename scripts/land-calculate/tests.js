@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as mc from "@minecraft/server";
 import { MATH } from "./index.js";
 

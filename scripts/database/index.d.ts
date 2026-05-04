@@ -4,7 +4,7 @@
 export declare class Database<V = any> {
     readonly name: string;
     private readonly defaultValue;
-    static readonly databases: Database<any>[];
+    static readonly databases: Database<unknown>[];
     private cache;
     constructor(name: string, defaultValue?: string);
     /**

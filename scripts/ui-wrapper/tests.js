@@ -1,4 +1,3 @@
-import { world } from "@minecraft/server";
 import { ModalFormBuilder } from "./index";
 // Create a new instance of ModalFormBuilder
 let form = new ModalFormBuilder();
@@ -33,10 +32,3 @@ async function showModalForm(player) {
         return;
     console.log(`Player ${player.name} selected option ${response2.formValues[0]} and toggled option ${response2.formValues[1]}`);
 }
-// Listen for chat messages and show the form to the player who sent a specific message
-world.beforeEvents.chatSend.subscribe(async (event) => {
-    const player = event.sender;
-    if (event.message === "show form") {
-        await showModalForm(player);
-    }
-});
