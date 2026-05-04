@@ -32,6 +32,9 @@ function getTimeOfDay () {
   else if (time >= TimeOfDay.Sunset && time < TimeOfDay.Night) return 'Sunset';
   else if (time >= TimeOfDay.Night && time < TimeOfDay.Midnight) return 'Night';
   else if (time >= TimeOfDay.Midnight && time < TimeOfDay.Sunrise) return 'Midnight';
+  else {
+    throw new Error('Invalid time of day: ' + time);
+  }
 };
 
 export {

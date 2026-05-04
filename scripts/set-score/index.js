@@ -1,6 +1,6 @@
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world, DisplaySlotId } from "@minecraft/server";
+import { world } from "@minecraft/server";
 /**
  * Action to modify entity scoreboard
  */
@@ -11,24 +11,6 @@ var ScoreboardAction;
     ScoreboardAction["set"] = "set";
 })(ScoreboardAction || (ScoreboardAction = {}));
 ;
-/**
- * fetch scoreboard objective display
- * @deprecated Scoreboards Setter APIs Client Sync issue is fixed in 1.20.10
- */
-const updateDisplay = (objective) => {
-    /**
-     * @type {(keyof typeof DisplaySlotId)[]}
-     */
-    const displaySlots = [DisplaySlotId.BelowName, DisplaySlotId.List, DisplaySlotId.Sidebar];
-    for (const displaySlotId of displaySlots) {
-        const displaySlot = world.scoreboard.getObjectiveAtDisplaySlot(DisplaySlotId[displaySlotId]);
-        if (displaySlot?.objective === objective) {
-            world.scoreboard.clearObjectiveAtDisplaySlot(DisplaySlotId.Sidebar);
-            world.scoreboard.setObjectiveAtDisplaySlot(DisplaySlotId.Sidebar, displaySlot);
-        }
-    }
-    ;
-};
 /**
  * Set entity score and fetch scoreboard objective display
  * @param {Entity} entity Entity's scoreboard to change
@@ -41,7 +23,7 @@ function setScore(entity, objectiveId, score, action) {
     const objective = world.scoreboard.getObjective(objectiveId);
     if (!objective)
         throw new ReferenceError('Scoreboard objective does not exist in world.');
-    const previousScore = !!entity.scoreboardIdentity ? objective.getScore(entity.scoreboardIdentity) : 0;
+    const previousScore = !!entity.scoreboardIdentity ? objective.getScore(entity.scoreboardIdentity) || 0 : 0;
     switch (action) {
         case ScoreboardAction.add:
             score += previousScore;
@@ -54,7 +36,7 @@ function setScore(entity, objectiveId, score, action) {
     }
     // If entity doesnt have scoreboard property, run command
     if (!entity.scoreboardIdentity)
-        entity.runCommand('scoreboard players set @s ' + objective + ' ' + score);
+        entity.runCommand('scoreboard players set @s ' + objectiveId + ' ' + score);
     else
         objective.setScore(entity.scoreboardIdentity, score);
 }

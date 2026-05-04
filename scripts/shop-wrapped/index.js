@@ -36,7 +36,7 @@ export class ShopUI {
   SENDERS;
   STRUCTURE;
 
-  /** @param {string} title - shop title @param {Array<any>} structure - the shop structure @param {Player | Player[] | undefined} ShowFormTo - player's will show this shop form */
+  /** @param {string} title - shop title @param {Array<unknown>} structure - the shop structure @param {Player | Player[] | undefined} ShowFormTo - player's will show this shop form */
   constructor(title = 'Shop - UI', structure = [], ShowFormTo = undefined) {
     if (!Array.isArray(structure)) throw new TypeError('Structure must be an array!');
     this.SENDERS = ShowFormTo;
@@ -81,7 +81,7 @@ export class ShopUI {
 
   /**
    * @param {Player} player
-   * @param {any} items
+   * @param {unknown} items
    * @param {string} categoryPath
    * @param {string | import("@minecraft/server").RawMessage} categoryName
    */
@@ -90,6 +90,7 @@ export class ShopUI {
     const item_data = items;
     if (typeof item_data === 'object' && !Array.isArray(item_data)) {
       const STOCKED_ID = `${categoryPath}::${categoryName}`;
+      // @ts-ignore
       if (!IDS.call(world).find((/** @type {string} */ id) => id === STOCKED_ID)) SDP.call(world, STOCKED_ID, item_data?.stock || 64);
 
       const currentStock = GDP.call(world, STOCKED_ID);
@@ -108,6 +109,7 @@ export class ShopUI {
            */
           // @ts-ignore
           const amount = p.formValues[0];
+          // @ts-ignore
           const totalCost = amount * item_data?.price;
 
           if (gM(player) < totalCost)
@@ -122,6 +124,7 @@ export class ShopUI {
           SDP.call(world, STOCKED_ID, currentStock - amount);
           // @ts-ignore
           player.getComponent('inventory').container.addItem(new ItemStack(item_data?.item, amount));
+          // @ts-ignore
           player.sendMessage(`§aSuccessfully bought ${amount}x ${item_data?.item}`);
         });
     }

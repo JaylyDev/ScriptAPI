@@ -1,6 +1,7 @@
 // Author: GlitchyTurtle32 <https://github.com/GlitchyTurtle>
 // Project: https://github.com/JaylyDev/ScriptAPI
-import { world } from "@minecraft/server";
+// @ts-nocheck
+import { world , system, CommandPermissionLevel } from "@minecraft/server";
 
 // How to create emojis? https://wiki.bedrock.dev/concepts/emojis.html
 const replacements = {
@@ -25,4 +26,15 @@ function beforeChat(msg) {
     msg.cancel = true;
 }
 
-world.beforeEvents.chatSend.subscribe(msg => beforeChat(msg));
+system.beforeEvents.startup.subscribe((_event) => {
+  _event.customCommandRegistry.registerCommand({
+    name: 'jayly:chatemojireplacements',
+    description: 'Custom command for chatemojireplacements',
+    permissionLevel: CommandPermissionLevel.Any
+}, (origin) => {
+   const eventData = { sender: origin.sourceEntity, message: origin.sourceEntity?.name || '', cancel: false };
+   if (!eventData.sender) return;
+   const cb = msg => beforeChat(msg);
+   cb(eventData);
+});
+});

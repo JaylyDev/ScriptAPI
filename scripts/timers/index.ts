@@ -178,7 +178,7 @@ function clearInterval(intervalId: Timer | undefined): void {
  * ```
  */
 // @ts-ignore
-function setImmediate(callback: (args: void) => void, ...args: any): Immediate {
+function setImmediate(callback: (...args: any) => void, ...args: any): Immediate {
     Validation(callback, Function);
     // @ts-ignore
     return new Immediate(callback, ...args);

@@ -1,5 +1,6 @@
 // Author: iBlqzed <https://github.com/iBlqzed>
 // Project: https://github.com/JaylyDev/ScriptAPI
+// @ts-nocheck
 const itemTypes = {
   sword: [
       "minecraft:wooden_sword",

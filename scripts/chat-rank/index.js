@@ -2,19 +2,36 @@
 // Author: WavePlayz <Bedrock Add-Ons>
 
 // command: /tag @s add rank:Owner
-import { world } from "@minecraft/server";
+import {
+  world,
+  system,
+  CommandPermissionLevel,
+  Player,
+  CustomCommandParamType,
+} from "@minecraft/server";
 
-world.beforeEvents.chatSend.subscribe((eventData) => {
-  const { message, sender } = eventData;
+system.beforeEvents.startup.subscribe((_event) => {
+  _event.customCommandRegistry.registerCommand(
+    {
+      name: "jayly:chatrank",
+      description: "Custom command for chatrank",
+      mandatoryParameters: [{ name: "message", type: CustomCommandParamType.String }],
+      permissionLevel: CommandPermissionLevel.Any,
+    },
+    (origin, message) => {
+      const { sourceEntity } = origin;
 
-  let rank = sender
-    .getTags()
-    .find((tag) => tag.startsWith("rank:"))
-    ?.split(":")[1];
+      const sender = sourceEntity;
+      if (!(sender && sender instanceof Player)) return;
 
-  if (!rank) return;
+      let rank = sender
+        .getTags()
+        .find((tag) => tag.startsWith("rank:"))
+        ?.split(":")[1];
 
-  eventData.cancel = true;
+      if (!rank) return;
 
-  world.sendMessage(rank + " " + sender.name + ": " + message);
+      world.sendMessage(rank + " " + sender.name + ": " + message);
+    }
+  );
 });

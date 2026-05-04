@@ -7,6 +7,7 @@
 // http://pieroxy.net/blog/pages/lz-string/testing.html
 //
 // LZ-based compression algorithm, version 1.4.5
+// @ts-nocheck
 var LZString = (function() {
 
   // private property

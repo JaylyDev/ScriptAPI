@@ -46,8 +46,9 @@ export function deprecate(fn, msg, id) {
   }
   deprecationMessage += `DeprecationWarning: ${msg}`;
 
-  function deprecated() {
+  const deprecated = () => {
     console.warn(deprecationMessage);
+    // @ts-ignore
     return fn.call(this, arguments);
   }
 

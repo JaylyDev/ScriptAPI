@@ -41,7 +41,7 @@ export const Database = function(name) {
   /**
    * This function gets the value of a Minecraft scoreboard objective.
    * @param {string} objName - The name of the objective.
-   * @returns {string} - The value of the objective, or undefined if it doesn't exist.
+   * @returns {string | undefined} - The value of the objective, or undefined if it doesn't exist.
    */
   this.get = function(objName) {
     let scoreboardObjName = `${name}:${objName}`;

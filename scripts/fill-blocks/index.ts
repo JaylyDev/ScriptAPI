@@ -12,8 +12,7 @@ const MAX_BLOCKS_SINGLE_FILL = 32768;
  * @private
  */
 function* getBlockVolumeIterator (volume: BlockVolume, delta: number): Iterable<BlockVolume> {
-  const box = volume.getBoundingBox();
-  const blockVolume = new BlockVolume(box.min, box.max);
+  const blockVolume = new BlockVolume(volume.getMin(), volume.getMax());
   const span = blockVolume.getSpan();
 
   for (let x = 0; x < span.x; x += delta) {

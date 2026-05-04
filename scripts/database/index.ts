@@ -6,7 +6,7 @@ import { world, system } from "@minecraft/server";
 
 export class Database<V = any> {
 
-    static readonly databases = new Array<Database<any>>()
+    static readonly databases = new Array<Database<unknown>>()
     private cache = Database.getAll(this.name, this.defaultValue)
 
     public constructor(readonly name: string, private readonly defaultValue: string = "{}") {
