@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Smell of curry <https://github.com/smell-of-curry>
 //         JaylyMC <https://github.com/JaylyDev>
 //         Remember M9 <https://github.com/Remember-M9>
@@ -21,6 +20,8 @@ function onTick() {
         /** @type {mc.EntityInventoryComponent} */
         // @ts-ignore
         const inventory = player.getComponent("minecraft:inventory");
+        if (!inventory?.container)
+            continue;
         const { container, inventorySize } = inventory;
         if (container.emptySlotsCount == inventorySize)
             continue;

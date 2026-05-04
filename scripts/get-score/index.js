@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: iBlqzed <https://github.com/iblqzed>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
@@ -8,15 +7,14 @@ import { Player, world } from "@minecraft/server";
  * @param {Player} player or entity on the scoreboard
  * @param {String} objectiveId Objective Identifer to get from
  * @param {Boolean} rNull If the return should be null if its not found or 0.
- * @returns {Number} Score that Was recorded for {Player} on {Objective}
+ * @returns {Number | null} Score that Was recorded for {Player} on {Objective}
  * @example getScore(player, "objective"): number
  */
 export function getScore(player, objectiveId, rNull = false) {
-  try {
-    return world.scoreboard
-      .getObjective(objectiveId)
-      .getScore(player.scoreboardIdentity);
-  } catch (error) {
-    return rNull ? null : 0;
-  }
+  if (!player.scoreboardIdentity) throw new Error("Player does not have a scoreboard identity");
+  const objective = world.scoreboard.getObjective(objectiveId);
+  if (!objective) throw new Error(`Objective with id ${objectiveId} does not exist`);
+  const score = objective.getScore(player.scoreboardIdentity);
+  if (score === undefined) return rNull ? null : 0;
+  return score;
 }

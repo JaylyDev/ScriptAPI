@@ -3,6 +3,18 @@
  */
 export class Vector3 {
     /**
+     * The X coordinate.
+     */
+    x;
+    /**
+     * The Y coordinate.
+     */
+    y;
+    /**
+     * The Z coordinate.
+     */
+    z;
+    /**
      * @remarks
      * Creates a new instance of a vector.
      * @param x

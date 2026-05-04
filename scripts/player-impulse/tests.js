@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Usernam#2058 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { applyImpulse } from "./index";

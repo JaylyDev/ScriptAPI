@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: ConMaster2112 <https://github.com/ConsoleTerm>
 // Project: https://github.com/Con-JS-Development/Con-Database
 //@ts-nocheck
@@ -372,13 +371,13 @@ class NBT{
                 return undefined;
         }
     }
-    /**@param {any} object @param {NBTWriterOptions?} options */
+    /**@param {unknown} object @param {NBTWriterOptions?} options */
     static stringify(object,options){
         let o = new NBTStreamWriter(32e+3,options??new NBTWriterOptions());
         NBT.WriteNBT(object,o);
         return o.toString();
     }
-    /**@param {any} object @param {NBTReaderOptions?} options */
+    /**@param {unknown} object @param {NBTReaderOptions?} options */
     static parse(string,options){
         let stream = NBTStreamReader.fromString(string,null,options??new NBTReaderOptions());
         return NBT.ReadNBT(stream);
@@ -492,7 +491,7 @@ class ScoreboardDatabaseManager extends Map{
     /**@protected @type {Map<string,string|ScoreboardIdentity|Entity>} */
     _source_;
     _onHandleLost_;
-    /**@protected @readonly @type {{stringify:(data: any)=>string,parse:(data: string): any}} */
+    /**@protected @readonly @type {{stringify:(data: unknown)=>string,parse:(data: string): unknown}} */
     get _parser_(){return JSON;}
     get savingMode(){return this._saveMode_;}
     /**@protected */

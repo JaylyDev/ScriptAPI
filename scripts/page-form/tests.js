@@ -1,5 +1,5 @@
 import { Player, world } from "@minecraft/server";
-import FormatActionFormButtons from "page-form/index";
+import FormatActionFormButtons from "../page-form/index.js";
 
 world.afterEvents.itemUse.subscribe(({ source }) => {
   if (source instanceof Player)

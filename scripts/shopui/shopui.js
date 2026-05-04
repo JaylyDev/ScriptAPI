@@ -17,7 +17,7 @@ let shopui = new MinecraftUi.ActionFormData()
   .button("§2Utilitaires§8", "textures/ui/debug_glyph_color.png");
 shopui.show(player).then((res) => {
   if (res.canceled == true)
-    return player.runCommandAsync(
+    return player.runCommand(
       `tellraw ${player.name} {"rawtext": [{"text": "§r§8[§aOcto §eShop§8] §cAchat annulé!§r"}]}`
     );
 

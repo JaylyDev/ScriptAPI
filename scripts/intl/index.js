@@ -1,6 +1,6 @@
-// Script example for ScriptAPI
 // Author: Andy Earnshaw <https://github.com/andyearnshaw/Intl.js>
 // Project: https://github.com/andyearnshaw/Intl.js
+// @ts-nocheck
 
 /******/ var __webpack_modules__ = ({
 

@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { ScoreboardObjective, world } from '@minecraft/server';
@@ -137,6 +136,7 @@ export class REST {
 
         // version increment
         const version = this.scoreboard.getScore(participant);
+        if (typeof version !== 'number') throw new RESTError('Invalid route version.');
         overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
       };
     }
@@ -168,6 +168,7 @@ export class REST {
 
       // version increment
       const version = this.scoreboard.getScore(participant);
+      if (typeof version !== 'number') throw new RESTError('Invalid route version.');
       overworld.runCommand(`scoreboard players set ${JSON.stringify(encrypted)} ${JSON.stringify(this.scoreboard.id)} ${version + 1}`);
       return version + 1;
     }

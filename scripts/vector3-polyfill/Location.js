@@ -8,6 +8,18 @@ import { Vector } from "./Vector";
 */
 export class Location {
     /**
+     * X component of this location.
+     */
+    x;
+    /**
+     * Y component of this location.
+     */
+    y;
+    /**
+     * Z component of this location.
+     */
+    z;
+    /**
      * @remarks
      * Creates a new instance of an abstract location.
      * @param x

@@ -1,9 +1,9 @@
-import { Player } from "@minecraft/server";
+import { CommandPermissionLevel, Player } from "@minecraft/server";
 
 /**
  * returns if player is operator
  * @param {Player} player 
  */
 export function isOperator (player) {
-  return player.isOp();
+  return player.commandPermissionLevel > CommandPermissionLevel.Any;
 };

@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly <https://github.com/JaylyDev>
 //         Worldwidebrine#9037 <Bedrock Add-Ons>
 // Project: https://github.com/JaylyDev/ScriptAPI

@@ -10,6 +10,12 @@ export class ActionFormButton {
   };
 };
 
+export class ActionFormDivider {};
+export class ActionFormHeader { constructor(public text: string | RawMessage) {} };
+export class ActionFormLabel { constructor(public text: string | RawMessage) {} };
+
+export type ActionFormContent = ActionFormButton | ActionFormDivider | ActionFormHeader | ActionFormLabel;
+
 /**
  * Builds a simple player form with buttons that let the player
  * take action.
@@ -24,22 +30,40 @@ export class ActionFormBuilder implements ActionFormData {
    */
   bodyText?: string | RawMessage;
   /**
-   * Buttons of the the modal dialog.
+   * Contents of the the modal dialog.
    */
-  buttons: ActionFormButton[] = [];
+  content: ActionFormContent[] = [];
+
   body(bodyText: string | RawMessage): this {
     this.bodyText = bodyText;
     return this;
   }
   button(text: string | RawMessage, iconPath?: string | undefined): this {
-    this.buttons.push(new ActionFormButton(text, iconPath));
+    this.content.push(new ActionFormButton(text, iconPath));
+    return this;
+  }
+  divider(): this {
+    this.content.push(new ActionFormDivider());
+    return this;
+  }
+  header(text: string | RawMessage): this {
+    this.content.push(new ActionFormHeader(text));
+    return this;
+  }
+  label(text: string | RawMessage): this {
+    this.content.push(new ActionFormLabel(text));
     return this;
   }
   show(player: Player): Promise<ActionFormResponse> {
     const form = new ActionFormData();
     if (!!this.titleText) form.title(this.titleText);
     if (!!this.bodyText) form.body(this.bodyText);
-    this.buttons.forEach(item => form.button(item.text, item.iconPath));
+    this.content.forEach(item => {
+      if (item instanceof ActionFormButton) form.button(item.text, item.iconPath);
+      else if (item instanceof ActionFormDivider) form.divider();
+      else if (item instanceof ActionFormHeader) form.header(item.text);
+      else if (item instanceof ActionFormLabel) form.label(item.text);
+    });
     
     return form.show(player);
   }

@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Nperma <https://github.com/nperma>
 // Project: https://github.com/JaylyDev/ScriptAPI
 /**
@@ -8,6 +7,9 @@
  * @writter @Nperma
  */
 export class MATH {
+    /**
+     * @param {number[]} value
+     */
     constructor(value) {
         /**
          * Initial coordinates representing a point in space.

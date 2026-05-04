@@ -1,5 +1,6 @@
 import { MessageFormData } from "@minecraft/server-ui";
 export class MessageFormButton {
+    text;
     constructor(text) {
         this.text = text;
     }
@@ -11,9 +12,12 @@ export class MessageFormButton {
  * take action.
  */
 export class MessageFormBuilder {
-    constructor() {
-        this.buttons = [];
-    }
+    /**
+     * Title of the the modal dialog.
+     */
+    titleText;
+    bodyText;
+    buttons = [];
     body(bodyText) {
         this.bodyText = bodyText;
         return this;

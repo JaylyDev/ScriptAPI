@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { BlockVolume, ListBlockVolume } from "@minecraft/server";
@@ -11,8 +10,7 @@ const MAX_BLOCKS_SINGLE_FILL = 32768;
  * @private
  */
 function* getBlockVolumeIterator(volume, delta) {
-    const box = volume.getBoundingBox();
-    const blockVolume = new BlockVolume(box.min, box.max);
+    const blockVolume = new BlockVolume(volume.getMin(), volume.getMax());
     const span = blockVolume.getSpan();
     for (let x = 0; x < span.x; x += delta) {
         for (let y = 0; y < span.y; y += delta) {

@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
 
@@ -47,8 +46,9 @@ export function deprecate(fn, msg, id) {
   }
   deprecationMessage += `DeprecationWarning: ${msg}`;
 
-  function deprecated() {
+  const deprecated = () => {
     console.warn(deprecationMessage);
+    // @ts-ignore
     return fn.call(this, arguments);
   }
 

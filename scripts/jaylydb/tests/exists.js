@@ -1,5 +1,5 @@
 import { JaylyDB } from "../index";
-import { AssertionError, assert } from "assert/index";
+import { AssertionError, assert } from "../../assert/index.js";
 
 export function Main () {
   const datab = new JaylyDB("hello world");

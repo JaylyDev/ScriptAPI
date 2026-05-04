@@ -65,13 +65,11 @@ export function parseHeader(text: string): Header | ParseError {
 
 function headerParser(): pm.Parser<Header> {
   return pm.seqMap(
-    pm.regex(/\/\/ Script example for ScriptAPI/),
-    pm.regexp(/\r?\n\/\/ Author: /),
+    pm.regexp(/(?:.|\n|\r)*?\/\/ Author: /),
     contributorsParser(),
-    projectParser,
     pm.all, // Don't care about the rest of the file
     // tslint:disable-next-line:variable-name
-    (str, _defsBy, contributors, _project) => ({
+    (str, contributors) => ({
       nonNpm: str.endsWith("non-npm package "),
       contributors,
     })

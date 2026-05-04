@@ -1,5 +1,5 @@
 import { system, world } from "@minecraft/server";
-import isHost from "is-host/index";
+import isHost from "../is-host/index.js";
 
 world.afterEvents.playerSpawn.subscribe(({player}) => {
   system.run(() => {

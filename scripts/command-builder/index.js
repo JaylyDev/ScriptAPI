@@ -1,7 +1,6 @@
-// Script example for ScriptAPI
 // Author: defowler2005 <https://github.com/defowler2005>
 // Project: https://github.com/JaylyDev/ScriptAPI
-
+// @ts-nocheck
 /**
  * Minecraft Bedrock ScriptAPI Example
  * @author defowler2005
@@ -84,7 +83,16 @@ function waitMove(target, x, y, z, callback) {
     })
 };
 
-world.beforeEvents.chatSend.subscribe((data) => {
+system.beforeEvents.startup.subscribe((_event) => {
+  _event.customCommandRegistry.registerCommand({
+    name: 'jayly:commandbuilder',
+    description: 'Custom command for commandbuilder',
+    permissionLevel: CommandPermissionLevel.Any
+}, (origin) => {
+const data = { sender: origin.sourceEntity, message: origin.sourceEntity?.name || '', cancel: false };
+if (!data.sender) return;
+
+
     const prefix = 'DF.'; //Replace this prefix to what you want!
     const player = data.sender;
     const message = data.message;
@@ -97,6 +105,8 @@ world.beforeEvents.chatSend.subscribe((data) => {
     if (!command) return player.sendMessage('Invalid command!');
     if (command.is_staff && !player.hasTag('hosen24576jg')) return player.sendMessage('Invalid permission!')
     system.run(() => command.callback(player, args) || waitMove(player, x, y, z, () => command.callbackWM(player, args)));
+
+});
 });
 
 commandBuild.create(

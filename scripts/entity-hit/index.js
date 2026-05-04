@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: MajestikButter <https://github.com/MajestikButter>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { EntityHealthComponent, world } from "@minecraft/server";

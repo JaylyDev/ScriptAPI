@@ -5,6 +5,18 @@
  */
 export class BlockAreaSize {
     /**
+     * X size (west to east) component of this block area.
+     */
+    x;
+    /**
+     * Y size (down to up) of this block area size.
+     */
+    y;
+    /**
+     * Z size (south to north) of this block area size.
+     */
+    z;
+    /**
      * @remarks
      * Creates a new BlockAreaSize object.
      * @param x

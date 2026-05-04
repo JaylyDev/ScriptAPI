@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Unknown <Bedrock Add-Ons>
 // Project: https://discord.gg/bedrock-addons
 /**

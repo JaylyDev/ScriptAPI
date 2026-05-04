@@ -1,4 +1,4 @@
-// Script example for ScriptAPI
+// @ts-nocheck
 // Author: nperma <https://github.com/nperma>
 // Project: https://github.com/JaylyDev/ScriptAPI
 

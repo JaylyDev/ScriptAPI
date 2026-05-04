@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: JaylyMC <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 /**
@@ -24,6 +23,7 @@ function cloneJSON(obj) {
   }
   var cloneO = {};
   for (var e in obj) {
+    // @ts-ignore
     cloneO[e] = cloneJSON(obj[e]);
   }
   return cloneO;
@@ -33,13 +33,14 @@ function cloneJSON(obj) {
  * Modified JSON stringify function.
  * Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
  * 
- * @param {any} value A JavaScript value, usually an object or array, to be converted.
- * @param {(this: any, key: string, value: any) => any} replacer A function that transforms the results.
+ * @param {unknown} value A JavaScript value, usually an object or array, to be converted.
+ * @param {(this: unknown, key: string, value: unknown) => any} replacer A function that transforms the results.
  * @param {string | number} space Adds indentation, white space, and line break characters to the return-value JSON text to make it easier to read.
  * 
  * @returns {string} JavaScript Object Notation (JSON) string.
  */
 function JSONStringify (value, replacer, space) {
+  // @ts-ignore
   return __stringify(cloneJSON(value), replacer, space);
 };
 

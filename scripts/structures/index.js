@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: xKingDark <https://github.com/DarkGamerYT>
 //         JaylyDev <https://github.com/JaylyDev>
 //         Mojang <https://github.com/Mojang>

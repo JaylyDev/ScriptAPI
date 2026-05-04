@@ -1,7 +1,6 @@
-// Script example for ScriptAPI
 // Author: Jacob Rus <https://github.com/jrus>
 // Project: https://github.com/JaylyDev/ScriptAPI
-//          https://github.com/JaylyDev/ScriptAPI
+// @ts-nocheck
 
 import random from "./index";
 

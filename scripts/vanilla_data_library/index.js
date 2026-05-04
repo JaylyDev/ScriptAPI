@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jake Shirley <https://github.com/JakeShirley>
 //         Mike Ammerlaan <https://github.com/mammerla>
 //         Raphael Landaverde <https://github.com/rlandav>

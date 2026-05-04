@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: FrankyRayMS#7172 <Bedrock Add-Ons>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import {
@@ -59,6 +58,12 @@ export default function testScore(
     this.obj = objective;
   }
 
+  if (!this.obj) {
+    throw new Error(
+      `Objective "${objective}" not found.`
+    );
+  }
+
   // Player
   if (typeof player == "string") {
     this.plr = this.obj.getParticipants().find((v) => (v.displayName == player));
@@ -66,7 +71,19 @@ export default function testScore(
     this.plr = player;
   }
 
+  if (!this.plr) {
+    throw new Error(
+      `Player "${player}" not found.`
+    );
+  }
+
   this.scr = this.obj.getScore(this.plr);
+
+  if (typeof this.scr != "number") {
+    throw new Error(
+      `Score for player "${player}" not found.`
+    );
+  }
 
   if (min < this.scr && this.scr > max) return true;
   else return false;

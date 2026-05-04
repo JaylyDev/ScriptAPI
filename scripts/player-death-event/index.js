@@ -1,4 +1,3 @@
-// Script example for ScriptAPI
 // Author: Jayly#1397 <Jayly Discord>
 // Project: https://github.com/JaylyDev/ScriptAPI
 /**
@@ -6,7 +5,7 @@
  * @author JaylyMC
  */
 import { EntityHealthComponent, world, Player, system } from "@minecraft/server";
-import { deprecate } from "deprecate/index";
+import { deprecate } from "../deprecate/index.js";
 
 /**
  * Contains information related to an player death.
@@ -32,6 +31,7 @@ export class PlayerDeathEventSignal {
    * @return {(arg: PlayerDeathEvent) => void}
    */
   subscribe (arg) {
+    // @ts-ignore
     arg["playerDeath"] = true;
     /**
      * @type {Player[]}
@@ -45,6 +45,7 @@ export class PlayerDeathEventSignal {
          */
         // @ts-ignore
         let health = player.getComponent("health");
+        // @ts-ignore
         if (health.currentValue === 0 && arg["playerDeath"] === true) {
           const playerIndex = deadPlayers.findIndex(pl => pl.name === player.name);
           if (playerIndex < 0) {
@@ -57,6 +58,7 @@ export class PlayerDeathEventSignal {
               };
             });
           }      
+        // @ts-ignore
         } else if (arg["playerDeath"] === false) {
           system.clearRun(callback);
         };
@@ -72,6 +74,7 @@ export class PlayerDeathEventSignal {
    * @return {void}
    */
   unsubscribe (arg) {
+    // @ts-ignore
     arg["playerDeath"] = false;
   };
 };

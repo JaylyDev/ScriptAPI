@@ -1,4 +1,4 @@
-// Script example for ScriptAPI
+// @ts-nocheck
 // Author: Jayly <https://github.com/JaylyDev>
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { Block, Entity, EntityHitEntityAfterEvent, Player, world } from "@minecraft/server";
@@ -21,10 +21,9 @@ export class EntityCriticalHitAfterEvent {
     this.hitEntity = hitEntity;
   };
   /**
-   * @remarks
-   * Entity that made a hit/melee attack.
-   * @readonly
-   * @type {Player}
+   * @remarks Entity that made a hit/melee attack.
+   * 
+   * @type {Player | undefined}
    */
   player;
   /**
@@ -34,7 +33,7 @@ export class EntityCriticalHitAfterEvent {
    * are undefined, then the damagingEntity basically swiped into the
    * air.
    * @readonly
-   * @type {Entity | undefined}
+   * @type {Entity}
    */
   hitEntity;
 };

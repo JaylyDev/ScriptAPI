@@ -80,7 +80,7 @@ declare class NBTStreamReader extends BinaryStreamReader{
     readTypedArray(): Array<any>
     readBoolean(): boolean
     readString(): string
-    readArray(): any[]
+    readArray(): unknown[]
     readCompoud(): object
     readEmpty(): undefined
     readType(): NBTTypes
