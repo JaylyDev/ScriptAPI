@@ -1,3 +1,4 @@
+// Author: bot174 <https://github.com/bot174>
 export const languageKeys = [
     "accessibility.disableTTS",
     "accessibility.enableTTS",
