@@ -22,7 +22,7 @@
     "@minecraft/vanilla-data": "1.26.13"
   },
   "dependencies": {
-    "@minecraft/server": "^2.6.0",
+    "@minecraft/server": "^2.7.0",
     "@minecraft/server-ui": "^2.0.0",
     "glob": "^13.0.6"
   },
