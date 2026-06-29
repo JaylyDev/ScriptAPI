@@ -31,7 +31,7 @@
     "@minecraft/gameplay-utilities": "^1.3.0",
     "@minecraft/math": "2.4.0",
     "@npm/types": "^2.0.0",
-    "@types/node": "^22.19.17",
+    "@types/node": "^26.0.1",
     "@types/parsimmon": "^1.10.9",
     "axios": "^1.8.4",
     "parsimmon": "^1.18.1",
