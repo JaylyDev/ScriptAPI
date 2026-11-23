@@ -22,4 +22,4 @@ The border is defined by the range between (`minX`, `minZ`) and (`maxX`, `maxZ`)
 
 ## Credits
 
-These scripts were written by [defowler2005](https://github.com/defowler2005).
+These scripts were written by [defowler2005](https://github.com/chronoByte4812).

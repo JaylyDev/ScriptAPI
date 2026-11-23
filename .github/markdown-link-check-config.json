@@ -1,0 +1,10 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^https://(www\\.)?npmjs\\.com/"
+    },
+    {
+      "pattern": "^https://stackoverflow\\.com/"
+    }
+  ]
+}

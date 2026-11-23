@@ -22,5 +22,6 @@ jobs:
       - name: Markdown links check
         uses: ruzickap/action-my-markdown-link-checker@v1
         with:
+          config_file: .github/markdown-link-check-config.json
           exclude: |
             docs/

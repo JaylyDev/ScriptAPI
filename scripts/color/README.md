@@ -6,4 +6,4 @@ Class for Color interface in `@minecraft/server` - Represents a fully customizab
 
 ## Credits
 
-These scripts were written by [xKingDark](https://github.com/DarkGamerYT)
+These scripts were written by [xKingDark](https://github.com/xKingDark)

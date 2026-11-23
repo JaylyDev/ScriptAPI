@@ -1,6 +1,6 @@
 # Deprecated
 
-PlayerDeathEvent class is deprecated. Use [EntityDeathEvent](../entity-death-event) instead.
+PlayerDeathEvent class is deprecated. Use `world.afterEvents.entityDie` instead.
 
 ---
 

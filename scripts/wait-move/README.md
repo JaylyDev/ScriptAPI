@@ -30,4 +30,4 @@ waitMove(player, x, y, z, (target) => {
 
 ## Credits
 
-These scripts were written by [defowler2005](https://github.com/defowler2005).
+These scripts were written by [defowler2005](https://github.com/chronoByte4812).

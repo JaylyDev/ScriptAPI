@@ -6,4 +6,4 @@ Demostration of showing another Minecraft UI form after a player confirms or can
 
 ## Credits
 
-These scripts were written by [FrankyRayMS](https://github.com/FrankyRay)
+These scripts were written by [FrankyRayMS](https://github.com/fraysdev)
