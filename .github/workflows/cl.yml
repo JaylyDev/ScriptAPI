@@ -20,7 +20,7 @@ jobs:
       - run: npm install
 
       - name: Type Check
-        run: tsc --build
+        run: npm run build
 
       - name: Format Check
         run: node ./dist/index.js
